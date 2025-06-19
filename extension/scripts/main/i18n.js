@@ -21,7 +21,7 @@ function i18n_tpr_settings_btn() {
 
 // bottom-right change wallpaper btn 
 function i18n_btr_change_wallpaper_btn() {
-	var x = document.getElementById('change-wallpaper');
+	var x = document.getElementById('previous-wallpaper');
 	x.title = i18n('btr_change_wallpaper_btn');
 }
 
