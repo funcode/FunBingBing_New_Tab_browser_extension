@@ -66,6 +66,10 @@ var defaultCustomBookmarks = [
 		{
 			name: "Ataraxia User Guide",
 			url: "https://idealland.app/ataraxia/install.html"
+		},
+		{
+			name: "手气不错",
+			action: "random_bing_wallpaper"
 		}
 	];
 

@@ -40,11 +40,12 @@ body {
 
 /*  top right function zone */
 #functions-div {
-	position: absolute;
+	position: fixed;
 	top: 30px;
 	right: 30px;
 	color: white;
-	text-align: right;
+	text-align: center;
+	z-index: 1000; /* Ensure it's above other elements */
 }
 
 #functions-nav {
@@ -758,7 +759,7 @@ body {
     margin-right: .25rem
 }
 
-.mc_caro .musCard .headline .nav>* {
+.mc_caro .musCard .headline>* {
     border-radius: 6px
 }
 
@@ -858,3 +859,13 @@ body {
             object {
                 position: absolute
             }
+
+            /* Ensure functions-div remains visible on narrow screens (like when dev tools are open) */
+@media screen and (max-width: 768px) {
+	#functions-div {
+		position: fixed;
+		top: 10px;
+		right: 10px;
+		z-index: 1000;
+	}
+}

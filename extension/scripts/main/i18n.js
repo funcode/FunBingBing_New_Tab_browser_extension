@@ -11,7 +11,7 @@ function i18n_search_logo_hover_tip() {
 
 // top-right check update btn
 function i18n_tpr_check_update_btn() {
-	document.getElementById('check-update-btn-text').innerHTML = i18n('tpr_check_update_btn');
+	document.getElementById('gallery-btn-text').innerHTML = i18n('tpr_gallery_btn');
 }
 
 // top-right open settings btn
