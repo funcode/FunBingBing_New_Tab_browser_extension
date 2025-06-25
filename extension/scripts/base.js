@@ -77,6 +77,7 @@ function readConf(key) {
             - wallpaper_date: String
             - wallpaper_url: String
             - wallpaper_text: String
+            - headline_link: String
             - offset_idx: String, can be parsed to int
         // version flag
             - last_open_version: String
@@ -147,7 +148,7 @@ function initializeConf() {
             }
         ],
         current_search_engine: "Google",
-        display_search_box: "yes",
+        display_search_box: "no",
         show_top_sites: "no",
         custom_bkmk_list: [
             {
@@ -158,7 +159,8 @@ function initializeConf() {
         enable_uhd_wallpaper: "no",
         wallpaper_date: "2000-01-01",
         wallpaper_url: "./images/john-reign-abarintos-369080-unsplash.jpg",
-        wallpaper_text: "Welcome to Ataraxia.",
+        wallpaper_text: "Welcome to Bing Wallpaper.",
+        headline_link: "https://cn.bing.com/",
         offset_idx: "0",
         last_open_version: "0"
     }

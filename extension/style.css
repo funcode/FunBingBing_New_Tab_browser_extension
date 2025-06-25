@@ -10,13 +10,12 @@ body {
 }
 
 .bottom {
-	position: absolute;
-	bottom: 30px;
-	right: 30px;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
 	color: white;
 }
-
- /* search */
 #search-logo {
 	float:left;
 	height: 50px;
@@ -166,3 +165,696 @@ body {
 
 
 
+/* 1. 外层包装容器，固定在页面右下角，尺寸为 60x60 */
+.trivia-wrapper {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 120px;
+  height: 120px;
+  z-index: 1000;
+}
+
+/* 2. 默认时隐藏组件，只有鼠标进入容器时显示最小化的内容 */
+.trivia-wrapper .hp_trivia_outer {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.trivia-wrapper:hover .hp_trivia_outer {
+  display: block;
+}
+
+/* 3. 最小化状态：仅显示 Q 图标 */
+.hp_trivia_inner {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  background-color: rgba(34,34,34,0.9);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+/* 默认隐藏除了 Q 图标外的其它内容 */
+.hp_trivia_inner .trivia .title span,
+.hp_trivia_inner .trivia .question,
+.hp_trivia_inner .trivia .options {
+  display: none;
+}
+
+/* 确保 Q 图标图片始终可见，并限定其尺寸 */
+.hp_trivia_inner .trivia .title .image_q {
+  width: 60px;
+  height: 60px;
+  display: block;
+}
+
+/* 4. 当鼠标悬停在 Q 图标（hp_trivia_inner）时，扩展显示完整内容 */
+.hp_trivia_inner:hover {
+  width: 531px;
+  height: 391.5px;
+}
+
+/* 同时显示原先隐藏的文本、问题和选项 */
+.hp_trivia_inner:hover .trivia .title span,
+.hp_trivia_inner:hover .trivia .question,
+.hp_trivia_inner:hover .trivia .options {
+  display: block;
+}
+
+
+.mc_caro {
+    margin: auto;
+    text-align: right;
+    bottom: 0;
+    position: relative
+}
+
+.mc_caro .caro_div {
+    background-color: rgba(255,255,255,.7);
+    border-radius: 6px;
+    position: absolute;
+    cursor: pointer;
+    font-weight: 600
+}
+
+.mc_caro .caro_div .feed-settings {
+    padding: 0 18px 0 12px;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    font-size: 13px
+}
+
+.mc_caro .caro_div .feed-settings .feed-settings-icon {
+    height: 20px;
+    width: 20px;
+    margin-inline-end:11px}
+
+.mc_caro .caro_div .feed-menu {
+    padding: 12px;
+    top: -115px;
+    display: flex;
+    border-radius: 6px;
+    flex-direction: row;
+    position: absolute;
+    background-color: rgba(255,255,255,.7);
+    z-index: 503;
+    justify-content: space-around
+}
+
+.mc_caro .caro_div .feed-menu .menu-item {
+    outline: rgba(225,225,225,.2) solid 1px;
+    padding: 7px;
+    background-color: rgba(255,255,255,.7);
+    border-radius: 6px
+}
+
+.mc_caro .caro_div .feed-menu .menu-item .menu-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 48px
+}
+
+.mc_caro .caro_div .feed-menu .menu-item .menu-image-tob-0 {
+    background-image: url(/rp/FVpdkHjnLojAA0epl022xuzaIpk.svg)
+}
+
+.mc_caro .caro_div .feed-menu .menu-item .menu-image-tob-1 {
+    background-image: url(/rp/L2TRR9w1suNkNF0cLCVgAW5vsJI.svg)
+}
+
+.mc_caro .caro_div .feed-menu .menu-item .menu-image-tob-2 {
+    background-image: url(/rp/IhJMlCXwf0HvcDk0-FPxHu4doms.svg)
+}
+
+.mc_caro .caro_div .feed-menu .menu-item .menu-image-tob-3 {
+    background-image: url(/rp/Os-iSJxMfJUoVBzm3eYz-NJuxe0.svg)
+}
+
+.mc_caro .caro_div .feed-menu .menu-item .menu-image-0 {
+    background-image: url(/rp/yCW4WPI3hqaOE3cvKJyrH8g8498.svg)
+}
+
+.mc_caro .caro_div .feed-menu .menu-item .menu-image-1 {
+    background-image: url(/rp/KGu3CPCJHPbz2cKWbyKY9ebqo_o.svg)
+}
+
+.mc_caro .caro_div .feed-menu .menu-item .menu-image-2 {
+    background-image: url(/rp/Os-iSJxMfJUoVBzm3eYz-NJuxe0.svg)
+}
+
+.mc_caro .caro_div .feed-menu .menu-item .menu-title {
+    width: 71px;
+    margin-left: 2px;
+    margin-top: 4px;
+    text-overflow: ellipsis;
+    line-height: 16px;
+    position: relative;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: break-spaces;
+    text-align: left;
+    color: #111
+}
+
+.mc_caro .caro_div .feed-menu .menu-item.selected {
+    outline: #0078d4 solid 2px;
+    position: relative
+}
+
+.mc_caro .caro_div .feed-menu .menu-item:not(:last-child) {
+    margin-inline-end:8px}
+
+.mc_caro .caro_div.caro_div_dark {
+    background-color: rgba(34,34,34,.9);
+    font-weight: 400
+}
+
+.mc_caro .caro_div.caro_div_dark .feed-settings {
+    color: #fff
+}
+
+.mc_caro .caro_div.caro_div_dark .feed-menu {
+    background-color: rgba(34,34,34,.7)
+}
+
+.mc_caro .caro_div.caro_div_dark .feed-menu .menu-item {
+    background-color: rgba(34,34,34,.9)
+}
+
+.mc_caro .caro_div.caro_div_dark .feed-menu .menu-item .menu-title {
+    color: #fff
+}
+
+.mc_caro .hp_trivia_outer {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    text-align: left;
+    height: 391.5px;
+    width: 531px;
+    z-index: 2
+}
+
+.mc_caro .hp_trivia_outer.show {
+    display: block
+}
+
+.mc_caro .hp_trivia_outer:hover .hp_trivia_inner,.mc_caro .hp_trivia_outer:focus .hp_trivia_inner {
+    opacity: .6
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.hp_trivia_inner_new {
+    background-color: rgba(255,255,255,.7)
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner {
+    background-color: rgba(34,34,34,.9);
+    border-radius: 6px;
+    opacity: 0;
+    left: calc(100% - 354px);
+    top: calc(100% - 261px);
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    position: absolute;
+    transition: all .2s
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.focusin,.mc_caro .hp_trivia_outer .hp_trivia_inner.show {
+    opacity: 1;
+    height: 256px;
+    width: 350px
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia {
+    min-width: 325px;
+    padding: 14px;
+    color: #ddd;
+    position: absolute;
+    top: 0;
+    bottom: 0
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .title {
+    white-space: nowrap
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .title>* {
+    vertical-align: middle
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .title img {
+    margin-right: 14px;
+    display: inline-block
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .question {
+    padding: 10px 8px 8px
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options {
+    padding: 8px
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option {
+    padding: 4px 0
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option a,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .footer .items .item .a_bold,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .a_bold {
+    color: #ddd
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option a:hover,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .footer .items .item .a_bold:hover,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .a_bold:hover,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option a:focus,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .footer .items .item .a_bold:focus,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .a_bold:focus {
+    color: #fff
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option a:hover .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .footer .items .item .a_bold:hover .answer,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .a_bold:hover .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option a:focus .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .footer .items .item .a_bold:focus .answer,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .a_bold:focus .answer {
+    text-decoration: underline
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option a .bullet,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .footer .items .item .a_bold .bullet,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .a_bold .bullet {
+    margin-right: 8px;
+    padding: 0 6px 1px;
+    border-radius: 100px;
+    border: 1px solid #fff;
+    display: inline-block
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option a .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .footer .items .item .a_bold .answer,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .a_bold .answer {
+    font-size: .8rem;
+    display: inline
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.inv {
+    background: #fff
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia {
+    color: #444
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option a,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .footer .items .item .a_bold,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .a_bold {
+    color: #444
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option a:hover .bullet,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .footer .items .item .a_bold:hover .bullet,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .a_bold:hover .bullet,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option a:focus .bullet,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .footer .items .item .a_bold:focus .bullet,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .a_bold:focus .bullet {
+    color: #fff;
+    border-color: #007daa;
+    background: #007daa
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option a:hover .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .footer .items .item .a_bold:hover .answer,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .a_bold:hover .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option a:focus .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .footer .items .item .a_bold:focus .answer,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .a_bold:focus .answer {
+    color: #007daa
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option a .bullet,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .footer .items .item .a_bold .bullet,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .a_bold .bullet {
+    color: #444;
+    border: 1px solid #444
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option a .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .footer .items .item .a_bold .answer,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .a_bold .answer {
+    color: #444
+}
+
+.mc_caro .musCard {
+    text-align: left;
+    right: 0;
+    display: inline-block;
+    margin-bottom: .5rem;
+    position: relative;
+    user-select: none
+}
+
+.mc_caro .musCard.focusin .musCardCont {
+    transform: none;
+    z-index: 2
+}
+
+.mc_caro .musCard:before {
+    bottom: 100%;
+    height: .5rem;
+    width: 100%;
+    position: absolute;
+    content: '';
+    z-index: 2
+}
+
+.mc_caro .musCard .musCardCont {
+    border-radius: 6px;
+    bottom: calc(2.5rem + .5rem);
+    transform-origin: bottom;
+    transform: scale(0);
+    background-clip: padding-box;
+    padding: .625rem 1.25rem 1.25rem;
+    right: 0;
+    position: absolute;
+    width: 14rem;
+    background-color: rgba(34,34,34,.9)
+}
+
+.mc_caro .musCard .musCardCont a,.mc_caro .musCard .musCardCont .footer .items .item .a_bold,.footer .items .item .mc_caro .musCard .musCardCont .a_bold {
+    font-size: .8125rem;
+    color: #fff;
+    cursor: pointer
+}
+
+.mc_caro .musCard .musCardCont a.no_link,.mc_caro .musCard .musCardCont .footer .items .item .no_link.a_bold,.footer .items .item .mc_caro .musCard .musCardCont .no_link.a_bold {
+    cursor: default
+}
+
+.mc_caro .musCard .musCardCont a.no_link:hover,.mc_caro .musCard .musCardCont .footer .items .item .no_link.a_bold:hover,.footer .items .item .mc_caro .musCard .musCardCont .no_link.a_bold:hover,.mc_caro .musCard .musCardCont a.no_link:focus,.mc_caro .musCard .musCardCont .footer .items .item .no_link.a_bold:focus,.footer .items .item .mc_caro .musCard .musCardCont .no_link.a_bold:focus {
+    text-decoration: none
+}
+
+.mc_caro .musCard .musCardCont a:hover,.mc_caro .musCard .musCardCont .footer .items .item .a_bold:hover,.footer .items .item .mc_caro .musCard .musCardCont .a_bold:hover,.mc_caro .musCard .musCardCont a:focus,.mc_caro .musCard .musCardCont .footer .items .item .a_bold:focus,.footer .items .item .mc_caro .musCard .musCardCont .a_bold:focus {
+    text-decoration: underline
+}
+
+.mc_caro .musCard .musCardCont.focusin {
+    transition-delay: 0s;
+    transform: none
+}
+
+.mc_caro .musCard .musCardCont .share {
+    margin: 0 0 .25rem 0;
+    padding: 0
+}
+
+.mc_caro .musCard .musCardCont .share li {
+    flex-basis: 2.1875rem;
+    position: relative
+}
+
+.mc_caro .musCard .musCardCont .share li:last-of-type {
+    margin-left: auto
+}
+
+.mc_caro .musCard .musCardCont .share li>* {
+    display: inline-block;
+    height: 100%;
+    width: 100%
+}
+
+.mc_caro .musCard .musCardCont .share .shareicon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    transform: translate3d(0,50%,0);
+    fill: white
+}
+
+.mc_caro .musCard .musCardCont .share .downloadLink {
+    width: 20px;
+    height: 16px;
+    fill: #fff
+}
+
+.mc_caro .musCard .musCardCont .share .downloadLink.disabled {
+    pointer-events: none;
+    cursor: default;
+    fill: #999;
+    opacity: .5
+}
+
+.mc_caro .musCard .musCardCont .share .downloadLink .downloadIcon {
+    position: absolute;
+    width: 20px;
+    top: 50%;
+    transform: translate3d(0,-50%,0)
+}
+
+.mc_caro .musCard .musCardCont .bingwpapptext {
+    margin-bottom: 1rem
+}
+
+.mc_caro .musCard .musCardCont .hr {
+    margin: .5rem 0;
+    background-color: #fff;
+    height: 1px;
+    width: 100%
+}
+
+.mc_caro .musCard .musCardCont .restricted {
+    font-size: .875rem;
+    cursor: default;
+    color: #757575;
+    text-decoration: none
+}
+
+.mc_caro .musCard .musCardCont .restricted:hover,.mc_caro .musCard .musCardCont .restricted:focus {
+    color: #9a9a9a
+}
+
+.mc_caro .musCard .musCardCont .title {
+    font-family: 'Segoe UI Light','Segoe UI',Arial,Helvetica,Sans-Serif;
+    font-size: 1.375rem;
+    font-weight: 100
+}
+
+.mc_caro .musCard .musCardCont .title:hover,.mc_caro .musCard .musCardCont .title:focus {
+    text-decoration: underline
+}
+
+.mc_caro .musCard .musCardCont .copyright-container {
+    display: flex
+}
+
+.mc_caro .musCard .musCardCont .copyright {
+    max-width: 204px;
+    margin-top: .5rem;
+    font-size: .75rem;
+    color: #ccc
+}
+
+@media screen and (min-width: 600px) {
+    .mc_caro .musCard .musCardCont .copyright {
+        min-width:204px
+    }
+}
+
+.mc_caro .musCard .musCardCont .av_cap {
+    color: #ddd;
+    overflow-wrap: break-word;
+    margin-top: .5rem;
+    font-size: .8125rem
+}
+
+.mc_caro .musCard .headline {
+    font-size: .8125rem;
+    line-height: 2.5rem
+}
+
+.mc_caro .musCard .headline>* {
+    background-color: rgba(34,34,34,.9);
+    border-radius: 6px;
+    margin: 0 .125rem;
+    text-align: left;
+    cursor: pointer
+}
+
+.mc_caro .musCard .headline * {
+    vertical-align: bottom;
+    display: inline-block
+}
+
+.mc_caro .musCard .headline .icon,.mc_caro .musCard .headline .leftNav,.mc_caro .musCard .headline .media,.mc_caro .musCard .headline .rightNav {
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem
+}
+
+.mc_caro .musCard .headline .icon_text .text {
+    height: 2.5rem;
+    color: #fff;
+    padding-right: 18px
+}
+
+.mc_caro .musCard .headline svg {
+    fill: #fff;
+    transform: translate3d(-50%,-50%,0);
+    top: 50%;
+    left: 50%;
+    position: absolute
+}
+
+.mc_caro .musCard .headline .media {
+    margin: 0 .125rem
+}
+
+.mc_caro .musCard .headline .media.on .on {
+    display: block
+}
+
+.mc_caro .musCard .headline .media.on .off {
+    display: none
+}
+
+.mc_caro .musCard .headline .media .on {
+    display: none
+}
+
+.mc_caro .musCard .headline .nav {
+    background: none
+}
+
+.mc_caro .musCard .headline .nav div,.mc_caro .musCard .headline .nav a,.mc_caro .musCard .headline .nav .footer .items .item .a_bold,.footer .items .item .mc_caro .musCard .headline .nav .a_bold {
+    background-clip: padding-box;
+    background-color: rgba(34,34,34,.9)
+}
+
+.mc_caro .musCard .headline .nav div:after,.mc_caro .musCard .headline .nav a:after,.mc_caro .musCard .headline .nav .footer .items .item .a_bold:after,.footer .items .item .mc_caro .musCard .headline .nav .a_bold:after {
+    border-radius: 6px;
+    border-left: 6px solid rgba(255,255,255,.8);
+    border-bottom: 6px solid rgba(255,255,255,.8);
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    content: '';
+    position: absolute
+}
+
+.mc_caro .musCard .headline .nav div:hover:after,.mc_caro .musCard .headline .nav a:hover:after,.mc_caro .musCard .headline .nav .footer .items .item .a_bold:hover:after,.footer .items .item .mc_caro .musCard .headline .nav .a_bold:hover:after {
+    border-left: 6px solid #fff;
+    border-bottom: 6px solid #fff
+}
+
+.mc_caro .musCard .headline .nav div.disabled,.mc_caro .musCard .headline .nav a.disabled,.mc_caro .musCard .headline .nav .footer .items .item .disabled.a_bold,.footer .items .item .mc_caro .musCard .headline .nav .disabled.a_bold {
+    pointer-events: none;
+    cursor: auto
+}
+
+.mc_caro .musCard .headline .nav div.disabled:after,.mc_caro .musCard .headline .nav a.disabled:after,.mc_caro .musCard .headline .nav .footer .items .item .disabled.a_bold:after,.footer .items .item .mc_caro .musCard .headline .nav .disabled.a_bold:after {
+    border-left: 6px solid rgba(255,255,255,.4);
+    border-bottom: 6px solid rgba(255,255,255,.4)
+}
+
+.mc_caro .musCard .headline .nav .rightNav,.mc_caro .musCard .headline .nav .leftNav,.mc_caro .musCard .headline .nav .down {
+    position: relative;
+    cursor: pointer;
+    background: rgba(34,34,34,.9);
+    width: 2.5rem;
+    height: 2.5rem
+}
+
+.mc_caro .musCard .headline .nav .rightNav:after {
+    transform: scale(.25) translateX(-25%) rotate(225deg)
+}
+
+.mc_caro .musCard .headline .nav .leftNav:after {
+    transform: scale(.25) translateX(25%) rotate(45deg)
+}
+
+.mc_caro .musCard .headline .nav .down:after {
+    transform: none
+}
+
+.mc_caro .musCard .headline .nav .leftNav {
+    margin-right: .25rem
+}
+
+.mc_caro .musCard .headline .nav>* {
+    border-radius: 6px
+}
+
+.mc_caro .musCard.musCard_new {
+    margin-bottom: .75rem
+}
+
+.mc_caro .musCard.musCard_new .headline>* {
+    background-color: rgba(255,255,255,.7)
+}
+
+.mc_caro .musCard.musCard_new .headline .icon_text .text {
+    color: #242424;
+    font-weight: 600;
+    font-family: 'Segoe UI',Tahoma,Geneva,Verdana,sans-serif
+}
+
+.mc_caro .musCard.musCard_new .headline svg {
+    fill: #242424
+}
+
+.mc_caro .musCard.musCard_new .headline .nav {
+    background: none
+}
+
+.mc_caro .musCard.musCard_new .headline .nav div,.mc_caro .musCard.musCard_new .headline .nav a,.mc_caro .musCard.musCard_new .headline .nav .footer .items .item .a_bold,.footer .items .item .mc_caro .musCard.musCard_new .headline .nav .a_bold {
+    background-clip: padding-box;
+    background-color: rgba(34,34,34,.9)
+}
+
+.mc_caro .musCard.musCard_new .headline .nav div:after,.mc_caro .musCard.musCard_new .headline .nav a:after,.mc_caro .musCard.musCard_new .headline .nav .footer .items .item .a_bold:after,.footer .items .item .mc_caro .musCard.musCard_new .headline .nav .a_bold:after {
+    border-radius: 6px;
+    border-left: 6px solid #242424;
+    border-bottom: 6px solid #242424;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    content: '';
+    position: absolute
+}
+
+.mc_caro .musCard.musCard_new .headline .nav div:hover:after,.mc_caro .musCard.musCard_new .headline .nav a:hover:after,.mc_caro .musCard.musCard_new .headline .nav .footer .items .item .a_bold:hover:after,.footer .items .item .mc_caro .musCard.musCard_new .headline .nav .a_bold:hover:after {
+    border-left: 6px solid #000;
+    border-bottom: 6px solid #000
+}
+
+.mc_caro .musCard.musCard_new .headline .nav div.disabled,.mc_caro .musCard.musCard_new .headline .nav a.disabled,.mc_caro .musCard.musCard_new .headline .nav .footer .items .item .disabled.a_bold,.footer .items .item .mc_caro .musCard.musCard_new .headline .nav .disabled.a_bold {
+    pointer-events: none;
+    cursor: auto
+}
+
+.mc_caro .musCard.musCard_new .headline .nav div.disabled:after,.mc_caro .musCard.musCard_new .headline .nav a.disabled:after,.mc_caro .musCard.musCard_new .headline .nav .footer .items .item .disabled.a_bold:after,.footer .items .item .mc_caro .musCard.musCard_new .headline .nav .disabled.a_bold:after {
+    border-left: 6px solid rgba(36,36,36,.5);
+    border-bottom: 6px solid rgba(36,36,36,.5)
+}
+
+.mc_caro .musCard.musCard_new .headline .nav .rightNav,.mc_caro .musCard.musCard_new .headline .nav .leftNav,.mc_caro .musCard.musCard_new .headline .nav .down {
+    position: relative;
+    cursor: pointer;
+    background: rgba(255,255,255,.7);
+    width: 2.5rem;
+    height: 2.5rem
+}
+
+.mc_caro .musCard.musCard_new .headline .nav .rightNav:after {
+    transform: scale(.25) translateX(-25%) rotate(225deg)
+}
+
+.mc_caro .musCard.musCard_new .headline .nav .leftNav:after {
+    transform: scale(.25) translateX(25%) rotate(45deg)
+}
+
+.mc_caro .musCard.musCard_new .headline .nav .down:after {
+    transform: none
+}
+
+ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
+                font-weight: inherit;
+                font-size: inherit;
+                list-style: none;
+                border-spacing: 0;
+                border: 0;
+                border-collapse: collapse;
+                text-decoration: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            a {
+                color: initial
+            }
+
+            a:hover {
+                text-decoration: none
+            }
+
+            object {
+                position: absolute
+            }

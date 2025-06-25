@@ -12,10 +12,10 @@
     "newtab": "blank.html"
   },
   "icons": {
-    "16": "./ata_16.png",
-    "32": "./ata_32.png",
-    "48": "./ata_48.png",
-    "128": "./ata_128.png"
+    "16": "./16_icon.png",
+    "32": "./32_icon.png",
+    "48": "./48_icon.png",
+    "128": "./128_icon.png"
   },
   "permissions": [
   ],
