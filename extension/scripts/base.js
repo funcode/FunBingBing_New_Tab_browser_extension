@@ -151,7 +151,7 @@ function initializeConf() {
         display_search_box: "no",
         show_top_sites: "no",        custom_bkmk_list: [
             {
-            name: "手气不错",
+            name: "历史上的今天",
             // Use action identifier instead of function
             action: "random_bing_wallpaper"
             }

@@ -94,7 +94,7 @@ function updateWallpaper(idx) {
 			loadAndChangeOnlineWallpaper(url, obj.images[0].title, headlineLink);
 		}
 		else {
-			// showDefaultWallpaper();
+			 //showDefaultWallpaper();
 		}
 	}
 	var current_lang = window.navigator.language;

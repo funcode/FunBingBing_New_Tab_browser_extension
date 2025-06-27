@@ -68,7 +68,7 @@ var defaultCustomBookmarks = [
 			url: "https://idealland.app/ataraxia/install.html"
 		},
 		{
-			name: "手气不错",
+			name: "历史上的今天",
 			action: "random_bing_wallpaper"
 		}
 	];
