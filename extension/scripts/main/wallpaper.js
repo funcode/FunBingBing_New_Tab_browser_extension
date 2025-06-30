@@ -1,4 +1,3 @@
-
 // set wallpaper to default
 function showDefaultWallpaper() {
 	// set wallpaper
@@ -10,27 +9,17 @@ function showDefaultWallpaper() {
 
 // set footer text
 function setFooterText(text) {
-	/* 	var footer_text = document.getElementById('footer-text');
-		footer_text.innerHTML = text; */
-	//fun
+	// 直接设置headline内容，无需footer相关逻辑
 	var headline_text = document.getElementById('headline');
 	headline_text.innerHTML = text;
-	// display / hide the uhd badge
-	var uhd_badge = document.getElementById('uhd-badge');
-	if (readConf('enable_uhd_wallpaper') == 'yes') {
-		uhd_badge.innerHTML = i18n('btr_download_wallpaper_uhd_badge');
-	}
-	else {
-		uhd_badge.innerHTML = '';
-	}
 }
 
 // display loading animation
 function showLoadingAnim() {
 	var circle = document.getElementById('loading-circle');
 	circle.style.display = 'inline-block';
-	// set footer text
-	setFooterText('Updating wallpaper ...');
+	// 仅设置headline内容，无footer相关逻辑
+	setFooterText(i18n('updating_wallpaper'));
 }
 
 // hide loading animation
@@ -42,29 +31,22 @@ function hideLoadingAnim() {
 // pre-load image from url
 // then change background image and footer text after loading is finished
 function loadAndChangeOnlineWallpaper(url, text, headline) {
-	//showDefaultWallpaper();
 	hideLoadingAnim();
-	setFooterText('Updating wallpaper ...');
-	// preload wallpaper
+	setFooterText(i18n('updating_wallpaper'));
 	var tmp_img = new Image();
 	tmp_img.src = url;
 	tmp_img.onload = function () {
-		// set wallpaper
 		var body = document.getElementById('main-body');
 		body.style.backgroundImage = "url('" + url + "')";
-		// set footer text
 		hideLoadingAnim();
 		setFooterText(text);
-		// set headline link
 		var headline_link = document.getElementById('headline-link');
 		headline_link.href = headline;
-		// update conf
 		writeConf("wallpaper_date", getDateString());
 		writeConf("wallpaper_url", url);
 		writeConf("wallpaper_text", text);
 		writeConf("headline_link", headline);
-		// set download link
-		setDownloadLink();
+		// setDownloadLink(); // 已无footer相关下载链接
 	};
 }
 
@@ -169,11 +151,7 @@ function setDownloadLink() {
 // init wallpaper
 initWallpaper();
 
-// bind switch old wallpaper click event
-var previous_wp_btn = document.getElementById('previous-wallpaper');
-previous_wp_btn.onclick = switchPrevWallpaper;
-var next_wp_btn = document.getElementById('next-wallpaper');
-next_wp_btn.onclick = switchNextWallpaper;
+
 
 var left_nav_btn = document.getElementById('leftNav');
 left_nav_btn.onclick = switchPrevWallpaper;

@@ -156,6 +156,10 @@
         "message": "授權失敗，功能無法開啟。請您重試，並允許授予權限。"
     },
 
+    "updating_wallpaper": {
+        "message": "更新壁紙中..."
+    },
+
     "placeholder": {
         "message": "placeholder"
     }

@@ -157,6 +157,10 @@
         "message": "Authorization failed, feature cannot be turned on. Please try again and grant the permission."
     },
 
+    "updating_wallpaper": {
+        "message": "Updating wallpaper ..."
+    },
+
     "placeholder": {
         "message": "placeholder"
     }

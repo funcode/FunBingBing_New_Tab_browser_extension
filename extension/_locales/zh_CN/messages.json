@@ -156,6 +156,10 @@
     "op_top_site_perm_fail": {
         "message": "授权失败，功能无法开启。请您重试，并允许授予权限。"
     },
+
+    "updating_wallpaper": {
+        "message": "更新壁纸中..."
+    },
     
     "placeholder": {
         "message": "placeholder"
