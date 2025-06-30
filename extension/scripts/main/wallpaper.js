@@ -151,8 +151,6 @@ function setDownloadLink() {
 // init wallpaper
 initWallpaper();
 
-
-
 var left_nav_btn = document.getElementById('leftNav');
 left_nav_btn.onclick = switchPrevWallpaper;
 var right_nav_btn = document.getElementById('rightNav');
