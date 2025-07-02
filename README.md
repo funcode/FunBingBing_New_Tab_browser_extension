@@ -2,19 +2,17 @@
 Features:
 - Navigate recent wallpapers back and forth
 - Show the wallpaper title, copyright and description information
-- Link to the archived Bing Wallpaper (3rd party web site)
+- Link to the archived Bing Wallpaper ([3rd party web site](https://bing.ee123.net/))
 - Bing Quiz (To do)
-![sample](images/sample.png) 
-# 源于 Ataraxia - 新标签页插件 - 必应每日壁纸
+![sample](images/sample.png)
 
+## 源于 Ataraxia - 新标签页插件 - 必应每日壁纸
 ---
-
 Ataraxia 是一个极致简洁的浏览器新标签页插件，适用于 Google Chrome 和 Microsoft Edge 等 Chromium 内核浏览器。
 
 - 网站： [https://idealland.app/ataraxia/](https://idealland.app/ataraxia/)
 - 获取适用于 Chrome 的最新版本：[https://aka.ci/atxcr](https://aka.ci/atxcr)
 - 获取适用于 Edge 的最新版本：[https://aka.ci/atxedge](https://aka.ci/atxedge)
-
 ---
 
 功能特性：
@@ -23,7 +21,7 @@ Ataraxia 是一个极致简洁的浏览器新标签页插件，适用于 Google 
 - 支持多个搜索引擎切换，支持自定义
 - 极简
 ---
-# Ataraxia - New Tab Extension with Bing Wallpaper
+## Ataraxia - New Tab Extension with Bing Wallpaper
 
 Ataraxia is a super simple browser new tab extension, designed for Google Chrome, Microsoft Edge and other Chromium based browsers.
 
@@ -38,4 +36,3 @@ Features:
 - Sync with Bing wallpapers every day (with support of UHD resolution photos)
 - Support multiple search engines
 - Simple and fast.
-
