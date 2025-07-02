@@ -1,9 +1,11 @@
-```
-🚧 正在使用 React 重构本插件，工作进行中，敬请期待。
-```
-
-
-# Ataraxia - 新标签页插件 - 必应每日壁纸
+# Fun Bing Bing New Tab - Bing Style New Tab
+Features:
+- Navigate recent wallpapers back and forth
+- Show the wallpaper title, copyright and description information
+- Link to the archived Bing Wallpaper (3rd party web site)
+- Bing Quiz (To do)
+![sample](images/sample.png) 
+# 源于 Ataraxia - 新标签页插件 - 必应每日壁纸
 
 ---
 
@@ -20,13 +22,7 @@ Ataraxia 是一个极致简洁的浏览器新标签页插件，适用于 Google 
 - 自动同步必应每日壁纸，支持超清大图
 - 支持多个搜索引擎切换，支持自定义
 - 极简
-
-![sample](images/sample.png)
-
-
 ---
-
-
 # Ataraxia - New Tab Extension with Bing Wallpaper
 
 Ataraxia is a super simple browser new tab extension, designed for Google Chrome, Microsoft Edge and other Chromium based browsers.
@@ -42,6 +38,4 @@ Features:
 - Sync with Bing wallpapers every day (with support of UHD resolution photos)
 - Support multiple search engines
 - Simple and fast.
-
-![sample](images/sample.png)
 
