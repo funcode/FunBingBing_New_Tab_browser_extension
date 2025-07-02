@@ -184,9 +184,6 @@ if (last_open_version == undefined || parseFloat(last_open_version) < parseFloat
     // init conf
     initializeConf();
 
-    // pop up update prompt
-    spop('<h4 class="spop-title">' + i18n('you_have_updated_to_the_latest_version') + '</h4>' + i18n('update_content'), 'success');
-
     writeConf('last_open_version', CURRENT_VERSION);
 }
 

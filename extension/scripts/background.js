@@ -5,12 +5,14 @@ chrome.runtime.onInstalled.addListener(function (object) {
 	// open manual link
 	if (chrome.runtime.OnInstalledReason.INSTALL === object.reason ) {
 		// open Welcome page
-		chrome.tabs.create({url: "https://idealland.app/ataraxia/install.html?utm_medium=chrome&utm_source=" + navigator.language}, function (tab) {
-	        console.log("New tab launched with https://idealland.app/ataraxia/install.html");
+		chrome.tabs.create({  
+			url: chrome.runtime.getURL('options.html')  
+		  }, function (tab) {
+	        console.log("Fun Bingbing newtab is installed.");
 		});
 
 	}
 });
 
 // on uninstall
-chrome.runtime.setUninstallURL("https://idealland.app/ataraxia/uninstall.html?utm_medium=chrome&utm_source=" + navigator.language);
+
