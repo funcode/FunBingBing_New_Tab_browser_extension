@@ -22,7 +22,7 @@ function appendOnLoadEvent(func) {
 // get current date string 
 function getDateString() {
 	var date = new Date();
-	var result = "" + date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
+	var result = "" + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 	return result;
 }
 
@@ -149,7 +149,8 @@ function initializeConf() {
         ],
         current_search_engine: "Google",
         display_search_box: "no",
-        show_top_sites: "no",        custom_bkmk_list: [
+        show_top_sites: "no",        
+        custom_bkmk_list: [
             {
             name: "历史上的今天",
             // Use action identifier instead of function
