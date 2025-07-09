@@ -160,7 +160,7 @@ function initializeConf() {
         enable_uhd_wallpaper: "no",
         wallpaper_date: "2000-01-01",
         wallpaper_url: "./images/john-reign-abarintos-369080-unsplash.jpg",
-        wallpaper_text: "Welcome to Bing Wallpaper.",
+        wallpaper_text: "Bing Wallpaper Title",
         headline_link: "https://cn.bing.com/",
         offset_idx: "0",
         last_open_version: "0"
