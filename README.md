@@ -4,6 +4,7 @@ Features:
 - Show the wallpaper title, copyright and description information
 - Link to the archived Bing Wallpaper ([3rd party web site](https://bing.ee123.net/))
 - Bing Quiz (To do)
+![sample](images/sample2.png)
 ![sample](images/sample.png)
 
 ## 源于 Ataraxia - 新标签页插件 - 必应每日壁纸
