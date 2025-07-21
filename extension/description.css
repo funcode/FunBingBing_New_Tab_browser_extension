@@ -9,6 +9,7 @@
     box-sizing: border-box;
     color: #fff;
     background: rgba(1, 1, 1, 0.5);
+    z-index: 1000;
 }
 
 .description .title {

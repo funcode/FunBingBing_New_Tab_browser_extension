@@ -2,9 +2,48 @@
 function showDefaultWallpaper() {
 	// set wallpaper
 	var body = document.getElementById('main-body');
-	body.style.backgroundImage = "url('./images/john-reign-abarintos-369080-unsplash.jpg')";
-	// set download link
-	setDownloadLink();
+	// 优先从本地存储读取wallpaper_url
+	var wallpaperUrl = readConf('wallpaper_url');
+	if (wallpaperUrl) {
+		// 如果有缓存的wallpaper_url，则直接设置为背景图片
+		body.style.backgroundImage = "url('" + wallpaperUrl + "')";
+		var wallpaperTitle = readConf("wallpaper_text");
+		if (wallpaperTitle){	
+			setFooterText(wallpaperTitle);
+		}
+		var offset_idx = readConf("offset_idx");
+		if (offset_idx === "") {
+			offset_idx = 0;
+		}
+		offset_idx = parseInt(offset_idx);
+		var bing_images = readConf("bing_images");
+		if (bing_images) {
+			var images = JSON.parse(bing_images);
+			var image = images[offset_idx];
+			var copyright = image.copyright;
+			var isoDate = image.isoDate;
+			var description = image.description;
+			var descriptionPara2 = image.descriptionPara2;
+			var descriptionPara3 = image.descriptionPara3;
+			setDescriptions(wallpaperTitle, wallpaperTitle, copyright, isoDate, description, descriptionPara2, descriptionPara3);
+		}
+		var existingIframe = body.querySelector('iframe[src="newtab.html"]');
+		if (existingIframe) {
+			body.removeChild(existingIframe);
+		}
+	}
+	else {
+		// 检查是否已经存在iframe，避免重复添加
+		var existingIframe = body.querySelector('iframe[src="newtab.html"]');
+		if (!existingIframe) {
+			// 创建iframe元素
+			var iframe = document.createElement('iframe');
+			iframe.src = 'newtab.html';
+			iframe.style.cssText = 'width: 100%; height: 100%; border: none; position: absolute; top: 0; left: 0; z-index: 0;';
+			// 将iframe添加到main-body，但保留现有元素
+			body.appendChild(iframe);
+		}
+	}
 }
 
 // set footer text
@@ -31,6 +70,7 @@ function hideLoadingAnim() {
 // pre-load image from url
 // then change background image and footer text after loading is finished
 function loadAndChangeOnlineWallpaper(url, text, headline) {
+	//showDefaultWallpaper();
 	hideLoadingAnim();
 	setFooterText(i18n('updating_wallpaper'));
 	var tmp_img = new Image();
@@ -55,15 +95,20 @@ function loadAndChangeOnlineWallpaper(url, text, headline) {
 			var descriptionPara2 = images[cache_idx].descriptionPara2;
 			var descriptionPara3 = images[cache_idx].descriptionPara3;
 			var isoDate = images[cache_idx].isoDate;
-			// console.log(cache_idx, title, copyright, description, descriptionPara2, descriptionPara3, isoDate);
+			console.log(cache_idx, title, copyright, description, descriptionPara2, descriptionPara3, isoDate);
 			setDescriptions(text, title, copyright, isoDate, description, descriptionPara2, descriptionPara3);
 		}
-
 		writeConf("wallpaper_date", getDateString());
 		writeConf("wallpaper_url", url);
 		writeConf("wallpaper_text", text);
 		writeConf("headline_link", headline);
-		// setDownloadLink(); // 已无footer相关下载链接
+		console.log(`[${new Date().toISOString()}] Loading wallpaper - wallpaper_date: [${getDateString()}], URL: ${url}, Text: ${text}, Headline: ${headline}`);
+		// 移除showDefaultWallpaper添加的iframe
+		var existingIframe = body.querySelector('iframe[src="newtab.html"]');
+		if (existingIframe) {
+			body.removeChild(existingIframe);
+		}		
+		
 	};
 }
 
@@ -110,16 +155,18 @@ function initWallpaper() {
 		var cache_url = readConf("wallpaper_url");
 		var cache_text = readConf("wallpaper_text");
 		var cache_link = readConf("headline_link");
-		if (cache_url != "" && cache_text != "") {
+		if (cache_url && cache_text) {
 			loadAndChangeOnlineWallpaper(cache_url, cache_text, cache_link);
 		}
 		else {
 			// cache is broken, update wallpaper
+			showDefaultWallpaper();
 			updateWallpaper(0);
 		}
 	}
 	else {
 		// if today does not match cache date, update wallpaper
+		showDefaultWallpaper();
 		updateWallpaper(0);
 		// get bing image info and write to cache
 		getBingImageInfo(null);
@@ -186,6 +233,7 @@ function getBingImageInfo(callback) {
 	};
 	xhr.open('get', 'https://www.bing.com/hp/api/v1/imageoftheday?format=json&mkt=zh-CN');
 	xhr.send(null);
+	//todo: 获取bing图片fast facts using /model api
 }
 
 // 设置描述信息
@@ -207,7 +255,7 @@ function setDescriptions(text, title, copyright, isoDate, description, descripti
 	// 设置标题
 	var titleP = descDiv.querySelector('p.title');
 	if (titleP) {
-		titleP.innerHTML = `${text}&nbsp;&nbsp;|&nbsp;&nbsp;${title} (${copyright})&nbsp;&nbsp;-&nbsp;&nbsp;${formatDate(isoDate)}`;
+		titleP.innerHTML = `${text}&nbsp;|&nbsp;${title} (${copyright})&nbsp;-&nbsp;${formatDate(isoDate)}`;
 	}
 	// 设置副描述
 	var subSpan = descDiv.querySelector('span.sub');
