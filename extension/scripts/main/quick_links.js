@@ -83,7 +83,20 @@ function initCustomBookmarks() {
 function handleCustomAction(action) {
 	switch (action) {
 		case 'random_bing_wallpaper':
+			var offset_idx = readConf("offset_idx");
+			if (offset_idx === "") {
+				offset_idx = 0;
+			}
+			offset_idx = parseInt(offset_idx);
+			var bing_images = readConf("bing_images");
 			var today = new Date();
+			if (bing_images) {
+				var images = JSON.parse(bing_images);
+				var image = images[offset_idx];
+				if (image) {
+					today = new Date(+image.isoDate.slice(0,4), +image.isoDate.slice(4,6)-1, +image.isoDate.slice(6,8));
+				}
+			}
 			var yearMin = 2010;
 			var yearMax = today.getFullYear() - 1;
 			var randomYear = Math.floor(Math.random() * (yearMax - yearMin + 1)) + yearMin;
