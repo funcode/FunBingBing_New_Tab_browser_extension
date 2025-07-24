@@ -182,6 +182,135 @@ body {
     user-select: none
 }
 
+.mc_caro .hp_trivia_outer {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    text-align: left;
+    height: 391.5px;
+    width: 531px;
+    z-index: 2
+}
+
+.mc_caro .hp_trivia_outer.show {
+    display: block
+}
+
+.mc_caro .hp_trivia_outer:hover .hp_trivia_inner,.mc_caro .hp_trivia_outer:focus .hp_trivia_inner {
+    opacity: .6
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner {
+    background-color: rgba(34,34,34,.9);
+    border-radius: 6px;
+    opacity: 0;
+    left: calc(100% - 354px);
+    top: calc(100% - 261px);
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    position: absolute;
+    transition: all .2s
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.focusin,.mc_caro .hp_trivia_outer .hp_trivia_inner.show {
+    opacity: 1;
+    height: 256px;
+    width: 350px
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia {
+    min-width: 325px;
+    padding: 14px;
+    color: #ddd;
+    position: absolute;
+    top: 0;
+    bottom: 0
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .title {
+    white-space: nowrap
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .title>* {
+    vertical-align: middle
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .title img {
+    margin-right: 14px;
+    display: inline-block
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .question {
+    padding: 10px 8px 8px
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options {
+    padding: 8px
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option {
+    padding: 4px 0
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option a,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .footer .items .item .a_bold,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .a_bold {
+    color: #ddd
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option a:hover,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .footer .items .item .a_bold:hover,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .a_bold:hover,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option a:focus,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .footer .items .item .a_bold:focus,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .a_bold:focus {
+    color: #fff
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option a:hover .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .footer .items .item .a_bold:hover .answer,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .a_bold:hover .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option a:focus .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .footer .items .item .a_bold:focus .answer,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .a_bold:focus .answer {
+    text-decoration: underline
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option a .bullet,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .footer .items .item .a_bold .bullet,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .a_bold .bullet {
+    margin-right: 8px;
+    padding: 0 6px 1px;
+    border-radius: 100px;
+    border: 1px solid #fff;
+    display: inline-block
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option a .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .footer .items .item .a_bold .answer,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner .trivia .options .option .a_bold .answer {
+    font-size: .8rem;
+    display: inline
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.inv {
+    background: #fff
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia {
+    color: #444
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option a,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .footer .items .item .a_bold,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .a_bold {
+    color: #444
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option a:hover .bullet,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .footer .items .item .a_bold:hover .bullet,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .a_bold:hover .bullet,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option a:focus .bullet,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .footer .items .item .a_bold:focus .bullet,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .a_bold:focus .bullet {
+    color: #fff;
+    border-color: #007daa;
+    background: #007daa
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option a:hover .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .footer .items .item .a_bold:hover .answer,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .a_bold:hover .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option a:focus .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .footer .items .item .a_bold:focus .answer,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .a_bold:focus .answer {
+    color: #007daa
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option a .bullet,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .footer .items .item .a_bold .bullet,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .a_bold .bullet {
+    color: #444;
+    border: 1px solid #444
+}
+
+.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option a .answer,.mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .footer .items .item .a_bold .answer,.footer .items .item .mc_caro .hp_trivia_outer .hp_trivia_inner.inv .trivia .options .option .a_bold .answer {
+    color: #444
+}
+
+
 .mc_caro .musCard .headline {
     font-size: .8125rem;
     line-height: 2.5rem
@@ -204,6 +333,7 @@ body {
 .mc_caro .musCard .headline .icon,.mc_caro .musCard .headline .leftNav,.mc_caro .musCard .headline .media,.mc_caro .musCard .headline .rightNav {
     position: relative;
     width: 2.5rem;
+	border-radius: 6px;
     height: 2.5rem
 }
 
