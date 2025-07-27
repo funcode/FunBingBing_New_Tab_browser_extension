@@ -27,12 +27,27 @@ function i18n_tpr_settings_btn() {
 // 	x.innerHTML = i18n('btr_download_wallpaper_uhd_badge');
 // }
 
+// quiz label
+function i18n_daily_quiz() {
+    var el = document.getElementById('daily-quiz');
+    if (el) el.innerHTML = i18n('daily_quiz');
+}
+
+// navigation buttons title
+function i18n_nav_buttons() {
+    var leftNav = document.getElementById('leftNav');
+    var rightNav = document.getElementById('rightNav');
+    if (leftNav) leftNav.title = i18n('prev_image');
+    if (rightNav) rightNav.title = i18n('next_image');
+}
 
 function exec_i18n() {
 	i18n_page_title();
 	i18n_search_logo_hover_tip();
 	i18n_tpr_check_update_btn();
 	i18n_tpr_settings_btn();
+    i18n_daily_quiz();
+    i18n_nav_buttons();
 }
 
 exec_i18n();

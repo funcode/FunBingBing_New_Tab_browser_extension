@@ -156,11 +156,18 @@
     "op_top_site_perm_fail": {
         "message": "Authorization failed, feature cannot be turned on. Please try again and grant the permission."
     },
-
     "updating_wallpaper": {
         "message": "Updating wallpaper ..."
     },
-
+    "daily_quiz": {
+        "message": "Daily Quiz"
+    },
+    "next_image": {
+        "message": "Next Image"
+    },
+    "prev_image": {
+        "message": "Previous Image"
+    },
     "placeholder": {
         "message": "placeholder"
     }

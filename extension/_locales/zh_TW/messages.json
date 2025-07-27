@@ -159,7 +159,15 @@
     "updating_wallpaper": {
         "message": "壁紙更新中..."
     },
-
+    "daily_quiz": {
+        "message": "每日小測驗"
+    },
+    "next_image": {
+        "message": "下一圖"
+    },
+    "prev_image": {
+        "message": "上一圖"
+    },
     "placeholder": {
         "message": "placeholder"
     }
