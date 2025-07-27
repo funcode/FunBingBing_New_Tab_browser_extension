@@ -16,11 +16,12 @@
     font-size: 20px;
     text-align: left;
     margin-top: -6px;
-    font-family: 'FangSong', 'STSong-Light', 'STSong', 'SimSun', 'serif';
+    font-family: 'FangSong', 'STFangsong', 'STSong', 'SimSun', 'serif';
+    line-height: 1.5;
 }
 
 .description .sub {
     color: #c6cccc;
     text-indent: 2em;
-    font-family: 'FangSong', 'STSong-Light', 'STSong', 'SimSun', 'serif';
+    font-family: 'FangSong', 'STFangsong', 'STSong', 'SimSun', 'serif';
 }
