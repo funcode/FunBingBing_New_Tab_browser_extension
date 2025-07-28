@@ -23,5 +23,6 @@
 .description .sub {
     color: #c6cccc;
     text-indent: 2em;
+    line-height: 1.2;
     font-family: 'FangSong', 'STFangsong', 'STSong', 'SimSun', 'serif';
 }
