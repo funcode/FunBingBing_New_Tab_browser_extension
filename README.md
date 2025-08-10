@@ -3,7 +3,7 @@ Features:
 - Navigate recent wallpapers back and forth
 - Show the wallpaper title, copyright and description information
 - Link to the archived Bing Wallpaper ([3rd party web site](https://bing.ee123.net/))
-- Bing Quiz (To do)
+- Bing Quiz
 ![sample](images/sample2.png)
 ![sample](images/sample.png)
 
