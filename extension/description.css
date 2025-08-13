@@ -19,9 +19,14 @@
     line-height: 1.5;
 }
 .description .sub {
-    font-size: 1.05em;
     color: #c6cccc;
     text-indent: 2em;
     line-height: 1.2;
     font-family: 'FangSong', 'STFangsong', 'STSong', 'SimSun', 'serif';
+}
+/* To fix the font issue found in a Windows RDP window */
+@media (-webkit-device-pixel-ratio: 1.25), (device-pixel-ratio: 1.25) {
+    .description .sub {
+        font-size: 1.05em;
+    }
 }
