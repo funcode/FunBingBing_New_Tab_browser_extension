@@ -130,12 +130,194 @@ function initWallpaper() {
 	else {
 		// if today does not match cache date, update wallpaper
 		showDefaultWallpaper();
-		updateWallpaper(0);
 		// get bing image info and write to cache
-		getBingImageInfo(null);
+		collectBingDataInParallel(handleBingDataResults);		
+		updateWallpaper(0);
 		// reset old wallpaper days offset conf
 		writeConf("offset_idx", "0");
 	}
+}
+
+// Collect data from multiple Bing APIs in parallel
+function collectBingDataInParallel(callback) {
+	var completedRequests = 0;
+	var totalRequests = 3;
+	var results = {
+		imageArchive: null,
+		imageOfTheDay: null,
+		model: null,
+		errors: []
+	};
+	
+	// Function to handle completion of individual requests
+	function handleRequestCompletion() {
+		completedRequests++;
+		if (completedRequests === totalRequests && callback) {
+			callback(results);
+		}
+	}
+	
+	// Request 1: HPImageArchive API (8 days of wallpaper data)
+	var xhr1 = new XMLHttpRequest();
+	xhr1.onreadystatechange = function() {
+		if (xhr1.readyState === 4) {
+			if (xhr1.status === 200) {
+				try {
+					results.imageArchive = JSON.parse(xhr1.responseText);
+				} catch (e) {
+					results.errors.push('Failed to parse HPImageArchive response: ' + e.message);
+				}
+			} else {
+				results.errors.push('HPImageArchive request failed with status: ' + xhr1.status);
+			}
+			handleRequestCompletion();
+		}
+	};
+	xhr1.open('GET', 'https://www.bing.com/HPImageArchive.aspx?format=js&n=8&mkt=zh-CN');
+	xhr1.send();
+	
+	// Request 2: Image of the Day API
+	var xhr2 = new XMLHttpRequest();
+	xhr2.onreadystatechange = function() {
+		if (xhr2.readyState === 4) {
+			if (xhr2.status === 200) {
+				try {
+					results.imageOfTheDay = JSON.parse(xhr2.responseText);
+				} catch (e) {
+					results.errors.push('Failed to parse imageOfTheDay response: ' + e.message);
+				}
+			} else {
+				results.errors.push('ImageOfTheDay request failed with status: ' + xhr2.status);
+			}
+			handleRequestCompletion();
+		}
+	};
+	xhr2.open('GET', 'https://www.bing.com/hp/api/v1/imageoftheday?format=json&mkt=zh-CN');
+	xhr2.send();
+	
+	// Request 3: Model API
+	var xhr3 = new XMLHttpRequest();
+	xhr3.onreadystatechange = function() {
+		if (xhr3.readyState === 4) {
+			if (xhr3.status === 200) {
+				try {
+					results.model = JSON.parse(xhr3.responseText);
+					var mediaObj = results.model;
+					console.log("MediaContents returned:", mediaObj)
+					//todo: Save the 6th item to the 7th position
+					var mediaContents = (mediaObj && mediaObj.MediaContents) ? mediaObj.MediaContents.map(function (item) {
+						return {
+							quickFact: item.ImageContent && item.ImageContent.QuickFact ? item.ImageContent.QuickFact.MainText : undefined,
+							triviaId: item.ImageContent && item.ImageContent.TriviaId,
+						};
+					}) : [];
+					console.log("MediaContents saved:", mediaContents);
+
+					var processedCount = 0;
+					var totalCount = mediaContents.length;
+
+					if (totalCount === 0) {
+						results.processedMediaContents = mediaContents;
+						handleRequestCompletion();
+						return;
+					}
+
+					for (var i = 0; i < mediaContents.length; i++) {
+						var mediaContent = mediaContents[i];
+						var triviaId = mediaContent.triviaId;
+
+						if (!triviaId) {
+							processedCount++;
+							if (processedCount === totalCount) {
+								results.processedMediaContents = mediaContents;
+								handleRequestCompletion();
+							}
+							continue;
+						}
+
+						(function (contentIndex, currentTriviaId) {
+							var triviaXhr = new XMLHttpRequest();
+							triviaXhr.onreadystatechange = function () {
+								if (triviaXhr.readyState == 4 && triviaXhr.status == 200) {
+									try {
+										var triviaData = JSON.parse(triviaXhr.responseText);
+										mediaContents[contentIndex].triviaData = triviaData.data;
+									} catch (e) {
+										console.error('Failed to parse trivia data:', e);
+									} finally {
+										processedCount++;
+										if (processedCount === totalCount) {
+											results.processedMediaContents = mediaContents;
+											handleRequestCompletion();
+										}
+									}
+								} else if (triviaXhr.readyState == 4 && triviaXhr.status !== 200) {
+									console.error('Failed to fetch trivia data:', triviaXhr.status);
+									processedCount++;
+									if (processedCount === totalCount) {
+										results.processedMediaContents = mediaContents;
+										handleRequestCompletion();
+									}
+								}
+							};
+
+							triviaXhr.open('get', 'https://www.bing.com/hp/api/v1/trivia?format=json&id=' + currentTriviaId + '&mkt=zh-CN');
+							triviaXhr.send(null);
+						})(i, triviaId);
+					}
+				} catch (e) {
+					results.errors.push('Failed to parse model response: ' + e.message);
+					console.error("Failed to parse MediaContents JSON:", e);
+					handleRequestCompletion();
+				}
+			} else {
+				results.errors.push('Model request failed with status: ' + xhr3.status);
+				handleRequestCompletion();
+			}
+		}
+	};
+	xhr3.open('GET', 'https://cn.bing.com/hp/api/model?mkt=zh-CN');
+	xhr3.send();
+}
+
+// Callback function to handle collectBingDataInParallel results
+function handleBingDataResults(results) {
+	console.log('Parallel data collection completed:', results);
+	
+	// Save HPImageArchive data (8 days of wallpaper data)
+	if (results.imageArchive && results.imageArchive.images) {
+		writeConf('bing_archive_images', JSON.stringify(results.imageArchive.images));
+		console.log('Saved HPImageArchive data');
+	}
+	
+	// Save Image of the Day data
+	if (results.imageOfTheDay && results.imageOfTheDay.data && results.imageOfTheDay.data.images) {
+		writeConf('bing_images', JSON.stringify(results.imageOfTheDay.data.images));
+		console.log('Saved Image of the Day data');
+	}
+	
+	// Save processed media contents with trivia data
+	if (results.processedMediaContents) {
+		writeConf('bing_media_contents', JSON.stringify(results.processedMediaContents));
+		console.log('Saved processed media contents with trivia data');
+	}
+	
+	// Save raw model data as backup
+/* 	if (results.model) {
+		writeConf('bing_model_data', JSON.stringify(results.model));
+		console.log('Saved raw model data');
+	} */
+	
+	// Log any errors that occurred
+	if (results.errors && results.errors.length > 0) {
+		console.error('Errors during parallel data collection:', results.errors);
+		writeConf('bing_data_errors', JSON.stringify(results.errors));
+	}
+	
+	// Update the last fetch timestamp
+	writeConf('bing_data_fetch_date', getDateString());
+	
+	console.log('All Bing data saved to configuration successfully');
 }
 
 // if user want to show old wallpapers.
