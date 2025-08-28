@@ -103,335 +103,185 @@ function updateWallpaper(idx) {
 	}
 }
 
-// initialize wallpaper on page load
-function initWallpaper() {
-	// get cache date
-	var cache_date = readConf("wallpaper_date");
-	if (cache_date == getDateString()) {
-		// if today matches cache date, get cache url and text
-		var cache_idx = readConf("wallpaper_idx");
-		if (cache_idx) {
-			changeWallpaper(parseInt(cache_idx));
-		}
-		else {
-			// cache is broken, update wallpaper
-			showDefaultWallpaper();
-			updateWallpaper(0);
-		}
-	}
-	else {
-		// if today does not match cache date, update wallpaper
-		showDefaultWallpaper();
-		// get bing image info and write to cache
-		collectBingDataInParallel(handleBingDataResults,updateWallpaper);
-		
-		// reset old wallpaper days offset conf
-		writeConf("wallpaper_idx", "0");
-	}
+// --- Main entry point ---
+async function initWallpaper() {
+  const cache_date = readConf("wallpaper_date");
+
+  if (cache_date == getDateString()) {
+    // Cached wallpaper for today
+    const cache_idx = readConf("wallpaper_idx");
+    if (cache_idx) {
+      changeWallpaper(parseInt(cache_idx));
+    } else {
+      showDefaultWallpaper();
+      updateWallpaper(0);
+    }
+  } else {
+    // No cache match, fetch new data
+    showDefaultWallpaper();
+
+    try {
+      const results = await collectBingDataInParallel();
+      await handleBingDataResults(results);
+      updateWallpaper(0); // guaranteed after data + writeConf
+    } catch (err) {
+      console.error("Error initializing wallpaper:", err);
+      updateWallpaper(0); // fallback
+    }
+
+    // reset old wallpaper days offset conf
+    writeConf("wallpaper_idx", "0");
+  }
 }
 
-// Collect data from multiple Bing APIs in parallel
-function collectBingDataInParallel(callback, updateWallpaper) {
-	var completedRequests = 0;
-	var totalRequests = 3;
-	var results = {
-		imageArchive: null,
-		imageOfTheDay: null,
-		model: null,
-		errors: []
-	};
+// --- Collect Bing Data (with fetch) ---
+async function collectBingDataInParallel() {
+  const results = { imageArchive: null, imageOfTheDay: null, model: null, errors: [] };
 
-	// Function to handle completion of individual requests
-	function handleRequestCompletion() {
-		completedRequests++;
-		if (completedRequests === totalRequests && callback) {
-			callback(results,updateWallpaper);
-		}
-	}
+  try {
+    // Kick off all 3 requests in parallel
+    const [archiveRes, dayRes, modelRes] = await Promise.allSettled([
+      fetch("https://www.bing.com/HPImageArchive.aspx?format=js&n=1&mkt=zh-CN&idx=7"),
+      fetch("https://www.bing.com/hp/api/v1/imageoftheday?format=json&mkt=zh-CN"),
+      fetch("https://www.bing.com/hp/api/model?mkt=zh-CN")
+    ]);
 
-	// Request 1: HPImageArchive API (8 days of wallpaper data)
-	var xhr1 = new XMLHttpRequest();
-	xhr1.onreadystatechange = function () {
-		if (xhr1.readyState === 4) {
-			if (xhr1.status === 200) {
-				try {
-					results.imageArchive = JSON.parse(xhr1.responseText);
-				} catch (e) {
-					results.errors.push('Failed to parse HPImageArchive response: ' + e.message);
-				}
-			} else {
-				results.errors.push('HPImageArchive request failed with status: ' + xhr1.status);
-			}
-			handleRequestCompletion();
-		}
-	};
-	// Only need the 8th image from this API. Others are retrieved by xhr2
-	xhr1.open('GET', 'https://www.bing.com/HPImageArchive.aspx?format=js&n=1&mkt=zh-CN&idx=7');
-	xhr1.send();
+    // Parse archive
+    if (archiveRes.status === "fulfilled" && archiveRes.value.ok) {
+      results.imageArchive = await archiveRes.value.json();
+    } else {
+      results.errors.push("HPImageArchive request failed");
+    }
 
-	// Request 2: Image of the Day API
-	var xhr2 = new XMLHttpRequest();
-	xhr2.onreadystatechange = function () {
-		if (xhr2.readyState === 4) {
-			if (xhr2.status === 200) {
-				try {
-					results.imageOfTheDay = JSON.parse(xhr2.responseText);
-				} catch (e) {
-					results.errors.push('Failed to parse imageOfTheDay response: ' + e.message);
-				}
-			} else {
-				results.errors.push('ImageOfTheDay request failed with status: ' + xhr2.status);
-			}
-			handleRequestCompletion();
-		}
-	};
-	xhr2.open('GET', 'https://www.bing.com/hp/api/v1/imageoftheday?format=json&mkt=zh-CN');
-	xhr2.send();
+    // Parse imageOfTheDay
+    if (dayRes.status === "fulfilled" && dayRes.value.ok) {
+      results.imageOfTheDay = await dayRes.value.json();
+    } else {
+      results.errors.push("ImageOfTheDay request failed");
+    }
 
-	// Request 3: Model API
-	var xhr3 = new XMLHttpRequest();
-	xhr3.onreadystatechange = function () {
-		if (xhr3.readyState === 4) {
-			if (xhr3.status === 200) {
-				try {
-					results.model = JSON.parse(xhr3.responseText);
-					var mediaObj = results.model;
-					console.log("MediaContents returned:", mediaObj)
-					//todo: Save the 6th item to the 7th position
-					var mediaContents = (mediaObj && mediaObj.MediaContents) ? mediaObj.MediaContents.map(function (item) {
-						return {
-							headline: item.ImageContent && item.ImageContent.Headline ? item.ImageContent.Headline : undefined,
-							quickFact: item.ImageContent && item.ImageContent.QuickFact ? item.ImageContent.QuickFact.MainText : undefined,
-							triviaId: item.ImageContent && item.ImageContent.TriviaId,
-							ssd: item.ssd ? item.ssd : undefined
-						};
-					}) : [];
-					console.log("MediaContents saved:", mediaContents);
+    // Parse model + trivia expansion
+    if (modelRes.status === "fulfilled" && modelRes.value.ok) {
+      const mediaObj = await modelRes.value.json();
+      const mediaContents = mediaObj?.MediaContents?.map(item => ({
+        headline: item.ImageContent?.Headline,
+        quickFact: item.ImageContent?.QuickFact?.MainText,
+        triviaId: item.ImageContent?.TriviaId,
+        ssd: item.ssd
+      })) || [];
 
-					var processedCount = 0;
-					var totalCount = mediaContents.length;
+      // Fetch trivia data for those with triviaId
+      const triviaPromises = mediaContents.map(async (mc) => {
+        if (!mc.triviaId) return mc;
+        try {
+          const res = await fetch(`https://www.bing.com/hp/api/v1/trivia?format=json&id=${mc.triviaId}&mkt=zh-CN`);
+          if (res.ok) {
+            mc.triviaData = (await res.json()).data;
+          }
+        } catch (err) {
+          console.error("Failed trivia fetch:", err);
+        }
+        return mc;
+      });
 
-					if (totalCount === 0) {
-						results.processedMediaContents = mediaContents;
-						handleRequestCompletion();
-						return;
-					}
+      results.processedMediaContents = await Promise.all(triviaPromises);
+    } else {
+      results.errors.push("Model request failed");
+    }
+  } catch (err) {
+    results.errors.push("Error collecting Bing data: " + err.message);
+  }
 
-					for (var i = 0; i < mediaContents.length; i++) {
-						var mediaContent = mediaContents[i];
-						var triviaId = mediaContent.triviaId;
-
-						if (!triviaId) {
-							processedCount++;
-							if (processedCount === totalCount) {
-								results.processedMediaContents = mediaContents;
-								handleRequestCompletion();
-							}
-							continue;
-						}
-
-						(function (contentIndex, currentTriviaId) {
-							var triviaXhr = new XMLHttpRequest();
-							triviaXhr.onreadystatechange = function () {
-								if (triviaXhr.readyState == 4 && triviaXhr.status == 200) {
-									try {
-										var triviaData = JSON.parse(triviaXhr.responseText);
-										mediaContents[contentIndex].triviaData = triviaData.data;
-									} catch (e) {
-										console.error('Failed to parse trivia data:', e);
-									} finally {
-										processedCount++;
-										if (processedCount === totalCount) {
-											results.processedMediaContents = mediaContents;
-											handleRequestCompletion();
-										}
-									}
-								} else if (triviaXhr.readyState == 4 && triviaXhr.status !== 200) {
-									console.error('Failed to fetch trivia data:', triviaXhr.status);
-									processedCount++;
-									if (processedCount === totalCount) {
-										results.processedMediaContents = mediaContents;
-										handleRequestCompletion();
-									}
-								}
-							};
-
-							triviaXhr.open('get', 'https://www.bing.com/hp/api/v1/trivia?format=json&id=' + currentTriviaId + '&mkt=zh-CN');
-							triviaXhr.send(null);
-						})(i, triviaId);
-					}
-				} catch (e) {
-					results.errors.push('Failed to parse model response: ' + e.message);
-					console.error("Failed to parse MediaContents JSON:", e);
-					handleRequestCompletion();
-				}
-			} else {
-				results.errors.push('Model request failed with status: ' + xhr3.status);
-				handleRequestCompletion();
-			}
-		}
-	};
-	xhr3.open('GET', 'https://www.bing.com/hp/api/model?mkt=zh-CN');
-	xhr3.send();
+  return results;
 }
 
-// Callback function to handle collectBingDataInParallel results
-function handleBingDataResults(results,updateWallpaper) {
-	console.log('Parallel data collection completed:', results);
-	// Save HPImageArchive data (only 8th day of wallpaper data)
-	/* 	if (results.imageArchive && results.imageArchive.images) {
-			writeConf('bing_archive_images', JSON.stringify(results.imageArchive.images));
-			console.log('Saved HPImageArchive data');
-		} */
-	// Process and merge Image of the Day data with media contents
-	if (results.imageOfTheDay && results.imageOfTheDay.data && results.imageOfTheDay.data.images) {
-		var images = results.imageOfTheDay.data.images;
-		// Iterate through images and merge with processedMediaContents if available
-		for (var idx = 0; idx < images.length; idx++) {
-			if (results.processedMediaContents && results.processedMediaContents[idx]) {
-				var mediaContent = results.processedMediaContents[idx];
-				// Add headline if it exists
-				if (mediaContent.headline) {
-					images[idx].headline = mediaContent.headline;
-				}
-				// Add quickFact if it exists
-				if (mediaContent.quickFact) {
-					images[idx].quickFact = mediaContent.quickFact;
-				}
-				// Add triviaId if it exists (note: corrected spelling from "traviaId")
-				if (mediaContent.triviaId) {
-					images[idx].triviaId = mediaContent.triviaId;
-				}
-				// Add triviaData if it exists (note: corrected spelling from "traviaData")
-				if (mediaContent.triviaData) {
-					images[idx].triviaData = mediaContent.triviaData;
-				}
-			}
-		}
-		// Steal from HPImageArchive.images[7]
-		var triviaCompleted = false;
-		var quickFactsCompleted = false;
+// --- Process Bing Results ---
+async function handleBingDataResults(results) {
+  if (!(results.imageOfTheDay && results.imageOfTheDay.data && results.imageOfTheDay.data.images)) {
+    console.error("No imageOfTheDay data found");
+    return;
+  }
 
-		function checkCompletion() {
-			console.log('Checking completion: triviaCompleted=', triviaCompleted, ', quickFactsCompleted=', quickFactsCompleted);
-			if (triviaCompleted && quickFactsCompleted) {
-				writeConf('bing_images', JSON.stringify(images));
-				console.log('Saved bing_images data with merged contents.');
-				updateWallpaper(0);
-			}
-		}
+  const images = results.imageOfTheDay.data.images;
 
-		// Execute handleTriviaData with completion tracking
-		(function () {
-			if (results.imageArchive && results.imageArchive.images) {
-				var idx = images.length - 1;
-				images[idx].headline = results.imageArchive.images[0].title;
-				images[idx].triviaId = results.imageArchive.images[0].quiz;
-				// Extract and modify triviaId
-				if (images[idx].triviaId) {
-					var match = images[idx].triviaId.match(/HPQuiz_\d{8}_([^%]+)/);
-					if (match && images[idx].isoDate) {
-						var quizName = match[1];
-						images[idx].triviaId = 'HPQuiz_' + images[idx].isoDate + '_' + quizName;
+  // Merge processedMediaContents
+  images.forEach((img, idx) => {
+    const mc = results.processedMediaContents?.[idx];
+    if (!mc) return;
+    if (mc.headline) img.headline = mc.headline;
+    if (mc.quickFact) img.quickFact = mc.quickFact;
+    if (mc.triviaId) img.triviaId = mc.triviaId;
+    if (mc.triviaData) img.triviaData = mc.triviaData;
+  });
 
-						// Fetch trivia data using the same pattern as collectBingDataInParallel
-						(function (imageIndex, currentTriviaId) {
-							var triviaXhr = new XMLHttpRequest();
-							triviaXhr.onreadystatechange = function () {
-								if (triviaXhr.readyState == 4 && triviaXhr.status == 200) {
-									try {
-										var triviaData = JSON.parse(triviaXhr.responseText);
-										images[imageIndex].triviaData = triviaData.data;
-									} catch (e) {
-										console.error('Failed to parse trivia data:', e);
-									} finally {
-										triviaCompleted = true;
-										checkCompletion();
-										console.log('Updated trivia data for image index:', imageIndex);
-									}
-								} else if (triviaXhr.readyState == 4 && triviaXhr.status !== 200) {
-									console.error('Failed to fetch trivia data:', triviaXhr.status);
-								}
-							};
+  // --- Handle trivia for 8th image (from imageArchive) ---
+  if (results.imageArchive?.images) {
+    const idx = images.length - 1;
+    images[idx].headline = results.imageArchive.images[0].title;
+    images[idx].triviaId = results.imageArchive.images[0].quiz;
 
-							triviaXhr.open('get', 'https://www.bing.com/hp/api/v1/trivia?format=json&id=' + currentTriviaId + '&mkt=zh-CN');
-							triviaXhr.send(null);
-						})(idx, images[idx].triviaId);
-					}
-				}
-			}
-		})();
+    if (images[idx].triviaId) {
+      const match = images[idx].triviaId.match(/HPQuiz_\d{8}_([^%]+)/);
+      if (match && images[idx].isoDate) {
+        const quizName = match[1];
+        images[idx].triviaId = `HPQuiz_${images[idx].isoDate}_${quizName}`;
 
-		// Execute handleQuickFacts with completion tracking
-		(function () {
-			var lastQuickFactConfig = readConf("last_quick_fact");
-			var lastQuickFact = lastQuickFactConfig ? JSON.parse(lastQuickFactConfig) : null;
-			// Get the quick fact from the last item of processedMediaContents
-			var oldestQuickFact = {};
-			if (results.processedMediaContents && results.processedMediaContents.length > 0) {
-				var lastMediaContent = results.processedMediaContents[results.processedMediaContents.length - 1];
-				oldestQuickFact = {
-					"date": parseInt(lastMediaContent.ssd),
-					"quickfact": lastMediaContent.quickFact
-				};
-			}
-			// If last_quick_fact doesn't exist, initialize it and exit
-			if (!lastQuickFact) {
-				if (oldestQuickFact) {
-					var newLastQuickFact = {
-						"7th": oldestQuickFact,
-						"8th": {
-							"date": 0,
-							"quickfact": ""
-						}
-					};
-					writeConf("last_quick_fact", JSON.stringify(newLastQuickFact));
-					console.log('Initialized last_quick_fact config');
-				}
-			} else {
-				// Check if 7th.date equals isoDate of the 7th image (index 6, which is images.length - 2)
-				var lastImageDate = parseInt(images[images.length - 1].isoDate);
+        try {
+          const res = await fetch(`https://www.bing.com/hp/api/v1/trivia?format=json&id=${images[idx].triviaId}&mkt=zh-CN`);
+          if (res.ok) {
+            images[idx].triviaData = (await res.json()).data;
+          }
+        } catch (err) {
+          console.error("Failed trivia fetch for archive image:", err);
+        }
+      }
+    }
+  }
 
-				if (lastQuickFact["7th"] && lastQuickFact["7th"].date === lastImageDate) {
-					// Save "7th" to "8th" first
-					lastQuickFact["8th"] = lastQuickFact["7th"];
-				} else {
-					lastQuickFact["8th"] = {
-						"date": 0,
-						"quickfact": ""
-					};
-				}
-				// Save current quick fact as "7th"
-				if (oldestQuickFact) {
-					lastQuickFact["7th"] = oldestQuickFact;
-				}
-				writeConf("last_quick_fact", JSON.stringify(lastQuickFact));
-				console.log('Updated last_quick_fact config');
-			}
-			images[images.length - 1].quickFact = lastQuickFact ? lastQuickFact["8th"].quickfact : "";
-			quickFactsCompleted = true;
-			checkCompletion();
-		})();
-	}
-	// Save processed media contents with trivia data
-/* 	if (results.processedMediaContents) {
-		writeConf('bing_media_contents', JSON.stringify(results.processedMediaContents));
-		console.log('Saved processed media contents with trivia data');
-	} */
-	// Save raw model data as backup
-	/* 	if (results.model) {
-			writeConf('bing_model_data', JSON.stringify(results.model));
-			console.log('Saved raw model data');
-		} */
+  // --- Handle quickFacts ---
+  const lastQuickFactConfig = readConf("last_quick_fact");
+  let lastQuickFact = lastQuickFactConfig ? JSON.parse(lastQuickFactConfig) : null;
+  let oldestQuickFact = {};
 
-	// Log any errors that occurred
-	if (results.errors && results.errors.length > 0) {
-		console.error('Errors during parallel data collection:', results.errors);
-		writeConf('bing_data_errors', JSON.stringify(results.errors));
-	}
-	console.log('All Bing data saved to configuration successfully');
+  if (results.processedMediaContents?.length > 0) {
+    const lastMC = results.processedMediaContents[results.processedMediaContents.length - 1];
+    oldestQuickFact = { date: parseInt(lastMC.ssd), quickfact: lastMC.quickFact };
+  }
 
+  if (!lastQuickFact) {
+    if (oldestQuickFact) {
+      lastQuickFact = {
+        "7th": oldestQuickFact,
+        "8th": { date: 0, quickfact: "" }
+      };
+      writeConf("last_quick_fact", JSON.stringify(lastQuickFact));
+    }
+  } else {
+    const lastImageDate = parseInt(images[images.length - 1].isoDate);
+    if (lastQuickFact["7th"]?.date === lastImageDate) {
+      lastQuickFact["8th"] = lastQuickFact["7th"];
+    } else {
+      lastQuickFact["8th"] = { date: 0, quickfact: "" };
+    }
+    if (oldestQuickFact) {
+      lastQuickFact["7th"] = oldestQuickFact;
+    }
+    writeConf("last_quick_fact", JSON.stringify(lastQuickFact));
+  }
+
+  images[images.length - 1].quickFact = lastQuickFact ? lastQuickFact["8th"].quickfact : "";
+
+  // --- Save merged images ---
+  writeConf("bing_images", JSON.stringify(images));
+  console.log("Saved bing_images with merged contents.");
+
+  // --- Log errors ---
+  if (results.errors?.length > 0) {
+    console.error("Errors during parallel data collection:", results.errors);
+    writeConf("bing_data_errors", JSON.stringify(results.errors));
+  }
 }
+
 
 // if user want to show old wallpapers.
 function switchPrevWallpaper() {
