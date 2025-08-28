@@ -163,10 +163,10 @@
         "message": "每日小測驗"
     },
     "next_image": {
-        "message": "下一圖"
+        "message": "後一天"
     },
     "prev_image": {
-        "message": "上一圖"
+        "message": "前一天"
     },
     "placeholder": {
         "message": "placeholder"

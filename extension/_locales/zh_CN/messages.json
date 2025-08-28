@@ -164,10 +164,10 @@
         "message": "每日小测验"
     },
     "next_image": {
-        "message": "下一图"
+        "message": "后一天"
     },
     "prev_image": {
-        "message": "上一图"
+        "message": "前一天"
     },    
     "placeholder": {
         "message": "placeholder"
