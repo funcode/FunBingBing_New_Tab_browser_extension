@@ -78,7 +78,7 @@ function readConf(key) {
             - wallpaper_url: String
             - wallpaper_text: String
             - headline_link: String
-            - offset_idx: String, can be parsed to int
+            - wallpaper_idx: String, can be parsed to int
         // version flag
             - last_open_version: String
     */
@@ -157,11 +157,10 @@ function initializeConf() {
             action: "random_bing_wallpaper"
             }
         ],
-        enable_uhd_wallpaper: "no",
+        enable_uhd_wallpaper: "yes",
         wallpaper_date: "2000-01-01",
         wallpaper_text: "Bing Wallpaper Title",
-        headline_link: "https://cn.bing.com/",
-        offset_idx: "0",
+        wallpaper_idx: "0",
         last_open_version: "0"
         }
 

@@ -83,16 +83,16 @@ function initCustomBookmarks() {
 function handleCustomAction(action) {
 	switch (action) {
 		case 'random_bing_wallpaper':
-			var offset_idx = readConf("offset_idx");
-			if (offset_idx === "") {
-				offset_idx = 0;
+			var wallpaper_idx = readConf("wallpaper_idx");
+			if (wallpaper_idx === "") {
+				wallpaper_idx = 0;
 			}
-			offset_idx = parseInt(offset_idx);
+			wallpaper_idx = parseInt(wallpaper_idx);
 			var bing_images = readConf("bing_images");
 			var today = new Date();
 			if (bing_images) {
 				var images = JSON.parse(bing_images);
-				var image = images[offset_idx];
+				var image = images[wallpaper_idx];
 				if (image) {
 					today = new Date(+image.isoDate.slice(0,4), +image.isoDate.slice(4,6)-1, +image.isoDate.slice(6,8));
 				}
