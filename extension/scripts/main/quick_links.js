@@ -91,8 +91,7 @@ function handleCustomAction(action) {
 			var bing_images = readConf("bing_images");
 			var today = new Date();
 			if (bing_images) {
-				var images = JSON.parse(bing_images);
-				var image = images[wallpaper_idx];
+				var image = bing_images[wallpaper_idx];
 				if (image) {
 					today = new Date(+image.isoDate.slice(0,4), +image.isoDate.slice(4,6)-1, +image.isoDate.slice(6,8));
 				}
