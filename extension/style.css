@@ -179,6 +179,7 @@ body {
     display: inline-block;
     margin-bottom: .5rem;
     position: relative;
+    -webkit-user-select: none;
     user-select: none
 }
 
