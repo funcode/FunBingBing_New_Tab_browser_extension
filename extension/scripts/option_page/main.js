@@ -5,13 +5,6 @@
 // this is duplicated code. should be fixed later.
 var defaultSearchEngines = [
 		{
-			name: "Google", 
-			icon: "icons/google.png",
-			action: "https://google.com/search",
-			param_name: "q",
-			css_style: "height: 40px; margin: 15px 10px;"
-		},
-		{
 			name: "Bing", 
 			icon: "icons/bing.png",
 			action: "https://bing.com/search",
@@ -19,11 +12,11 @@ var defaultSearchEngines = [
 			css_style: "height: 50px;  margin: 10px;"
 		},
 		{
-			name: "Baidu", 
-			icon: "icons/baidu.png",
-			action: "https://www.baidu.com/s",
-			param_name: "wd",
-			css_style: "height: 70px; margin-top: -10px;"
+			name: "Google", 
+			icon: "icons/google.png",
+			action: "https://google.com/search",
+			param_name: "q",
+			css_style: "height: 40px; margin: 15px 10px;"
 		},
 		{
 			name: "Sogou", 
@@ -52,13 +45,6 @@ var defaultSearchEngines = [
 			action: "https://duckduckgo.com/",
 			param_name: "q",
 			css_style: "height: 45px; padding: 10px;"
-		},
-		{
-			name: "360", 
-			icon: "icons/360.png",
-			action: "https://www.so.com/s",
-			param_name: "q",
-			css_style: "height: 40px; padding: 15px 10px;"
 		}
 	];
 	
