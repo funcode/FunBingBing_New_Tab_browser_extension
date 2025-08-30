@@ -29,7 +29,7 @@
   const switchOff = document.getElementById('switch-off');
 
   // Set initial visibility based on config
-  if (readConf('show_clock') === 'no') {
+  if (String(readConf('show_clock')) === 'no') {
     if(clockDisplay) clockDisplay.style.visibility = 'hidden';
     if(switchOn) switchOn.style.display = 'none';
     if(switchOff) switchOff.style.display = 'inline';
