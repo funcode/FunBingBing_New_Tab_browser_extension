@@ -51,6 +51,7 @@ function i18n_wallpaper_tab() {
 	document.getElementById("uhd-wallpaper-prompt1").innerHTML = i18n('op_wallpaper_uhd_hint1');
 	document.getElementById("uhd-wallpaper-prompt2").innerHTML = i18n('op_wallpaper_uhd_hint2');
 	document.getElementById("use-uhd-wallpaper-checkbox-text").innerHTML = i18n('op_wallpaper_uhd_checkbox');
+	document.getElementById("show-clock-checkbox-text").innerHTML = i18n('op_show_clock_checkbox');
 }
 
 // about tab

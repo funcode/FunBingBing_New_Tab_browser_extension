@@ -116,6 +116,10 @@
         "message": "加載超清壁紙圖片"
     },
 
+    "op_show_clock_checkbox": {
+        "message": "在新標籤頁打開時顯示數字時鐘"
+    },
+
     "op_about_prompt": {
         "message": "Ataraxia 帶給您清爽、驚喜的新標籤頁體驗。"
     },
@@ -167,6 +171,9 @@
     },
     "prev_image": {
         "message": "前一天"
+    },
+    "toggle_clock_title": {
+        "message": "切換時鐘顯示"
     },
     "placeholder": {
         "message": "placeholder"

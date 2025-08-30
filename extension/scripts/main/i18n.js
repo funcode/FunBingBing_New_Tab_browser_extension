@@ -41,6 +41,11 @@ function i18n_nav_buttons() {
     if (rightNav) rightNav.title = i18n('next_image');
 }
 
+function i18n_clock_toggle_button() {
+    var clockToggle = document.getElementById('clock-toggle');
+    if (clockToggle) clockToggle.title = i18n('toggle_clock_title');
+}
+
 function exec_i18n() {
 	i18n_page_title();
 	i18n_search_logo_hover_tip();
@@ -48,6 +53,7 @@ function exec_i18n() {
 	i18n_tpr_settings_btn();
     i18n_daily_quiz();
     i18n_nav_buttons();
+    i18n_clock_toggle_button();
 }
 
 exec_i18n();

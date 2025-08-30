@@ -149,7 +149,8 @@ function initializeConf() {
         ],
         current_search_engine: "Google",
         display_search_box: "no",
-        show_top_sites: "no",        
+        show_top_sites: "no",
+        show_clock: "yes",
         custom_bkmk_list: [
             {
             name: "历史上的今天",

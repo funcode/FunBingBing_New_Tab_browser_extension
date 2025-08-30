@@ -258,15 +258,33 @@ function initWallpaperConf() {
 	else {
 		document.getElementById('use-uhd-wallpaper-checkbox').checked = true;
 	}
+	// show clock
+	if(readConf('show_clock') == 'no') {
+		document.getElementById('show-clock-checkbox').checked = false;
+		chrome.runtime.sendMessage({ type: 'clockVisibilityChange', visible: false }).catch(err => { /* ignore */ });
+	}
+	else {
+		document.getElementById('show-clock-checkbox').checked = true;
+		chrome.runtime.sendMessage({ type: 'clockVisibilityChange', visible: true }).catch(err => { /* ignore */ });
+	}
 }
 
 function changeWallpaperConf() {
-	// update search box conf
+	// update uhd wallpaper conf
 	if (document.getElementById('use-uhd-wallpaper-checkbox').checked == true) {
 		writeConf('enable_uhd_wallpaper', 'yes');
 	}
 	else {
 		writeConf('enable_uhd_wallpaper', 'no');
+	}
+	// update show clock conf
+	if (document.getElementById('show-clock-checkbox').checked == true) {
+		writeConf('show_clock', 'yes');
+		chrome.runtime.sendMessage({ type: 'clockVisibilityChange', visible: true }).catch(err => { /* ignore */ });
+	}
+	else {
+		writeConf('show_clock', 'no');
+		chrome.runtime.sendMessage({ type: 'clockVisibilityChange', visible: false }).catch(err => { /* ignore */ });
 	}
 	// change wallpaper_data conf to trigger wallpaper reload when open a new tab
 	writeConf('wallpaper_date', '2001-01-01');
