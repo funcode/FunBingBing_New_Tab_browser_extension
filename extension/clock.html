@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vanilla JS Clock</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: sans-serif;
+            background: #111;
+            color: #fff;
+            font-size: 3rem;
+        }
+
+        .clock {
+            letter-spacing: 2px;
+        }
+
+        #clock-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* Add a hover area with a pseudo-element */
+        }
+
+        #clock-container::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            bottom: -20px;
+            left: -100px;
+            right: -100px;
+            border-radius: 10px;
+        }
+
+        #center-clock {
+            color: #fff;
+            font-size: 9rem;
+            font-weight: 500;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+            letter-spacing: 2px;
+            z-index: 2;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        #clock-toggle {
+            position: absolute;
+            top: 50%;
+            /* Position it to the right of the clock text */
+            left: 100%;
+            transform: translateY(-50%);
+            margin-left: 20px;
+            /* Space between clock and button */
+            background: none;
+            border: none;
+            color: #fff;
+            padding: 0;
+            cursor: pointer;
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #clock-container:hover #clock-toggle {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Center digital clock -->
+    <div id="clock-container">
+        <div id="center-clock" class="center-clock">--:--</div>
+        <button id="clock-toggle">
+            <svg id="switch-on" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect>
+                <circle cx="16" cy="12" r="3"></circle>
+            </svg>
+            <svg id="switch-off" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                style="display: none;">
+                <rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect>
+                <circle cx="8" cy="12" r="3"></circle>
+            </svg>
+        </button>
+    </div>
+
+    <div data-v-c74a669a="" class="three-col-layout--right" data-resize-sensor-id="kx7e5">
+        <div data-v-959f8250="" data-v-c74a669a="" class="clock-dropdown">
+            <div data-v-4b4f3432="" data-v-959f8250="" class="portal-toggle base-dropdown"
+                data-just-bound-click-outside-handler="false" data-click-outside-mouseup-handler-id="j3yv6z"
+                data-click-outside-mousedown-handler-id="5cjlz" data-test="more-toggle" data-v-c74a669a="">
+                <div data-v-4b4f3432="" class="icon-wrapper more-toggle"><svg data-v-4b4f3432="" viewBox="0 0 60 60"
+                        fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="icon icon-ellipsis">
+                        <path xmlns="http://www.w3.org/2000/svg"
+                            d="M8 22c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zM52 22c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zM30 22c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8z">
+                        </path>
+                    </svg></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/clock.js"></script>
+
+</body>
+
+</html>
