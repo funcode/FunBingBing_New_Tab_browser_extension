@@ -19,11 +19,13 @@ function appendOnLoadEvent(func) {
     }
 }
 
-// get current date string 
+// get current date string in yyyymmdd format
 function getDateString() {
-	var date = new Date();
-	var result = "" + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-	return result;
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = (date.getMonth() + 1).toString().padStart(2, '0');
+    var day = date.getDate().toString().padStart(2, '0');
+    return "" + year + month + day;
 }
 
 // i18n
@@ -74,9 +76,9 @@ function readConf(key) {
             - custom_bkmk_list: Json list, user defined bookmarks
         // wallpaper
             - enable_uhd_wallpaper: String(yes no)
+            - show_clock: String(yes no)
             - wallpaper_date: String
             - wallpaper_url: String
-            - wallpaper_text: String
             - headline_link: String
             - wallpaper_idx: String, can be parsed to int
         // version flag
@@ -159,8 +161,7 @@ function initializeConf() {
             }
         ],
         enable_uhd_wallpaper: "yes",
-        wallpaper_date: "2000-01-01",
-        wallpaper_text: "Bing Wallpaper Title",
+        wallpaper_date: "20000101",
         wallpaper_idx: "0",
         last_open_version: "0"
         }

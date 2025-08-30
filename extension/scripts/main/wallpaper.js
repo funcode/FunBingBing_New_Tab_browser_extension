@@ -4,7 +4,7 @@ function showDefaultWallpaper() {
 	var body = document.getElementById('main-body');
 	var wallpaperUrl = readConf('wallpaper_url');
 	if (wallpaperUrl) {
-		//Use wallpaper_url as the background image
+		//wallpaper_url stores the last loaded background image url
 		body.style.backgroundImage = "url('" + wallpaperUrl + "')";
 		var bing_images = readConf("bing_images");
 		var idx = readConf("wallpaper_idx");
@@ -74,15 +74,15 @@ function changeWallpaper(idx) {
 	}
 	setFooterText(i18n('updating_wallpaper'));
 	var tmp_img = new Image();
+	// Preload the image into memory
 	tmp_img.src = imgurl;
+	// Actions after the image is loaded
 	tmp_img.onload = function () {
 		var body = document.getElementById('main-body');
 		body.style.backgroundImage = "url('" + imgurl + "')";
 		//hideLoadingAnim();
 		setContents(image);
-		writeConf("wallpaper_date", getDateString());
 		writeConf("wallpaper_url", imgurl);
-		writeConf("wallpaper_text", image.headline);
 		var existingIframe = body.querySelector('iframe[src="newtab.html"]');
 		if (existingIframe) {
 			body.removeChild(existingIframe);
@@ -95,6 +95,7 @@ function changeWallpaper(idx) {
 function updateWallpaper(idx) {
 	try {
 		changeWallpaper(idx);
+		writeConf("wallpaper_idx", idx.toString());
 	} catch (e) {
 		console.error('Failed to parse bing_images from config:', e);
 		showDefaultWallpaper();
@@ -112,7 +113,6 @@ async function initWallpaper() {
 		} else {
 			showDefaultWallpaper();
 			updateWallpaper(0);
-			writeConf("wallpaper_idx", "0");
 		}
 	} else {
 		// No cache match, fetch new data
@@ -121,7 +121,6 @@ async function initWallpaper() {
 			const results = await collectBingDataInParallel();
 			await handleBingDataResults(results);
 			updateWallpaper(0); // guaranteed after data + writeConf
-			writeConf("wallpaper_idx", "0");
 		} catch (err) {
 			console.error("Error initializing wallpaper:", err);
 			//updateWallpaper(0); // fallback
@@ -259,6 +258,7 @@ async function handleBingDataResults(results) {
 
 	// --- Save merged images ---
 	writeConf("bing_images", images);
+	writeConf("wallpaper_date", images[0].isoDate);
 	console.log("Saved bing_images with merged contents.");
 
 	// --- Log errors ---
@@ -279,7 +279,6 @@ function switchPrevWallpaper() {
 	}
 	cache_idx = parseInt(cache_idx);
 	cache_idx = (cache_idx + 1) % MAX_OLD_DAYS;
-	writeConf("wallpaper_idx", cache_idx.toString());
 	// reload wallpaper
 	updateWallpaper(cache_idx);
 }
@@ -293,7 +292,6 @@ function switchNextWallpaper() {
 	}
 	cache_idx = parseInt(cache_idx);
 	cache_idx = (cache_idx - 1 + MAX_OLD_DAYS) % MAX_OLD_DAYS;
-	writeConf("wallpaper_idx", cache_idx.toString());
 	// reload wallpaper
 	updateWallpaper(cache_idx);
 }

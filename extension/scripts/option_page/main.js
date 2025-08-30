@@ -287,7 +287,7 @@ function changeWallpaperConf() {
 		chrome.runtime.sendMessage({ type: 'clockVisibilityChange', visible: false }).catch(err => { /* ignore */ });
 	}
 	// change wallpaper_data conf to trigger wallpaper reload when open a new tab
-	writeConf('wallpaper_date', '2001-01-01');
+	writeConf('wallpaper_date', '20010101');
 	alert(i18n('op_saved_alert'));
 }
 
