@@ -6,6 +6,7 @@
   <link rel="stylesheet" type="text/css" href="style.css" />
   <link rel="stylesheet" type="text/css" href="vendor/spop/spop.min.css" />
   <link rel="stylesheet" type="text/css" href="description.css" />
+  <link rel="stylesheet" type="text/css" href="clock.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 </head>
 
@@ -55,8 +56,19 @@
       </form>
     </div>
 
-  </div>
-  <div class="description" id="description" style="display: none;">
+    </div>
+
+    <!-- Center digital clock -->
+    <div id="clock-container">
+      <div class="center-clock" id="center-clock">--:--</div>
+      <!-- Button to toggle the visibility of the digital clock -->
+      <button id="clock-toggle" title="Toggle clock">
+        <svg id="switch-on" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect><circle cx="16" cy="12" r="3"></circle></svg>
+        <svg id="switch-off" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect><circle cx="8" cy="12" r="3"></circle></svg>
+      </button>
+    </div>
+
+    <div class="description" id="description" style="display: none;">
     <p class="title">Bing Wallpaper Title</p>
     <span class="sub">
       <p>
@@ -114,6 +126,7 @@
   <script src="scripts/main/i18n.js"></script>
   <script src="scripts/main/desc_hover.js"></script>
   <script src="scripts/main/trivia_hover.js"></script>
+  <script src="scripts/main/clock.js"></script>
 
 </body>
 

@@ -1,0 +1,55 @@
+#clock-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Add a hover area with a pseudo-element */
+}
+#clock-container::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  bottom: -20px;
+  left: -100px;
+  right: -100px;
+  border-radius: 10px;
+}
+#clock-toggle {
+  position: absolute;
+  top: 50%;
+  /* Position it to the right of the clock text */
+  left: 100%; 
+  transform: translateY(-50%);
+  margin-left: 20px; /* Space between clock and button */
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 0;
+  cursor: pointer;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+#clock-container:hover #clock-toggle {
+  opacity: 1;
+}
+
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/font/PretendardVariable.woff2') format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
+}
+		
+#center-clock {
+  color: #fff;
+  font-size: 8rem;
+  font-weight: 400;
+  font-style: light;
+  font-family: -apple-system, BlinkMacSystemFont, Pretendard, Roboto, 'Segoe UI', Helvetica, Arial, sans-serif;
+  z-index: 2;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
