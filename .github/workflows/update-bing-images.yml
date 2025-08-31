@@ -1,4 +1,4 @@
-name: Update Bing Images
+name: Collect Bing Wallpaper Data
 
 on:
   schedule:
