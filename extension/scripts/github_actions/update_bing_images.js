@@ -155,8 +155,8 @@ async function handleBingDataResults(results) {
 	await Promise.all([triviaFetch(), quickFactsUpdate()]);
 
 	// --- Save merged images ---
-	writeConf(`${images[0].isoDate}.json`, images[0]);
-    writeConf(`${images[0].isoDate}.8days.json`, images);
+    writeConf(`${images[0].isoDate}`, images[0]);
+    writeConf(`${images[0].isoDate}.8days`, images);
 	console.log("Saved bing_images with merged contents.");
 
 	// --- Log errors ---
