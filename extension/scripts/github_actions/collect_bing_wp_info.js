@@ -108,26 +108,6 @@ async function handleBingDataResults(results) {
 		return;
 	}
 
-	// --- Scrape Quote of the Day ---
-	if (results.quoteOfTheDay) {
-		try {
-			const dom = new JSDOM(results.quoteOfTheDay);
-			const doc = dom.window.document;
-			const quoteText = doc.querySelector('.bt_quoteText')?.textContent.trim();
-			const authorText = doc.querySelector('.bt_author .b_mText a')?.textContent.trim();
-			const authorCaption = doc.querySelector('.bt_authorCaption.b_primtxt')?.textContent.trim();
-			if (quoteText && authorText) {
-				images[0].quoteData = {
-					text: quoteText,
-					author: authorText,
-					caption: authorCaption
-				};
-			}
-		} catch (e) {
-			console.error("Error parsing quote of the day HTML:", e);
-		}
-	}
-
 	// --- Merge processedMediaContents ---
 	images.forEach((img, idx) => {
 		const mc = results.processedMediaContents?.[idx];
@@ -188,6 +168,25 @@ async function handleBingDataResults(results) {
 	writeConf(`${images[0].isoDate}.8days`, images);
 	console.log("Saved bing_images with merged contents.");
 
+	// --- Scrape Quote of the Day ---
+	if (results.quoteOfTheDay) {
+		try {
+			const dom = new JSDOM(results.quoteOfTheDay);
+			const doc = dom.window.document;
+			const quoteText = doc.querySelector('.bt_quoteText')?.textContent.trim();
+			const authorText = doc.querySelector('.bt_author .b_mText a')?.textContent.trim();
+			const authorCaption = doc.querySelector('.bt_authorCaption.b_primtxt')?.textContent.trim();
+			if (quoteText && authorText) {
+				images[0].quoteData = {
+					text: quoteText,
+					author: authorText,
+					caption: authorCaption
+				};
+			}
+		} catch (e) {
+			console.error("Error parsing quote of the day HTML:", e);
+		}
+	}
 	// --- Save Quote of the Day to cache ---
 	if (images[0].quoteData && images[0].isoDate) {
 		const quoteCache = readConf("cache_quote_of_the_day") || {};
