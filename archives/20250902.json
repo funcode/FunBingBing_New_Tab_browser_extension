@@ -1,0 +1,46 @@
+{
+  "caption": "骆驼刺树, 纳米布-诺克卢福国家公园",
+  "title": "骆驼刺树, 死亡谷, 纳米布-诺克卢福国家公园, 纳米比亚",
+  "description": "乍一看，这仿佛是一件超现实的艺术装置：黑暗的树木凝固在黏土平原上，背后是沙丘和闪烁的天空。但这幅来自纳米比亚纳米布-诺克卢夫国家公园的德阿夫莱（Deadvlei）的景象，完全是自然形成的。德阿夫莱（Deadvlei）这个名字意为“死沼泽”——这是曾经填满这个盆地的湿地的遗迹。",
+  "copyright": "© Inge Johnsson/Alamy Stock Photo",
+  "date": "2025 9月 2",
+  "clickUrl": "/search?q=%e7%ba%b3%e7%b1%b3%e6%af%94%e4%ba%9a%e7%ba%b3%e7%b1%b3%e5%b8%83%e8%af%ba%e5%85%8b%e8%b7%af%e7%a6%8f%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20250901_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.DeadvleiTrees_ZH-CN0967414858_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.DeadvleiTrees_ZH-CN0967414858_UHD.jpg",
+      "wallpaper": "/th?id=OHR.DeadvleiTrees_ZH-CN0967414858_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.DeadvleiTrees_ZH-CN0967414858_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.DeadvleiTrees_ZH-CN0967414858_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.DeadvleiTrees_ZH-CN0967414858_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "数百年前，一条河流曾滋养着这片生命。随后沙丘移动，切断了水流。曾经在此生长的骆驼刺树并未倒塌或消失。极度干旱和土壤中极高的盐分含量彻底阻断了自然分解过程。在这种环境下，就连腐烂也停止了。这些树木被沙漠“防腐”——被阳光晒干，变得僵硬，根系牢牢扎根于原地，最长可达900年。死谷的力量不仅在于其震撼的美景，更在于其静默的抗争。这些树木虽已不再存活，却也未完全消逝，如同永恒的见证者，屹立于这个选择宁静而非消亡之地。",
+  "descriptionPara3": "",
+  "isoDate": "20250902",
+  "headline": "死谷的幽灵",
+  "quickFact": "纳米比亚的鸟类、啮齿类动物和人类都以骆驼刺树为食。该树的种子可以研磨成细粉，用作咖啡替代品，而树上分泌的树胶也可食用。",
+  "triviaId": "HPQuiz_20250902_DeadvleiTrees",
+  "triviaData": {
+    "question": "‘Deadvlei’这个名字的含义是什么？",
+    "options": [
+      {
+        "text": "死亡谷",
+        "url": "/search?q=%E6%AD%BB%E4%BA%A1%E8%B0%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250902_DeadvleiTrees%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "生活山谷",
+        "url": "/search?q=%E6%AD%BB%E4%BA%A1%E8%B0%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250902_DeadvleiTrees%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "干涸的湖泊",
+        "url": "/search?q=%E6%AD%BB%E4%BA%A1%E8%B0%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250902_DeadvleiTrees%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
