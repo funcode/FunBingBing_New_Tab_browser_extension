@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { JSDOM } = require("jsdom");
 
 const ARCHIVES_DIR = path.join(__dirname, '../../../archives');
 
@@ -29,14 +30,15 @@ function readConf(key) {
 }
 
 async function collectBingDataInParallel() {
-	const results = { imageArchive: null, imageOfTheDay: null, model: null, errors: [] };
+	const results = { imageArchive: null, imageOfTheDay: null, model: null, quoteOfTheDay: null, errors: [] };
 
 	try {
-		// Kick off all 3 requests in parallel
-		const [archiveRes, dayRes, modelRes] = await Promise.allSettled([
+		// Kick off all 4 requests in parallel
+		const [archiveRes, dayRes, modelRes, quoteRes] = await Promise.allSettled([
 			fetch("https://www.bing.com/HPImageArchive.aspx?format=js&n=1&mkt=zh-CN&idx=7"),
 			fetch("https://www.bing.com/hp/api/v1/imageoftheday?format=json&mkt=zh-CN"),
-			fetch("https://www.bing.com/hp/api/model?mkt=zh-CN")
+			fetch("https://www.bing.com/hp/api/model?mkt=zh-CN"),
+			fetch("https://www.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN")
 		]);
 
 		// Parse archive
@@ -84,6 +86,13 @@ async function collectBingDataInParallel() {
 		} else {
 			results.errors.push("Model request failed");
 		}
+
+		// Parse quote of the day
+		if (quoteRes.status === "fulfilled" && quoteRes.value.ok) {
+			results.quoteOfTheDay = await quoteRes.value.text();
+		} else {
+			results.errors.push("QuoteOfTheDay request failed");
+		}
 	} catch (err) {
 		results.errors.push("Error collecting Bing data: " + err.message);
 	}
@@ -97,6 +106,26 @@ async function handleBingDataResults(results) {
 	if (images.length === 0) {
 		console.error("No imageOfTheDay data found");
 		return;
+	}
+
+	// --- Scrape Quote of the Day ---
+	if (results.quoteOfTheDay) {
+		try {
+			const dom = new JSDOM(results.quoteOfTheDay);
+			const doc = dom.window.document;
+			const quoteText = doc.querySelector('.bt_quoteText')?.textContent.trim();
+			const authorText = doc.querySelector('.bt_author .b_mText a')?.textContent.trim();
+			const authorCaption = doc.querySelector('.bt_authorCaption.b_primtxt')?.textContent.trim();
+			if (quoteText && authorText) {
+				images[0].quoteData = {
+					text: quoteText,
+					author: authorText,
+					caption: authorCaption
+				};
+			}
+		} catch (e) {
+			console.error("Error parsing quote of the day HTML:", e);
+		}
 	}
 
 	// --- Merge processedMediaContents ---
@@ -155,9 +184,16 @@ async function handleBingDataResults(results) {
 	await Promise.all([triviaFetch(), quickFactsUpdate()]);
 
 	// --- Save merged images ---
-    writeConf(`${images[0].isoDate}`, images[0]);
-    writeConf(`${images[0].isoDate}.8days`, images);
+	writeConf(`${images[0].isoDate}`, images[0]);
+	writeConf(`${images[0].isoDate}.8days`, images);
 	console.log("Saved bing_images with merged contents.");
+
+	// --- Save Quote of the Day to cache ---
+	if (images[0].quoteData && images[0].isoDate) {
+		const quoteCache = readConf("cache_quote_of_the_day") || {};
+		quoteCache[images[0].isoDate] = images[0].quoteData;
+		writeConf("cache_quote_of_the_day", quoteCache);
+	}
 
 	// --- Log errors ---
 	if (results.errors?.length > 0) {
