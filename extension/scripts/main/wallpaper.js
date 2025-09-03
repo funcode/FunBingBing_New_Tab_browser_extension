@@ -209,25 +209,72 @@ async function handleBingDataResults(results) {
 		return;
 	}
 
-	// --- Scrape Quote of the Day ---
-	if (results.quoteOfTheDay) {
-		try {
-			const parser = new DOMParser();
-			const doc = parser.parseFromString(results.quoteOfTheDay, "text/html");
-			const quoteText = doc.querySelector('.bt_quoteText')?.textContent.trim();
-			const authorText = doc.querySelector('.bt_author .b_mText a')?.textContent.trim();
-			const authorCaption = doc.querySelector('.bt_authorCaption.b_primtxt')?.textContent.trim();
-			if (quoteText && authorText) {
-				images[0].quoteData = {
-					text: quoteText,
-					author: authorText,
-					caption: authorCaption
-				};
+	// --- Async task: Handle Quote of the Day ---
+	const quoteTask = async () => {
+		// --- Scrape Quote of the Day ---
+		if (results.quoteOfTheDay) {
+			try {
+				const parser = new DOMParser();
+				const doc = parser.parseFromString(results.quoteOfTheDay, "text/html");
+				const quoteText = doc.querySelector('.bt_quoteText')?.textContent.trim();
+				const authorText = doc.querySelector('.bt_author .b_mText a')?.textContent.trim();
+				const authorCaption = doc.querySelector('.bt_authorCaption.b_primtxt')?.textContent.trim();
+				if (quoteText && authorText) {
+					images[0].quoteData = {
+						text: quoteText,
+						author: authorText,
+						caption: authorCaption
+					};
+				}
+			} catch (e) {
+				console.error("Error parsing quote of the day HTML:", e);
 			}
-		} catch (e) {
-			console.error("Error parsing quote of the day HTML:", e);
 		}
-	}
+
+		// Function to add a new quote and backfill others
+		function addQuote(key, value) {
+			// Quotes storage (main data)
+			let allQuotes = readConf("cache_quote_of_the_day") || {};
+
+			// Helper object (circular buffer for keys)
+			let tracker = readConf("cache_quote_tracker") || {
+				last: 0, // points to the most recently used slot
+				"1": null, "2": null, "3": null, "4": null,
+				"5": null, "6": null, "7": null, "8": null
+			};
+
+			// If today's quote is new and valid, add it and manage the cache
+			if (value && !allQuotes[key]) {
+				// Advance "last" in circular fashion
+				tracker.last = (tracker.last % 8) + 1; 
+				const slot = tracker.last;
+				const oldKey = tracker[slot];
+
+				// If there was an old key in this slot, delete it
+				if (oldKey && allQuotes[oldKey]) {
+					delete allQuotes[oldKey];
+				}
+
+				// Store new quote
+				allQuotes[key] = value;
+				// Update tracker slot with the new key
+				tracker[slot] = key;
+				
+				writeConf("cache_quote_tracker", tracker);
+				writeConf("cache_quote_of_the_day", allQuotes);
+			}
+
+			// Backfill quoteData for other images from the full cache
+			for (let i = 1; i < images.length; i++) {
+				const date = images[i].isoDate;
+				if (allQuotes[date]) {
+					images[i].quoteData = allQuotes[date];
+				}
+			}
+		}
+
+		addQuote(images[0].isoDate, images[0].quoteData);
+	};
 
 	// --- Merge processedMediaContents ---
 	images.forEach((img, idx) => {
@@ -282,7 +329,7 @@ async function handleBingDataResults(results) {
 	};
 
 	// --- Execute both async tasks in parallel ---
-	await Promise.all([triviaFetch(), quickFactsUpdate()]);
+	await Promise.all([triviaFetch(), quickFactsUpdate(), quoteTask()]);
 
 	// --- Save merged images ---
 	writeConf("bing_images", images);
