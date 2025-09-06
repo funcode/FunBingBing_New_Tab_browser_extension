@@ -1,0 +1,46 @@
+{
+  "caption": "莫特拉瓦河河畔的格但斯克市，波兰",
+  "title": "位于莫特拉瓦河河畔的格但斯克市，波兰",
+  "description": "格但斯克是波兰滨海省一座充满活力的城市，鹅卵石铺就的魅力与清凉的海岸交相辉映。它是格但斯克湾沿岸的三联城（Tricity）的一部分，该区域包括邻近的沿海城市索波特和格丁尼亚市以及周边城镇。这座城市的名字很可能源于“Gdania”，这是流经该市的莫特拉瓦河（Motława）的早期名称。",
+  "copyright": "© Oscar Dominguez/TANDEM Stills + Motion",
+  "date": "2025 9月 7",
+  "clickUrl": "/search?q=%e6%b3%a2%e5%85%b0%e6%a0%bc%e4%bd%86%e6%96%af%e5%85%8b%e5%b8%82&form=hpcapt&filters=HpDate:\"20250906_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BlueGdansk_ZH-CN3328928509_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BlueGdansk_ZH-CN3328928509_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BlueGdansk_ZH-CN3328928509_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BlueGdansk_ZH-CN3328928509_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BlueGdansk_ZH-CN3328928509_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BlueGdansk_ZH-CN3328928509_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这座城市起源于10世纪后期的一座斯拉夫人堡垒，最早的记载出现于997年，当时它受到了波兰国家的早期影响。几个世纪以来，格但斯克经历了波兰、德国和独立统治，每个时期都在该地区的特征上留下了印记。主城区吸引着大多数游客，尤其是沿着Ulica Długa（长街）和Długi Targ（长市场）的热闹长廊。这条步行街两侧是装饰华丽的大门，两旁排列着以17 世纪风格重建的庄严联排别墅，充满魅力。它曾是波兰皇室的礼仪之路，现在被亲切地称为皇家之路。这条道路像一座活生生的博物馆一样展开，点缀着高地门、琥珀博物馆、乌法根之家、主市政厅、海王星喷泉和宏伟的阿特斯法院等历史地标。",
+  "descriptionPara3": "",
+  "isoDate": "20250907",
+  "headline": "淡彩的梦境和静水",
+  "quickFact": "格但斯克港是波兰最大的港口，也是波罗的海沿岸最大的港口之一。",
+  "triviaId": "HPQuiz_20250907_BlueGdansk",
+  "triviaData": {
+    "question": "哪条河流经格但斯克？",
+    "options": [
+      {
+        "text": "维斯瓦河",
+        "url": "/search?q=%E8%8E%AB%E7%89%B9%E6%8B%89%E7%93%A6%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250907_BlueGdansk%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "莫特拉瓦河",
+        "url": "/search?q=%E8%8E%AB%E7%89%B9%E6%8B%89%E7%93%A6%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250907_BlueGdansk%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "奥德河",
+        "url": "/search?q=%E8%8E%AB%E7%89%B9%E6%8B%89%E7%93%A6%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250907_BlueGdansk%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
