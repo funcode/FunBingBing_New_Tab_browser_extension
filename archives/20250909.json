@@ -1,0 +1,46 @@
+{
+  "caption": "一只雌性欧亚红松鼠，瑞士",
+  "title": "一只雌性欧亚红松鼠正在搬运苔藓，瑞士",
+  "description": "敏捷、聪明、总是四处奔波——来认识一下欧亚红松鼠吧。这种栖息于树梢的绿叶动物遍布欧洲和亚洲的大部分地区。虽然它们更喜欢森林的庇护，但这种敏捷的生物也能轻松适应花园和公园的环境。它们用树枝在高高的树杈上筑巢，称为“drey”（巢穴），形成一个约25到30厘米宽的圆顶结构。图中的雌性欧亚红松鼠正在采集苔藓——苔藓是几种柔软材料中的一种，它们与树皮、树叶和草一起构成巢穴，使巢穴成为一个舒适、隔热的避难所。这些啮齿动物也可能占据树洞或啄木鸟遗弃的洞穴（如果有的话）。",
+  "copyright": "© Jean-Luc and Francoise Ziegler/Minden Pictures",
+  "date": "2025 9月 9",
+  "clickUrl": "/search?q=%e6%ac%a7%e4%ba%9a%e7%ba%a2%e6%9d%be%e9%bc%a0&form=hpcapt&filters=HpDate:\"20250908_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SwissSquirrel_ZH-CN1499344455_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SwissSquirrel_ZH-CN1499344455_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SwissSquirrel_ZH-CN1499344455_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SwissSquirrel_ZH-CN1499344455_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SwissSquirrel_ZH-CN1499344455_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SwissSquirrel_ZH-CN1499344455_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "欧亚红松鼠通常独居且性格较为害羞，它们很少与他人分享食物或领地。然而，在寒冷的月份，几只个体共用一个巢穴以保持温暖的情况并不少见。它们的社会结构由支配等级制度决定，这种等级制度既存在于同一性别内部，也存在于不同性别之间。虽然雄性并不总是占据主导地位，但地位最高的个体通常年龄较大且体型较庞大。占据主导地位的雄性通常拥有比从属雄性或大多数雌性更大的活动范围。",
+  "descriptionPara3": "",
+  "isoDate": "20250909",
+  "headline": "她一根一根地准备着",
+  "quickFact": "红松鼠的皮毛颜色随季节和地区而变化，从黑色到红色不等。红色在英国最为常见，而欧洲和亚洲各地则呈现出各种不同的颜色。",
+  "triviaId": "HPQuiz_20250909_SwissSquirrel",
+  "triviaData": {
+    "question": "您如何称呼欧亚红松鼠的巢穴？",
+    "options": [
+      {
+        "text": "德雷",
+        "url": "/search?q=%E5%BE%B7%E9%9B%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250909_SwissSquirrel%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "树洞",
+        "url": "/search?q=%E5%BE%B7%E9%9B%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250909_SwissSquirrel%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "洞穴",
+        "url": "/search?q=%E5%BE%B7%E9%9B%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250909_SwissSquirrel%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
