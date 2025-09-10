@@ -222,7 +222,7 @@ async function handleBingDataResults(results) {
 				if (quoteText && authorText) {
 					images[0].quoteData = {
 						text: quoteText,
-						author: authorText,
+						source: authorText,
 						caption: authorCaption
 					};
 				}
@@ -471,6 +471,16 @@ function setContents(image) {
 			li.appendChild(a);
 			optionsUl.appendChild(li);
 		});
+	}
+
+	// --- Populate quote of the day blocks ---
+	if (image.quoteData) {
+		const qt = document.getElementById('quote-text');
+		if (qt && image.quoteData.text) qt.textContent = image.quoteData.text || '';
+		const qs = document.getElementById('quote-source');
+		if (qs && image.quoteData.source) qs.textContent = image.quoteData.source || '';
+		const qc = document.getElementById('quote-caption');
+		if (qc && image.quoteData.caption) qc.textContent = image.quoteData.caption || '';
 	}
 }
 

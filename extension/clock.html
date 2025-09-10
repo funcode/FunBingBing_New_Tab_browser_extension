@@ -16,99 +16,93 @@
             font-size: 3rem;
         }
 
-        .clock {
-            letter-spacing: 2px;
-        }
-
-        #clock-container {
+        .quote {
             position: fixed;
-            top: 50%;
+            bottom: 20px;
             left: 50%;
-            transform: translate(-50%, -50%);
-            /* Add a hover area with a pseudo-element */
-        }
-
-        #clock-container::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            bottom: -20px;
-            left: -100px;
-            right: -100px;
-            border-radius: 10px;
-        }
-
-        #center-clock {
+            transform: translateX(-50%);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1rem;
             color: #fff;
-            font-size: 9rem;
-            font-weight: 500;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-            letter-spacing: 2px;
-            z-index: 2;
-            pointer-events: none;
             user-select: none;
         }
 
-        #clock-toggle {
-            position: absolute;
-            top: 50%;
-            /* Position it to the right of the clock text */
-            left: 100%;
-            transform: translateY(-50%);
-            margin-left: 20px;
-            /* Space between clock and button */
-            background: none;
-            border: none;
-            color: #fff;
-            padding: 0;
+        .app-dash {
+            padding: 10px 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            z-index: 3;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
+            font-family: 'FangSong', 'STFangsong', 'STSong', 'SimSun', 'serif';
+            font-style: italic;
+            width: 80%;
         }
 
-        #clock-container:hover #clock-toggle {
+        .body,
+        .below {
+            margin: 0;
+            color: #ffffffe6;
+            line-height: 1.4;
+            transition: all .35s .1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+            user-select: text;
+        }
+
+        .quote .app-dash:hover .body {
+            /* transform will be handled by JS */
+        }
+
+        .below {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 100%;
+            opacity: 0;
+            font-size: 1rem;
+            transition: all .35s .1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .quote .app-dash:hover .below {
             opacity: 1;
+            /* transform will be handled by JS */
         }
     </style>
 </head>
-
 <body>
-    <!-- Center digital clock -->
-    <div id="clock-container">
-        <div id="center-clock" class="center-clock">--:--</div>
-        <button id="clock-toggle">
-            <svg id="switch-on" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect>
-                <circle cx="16" cy="12" r="3"></circle>
-            </svg>
-            <svg id="switch-off" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                style="display: none;">
-                <rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect>
-                <circle cx="8" cy="12" r="3"></circle>
-            </svg>
-        </button>
-    </div>
 
-    <div data-v-c74a669a="" class="three-col-layout--right" data-resize-sensor-id="kx7e5">
-        <div data-v-959f8250="" data-v-c74a669a="" class="clock-dropdown">
-            <div data-v-4b4f3432="" data-v-959f8250="" class="portal-toggle base-dropdown"
-                data-just-bound-click-outside-handler="false" data-click-outside-mouseup-handler-id="j3yv6z"
-                data-click-outside-mousedown-handler-id="5cjlz" data-test="more-toggle" data-v-c74a669a="">
-                <div data-v-4b4f3432="" class="icon-wrapper more-toggle"><svg data-v-4b4f3432="" viewBox="0 0 60 60"
-                        fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="icon icon-ellipsis">
-                        <path xmlns="http://www.w3.org/2000/svg"
-                            d="M8 22c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zM52 22c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zM30 22c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8z">
-                        </path>
-                    </svg></div>
+
+// ...existing code...
+
+    <div class="quote">
+        <div class="app-dash">
+            <div class="body">"有一分热，发一分光，就令萤火一般，也可以在黑暗里发一点光，不必等候燭火。此后如竟没有燭火，我便是唯一的光。"</div>
+            <div class="below">
+                <div>
+                    <h4>弗朗西斯·培根</h4>
+                    <p>弗朗西斯·培根（Francis Bacon，1561年1月22日—1626年4月9日），英国文艺复兴时期散文家、唯物主义哲学家、实验科学与近代归纳法的创始人，将科学研究程序进行逻辑组织化的先驱。代表作品有《新工具》《论科学的增进》《学术的伟大复兴》等。此外，他还以哲学家的眼光，思考了广泛的人生问题，写出了许多形式短小、风格活泼的随笔小品，集成《培根随笔》。</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="scripts/clock.js"></script>
+
+    <script src="scripts/main/quote.js"></script>
 
 </body>
 

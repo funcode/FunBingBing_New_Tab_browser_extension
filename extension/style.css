@@ -423,7 +423,7 @@ body {
     transform: none
 }
 
- html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
+html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
                 font-weight: inherit;
                 font-size: inherit;
                 list-style: none;
@@ -455,4 +455,91 @@ body {
 		right: 10px;
 		z-index: 1000;
 	}
+}
+/* Quote hover/lift component */
+.quote {
+    position: fixed;
+    bottom: 20px; /* base, JS adds offset */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    color: #fff;
+    user-select: none;
+    z-index: 1010; /* above .bottom (1000) to avoid hover loss */
+    pointer-events: none; /* let only inner interactive zone catch events */
+}
+
+.app-dash {
+    padding: 10px 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: 'FangSong', 'STFangsong', 'STSong', 'SimSun', 'serif';
+    font-style: italic;
+    width: 70%;
+    --lift: 34px; /* fallback vertical lift */
+    padding-bottom: 10px; /* keep compact; lift space handled by extended hover zone */
+    pointer-events: auto; /* re-enable events inside */
+}
+
+/* Invisible extended hover zone to avoid flicker when moving */
+/* Extended hover zone to reduce flicker when cursor travels upward */
+.app-dash::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    right: -24px;
+    bottom: calc(-1 * var(--lift)); /* reserve space for lifted state */
+    top: -12px; /* slight top extension */
+    pointer-events: none; /* passive area; main box handles events */
+}
+
+.body {
+    display: block;
+    font-size: 1.125rem;
+    user-select: text;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    width: 100%;
+    transition: transform .35s cubic-bezier(0.4,0,0.2,1), white-space 0s .35s; /* delay wrap until lift starts */
+    will-change: transform;
+}
+
+/* Expand full text on hover and lift */
+/* Hover state: use CSS var --lift set dynamically in JS for smooth measured movement */
+.quote .app-dash:hover .body {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    transform: translateY(calc(-1 * var(--lift)));
+}
+
+.below {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    opacity: 0;
+    font-size: 1rem;
+    transition: opacity .35s .05s cubic-bezier(0.4,0,0.2,1), transform .35s cubic-bezier(0.4,0,0.2,1);
+    transform: translateY(0);
+}
+
+
+.quote .app-dash:hover .below {
+    opacity: 1;
+    transform: translateY(calc(-1 * var(--lift) + 8px));
 }
