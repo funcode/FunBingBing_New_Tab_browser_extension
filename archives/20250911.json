@@ -1,0 +1,46 @@
+{
+  "caption": "蒙弗拉圭国家公园，西班牙",
+  "title": "蒙弗拉圭国家公园塔霍河畔的猎鹰岩，西班牙",
+  "description": "探索蒙弗拉圭国家公园，这座位于埃斯特雷马杜拉自治区心脏地带的自然瑰宝。从卡塞雷斯市的萨尔托德尔吉塔诺观景台，您可以欣赏到西班牙最壮丽的日落之一，四周环绕着嶙峋的悬崖，天空被金色的光辉染成一片金黄。两条河流——塔霍河和蒂埃塔尔河——横贯公园，塑造了其崎岖的地形，并滋养了丰富多样的野生动植物和地中海植被。这片天堂是自然爱好者和观鸟者的理想之地。秃鹫在公园上空自由翱翔——这里是欧洲最大的秃鹫群落所在地——与西班牙帝国鹰和埃及秃鹫共同栖息，使这里成为真正的生物多样性热点。",
+  "copyright": "© Daniel Viñé Garcia/Getty Images",
+  "date": "2025 9月 11",
+  "clickUrl": "/search?q=%e8%92%99%e5%bc%97%e6%8b%89%e5%9c%ad%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20250910_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ExtremaduraJamon_ZH-CN1559355133_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ExtremaduraJamon_ZH-CN1559355133_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ExtremaduraJamon_ZH-CN1559355133_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ExtremaduraJamon_ZH-CN1559355133_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ExtremaduraJamon_ZH-CN1559355133_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ExtremaduraJamon_ZH-CN1559355133_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "当夜幕降临，蒙弗拉格国家公园呈现出一幅截然不同的景象。2011年，该公园因其异常晴朗的夜空——堪称观星的理想之地——而被提名为“星光计划”的星空质量认证候选地。",
+  "descriptionPara3": "拥有清晰标记的步道、地中海植物群落以及一座古老阿拉伯城堡的遗址，这座公园是负责任旅游和宁静逃离的理想之地。渴望探索自然、历史与无垠的天空？蒙弗拉格公园应有尽有。体验这片独特之地——无需远行，即可感受远离尘嚣的宁静。",
+  "isoDate": "20250911",
+  "headline": "准备仰望天空吧！",
+  "quickFact": "黑美洲鹫并非蒙弗拉圭唯一的明星：这里还有数量可观的西班牙白肩雕。观赏这些雄伟的鸟类，或者像雕鸮和兀鹫这样的其他鸟类，都是一次难忘的体验。",
+  "triviaId": "HPQuiz_20250911_ExtremaduraJamon",
+  "triviaData": {
+    "question": "哪种食物与埃斯特雷马杜拉地区密切相关？",
+    "options": [
+      {
+        "text": "奶酪",
+        "url": "/search?q=%E7%81%AB%E8%85%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250911_ExtremaduraJamon%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "橄榄油",
+        "url": "/search?q=%E7%81%AB%E8%85%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250911_ExtremaduraJamon%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "火腿",
+        "url": "/search?q=%E7%81%AB%E8%85%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250911_ExtremaduraJamon%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
