@@ -499,10 +499,11 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
     right: -24px;
     bottom: calc(-1 * var(--lift)); /* reserve space for lifted state */
     top: -12px; /* slight top extension */
-    pointer-events: none; /* passive area; main box handles events */
+    /* pointer-events: none; */ /* 原因: 这会让扩展区域无法维持 :hover, 导致闪烁 */
+    pointer-events: auto; /* 允许该扩展区域保持 hover，防止 quote 上下跳动 */
 }
 
-.body {
+.quote-body {
     display: block;
     font-size: 1.125rem;
     user-select: text;
@@ -517,7 +518,7 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
 
 /* Expand full text on hover and lift */
 /* Hover state: use CSS var --lift set dynamically in JS for smooth measured movement */
-.quote .app-dash:hover .body {
+.quote .app-dash:hover .quote-body {
     white-space: normal;
     overflow: visible;
     text-overflow: clip;
