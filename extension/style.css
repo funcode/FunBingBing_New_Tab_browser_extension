@@ -544,3 +544,29 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
     opacity: 1;
     transform: translateY(calc(-1 * var(--lift) + 8px));
 }
+
+/* Normalize quote colors: keep link & caption same as quote text */
+.quote a,
+.quote a:visited,
+.quote a:hover,
+.quote a:active,
+.quote a:focus {
+    color: inherit; /* inherit #fff from .quote */
+}
+
+#quote-caption {
+    color: inherit;
+}
+
+/* Underline quote source only when it is a real link (has href) */
+#quote-source-link {
+    color: inherit;
+    text-decoration: none;
+}
+#quote-source-link[href] {
+    text-decoration: underline;
+}
+#quote-source-link[href]:hover,
+#quote-source-link[href]:focus {
+    text-decoration: underline;
+}

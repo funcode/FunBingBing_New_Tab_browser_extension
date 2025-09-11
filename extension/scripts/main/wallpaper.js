@@ -219,10 +219,13 @@ async function handleBingDataResults(results) {
 				const quoteText = doc.querySelector('.bt_quoteText')?.textContent.trim();
 				const authorText = doc.querySelector('.bt_author .b_mText a')?.textContent.trim();
 				const authorCaption = doc.querySelector('.bt_authorCaption.b_primtxt')?.textContent.trim();
+				const authorLinkEl = doc.querySelector('.bt_author .b_mText a');
+				const authorHref = authorLinkEl ? authorLinkEl.getAttribute('href') : '';
 				if (quoteText && authorText) {
 					images[0].quoteData = {
 						text: quoteText,
 						source: authorText,
+						link: authorHref,
 						caption: authorCaption
 					};
 				}
@@ -477,10 +480,35 @@ function setContents(image) {
 	if (image.quoteData) {
 		const qt = document.getElementById('quote-text');
 		if (qt && image.quoteData.text) qt.textContent = image.quoteData.text || '';
-		const qs = document.getElementById('quote-source');
-		if (qs && image.quoteData.source) qs.textContent = image.quoteData.source || '';
+		const qsLinkElem = document.getElementById('quote-source-link');
+		if (qsLinkElem) {
+			if (image.quoteData.source) {
+				qsLinkElem.textContent = image.quoteData.source;
+				qsLinkElem.style.display = 'inline';
+			} else {
+				qsLinkElem.textContent = '';
+				qsLinkElem.style.display = 'none';
+			}
+			// Manage navigable link attributes
+			let href = image.quoteData.link;
+			if (!href && image.quoteData.source) {
+				const encodedSource = encodeURIComponent(image.quoteData.source);
+				href = `https://www.bing.com/search?q=${encodedSource}&form=BTQUOT`;
+			}
+
+			if (href) {
+				qsLinkElem.setAttribute('href', href);
+				qsLinkElem.setAttribute('rel', 'noopener noreferrer');
+				qsLinkElem.setAttribute('target', '_blank');
+			} else {
+				qsLinkElem.removeAttribute('href');
+				qsLinkElem.removeAttribute('rel');
+				qsLinkElem.removeAttribute('target');
+			}
+		}
 		const qc = document.getElementById('quote-caption');
 		if (qc && image.quoteData.caption) qc.textContent = image.quoteData.caption || '';
+
 	}
 }
 
