@@ -558,6 +558,13 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
     color: inherit;
 }
 
+/* Improve readability on bright backgrounds */
+#quote-text,
+#quote-source,
+#quote-caption {
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
 /* Underline quote source only when it is a real link (has href) */
 #quote-source-link {
     color: inherit;
