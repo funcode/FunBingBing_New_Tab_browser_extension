@@ -1,0 +1,46 @@
+{
+  "caption": "雷斯岬国家海岸, 加利福尼亚州",
+  "title": "烟囱岩, 雷斯岬国家海岸, 加利福尼亚州, 美国",
+  "description": "这里没有经过精心打磨或精心策划——而这正是它的精髓所在。从旧金山向北驱车仅需一个多小时，便可抵达点雷斯岬国家海岸公园——一个雾气缓缓飘荡、 tule 鹿自由漫步、时间仿佛停滞的地方。该公园于1962年的今天由国会设立，旨在保护这片海岸线，供公众游览和环境保护之用。公园面积超过100平方英里，拥有令人惊叹的景观，从沿海草原和风吹雨打的岬角，到沙滩和道格拉斯冷杉林。",
+  "copyright": "© Enrique Aguirre Aves/Getty Images",
+  "date": "2025 9月 13",
+  "clickUrl": "/search?q=%e9%9b%b7%e6%96%af%e5%b2%ac%e5%9b%bd%e5%ae%b6%e6%b5%b7%e5%b2%b8&form=hpcapt&filters=HpDate:\"20250912_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.PointReyesSeashore_ZH-CN0076789582_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.PointReyesSeashore_ZH-CN0076789582_UHD.jpg",
+      "wallpaper": "/th?id=OHR.PointReyesSeashore_ZH-CN0076789582_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.PointReyesSeashore_ZH-CN0076789582_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.PointReyesSeashore_ZH-CN0076789582_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.PointReyesSeashore_ZH-CN0076789582_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在公园的东界，烟囱岩（如今日图片所示）延伸至太平洋，高耸的悬崖与壮丽的海景相映成趣。其步道被视为西海岸观赏灰鲸迁徙的最佳地点之一。冬季时节，附近隐秘的海滩成为北象海豹的避难所，为观赏野生动物提供了绝佳机会。凭借超过490种鸟类、80多种哺乳动物及众多稀有植物，点雷耶斯（Point Reyes）跻身全国生态多样性最丰富的地区之列。超过150英里的步道邀请游客放慢脚步，沉浸于自然环境之中。",
+  "descriptionPara3": "",
+  "isoDate": "20250913",
+  "headline": "崎岖而狂野",
+  "quickFact": "当象海豹（Mirounga angustirostris）于1981年在点雷耶斯国家海岸公园建立繁殖地时，该公园成为全球唯一同时拥有繁殖哺乳动物和鳍足类动物的国家公园。",
+  "triviaId": "HPQuiz_20250913_PointReyesSeashore",
+  "triviaData": {
+    "question": "在雷斯岬国家海岸，哪种湿地植物最为常见？",
+    "options": [
+      {
+        "text": "主教松",
+        "url": "/search?q=%E4%B8%BB%E6%95%99%E6%9D%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250913_PointReyesSeashore%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "香蒲",
+        "url": "/search?q=%E4%B8%BB%E6%95%99%E6%9D%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250913_PointReyesSeashore%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "芦苇",
+        "url": "/search?q=%E4%B8%BB%E6%95%99%E6%9D%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250913_PointReyesSeashore%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
