@@ -3,7 +3,7 @@
 
 // Some default settings.
 // this is duplicated code. should be fixed later.
-var defaultSearchEngines = [
+const defaultSearchEngines = [
 		{
 			name: "Bing", 
 			icon: "icons/bing.png",
@@ -47,14 +47,14 @@ var defaultSearchEngines = [
 			css_style: "height: 45px; padding: 10px;"
 		}
 	];
-	
-var defaultCustomBookmarks = [
-		{
-			name: "Ataraxia User Guide",
-			url: "https://idealland.app/ataraxia/install.html"
-		},
+
+const defaultCustomBookmarks = [
 		{
 			name: "历史上的今天",
+			action: "bing_on_this_day"
+		},
+		{
+			name: "必应上的今天",
 			action: "random_bing_wallpaper"
 		}
 	];
@@ -207,6 +207,7 @@ function initCustomBookmarks() {
 		conf = defaultCustomBookmarks;
 	}
 	document.getElementById('custom-bkmk-textarea').value = JSON.stringify(conf, null, 4);
+	console.log('main.js: initCustomBookmarks done');
 }
 
 function saveCustomBookmarks() {

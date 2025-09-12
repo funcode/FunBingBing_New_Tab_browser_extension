@@ -77,33 +77,53 @@ function initCustomBookmarks() {
 		}
 		popupDiv.appendChild(document.createElement('hr'));
 	}
+	console.log('quick_links.js: initCustomBookmarks done');
 }
 
 // Handle custom actions for bookmarks
 function handleCustomAction(action) {
 	switch (action) {
-		case 'random_bing_wallpaper':
-			var wallpaper_idx = readConf("wallpaper_idx");
+		case 'random_bing_wallpaper': {
+			let wallpaper_idx = readConf("wallpaper_idx");
 			if (wallpaper_idx === "") {
 				wallpaper_idx = 0;
 			}
 			wallpaper_idx = parseInt(wallpaper_idx);
-			var bing_images = readConf("bing_images");
-			var today = new Date();
+
+			const bing_images = readConf("bing_images");
+			let today = new Date();
+
 			if (bing_images) {
-				var image = bing_images[wallpaper_idx];
+				const image = bing_images[wallpaper_idx];
 				if (image) {
-					today = new Date(+image.isoDate.slice(0,4), +image.isoDate.slice(4,6)-1, +image.isoDate.slice(6,8));
+					today = new Date(
+						+image.isoDate.slice(0, 4),
+						+image.isoDate.slice(4, 6) - 1,
+						+image.isoDate.slice(6, 8)
+					);
 				}
 			}
-			var yearMin = 2010;
-			var yearMax = today.getFullYear() - 1;
-			var randomYear = Math.floor(Math.random() * (yearMax - yearMin + 1)) + yearMin;
-			var mm = String(today.getMonth() + 1).padStart(2, '0');
-			var dd = String(today.getDate()).padStart(2, '0');
-			var url = `https://bing.ee123.net/detail/${randomYear}${mm}${dd}`;
+
+			const yearMin = 2010;
+			const yearMax = today.getFullYear() - 1;
+			const randomYear = Math.floor(Math.random() * (yearMax - yearMin + 1)) + yearMin;
+
+			const mm = String(today.getMonth() + 1).padStart(2, '0');
+			const dd = String(today.getDate()).padStart(2, '0');
+
+			const url = `https://bing.ee123.net/detail/${randomYear}${mm}${dd}`;
 			window.open(url, '_blank');
 			break;
+		}
+		case 'bing_on_this_day': {
+			const today = new Date();
+			const mm = String(today.getMonth() + 1).padStart(2, '0');
+			const dd = String(today.getDate()).padStart(2, '0');
+			const osKey = `OnThisDay${mm}${dd}`;
+			const url = `https://www.bing.com/search?q=on+this+day&filters=IsConversation%3A%22True%22+OsKey%3A%22${osKey}%22+Id%3A%223%22+dw_answerstobesuppressed%3A%22taskpanepromotionanswer%22+mgzv3configlist%3A%22BingQA_Trivia_Layout%22&FORM=BESBTB`;
+			window.open(url, '_blank');
+			break;
+		}
 		default:
 			console.warn('Unknown custom action:', action);
 			break;

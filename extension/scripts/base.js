@@ -1,19 +1,19 @@
 
-var manifestData = chrome.runtime.getManifest();
-let CURRENT_VERSION = manifestData.version;
-let CURRENT_LOCALE = chrome.i18n.getMessage('@@ui_locale');
-let CURRENT_BROWSER = "chrome";
+const manifestData = chrome.runtime.getManifest();
+const CURRENT_VERSION = manifestData.version;
+const CURRENT_LOCALE = chrome.i18n.getMessage('@@ui_locale');
+const CURRENT_BROWSER = "chrome";
 
 // ---- helper funcs ----
 
 // append onload event
 function appendOnLoadEvent(func) {
-    var old_onload = window.onload;
+    const old_onload = window.onload;
     if (typeof window.onload != 'function') { // this is the first onload func
         window.onload = func;
     } else {  
         window.onload = function() {
-            oldonload();  // call old onload func
+            old_onload();  // call old onload func
             func();  // call current func
         }
     }
@@ -21,10 +21,10 @@ function appendOnLoadEvent(func) {
 
 // get current date string in yyyymmdd format
 function getDateString() {
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = (date.getMonth() + 1).toString().padStart(2, '0');
-    var day = date.getDate().toString().padStart(2, '0');
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
     return "" + year + month + day;
 }
 
@@ -46,7 +46,7 @@ function writeConf(key, value) {
 
 // read chrome storage
 function readConf(key) {
-    var val = localStorage[key];
+    let val = localStorage[key];
     if (val == undefined) {
         return undefined;
     }
@@ -90,7 +90,7 @@ function initializeConf() {
     console.log("initialize conf ...");
 
     // define default settings  
-    var defaultSettings = {
+    const defaultSettings = {
         search_engine_list: [
             {
             name: "Bing", 
@@ -141,9 +141,12 @@ function initializeConf() {
         show_clock: "yes",
         custom_bkmk_list: [
             {
-            name: "历史上的今天",
-            // Use action identifier instead of function
-            action: "random_bing_wallpaper"
+                name: "历史上的今天",
+                action: "bing_on_this_day"
+            },
+            {
+                name: "必应上的今天",
+                action: "random_bing_wallpaper"
             }
         ],
         enable_uhd_wallpaper: "yes",
