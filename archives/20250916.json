@@ -1,0 +1,46 @@
+{
+  "caption": "墨西哥湾沿岸的夜景",
+  "title": "从地球上空225英里处俯瞰墨西哥湾沿岸各州的夜间景象",
+  "description": "看不见的气体、老式发胶和卫星有什么共同点？它们都在历史上最伟大的环境复苏之一中发挥了作用。从225英里高空俯瞰，墨西哥湾沿岸如同一片星辰——点点灯光散落在黑暗中。但真正让这一景象成为可能的，却是肉眼无法看见的：臭氧层，它默默地保护着下方的一切免受太阳紫外线的侵害。到了20世纪80年代，这层屏障正迅速变薄——被曾用于制冷和气溶胶产品的化学物质所破坏。解决方案？一项全球协议。1987年签署的《蒙特利尔议定书》促使臭氧层破坏物质迅速被淘汰。如今，卫星数据显示南极上空的臭氧层空洞正在缩小。科学家认为，到本世纪中叶，它可能完全愈合。",
+  "copyright": "© Stocktrek Images/Getty Images",
+  "date": "2025 9月 16",
+  "clickUrl": "/search?q=%e8%87%ad%e6%b0%a7%e6%97%a5&form=hpcapt&filters=HpDate:\"20250915_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.OzoneEarth_ZH-CN0993915980_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.OzoneEarth_ZH-CN0993915980_UHD.jpg",
+      "wallpaper": "/th?id=OHR.OzoneEarth_ZH-CN0993915980_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.OzoneEarth_ZH-CN0993915980_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.OzoneEarth_ZH-CN0993915980_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.OzoneEarth_ZH-CN0993915980_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "9月16日，我们迎来国际保护臭氧层日——这是一个庆祝科学、全球合作与共同意志的节日。它提醒我们，再小的分子也可能产生巨大的影响。但它也证明，只要采取正确的行动，即使是肉眼看不见的损害也能被修复。",
+  "descriptionPara3": "",
+  "isoDate": "20250916",
+  "headline": "巨大的成功",
+  "quickFact": "联合国的每一个成员国——197个国家——都批准了《蒙特利尔议定书》，使其成为联合国历史上第一个实现普遍批准的条约。",
+  "triviaId": "HPQuiz_20250916_OzoneEarth",
+  "triviaData": {
+    "question": "地球大气臭氧层损耗的主要原因是什么？",
+    "options": [
+      {
+        "text": "氯氟烃（CFCs）",
+        "url": "/search?q=%E6%B0%AF%E6%B0%9F%E7%83%83%EF%BC%88CFCs%EF%BC%89&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250916_OzoneEarth%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "二氧化碳（CO2）",
+        "url": "/search?q=%E6%B0%AF%E6%B0%9F%E7%83%83%EF%BC%88CFCs%EF%BC%89&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250916_OzoneEarth%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "甲烷（CH4）",
+        "url": "/search?q=%E6%B0%AF%E6%B0%9F%E7%83%83%EF%BC%88CFCs%EF%BC%89&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250916_OzoneEarth%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
