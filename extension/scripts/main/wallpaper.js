@@ -228,6 +228,13 @@ async function handleBingDataResults(results) {
 						link: authorHref,
 						caption: authorCaption
 					};
+				} else {
+					images[0].quoteData = {
+					text: '',
+					source: i18n('quote_of_the_day_search'),
+					link: 'https://www.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN',
+					caption: ''
+				};
 				}
 			} catch (e) {
 				console.error("Error parsing quote of the day HTML:", e);
@@ -247,7 +254,7 @@ async function handleBingDataResults(results) {
 			};
 
 			// If today's quote is new and valid, add it and manage the cache
-			if (value && !allQuotes[key]) {
+			if (value && value.text && !allQuotes[key]) {
 				// Advance "last" in circular fashion
 				tracker.last = (tracker.last % 8) + 1; 
 				const slot = tracker.last;
@@ -479,7 +486,7 @@ function setContents(image) {
 	// --- Populate quote of the day blocks ---
 	if (image.quoteData) {
 		const qt = document.getElementById('quote-text');
-		if (qt && image.quoteData.text) qt.textContent = image.quoteData.text || '';
+		if (qt && image.quoteData.text) qt.textContent = '"'+image.quoteData.text+'"' || '';
 		const qsLinkElem = document.getElementById('quote-source-link');
 		if (qsLinkElem) {
 			if (image.quoteData.source) {

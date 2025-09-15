@@ -176,7 +176,11 @@
     "toggle_clock_title": {
         "message": "切换时钟显示"
     },
+    "quote_of_the_day_search": {
+        "message": "每日一言",
+        "description": "当名言来源不可用时的占位符文本，并链接到每日一言搜索。"
+    },
     "placeholder": {
-        "message": "placeholder"
+        "message": "占位符"
     }
 }

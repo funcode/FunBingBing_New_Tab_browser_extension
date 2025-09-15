@@ -175,6 +175,10 @@
     "toggle_clock_title": {
         "message": "Toggle clock"
     },
+    "quote_of_the_day_search": {
+        "message": "Quote of the Day",
+        "description": "Placeholder text for the quote source when it's not available and links to the quote of the day search."
+    },
     "placeholder": {
         "message": "placeholder"
     }

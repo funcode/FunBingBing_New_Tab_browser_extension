@@ -175,7 +175,11 @@
     "toggle_clock_title": {
         "message": "切換時鐘顯示"
     },
+    "quote_of_the_day_search": {
+        "message": "今日名言",
+        "description": "當引言來源不可用時顯示的佔位符文本，並鏈接到每日名言搜索。"
+    },
     "placeholder": {
-        "message": "placeholder"
+        "message": "佔位符"
     }
 }

@@ -24,3 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const mo = new MutationObserver(updateLiftAndPosition);
     mo.observe(below, { childList: true, subtree: true, characterData: true });
 });
+function handleQuoteLinkClick() {
+const quoteBody = document.getElementById('quote-text');
+if (!quoteBody || !quoteBody.textContent.trim()) {
+    //Refetch data when opening a new tab
+    localStorage.removeItem('wallpaper_date');
+}
+}
+
+document.getElementById('quote-source-link').addEventListener('click', handleQuoteLinkClick);

@@ -469,7 +469,8 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
     text-align: center;
     font-size: 1rem;
     color: #fff;
-    user-select: none;
+    -webkit-user-select: text;
+    user-select: text;
     z-index: 1010; /* above .bottom (1000) to avoid hover loss */
     pointer-events: none; /* let only inner interactive zone catch events */
 }
@@ -506,7 +507,6 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
 .quote-body {
     display: block;
     font-size: 1.125rem;
-    user-select: text;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -562,7 +562,7 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
 #quote-text,
 #quote-source,
 #quote-caption {
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
 }
 
 /* Underline quote source only when it is a real link (has href) */
