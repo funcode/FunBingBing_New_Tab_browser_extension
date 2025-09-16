@@ -25,5 +25,5 @@ jobs:
         with:
           timeout_minutes: 10
           max_attempts: 3
-          retry_wait_seconds: 900
+          retry_wait_seconds: 15
           command: node -e "process.exit(Math.random()<0.5?0:1)"
