@@ -9,8 +9,26 @@ jobs:
   update-bing-data:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install jsdom
+        run: npm install jsdom
+
       - name: Run update script
-        run: node extension/scripts/github_actions/collect_bing_wp_inf.js
+        run: node extension/scripts/github_actions/collect_bing_wp_info.js
+
+      - name: Commit and push if there are changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -A archives/
+          git diff --staged --quiet || git commit -m "Update Bing images and quick facts"
+          git push
 
   update-bing-data-retry:
     needs: update-bing-data
@@ -32,4 +50,13 @@ jobs:
       - name: Install jsdom
         run: npm install jsdom
 
+      - name: Run update script
+        run: node extension/scripts/github_actions/collect_bing_wp_info.js
 
+      - name: Commit and push if there are changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -A archives/
+          git diff --staged --quiet || git commit -m "Update Bing images and quick facts"
+          git push
