@@ -22,7 +22,7 @@ function readConf(key) {
             const data = fs.readFileSync(filePath, 'utf8');
             return JSON.parse(data);
         } catch (e) {
-            console.error(`Error reading or parsing ${filePath}:`, e);
+            console.log(`::error::Error reading or parsing ${filePath}:`, e);
             return undefined;
         }
     }
@@ -72,7 +72,7 @@ async function collectBingDataInParallel() {
 						try {
 							const res = await fetch(`https://www.bing.com/hp/api/v1/trivia?format=json&id=${mc.triviaId}&mkt=zh-CN`);
 							if (res.ok) mc.triviaData = (await res.json()).data;
-						} catch (e) { console.error("Failed trivia fetch:", e); }
+						} catch (e) { console.log("::error::Failed trivia fetch:", e); }
 					}
 					return mc;
 				})());
@@ -96,7 +96,7 @@ async function handleBingDataResults(results) {
 	// --- Safely access images ---
 	const images = results.imageOfTheDay?.data?.images ?? [];
 	if (images.length === 0) {
-		console.error("No imageOfTheDay data found");
+		console.log("::error::No imageOfTheDay data found");
 		return;
 	}
 
@@ -135,7 +135,7 @@ async function handleBingDataResults(results) {
 				images[idx].triviaData = (await res.json()).data;
 			}
 		} catch (err) {
-			console.error("Failed trivia fetch for archive image:", err);
+			console.log("::error::Failed trivia fetch for archive image:", err);
 		}
 	};
 
@@ -156,6 +156,10 @@ async function handleBingDataResults(results) {
 	// --- Execute both async tasks in parallel ---
 	await Promise.all([triviaFetch(), quickFactsUpdate()]);
 
+	// --- Check image count ---
+	if (images.length !== 8) {
+		console.log(`::error::Expected 8 images, but got ${images.length}.`);
+	}
 	// --- Save merged images ---
 	writeConf(`${images[0].isoDate}`, images[0]);
 	writeConf(`${images[0].isoDate}.8days`, images);
@@ -163,19 +167,22 @@ async function handleBingDataResults(results) {
 
 	// --- Log errors ---
 	if (results.errors?.length > 0) {
-		console.error("Errors during parallel data collection:", results.errors);
+		console.log("::error::Errors during parallel data collection:", results.errors);
 		writeConf("bing_data_errors", results.errors);
 	}
 }
 
 async function main() {
+	console.log("::error::Errors for debugging");
+	process.exit(1);
     console.log("Starting Bing data update...");
     try {
         const results = await collectBingDataInParallel();
         await handleBingDataResults(results);
         console.log("Bing data update finished successfully.");
     } catch (err) {
-        console.error("Error initializing wallpaper data update:", err);
+        console.log("::error::Error initializing wallpaper data update:", err);
+        process.exit(1);
     }
 }
 
