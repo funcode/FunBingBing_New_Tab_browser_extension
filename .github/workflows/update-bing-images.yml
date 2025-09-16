@@ -20,7 +20,7 @@ jobs:
       - name: Wait before retry
         run: |
           echo "First attempt failed, waiting 60 minutes before retry..."
-          Start-Sleep -Seconds 3600
+          sleep 6
 
       - name: Checkout repository
         uses: actions/checkout@v4
