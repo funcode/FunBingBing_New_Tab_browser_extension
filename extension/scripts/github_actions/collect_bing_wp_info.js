@@ -149,7 +149,8 @@ async function handleBingDataResults(results) {
 		} else {
 			images.at(-1).quickFact = '';
 		}
-		writeConf("cache_quick_facts", results.quickFactsBySsd);
+		const mergedQuickFacts = { ...(cachedQuickFacts || {}), ...results.quickFactsBySsd };
+		writeConf("cache_quick_facts", mergedQuickFacts);
 	};
 
 	// --- Execute both async tasks in parallel ---
