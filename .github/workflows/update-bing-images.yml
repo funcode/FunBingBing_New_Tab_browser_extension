@@ -10,48 +10,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5.0.0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5.0.0
         with:
           node-version: '20'
+          
       - name: Install jsdom
         run: npm install jsdom
 
       - name: Run update script
-        run: node extension/scripts/github_actions/collect_bing_wp_info.js
-
-      - name: Commit and push if there are changes
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add -A archives/
-          git diff --staged --quiet || git commit -m "Update Bing images and quick facts"
-          git push
-
-  update-bing-data-retry:
-    needs: update-bing-data
-    if: failure()
-    runs-on: ubuntu-latest
-    steps:
-      - name: Wait before retry
-        run: |
-          echo "First attempt failed, waiting 60 minutes before retry..."
-          Start-Sleep -Seconds 3600
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: nick-fields/retry@v3.0.2
         with:
-          node-version: '20'
-      - name: Install jsdom
-        run: npm install jsdom
-
-      - name: Run update script
-        run: node extension/scripts/github_actions/collect_bing_wp_info.js
+          max_attempts: 3
+          retry_wait_seconds: 900
+          command: node -e "process.exit(Math.random()<0.5?0:1)"
 
       - name: Commit and push if there are changes
         run: |
