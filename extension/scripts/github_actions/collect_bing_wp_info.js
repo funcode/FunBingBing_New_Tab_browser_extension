@@ -173,11 +173,6 @@ async function handleBingDataResults(results) {
 }
 
 async function main() {
-	const now = new Date();
-	if (now.getSeconds() % 2 !== 0) {
-		console.log("::error::Errors for debugging, the current time is:", now.toISOString());
-		process.exit(1);
-	}
     console.log("Starting Bing data update...");
     try {
         const results = await collectBingDataInParallel();
