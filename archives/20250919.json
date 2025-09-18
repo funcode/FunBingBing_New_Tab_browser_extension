@@ -1,0 +1,46 @@
+{
+  "caption": "千岛群岛地区，圣劳伦斯河，美加边境",
+  "title": "千岛群岛地区，圣劳伦斯河，美加边境",
+  "description": "听到“千岛”这个词，你可能会想到一罐沙拉酱，但在这浓郁的酱汁背后，是北美最迷人的地区之一。千岛群岛是圣劳伦斯河上的一个群岛，横跨美国纽约州和加拿大安大略省。它由1800多个岛屿组成。有些岛屿上矗立着童话般的城堡，有些岛屿则狭小得几乎容不下一张吊床。此外，还有一座名为“刚好够住的岛”（Just Room Enough Island），岛上只有一栋房子和一棵孤树，名副其实。",
+  "copyright": "© benedek/Getty Images",
+  "date": "2025 9月 19",
+  "clickUrl": "/search?q=%e5%8d%83%e5%b2%9b%e7%be%a4%e5%b2%9b+%e5%8c%97%e7%be%8e%e6%b4%b2&form=hpcapt&filters=HpDate:\"20250918_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ThousandIslands_ZH-CN3197750437_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ThousandIslands_ZH-CN3197750437_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ThousandIslands_ZH-CN3197750437_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ThousandIslands_ZH-CN3197750437_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ThousandIslands_ZH-CN3197750437_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ThousandIslands_ZH-CN3197750437_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "该地区非常适合慢节奏的探索。乘船游览将带您经过宏伟的庄园和历史悠久的灯塔，途中常会停靠伯特城堡（Boldt Castle）和辛格城堡（Singer Castle）等标志性景点。皮划艇爱好者被该地区清澈的海水和宁静的海湾所吸引。得益于独特的微气候，当地酿酒师酿造出屡获殊荣的葡萄酒，值得一试。哦，还有沙拉酱？传说中，一位当地钓鱼向导的妻子首次为晚宴客人制作了这道酱料，其中包括女演员梅·欧文，她对这道酱料赞不绝口，甚至请求获得了配方。正如人们所说，这段历史堪称美味传奇。",
+  "descriptionPara3": "",
+  "isoDate": "20250919",
+  "headline": "千般理由，邀您探索",
+  "quickFact": "该地区于2002年被联合国教科文组织指定为世界生物圈保护区。",
+  "triviaId": "HPQuiz_20250919_ThousandIslands",
+  "triviaData": {
+    "question": "千岛地区有哪些著名的建筑结构？",
+    "options": [
+      {
+        "text": "伯特城堡",
+        "url": "/search?q=%E4%BC%AF%E7%89%B9%E5%9F%8E%E5%A0%A1&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250919_ThousandIslands%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "点燃城堡",
+        "url": "/search?q=%E4%BC%AF%E7%89%B9%E5%9F%8E%E5%A0%A1&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250919_ThousandIslands%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "河畔城堡",
+        "url": "/search?q=%E4%BC%AF%E7%89%B9%E5%9F%8E%E5%A0%A1&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250919_ThousandIslands%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
