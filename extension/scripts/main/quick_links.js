@@ -120,7 +120,7 @@ function handleCustomAction(action) {
 			const mm = String(today.getMonth() + 1).padStart(2, '0');
 			const dd = String(today.getDate()).padStart(2, '0');
 			const osKey = `OnThisDay${mm}${dd}`;
-			const url = `https://www.bing.com/search?q=on+this+day&filters=IsConversation%3A%22True%22+OsKey%3A%22${osKey}%22+Id%3A%223%22+dw_answerstobesuppressed%3A%22taskpanepromotionanswer%22+mgzv3configlist%3A%22BingQA_Trivia_Layout%22&FORM=BESBTB`;
+			const url = `https://cn.bing.com/search?q=on+this+day&filters=IsConversation%3A%22True%22+OsKey%3A%22${osKey}%22+Id%3A%223%22+dw_answerstobesuppressed%3A%22taskpanepromotionanswer%22+mgzv3configlist%3A%22BingQA_Trivia_Layout%22&FORM=BESBTB`;
 			window.open(url, '_blank');
 			break;
 		}

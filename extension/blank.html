@@ -1,8 +1,9 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 
 <head>
+  <meta charset="utf-8" />
   <title>New Tab</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" type="text/css" href="style.css" />
   <link rel="stylesheet" type="text/css" href="vendor/spop/spop.min.css" />
   <link rel="stylesheet" type="text/css" href="description.css" />
@@ -13,6 +14,7 @@
 <body id="main-body">
 
   <script src="scripts/offline-detection.js"></script>
+  <script src="scripts/lang.js"></script>
 
   <div id="functions-div">
     <div id="functions-nav">
@@ -62,7 +64,7 @@
     <div id="clock-container">
       <div class="center-clock" id="center-clock">--:--</div>
       <!-- Button to toggle the visibility of the digital clock -->
-      <button id="clock-toggle" title="Toggle clock">
+      <button type="button" id="clock-toggle" title="Toggle clock">
         <svg id="switch-on" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect><circle cx="16" cy="12" r="3"></circle></svg>
         <svg id="switch-off" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect><circle cx="8" cy="12" r="3"></circle></svg>
       </button>
@@ -78,7 +80,6 @@
   </div>
 
   <div class="bottom">
-    <div class="loading-circle" id="loading-circle"></div>
     <div class="mc_caro">
       <div class="hp_trivia_outer show" style="bottom: 48px;">
         <div class="hp_trivia_inner" data-iid="Trivia" role="dialog" aria-haspopup="true" aria-expanded="false">
