@@ -37,19 +37,6 @@ function setFooterText(text) {
 	headline_text.innerHTML = text;
 }
 
-// display loading animation
-function showLoadingAnim() {
-	var circle = document.getElementById('loading-circle');
-	circle.style.display = 'inline-block';
-	setFooterText(i18n('updating_wallpaper'));
-}
-
-/* // hide loading animation
-function hideLoadingAnim() {
-	var circle = document.getElementById('loading-circle');
-	circle.style.display = 'none';
-} */
-
 // pre-load image from url
 // then change background image and footer text after loading is finished
 function changeWallpaper(idx) {
@@ -66,7 +53,7 @@ function changeWallpaper(idx) {
 	}
 	var image = images[idx];
 	var imgurl = '';
-	var baseurl = 'https://bing.com';
+	var baseurl = 'https://cn.bing.com';
 	if (readConf('enable_uhd_wallpaper') == 'yes') {
 		imgurl = baseurl + image.imageUrls.landscape.ultraHighDef;
 	} else {
@@ -332,9 +319,11 @@ async function handleBingDataResults(results) {
 
 		if (cachedQuickFacts && lastImageDate && cachedQuickFacts[lastImageDate]) {
 			images.at(-1).quickFact = cachedQuickFacts[lastImageDate];
+			results.quickFactsBySsd[lastImageDate] = cachedQuickFacts[lastImageDate];
 		} else {
 			images.at(-1).quickFact = '';
 		}
+		// Always keep the 8 most recent quickFacts cached
 		writeConf("cache_quick_facts", results.quickFactsBySsd);
 	};
 
@@ -402,7 +391,7 @@ function setContents(image) {
 	// --- Set footer and headline link ---
 	setFooterText(image.headline);
 	const headlineLink = document.getElementById('headline-link');
-	if (headlineLink) headlineLink.href = `https://bing.com${image.clickUrl}`;
+	if (headlineLink) headlineLink.href = `https://cn.bing.com${image.clickUrl}`;
 
 	// --- Prepare content ---
 	const contents = {
@@ -485,6 +474,14 @@ function setContents(image) {
 
 	// --- Populate quote of the day blocks ---
 	if (image.quoteData) {
+		const showQuote = readConf('show_quote');
+		const quoteContainer = document.getElementById('quote');
+		if (showQuote === 'no') {
+			if (quoteContainer) quoteContainer.style.display = 'none';
+			return;
+		} else {
+			if (quoteContainer) quoteContainer.style.display = ''; // Or whatever its default display should be
+		}
 		const qt = document.getElementById('quote-text');
 		if (qt && image.quoteData.text) qt.textContent = '"'+image.quoteData.text+'"' || '';
 		const qsLinkElem = document.getElementById('quote-source-link');
@@ -500,7 +497,7 @@ function setContents(image) {
 			let href = image.quoteData.link;
 			if (!href && image.quoteData.source) {
 				const encodedSource = encodeURIComponent(image.quoteData.source);
-				href = `https://www.bing.com/search?q=${encodedSource}&form=BTQUOT`;
+				href = `https://cn.bing.com/search?q=${encodedSource}&form=BTQUOT`;
 			}
 
 			if (href) {

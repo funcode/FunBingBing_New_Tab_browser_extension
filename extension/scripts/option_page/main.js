@@ -254,6 +254,13 @@ function initWallpaperConf() {
 		document.getElementById('show-clock-checkbox').checked = true;
 		chrome.runtime.sendMessage({ type: 'clockVisibilityChange', visible: true }).catch(err => { /* ignore */ });
 	}
+	// show quote of the day
+	if(readConf('show_quote') == 'no') {
+		document.getElementById('show-quote-checkbox').checked = false;
+	}
+	else {
+		document.getElementById('show-quote-checkbox').checked = true;
+	}
 }
 
 function changeWallpaperConf() {
@@ -272,6 +279,13 @@ function changeWallpaperConf() {
 	else {
 		writeConf('show_clock', 'no');
 		chrome.runtime.sendMessage({ type: 'clockVisibilityChange', visible: false }).catch(err => { /* ignore */ });
+	}
+	// update show quote of the day conf
+	if (document.getElementById('show-quote-checkbox').checked == true) {
+		writeConf('show_quote', 'yes');
+	}
+	else {
+		writeConf('show_quote', 'no');
 	}
 	// change wallpaper_data conf to trigger wallpaper reload when open a new tab
 	writeConf('wallpaper_date', '20010101');

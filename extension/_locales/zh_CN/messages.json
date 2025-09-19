@@ -121,6 +121,10 @@
         "message": "在新标签页打开时显示数字时钟"
     },
 
+    "op_show_quote_checkbox": {
+        "message": "显示每日一言"
+    },
+
     "op_about_prompt": {
         "message": "Ataraxia 带给您清爽、惊喜的新标签页体验。"
     },

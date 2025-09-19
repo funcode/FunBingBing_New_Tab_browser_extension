@@ -120,6 +120,10 @@
         "message": "在新標籤頁打開時顯示數字時鐘"
     },
 
+    "op_show_quote_checkbox": {
+        "message": "顯示今日名言"
+    },
+
     "op_about_prompt": {
         "message": "Ataraxia 帶給您清爽、驚喜的新標籤頁體驗。"
     },

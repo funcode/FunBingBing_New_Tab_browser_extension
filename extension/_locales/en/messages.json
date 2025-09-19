@@ -121,6 +121,10 @@
         "message": "Show a digital clock when opening a new tab"
     },
 
+    "op_show_quote_checkbox": {
+        "message": "Show quote of the day"
+    },
+
     "op_about_prompt": {
         "message": "Ataraxia - Refreshing and surprising new tab experience."
     },
