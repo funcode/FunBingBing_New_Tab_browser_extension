@@ -1,0 +1,46 @@
+{
+  "caption": "海獭保护宣传周",
+  "title": "海獭，威廉王子湾，阿拉斯加州，美国",
+  "description": "它们圆溜溜的眼睛背后藏着更多故事。每年一度的海獭认知周，正是为了彰显它们在维护沿海生态系统中的重要作用。这项由非营利环保组织“野生动物保护者”于2003年发起的活动，致力于推动公众教育与实际行动。在阿拉斯加威廉王子湾，海獭或漂浮于冰面，或如今日图片所示，用它们最爱的石头在腹部敲开贝壳。更不为人知的是，它们对海胆的食欲如何助力保护海藻森林。",
+  "copyright": "© Gerald Corsi/Getty Images",
+  "date": "2025 9月 21",
+  "clickUrl": "/search?q=%e6%b5%b7%e7%8d%ad&form=hpcapt&filters=HpDate:\"20250920_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.IceOtters_ZH-CN5393791969_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.IceOtters_ZH-CN5393791969_UHD.jpg",
+      "wallpaper": "/th?id=OHR.IceOtters_ZH-CN5393791969_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.IceOtters_ZH-CN5393791969_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.IceOtters_ZH-CN5393791969_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.IceOtters_ZH-CN5393791969_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "人们常看到它们成群结队地漂浮在水面上，用爪子相互连接，显得十分安详——但它们的历史却讲述着截然不同的故事。从1741年到1911年，海獭因其浓密的皮毛而遭到大规模捕杀，濒临灭绝的边缘，后来通过保护才得以恢复。然而，危险依然存在。石油泄漏、渔具缠绕、疾病侵袭以及海洋变暖持续威胁着它们的生存。海獭依赖洁净的冷水环境，其皮毛并非防水——而是通过锁住空气来保暖，任何油污污染都可能致命。本周旨在唤起人们对它们的关注，并守护它们赖以生存的水域家园。",
+  "descriptionPara3": "",
+  "isoDate": "20250921",
+  "headline": "酷毙了",
+  "quickFact": "海獭拥有所有动物中最厚的皮毛。它们的皮毛每平方英寸含有60万到100万个毛囊。与大多数其他海洋哺乳动物不同，海獭没有鲸脂层。相反，它们依靠浓密防水的皮毛来保暖。",
+  "triviaId": "HPQuiz_20250921_IceOtters",
+  "triviaData": {
+    "question": "海獭的主要栖息地是什么？",
+    "options": [
+      {
+        "text": "沿海水域",
+        "url": "/search?q=%E6%B2%BF%E6%B5%B7%E6%B0%B4%E5%9F%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250921_IceOtters%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "森林",
+        "url": "/search?q=%E6%B2%BF%E6%B5%B7%E6%B0%B4%E5%9F%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250921_IceOtters%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "沙漠",
+        "url": "/search?q=%E6%B2%BF%E6%B5%B7%E6%B0%B4%E5%9F%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250921_IceOtters%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
