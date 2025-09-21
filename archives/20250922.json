@@ -1,0 +1,46 @@
+{
+  "caption": "白杨树，鱼湖国家森林",
+  "title": "秋日的白杨树，鱼湖国家森林，犹他州，美国",
+  "description": "随着九月的到来，今天图片中看到的白杨树开始了一年一度的变迁，呈现出鲜艳的黄色，在山丘上荡漾开来。这片森林覆盖了超过2300平方英里的湖泊、小径和山脉，秋天的色彩闪耀着光芒。看着季节与有着比我们遵循的公历更古老的事物同步变化，让人感到一种踏实的感觉。",
+  "copyright": "© Danita Delimont/Getty Images",
+  "date": "2025 9月 22",
+  "clickUrl": "/search?q=%e7%99%bd%e6%9d%a8%e6%a0%91&form=hpcapt&filters=HpDate:\"20250921_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AspenEquinox_ZH-CN5474695693_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AspenEquinox_ZH-CN5474695693_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AspenEquinox_ZH-CN5474695693_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AspenEquinox_ZH-CN5474695693_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AspenEquinox_ZH-CN5474695693_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AspenEquinox_ZH-CN5474695693_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20250922",
+  "headline": "到冬天的中途",
+  "quickFact": "一些白杨克隆树，例如犹他州的潘多树林，是地球上最大、最古老的生物之一，其单一根系支撑着数千个基因相同的茎。",
+  "triviaId": "HPQuiz_20250922_AspenEquinox",
+  "triviaData": {
+    "question": "随着9月的到来，白杨树的叶子会呈现哪种颜色？",
+    "options": [
+      {
+        "text": "鲜嫩的绿色",
+        "url": "/search?q=%E9%B2%9C%E8%89%B3%E7%9A%84%E9%BB%84%E8%89%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250922_AspenEquinox%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "鲜艳的黄色",
+        "url": "/search?q=%E9%B2%9C%E8%89%B3%E7%9A%84%E9%BB%84%E8%89%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250922_AspenEquinox%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "干枯的棕色",
+        "url": "/search?q=%E9%B2%9C%E8%89%B3%E7%9A%84%E9%BB%84%E8%89%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250922_AspenEquinox%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
