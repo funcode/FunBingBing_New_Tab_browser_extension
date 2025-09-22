@@ -1,0 +1,46 @@
+{
+  "caption": "秋分",
+  "title": "航拍中国江苏省常州翠竹公园",
+  "description": "又是一年的秋分时节，众所周知，在这一天，全球各地昼夜的时间几乎是相等的。在幅员辽阔的中国，自南向北开始，秋季在每个地区有着不同颜色和不同的温度。大部分地区雨季在此时刚刚结束，秋天的凉意才刚刚开始，此时正是碧空万里，风和日丽的时节。中国的秋季颜色是叠翠鎏金的，许多植物的颜色由此时节开始，由苍翠的绿转为金黄或者橙红色。",
+  "copyright": "© Xu Changyu/Getty images",
+  "date": "2025 9月 23",
+  "clickUrl": "/search?q=%e7%a7%8b%e5%88%86&form=hpcapt&filters=HpDate:\"20250922_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AutumnalEquinoxY25_ZH-CN5692548297_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AutumnalEquinoxY25_ZH-CN5692548297_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AutumnalEquinoxY25_ZH-CN5692548297_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AutumnalEquinoxY25_ZH-CN5692548297_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AutumnalEquinoxY25_ZH-CN5692548297_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AutumnalEquinoxY25_ZH-CN5692548297_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "今天我们的图片中正是秋季最具代表性的红色落羽杉，它们位于江苏省常州的翠竹公园，每年秋冬季节，落羽杉皆呈现出金黄至橙红色的渐变，搭配九曲回廊与水上栈道，是一派诗意盎然的江南秋季风景。",
+  "descriptionPara3": "",
+  "isoDate": "20250923",
+  "headline": "树树皆秋色",
+  "quickFact": "秋分曾是传统的“祭月节”，中秋节由“秋夕祭月”演变而来。",
+  "triviaId": "HPQuiz_20250923_AutumnalEquinoxY25",
+  "triviaData": {
+    "question": "“秋分”一词指的是哪种天文现象？",
+    "options": [
+      {
+        "text": "昼夜平分",
+        "url": "/search?q=%E6%98%BC%E5%A4%9C%E5%B9%B3%E5%88%86&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250923_AutumnalEquinoxY25%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "一年中最长的一天",
+        "url": "/search?q=%E6%98%BC%E5%A4%9C%E5%B9%B3%E5%88%86&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250923_AutumnalEquinoxY25%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "一年中最短的一天",
+        "url": "/search?q=%E6%98%BC%E5%A4%9C%E5%B9%B3%E5%88%86&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250923_AutumnalEquinoxY25%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
