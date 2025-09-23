@@ -8,8 +8,10 @@
     max-width: 100vw;
     box-sizing: border-box;
     color: #fff;
-    background: rgba(1, 1, 1, 0.5);
+    /* Match quote popup background via shared var; fallback keeps original tone */
+    background: var(--panel-bg, rgba(1,1,1,0.5));
     z-index: 1000;
+    font-size: var(--panel-font-size, 1rem);
 }
 .description .title {
     font-size: 1.2em;
@@ -23,6 +25,7 @@
     text-indent: 2em;
     line-height: 1.2;
     font-family: 'FangSong', 'STFangsong', 'STSong', 'SimSun', 'serif';
+    font-size: var(--panel-font-size, 1rem);
 }
 /* To fix the font issue found in a Windows RDP window */
 @media (-webkit-device-pixel-ratio: 1.25), (device-pixel-ratio: 1.25) {

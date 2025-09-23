@@ -482,8 +482,24 @@ function setContents(image) {
 		} else {
 			if (quoteContainer) quoteContainer.style.display = ''; // Or whatever its default display should be
 		}
+		// Normalize and wrap quote text with curly quotes
 		const qt = document.getElementById('quote-text');
-		if (qt && image.quoteData.text) qt.textContent = '"'+image.quoteData.text+'"' || '';
+		const qf = document.getElementById('quote-full-text');
+		if (image.quoteData.text) {
+			let raw = image.quoteData.text.trim();
+			// Remove any existing wrapping straight or curly quotes to prevent doubling
+			if (/^["'“”‘’].+["'“”‘’]$/.test(raw)) {
+				// Strip only one level if first and last are quote-like
+				const first = raw[0];
+				const last = raw[raw.length - 1];
+				if (/["'“”‘’]/.test(first) && /["'“”‘’]/.test(last)) {
+					raw = raw.substring(1, raw.length - 1).trim();
+				}
+			}
+			const wrapped = `“${raw}”`;
+			if (qt) qt.textContent = wrapped;
+			if (qf) qf.textContent = wrapped;
+		}
 		const qsLinkElem = document.getElementById('quote-source-link');
 		if (qsLinkElem) {
 			if (image.quoteData.source) {

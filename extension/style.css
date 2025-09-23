@@ -1,4 +1,9 @@
 /* main */
+:root {
+    /* Shared panel styling for description & quote popup */
+    --panel-bg: rgba(1,1,1,0.5); /* unify with description background */
+    --panel-font-size: 1rem;      /* base font size for panel text */
+}
 body {
 	background-repeat: no-repeat;
 	background-size:cover;
@@ -476,6 +481,27 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
     pointer-events: auto; /* re-enable events inside */
 }
 
+/* Narrow trigger hotspot (center bottom band). Do not shrink visible text width. */
+.quote-hotspot {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    /* Responsive trigger width: widened (min 260px, prefers 42vw, max 600px) */
+    width: clamp(260px, 42vw, 600px);
+    /* Adaptive height band: min 42px, prefers 6vh, max 56px */
+    height: clamp(42px, 6vh, 56px);
+    transform: translateX(-50%);
+    pointer-events: auto;
+    /* Transparent but keeps hover; optionally debugging: background: rgba(255,0,0,.15); */
+    z-index: 1005; /* below popup (1020) above base quote (1010) */
+}
+
+/* Ensure the rest of app-dash doesn't count for hover (except hotspot & popup). */
+.app-dash { pointer-events: none; }
+.app-dash .quote-body { pointer-events: none; }
+.app-dash .below { pointer-events: none; }
+.quote-hotspot, .below { pointer-events: auto; }
+
 /* Invisible extended hover zone to avoid flicker when moving */
 /* Extended hover zone to reduce flicker when cursor travels upward */
 .app-dash::before {
@@ -490,45 +516,64 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
 }
 
 .quote-body {
-    display: block;
+    display: inline-block;
     font-size: 1.125rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
-    width: 100%;
-    transition: transform .35s cubic-bezier(0.4,0,0.2,1), white-space 0s .35s; /* delay wrap until lift starts */
-    will-change: transform;
-}
-
-/* Expand full text on hover and lift */
-/* Hover state: use CSS var --lift set dynamically in JS for smooth measured movement */
-.quote .app-dash:hover .quote-body {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
-    transform: translateY(calc(-1 * var(--lift)));
+    width: auto;
+    cursor: pointer;
+    padding-right: .5ch; /* prevent last glyph (e.g. ”) from clipping when ellipsis not applied */
 }
 
 .below {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100%;
+    position: fixed; /* detach so its bottom aligns to viewport */
+    left: 50%;
+    bottom: 12px; /* distance from screen bottom */
+    transform: translate(-50%, 40px) scale(.96); /* slide up & scale on show */
     opacity: 0;
-    font-size: 1rem;
-    transition: opacity .35s .05s cubic-bezier(0.4,0,0.2,1), transform .35s cubic-bezier(0.4,0,0.2,1);
-    transform: translateY(0);
+    pointer-events: none;
+    transition: opacity .28s ease, transform .34s cubic-bezier(.4,0,.2,1);
+    width: max(320px, 70%);
+    max-width: 880px;
+    z-index: 1020; /* above quote trigger */
 }
 
+.quote-popup-inner {
+    background: var(--panel-bg);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 22px 28px 24px;
+    border-radius: 16px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.55);
+    text-align: center;
+    font-size: var(--panel-font-size);
+}
 
-.quote .app-dash:hover .below {
+.quote-full-text {
+    line-height: 1.55;
+    white-space: normal;
+    word-break: break-word;
+    font-style: italic;
+    font-size: var(--panel-font-size);
+}
+
+/* Open state (set by JS to avoid flicker) */
+.quote.q-open .below {
     opacity: 1;
-    transform: translateY(calc(-1 * var(--lift) + 8px));
+    transform: translate(-50%, 0) scale(1);
+    pointer-events: auto;
 }
+
+.quote.q-open .quote-body {
+    visibility: hidden;
+    opacity: 0;
+}
+
+/* Smooth fade for the inline body when leaving */
+.quote-body { transition: opacity .18s ease; }
+
 
 /* Normalize quote colors: keep link & caption same as quote text */
 .quote a,
@@ -541,6 +586,7 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
 
 #quote-caption {
     color: inherit;
+    font-size: var(--panel-font-size);
 }
 
 /* Improve readability on bright backgrounds */
