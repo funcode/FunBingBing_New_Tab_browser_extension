@@ -1,7 +1,7 @@
 /* main */
 :root {
     /* Shared panel styling for description & quote popup */
-    --panel-bg: rgba(1,1,1,0.5); /* unify with description background */
+    --panel-bg: rgba(1,1,1,0.45); /* unify with description background */
     --panel-font-size: 1rem;      /* base font size for panel text */
 }
 body {
@@ -79,12 +79,12 @@ html, body {
 }
 
 #functions-child a:hover{
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(34, 34, 34, 0.3);
 }
 
 #functions-div:hover #functions-child {
 	display: block;
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.45);
 	border-radius: 5px;
 	padding: 5px 10px;
 }
@@ -137,7 +137,7 @@ html, body {
 }
 
 #footer-op:hover {
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.45);
 }
 
 #footer-op:hover #previous-wallpaper{
@@ -193,7 +193,7 @@ html, body {
 }
 
 .mc_caro .hp_trivia_outer .hp_trivia_inner {
-    background-color: rgba(34,34,34,.9);
+    background-color: rgba(34,34,34,.45);
     border-radius: 6px;
     opacity: 0;
     left: calc(100% - 354px);
@@ -308,11 +308,11 @@ html, body {
 }
 
 .mc_caro .musCard .headline>* {
-    background-color: rgba(34,34,34,.9);
+    background-color: rgba(34,34,34,.45);
     border-radius: 6px;
     margin: 0 .125rem;
     text-align: left;
-	opacity: 0.5;
+	opacity: 0.6;
     cursor: pointer
 }
 
@@ -364,7 +364,7 @@ html, body {
 
 .mc_caro .musCard .headline .nav div,.mc_caro .musCard .headline .nav a {
     background-clip: padding-box;
-    background-color: rgba(34,34,34,.9)
+    background-color: rgba(34,34,34,.45)
 }
 
 .mc_caro .musCard .headline .nav div:after,.mc_caro .musCard .headline .nav a:after {
@@ -396,7 +396,7 @@ html, body {
 .mc_caro .musCard .headline .nav .rightNav,.mc_caro .musCard .headline .nav .leftNav,.mc_caro .musCard .headline .nav .down {
     position: relative;
     cursor: pointer;
-    background: rgba(34,34,34,.9);
+    background: rgba(34,34,34,.45);
     width: 2.5rem;
     height: 2.5rem
 }
@@ -549,6 +549,7 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
     box-shadow: 0 10px 28px rgba(0,0,0,0.55);
     text-align: center;
     font-size: var(--panel-font-size);
+    color: #c6cccc;
 }
 
 .quote-full-text {
