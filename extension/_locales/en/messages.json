@@ -106,11 +106,11 @@
     },
 
     "op_wallpaper_uhd_hint1": {
-        "message": "By default Ataraxia load wallpapers with 1920x1080 resolution. UHD wallpapers are much clearer, but also take longer time to be loaded for the first time."
+        "message": "By default UHD wallpapers are loaded. Turn it off to load lower resolution images if you prefer a faster loading speed."
     },
 
     "op_wallpaper_uhd_hint2": {
-        "message": "If you find it takes too much time or fails to load the wallpaper, please do not open UHD option."
+        "message": "Quote of the day may be blank. If that happens, hover the mouse at the center of the screen bottom, and click the link arised.\nThat will open a new tab with the Bing search results. Closing it and then open a new tab. If you still don't see the quote of the day, probably the feature just doesn't work in your environment. Turn it off."
     },
 
     "op_wallpaper_uhd_checkbox": {
