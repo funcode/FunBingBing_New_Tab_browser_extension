@@ -82,43 +82,36 @@ function initCustomBookmarks() {
 
 // Handle custom actions for bookmarks
 function handleCustomAction(action) {
+	let wallpaper_idx = readConf("wallpaper_idx");
+	if (wallpaper_idx === "") {
+		wallpaper_idx = 0;
+	}
+	wallpaper_idx = parseInt(wallpaper_idx);
+
+	const bing_images = readConf("bing_images");
+	let isoDate="";
+
+	const image = bing_images && bing_images[wallpaper_idx];
+	isoDate = image?.isoDate || isoDate;
+	if (!isoDate) {
+		//format a Date object as YYYYMMDD
+		isoDate = (new Date()).toISOString().slice(0,10).replace(/-/g,'');
+	}
+
+	const yearMin = 2010;
+	const yearMax = isoDate.slice(0, 4) - 1;
+	const randomYear = Math.floor(Math.random() * (yearMax - yearMin + 1)) + yearMin;
+
+	const mm = isoDate.slice(4, 6);
+	const dd = isoDate.slice(6, 8);
+
 	switch (action) {
 		case 'random_bing_wallpaper': {
-			let wallpaper_idx = readConf("wallpaper_idx");
-			if (wallpaper_idx === "") {
-				wallpaper_idx = 0;
-			}
-			wallpaper_idx = parseInt(wallpaper_idx);
-
-			const bing_images = readConf("bing_images");
-			let today = new Date();
-
-			if (bing_images) {
-				const image = bing_images[wallpaper_idx];
-				if (image) {
-					today = new Date(
-						+image.isoDate.slice(0, 4),
-						+image.isoDate.slice(4, 6) - 1,
-						+image.isoDate.slice(6, 8)
-					);
-				}
-			}
-
-			const yearMin = 2010;
-			const yearMax = today.getFullYear() - 1;
-			const randomYear = Math.floor(Math.random() * (yearMax - yearMin + 1)) + yearMin;
-
-			const mm = String(today.getMonth() + 1).padStart(2, '0');
-			const dd = String(today.getDate()).padStart(2, '0');
-
 			const url = `https://bing.ee123.net/detail/${randomYear}${mm}${dd}`;
 			window.open(url, '_blank');
 			break;
 		}
 		case 'bing_on_this_day': {
-			const today = new Date();
-			const mm = String(today.getMonth() + 1).padStart(2, '0');
-			const dd = String(today.getDate()).padStart(2, '0');
 			const osKey = `OnThisDay${mm}${dd}`;
 			const url = `https://cn.bing.com/search?q=on+this+day&filters=IsConversation%3A%22True%22+OsKey%3A%22${osKey}%22+Id%3A%223%22+dw_answerstobesuppressed%3A%22taskpanepromotionanswer%22+mgzv3configlist%3A%22BingQA_Trivia_Layout%22&FORM=BESBTB`;
 			window.open(url, '_blank');
