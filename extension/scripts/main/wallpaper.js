@@ -125,7 +125,7 @@ async function collectBingDataInParallel() {
 			fetch("https://www.bing.com/HPImageArchive.aspx?format=js&n=1&mkt=zh-CN&idx=7"),
 			fetch("https://www.bing.com/hp/api/v1/imageoftheday?format=json&mkt=zh-CN"),
 			fetch("https://www.bing.com/hp/api/model?mkt=zh-CN"),
-			fetch("https://www.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN")
+			fetch("https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN", { credentials: 'include' })
 		]);
 
 		// Parse archive
@@ -219,7 +219,7 @@ async function handleBingDataResults(results) {
 					images[0].quoteData = {
 					text: '',
 					source: i18n('quote_of_the_day_search'),
-					link: 'https://www.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN',
+					link: 'https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN',
 					caption: ''
 				};
 				}
@@ -267,6 +267,13 @@ async function handleBingDataResults(results) {
 				if (allQuotes[date]) {
 					images[i].quoteData = allQuotes[date];
 				}
+			}
+			// Also backfill today's quote if it was missing text
+			// This can happen if scraping failed (may due to clearing the browser cache)
+			// but we have a cached quote
+			const today = images[0].isoDate;
+			if (images[0].quoteData && images[0].quoteData.text === '' && allQuotes[today]) {
+				images[0].quoteData = allQuotes[today];
 			}
 		}
 
@@ -499,6 +506,14 @@ function setContents(image) {
 			const wrapped = `“${raw}”`;
 			if (qt) qt.textContent = wrapped;
 			if (qf) qf.textContent = wrapped;
+			document.getElementById('quote-source-link').removeEventListener('click', handleQuoteLinkClick);
+		}
+		else if (qt) {
+			function handleQuoteLinkClick() {
+				//Refetch data when opening a new tab
+				localStorage.removeItem('wallpaper_date');
+			}
+			document.getElementById('quote-source-link').addEventListener('click', handleQuoteLinkClick);
 		}
 		const qsLinkElem = document.getElementById('quote-source-link');
 		if (qsLinkElem) {

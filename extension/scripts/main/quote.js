@@ -47,12 +47,3 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') quote.classList.remove('q-open');
     });
 });
-function handleQuoteLinkClick() {
-const quoteBody = document.getElementById('quote-text');
-if (!quoteBody || !quoteBody.textContent.trim()) {
-    //Refetch data when opening a new tab
-    localStorage.removeItem('wallpaper_date');
-}
-}
-
-document.getElementById('quote-source-link').addEventListener('click', handleQuoteLinkClick);
