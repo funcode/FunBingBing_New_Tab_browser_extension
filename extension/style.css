@@ -58,7 +58,7 @@ html, body {
 	right: 30px;
 	color: white;
 	text-align: center;
-	z-index: 1000; /* Ensure it's above other elements */
+	z-index: 2000; /* Raised from inline style to ensure it sits above trivia/quote layers */
 }
 
 #functions-nav {
@@ -443,7 +443,7 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
 		position: fixed;
 		top: 10px;
 		right: 10px;
-		z-index: 1000;
+		z-index: 2000; /* keep consistent with main rule */
 	}
 }
 /* Quote hover/lift component */
