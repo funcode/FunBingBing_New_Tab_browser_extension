@@ -4,22 +4,6 @@ const CURRENT_VERSION = manifestData.version;
 const CURRENT_LOCALE = chrome.i18n.getMessage('@@ui_locale');
 const CURRENT_BROWSER = "chrome";
 
-// Language detection (moved from inline script in HTML)
-function detectAndSetLang() {
-    try {
-        var supported = ['en','zh-CN','zh-TW'];
-        var navLang = (navigator.language || navigator.userLanguage || 'en').trim();
-        var normalized = navLang.toLowerCase();
-        if (normalized === 'zh' || normalized.startsWith('zh-cn') || normalized.startsWith('zh-sg')) normalized = 'zh-CN';
-        else if (normalized.startsWith('zh-tw') || normalized.startsWith('zh-hk') || normalized.startsWith('zh-mo')) normalized = 'zh-TW';
-        else if (normalized.startsWith('en')) normalized = 'en';
-        if (supported.indexOf(normalized) === -1) normalized = 'en';
-        if (document.documentElement.lang !== normalized) {
-            document.documentElement.setAttribute('lang', normalized);
-        }
-    } catch (e) { /* silent */ }
-}
-
 // ---- helper funcs ----
 
 // append onload event
@@ -193,5 +177,3 @@ if (last_open_version == undefined || parseFloat(last_open_version) < parseFloat
 
     writeConf('last_open_version', CURRENT_VERSION);
 }
-
-detectAndSetLang();
