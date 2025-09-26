@@ -22,9 +22,9 @@
     if (!document.hidden) render();
   });
 
-  const clockContainer = document.getElementById('clock-container');
-  const clockToggle = document.getElementById('clock-toggle');
+  const widgetsToggle = document.getElementById('widgets-toggle');
   const clockDisplay = document.getElementById('center-clock');
+  const quoteContainer = document.getElementById('quote');
   const switchOn = document.getElementById('switch-on');
   const switchOff = document.getElementById('switch-off');
 
@@ -34,15 +34,35 @@
     if(switchOn) switchOn.style.display = 'none';
     if(switchOff) switchOff.style.display = 'inline';
   }
+  // Quote initial visibility:
+  (function(){
+    if (!quoteContainer) return;
+    var showQuoteConf = String(readConf('show_quote'));
+    if (showQuoteConf === 'no') {
+      quoteContainer.style.display = 'none';
+    } else {
+      quoteContainer.style.display = '';
+    }
+  })();
 
-  if (clockToggle && clockDisplay && switchOn && switchOff) {
-    clockToggle.addEventListener('click', function() {
-      if (clockDisplay.style.visibility === 'hidden') {
-        clockDisplay.style.visibility = 'visible';
+  if (widgetsToggle && clockDisplay && switchOn && switchOff) {
+    widgetsToggle.addEventListener('click', function() {
+      // Determine current combined state based on clock visibility
+      var clockHidden = getComputedStyle(clockDisplay).visibility === 'hidden';
+      var willBeVisible = clockHidden; // if currently hidden -> show both; else hide both
+      // Apply to clock
+      clockDisplay.style.visibility = willBeVisible ? 'visible' : 'hidden';
+      // Apply to quote (quote uses display property in other code; we force here)
+      if (willBeVisible) {
+        quoteContainer.style.display = '';
+      } else {
+        quoteContainer.style.display = 'none';
+      }
+      // Update switch icons
+      if (willBeVisible) {
         switchOn.style.display = 'inline';
         switchOff.style.display = 'none';
       } else {
-        clockDisplay.style.visibility = 'hidden';
         switchOn.style.display = 'none';
         switchOff.style.display = 'inline';
       }

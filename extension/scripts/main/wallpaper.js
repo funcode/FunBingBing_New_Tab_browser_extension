@@ -481,14 +481,6 @@ function setContents(image) {
 
 	// --- Populate quote of the day blocks ---
 	if (image.quoteData) {
-		const showQuote = readConf('show_quote');
-		const quoteContainer = document.getElementById('quote');
-		if (showQuote === 'no') {
-			if (quoteContainer) quoteContainer.style.display = 'none';
-			return;
-		} else {
-			if (quoteContainer) quoteContainer.style.display = ''; // Or whatever its default display should be
-		}
 		// Normalize and wrap quote text with curly quotes
 		const qt = document.getElementById('quote-text');
 		const qf = document.getElementById('quote-full-text');

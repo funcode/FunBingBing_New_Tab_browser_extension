@@ -14,7 +14,7 @@
   right: -100px;
   border-radius: 10px;
 }
-#clock-toggle {
+#widgets-toggle {
   position: absolute;
   top: 50%;
   /* Position it to the right of the clock text */
@@ -30,7 +30,7 @@
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
-#clock-container:hover #clock-toggle {
+#clock-container:hover #widgets-toggle {
   opacity: 1;
 }
 
