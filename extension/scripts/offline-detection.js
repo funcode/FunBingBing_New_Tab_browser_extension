@@ -1,8 +1,8 @@
-// Offline detection script
-console.log('Current online status:', navigator.onLine);
-
 // Configurable endpoint for actual network test
-const NETWORK_TEST_URL = 'https://jsonplaceholder.typicode.com/posts/1';
+const NETWORK_TEST_URL = 'https://cn.bing.com/favicon.ico';
+const connectionCheckInterval = 30000; // 30 seconds
+
+console.log('Current online status:', navigator.onLine);
 
 window.addEventListener('online', function() {
     window.location.href = 'blank.html';
@@ -10,46 +10,48 @@ window.addEventListener('online', function() {
 });
 
 window.addEventListener('offline', function() {
-  redirectToNewTabIfNeeded();
+  redirectToNewPageIfNeeded();
   console.log('Network status changed to: offline');
 });
 
-
-// 添加实际网络连接测试
-function checkActualConnection() {
-    return fetch(NETWORK_TEST_URL, {
-        cache: 'no-cache'
-    })
-    .then(response => {
-        if (response.ok) {
-            console.log('Actual network test: Connected');
-            return true;
-        } else {
-            console.log('Actual network test: Disconnected (bad status)');
-            return false;
-        }
-    })
-    .catch(() => {
-        console.log('Actual network test: Disconnected');
-        return false;
-    });
-}
-
-// 可配置的实际网络状态检查间隔（以毫秒为单位）
-const connectionCheckInterval = 30000; // 30秒，可根据需要调整
-
-// 定期检查实际网络状态
-setInterval(checkActualConnection, connectionCheckInterval);
-
-// 初始检查
-checkActualConnection();
-
-function redirectToNewTabIfNeeded() {
-  if (!window.location.pathname.endsWith('newtab.html')) {
-    window.location.href = 'newtab.html';
+function redirectToNewPageIfNeeded(page) {
+  if (!window.location.pathname.endsWith(page || 'newtab.html')) {
+    localStorage.removeItem('wallpaper_date');
+    window.location.href = page || 'newtab.html';
   }
 }
 
-if (!navigator.onLine) {
-  redirectToNewTabIfNeeded();
+// Check actual network connection by fetching a real resource
+async function checkActualConnection() {
+  try {
+    const response = await fetch(NETWORK_TEST_URL, {
+      method: "HEAD",
+      cache: 'no-store',
+      credentials: 'include'
+    });
+    if (response.ok) {
+      console.log('Actual network test: Connected');
+      redirectToNewPageIfNeeded('blank.html');;
+      return true;
+    } else {
+      console.log('Actual network test: Disconnected (bad status)');
+      redirectToNewPageIfNeeded();
+      return false;
+    }
+  } catch (error) {
+    console.log('Actual network test: Disconnected');
+    redirectToNewPageIfNeeded();
+    return false;
+  }
 }
+
+// Periodically check the actual connection status
+setInterval(checkActualConnection, connectionCheckInterval);
+
+(async () => {
+  if (!navigator.onLine) {
+    redirectToNewPageIfNeeded();
+  } else {
+    await checkActualConnection();
+  }
+})();
