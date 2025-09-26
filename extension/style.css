@@ -542,8 +542,8 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
 
 .quote-popup-inner {
     background: var(--panel-bg);
-    backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     padding: 22px 28px 24px;
     border-radius: 16px;
     box-shadow: 0 10px 28px rgba(0,0,0,0.55);
