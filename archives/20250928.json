@@ -1,0 +1,46 @@
+{
+  "caption": "托斯卡纳的皮恩扎镇, 意大利",
+  "title": "托斯卡纳的皮恩扎镇, 意大利",
+  "description": "有些城镇历经数个世纪缓慢演变。皮恩扎？15世纪，一位教皇为了证明某种观点——或许也为了炫耀——彻底重塑了它。这座意大利小镇坐落在奥尔恰山谷之上，周围环绕着连绵起伏的群山，其景象与你想象中的托斯卡纳一模一样：柏树成荫，蜿蜒的土路，偶尔还能看到几只绵羊。它宁静祥和。而当你踏入城墙，它便会变得灵动起来。",
+  "copyright": "© zpagistock/Getty Images",
+  "date": "2025 9月 28",
+  "clickUrl": "/search?q=%e7%9a%ae%e6%81%a9%e6%89%8e&form=hpcapt&filters=HpDate:\"20250927_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.PienzaItaly_ZH-CN6564335348_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.PienzaItaly_ZH-CN6564335348_UHD.jpg",
+      "wallpaper": "/th?id=OHR.PienzaItaly_ZH-CN6564335348_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.PienzaItaly_ZH-CN6564335348_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.PienzaItaly_ZH-CN6564335348_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.PienzaItaly_ZH-CN6564335348_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "皮恩扎曾是一个普通的中世纪村​​庄，名叫科尔西尼亚诺。直到教皇庇护二世的儿子决定改造他的家乡，他聘请了建筑师贝尔纳多·罗塞利诺，按照文艺复兴时期的对称、秩序与和谐理念重建了这片区域。结果如何？这片区域仿佛是经过精心设计的。中心广场皮奥二世广场两侧分别矗立着大教堂、教皇宫殿和市政厅，布局也恰到好处。此外，皮恩扎还以佩科里诺奶酪而闻名——这是一种以羊奶为原料，以独特的方式陈酿而成的奶酪。每年一次，整个小镇都会变成奶酪竞技场，举办“奶酪节”（Fiera del Cacio），这是一个以“奶酪轮”（Cacio al Fuso）为特色的节日——这是一种人们将奶酪轮滚向目标的游戏。",
+  "descriptionPara3": "",
+  "isoDate": "20250928",
+  "headline": "品味皮恩扎",
+  "quickFact": "皮恩扎历史中心作为文艺复兴人文主义城市设计理念的首次应用，在意大利乃至全球的后续城市发展中发挥了重要作用。",
+  "triviaId": "HPQuiz_20250928_PienzaItaly",
+  "triviaData": {
+    "question": "皮恩扎以何种美食体验而闻名？",
+    "options": [
+      {
+        "text": "橄榄油生产",
+        "url": "/search?q=%E5%A5%B6%E9%85%AA&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250928_PienzaItaly%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "奶酪",
+        "url": "/search?q=%E5%A5%B6%E9%85%AA&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250928_PienzaItaly%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "意大利面",
+        "url": "/search?q=%E5%A5%B6%E9%85%AA&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250928_PienzaItaly%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
