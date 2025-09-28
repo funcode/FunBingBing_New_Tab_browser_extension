@@ -26,12 +26,11 @@ async function checkActualConnection() {
   try {
     const response = await fetch(NETWORK_TEST_URL, {
       method: "HEAD",
-      cache: 'no-store',
-      credentials: 'include'
+      cache: 'no-store'
     });
     if (response.ok) {
       console.log('Actual network test: Connected');
-      redirectToNewPageIfNeeded('blank.html');;
+      redirectToNewPageIfNeeded('blank.html');
       return true;
     } else {
       console.log('Actual network test: Disconnected (bad status)');

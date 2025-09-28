@@ -125,7 +125,13 @@ async function collectBingDataInParallel() {
 			fetch("https://www.bing.com/HPImageArchive.aspx?format=js&n=1&mkt=zh-CN&idx=7"),
 			fetch("https://www.bing.com/hp/api/v1/imageoftheday?format=json&mkt=zh-CN"),
 			fetch("https://www.bing.com/hp/api/model?mkt=zh-CN"),
-			fetch("https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN", { credentials: 'include' })
+			fetch("https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN", {
+				"body": null,
+				"method": "GET",
+				"mode": "cors",
+				"cache": 'no-store',
+				"credentials": "include"
+			})
 		]);
 
 		// Parse archive
@@ -198,6 +204,12 @@ async function handleBingDataResults(results) {
 
 	// --- Async task: Handle Quote of the Day ---
 	const quoteTask = async () => {
+		images[0].quoteData = {
+			text: '',
+			source: i18n('quote_of_the_day_search'),
+			link: 'https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN',
+			caption: ''
+		};
 		// --- Scrape Quote of the Day ---
 		if (results.quoteOfTheDay) {
 			try {
@@ -215,20 +227,24 @@ async function handleBingDataResults(results) {
 						link: authorHref,
 						caption: authorCaption
 					};
-				} else {
-					images[0].quoteData = {
-					text: '',
-					source: i18n('quote_of_the_day_search'),
-					link: 'https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN',
-					caption: ''
-				};
 				}
 			} catch (e) {
 				console.error("Error parsing quote of the day HTML:", e);
 			}
+		} else {//Fallback: request from background.js
+/* 			chrome.runtime.sendMessage({ type: "getQuote" }, (response) => {
+				if (chrome.runtime.lastError) {
+					console.debug('getQuote message had no response:', chrome.runtime.lastError.message);
+					return;
+				}
+				console.log('Received quote response:', response);
+				if (response) {
+					images[0].quoteData = response;
+				} 
+			}); */
 		}
 
-		// Function to add a new quote and backfill others
+		// Function to cache a new quote and backfill others
 		function addQuote(key, value) {
 			// Quotes storage (main data)
 			let allQuotes = readConf("cache_quote_of_the_day") || {};
@@ -272,7 +288,7 @@ async function handleBingDataResults(results) {
 			// This can happen if scraping failed (may due to clearing the browser cache)
 			// but we have a cached quote
 			const today = images[0].isoDate;
-			if (images[0].quoteData && images[0].quoteData.text === '' && allQuotes[today]) {
+			if ((!images[0].quoteData || !images[0].quoteData.text) && allQuotes[today]) {
 				images[0].quoteData = allQuotes[today];
 			}
 		}
