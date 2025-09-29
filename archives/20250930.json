@@ -1,0 +1,46 @@
+{
+  "caption": "大奥特维国家公园的考拉, 澳大利亚",
+  "title": "桉树上的考拉, 大奥特维国家公园, 澳大利亚",
+  "description": "在大奥特维国家公园茂密的桉树林中，考拉如同沉睡的哨兵，守护着澳大利亚的野性灵魂。这些有袋动物常被误称为“考拉熊”，但实际上它们与袋熊的体型更接近，它们结实的无尾身躯、毛茸茸的耳朵和柔软的黑色鼻子很容易辨认。",
+  "copyright": "© Jamie Lamb - elusive-images.co.uk/Getty Images",
+  "date": "2025 9月 30",
+  "clickUrl": "/search?q=%e8%80%83%e6%8b%89&form=hpcapt&filters=HpDate:\"20250929_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.EucalyptusKoala_ZH-CN6942451940_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.EucalyptusKoala_ZH-CN6942451940_UHD.jpg",
+      "wallpaper": "/th?id=OHR.EucalyptusKoala_ZH-CN6942451940_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.EucalyptusKoala_ZH-CN6942451940_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.EucalyptusKoala_ZH-CN6942451940_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.EucalyptusKoala_ZH-CN6942451940_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "然而，考拉的未来岌岌可危。栖息地丧失、疾病以及丛林大火等气候威胁，使它们正处于关键的十字路口。但森林修复、专门的保护区以及原住民主导的保护工作正在扭转局势。只要持续呵护，这些温顺的攀爬者就能依附在树梢（以及我们的心中），成为澳大利亚野性精神的永恒象征，世世代代传承下去。",
+  "descriptionPara3": "",
+  "isoDate": "20250930",
+  "headline": "坚持重要的事情",
+  "quickFact": "1998年，考拉为澳大利亚旅游业带来了超过10亿美元的收益，此后，考拉的国际知名度不断提升。",
+  "triviaId": "HPQuiz_20250930_EucalyptusKoala",
+  "triviaData": {
+    "question": "哪种树种与考拉的饮食相关？",
+    "options": [
+      {
+        "text": "桉树",
+        "url": "/search?q=%E6%A1%89%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250930_EucalyptusKoala%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "金合欢",
+        "url": "/search?q=%E6%A1%89%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250930_EucalyptusKoala%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "松树",
+        "url": "/search?q=%E6%A1%89%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20250930_EucalyptusKoala%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
