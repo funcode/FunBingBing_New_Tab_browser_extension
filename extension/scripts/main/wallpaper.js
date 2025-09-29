@@ -42,6 +42,7 @@ function setFooterText(text) {
 function changeWallpaper(idx) {
 	//showDefaultWallpaper();
 	// hideLoadingAnim();
+	setFooterText(i18n('updating_wallpaper'));
 	const images = readConf("bing_images");
 	if (!Array.isArray(images) || images.length === 0) {
 		showDefaultWallpaper();
@@ -59,7 +60,6 @@ function changeWallpaper(idx) {
 	} else {
 		imgurl = baseurl + image.imageUrls.landscape.highDef;
 	}
-	setFooterText(i18n('updating_wallpaper'));
 	var tmp_img = new Image();
 	// Preload the image into memory
 	tmp_img.src = imgurl;
@@ -102,7 +102,8 @@ async function initWallpaper() {
 			updateWallpaper(0);
 		}
 	} else {
-		// No cache match, fetch new data
+		// No cache match, fetch new data		
+		setFooterText(i18n('updating_wallpaper'));
 		showDefaultWallpaper();
 		try {
 			const results = await collectBingDataInParallel();
