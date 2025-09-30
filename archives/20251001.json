@@ -1,0 +1,46 @@
+{
+  "caption": "克拉克山脉, 约塞米蒂国家公园, 加利福尼亚州",
+  "title": "克拉克山脉, 内华达山脉, 约塞米蒂国家公园, 加利福尼亚州, 美国",
+  "description": "今年是约塞米蒂国家公园遗产的又一个里程碑。约塞米蒂国家公园自1864年以来一直受到保护，以其令人惊叹的壮丽景色和生态意义而闻名。约塞米蒂坐落在内华达山脉的中心地带，占地近1200平方英里，孕育着巨大的花岗岩、奔腾的瀑布和古老的红杉。克拉克山脉是其鲜为人知的瑰宝之一——今天照片中显示的崎岖高海拔山脊。它以约塞米蒂的第一位守护者、自然保护先驱盖伦·克拉克的名字命名。",
+  "copyright": "© Robb Hirsch/TANDEM Stills + Motion",
+  "date": "2025 10月 1",
+  "clickUrl": "/search?q=%e7%ba%a6%e5%a1%9e%e7%b1%b3%e8%92%82%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20250930_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.YosemiteClark_ZH-CN7179533292_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.YosemiteClark_ZH-CN7179533292_UHD.jpg",
+      "wallpaper": "/th?id=OHR.YosemiteClark_ZH-CN7179533292_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.YosemiteClark_ZH-CN7179533292_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.YosemiteClark_ZH-CN7179533292_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.YosemiteClark_ZH-CN7179533292_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "克拉克山脉静静地守护着约塞米蒂南部的荒野，其山峰被冰川侵蚀，顶部覆盖着高山草甸。这里，微风轻拂白皮松，天空开阔，呼应着公园诞生时的远见卓识。",
+  "descriptionPara3": "",
+  "isoDate": "20251001",
+  "headline": "克拉克山脉的回声",
+  "quickFact": "约塞米蒂国家公园于1864年首次设立保护区，以其瀑布而闻名。然而，在其近1200平方英里的土地上，你还能发现深邃的山谷、壮丽的草地、古老的巨型红杉、广阔的荒野等等。",
+  "triviaId": "HPQuiz_20251001_YosemiteClark",
+  "triviaData": {
+    "question": "1864年采取了哪些与优胜美地相关的重要行动？",
+    "options": [
+      {
+        "text": "它被指定为国家公园。",
+        "url": "/search?q=%E5%AE%83%E8%A2%AB%E8%AE%BE%E7%AB%8B%E4%B8%BA%E4%BF%9D%E6%8A%A4%E5%8C%BA%E3%80%82&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251001_YosemiteClark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "它被设立为保护区。",
+        "url": "/search?q=%E5%AE%83%E8%A2%AB%E8%AE%BE%E7%AB%8B%E4%B8%BA%E4%BF%9D%E6%8A%A4%E5%8C%BA%E3%80%82&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251001_YosemiteClark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "它成为了联合国教科文组织的世界遗产。",
+        "url": "/search?q=%E5%AE%83%E8%A2%AB%E8%AE%BE%E7%AB%8B%E4%B8%BA%E4%BF%9D%E6%8A%A4%E5%8C%BA%E3%80%82&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251001_YosemiteClark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
