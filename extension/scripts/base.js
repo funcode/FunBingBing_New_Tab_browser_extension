@@ -72,8 +72,6 @@ function readConf(key) {
             - display_search_box: String(yes no), show search box or not
         // topSites
             - show_top_sites: String(yes no)
-        // custom bookmarks
-            - custom_bkmk_list: Json list, user defined bookmarks
         // wallpaper
             - enable_uhd_wallpaper: String(yes no)
             - show_clock: String(yes no)
@@ -140,16 +138,6 @@ function initializeConf() {
         show_top_sites: "no",
         show_clock: "yes",
         show_quote: "yes",
-        custom_bkmk_list: [
-            {
-                name: "历史上的今天",
-                action: "bing_on_this_day"
-            },
-            {
-                name: "必应上的今天",
-                action: "random_bing_wallpaper"
-            }
-        ],
         enable_uhd_wallpaper: "yes",
         wallpaper_date: "20000101",
         wallpaper_idx: "0",

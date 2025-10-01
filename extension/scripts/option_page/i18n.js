@@ -40,9 +40,9 @@ function i18n_search_engine_tab() {
 
 // quick link tab
 function i18n_quick_link_tab() {
-	document.getElementById("quick-link-prompt").innerHTML = i18n('op_quick_link_prompt');
+	//document.getElementById("quick-link-prompt").innerHTML = i18n('op_quick_link_prompt');
 	document.getElementById("top-sites-prompt").innerHTML = i18n('op_top_sites_prompt');
-	document.getElementById("custom-bkmk-prompt").innerHTML = i18n('op_custom_bkmk_prompt');
+	//document.getElementById("custom-bkmk-prompt").innerHTML = i18n('op_custom_bkmk_prompt');
 	document.getElementById("close-top-sites-btn").innerHTML = i18n('op_close_top_sites_btn');
 	document.getElementById("open-top-sites-btn").innerHTML = i18n('op_open_top_sites_btn');
 }

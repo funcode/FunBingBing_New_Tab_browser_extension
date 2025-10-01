@@ -105,6 +105,14 @@
         "message": "自定义要显示的链接："
     },
 
+    "quick_link_history_today": {
+        "message": "历史上的这一天"
+    },
+
+    "quick_link_random_bing_wallpaper": {
+        "message": "必应上的这一天"
+    },
+
     "op_wallpaper_uhd_hint1": {
         "message": "默认加载超清 (UHD) 壁纸。若你更在意打开速度，可关闭此项以加载较低分辨率图片。"
     },

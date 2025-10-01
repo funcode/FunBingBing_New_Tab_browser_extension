@@ -48,17 +48,17 @@ const defaultSearchEngines = [
 		}
 	];
 
-const defaultCustomBookmarks = [
+/* const defaultCustomBookmarks = [
 		{
-			name: "历史上的今天",
+			name: "历史上的这一天",
 			action: "bing_on_this_day"
 		},
 		{
-			name: "必应上的今天",
+			name: "必应上的这一天",
 			action: "random_bing_wallpaper"
 		}
 	];
-
+ */
 // search engine settings
 
 function initSearchEngineConf() {
@@ -201,16 +201,16 @@ function closeTopSites() {
 
 // custom bookmarks 
 
-function initCustomBookmarks() {
+/* function initCustomBookmarks() {
 	var conf = readConf('custom_bkmk_list');
 	if (conf == null) {
 		conf = defaultCustomBookmarks;
 	}
 	document.getElementById('custom-bkmk-textarea').value = JSON.stringify(conf, null, 4);
 	console.log('main.js: initCustomBookmarks done');
-}
+} */
 
-function saveCustomBookmarks() {
+/* function saveCustomBookmarks() {
 	var newConf = document.getElementById('custom-bkmk-textarea').value;
 	// check validaty 
 	var obj = null;
@@ -222,16 +222,16 @@ function saveCustomBookmarks() {
 	catch (e) {
 		alert(i18n('op_bad_json_alert') +'\n' + e);
 	}
-}
+} */
 
-function recoverCustomBookmarks() {
+/* function recoverCustomBookmarks() {
 	var cfm = confirm(i18n('op_reset_default_confirm_alert'));
 	if (cfm == true) {
 		writeConf('custom_bkmk_list', defaultCustomBookmarks);
 		document.getElementById('custom-bkmk-textarea').value = JSON.stringify(defaultCustomBookmarks, null, 4);
 		alert(i18n('op_reset_default_done_alert'));
 	}
-}
+} */
 
 
 // wallpaper settings
@@ -311,11 +311,11 @@ document.getElementById('open-top-sites-btn').onclick = openTopSites;
 document.getElementById('close-top-sites-btn').onclick = closeTopSites;
 
 // init custom bookmarks
-initCustomBookmarks();
+//initCustomBookmarks();
 
 // bind save custom bookmark conf
-document.getElementById('save-custom-bkmk-conf').onclick = saveCustomBookmarks;
-document.getElementById('recover-custom-bkmk-conf').onclick = recoverCustomBookmarks;
+//document.getElementById('save-custom-bkmk-conf').onclick = saveCustomBookmarks;
+//document.getElementById('recover-custom-bkmk-conf').onclick = recoverCustomBookmarks;
 
 // init wallpaper
 initWallpaperConf();

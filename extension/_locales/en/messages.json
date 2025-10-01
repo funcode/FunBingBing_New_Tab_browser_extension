@@ -105,6 +105,14 @@
         "message": "Edit JSON to add links you want to display:"
     },
 
+    "quick_link_history_today": {
+        "message": "On This Day in History"
+    },
+
+    "quick_link_random_bing_wallpaper": {
+        "message": "This Day on Bing"
+    },
+
     "op_wallpaper_uhd_hint1": {
         "message": "By default UHD wallpapers are loaded. Turn it off to load lower resolution images if you prefer a faster loading speed."
     },

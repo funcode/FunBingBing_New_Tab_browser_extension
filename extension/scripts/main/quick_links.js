@@ -37,7 +37,21 @@ function initTopSites() {
 
 // load custom bookmarks
 function initCustomBookmarks() {
-	var bookmarks = readConf('custom_bkmk_list');
+	const historyLabel = i18n('quick_link_history_today');
+	const bingLabel = i18n('quick_link_random_bing_wallpaper');
+
+	var bookmarks = [
+			{
+				name: historyLabel,
+				action: "bing_on_this_day",
+				icon: '<path d="M15.999 7.985V8a7.999 7.999 0 0 1-13.034 6.216l.015.012a.775.775 0 0 1-.06-1.149l.363-.363a.776.776 0 0 1 1.031-.062l-.001-.001A5.9 5.9 0 0 0 8 13.936 5.935 5.935 0 1 0 3.932 3.679l.003-.003 1.637 1.637a.516.516 0 0 1-.365.881H.518a.516.516 0 0 1-.516-.516V.989A.516.516 0 0 1 .883.624l1.593 1.593A7.97 7.97 0 0 1 8.002.002a8 8 0 0 1 7.999 7.984v.001zm-5.835 2.541.317-.407a.773.773 0 0 0-.134-1.085l-.002-.001-1.313-1.021V4.647a.776.776 0 0 0-.775-.775h-.516a.776.776 0 0 0-.775.775V9.02l2.11 1.641a.774.774 0 0 0 1.086-.131z"/>'
+			},
+			{
+				name: bingLabel,
+				action: "random_bing_wallpaper",
+				icon: '<path d="M2.403 0 5.6 1.124v11.249l4.502-2.597-2.207-1.037-1.393-3.467 7.093 2.492v3.623L5.602 16l-3.198-1.78V0z"/>'
+			}
+		];
 	if (bookmarks != null && bookmarks.length > 0) {
 		var popupDiv = document.getElementById('top-sites-div');
 		var ul = popupDiv.appendChild(document.createElement('ul'));
@@ -47,11 +61,11 @@ function initCustomBookmarks() {
 
 			// Add SVG icon at the beginning
 			var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+			svg.setAttribute("fill", "currentColor");
 			svg.setAttribute("width", "16");
 			svg.setAttribute("height", "16");
-			svg.setAttribute("viewBox", "0 0 0.32 0.32");
-			svg.setAttribute("style", "margin-right: 6px; vertical-align: -2px;");
-			svg.innerHTML = '<path fill="#fff" d="M0.214 0.009a0.16 0.16 0 1 1 -0.199 0.219 0.02 0.02 0 1 1 0.036 -0.017 0.12 0.12 0 1 0 0.028 -0.14l0.015 0.015A0.02 0.02 0 0 1 0.08 0.12H0V0.04A0.02 0.02 0 0 1 0.034 0.026l0.017 0.017a0.16 0.16 0 0 1 0.163 -0.033M0.16 0.08a0.02 0.02 0 0 1 0.02 0.02v0.052l0.034 0.034a0.02 0.02 0 0 1 -0.028 0.028L0.14 0.168V0.1A0.02 0.02 0 0 1 0.16 0.08"/>';
+			svg.setAttribute("viewBox", "0 0 16 16");
+			svg.innerHTML = bookmarks[i].icon;
 			a.appendChild(svg);
 
 			// Handle custom actions
@@ -63,7 +77,7 @@ function initCustomBookmarks() {
 						handleCustomAction(action);
 					};
 				})(bookmarks[i].action));
-				a.title = 'Custom Action: ' + bookmarks[i].name;
+				a.title = bookmarks[i].name;
 			} else if (bookmarks[i].url) {
 				a.href = bookmarks[i].url;
 				a.title = bookmarks[i].url;
