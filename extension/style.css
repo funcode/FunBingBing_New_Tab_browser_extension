@@ -29,6 +29,20 @@ html, body {
 	color: white;
 	z-index: 1000;
 }
+
+.icon-quick-fact {
+  width: 24px;           /* or any desired size */
+  height: 24px;
+  fill: currentColor;     /* color inherits from text or parent */
+}
+
+.icon-inline {
+  vertical-align: middle;
+  width: 16px;           /* or any desired size */
+  height: 16px;
+  fill: currentColor;     /* color inherits from text or parent */
+}
+
 #search-logo {
 	float:left;
 	height: 50px;
