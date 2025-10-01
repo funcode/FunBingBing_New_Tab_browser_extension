@@ -2,7 +2,7 @@
 :root {
     /* Shared panel styling for description & quote popup */
     --panel-bg: rgba(1,1,1,0.45); /* unify with description background */
-    --panel-font-size: 1rem;      /* base font size for panel text */
+    --panel-font-size: 1.2rem;      /* base font size for panel text */
 }
 body {
 	background-repeat: no-repeat;
@@ -71,11 +71,23 @@ html, body {
 }
 
 #functions-child a{
-	color: white;
-	text-decoration: none;
-	padding: 0 5px;
-	border-radius: 5px;
-	display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#functions-child a svg {
+    flex-shrink: 0;
+    display: block;
+}
+
+#functions-child a span {
+    display: inline-block;
+    line-height: 1.2;
 }
 
 #functions-child a:hover{
@@ -457,7 +469,7 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #fff;
     -webkit-user-select: text;
     user-select: text;
@@ -517,7 +529,7 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
 
 .quote-body {
     display: inline-block;
-    font-size: 1.125rem;
+    font-size: 1.3rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -553,7 +565,7 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
 }
 
 .quote-full-text {
-    line-height: 1.55;
+    line-height: 1.3;
     white-space: normal;
     word-break: break-word;
     font-style: italic;
