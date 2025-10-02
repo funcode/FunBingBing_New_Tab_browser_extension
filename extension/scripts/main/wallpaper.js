@@ -1,34 +1,103 @@
+const WALLPAPER_CACHE_NAME = 'funbingbing-wallpaper-cache-v1';
+let currentWallpaperObjectUrl = null;
+
+function revokeCurrentWallpaperObjectUrl() {
+	if (currentWallpaperObjectUrl) {
+		URL.revokeObjectURL(currentWallpaperObjectUrl);
+		currentWallpaperObjectUrl = null;
+	}
+}
+
+async function fetchWallpaperBlob(url) {
+	if (!url) {
+		throw new Error('Invalid wallpaper url');
+	}
+
+	const fetchFromNetwork = async () => {
+		const response = await fetch(url, {
+			mode: 'cors',
+			cache: 'no-store'
+		});
+		if (!response.ok) {
+			throw new Error(`Wallpaper request failed with status ${response.status}`);
+		}
+		return response;
+	};
+
+	if (!('caches' in window)) {
+		const networkResponse = await fetchFromNetwork();
+		return networkResponse.blob();
+	}
+
+	const cache = await caches.open(WALLPAPER_CACHE_NAME);
+	let response = await cache.match(url);
+	if (!response) {
+		response = await fetchFromNetwork();
+		await cache.put(url, response.clone());
+	}
+	return response.blob();
+}
+
+async function applyWallpaperFromBlob(blob, originalUrl, image) {
+	const body = document.getElementById('main-body');
+	if (!body) return;
+	const objectUrl = URL.createObjectURL(blob);
+	revokeCurrentWallpaperObjectUrl();
+	currentWallpaperObjectUrl = objectUrl;
+	body.style.backgroundImage = `url('${objectUrl}')`;
+	setContents(image);
+	writeConf('wallpaper_url', originalUrl);
+	const existingIframe = body.querySelector('iframe[src="newtab.html"]');
+	if (existingIframe) {
+		body.removeChild(existingIframe);
+	}
+}
+
 // set wallpaper to default
-function showDefaultWallpaper() {
-	// set wallpaper
-	var body = document.getElementById('main-body');
-	var wallpaperUrl = readConf('wallpaper_url');
+async function showDefaultWallpaper() {
+	function loadNewTabIframe() {
+		revokeCurrentWallpaperObjectUrl();
+		let existingIframe = body.querySelector('iframe[src="newtab.html"]');
+		if (!existingIframe) {
+			existingIframe = document.createElement('iframe');
+			existingIframe.src = 'newtab.html';
+			existingIframe.style.cssText = 'width: 100%; height: 100%; border: none; position: absolute; top: 0; left: 0; z-index: 0;';
+			body.appendChild(existingIframe);
+		}
+	}	
+	const body = document.getElementById('main-body');
+	if (!body) return;
+	const wallpaperUrl = readConf('wallpaper_url');
 	if (wallpaperUrl) {
-		//wallpaper_url stores the last loaded background image url
-		body.style.backgroundImage = "url('" + wallpaperUrl + "')";
-		var bing_images = readConf("bing_images");
-		var idx = readConf("wallpaper_idx");
-		idx = parseInt(idx);
-		if (bing_images && Array.isArray(bing_images) && bing_images.length > 0) {
-			if (idx >= bing_images.length) {
+		let imageForContent;
+		const bingImages = readConf('bing_images');
+		let idx = readConf('wallpaper_idx');
+		idx = Number.parseInt(idx, 10);
+		if (!Number.isFinite(idx) || idx < 0) {
+			idx = 0;
+		}
+		if (Array.isArray(bingImages) && bingImages.length > 0) {
+			if (idx >= bingImages.length) {
 				idx = 0;
 			}
-			setContents(bing_images[idx]);
+			imageForContent = bingImages[idx];
 		}
-		var existingIframe = body.querySelector('iframe[src="newtab.html"]');
-		if (existingIframe) {
-			body.removeChild(existingIframe);
+		try {
+			if ('caches' in window) {
+				const cache = await caches.open(WALLPAPER_CACHE_NAME);
+				const cachedResponse = await cache.match(wallpaperUrl);
+				if (!cachedResponse) {
+					loadNewTabIframe();
+				}
+			}
+			const blob = await fetchWallpaperBlob(wallpaperUrl);
+			await applyWallpaperFromBlob(blob, wallpaperUrl, imageForContent);
+			return;
+		} catch (err) {
+			console.error('Failed to load cached wallpaper via Cache Storage:', err);
 		}
 	}
-	else {
-		var existingIframe = body.querySelector('iframe[src="newtab.html"]');
-		if (!existingIframe) {
-			var iframe = document.createElement('iframe');
-			iframe.src = 'newtab.html';
-			iframe.style.cssText = 'width: 100%; height: 100%; border: none; position: absolute; top: 0; left: 0; z-index: 0;';
-			body.appendChild(iframe);
-		}
-	}
+	loadNewTabIframe();
 }
 
 // set footer text
@@ -39,53 +108,49 @@ function setFooterText(text) {
 
 // pre-load image from url
 // then change background image and footer text after loading is finished
-function changeWallpaper(idx) {
-	//showDefaultWallpaper();
-	// hideLoadingAnim();
+async function changeWallpaper(idx) {
 	setFooterText(i18n('updating_wallpaper'));
-	const images = readConf("bing_images");
+	const images = readConf('bing_images');
 	if (!Array.isArray(images) || images.length === 0) {
-		showDefaultWallpaper();
+		await showDefaultWallpaper();
 		return;
 	}
-	// Ensure idx is within bounds
+	if (!Number.isFinite(idx) || idx < 0) {
+		idx = 0;
+	}
 	if (idx >= images.length) {
 		idx = 0;
 	}
-	var image = images[idx];
-	var imgurl = '';
-	var baseurl = 'https://cn.bing.com';
-	if (readConf('enable_uhd_wallpaper') == 'yes') {
-		imgurl = baseurl + image.imageUrls.landscape.ultraHighDef;
-	} else {
-		imgurl = baseurl + image.imageUrls.landscape.highDef;
+	const image = images[idx];
+	const baseurl = 'https://cn.bing.com';
+	const landscape = image?.imageUrls?.landscape;
+	const path = readConf('enable_uhd_wallpaper') == 'yes'
+		? landscape?.ultraHighDef
+		: landscape?.highDef;
+	const imgurl = path ? baseurl + path : null;
+	if (!imgurl) {
+		console.warn('Unable to resolve wallpaper URL for index', idx);
+		await showDefaultWallpaper();
+		return;
 	}
-	var tmp_img = new Image();
-	// Preload the image into memory
-	tmp_img.src = imgurl;
-	// Actions after the image is loaded
-	tmp_img.onload = function () {
-		var body = document.getElementById('main-body');
-		body.style.backgroundImage = "url('" + imgurl + "')";
-		//hideLoadingAnim();
-		setContents(image);
-		writeConf("wallpaper_url", imgurl);
-		var existingIframe = body.querySelector('iframe[src="newtab.html"]');
-		if (existingIframe) {
-			body.removeChild(existingIframe);
-		}
-	};
+	try {
+		const blob = await fetchWallpaperBlob(imgurl);
+		await applyWallpaperFromBlob(blob, imgurl, image);
+	} catch (error) {
+		console.error('Failed to load wallpaper image:', error);
+		await showDefaultWallpaper();
+	}
 }
 
 // get latest wallpaper url from bing.com 
 // then load and change wallpaper
-function updateWallpaper(idx) {
+async function updateWallpaper(idx) {
 	try {
-		changeWallpaper(idx);
-		writeConf("wallpaper_idx", idx.toString());
+		await changeWallpaper(idx);
+		writeConf('wallpaper_idx', idx.toString());
 	} catch (e) {
-		console.error('Failed to parse bing_images from config:', e);
-		showDefaultWallpaper();
+		console.error('Failed to update wallpaper:', e);
+		await showDefaultWallpaper();
 	}
 }
 
@@ -95,23 +160,24 @@ async function initWallpaper() {
 	if (cache_date == getDateString()) {
 		// Cached wallpaper for today
 		const cache_idx = readConf("wallpaper_idx");
-		if (cache_idx) {
-			changeWallpaper(parseInt(cache_idx));
+		if (cache_idx !== undefined && cache_idx !== null) {
+			await changeWallpaper(Number.parseInt(cache_idx, 10));
 		} else {
-			showDefaultWallpaper();
-			updateWallpaper(0);
+			setFooterText(i18n('updating_wallpaper'));
+			await showDefaultWallpaper();
+			await updateWallpaper(0);
 		}
 	} else {
 		// No cache match, fetch new data		
 		setFooterText(i18n('updating_wallpaper'));
-		showDefaultWallpaper();
+		await showDefaultWallpaper();
 		try {
 			const results = await collectBingDataInParallel();
 			await handleBingDataResults(results);
-			updateWallpaper(0); // guaranteed after data + writeConf
+			await updateWallpaper(0); // guaranteed after data + writeConf
 		} catch (err) {
 			console.error("Error initializing wallpaper:", err);
-			//updateWallpaper(0); // fallback
+			await showDefaultWallpaper();
 		}
 	}
 }
@@ -368,7 +434,7 @@ async function handleBingDataResults(results) {
 
 
 // if user want to show old wallpapers.
-function switchPrevWallpaper() {
+async function switchPrevWallpaper() {
 	var MAX_OLD_DAYS = 8;
 	// calculate idx
 	var cache_idx = readConf("wallpaper_idx");
@@ -378,10 +444,10 @@ function switchPrevWallpaper() {
 	cache_idx = parseInt(cache_idx);
 	cache_idx = (cache_idx + 1) % MAX_OLD_DAYS;
 	// reload wallpaper
-	updateWallpaper(cache_idx);
+	await updateWallpaper(cache_idx);
 }
 
-function switchNextWallpaper() {
+async function switchNextWallpaper() {
 	var MAX_OLD_DAYS = 8;
 	// calculate idx
 	var cache_idx = readConf("wallpaper_idx");
@@ -391,7 +457,7 @@ function switchNextWallpaper() {
 	cache_idx = parseInt(cache_idx);
 	cache_idx = (cache_idx - 1 + MAX_OLD_DAYS) % MAX_OLD_DAYS;
 	// reload wallpaper
-	updateWallpaper(cache_idx);
+	await updateWallpaper(cache_idx);
 }
 
 // set wallpaper download link
@@ -558,7 +624,7 @@ function setContents(image) {
 // --------------------------------------------------
 
 // init wallpaper
-initWallpaper();
+initWallpaper().catch((err) => console.error('initWallpaper() failed:', err));
 
 var left_nav_btn = document.getElementById('leftNav');
 left_nav_btn.onclick = switchPrevWallpaper;
