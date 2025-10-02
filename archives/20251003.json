@@ -1,0 +1,46 @@
+{
+  "caption": "格伦·布里特尔，苏格兰斯凯岛",
+  "title": "布里特尔峡谷里生长的帚石楠花, 斯凯岛, 苏格兰",
+  "description": "雾气袅袅，水波粼粼，传说萦绕——欢迎来到格伦·布里特尔。在苏格兰传说中的“雾岛”斯凯岛上，峡谷绵延展开，紫色石楠花如地毯般铺满崎岖山坡。这片土地回荡着历史的低语：远在八千年前新石器时代猎人循溪而行之前，恐龙的足迹早已镌刻于峭壁之上。九世纪时，航海的北欧维京人在此定居。数百年后，强大的麦克劳德与麦克唐纳氏族相继占据这片疆土，他们的城堡见证了无数战役与同盟的兴衰。",
+  "copyright": "© Adam Mowery/TANDEM Stills + Motion",
+  "date": "2025 10月 3",
+  "clickUrl": "/search?q=%e6%96%af%e5%87%af%e5%b2%9b&form=hpcapt&filters=HpDate:\"20251002_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SkyeHeather_ZH-CN2820283990_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SkyeHeather_ZH-CN2820283990_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SkyeHeather_ZH-CN2820283990_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SkyeHeather_ZH-CN2820283990_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SkyeHeather_ZH-CN2820283990_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SkyeHeather_ZH-CN2820283990_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在群山与隐秘湖泊之间，仙女池闪烁着翡翠与绿松石般的光泽，水流在火山岩上翻滚奔涌——据当地传说，这里曾是仙女们在月光下翩跹起舞之地。不远处，被称为“水之釜”的科鲁伊斯克湖隐匿于锯齿状的黑色库林山峰之下，相传湖中有水怪出没，是一种能变幻形貌的水灵。红鹿在石楠丛中悄然滑行，野兔沿着隐秘小径消失不见，金雕在高空盘旋。布里特尔峡谷正是地质奇观、野生动物与人类历史交织之地。每块岩石、每道瀑布、每座山谷都在诉说故事——请轻步慢行，侧耳倾听。",
+  "descriptionPara3": "",
+  "isoDate": "20251003",
+  "headline": "雾中遐想",
+  "quickFact": "2024年，格伦布里特尔地区的森林清理作业中，发现了一处名为布伦内尔的农耕聚落遗迹，该遗址可追溯至17或18世纪。",
+  "triviaId": "HPQuiz_20251003_SkyeHeather",
+  "triviaData": {
+    "question": "帚石楠花的主要颜色是什么？",
+    "options": [
+      {
+        "text": "紫色",
+        "url": "/search?q=%E7%B4%AB%E8%89%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251003_SkyeHeather%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "黄色",
+        "url": "/search?q=%E7%B4%AB%E8%89%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251003_SkyeHeather%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "红色",
+        "url": "/search?q=%E7%B4%AB%E8%89%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251003_SkyeHeather%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
