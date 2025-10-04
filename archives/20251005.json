@@ -1,0 +1,46 @@
+{
+  "caption": "世界教师日",
+  "title": "中欧森林里的鬼鸮",
+  "description": "教书育人的传统在整个人类历史中根深蒂固。今天，我们向那些倾注心血传播知识、塑造思想的教育者致敬。祝所有老师世界教师节快乐，感谢你们帮助我们成为更好的自己。",
+  "copyright": "© Ondrej Prosicky/Alamy",
+  "date": "2025 10月 5",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e6%95%99%e5%b8%88%e6%97%a5&form=hpcapt&filters=HpDate:\"20251004_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.TeacherOwl_ZH-CN8289875605_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.TeacherOwl_ZH-CN8289875605_UHD.jpg",
+      "wallpaper": "/th?id=OHR.TeacherOwl_ZH-CN8289875605_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.TeacherOwl_ZH-CN8289875605_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.TeacherOwl_ZH-CN8289875605_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.TeacherOwl_ZH-CN8289875605_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "从中国古代的孔子，到古希腊的苏格拉底、柏拉图和亚里士多德，再到20世纪意大利的玛丽亚·蒙特梭利，教师不仅塑造了无数人的人生，也深刻影响了人类历史。许多文化名人曾站在讲台前授课——你知道吗？畅销书作家斯蒂芬·金在成名之前就是一名英语教师。",
+  "descriptionPara3": "教师是社会繁荣发展的基石。正因为此，联合国教科文组织与国际劳工组织于1994年将每年的10月5日定为“世界教师日”，以表彰并支持全球教育工作者。为致敬智慧，今天选用北方鸮作为象征。猫头鹰自古便代表着智慧与洞察力，最早的关联可追溯至希腊神话：智慧女神雅典娜常与一只小猫头鹰相伴，这种神圣的动物成为其象征。这只夜行伙伴逐渐成为“看得更深、更透”的象征，代表着清晰的思维与敏锐的洞察。",
+  "isoDate": "20251005",
+  "headline": "庆祝智慧！",
+  "quickFact": "北方鸮分布于北美洲北部和欧洲地区，它们栖息于茂密的针叶林和混交林之中。",
+  "triviaId": "HPQuiz_20251005_TeacherOwl",
+  "triviaData": {
+    "question": "图片中的小猫头鹰学名为鬼鸮，它们通常生活在以下哪个地区？",
+    "options": [
+      {
+        "text": "栖息于茂密的针叶林",
+        "url": "/search?q=%E6%A0%96%E6%81%AF%E4%BA%8E%E8%8C%82%E5%AF%86%E7%9A%84%E9%92%88%E5%8F%B6%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251005_TeacherOwl%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "栖息湿热的热带雨林中",
+        "url": "/search?q=%E6%A0%96%E6%81%AF%E4%BA%8E%E8%8C%82%E5%AF%86%E7%9A%84%E9%92%88%E5%8F%B6%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251005_TeacherOwl%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "栖息干旱的沙漠中",
+        "url": "/search?q=%E6%A0%96%E6%81%AF%E4%BA%8E%E8%8C%82%E5%AF%86%E7%9A%84%E9%92%88%E5%8F%B6%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251005_TeacherOwl%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
