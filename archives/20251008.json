@@ -1,0 +1,46 @@
+{
+  "caption": "世界章鱼日",
+  "title": "白日章鱼, 毛伊岛, 夏威夷, 美国",
+  "description": "八只触手，魅力十足，今天的主角是章鱼！值此世界章鱼日，当我们赞叹它们的智慧时，更要意识到：即便是这些海洋天才，也无法逃避气候变化和污染威胁。守护它们的家园，就是守护海洋的未来。",
+  "copyright": "© Dave Fleetham/plainpicture",
+  "date": "2025 10月 8",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e7%ab%a0%e9%b1%bc%e6%97%a5&form=hpcapt&filters=HpDate:\"20251007_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.OctopusCyanea_ZH-CN8948609460_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.OctopusCyanea_ZH-CN8948609460_UHD.jpg",
+      "wallpaper": "/th?id=OHR.OctopusCyanea_ZH-CN8948609460_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.OctopusCyanea_ZH-CN8948609460_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.OctopusCyanea_ZH-CN8948609460_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.OctopusCyanea_ZH-CN8948609460_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "来认识一下伪装大师——白日章鱼。这种栖息于珊瑚礁的生物遍布太平洋和印度洋，从夏威夷到非洲东海岸皆有踪迹，堪称真正的“变形高手”。与大多数同类不同，它在白天狩猎，能瞬间改变体色、花纹乃至皮肤质地，完美融入环境。有时它还会上演精妙的\"浮云幻影\"戏码，投射虚假阴影诱使螃蟹在致命时刻移动。一旦猎物上钩，它便迅速出击。这位高超的猎手在珊瑚礁间游走，捕食鱼类、螃蟹、虾和软体动物。小猎物当场吞食，大猎物则拖回巢穴慢慢享用。",
+  "descriptionPara3": "",
+  "isoDate": "20251008",
+  "headline": "动态伪装",
+  "quickFact": "章鱼能大幅改变身体形状，从而穿过极其狭窄的缝隙。",
+  "triviaId": "HPQuiz_20251008_OctopusCyanea",
+  "triviaData": {
+    "question": "章鱼中被称为白日章鱼的一个关键特征是什么？",
+    "options": [
+      {
+        "text": "擅长伪装",
+        "url": "/search?q=%E6%93%85%E9%95%BF%E4%BC%AA%E8%A3%85&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251008_OctopusCyanea%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "它可以变成一个固体块。",
+        "url": "/search?q=%E6%93%85%E9%95%BF%E4%BC%AA%E8%A3%85&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251008_OctopusCyanea%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "它拥有用于飞行的翅膀。",
+        "url": "/search?q=%E6%93%85%E9%95%BF%E4%BC%AA%E8%A3%85&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251008_OctopusCyanea%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
