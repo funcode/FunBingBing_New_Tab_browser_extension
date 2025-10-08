@@ -492,7 +492,7 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
 }
 
 .app-dash {
-    padding: 10px 20px;
+    padding: 10px 20px 10px 60px;
     position: relative;
     display: flex;
     flex-direction: column;
