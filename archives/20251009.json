@@ -1,0 +1,46 @@
+{
+  "caption": "太空周还没结束呢！",
+  "title": "‌詹姆斯·韦伯太空望远镜观测的创生之柱",
+  "description": "随着世界空间周接近尾声，宇宙依然不断给予我们仰望的理由。想象一下云朵——不是在天空中飘动，而是在浩瀚星海中延展，孕育着新星的诞生。这正是NASA的詹姆斯·韦布太空望远镜所捕捉到的“创生之柱”景象。如图所示，色彩与细节前所未见，令人震撼。",
+  "copyright": "© NASA",
+  "date": "2025 10月 9",
+  "clickUrl": "/search?q=%e5%88%9b%e7%94%9f%e4%b9%8b%e6%9f%b1&form=hpcapt&filters=HpDate:\"20251008_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.WebbPillars_ZH-CN9054137596_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.WebbPillars_ZH-CN9054137596_UHD.jpg",
+      "wallpaper": "/th?id=OHR.WebbPillars_ZH-CN9054137596_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.WebbPillars_ZH-CN9054137596_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.WebbPillars_ZH-CN9054137596_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.WebbPillars_ZH-CN9054137596_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这些巨大的尖塔状结构，从左下角斜伸至右上角，几乎完全由尘埃和气体构成，这里正是恒星诞生的摇篮。在这些巍峨的结构内部，引力紧紧束缚着团块状的物质，逐步引发燃烧，从而孕育出新的恒星，它们已在柱体边缘闪烁生辉。令人惊叹的是，这一宇宙奇观正发生在距我们仅6500光年的鹰状星云中。这些柱体隐藏在遮蔽遥远宇宙的厚重星际云带之后，却依然绽放着璀璨的光芒，成为星云的焦点所在。",
+  "descriptionPara3": "",
+  "isoDate": "20251009",
+  "headline": "宇宙在绽放",
+  "quickFact": "NASA\"创生之柱\"的命名可追溯至英国浸信会牧师查尔斯·司布真1857年的布道，象征着神圣的宇宙根基。",
+  "triviaId": "HPQuiz_20251009_WebbPillars",
+  "triviaData": {
+    "question": "詹姆斯·韦布空间望远镜作为NASA项目的一部分，其主要任务是什么？",
+    "options": [
+      {
+        "text": "支持运载火箭",
+        "url": "/search?q=%E6%81%92%E6%98%9F%E5%BD%A2%E6%88%90%E5%9B%BE%E8%B0%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251009_WebbPillars%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "恒星形成图谱",
+        "url": "/search?q=%E6%81%92%E6%98%9F%E5%BD%A2%E6%88%90%E5%9B%BE%E8%B0%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251009_WebbPillars%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "为卫星生成电力",
+        "url": "/search?q=%E6%81%92%E6%98%9F%E5%BD%A2%E6%88%90%E5%9B%BE%E8%B0%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251009_WebbPillars%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
