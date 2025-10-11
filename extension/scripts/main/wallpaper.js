@@ -282,10 +282,10 @@ async function handleBingDataResults(results) {
 			try {
 				const parser = new DOMParser();
 				const doc = parser.parseFromString(results.quoteOfTheDay, "text/html");
-				const quoteText = doc.querySelector('.bt_quoteText')?.textContent.trim();
-				const authorText = doc.querySelector('.bt_author .b_mText a')?.textContent.trim();
-				const authorCaption = doc.querySelector('.bt_authorCaption.b_primtxt')?.textContent.trim();
-				const authorLinkEl = doc.querySelector('.bt_author .b_mText a');
+				const quoteText = doc.querySelector('.qotd_quote')?.textContent.trim();
+				const authorText = doc.querySelector('.qotd_author a')?.textContent.trim();
+				const authorCaption = doc.querySelector('.qotd_desc')?.textContent.trim();
+				const authorLinkEl = doc.querySelector('.qotd_author a');
 				const authorHref = authorLinkEl ? authorLinkEl.getAttribute('href') : '';
 				if (quoteText && authorText) {
 					images[0].quoteData = {
