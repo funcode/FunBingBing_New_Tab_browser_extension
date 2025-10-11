@@ -23,7 +23,8 @@
     "topSites"
   ],
   "host_permissions": [
-    "https://*.bing.com/"
+    "https://*.bing.com/",
+    "https://*.s3.ap-east-1.amazonaws.com/"
   ],
   "background": {
     "service_worker": "./scripts/background.js"

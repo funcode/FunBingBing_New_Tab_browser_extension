@@ -343,21 +343,36 @@ async function handleBingDataResults(results) {
 				writeConf("cache_quote_tracker", tracker);
 				writeConf("cache_quote_of_the_day", allQuotes);
 			}
-
+			let lostQuotes = {};
 			// Backfill quoteData for other images from the full cache
-			for (let i = 1; i < images.length; i++) {
+			for (let i = 0; i < images.length; i++) {
 				const date = images[i].isoDate;
 				if (allQuotes[date]) {
 					images[i].quoteData = allQuotes[date];
+				}else if(i>0||!images[i].quoteData.text){
+					lostQuotes[date] = true;
 				}
+			}
+			if(Object.keys(lostQuotes).length>0){
+				writeConf("lost_quotes",Object.keys(lostQuotes));
+				chrome.runtime.sendMessage({ type: "getLostQuotes", dates: Object.keys(lostQuotes) }, (response) => {
+					if (chrome.runtime.lastError) {
+						console.debug('getLostQuotes message had no response:', chrome.runtime.lastError.message);
+						return;
+					}
+					console.log('Received lost quotes response:', response);
+					if (response) {
+						writeConf("s3_quote_of_the_day", { response });
+					}
+				});
 			}
 			// Also backfill today's quote if it was missing text
 			// This can happen if scraping failed (may due to clearing the browser cache)
 			// but we have a cached quote
-			const today = images[0].isoDate;
+/* 			const today = images[0].isoDate;
 			if ((!images[0].quoteData || !images[0].quoteData.text) && allQuotes[today]) {
 				images[0].quoteData = allQuotes[today];
-			}
+			} */
 		}
 
 		addQuote(images[0].isoDate, images[0].quoteData);
