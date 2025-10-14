@@ -1,0 +1,46 @@
+{
+  "caption": "紫蜡蘑",
+  "title": "紫蜡蘑，西贝克，华盛顿州，美国",
+  "description": "你知道吗？蘑菇也有属于自己的节日。每年的10月15日是“全国蘑菇日”，这一天邀请我们走进它们奇妙的世界。比如图中的紫蜡蘑，又称“紫晶欺骗菇”。它在幼年时紫色明艳、光彩夺目，但随着时间和环境的变化，颜色逐渐褪去，辨认起来就不那么容易了。尽管外表娇嫩而多变，这种宝石般的真菌不仅可以食用，还在生态系统中发挥着重要作用。",
+  "copyright": "© Danita Delimont/Shutterstock",
+  "date": "2025 10月 15",
+  "clickUrl": "/search?q=%e7%b4%ab%e8%9c%a1%e8%98%91&form=hpcapt&filters=HpDate:\"20251014_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AmethystLaccaria_ZH-CN0643667280_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AmethystLaccaria_ZH-CN0643667280_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AmethystLaccaria_ZH-CN0643667280_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AmethystLaccaria_ZH-CN0643667280_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AmethystLaccaria_ZH-CN0643667280_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AmethystLaccaria_ZH-CN0643667280_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "蘑菇远不止是披萨的配料或餐桌上的配菜，它们是生态界的强大力量，对森林的健康至关重要。它们分解枯死物质，循环利用养分，并通过被称为“菌根”的地下网络促进树木生长。有些蘑菇还能帮助土壤储存碳，在气候调节中扮演角色。“全国蘑菇日”鼓励我们保持好奇心。今天，不妨尝试一道新的蘑菇食谱，读一读它们如何守护地球，或者亲身来一次寻菇探险。不过请记住：采摘必须负责任，切勿在没有正确鉴别的情况下食用野生蘑菇，因为其中一些可能有毒。",
+  "descriptionPara3": "",
+  "isoDate": "20251015",
+  "headline": "孢子奇遇记",
+  "quickFact": "因为它那鲜艳的紫水晶色会随着年龄增长和风吹雨打逐渐褪去，从而难以辨认，所以有了“欺骗者”这个俗名。",
+  "triviaId": "HPQuiz_20251015_AmethystLaccaria",
+  "triviaData": {
+    "question": "紫蜡蘑的特征是什么？",
+    "options": [
+      {
+        "text": "它是生物发光的。",
+        "url": "/search?q=%E5%AE%83%E4%BB%A5%E5%85%B6%E9%B2%9C%E8%89%B3%E7%9A%84%E7%B4%AB%E8%89%B2%E8%80%8C%E9%97%BB%E5%90%8D%E3%80%82&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251015_AmethystLaccaria%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "它以其鲜艳的紫色而闻名。",
+        "url": "/search?q=%E5%AE%83%E4%BB%A5%E5%85%B6%E9%B2%9C%E8%89%B3%E7%9A%84%E7%B4%AB%E8%89%B2%E8%80%8C%E9%97%BB%E5%90%8D%E3%80%82&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251015_AmethystLaccaria%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "它仅生长在橡树上。",
+        "url": "/search?q=%E5%AE%83%E4%BB%A5%E5%85%B6%E9%B2%9C%E8%89%B3%E7%9A%84%E7%B4%AB%E8%89%B2%E8%80%8C%E9%97%BB%E5%90%8D%E3%80%82&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251015_AmethystLaccaria%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
