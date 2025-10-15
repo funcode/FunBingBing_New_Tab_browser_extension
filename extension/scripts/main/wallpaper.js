@@ -278,15 +278,43 @@ async function handleBingDataResults(results) {
 			caption: ''
 		};
 		// --- Scrape Quote of the Day ---
+		// --- The 2 functions below are adapted from FunBingBing repo ---
+		const selectFirst = (doc, selectors) => {
+			for (const selector of selectors) {
+				const element = doc.querySelector(selector);
+				if (element) return element;
+			}
+			return null;
+		};
+		function extractQuote(doc) {
+			const textElement = selectFirst(doc, [
+			'#bt_qotdText .bt_quoteText',
+			'.bt_quoteText',
+			'.quoteText',
+			'.qotd_quote'
+			]);
+			const text = textElement ? textElement.textContent.trim() : null;
+
+			const authorElement = selectFirst(doc, [
+			'#bt_qotdText .bt_author .b_mText a',
+			'.qotd_author a'
+			]);
+			const author = authorElement ? authorElement.textContent.trim() : null;
+			const authorHref = authorElement ? authorElement.getAttribute('href') : '';
+
+			const captionElement = selectFirst(doc, [
+			'#bt_qotdText .bt_authorCaption',
+			'.qotd_desc'
+			]);
+			const caption = captionElement ? captionElement.textContent.trim() : null;
+
+			return { text, author, authorHref, caption };
+		}
 		if (results.quoteOfTheDay) {
 			try {
 				const parser = new DOMParser();
 				const doc = parser.parseFromString(results.quoteOfTheDay, "text/html");
-				const quoteText = doc.querySelector('.qotd_quote')?.textContent.trim();
-				const authorText = doc.querySelector('.qotd_author a')?.textContent.trim();
-				const authorCaption = doc.querySelector('.qotd_desc')?.textContent.trim();
-				const authorLinkEl = doc.querySelector('.qotd_author a');
-				const authorHref = authorLinkEl ? authorLinkEl.getAttribute('href') : '';
+				let { text: quoteText, author: authorText, authorHref, caption: authorCaption } = extractQuote(doc);
 				if (quoteText && authorText) {
 					images[0].quoteData = {
 						text: quoteText,
