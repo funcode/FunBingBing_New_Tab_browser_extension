@@ -22,12 +22,11 @@ html, body {
 }
 
 .bottom {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	color: white;
-	z-index: 1000;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    color: white;
+    z-index: 1000;
 }
 
 .icon-quick-fact {
@@ -183,10 +182,11 @@ html, body {
 }
 
 .mc_caro {
-    margin: auto;
+    margin: 0;
     text-align: right;
     bottom: 0;
-    position: relative
+    position: relative;
+    width: 100%;
 }
 
 .mc_caro .musCard {
@@ -205,8 +205,8 @@ html, body {
     bottom: 100%;
     right: 0;
     text-align: left;
-    height: 391.5px;
-    width: 531px;
+    height: 30vw;
+    width: 30vw;
     z-index: 2
 }
 
@@ -487,12 +487,12 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
     color: #fff;
     -webkit-user-select: text;
     user-select: text;
-    z-index: 1010; /* above .bottom (1000) to avoid hover loss */
+    z-index: 100;
     pointer-events: none; /* let only inner interactive zone catch events */
 }
 
 .app-dash {
-    padding: 10px 20px 10px 60px;
+    padding: 10px 20px 10px 60px; /* keep compact; lift space handled by extended hover zone */
     position: relative;
     display: flex;
     flex-direction: column;
@@ -503,8 +503,6 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
     font-style: italic;
     width: 70%;
     --lift: 34px; /* fallback vertical lift */
-    padding-bottom: 10px; /* keep compact; lift space handled by extended hover zone */
-    pointer-events: auto; /* re-enable events inside */
 }
 
 /* Narrow trigger hotspot (center bottom band). Do not shrink visible text width. */
@@ -523,7 +521,7 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
 }
 
 /* Ensure the rest of app-dash doesn't count for hover (except hotspot & popup). */
-.app-dash { pointer-events: none; }
+.app-dash.pointer-events-none { pointer-events: none; }
 .app-dash .quote-body { pointer-events: none; }
 .app-dash .below { pointer-events: none; }
 .quote-hotspot, .below { pointer-events: auto; }
