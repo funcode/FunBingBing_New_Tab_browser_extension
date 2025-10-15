@@ -1,0 +1,46 @@
+{
+  "caption": "欧亚猞猁",
+  "title": "欧亚猞猁，西伯利亚",
+  "description": "想象一只能在森林中悄然隐去的猫科动物——这就是欧亚猞猁。它耳尖上的簇毛和锐利的目光令人过目难忘。作为四种猞猁中体型最大的一种，它体长可达42 英寸，肩高可达30英寸，身形矫健，兼具力量与敏捷。厚实的脚掌不仅能帮助它悄无声息地移动，还像雪鞋一样分散体重，使其能在厚厚的积雪中追逐猎物。它大多在夜间出没，白天则隐匿在灌木丛或岩石洞穴中，夜幕降临才悄然出击，捕猎鹿、野兔和松鼠。",
+  "copyright": "© Mario Plechaty Photograph/Shutterstock",
+  "date": "2025 10月 16",
+  "clickUrl": "/search?q=%e6%ac%a7%e4%ba%9a%e7%8c%9e%e7%8c%81&form=hpcapt&filters=HpDate:\"20251015_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SiberianLynx_ZH-CN0749166653_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SiberianLynx_ZH-CN0749166653_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SiberianLynx_ZH-CN0749166653_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SiberianLynx_ZH-CN0749166653_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SiberianLynx_ZH-CN0749166653_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SiberianLynx_ZH-CN0749166653_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "猞猁过着独居生活。雄性和雌性各自占据自己的领地，并通过抓痕和气味标记来宣示主权，就像在森林中留下的秘密讯号。然而，它们神秘的天性并未能保护它们免遭人类的威胁。在20世纪70至80年代，成千上万张猞猁皮从俄罗斯和中国出口，使其数量一度降至危险水平。尽管毛皮贸易限制减轻了压力，但偷猎、栖息地丧失以及猎物减少等问题至今仍对欧亚猞猁构成生存危机。",
+  "descriptionPara3": "",
+  "isoDate": "20251016",
+  "headline": "幽灵之猫",
+  "quickFact": "在一些文化中认为猞猁拥有超自然的视力，甚至能看穿坚实的物体。",
+  "triviaId": "HPQuiz_20251016_SiberianLynx",
+  "triviaData": {
+    "question": "欧亚猞猁外貌的一个显著特征是什么？",
+    "options": [
+      {
+        "text": "长而蓬松的耳朵",
+        "url": "/search?q=%E9%95%BF%E8%80%8C%E8%93%AC%E6%9D%BE%E7%9A%84%E8%80%B3%E6%9C%B5&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251016_SiberianLynx%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "条纹毛皮",
+        "url": "/search?q=%E9%95%BF%E8%80%8C%E8%93%AC%E6%9D%BE%E7%9A%84%E8%80%B3%E6%9C%B5&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251016_SiberianLynx%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "明亮的蓝色眼睛",
+        "url": "/search?q=%E9%95%BF%E8%80%8C%E8%93%AC%E6%9D%BE%E7%9A%84%E8%80%B3%E6%9C%B5&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251016_SiberianLynx%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
