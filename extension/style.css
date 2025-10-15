@@ -492,13 +492,11 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
 }
 
 .app-dash {
-    padding: 10px 20px 10px 60px; /* keep compact; lift space handled by extended hover zone */
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     font-family: 'FangSong', 'STFangsong', 'STSong', 'SimSun', 'serif';
     font-style: italic;
     width: 70%;
@@ -507,17 +505,9 @@ html,body,a,div,main,span,table,tr,td,strong,ul,ol,li,h1,h2,h3,p,input {
 
 /* Narrow trigger hotspot (center bottom band). Do not shrink visible text width. */
 .quote-hotspot {
+    padding: 10px 0px 10px 0px; /* keep compact; lift space handled by extended hover zone */
     position: fixed;
-    left: 50%;
-    bottom: 0;
-    /* Responsive trigger width: widened (min 260px, prefers 42vw, max 600px) */
-    width: clamp(260px, 42vw, 600px);
-    /* Adaptive height band: min 42px, prefers 6vh, max 56px */
-    height: clamp(42px, 6vh, 56px);
-    transform: translateX(-50%);
-    pointer-events: auto;
-    /* Transparent but keeps hover; optionally debugging: background: rgba(255,0,0,.15); */
-    z-index: 1005; /* below popup (1020) above base quote (1010) */
+    width: 70%;
 }
 
 /* Ensure the rest of app-dash doesn't count for hover (except hotspot & popup). */
