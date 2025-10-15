@@ -9,8 +9,21 @@
   "version": "1.7",
   "incognito": "split",
   "chrome_url_overrides": {
-    "newtab": "blank.html"
+    "newtab": "index.html"
   },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "newtab.html",
+        "blank.html",
+        "options.html"
+      ],
+      "matches": [
+        "https://*.bing.com/",
+        "https://*.s3.ap-east-1.amazonaws.com/"
+      ]
+    }
+  ],
   "icons": {
     "16": "./16_icon.png",
     "32": "./32_icon.png",
