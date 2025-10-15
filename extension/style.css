@@ -182,7 +182,7 @@ html, body {
 }
 
 .mc_caro {
-    margin: 0;
+    margin: auto;
     text-align: right;
     bottom: 0;
     position: relative;

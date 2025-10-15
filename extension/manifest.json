@@ -19,8 +19,8 @@
         "options.html"
       ],
       "matches": [
-        "https://*.bing.com/",
-        "https://*.s3.ap-east-1.amazonaws.com/"
+        "https://*.bing.com/*",
+        "https://*.s3.ap-east-1.amazonaws.com/*"
       ]
     }
   ],

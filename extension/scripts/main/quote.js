@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const quote = document.querySelector('.quote');
-    if (quote) quote.style.bottom = '10px';
+    if (quote) quote.style.bottom = '15px';
 
     const hotspot = document.querySelector('.quote-hotspot');
     const popup = document.querySelector('.below');
