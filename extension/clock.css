@@ -44,9 +44,8 @@
 		
 #center-clock {
   color: #fff;
-  font-size: 9.5rem;
+  font-size: clamp(3.5rem, min(12vw, 12vh), 11rem);
   font-weight: 400;
-  font-style: light;
   font-family: -apple-system, BlinkMacSystemFont, Pretendard, Roboto, 'Segoe UI', Helvetica, Arial, sans-serif;
   z-index: 2;
   pointer-events: none;
