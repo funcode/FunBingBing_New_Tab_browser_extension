@@ -22,3 +22,11 @@
 
 # compiled
 apps/chrome-extension/public/manifest.json
+archives/commits.txt
+archives/merge.js
+extract_quote_funvm.js
+.vscode/settings.json
+archives/collect.sh
+archives/merged_file.txt
+extension/data_design.md
+extension/data_design.png
