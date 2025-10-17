@@ -1,0 +1,46 @@
+{
+  "caption": "罗克河瀑布，上半岛，密歇根州",
+  "title": "罗克河瀑布，上半岛，密歇根州，美国",
+  "description": "密歇根州罗克河峡谷深处，罗克河瀑布在冰川雕琢的景观中悄然显现，周遭密林环绕，层层历史沉淀。在上半岛这片土地上，人类足迹绵延数千年：原住民阿尔冈昆语族之后，法国与英国探险者接踵而至；19世纪采矿与伐木业繁荣时期，芬兰、瑞典及法裔加拿大移民在此定居。如今这片人烟稀少的区域仅容纳着密歇根州3%的居民，森林与瀑布依旧保留着近乎原始的宁静。",
+  "copyright": "© Matt Anderson Photography/Getty Images",
+  "date": "2025 10月 17",
+  "clickUrl": "/search?q=%e5%af%86%e6%ad%87%e6%a0%b9%e5%b7%9e%e7%bd%97%e5%85%8b%e6%b2%b3%e8%8d%92%e9%87%8e&form=hpcapt&filters=HpDate:\"20251016_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.RockRiverFalls_ZH-CN6532185546_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.RockRiverFalls_ZH-CN6532185546_UHD.jpg",
+      "wallpaper": "/th?id=OHR.RockRiverFalls_ZH-CN6532185546_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.RockRiverFalls_ZH-CN6532185546_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.RockRiverFalls_ZH-CN6532185546_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.RockRiverFalls_ZH-CN6532185546_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "要抵达瀑布，需沿着蜿蜒小径徒步前行，途中松柏参天、枫树成荫，林荫下蕨类与野花尽情舒展。红松鼠穿梭其间，白尾鹿悄然移动，鸥鸟与啄木鸟的鸣叫在海瓦萨国家森林回荡。小径尽头，一道18英尺高的瀑布倾泻而下，汇入清澈水潭。随着季节更替，这里展现出不同的风貌：夏日阳光在水面流转跳跃，秋日将树冠染成绚烂火海，冬日则为岩石披上晶莹冰晶。在罗克河瀑布，每一次造访，都是一次感官与自然灵魂的全新邂逅。",
+  "descriptionPara3": "",
+  "isoDate": "20251017",
+  "headline": "爱上密歇根",
+  "quickFact": "该森林拥有超过100英里（160公里）的海岸线。两个区域均毗邻苏必利尔湖和密歇根湖。",
+  "triviaId": "HPQuiz_20251017_RockRiverFalls",
+  "triviaData": {
+    "question": "哪个森林环绕着罗克河瀑布？",
+    "options": [
+      {
+        "text": "渥太华国家森林",
+        "url": "/search?q=%E6%B5%B7%E5%8D%8E%E6%B2%99%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251017_RockRiverFalls%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "海华沙国家森林",
+        "url": "/search?q=%E6%B5%B7%E5%8D%8E%E6%B2%99%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251017_RockRiverFalls%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "苏必利尔国家森林",
+        "url": "/search?q=%E6%B5%B7%E5%8D%8E%E6%B2%99%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251017_RockRiverFalls%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
