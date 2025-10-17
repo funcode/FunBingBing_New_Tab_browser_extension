@@ -14,7 +14,9 @@
     font-size: var(--panel-font-size, 1rem);
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
+    display: none;
 }
+
 .description .title {
     font-size: 1.2em;
     text-align: left;
