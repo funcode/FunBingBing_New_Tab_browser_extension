@@ -3,6 +3,7 @@
     /* Shared panel styling for description & quote popup */
     --panel-bg: rgba(1,1,1,0.45); /* unify with description background */
     --panel-font-size: 1.2rem;      /* base font size for panel text */
+    --functions-offset: 30px;       /* default inset for the functions panel */
 }
 body {
 	background-repeat: no-repeat;
@@ -72,8 +73,8 @@ body {
 /*  top right function zone */
 #functions-div {
 	position: fixed;
-	top: 30px;
-	right: 30px;
+    top: var(--functions-offset);
+    right: var(--functions-offset);
 	color: white;
 	text-align: center;
 	z-index: 2000; /* Raised from inline style to ensure it sits above trivia/quote layers */
@@ -535,12 +536,9 @@ object {
 
             /* Ensure functions-div remains visible on narrow screens (like when dev tools are open) */
 @media screen and (max-width: 768px) {
-	#functions-div {
-		position: fixed;
-		top: 10px;
-		right: 10px;
-		z-index: 2000; /* keep consistent with main rule */
-	}
+    :root {
+        --functions-offset: 10px;
+    }
 }
 /* Quote hover/lift component */
 .quote {
@@ -578,16 +576,13 @@ object {
     height: 1.2rem; /* keep compact; lift space handled by extended hover zone */
     position: fixed;
     width: 70%;
+    pointer-events: auto;
 }
 
 /* Ensure the rest of app-dash doesn't count for hover (except hotspot & popup). */
 .app-dash.pointer-events-none { pointer-events: none; }
 .app-dash .quote-body { pointer-events: none; }
 .app-dash .below { pointer-events: none; }
-.quote-hotspot,
-.below {
-    pointer-events: auto;
-}
 
 /* Invisible extended hover zone to avoid flicker when moving */
 /* Extended hover zone to reduce flicker when cursor travels upward */
@@ -612,6 +607,8 @@ object {
     width: auto;
     cursor: pointer;
     padding-right: .5ch; /* prevent last glyph (e.g. ”) from clipping when ellipsis not applied */
+    /* Smooth fade for the inline body when leaving */
+    transition: opacity .18s ease;
 }
 
 .below {
@@ -658,11 +655,6 @@ object {
     visibility: hidden;
     opacity: 0;
 }
-
-/* Smooth fade for the inline body when leaving */
-.quote-body { transition: opacity .18s ease; }
-
-
 /* Normalize quote colors: keep link & caption same as quote text */
 .quote a,
 .quote a:visited,
