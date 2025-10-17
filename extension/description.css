@@ -31,6 +31,13 @@
     font-family: 'FangSong', 'STFangsong', 'STSong', 'SimSun', 'serif';
     font-size: var(--panel-font-size, 1rem);
 }
+
+.icon-quick-fact {
+  width: 24px;           /* or any desired size */
+  height: 24px;
+  fill: currentColor;     /* color inherits from text or parent */
+}
+
 /* To fix the font issue found in a Windows RDP window */
 @media (-webkit-device-pixel-ratio: 1.25), (device-pixel-ratio: 1.25) {
     .description .sub {
