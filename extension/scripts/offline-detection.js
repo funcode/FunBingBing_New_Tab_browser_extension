@@ -1,6 +1,6 @@
 // Configurable endpoint for actual network test
 const NETWORK_TEST_URL = 'https://www.bing.com/favicon.ico';
-const connectionCheckInterval = 30000; // 30 seconds
+const connectionCheckInterval = 15000; // 15 seconds
 const MAX_FETCH_RETRIES = 2; // retry twice on failure -> total 3 attempts
 const RETRY_DELAY_MS = 1500;
 
