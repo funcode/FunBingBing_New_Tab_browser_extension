@@ -19,20 +19,11 @@ function showTopSites() {
 
 // init topSites 
 function initTopSites() {
-	// check switch
-	if (readConf('show_top_sites') == 'yes') {
-		// check permission
-		chrome.permissions.contains({ permissions: ['topSites'] }, function (result) {
-			if (result) {
-				// if have permission
-				showTopSites();
-			} else {
-				// if no permission
-				writeConf('show_top_sites', 'no');
-			}
-		});
-	}
-
+	TopSites.ensureEnabled(function (enabled) {
+		if (enabled) {
+			showTopSites();
+		}
+	});
 }
 
 // load custom bookmarks

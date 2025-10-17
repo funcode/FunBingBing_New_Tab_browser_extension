@@ -4,6 +4,25 @@ const CURRENT_VERSION = manifestData.version;
 const CURRENT_LOCALE = chrome.i18n.getMessage('@@ui_locale');
 const CURRENT_BROWSER = "chrome";
 
+const DEFAULT_SEARCH_ENGINES = Object.freeze([
+    Object.freeze({
+        name: "Bing",
+        icon: "icons/bing.png",
+        action: "https://bing.com/search",
+        param_name: "q",
+        css_style: "height: 50px;  margin: 10px;"
+    }),
+    Object.freeze({
+        name: "Google",
+        icon: "icons/google.png",
+        action: "https://google.com/search",
+        param_name: "q",
+        css_style: "height: 40px; margin: 15px 10px;"
+    })
+]);
+
+window.DEFAULT_SEARCH_ENGINES = DEFAULT_SEARCH_ENGINES;
+
 // ---- helper funcs ----
 
 // append onload event
@@ -89,50 +108,7 @@ function initializeConf() {
 
     // define default settings  
     const defaultSettings = {
-        search_engine_list: [
-            {
-            name: "Bing", 
-            icon: "icons/bing.png",
-            action: "https://bing.com/search",
-            param_name: "q",
-            css_style: "height: 50px;  margin: 10px;"
-            },
-            {
-            name: "Google", 
-            icon: "icons/google.png",
-            action: "https://google.com/search",
-            param_name: "q",
-            css_style: "height: 40px; margin: 15px 10px;"
-            },
-            {
-            name: "Sogou", 
-            icon: "icons/sogou.png",
-            action: "https://www.sogou.com/web",
-            param_name: "query",
-            css_style: "height: 50px; margin: 10px;"
-            },
-            {
-            name: "Yahoo", 
-            icon: "icons/yahoo.png",
-            action: "https://search.yahoo.com/search",
-            param_name: "p",
-            css_style: "height: 35px; padding: 18px 10px;"
-            },
-            {
-            name: "Yandex", 
-            icon: "icons/yandex.png",
-            action: "https://yandex.com/search",
-            param_name: "text",
-            css_style: "height: 40px; padding: 15px 10px;"
-            },
-            {
-            name: "DuckDuckGo", 
-            icon: "icons/duckduckgo.png",
-            action: "https://duckduckgo.com/",
-            param_name: "q",
-            css_style: "height: 45px; padding: 10px;"
-            }
-        ],
+        search_engine_list: DEFAULT_SEARCH_ENGINES,
         current_search_engine: "Bing",
         display_search_box: "no",
         show_top_sites: "no",

@@ -2,63 +2,8 @@
 // javascript code for option operations in OPTIONS page
 
 // Some default settings.
-// this is duplicated code. should be fixed later.
-const defaultSearchEngines = [
-		{
-			name: "Bing", 
-			icon: "icons/bing.png",
-			action: "https://bing.com/search",
-			param_name: "q",
-			css_style: "height: 50px;  margin: 10px;"
-		},
-		{
-			name: "Google", 
-			icon: "icons/google.png",
-			action: "https://google.com/search",
-			param_name: "q",
-			css_style: "height: 40px; margin: 15px 10px;"
-		},
-		{
-			name: "Sogou", 
-			icon: "icons/sogou.png",
-			action: "https://www.sogou.com/web",
-			param_name: "query",
-			css_style: "height: 50px; margin: 10px;"
-		},
-		{
-			name: "Yahoo", 
-			icon: "icons/yahoo.png",
-			action: "https://search.yahoo.com/search",
-			param_name: "p",
-			css_style: "height: 35px; padding: 18px 10px;"
-		},
-		{
-			name: "Yandex", 
-			icon: "icons/yandex.png",
-			action: "https://yandex.com/search",
-			param_name: "text",
-			css_style: "height: 40px; padding: 15px 10px;"
-		},
-		{
-			name: "DuckDuckGo", 
-			icon: "icons/duckduckgo.png",
-			action: "https://duckduckgo.com/",
-			param_name: "q",
-			css_style: "height: 45px; padding: 10px;"
-		}
-	];
+const defaultSearchEngines = (window.DEFAULT_SEARCH_ENGINES || []).map(engine => ({ ...engine }));
 
-/* const defaultCustomBookmarks = [
-		{
-			name: "历史上的这一天",
-			action: "bing_on_this_day"
-		},
-		{
-			name: "必应上的这一天",
-			action: "random_bing_wallpaper"
-		}
-	];
- */
 // search engine settings
 
 function initSearchEngineConf() {
@@ -114,124 +59,60 @@ function recoverDefaultSearchEngineConf() {
 
 // top sites
 
-function initTopSitesBtn() {
-	// check permission
-	chrome.permissions.contains({
-		permissions: ['topSites']
-	}, function(result) {
-		var show_top_sites = readConf('show_top_sites');
-		var close_btn = document.getElementById('close-top-sites-btn');
-		var open_btn = document.getElementById('open-top-sites-btn');
-		if (result) {
-	      // The extension has the permissions.
-	      if (show_top_sites == 'yes') {
-	      	open_btn.style.display = 'none';
-	      }
-	      else {
-	      	close_btn.style.display = 'none';
-	      }
+function refreshTopSitesButtons() {
+	var close_btn = document.getElementById('close-top-sites-btn');
+	var open_btn = document.getElementById('open-top-sites-btn');
+
+	TopSites.hasPermission(function (hasPermission) {
+		if (hasPermission) {
+			if (TopSites.isEnabled()) {
+				open_btn.style.display = 'none';
+				close_btn.style.display = 'inline-block';
+			} else {
+				open_btn.style.display = 'inline-block';
+				close_btn.style.display = 'none';
+			}
 		} else {
-	      // The extension doesn't have the permissions.
-	      if (show_top_sites == 'no') {
-	      	close_btn.style.display = 'none';
-	      }
-	      else {
-	      	// no permission, but config is open. this is not a normal status
-	      	// change conf
-	      	writeConf('show_to_sites', 'no');
-	      	// show open btn, hide close btn
-	      	close_btn.style.display = 'none';
-	      }
-	    }
+			TopSites.setEnabled(false);
+			open_btn.style.display = 'inline-block';
+			close_btn.style.display = 'none';
+		}
 	});
 }
 
-function openTopSites() {
-	// check permission
-	chrome.permissions.contains({
-		permissions: ['topSites']
-	}, function(result) {
-		var show_top_sites = readConf('show_top_sites');
-		var close_btn = document.getElementById('close-top-sites-btn');
-		var open_btn = document.getElementById('open-top-sites-btn');
-		if (result) {
-	      // The extension has the permissions.
-	        writeConf('show_top_sites', 'yes');
-	      	open_btn.style.display = 'none';
-	      	close_btn.style.display = 'inline-block';
+function initTopSitesBtn() {
+	refreshTopSitesButtons();
+}
 
-		} else {
-	      // The extension doesn't have the permissions.
-	      // ask for permission
-	      var cfm = confirm(i18n('op_top_site_require_perm'));
-	      if (cfm == true) {
-	      	chrome.permissions.request({
-	          permissions: ['topSites']
-	        }, function(granted) {
-	          // The callback argument will be true if the user granted the permissions.
-	          if (granted) {
-	            writeConf('show_top_sites', 'yes');
-		      	open_btn.style.display = 'none';
-		      	close_btn.style.display = 'inline-block';
-	          } else {
-	            // do nothing
-	            alert(i18n('op_top_site_perm_fail'));
-	          }
-	        });
-	      }
-	    }
+function openTopSites() {
+	TopSites.hasPermission(function (hasPermission) {
+		if (hasPermission) {
+			TopSites.setEnabled(true);
+			refreshTopSitesButtons();
+			return;
+		}
+
+		var cfm = confirm(i18n('op_top_site_require_perm'));
+		if (cfm == true) {
+			TopSites.requestPermission(function (granted) {
+				if (granted) {
+					TopSites.setEnabled(true);
+					refreshTopSitesButtons();
+				} else {
+					alert(i18n('op_top_site_perm_fail'));
+				}
+			});
+		}
 	});
 }
 
 function closeTopSites() {
-	// remove premission 
-	chrome.permissions.remove({
-		permissions: ['topSites']
-	}, function(removed) {
+	TopSites.removePermission(function (removed) {
 		if (removed) {
-			writeConf('show_top_sites', 'no');
-			document.getElementById('close-top-sites-btn').style.display = 'none';
-			document.getElementById('open-top-sites-btn').style.display = 'inline-block';
-		} else {
-          // The permissions have not been removed (e.g., you tried to remove
-          // required permissions).
-      }
-  });
+			refreshTopSitesButtons();
+		}
+	});
 }
-
-// custom bookmarks 
-
-/* function initCustomBookmarks() {
-	var conf = readConf('custom_bkmk_list');
-	if (conf == null) {
-		conf = defaultCustomBookmarks;
-	}
-	document.getElementById('custom-bkmk-textarea').value = JSON.stringify(conf, null, 4);
-	console.log('main.js: initCustomBookmarks done');
-} */
-
-/* function saveCustomBookmarks() {
-	var newConf = document.getElementById('custom-bkmk-textarea').value;
-	// check validaty 
-	var obj = null;
-	try {
-		obj = JSON.parse(newConf);
-		writeConf('custom_bkmk_list', obj);
-		alert(i18n('op_saved_alert'));
-	} 
-	catch (e) {
-		alert(i18n('op_bad_json_alert') +'\n' + e);
-	}
-} */
-
-/* function recoverCustomBookmarks() {
-	var cfm = confirm(i18n('op_reset_default_confirm_alert'));
-	if (cfm == true) {
-		writeConf('custom_bkmk_list', defaultCustomBookmarks);
-		document.getElementById('custom-bkmk-textarea').value = JSON.stringify(defaultCustomBookmarks, null, 4);
-		alert(i18n('op_reset_default_done_alert'));
-	}
-} */
 
 
 // wallpaper settings
@@ -310,12 +191,6 @@ initTopSitesBtn();
 document.getElementById('open-top-sites-btn').onclick = openTopSites;
 document.getElementById('close-top-sites-btn').onclick = closeTopSites;
 
-// init custom bookmarks
-//initCustomBookmarks();
-
-// bind save custom bookmark conf
-//document.getElementById('save-custom-bkmk-conf').onclick = saveCustomBookmarks;
-//document.getElementById('recover-custom-bkmk-conf').onclick = recoverCustomBookmarks;
 
 // init wallpaper
 initWallpaperConf();
