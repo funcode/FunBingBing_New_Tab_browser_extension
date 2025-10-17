@@ -569,7 +569,7 @@ function setContents(image) {
 			const a = document.createElement('a');
 			a.href = `https://cn.bing.com${option.url}`;
 			a.target = '_blank';
-			a.setAttribute('data-h', 'ID=HpApp,28281.1');
+			//a.setAttribute('data-h', 'ID=HpApp,28281.1');
 			a.setAttribute('aria-label', `Answer: ${option.bullet}`);
 
 			const bullet = document.createElement('span');
