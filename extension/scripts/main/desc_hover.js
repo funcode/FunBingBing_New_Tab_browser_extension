@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+const initDescriptionHover = function () {
   var hdln_div = document.getElementById('headline_div');
   var hdln_txt = document.getElementById('headline');
   var desc = document.getElementById('description');
@@ -16,4 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
     hdln_div.style.display = 'block';
     quote.style.display = ''; // 显示 quote
   });
-}); 
+}; 
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initDescriptionHover, { once: true });
+} else {
+  initDescriptionHover();
+}

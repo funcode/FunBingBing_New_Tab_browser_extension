@@ -1,23 +1,10 @@
-
 const manifestData = chrome.runtime.getManifest();
 const CURRENT_VERSION = manifestData.version;
 const CURRENT_LOCALE = chrome.i18n.getMessage('@@ui_locale');
 const CURRENT_BROWSER = "chrome";
+const confCache = {};
 
 // ---- helper funcs ----
-
-// append onload event
-function appendOnLoadEvent(func) {
-    const old_onload = window.onload;
-    if (typeof window.onload != 'function') { // this is the first onload func
-        window.onload = func;
-    } else {  
-        window.onload = function() {
-            old_onload();  // call old onload func
-            func();  // call current func
-        }
-    }
-}
 
 // get current date string in yyyymmdd format
 function getDateString() {
@@ -34,33 +21,47 @@ function i18n(key) {
 }
 
 
-// write chrome storage
-function writeConf(key, value) {
-    localStorage[key] = JSON.stringify(value);
-    /*
-    chrome.storage.sync.set({key: value}, function() {
-        console.log('Save value of ' + key);
-    });
-    */
+// Load everything from chrome.storage.local into memory at startup
+async function initConfCache() {
+  const allItems = await chrome.storage.local.get(null);
+  Object.assign(confCache, allItems);
 }
 
-// read chrome storage
-function readConf(key) {
-    let val = localStorage[key];
-    if (val == undefined) {
-        return undefined;
-    }
-    else {
-        return JSON.parse(val);
-    }
-    
-    /*
-    chrome.storage.sync.get([key], function(result) {
-        console.log('Read value of ' + key);
-        func(result.key);
-    });
-    */
+// Write: update memory + storage
+async function writeConf(key, value) {
+  confCache[key] = value;
+  await chrome.storage.local.set({ [key]: value });
 }
+
+// Read: return from memory (sync-like)
+function readConf(key) {
+  return confCache[key];
+}
+
+const confReadyPromise = (async () => {
+  try {
+    await initConfCache();
+  } catch (err) {
+    console.error("initConfCache failed:", err);
+  }
+})();
+
+if (typeof window !== "undefined") {
+  window.confReadyPromise = confReadyPromise;
+}
+
+// Optional: keep cache in sync if other parts of the extension change storage
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "local") {
+    for (const [key, { newValue }] of Object.entries(changes)) {
+      if (newValue === undefined) {
+        delete confCache[key]; // removed
+      } else {
+        confCache[key] = newValue; // updated
+      }
+    }
+  }
+});
 
 // ---- conf initializer ---- 
 
@@ -156,12 +157,13 @@ function initializeConf() {
 
 
 // check if last_open_version is undefined(first install) or less than current version(updated), update the conf items with default value.
-var last_open_version = readConf('last_open_version');
-
-if (last_open_version == undefined || parseFloat(last_open_version) < parseFloat(CURRENT_VERSION)) {
+confReadyPromise.then(() => {
+  const last_open_version = readConf('last_open_version');
+  if (last_open_version == undefined || parseFloat(last_open_version) < parseFloat(CURRENT_VERSION)) {
     console.log("update from ", last_open_version, " to ", CURRENT_VERSION);
-    // init conf
     initializeConf();
-
     writeConf('last_open_version', CURRENT_VERSION);
-}
+  }
+}).catch((err) => {
+  console.error("Configuration initialization skipped due to cache error:", err);
+});
