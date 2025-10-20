@@ -1,6 +1,7 @@
 (window.confReadyPromise || Promise.resolve())
   .then(() => {
     const scriptsToLoad = [
+      "scripts/main/top_sites.js",
       "scripts/option_page/main.js",
       "scripts/option_page/i18n.js"
     ];
