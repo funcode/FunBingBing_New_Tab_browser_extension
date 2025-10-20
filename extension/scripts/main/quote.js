@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+const initQuoteInteractions = () => {
     const quote = document.querySelector('.quote');
     if (quote) quote.style.bottom = '15px';
 
@@ -46,4 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') quote.classList.remove('q-open');
     });
-});
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initQuoteInteractions, { once: true });
+} else {
+    initQuoteInteractions();
+}

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+const initTriviaHover = function () {
   const triviaOuter = document.querySelector('.hp_trivia_outer');
   const triviaInner = triviaOuter?.querySelector('.hp_trivia_inner');
   if (triviaOuter && triviaInner) {
@@ -11,4 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
       triviaInner.ariaExpanded = 'false';
     });
   }
-}); 
+}; 
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTriviaHover, { once: true });
+} else {
+  initTriviaHover();
+}
