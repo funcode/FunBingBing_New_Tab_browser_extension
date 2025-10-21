@@ -1,7 +1,6 @@
-
-// page title
-function i18n_page_title(){
-	document.title = i18n('op_title');
+// i18n
+function i18n(key) {
+    return chrome.i18n.getMessage(key);
 }
 
 // display title

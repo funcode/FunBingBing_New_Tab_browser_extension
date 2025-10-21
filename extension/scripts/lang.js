@@ -14,4 +14,15 @@ function detectAndSetLang() {
     } catch (e) { /* silent */ }
 }
 
+// i18n
+function i18n(key) {
+    return chrome.i18n.getMessage(key);
+}
+// page title
+function i18n_page_title(){
+    var fileName = (document.location.pathname.split('/').pop() || '').toLowerCase();
+    document.title = i18n(fileName === 'options.html' ? 'op_title' : 'new_tab_title');
+}
+
 detectAndSetLang();
+i18n_page_title();

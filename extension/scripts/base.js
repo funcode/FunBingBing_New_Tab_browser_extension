@@ -34,12 +34,6 @@ function getDateString() {
     return "" + year + month + day;
 }
 
-// i18n
-function i18n(key) {
-    return chrome.i18n.getMessage(key);
-}
-
-
 // Load everything from chrome.storage.local into memory at startup
 async function initConfCache() {
   const allItems = await chrome.storage.local.get(null);

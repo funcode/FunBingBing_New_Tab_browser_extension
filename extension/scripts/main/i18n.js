@@ -1,3 +1,7 @@
+// i18n
+function i18n(key) {
+    return chrome.i18n.getMessage(key);
+}
 
 // page title
 function i18n_page_title(){

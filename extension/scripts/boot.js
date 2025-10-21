@@ -1,13 +1,13 @@
 (window.confReadyPromise || Promise.resolve())
   .then(() => {
     const scriptsToLoad = [
+      "scripts/main/i18n.js",
       "scripts/main/top_sites.js",
       "scripts/main/search.js",
       "scripts/main/wallpaper.js",
       "scripts/main/options.js",
       "scripts/main/quick_links.js",
       "scripts/main/update.js",
-      "scripts/main/i18n.js",
       "scripts/main/desc_hover.js",
       "scripts/main/trivia_hover.js",
       "scripts/main/clock.js",
