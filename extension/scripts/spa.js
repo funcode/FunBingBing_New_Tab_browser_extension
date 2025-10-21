@@ -13,14 +13,14 @@ function loadPage(page) {
 function navigate() {
   const online = checkOnlineStatus();
   if (online) {
-    loadPage('blank.html');
-  } else {
     loadPage('newtab.html');
+  } else {
+    loadPage('offline.html');
   }
 }
 
-window.addEventListener('online', () => loadPage('blank.html'));
-window.addEventListener('offline', () => loadPage('newtab.html'));
+window.addEventListener('online', () => loadPage('newtab.html'));
+window.addEventListener('offline', () => loadPage('offline.html'));
 
 // Initial navigation
 navigate();

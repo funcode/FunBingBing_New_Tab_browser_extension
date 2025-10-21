@@ -7,7 +7,7 @@ const RETRY_DELAY_MS = 1500;
 console.log('Current online status:', navigator.onLine);
 
 window.addEventListener('online', function() {
-    window.location.href = 'blank.html';
+    window.location.href = 'newtab.html';
     console.log('Network status changed to: online');
 });
 
@@ -17,9 +17,9 @@ window.addEventListener('offline', function() {
 });
 
 function redirectToNewPageIfNeeded(page) {
-  if (!window.location.pathname.endsWith(page || 'newtab.html')) {
+  if (!window.location.pathname.endsWith(page || 'offline.html')) {
     localStorage.removeItem('wallpaper_date');
-    window.location.href = page || 'newtab.html';
+    window.location.href = page || 'offline.html';
   }
 }
 
@@ -43,7 +43,7 @@ async function checkActualConnection() {
 
       if (response.ok) {
         console.log(`Actual network test: Connected (attempt ${attemptNumber}/${totalAttempts})`);
-        redirectToNewPageIfNeeded('blank.html');
+        redirectToNewPageIfNeeded('newtab.html');
         return true;
       }
 

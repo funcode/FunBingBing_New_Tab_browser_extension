@@ -47,7 +47,7 @@ async function applyWallpaperFromBlob(blob, originalUrl, image) {
 	body.style.backgroundImage = `url('${objectUrl}')`;
 	setContents(image);
 	writeConf('wallpaper_url', originalUrl);
-	const existingIframe = body.querySelector('iframe[src="newtab.html"]');
+	const existingIframe = body.querySelector('iframe[src="offline.html"]');
 	if (existingIframe) {
 		body.removeChild(existingIframe);
 	}
