@@ -1,0 +1,46 @@
+{
+  "caption": "贝洛格拉齐克石林，保加利亚",
+  "title": "贝洛格拉齐克石林，保加利亚",
+  "description": "在保加利亚巴尔干山脉西麓，贝洛格拉奇克石林如同一座天然画廊，每一块岩石都诉说着独特的故事。这些砂岩与石灰岩柱经过数百万年的风化与侵蚀，形成了千姿百态的奇特造型，当地人坚信其中有些轮廓酷似人物、动物，甚至完整的场景。因此，这些岩石也被赋予了富有想象力的名字，如\"骑手岩\"、\"女学生岩\"、\"僧侣岩\"等。在这片土地上，辨认岩石形状就像在玩一场大自然版的猜谜游戏，既有趣又充满惊喜。",
+  "copyright": "© EvaL Miko/Shutterstock",
+  "date": "2025 10月 22",
+  "clickUrl": "/search?q=%e8%b4%9d%e6%b4%9b%e6%a0%bc%e6%8b%89%e9%bd%90%e5%85%8b%e7%9f%b3%e6%9e%97&form=hpcapt&filters=HpDate:\"20251021_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BulgariaRocks_ZH-CN0234903972_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BulgariaRocks_ZH-CN0234903972_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BulgariaRocks_ZH-CN0234903972_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BulgariaRocks_ZH-CN0234903972_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BulgariaRocks_ZH-CN0234903972_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BulgariaRocks_ZH-CN0234903972_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这些岩石如今已被列入联合国教科文组织的世界遗产预备名单，绵延超过18英里，环绕着贝洛格拉奇克小镇。它们的色彩会随着光线变化，从深红到金黄，宛如一幅动态的自然画卷。历史也曾赋予它们实际用途——贝洛格拉奇克堡垒就是最好的例证。这座堡垒最早由罗马人修建，后来又被奥斯曼人加固，其结构巧妙地依托岩石作为天然屏障。毕竟，当山体已经筑起坚固防线，又何须再费力建墙？如今，游客们来到这里徒步、攀岩、拍照，探索那些奇形怪状的岩石。但他们往往带走的不只是照片，更是故事。贝洛格拉奇克石林不仅是地质构造，更是凝固在石头中的传说。",
+  "descriptionPara3": "",
+  "isoDate": "20251022",
+  "headline": "刻在石头上",
+  "quickFact": "2009年1月，贝洛格拉奇克石林被提名为保加利亚参与\"新七大自然奇观\"评选活动的候选地。",
+  "triviaId": "HPQuiz_20251022_BulgariaRocks",
+  "triviaData": {
+    "question": "保加利亚的显著地理特征是哪个山脉？",
+    "options": [
+      {
+        "text": "罗多彼山脉",
+        "url": "/search?q=%E7%BD%97%E5%A4%9A%E5%BD%BC%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251022_BulgariaRocks%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "阿尔卑斯山",
+        "url": "/search?q=%E7%BD%97%E5%A4%9A%E5%BD%BC%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251022_BulgariaRocks%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "喀尔巴阡山脉",
+        "url": "/search?q=%E7%BD%97%E5%A4%9A%E5%BD%BC%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251022_BulgariaRocks%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
