@@ -1,0 +1,46 @@
+{
+  "caption": "国际雪豹日",
+  "title": "雪豹和她的幼崽, 斯皮提谷, 寒冷沙漠生物圈保护区, 印度",
+  "description": "你可曾尝试在野外寻找雪豹的踪迹？它被称为\"山中幽灵\"绝非空穴来风——你更可能看到它的爪印，而不是它本尊的身影。但每年10月23日，这位神秘的高原猎手会走到聚光灯下，因为这一天是专为它设立的“国际雪豹日”，旨在呼吁保护这种难得一见的掠食者及其崎岖的栖息地。",
+  "copyright": "© Oriol Alamany/naturepl.com",
+  "date": "2025 10月 23",
+  "clickUrl": "/search?q=%e5%9b%bd%e9%99%85%e9%9b%aa%e8%b1%b9%e6%97%a5&form=hpcapt&filters=HpDate:\"20251022_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SnowLeopard_ZH-CN6644701381_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SnowLeopard_ZH-CN6644701381_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SnowLeopard_ZH-CN6644701381_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SnowLeopard_ZH-CN6644701381_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SnowLeopard_ZH-CN6644701381_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SnowLeopard_ZH-CN6644701381_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "雪豹栖息在亚洲12个国家的高海拔山脉之间，从阿富汗到中国，足迹遍布广袤的高原地带。它们拥有厚实的皮毛和修长的尾巴，专为寒冷、崎岖的山地环境而生。然而，即便是如此隐秘的猎手，也无法躲避偷猎、栖息地缩减以及气候变化等威胁。如今，野外雪豹数量已不足7000只，保护工作刻不容缓。在印度寒冷沙漠生物圈保护区的岩壁间，一张雪豹母亲庇护幼崽的照片，生动展现了这一物种所面临的生存挑战。正因如此，各国政府、自然保护组织与当地社区携手合作，共同守护雪豹及其赖以生存的生态系统。",
+  "descriptionPara3": "毕竟，保护雪豹也意味着守护数百万下游居民的水源和生物多样性。作为高山生态系统中的关键物种，雪豹通过捕食食草动物维持生态平衡，防止过度啃食植被。而这些植被不仅能固定土壤，还能有效保留雪融水，维持流域健康。因此，保护雪豹，不只是拯救一种濒危动物，更是守护整个高原生态系统的命脉。",
+  "isoDate": "20251023",
+  "headline": "雪中深情",
+  "quickFact": "2021年，该物种被列入中国《国家重点保护野生动物名录》，属于国家一级保护野生动物。",
+  "triviaId": "HPQuiz_20251023_SnowLeopard",
+  "triviaData": {
+    "question": "雪豹的主要栖息地是什么？",
+    "options": [
+      {
+        "text": "寒冷的山区",
+        "url": "/search?q=%E5%AF%92%E5%86%B7%E7%9A%84%E5%B1%B1%E5%8C%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251023_SnowLeopard%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "热带森林",
+        "url": "/search?q=%E5%AF%92%E5%86%B7%E7%9A%84%E5%B1%B1%E5%8C%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251023_SnowLeopard%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "沙漠",
+        "url": "/search?q=%E5%AF%92%E5%86%B7%E7%9A%84%E5%B1%B1%E5%8C%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251023_SnowLeopard%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
