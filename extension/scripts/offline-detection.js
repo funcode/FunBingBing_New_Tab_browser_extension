@@ -6,10 +6,10 @@ const RETRY_DELAY_MS = 1500;
 
 console.log('Current online status:', navigator.onLine);
 
-window.addEventListener('online', function() {
+/* window.addEventListener('online', function() {
     window.location.href = 'newtab.html';
     console.log('Network status changed to: online');
-});
+}); */
 
 window.addEventListener('offline', function() {
   redirectToNewPageIfNeeded();

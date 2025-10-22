@@ -8,6 +8,8 @@ function revokeCurrentWallpaperObjectUrl() {
 	}
 }
 
+window.revokeCurrentWallpaperObjectUrl = revokeCurrentWallpaperObjectUrl;
+
 async function fetchWallpaperBlob(url) {
 	if (!url) {
 		throw new Error('Invalid wallpaper url');
@@ -55,6 +57,16 @@ async function applyWallpaperFromBlob(blob, originalUrl, image) {
 
 // set wallpaper to default
 async function showDefaultWallpaper() {
+	function loadNewTabIframe() {
+		revokeCurrentWallpaperObjectUrl();
+		let existingIframe = body.querySelector('iframe[src="offline.html"]');
+		if (!existingIframe) {
+			existingIframe = document.createElement('iframe');
+			existingIframe.src = 'offline.html';
+			existingIframe.style.cssText = 'width: 100%; height: 100%; border: none; position: absolute; top: 0; left: 0; z-index: 0;';
+			body.appendChild(existingIframe);
+		}
+	}
 	const body = document.getElementById('main-body');
 	if (!body) return;
 	const wallpaperUrl = readConf('wallpaper_url');
@@ -73,13 +85,21 @@ async function showDefaultWallpaper() {
 			imageForContent = bingImages[idx];
 		}
 		try {
+			if ('caches' in window) {
+				const cache = await caches.open(WALLPAPER_CACHE_NAME);
+				const cachedResponse = await cache.match(wallpaperUrl);
+				if (!cachedResponse) {
+					loadNewTabIframe();
+				}
+			}
 			const blob = await fetchWallpaperBlob(wallpaperUrl);
 			await applyWallpaperFromBlob(blob, wallpaperUrl, imageForContent);
 			return;
 		} catch (err) {
-			console.error('Failed to load cached wallpaper:', err);
+			console.error('Failed to load cached wallpaper via Cache Storage:', err);
 		}
 	}
+	loadNewTabIframe();
 }
 
 // set footer text
