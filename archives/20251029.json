@@ -1,0 +1,46 @@
+{
+  "caption": "法纳尔森林里的古老月桂树，马德拉群岛，葡萄牙",
+  "title": "法纳尔森林里的古老月桂树，马德拉群岛，葡萄牙",
+  "description": "葡萄牙的马德拉岛位于本土西南约600英里处，这里隐藏着一片与众不同的森林。在岛的北坡上坐落着法纳尔森林，薄雾在古老的月桂树间飘荡。这些树是马德拉岛亚热带常绿林的一部分，亚热带常绿林是曾经广泛分布的月桂树林的杰出遗迹。它是现存规模最大的同类森林，其中约90%被认定为原始林。这里孕育着独特的动植物群，包括马德拉长趾鸽等特有物种，堪称一座活着的自然历史博物馆。",
+  "copyright": "© Lukas Jonaitis/Shutterstock",
+  "date": "2025 10月 29",
+  "clickUrl": "/search?q=%e8%91%a1%e8%90%84%e7%89%99%e9%a9%ac%e5%be%b7%e6%8b%89%e7%be%a4%e5%b2%9b&form=hpcapt&filters=HpDate:\"20251028_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.FanalForest_ZH-CN2203572101_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.FanalForest_ZH-CN2203572101_UHD.jpg",
+      "wallpaper": "/th?id=OHR.FanalForest_ZH-CN2203572101_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.FanalForest_ZH-CN2203572101_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.FanalForest_ZH-CN2203572101_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.FanalForest_ZH-CN2203572101_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在法纳尔，盘根错节、覆满苔藓的树干宛如守护者，守望着这片古老的遗产，数百年来自然的生机始终未曾消逝。除了蜿蜒的小径，这里还有静谧的角落供人驻足欣赏。在风景优美的观景点之间，有一片休闲区，并设有公共烧烤设施，甚至还有一个由远古火山口形成的冬季湖泊。这里既可以单纯地呼吸新鲜空气、放松身心，也能尽情嬉戏，让人流连忘返。",
+  "descriptionPara3": "",
+  "isoDate": "20251029",
+  "headline": "时光扎根",
+  "quickFact": "这是马德拉岛和加那利群岛月桂林中的常见树种，富含精油，刚砍伐时木材会散发出刺鼻气味。",
+  "triviaId": "HPQuiz_20251029_FanalForest",
+  "triviaData": {
+    "question": "法纳尔森林的位置具有什么主要特征？",
+    "options": [
+      {
+        "text": "它位于一个沙漠地区。",
+        "url": "/search?q=%E5%AE%83%E4%BD%8D%E4%BA%8E%E4%B8%80%E4%B8%AA%E6%B9%BF%E6%B6%A6%E7%9A%84%E6%A3%AE%E6%9E%97%E5%9C%B0%E5%8C%BA%E3%80%82&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251029_FanalForest%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "它位于一个湿润的森林地区。",
+        "url": "/search?q=%E5%AE%83%E4%BD%8D%E4%BA%8E%E4%B8%80%E4%B8%AA%E6%B9%BF%E6%B6%A6%E7%9A%84%E6%A3%AE%E6%9E%97%E5%9C%B0%E5%8C%BA%E3%80%82&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251029_FanalForest%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "它是一个山区的一部分。",
+        "url": "/search?q=%E5%AE%83%E4%BD%8D%E4%BA%8E%E4%B8%80%E4%B8%AA%E6%B9%BF%E6%B6%A6%E7%9A%84%E6%A3%AE%E6%9E%97%E5%9C%B0%E5%8C%BA%E3%80%82&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251029_FanalForest%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
