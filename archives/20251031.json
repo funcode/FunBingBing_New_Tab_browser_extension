@@ -1,0 +1,46 @@
+{
+  "caption": "万圣节快乐！",
+  "title": "布兰城堡入口, 布拉索夫, 罗马尼亚",
+  "description": "今夜，万圣节的魔咒笼罩大地——而地球上仅有少数地方能与罗马尼亚的布兰城堡比肩，承载着如此深邃的谜团。这座建于14世纪的堡垒历经战火洗礼，见证君王更迭与帝国兴衰。但在此地，传说比历史更响亮。这座城堡坐落于以阴森传说闻名的特兰西瓦尼亚与昔日由弗拉德三世·德古拉统治的瓦拉几亚之间，散发着令人心悸的遗迹气息。弗拉德的残暴名声启发了布拉姆·斯托克1897年创作的小说《德古拉》。尽管故事背景并非布兰城堡，但它巍峨的轮廓与关于弗拉德幽灵出没的传闻，让真实与传说交织模糊，永远将这座城堡与人类最持久的传说之一紧密相连。",
+  "copyright": "© blue sky in my pocket/Getty Images",
+  "date": "2025 10月 31",
+  "clickUrl": "/search?q=%e5%b8%83%e5%85%b0%e5%9f%8e%e5%a0%a1&form=hpcapt&filters=HpDate:\"20251030_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BranCastle_ZH-CN3879660917_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BranCastle_ZH-CN3879660917_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BranCastle_ZH-CN3879660917_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BranCastle_ZH-CN3879660917_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BranCastle_ZH-CN3879660917_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BranCastle_ZH-CN3879660917_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "故事书的篇章之外，布兰城堡还低语着许多幽灵传说。据当地传闻，哀伤的白衣女子在庭院中飘荡；被封墙困住的僧侣脚步声在墙后回响；看不见的孩子们嬉闹的笑声在走廊间流转。闪烁的幽光、骤起的寒意与无形之声的传闻，更添几分不安。值此万圣之夜，布兰城堡的灵魂已超越石砌的躯壳。记忆在此扭曲成神话，现实与超自然的界限变得惊心动魄地模糊。",
+  "descriptionPara3": "",
+  "isoDate": "20251031",
+  "headline": "在万圣节的魔咒之下",
+  "quickFact": "第二次世界大战期间，伊莱安娜公主将布兰城堡改造成了伤兵医院，她本人曾接受过护士培训。",
+  "triviaId": "HPQuiz_20251031_BranCastle",
+  "triviaData": {
+    "question": "在流行文化中，布兰城堡通常与什么联系在一起？",
+    "options": [
+      {
+        "text": "德古拉",
+        "url": "/search?q=%E5%BE%B7%E5%8F%A4%E6%8B%89&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251031_BranCastle%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "弗兰肯斯坦",
+        "url": "/search?q=%E5%BE%B7%E5%8F%A4%E6%8B%89&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251031_BranCastle%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "木乃伊",
+        "url": "/search?q=%E5%BE%B7%E5%8F%A4%E6%8B%89&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251031_BranCastle%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
