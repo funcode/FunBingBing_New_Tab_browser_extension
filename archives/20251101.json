@@ -1,0 +1,46 @@
+{
+  "caption": "黄石公园的野牛",
+  "title": "野牛在温泉边吃草,  黄石国家公园, 怀俄明州, 美国",
+  "description": "野牛体现了一种矛盾：巨大的力量与沉静的气质并存。这些体型庞大的动物体重可达200​​0磅，身高6英尺（约1.8米），成群结队地漫游在北美的草原和河谷。这张照片拍摄于怀俄明州的黄石国家公园，它们的数量曾达数千万头，但在19世纪几乎灭绝——这一灭绝事件重塑了生态系统，扰乱了人们的生活方式。",
+  "copyright": "© Cheryl Ramalho/Getty Images",
+  "date": "2025 11月 1",
+  "clickUrl": "/search?q=%e9%bb%84%e7%9f%b3%e5%85%ac%e5%9b%ad%e7%9a%84%e9%87%8e%e7%89%9b%e7%be%a4&form=hpcapt&filters=HpDate:\"20251031_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BisonSprings_ZH-CN4419733534_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BisonSprings_ZH-CN4419733534_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BisonSprings_ZH-CN4419733534_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BisonSprings_ZH-CN4419733534_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BisonSprings_ZH-CN4419733534_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BisonSprings_ZH-CN4419733534_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "对于无数原住民来说，这些动物一直被尊崇为导师、供养者和精神上的亲人，它们的每一部分都被精心利用，被用作食物、衣物、工具和燃料。正因如此，部落社区带头努力恢复草原、湿地和森林栖息地，形成由母牛、争吵的公牛和好奇的幼牛领导的社会群体。",
+  "descriptionPara3": "站在它们面前，感受古老、中断与复兴在一瞬间交汇。野牛的幸存提醒我们，遗产不仅被铭记，它还被传承，交织在崎岖的地貌和经久不衰的传统之中。",
+  "isoDate": "20251101",
+  "headline": "古老血脉的兽群",
+  "quickFact": "黄石公园的野牛非常特殊，因为它们是美国公共土地上最大的野牛种群。制定符合蒙大拿州法律的检疫计划，对于将黄石公园中未感染布鲁氏菌病的野牛纳入保护区至关重要。",
+  "triviaId": "HPQuiz_20251101_BisonSprings",
+  "triviaData": {
+    "question": "北美标志性物种之一的野牛的平均体重是多少？",
+    "options": [
+      {
+        "text": "400公斤",
+        "url": "/search?q=900%E5%85%AC%E6%96%A4&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251101_BisonSprings%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "900公斤",
+        "url": "/search?q=900%E5%85%AC%E6%96%A4&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251101_BisonSprings%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "1,200千克",
+        "url": "/search?q=900%E5%85%AC%E6%96%A4&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251101_BisonSprings%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
