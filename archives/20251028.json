@@ -1,0 +1,46 @@
+{
+  "caption": "哥特式拱门, 捷克",
+  "title": "安德尔施帕赫-特普利采岩石林的哥特式拱门, 捷克",
+  "description": "从18世纪的最早来访者，到大火烧出小径的故事，这座“岩石之城”一直在诉说着生存的传奇。阿德尔什帕赫–特普利采岩石群位于捷克赫拉德茨–克拉洛韦州，是中欧最大的砂岩迷宫。几个世纪以来，这片悬崖与通道一直被森林覆盖，直到一场大火将树林烧尽，岩石的拱门、塔楼和蜿蜒的廊道才从灰烬中显露出来。最初的徒步小径由此开辟。不久之后，探险家和诗人用石刻铭文留下了他们的印记，描绘出一个既狂野又迷人的目的地。",
+  "copyright": "© Kseniya_Milner/Getty Images",
+  "date": "2025 10月 28",
+  "clickUrl": "/search?q=%e5%93%a5%e7%89%b9%e5%bc%8f%e6%8b%b1%e9%97%a8&form=hpcapt&filters=HpDate:\"20251027_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.TepliceRocks_ZH-CN1785316311_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.TepliceRocks_ZH-CN1785316311_UHD.jpg",
+      "wallpaper": "/th?id=OHR.TepliceRocks_ZH-CN1785316311_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.TepliceRocks_ZH-CN1785316311_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.TepliceRocks_ZH-CN1785316311_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.TepliceRocks_ZH-CN1785316311_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "如今，这片自然保护区占地超过5平方英里，位于布罗乌莫夫斯科自然保护区之内。其中最引人注目的瑰宝之一便是建于1839年的哥特式大门。这座拱门由卢德维克·卡雷尔·纳德赫尔尼下令修建，与步道、桥梁和阶梯一同构成了进入“岩石之城”的标志性入口。哥特式大门不仅是历史的遗迹，如今仍作为迷宫的守护者，迎接着每一位踏入公园的游客。",
+  "descriptionPara3": "",
+  "isoDate": "20251028",
+  "headline": "通往石之奇境的大门",
+  "quickFact": "受中世纪神学的影响，哥特式建筑常给人神秘而幽暗的氛围，甚至带来一种浪漫的“死亡气息”，让人沉浸在其独特的魅力之中，不断追随、改进，最终形成了庞大的体系。",
+  "triviaId": "HPQuiz_20251028_TepliceRocks",
+  "triviaData": {
+    "question": "特普利采主要与哪种自然特征相关？",
+    "options": [
+      {
+        "text": "沙丘",
+        "url": "/search?q=%E5%B2%A9%E7%9F%B3%E6%9E%84%E9%80%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251028_TepliceRocks%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "岩石构造",
+        "url": "/search?q=%E5%B2%A9%E7%9F%B3%E6%9E%84%E9%80%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251028_TepliceRocks%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "湖泊",
+        "url": "/search?q=%E5%B2%A9%E7%9F%B3%E6%9E%84%E9%80%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251028_TepliceRocks%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

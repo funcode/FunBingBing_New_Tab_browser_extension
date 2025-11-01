@@ -1,0 +1,46 @@
+{
+  "caption": "北卡罗来纳州的南瓜农场",
+  "title": "北卡罗来纳州的南瓜农场, 美国",
+  "description": "没有什么比一片等待采摘的南瓜田更能代表秋天了。这些圆滚滚的南瓜出现在南瓜派、门廊装饰、拿铁和游行中。美国一些地方更是把对南瓜的喜爱推向极致——伊利诺伊州莫顿镇自称为“世界南瓜之都”，因为其产量高且与罐装南瓜产业联系紧密。新罕布什尔州则紧随其后，将南瓜定为州水果。",
+  "copyright": "© Matthew H Irvin/Getty Images",
+  "date": "2025 10月 26",
+  "clickUrl": "/search?q=%e5%8d%97%e7%93%9c&form=hpcapt&filters=HpDate:\"20251025_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.PumpkinFarm_ZH-CN1232784365_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.PumpkinFarm_ZH-CN1232784365_UHD.jpg",
+      "wallpaper": "/th?id=OHR.PumpkinFarm_ZH-CN1232784365_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.PumpkinFarm_ZH-CN1232784365_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.PumpkinFarm_ZH-CN1232784365_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.PumpkinFarm_ZH-CN1232784365_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "你是否好奇过，为什么要在南瓜上雕刻？这一传统源自爱尔兰的古老传说。故事里有个叫“吝啬杰克”的人，他多次戏弄魔鬼，结果既不能进天堂，也无法下地狱，只能提着一个挖空的萝卜和一块燃烧的煤炭，在人间游荡照亮前路。后来移民将这个故事带到美国，而南瓜因体积更大、更易雕刻，逐渐取代萝卜，成为南瓜灯的首选。康涅狄格田野南瓜因其体型硕大、表皮光滑和鲜艳的橙色，成为最常见的雕刻品种。南瓜的颜色来自 β-胡萝卜素，但并非都是橙色的，它们也可能长成白色、绿色甚至蓝色。南瓜的妙用不止于此：它们曾作为稻草人守护田野，被用于“抛南瓜”比赛，甚至被掏空当作小船参加竞赛。那么，今年你的雕刻工具准备好了吗？",
+  "descriptionPara3": "",
+  "isoDate": "20251026",
+  "headline": "南瓜日，今日登场！",
+  "quickFact": "2020 年，美国人均南瓜消费量为 6.44 磅。",
+  "triviaId": "HPQuiz_20251026_PumpkinFarm",
+  "triviaData": {
+    "question": "南瓜农场主要种植哪些类型的作物？",
+    "options": [
+      {
+        "text": "萝卜",
+        "url": "/search?q=%E5%8D%97%E7%93%9C&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251026_PumpkinFarm%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "南瓜",
+        "url": "/search?q=%E5%8D%97%E7%93%9C&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251026_PumpkinFarm%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "黄瓜",
+        "url": "/search?q=%E5%8D%97%E7%93%9C&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251026_PumpkinFarm%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
