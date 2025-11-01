@@ -1,0 +1,46 @@
+{
+  "caption": "日本京都岚山地区的枫林与竹林",
+  "title": "岚山缤纷的枫叶与竹林, 京都, 日本",
+  "description": "今日，我们前往京都岚山地区，这里以迷人的四季风光闻名于世。此处，鲜艳的日本红枫与静谧的竹林交织出色彩与宁静的和谐画卷。这些以纤细深裂叶片著称的枫树，每逢秋日便幻化成炽烈的红、橙、金三色，吸引着全球游客纷至沓来。它们不仅因绝美姿态备受推崇，更承载着象征优雅、平和与生命无常的文化意蕴。",
+  "copyright": "© DoctorEgg/Getty Images",
+  "date": "2025 11月 2",
+  "clickUrl": "/search?q=%e4%ba%ac%e9%83%bd%e5%b2%9a%e5%b1%b1&form=hpcapt&filters=HpDate:\"20251101_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.KyotoMaple_ZH-CN4730358356_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.KyotoMaple_ZH-CN4730358356_UHD.jpg",
+      "wallpaper": "/th?id=OHR.KyotoMaple_ZH-CN4730358356_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.KyotoMaple_ZH-CN4730358356_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.KyotoMaple_ZH-CN4730358356_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.KyotoMaple_ZH-CN4730358356_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "嵯峨野竹林同样具有标志性，高耸的真竹和毛竹在微风中轻轻摇曳。几个世纪以来，竹子一直是日本人生活中不可或缺的一部分，从建筑、手工艺到传统仪式，竹子都得到广泛应用。竹子的快速生长和韧性象征着力量和柔韧性，历史上人们种植竹林是为了抵御自然灾害。",
+  "descriptionPara3": "",
+  "isoDate": "20251102",
+  "headline": "竹林吐纳清气，枫叶绚烂如火",
+  "quickFact": "岚山在四月初和十一月下半月最有吸引力（也最繁忙），此时樱花和秋色通常达到顶峰。",
+  "triviaId": "HPQuiz_20251102_KyotoMaple",
+  "triviaData": {
+    "question": "京都的景观中显著相关的主要树种是什么？",
+    "options": [
+      {
+        "text": "樱花",
+        "url": "/search?q=%E6%9E%AB%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251102_KyotoMaple%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "枫树",
+        "url": "/search?q=%E6%9E%AB%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251102_KyotoMaple%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "竹子",
+        "url": "/search?q=%E6%9E%AB%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251102_KyotoMaple%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
