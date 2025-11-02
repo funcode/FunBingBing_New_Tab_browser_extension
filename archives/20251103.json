@@ -1,0 +1,46 @@
+{
+  "caption": "世界水母日",
+  "title": "在太平洋中游泳的水母, 格雷罗, 墨西哥",
+  "description": "它们没有大脑、骨骼，甚至没有心脏，却已在地球海洋中游弋了五亿年。今天，世界水母日，这些摇曳生姿的奇妙生物终于迎来了属于它们的高光时刻——至少在海底世界如此。这一节日旨在推动保护水母栖息地，抵御污染、富营养化径流和海洋酸化等威胁。",
+  "copyright": "© Christian Vizl/TANDEM Stills + Motion",
+  "date": "2025 11月 3",
+  "clickUrl": "/search?q=%e6%b0%b4%e6%af%8d&form=hpcapt&filters=HpDate:\"20251102_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MexicoJelly_ZH-CN5266285518_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MexicoJelly_ZH-CN5266285518_UHD.jpg",
+      "wallpaper": "/th?id=OHR.MexicoJelly_ZH-CN5266285518_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MexicoJelly_ZH-CN5266285518_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MexicoJelly_ZH-CN5266285518_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.MexicoJelly_ZH-CN5266285518_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "别被它们名字里的“鱼”骗了：水母其实属于无脊椎动物门中的刺胞动物类，体内约95%是水。钟形躯体配上拖曳的触手，它们更像海洋中的漂泊者，而非深海健将。有些水母会发光，比如图中拍摄于墨西哥格雷罗外海的这一只；有些则带有毒刺；还有极少数，如“永生水母”，甚至能重置生命循环，重新开始。",
+  "descriptionPara3": "水母是食物链中至关重要的环节，它们为海龟、太阳鱼和海鸟提供食物。其种群数量的突然激增也如同警报，提醒我们海洋因水温升高和过度捕捞而发生的变化。所以，今天让我们给予这些“无脑软体”应有的赞赏——它们比恐龙活得更久，精通漂流的艺术，并证明了有时候“没有脊梁”反而是一种力量。",
+  "isoDate": "20251103",
+  "headline": "随波轻舞",
+  "quickFact": "水母至少存在了5亿年，甚至可能有 7 亿年甚至更久，这使它们成为最古老的多器官动物群。",
+  "triviaId": "HPQuiz_20251103_MexicoJelly",
+  "triviaData": {
+    "question": "水母的身体中有多少百分比是由水组成的？",
+    "options": [
+      {
+        "text": "0.85",
+        "url": "/search?q=0.95&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251103_MexicoJelly%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "0.95",
+        "url": "/search?q=0.95&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251103_MexicoJelly%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "0.75",
+        "url": "/search?q=0.95&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251103_MexicoJelly%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
