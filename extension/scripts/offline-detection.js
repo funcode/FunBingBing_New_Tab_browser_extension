@@ -2,7 +2,7 @@
 const NETWORK_TEST_URL = 'https://www.bing.com/favicon.ico';
 const connectionCheckInterval = 15000; // 15 seconds
 const MAX_FETCH_RETRIES = 2; // retry twice on failure -> total 3 attempts
-const RETRY_DELAY_MS = 1500;
+const RETRY_DELAY_MS = 1000;
 
 console.log('Current online status:', navigator.onLine);
 
