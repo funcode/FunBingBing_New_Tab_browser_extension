@@ -80,9 +80,10 @@ async function showDefaultWallpaper() {
 		if (!existingIframe) {
 			existingIframe = document.createElement('iframe');
 			existingIframe.src = 'newtab.html';
-			existingIframe.style.cssText = 'width: 100%; height: 100%; border: none; position: absolute; top: 0; left: 0; z-index: 0;';
+			existingIframe.style.cssText = 'width: 100%; height: 100%; border: none; position: absolute; top: 0; left: 0; z-index: 0; background-color: #000;';
 			body.appendChild(existingIframe);
 		}
+		existingIframe.style.backgroundColor = '#000';
 	}
 	const body = document.getElementById('main-body');
 	if (!body) return;
