@@ -8,6 +8,20 @@ function revokeCurrentWallpaperObjectUrl() {
 	}
 }
 
+async function preloadWallpaperObjectUrl(objectUrl) {
+	// Wait for the blob-backed image to decode so switching backgrounds does not flash.
+	const img = new Image();
+	img.src = objectUrl;
+	if (typeof img.decode === 'function') {
+		await img.decode();
+		return;
+	}
+	await new Promise((resolve, reject) => {
+		img.onload = () => resolve();
+		img.onerror = () => reject(new Error('Wallpaper image failed to load'));
+	});
+}
+
 async function fetchWallpaperBlob(url) {
 	if (!url) {
 		throw new Error('Invalid wallpaper url');
@@ -44,8 +58,13 @@ async function applyWallpaperFromBlob(blob, originalUrl, image) {
 	const objectUrl = URL.createObjectURL(blob);
 	revokeCurrentWallpaperObjectUrl();
 	currentWallpaperObjectUrl = objectUrl;
-	body.style.backgroundImage = `url('${objectUrl}')`;
+	try {
+		await preloadWallpaperObjectUrl(objectUrl);
+	} catch (preloadError) {
+		console.warn('Wallpaper preloading failed, applying immediately:', preloadError);
+	}
 	setContents(image);
+	body.style.backgroundImage = `url('${objectUrl}')`;
 	writeConf('wallpaper_url', originalUrl);
 	const existingIframe = body.querySelector('iframe[src="offline.html"]');
 	if (existingIframe) {
