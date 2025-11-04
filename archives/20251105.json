@@ -1,0 +1,46 @@
+{
+  "caption": "佩尼亚罗亚山毛榉森林，西班牙",
+  "title": "佩尼亚罗亚山毛榉森林, 蒙卡约自然公园, 萨拉戈萨, 阿拉贡, 西班牙",
+  "description": "西班牙的阿拉贡地区，一般让人想到的是阳光和灌木，而不是森林的阴凉与静谧。然而，当你沿着蒙卡约山坡向上攀登，故事会出现意想不到的转折：一片浓密、低语的山毛榉林悄然迎面而来。这座山犹如气候过山车：山脚是地中海灌木，半山腰是橡树和松林，再往上，霎时间你便置身佩尼亚罗亚，这片山毛榉仙境仿佛在宣告：\"由我来演绎秋天吧！\"",
+  "copyright": "© David Santiago Garcia/DEEPOL by plainpicture",
+  "date": "2025 11月 5",
+  "clickUrl": "/search?q=%e8%a5%bf%e7%8f%ad%e7%89%99%e8%90%a8%e6%8b%89%e6%88%88%e8%90%a8&form=hpcapt&filters=HpDate:\"20251104_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MoncayoAutumn_ZH-CN5187959516_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MoncayoAutumn_ZH-CN5187959516_UHD.jpg",
+      "wallpaper": "/th?id=OHR.MoncayoAutumn_ZH-CN5187959516_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MoncayoAutumn_ZH-CN5187959516_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MoncayoAutumn_ZH-CN5187959516_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.MoncayoAutumn_ZH-CN5187959516_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "秋天，是它们最耀眼的季节。森林像一床拼接的彩色被子，铺满红、金、橙的斑斓。徒步者踩着落叶，发出欢快的“咔嚓”声；鹿儿在林间轻盈穿行，野猪在灌木丛中拱食，苍鹰、金雕等猛禽的鸣叫，为这片山林配上了背景乐。正当你以为这里只有树木时，蒙卡约却展现出人文风情：山腰间隐匿着修道院，岩壁上依偎着小小的隐修所，还有那些曾把森林当作粮仓的古老村落。如今，人们来这里，不再是为了木材，而是为了徒步、拍照，和那一口甘甜的山间空气。",
+  "descriptionPara3": "",
+  "isoDate": "20251105",
+  "headline": "秋天来了，你开心吗？",
+  "quickFact": "对于游客、徒步旅行者和好奇的游客来说，公园的一大亮点是它所拥有的真菌世界。",
+  "triviaId": "HPQuiz_20251105_MoncayoAutumn",
+  "triviaData": {
+    "question": "蒙卡约自然公园在秋季以什么自然特征闻名？",
+    "options": [
+      {
+        "text": "深红色的树叶",
+        "url": "/search?q=%E6%B7%B1%E7%BA%A2%E8%89%B2%E7%9A%84%E6%A0%91%E5%8F%B6&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251105_MoncayoAutumn%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "白雪覆盖的山峰",
+        "url": "/search?q=%E6%B7%B1%E7%BA%A2%E8%89%B2%E7%9A%84%E6%A0%91%E5%8F%B6&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251105_MoncayoAutumn%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "沙漠景观",
+        "url": "/search?q=%E6%B7%B1%E7%BA%A2%E8%89%B2%E7%9A%84%E6%A0%91%E5%8F%B6&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251105_MoncayoAutumn%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
