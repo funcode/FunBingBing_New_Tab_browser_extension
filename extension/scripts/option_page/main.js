@@ -169,7 +169,7 @@ function changeWallpaperConf() {
 		writeConf('show_quote', 'no');
 	}
 	// change wallpaper_data conf to trigger wallpaper reload when open a new tab
-	writeConf('wallpaper_date', '20010101');
+	writeConf('wallpaper_date', '20000101');
 	alert(i18n('op_saved_alert'));
 }
 

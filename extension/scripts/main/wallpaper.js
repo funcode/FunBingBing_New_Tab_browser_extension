@@ -648,7 +648,7 @@ function setContents(image) {
 		else if (qt) {
 			function handleQuoteLinkClick() {
 				//Refetch data when opening a new tab
-				localStorage.removeItem('wallpaper_date');
+				writeConf('wallpaper_date', '20000101');
 			}
 			document.getElementById('quote-source-link').addEventListener('click', handleQuoteLinkClick);
 		}

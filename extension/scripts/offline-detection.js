@@ -18,7 +18,7 @@ window.addEventListener('offline', function() {
 
 function redirectToNewPageIfNeeded(page) {
   if (!window.location.pathname.endsWith(page || 'offline.html')) {
-    localStorage.removeItem('wallpaper_date');
+    writeConf('wallpaper_date', '20000101');
     window.location.href = page || 'offline.html';
   }
 }
