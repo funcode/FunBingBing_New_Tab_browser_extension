@@ -8,7 +8,6 @@
       "scripts/main/wallpaper.js",
       "scripts/main/options.js",
       "scripts/main/quick_links.js",
-      "scripts/main/update.js",
       "scripts/main/desc_hover.js",
       "scripts/main/trivia_hover.js",
       "scripts/main/clock.js",
