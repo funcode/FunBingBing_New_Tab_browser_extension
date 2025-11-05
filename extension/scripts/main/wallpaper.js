@@ -644,7 +644,10 @@ function setContents(image) {
 			const wrapped = `“${raw}”`;
 			if (qt) qt.textContent = wrapped;
 			if (qf) qf.textContent = wrapped;
-			document.getElementById('quote-source-link').removeEventListener('click', handleQuoteLinkClick);
+			const quoteSourceLink = document.getElementById('quote-source-link');
+			if (quoteSourceLink && typeof handleQuoteLinkClick === 'function') {
+				quoteSourceLink.removeEventListener('click', handleQuoteLinkClick);
+			}
 		}
 		else if (qt) {
 			function handleQuoteLinkClick() {
