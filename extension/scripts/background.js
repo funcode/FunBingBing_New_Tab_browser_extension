@@ -97,6 +97,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         sendResponse(responsePayload);
       } catch (error) {
+        //TODO: Retry logic could be added here
         console.error("Error handling getLostQuotes message:", error);
         sendResponse({});
       }

@@ -405,10 +405,11 @@ async function handleBingDataResults(results) {
 				writeConf("lost_quotes",Object.keys(lostQuotes));
 				chrome.runtime.sendMessage({ type: "getLostQuotes", dates: Object.keys(lostQuotes) }, (response) => {
 					if (chrome.runtime.lastError) {
-						console.debug('getLostQuotes message had no response:', chrome.runtime.lastError.message);
+						console.debug('getLostQuotes failed:', chrome.runtime.lastError.message);
 						return;
 					}
 					console.log('Received lost quotes response:', response);
+					//TODO: merge response
 					if (response) {
 						writeConf("s3_quote_of_the_day", { response });
 					}
