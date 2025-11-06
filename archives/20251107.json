@@ -1,0 +1,46 @@
+{
+  "caption": "北极熊",
+  "title": "丘吉尔的北极熊，曼尼托巴省，加拿大",
+  "description": "北极熊是一种大型熊类，原产于北极及其附近地区。加拿大曼尼托巴省的丘吉尔是一个北极熊出没的地方。每年秋天，数百只北极熊聚集在这里，等待海湾结冰，以便再次捕猎海豹——它们的主要食物来源。有没有想过它们是如何保暖的？厚厚的脂肪层和浓密的底毛可以锁住热量。它们游过后，不易缠结的毛发会被甩干，天然油脂可以防止皮毛结冻。遗憾的是，气温升高会延缓结冰过程，迫使北极熊禁食更长时间。为了应对延迟，它们会休息、保存能量，有时还会在附近游荡。科学家们追踪它们的行踪，以了解迁徙模式每年的变化。北极熊周在纪念这些哺乳动物的同时，也提醒我们，它们的未来取决于我们如何应对全球变暖。",
+  "copyright": "© karen crewe/Getty Images",
+  "date": "2025 11月 7",
+  "clickUrl": "/search?q=%e5%8c%97%e6%9e%81%e7%86%8a&form=hpcapt&filters=HpDate:\"20251106_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.WillowBear_ZH-CN3501489210_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.WillowBear_ZH-CN3501489210_UHD.jpg",
+      "wallpaper": "/th?id=OHR.WillowBear_ZH-CN3501489210_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.WillowBear_ZH-CN3501489210_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.WillowBear_ZH-CN3501489210_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.WillowBear_ZH-CN3501489210_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20251107",
+  "headline": "魅力十足的巨型动物",
+  "quickFact": "北极熊的眼睛靠近头顶，这可以使它们在水面游泳时眼睛露出水面。",
+  "triviaId": "HPQuiz_20251107_WillowBear",
+  "triviaData": {
+    "question": "北极熊周期间会做哪些相关的活动？",
+    "options": [
+      {
+        "text": "观看实时直播",
+        "url": "/search?q=%E8%A7%82%E7%9C%8B%E5%AE%9E%E6%97%B6%E7%9B%B4%E6%92%AD&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251107_WillowBear%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "参观北极熊栖息地",
+        "url": "/search?q=%E8%A7%82%E7%9C%8B%E5%AE%9E%E6%97%B6%E7%9B%B4%E6%92%AD&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251107_WillowBear%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "参加狩猎活动",
+        "url": "/search?q=%E8%A7%82%E7%9C%8B%E5%AE%9E%E6%97%B6%E7%9B%B4%E6%92%AD&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251107_WillowBear%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
