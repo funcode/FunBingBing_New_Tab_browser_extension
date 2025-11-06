@@ -65,6 +65,9 @@ async function applyWallpaperFromBlob(blob, originalUrl, image) {
 	}
 	setContents(image);
 	body.style.backgroundImage = `url('${objectUrl}')`;
+	body.removeAttribute('data-wallpaper-fallback');
+	body.classList.remove('wallpaper-fallback-active');
+	body.style.backgroundColor = '';
 	writeConf('wallpaper_url', originalUrl);
 	const existingIframe = body.querySelector('iframe[src="offline.html"]');
 	if (existingIframe) {
@@ -74,16 +77,16 @@ async function applyWallpaperFromBlob(blob, originalUrl, image) {
 
 // set wallpaper to default
 async function showDefaultWallpaper() {
-	function loadOfflineFallbackIframe() {
+	function activateFallbackPlaceholder() {
 		revokeCurrentWallpaperObjectUrl();
-		let existingIframe = body.querySelector('iframe[src="offline.html"]');
-		if (!existingIframe) {
-			existingIframe = document.createElement('iframe');
-			existingIframe.src = 'offline.html';
-			existingIframe.style.cssText = 'width: 100%; height: 100%; border: none; position: absolute; top: 0; left: 0; z-index: 0; background-color: #000;';
-			body.appendChild(existingIframe);
+		body.style.backgroundImage = '';
+		body.style.backgroundColor = '#000';
+		body.setAttribute('data-wallpaper-fallback', 'visible');
+		body.classList.add('wallpaper-fallback-active');
+		const leftoverOfflineIframe = body.querySelector('iframe[src="offline.html"]');
+		if (leftoverOfflineIframe) {
+			body.removeChild(leftoverOfflineIframe);
 		}
-		existingIframe.style.backgroundColor = '#000';
 	}
 	const body = document.getElementById('main-body');
 	if (!body) return;
@@ -107,7 +110,7 @@ async function showDefaultWallpaper() {
 				const cache = await caches.open(WALLPAPER_CACHE_NAME);
 				const cachedResponse = await cache.match(wallpaperUrl);
 				if (!cachedResponse) {
-					loadOfflineFallbackIframe();
+					activateFallbackPlaceholder();
 				}
 			}
 			const blob = await fetchWallpaperBlob(wallpaperUrl);
@@ -117,7 +120,7 @@ async function showDefaultWallpaper() {
 			console.error('Failed to load cached wallpaper via Cache Storage:', err);
 		}
 	}
-	loadOfflineFallbackIframe();
+	activateFallbackPlaceholder();
 }
 
 // set footer text
@@ -685,8 +688,8 @@ function setContents(image) {
 		const qc = document.getElementById('quote-caption');
 		if (qc && image.quoteData.caption) qc.textContent = image.quoteData.caption || '';
 
+		}
 	}
-}
 
 // --------------------------------------------------
 
