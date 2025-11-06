@@ -74,12 +74,12 @@ async function applyWallpaperFromBlob(blob, originalUrl, image) {
 
 // set wallpaper to default
 async function showDefaultWallpaper() {
-	function loadNewTabIframe() {
+	function loadOfflineFallbackIframe() {
 		revokeCurrentWallpaperObjectUrl();
-		let existingIframe = body.querySelector('iframe[src="newtab.html"]');
+		let existingIframe = body.querySelector('iframe[src="offline.html"]');
 		if (!existingIframe) {
 			existingIframe = document.createElement('iframe');
-			existingIframe.src = 'newtab.html';
+			existingIframe.src = 'offline.html';
 			existingIframe.style.cssText = 'width: 100%; height: 100%; border: none; position: absolute; top: 0; left: 0; z-index: 0; background-color: #000;';
 			body.appendChild(existingIframe);
 		}
@@ -107,7 +107,7 @@ async function showDefaultWallpaper() {
 				const cache = await caches.open(WALLPAPER_CACHE_NAME);
 				const cachedResponse = await cache.match(wallpaperUrl);
 				if (!cachedResponse) {
-					loadNewTabIframe();
+					loadOfflineFallbackIframe();
 				}
 			}
 			const blob = await fetchWallpaperBlob(wallpaperUrl);
@@ -117,7 +117,7 @@ async function showDefaultWallpaper() {
 			console.error('Failed to load cached wallpaper via Cache Storage:', err);
 		}
 	}
-	loadNewTabIframe();
+	loadOfflineFallbackIframe();
 }
 
 // set footer text
