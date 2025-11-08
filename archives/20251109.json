@@ -1,0 +1,46 @@
+{
+  "caption": "礁湖星云",
+  "title": "礁湖星云中的星际云，由哈勃太空望远镜拍摄",
+  "description": "宇宙生机勃勃，生生不息。图中的礁湖星云中，一个名为NGC 6530的星团正在孕育新生恒星，这光芒提醒着我们，宇宙的起源早已交织其中。它距离我们约4350光年，已有数百万年历史，目前仍处于恒星形成的早期阶段。",
+  "copyright": "© ESA/NASA",
+  "date": "2025 11月 9",
+  "clickUrl": "/search?q=%e7%a4%81%e6%b9%96%e6%98%9f%e4%ba%91&form=hpcapt&filters=HpDate:\"20251108_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.LagoonNebula_ZH-CN3890147543_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.LagoonNebula_ZH-CN3890147543_UHD.jpg",
+      "wallpaper": "/th?id=OHR.LagoonNebula_ZH-CN3890147543_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.LagoonNebula_ZH-CN3890147543_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.LagoonNebula_ZH-CN3890147543_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.LagoonNebula_ZH-CN3890147543_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "礁湖星云，在梅西耶星表中名列第八，简称M8，是一个位于南天人马座的发射星云（也可称之为电离氢区）。在NGC用表中排名6523，又称NGC 6523。这个星云是许多天文爱好者十分熟悉并且喜爱的天体之一，也是天文摄影的热门目标天体。礁湖星云充满炽热气体，是许多年轻恒星的家园，因其中心左侧的数道尘埃带而获得了礁湖星云的别名。",
+  "descriptionPara3": "",
+  "isoDate": "20251109",
+  "headline": "从前有一颗星星",
+  "quickFact": "礁湖星云中存在着一些被称为“博克球状体（Bok globules）（Burnham）的暗星云，成为最值得注意的特征之一。",
+  "triviaId": "HPQuiz_20251109_LagoonNebula",
+  "triviaData": {
+    "question": "在梅西耶星表中，礁湖星云被指定为哪个编号？",
+    "options": [
+      {
+        "text": "M8",
+        "url": "/search?q=M8&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251109_LagoonNebula%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "M42",
+        "url": "/search?q=M8&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251109_LagoonNebula%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "M31",
+        "url": "/search?q=M8&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251109_LagoonNebula%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
