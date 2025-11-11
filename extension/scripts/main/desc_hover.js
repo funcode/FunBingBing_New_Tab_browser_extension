@@ -8,13 +8,16 @@ const initDescriptionHover = function () {
   hdln_txt.addEventListener('mouseenter', function() {
     desc.style.display = 'block';
     hdln_div.style.display = 'none';
+    quote.dataset.prevDisplay = quote.style.display || '';
     quote.style.display = 'none'; // 隐藏 quote
   });
   // 鼠标移出 description 区域，恢复按钮显示，隐藏 description
   desc.addEventListener('mouseleave', function() {
     desc.style.display = 'none';
     hdln_div.style.display = 'block';
-    quote.style.display = ''; // 显示 quote
+    const prevDisplay = quote.dataset.prevDisplay !== undefined ? quote.dataset.prevDisplay : '';
+    quote.style.display = prevDisplay; // 恢复 quote 显示状态
+    delete quote.dataset.prevDisplay;
   });
 }; 
 
