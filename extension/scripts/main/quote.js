@@ -6,6 +6,35 @@ const initQuoteInteractions = () => {
     const popup = document.querySelector('.below');
     if (!quote || !hotspot || !popup) return;
 
+    const quoteBody = quote.querySelector('.quote-body');
+    const clock = document.getElementById('center-clock');
+
+    const updateQuoteAlignment = () => {
+        if (!quoteBody || !clock) return;
+        const clockRect = clock.getBoundingClientRect();
+        const quoteRect = quoteBody.getBoundingClientRect();
+        if (!clockRect.width || !quoteRect.width) {
+            quoteBody.style.removeProperty('--clock-align-offset');
+            return;
+        }
+
+        const clockCenter = clockRect.left + clockRect.width / 2;
+        const quoteCenter = quoteRect.left + quoteRect.width / 2;
+        const offset = clockCenter - quoteCenter;
+        quoteBody.style.setProperty('--clock-align-offset', `${offset.toFixed(2)}px`);
+    };
+
+    if (quoteBody && clock) {
+        if (typeof ResizeObserver === 'function') {
+            const clockResizeObserver = new ResizeObserver(updateQuoteAlignment);
+            const quoteResizeObserver = new ResizeObserver(updateQuoteAlignment);
+            clockResizeObserver.observe(clock);
+            quoteResizeObserver.observe(quoteBody);
+        }
+        window.addEventListener('resize', updateQuoteAlignment);
+        updateQuoteAlignment();
+    }
+
     let openTimer = null;
     let closeTimer = null;
     const OPEN_DELAY = 120; // ms

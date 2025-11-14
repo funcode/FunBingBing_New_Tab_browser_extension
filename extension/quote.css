@@ -67,6 +67,7 @@
     padding-right: .5ch; /* prevent last glyph (e.g. ”) from clipping when ellipsis not applied */
     /* Smooth fade for the inline body when leaving */
     transition: opacity .18s ease;
+    padding-left: calc(50px + var(--clock-align-offset, 0px));
 }
 
 .below {
