@@ -1,0 +1,46 @@
+{
+  "caption": "谢南多厄国家公园，弗吉尼亚州，美国",
+  "title": "谢南多厄国家公园的秋色，弗吉尼亚州，美国",
+  "description": "谢南多厄国家公园，弗吉尼亚州的山间瑰宝。蓝岭山脉在此披上最华美的盛装：金黄的山核桃树、绯红的枫树，以及镀上青铜色的橡树。十一月的空气愈发清冽，秋日的余晖低声细语，悄悄停留在山坡上。沿着天际线公路缓缓前行，105英里的蜿蜒公路带你俯瞰云海翻涌，云影在山谷间轻轻流动，像思绪在天空漂移。这里还有超过500 英里的步道，沿着小径，你会走进瀑布奔流的深谷，登上触碰天际的高峰。石人峰、鹰嘴峰、暗谷瀑布——每处皆是石与叶谱写的诗篇，静待游人的脚步与风声共鸣。",
+  "copyright": "© Michael Ver Sprill/Getty Images",
+  "date": "2025 11月 17",
+  "clickUrl": "/search?q=%e8%b0%a2%e5%8d%97%e5%a4%9a%e5%8e%84%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20251116_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ShenandoahTrail_ZH-CN8626326726_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ShenandoahTrail_ZH-CN8626326726_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ShenandoahTrail_ZH-CN8626326726_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ShenandoahTrail_ZH-CN8626326726_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ShenandoahTrail_ZH-CN8626326726_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ShenandoahTrail_ZH-CN8626326726_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20251117",
+  "headline": "小径在召唤",
+  "quickFact": "该公园最著名的景点当属天际线公路，这条全长105英里（169公里）的道路沿着山脊贯穿整个公园，风景壮丽，四季皆宜。此外，阿巴拉契亚步道中长达101英里（163公里）的路段也位于此公园内。",
+  "triviaId": "HPQuiz_20251117_ShenandoahTrail",
+  "triviaData": {
+    "question": "与谢南多厄国家公园相关的主要山脉是什么？",
+    "options": [
+      {
+        "text": "蓝岭山脉",
+        "url": "/search?q=%E8%93%9D%E5%B2%AD%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251117_ShenandoahTrail%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ蓝岭山脉",
+        "bullet": "A"
+      },
+      {
+        "text": "阿巴拉契亚山脉",
+        "url": "/search?q=%E8%93%9D%E5%B2%AD%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251117_ShenandoahTrail%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ蓝岭山脉",
+        "bullet": "B"
+      },
+      {
+        "text": "落基山脉",
+        "url": "/search?q=%E8%93%9D%E5%B2%AD%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251117_ShenandoahTrail%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ蓝岭山脉",
+        "bullet": "C"
+      }
+    ]
+  }
+}
