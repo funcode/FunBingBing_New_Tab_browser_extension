@@ -1,0 +1,46 @@
+{
+  "caption": "匈牙利国会大厦，布达佩斯，匈牙利",
+  "title": "匈牙利国会大厦，布达佩斯，匈牙利",
+  "description": "走近一点，细节便开始诉说——每一块石头、每一座尖塔、每一尊雕像都仿佛藏着自己的故事。匈牙利议会大厦诞生于19世纪末，设计初衷是展现国家的雄心，将哥特复兴的典雅与独具匈牙利特色的元素巧妙融合。建筑师伊姆雷·施泰因德尔的构想历经二十余年，由逾千名工匠共同完成。中央穹顶高达315英尺（约96米），寓意1896年匈牙利建国千年纪念。整座建筑于1904年竣工，至今仍以恢宏之姿矗立在布达佩斯天际线，成为匈牙利力量的象征。",
+  "copyright": "© Alexander Spatari/Getty Images",
+  "date": "2025 11月 19",
+  "clickUrl": "/search?q=%e5%8c%88%e7%89%99%e5%88%a9%e5%9b%bd%e4%bc%9a%e5%a4%a7%e5%8e%a6&form=hpcapt&filters=HpDate:\"20251118_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BudapestParliament_ZH-CN1607028780_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BudapestParliament_ZH-CN1607028780_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BudapestParliament_ZH-CN1607028780_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BudapestParliament_ZH-CN1607028780_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BudapestParliament_ZH-CN1607028780_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BudapestParliament_ZH-CN1607028780_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "步入其中，华美更显深邃。金箔在楼梯间与大厅间流转生辉，统治者与民族英雄的雕像沿走廊矗立，将历史化作一场视觉盛宴。除了政治职能，议会大厦更是文化象征——这里举办国家典礼，每年迎接数百万游客，并被列入联合国教科文组织世界遗产名录。它不仅是一座地标，更通过那些最初激发设计灵感的细节，持续讲述着匈牙利的故事。",
+  "descriptionPara3": "",
+  "isoDate": "20251119",
+  "headline": "石头与符号，诉说一个民族的故事",
+  "quickFact": "匈牙利议会大厦融合多种风格，哥特式设计源自维也纳市政厅，穹顶等文艺复兴元素则取材于维也纳的胜利圣母教堂。",
+  "triviaId": "HPQuiz_20251119_BudapestParliament",
+  "triviaData": {
+    "question": "该建筑的设计中主要采用了哪种建筑风格？",
+    "options": [
+      {
+        "text": "装饰艺术",
+        "url": "/search?q=%E5%93%A5%E7%89%B9%E5%A4%8D%E5%85%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251119_BudapestParliament%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ哥特复兴",
+        "bullet": "A"
+      },
+      {
+        "text": "哥特复兴",
+        "url": "/search?q=%E5%93%A5%E7%89%B9%E5%A4%8D%E5%85%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251119_BudapestParliament%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ哥特复兴",
+        "bullet": "B"
+      },
+      {
+        "text": "巴洛克",
+        "url": "/search?q=%E5%93%A5%E7%89%B9%E5%A4%8D%E5%85%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251119_BudapestParliament%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ哥特复兴",
+        "bullet": "C"
+      }
+    ]
+  }
+}
