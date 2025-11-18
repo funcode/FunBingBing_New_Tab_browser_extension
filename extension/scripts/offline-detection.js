@@ -18,9 +18,8 @@ window.addEventListener('offline', function() {
 
 function redirectToNewPageIfNeeded(page) {
   if (!window.location.pathname.endsWith(page || 'offline.html')) {
-    //TODO: consider to use a callback or event to redo init and 
-    //avoid the dependency on base.js from offline.html
-    writeConf('wallpaper_date', '20000101');
+    //TODO: consider to use a callback or event to redo init
+    chrome.storage.local.set({ 'wallpaper_date': '20000101' });
     window.location.href = page || 'offline.html';
   }
 }
