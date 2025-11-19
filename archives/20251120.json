@@ -1,0 +1,46 @@
+{
+  "caption": "查帕达迪亚曼蒂纳国家公园，巴伊亚州",
+  "title": "查帕达迪亚曼蒂纳国家公园，巴伊亚州，巴西",
+  "description": "查帕达迪亚曼蒂纳国家公园拥有宛如梦境般的自然美景，该公园创建于1985年，今年迎来了其40周年的保护纪念日。这座位于巴伊亚州腹地的公园，拥有约15.2万公顷的壮丽景观，是巴西最令人惊叹的生态旅游目的地之一。",
+  "copyright": "© Marcio Dufranc/Getty Images",
+  "date": "2025 11月 20",
+  "clickUrl": "/search?q=%e6%9f%a5%e5%b8%95%e8%be%be-%e8%bf%aa%e4%ba%9a%e6%9b%bc%e8%92%82%e9%82%a3%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20251119_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.PondCave_ZH-CN2304770650_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.PondCave_ZH-CN2304770650_UHD.jpg",
+      "wallpaper": "/th?id=OHR.PondCave_ZH-CN2304770650_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.PondCave_ZH-CN2304770650_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.PondCave_ZH-CN2304770650_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.PondCave_ZH-CN2304770650_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这座公园以瀑布、洞穴、峡谷和巍峨山脉闻名。其中最引人注目的当属高达340米的烟雾瀑布——这是巴西最高的瀑布之一。每逢风起时，奇妙的现象便会出现：飞溅的水花被卷向空中，形成震撼人心的视觉奇观。另一处必游之地是帕伊伊纳西奥山，这里以全景视野和令人难忘的日落而闻名。",
+  "descriptionPara3": "除拥有葱郁的自然景观外，该地区还蕴含着与19世纪钻石开采热潮密切相关的丰富历史，正是这一历史背景赋予了其“查帕达迪亚曼蒂纳”之名。以伦索伊斯为代表的村落，凭借其保存完好的殖民时期建筑、多元而富有活力的文化传统以及巴伊亚地区特有的热情待客之道，吸引了众多访客。作为一处兼具生态价值与文化意义的重要保护区，该国家公园不仅是徒步旅行者、探险爱好者及自然研究者的理想目的地，更是一处值得珍视与保护的国家级文化遗产。",
+  "isoDate": "20251120",
+  "headline": "颂扬保护与美",
+  "quickFact": "该公园被列为世界自然保护联盟（IUCN）保护区类别II（国家公园）。其宗旨在于保护具有重大生态价值和景观美感的自然生态系统，同时促进科学研究、环境教育、户外休闲活动及生态旅游的发展。",
+  "triviaId": "HPQuiz_20251120_PondCave",
+  "triviaData": {
+    "question": "这个国家公园中壮观的烟雾瀑布的高度是多少？",
+    "options": [
+      {
+        "text": "340米",
+        "url": "/search?q=340%E7%B1%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251120_PondCave%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ340米",
+        "bullet": "A"
+      },
+      {
+        "text": "250米",
+        "url": "/search?q=340%E7%B1%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251120_PondCave%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ340米",
+        "bullet": "B"
+      },
+      {
+        "text": "400米",
+        "url": "/search?q=340%E7%B1%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251120_PondCave%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ340米",
+        "bullet": "C"
+      }
+    ]
+  }
+}
