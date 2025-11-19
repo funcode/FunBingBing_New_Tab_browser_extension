@@ -1,6 +1,23 @@
 const WALLPAPER_CACHE_NAME = 'funbingbing-wallpaper-cache-v1';
 let currentWallpaperObjectUrl = null;
 
+function paintPreloadedWallpaperIfAvailable() {
+	try {
+		const body = document.getElementById('main-body');
+		if (!body || typeof readConf !== 'function') return;
+		const preloadDataUrl = readConf('wallpaper_preload_data_url');
+		if (!preloadDataUrl) return;
+		body.style.backgroundImage = `url('${preloadDataUrl}')`;
+		body.style.backgroundColor = '';
+		body.classList.remove('wallpaper-fallback-active');
+		body.removeAttribute('data-wallpaper-fallback');
+	} catch (err) {
+		console.warn('Unable to paint cached wallpaper preload:', err);
+	}
+}
+
+paintPreloadedWallpaperIfAvailable();
+
 function revokeCurrentWallpaperObjectUrl() {
 	if (currentWallpaperObjectUrl) {
 		URL.revokeObjectURL(currentWallpaperObjectUrl);
@@ -20,6 +37,25 @@ async function preloadWallpaperObjectUrl(objectUrl) {
 		img.onload = () => resolve();
 		img.onerror = () => reject(new Error('Wallpaper image failed to load'));
 	});
+}
+
+async function blobToDataUrl(blob) {
+	return new Promise((resolve, reject) => {
+		const reader = new FileReader();
+		reader.onloadend = () => resolve(reader.result);
+		reader.onerror = () => reject(reader.error || new Error('Failed converting blob to data URL'));
+		reader.readAsDataURL(blob);
+	});
+}
+
+async function cachePreloadWallpaper(blob) {
+	if (!blob) return;
+	try {
+		const dataUrl = await blobToDataUrl(blob);
+		chrome.storage.local.set({ 'wallpaper_preload_data_url': dataUrl });
+	} catch (err) {
+		console.warn('Failed to cache preload wallpaper:', err);
+	}
 }
 
 async function fetchWallpaperBlob(url) {
@@ -151,14 +187,35 @@ async function changeWallpaper(idx) {
 		? landscape?.ultraHighDef
 		: landscape?.highDef;
 	const imgurl = path ? baseurl + path : null;
+	const path_640x360 = readConf('enable_uhd_wallpaper') == 'yes'
+		? landscape?.ultraHighDef?.replace('UHD', '640x360')
+		: landscape?.highDef.replace('1920x1080', '640x360');
+	const img_640x360 = path_640x360 ? baseurl + path_640x360 : null;
 	if (!imgurl) {
 		console.warn('Unable to resolve wallpaper URL for index', idx);
 		await showDefaultWallpaper();
 		return;
 	}
 	try {
-		const blob = await fetchWallpaperBlob(imgurl);
-		await applyWallpaperFromBlob(blob, imgurl, image);
+		const hdPromise = (async () => {
+			const hdBlob = await fetchWallpaperBlob(imgurl);
+			await applyWallpaperFromBlob(hdBlob, imgurl, image);
+		})();
+		const previewPromise = (async () => {
+			let previewBlob = null;
+			if (img_640x360) {
+				try {
+					previewBlob = await fetchWallpaperBlob(img_640x360);
+					cachePreloadWallpaper(previewBlob);
+					/* await applyWallpaperFromBlob(previewBlob, img_640x360, image);
+					// slight delay to ensure smooth transition
+					await delay(100); */
+				} catch (previewError) {
+					console.warn('Failed to load preview resolution wallpaper, skipping preload cache:', previewError);
+				}
+			}
+		})();
+		await Promise.all([hdPromise, previewPromise]);
 	} catch (error) {
 		console.error('Failed to load wallpaper image:', error);
 		await showDefaultWallpaper();
