@@ -9,7 +9,6 @@ body {
 	background-repeat: no-repeat;
 	background-size:cover;
 	background-position:center center;
-	background-color: #000;
     height: 100%;
     min-height: 100vh; /* fallback for body shorter than viewport */
 }
@@ -18,7 +17,6 @@ body {
 html{
     height: 100%;
     min-height: 100vh; /* fallback for body shorter than viewport */
-    background-color: #000;
 }
 
 .block {
