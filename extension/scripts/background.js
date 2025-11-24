@@ -17,7 +17,7 @@ chrome.runtime.onInstalled.addListener(function (object) {
 	}
 });
 
-const LOST_QUOTES_URL = "https://bing-quotes.s3.ap-east-1.amazonaws.com/latest.json";
+const LOST_QUOTES_URL = "https://quotes-of-the-day.s3.ap-east-1.amazonaws.com/latest.json";
 const LOST_QUOTES_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 let lostQuotesCache = null;

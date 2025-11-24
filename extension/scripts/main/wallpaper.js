@@ -206,6 +206,7 @@ async function changeWallpaper(idx) {
 			if (img_640x360) {
 				try {
 					previewBlob = await fetchWallpaperBlob(img_640x360);
+					// Reduce the flash when opening a new tab
 					cachePreloadWallpaper(previewBlob);
 					/* await applyWallpaperFromBlob(previewBlob, img_640x360, image);
 					// slight delay to ensure smooth transition
