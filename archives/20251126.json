@@ -1,0 +1,46 @@
+{
+  "caption": "世界橄榄树日",
+  "title": "特拉蒙塔纳山脉的橄榄园, 马略卡岛, 巴利阿里群岛, 西班牙",
+  "description": "古老而充满生机，扭曲却坚韧不拔，橄榄树可以存活超过一千年。即便树干伤痕累累、内部中空，它们依然年复一年抽出新叶，成为记录风霜、旱灾与烈火的生命见证。2019年，联合国教科文组织将11月26日定为世界橄榄树日，以纪念这种自约公元前6000年起就被人类栽培的树种。橄榄自古以来不仅承载着实用价值，也蕴含着深刻的象征意义：橄榄油被用于涂抹仪式、医药与日常食用；橄榄叶编织的花环曾加冕奥运冠军；而橄榄枝，更成为延续至今的和平象征。",
+  "copyright": "© cinoby/Getty Images",
+  "date": "2025 11月 26",
+  "clickUrl": "/search?q=%e6%a9%84%e6%a6%84%e6%a0%91&form=hpcapt&filters=HpDate:\"20251125_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.OliveGrove_ZH-CN7054006944_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.OliveGrove_ZH-CN7054006944_UHD.jpg",
+      "wallpaper": "/th?id=OHR.OliveGrove_ZH-CN7054006944_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.OliveGrove_ZH-CN7054006944_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.OliveGrove_ZH-CN7054006944_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.OliveGrove_ZH-CN7054006944_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "位于巴利阿里海中的西班牙马略卡岛，正是这段悠久历史的缩影。岛上遍布如今日图片中特拉蒙塔纳山脉般的古老橄榄林，其中一些树木的年岁甚至早于岛上的中世纪大教堂。这里的橄榄被轻柔采摘、数小时内压榨成油，因其果香、杏仁香与草本香而备受珍视。每一场收获都延续着千年的传承：果实滋养生命，木材燃起炉火，根系稳固山坡。跨越千年，橄榄树作为人类文明的见证者，与我们一同走过岁月：始终坚韧、持久，且绿意盎然。",
+  "descriptionPara3": "",
+  "isoDate": "20251126",
+  "headline": "让树叶诉说历史",
+  "quickFact": "每棵成年的橄榄树根据其健康状况和特性，每年可产橄榄15至45公斤。为了维持产量，通常建议每隔三到四年进行一次修剪，保留更健康、年轻的枝条，让生命力得以延续。",
+  "triviaId": "HPQuiz_20251126_OliveGrove",
+  "triviaData": {
+    "question": "橄榄枝在历史上象征性的用途是什么？",
+    "options": [
+      {
+        "text": "战争的象征",
+        "url": "/search?q=%E5%92%8C%E5%B9%B3%E7%9A%84%E8%B1%A1%E5%BE%81&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251126_OliveGrove%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ和平的象征",
+        "bullet": "A"
+      },
+      {
+        "text": "和平的象征",
+        "url": "/search?q=%E5%92%8C%E5%B9%B3%E7%9A%84%E8%B1%A1%E5%BE%81&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251126_OliveGrove%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ和平的象征",
+        "bullet": "B"
+      },
+      {
+        "text": "财富的象征",
+        "url": "/search?q=%E5%92%8C%E5%B9%B3%E7%9A%84%E8%B1%A1%E5%BE%81&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251126_OliveGrove%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ和平的象征",
+        "bullet": "C"
+      }
+    ]
+  }
+}
