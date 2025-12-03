@@ -1,0 +1,46 @@
+{
+  "caption": "国际猎豹日",
+  "title": "马赛马拉国家保护区的猎豹, 纳罗克, 肯尼亚",
+  "description": "在肯尼亚西南部的马赛马拉国家保护区，一只猎豹立于高高的白蚁丘上，凝视辽阔草原。它的身形流畅，疾驰时可达每小时70英里，堪称陆地速度之王。修长的四肢与柔韧的脊柱让它爆发出惊人的力量，尾巴则在追猎中稳住身形。今天是“国际猎豹日”，这个节日的到来再合适不过。如今，野外猎豹数量已不足7100只，它们是非洲最脆弱的大型猫科动物之一。",
+  "copyright": "© Andy Rouse/naturepl.com",
+  "date": "2025 12月 4",
+  "clickUrl": "/search?q=%e7%8c%8e%e8%b1%b9&form=hpcapt&filters=HpDate:\"20251203_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.CheetahMound_ZH-CN1970221812_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.CheetahMound_ZH-CN1970221812_UHD.jpg",
+      "wallpaper": "/th?id=OHR.CheetahMound_ZH-CN1970221812_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.CheetahMound_ZH-CN1970221812_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.CheetahMound_ZH-CN1970221812_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.CheetahMound_ZH-CN1970221812_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "猎豹的生存不仅依赖于敏捷身手和本能，更取决于它所栖息生态系统的健康。正因如此，国际猎豹日与世界野生动物保护日同一天，意义非凡。猎豹的每一次疾驰，都是自然互联的缩影：湿地哺育候鸟，森林守护巨象，草原孕育万物。12月4日，我们庆祝这场生命的交响曲，保护者们正努力恢复栖息地、强化保护措施，并与当地社区合作，让理念化为行动。",
+  "descriptionPara3": "",
+  "isoDate": "20251204",
+  "headline": "为生存而疾驰",
+  "quickFact": "目前，猎豹的分布范围仅剩下历史栖息地的约10%。虽然它们仍在多个地区出现，但数量极为稀少，且栖息地呈高度碎片化。非洲南部和东部是猎豹种群的重要据点。",
+  "triviaId": "HPQuiz_20251204_CheetahMound",
+  "triviaData": {
+    "question": "猎豹的速度常被赋予什么样的荣誉称号？",
+    "options": [
+      {
+        "text": "飞行大师",
+        "url": "/search?q=%E5%A4%A7%E5%9C%B0%E4%B9%8B%E7%8E%8B&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251204_CheetahMound%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ大地之王",
+        "bullet": "A"
+      },
+      {
+        "text": "大地之王",
+        "url": "/search?q=%E5%A4%A7%E5%9C%B0%E4%B9%8B%E7%8E%8B&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251204_CheetahMound%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ大地之王",
+        "bullet": "B"
+      },
+      {
+        "text": "丛林女王",
+        "url": "/search?q=%E5%A4%A7%E5%9C%B0%E4%B9%8B%E7%8E%8B&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251204_CheetahMound%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ大地之王",
+        "bullet": "C"
+      }
+    ]
+  }
+}
