@@ -1,0 +1,46 @@
+{
+  "caption": "庆祝圆顶礁国家公园成立54周年",
+  "title": "太阳神庙，圆顶礁国家公园, 犹他州, 美国",
+  "description": "数百万年的岩层沉积，伴随地壳的巨大弯曲，造就了这片沙漠独一无二的地质窗口。这里是犹他州的圆顶礁国家公园，砂岩峭壁与峡谷像一本打开的历史书，记录着地球的沧桑。1971年12月18日，它被正式列为国家公园。今日的图片聚焦大教堂谷的砂岩巨石，其中包括壮丽的“太阳神殿”，彰显这片景观的非凡魅力。",
+  "copyright": "© Austin Cronnelly/TANDEM Stills + Motion",
+  "date": "2025 12月 18",
+  "clickUrl": "/search?q=%e5%9c%86%e9%a1%b6%e7%a4%81%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20251217_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.CathedralValley_ZH-CN5237441521_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.CathedralValley_ZH-CN5237441521_UHD.jpg",
+      "wallpaper": "/th?id=OHR.CathedralValley_ZH-CN5237441521_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.CathedralValley_ZH-CN5237441521_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.CathedralValley_ZH-CN5237441521_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.CathedralValley_ZH-CN5237441521_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "圆顶礁国家公园得名于两大标志性地貌特征：水袋褶皱中的圆润砂岩穹顶，宛如美国国会大厦；以及褶皱的脊线，曾像“礁石”般阻隔早期旅人穿越沙漠。1937年，这里先被列为国家纪念地，直到后来才晋升为国家公园。",
+  "descriptionPara3": "这一天不仅纪念自然奇观，也铭记这里的人类历史。早在拓荒者果园出现之前，原住民就在弗里蒙特河畔繁衍生息，并在峡谷的岩壁上刻下岩画，留下古老的印记。",
+  "isoDate": "20251218",
+  "headline": "犹他州的时光层叠",
+  "quickFact": "圆顶礁国家公园涵盖多种生态区，包括高海拔、凉爽的常绿林峰，植被茂密的河岸地带，以及干燥炎热的沙漠。",
+  "triviaId": "HPQuiz_20251218_CathedralValley",
+  "triviaData": {
+    "question": "卡特德拉尔谷的主要地质特征是什么？",
+    "options": [
+      {
+        "text": "砂岩峭壁",
+        "url": "/search?q=%E7%A0%82%E5%B2%A9%E5%B3%AD%E5%A3%81&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251218_CathedralValley%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "花岗岩山脉",
+        "url": "/search?q=%E7%A0%82%E5%B2%A9%E5%B3%AD%E5%A3%81&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251218_CathedralValley%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "石灰岩洞穴",
+        "url": "/search?q=%E7%A0%82%E5%B2%A9%E5%B3%AD%E5%A3%81&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251218_CathedralValley%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
