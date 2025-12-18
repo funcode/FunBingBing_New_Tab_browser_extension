@@ -1,0 +1,46 @@
+{
+  "caption": "博尔米奥，伦巴第大区，意大利",
+  "title": "博尔米奥的雪景，伦巴第大区，意大利",
+  "description": "博尔米奥位于意大利北部伦巴第大区的阿尔卑斯山中，靠近斯泰尔维奥山口。这片地势险峻的山地数百年来连接着不同山谷中的社区，塑造了当地人生活与迁徙的方式。今日图片中的冬季景观，正映照出这座高山小镇的地理特征与它与群峰之间延续千年的纽带。",
+  "copyright": "© Roberto Moiola/Getty Images",
+  "date": "2025 12月 19",
+  "clickUrl": "/search?q=%e6%84%8f%e5%a4%a7%e5%88%a9%e5%8d%9a%e5%b0%94%e7%b1%b3%e5%a5%a5&form=hpcapt&filters=HpDate:\"20251218_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BormioItaly_ZH-CN5397313772_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BormioItaly_ZH-CN5397313772_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BormioItaly_ZH-CN5397313772_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BormioItaly_ZH-CN5397313772_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BormioItaly_ZH-CN5397313772_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BormioItaly_ZH-CN5397313772_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "凭借战略位置，博尔米奥早在中世纪就发展出强烈的公民认同感。多年来，它一直是“三大杰出社区”之一，享有地方自治权，并作为附近定居点的行政中心。中世纪城镇的布局在石制建筑和公共空间中仍清晰可见，包括曾用于社区决策的库尔奇广场。这些建筑体现了治理方式和日常生活如何适应山区环境的挑战。",
+  "descriptionPara3": "博尔米奥还以自古罗马时期便被记载的天然温泉而闻名。历史悠久的浴场，如巴尼维基温泉，展示了温泉如何在严冬中支撑人们的健康、社交与坚韧。如今，这座小镇是施泰尔维奥国家公园的一部分，其历史、景观和文化得以保存。",
+  "isoDate": "20251219",
+  "headline": "高山的悠久历史",
+  "quickFact": "博尔米奥保留着独特的中世纪古镇中心，吸引着众多游客。它也将成为2026年冬季奥运会高山滑雪项目的举办地。",
+  "triviaId": "HPQuiz_20251219_BormioItaly",
+  "triviaData": {
+    "question": "意大利的博尔米奥镇位于阿尔卑斯山的哪个地区？",
+    "options": [
+      {
+        "text": "伦巴第",
+        "url": "/search?q=%E4%BC%A6%E5%B7%B4%E7%AC%AC&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251219_BormioItaly%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "托斯卡纳",
+        "url": "/search?q=%E4%BC%A6%E5%B7%B4%E7%AC%AC&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251219_BormioItaly%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "皮埃蒙特",
+        "url": "/search?q=%E4%BC%A6%E5%B7%B4%E7%AC%AC&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251219_BormioItaly%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
