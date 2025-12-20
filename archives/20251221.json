@@ -1,0 +1,46 @@
+{
+  "caption": "冬至",
+  "title": "美丽的雾凇景色，大庆市，黑龙江省，中国",
+  "description": "当2025年的冬至如期而至，北国大地被银装素裹，东北的雾凇奇景更添了几分童话般的浪漫。漫步在雾凇林中，脚下是松软的积雪，发出细微的沙沙声，仿佛是大自然最轻柔的私语。空气中弥漫着清新的气息，仿佛能净化一切尘埃，让人心旷神怡。",
+  "copyright": "© Dashu Xinganling/shutterstock",
+  "date": "2025 12月 21",
+  "clickUrl": "/search?q=%e5%86%ac%e8%87%b3&form=hpcapt&filters=HpDate:\"20251220_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.WintersolsticeY25_ZH-CN6462419684_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.WintersolsticeY25_ZH-CN6462419684_UHD.jpg",
+      "wallpaper": "/th?id=OHR.WintersolsticeY25_ZH-CN6462419684_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.WintersolsticeY25_ZH-CN6462419684_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.WintersolsticeY25_ZH-CN6462419684_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.WintersolsticeY25_ZH-CN6462419684_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "雾凇，这一自然界的奇观，是形成于树枝上、电线上或其它地物迎风面上的白色疏松的微小冰晶或冰粒。它的出现需要足够低的气温和较大的空气湿度，是大自然在特定条件下精心雕琢的杰作。冬至的雾凇美景，让人们明白，生命中的每一个季节、都蕴含着独特的美丽与价值，只要我们用心去感受，就能发现生活中的无限美好。",
+  "descriptionPara3": "",
+  "isoDate": "20251221",
+  "headline": "美丽的雾凇景色",
+  "quickFact": "雾凇可分为两种：一种是晶状雾凇，一种是粒状雾凇。中国是世界上记载雾凇最早的国家，早在春秋时代成书的《春秋》中就有记载。",
+  "triviaId": "HPQuiz_20251221_WintersolsticeY25",
+  "triviaData": {
+    "question": "哪种自然现象是指树枝上形成的小白色晶体？",
+    "options": [
+      {
+        "text": "霜",
+        "url": "/search?q=%E9%9C%9C%E5%86%BB&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251221_WintersolsticeY25%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "霜冻",
+        "url": "/search?q=%E9%9C%9C%E5%86%BB&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251221_WintersolsticeY25%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "雪花",
+        "url": "/search?q=%E9%9C%9C%E5%86%BB&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251221_WintersolsticeY25%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
