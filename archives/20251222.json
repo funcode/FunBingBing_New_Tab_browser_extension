@@ -1,0 +1,46 @@
+{
+  "caption": "法兰克福老桥，德国",
+  "title": "法兰克福老桥，德国",
+  "description": "位于德国中心地带的法兰克福是一座以现代天际线与历史古城交织闻名的活力都市。老桥是其中的标志性建筑之一，自中世纪以来便横跨美因河，是这座城市现存最古老的河上通道之一。几个世纪以来，它一直是重要的贸易通道。如今的老桥建于1912至1926年间，将老城区与萨克森豪森区连接起来，从这里能欣赏到壮丽的“美因哈顿”天际线与法兰克福大教堂，这是传统与现代融合的象征。尤其在日落时分，更是格外迷人。",
+  "copyright": "© diegograndi/Getty Images",
+  "date": "2025 12月 22",
+  "clickUrl": "/search?q=%e6%b3%95%e5%85%b0%e5%85%8b%e7%a6%8f%e8%80%81%e6%a1%a5&form=hpcapt&filters=HpDate:\"20251221_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.FrankfurtAlteBruecke_ZH-CN6621478221_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.FrankfurtAlteBruecke_ZH-CN6621478221_UHD.jpg",
+      "wallpaper": "/th?id=OHR.FrankfurtAlteBruecke_ZH-CN6621478221_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.FrankfurtAlteBruecke_ZH-CN6621478221_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.FrankfurtAlteBruecke_ZH-CN6621478221_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.FrankfurtAlteBruecke_ZH-CN6621478221_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "老桥也是漫步美因河畔或前往老城探访的完美起点。这里坐落着市政厅罗马广场、圣保罗教堂，以及传统的苹果酒酒馆等景点。文化爱好者则可以造访著名诗人歌德的故居，追随其足迹。法兰克福享誉全球的各类博物馆，更令艺术爱好者流连忘返。在这座对自行车友好的金融都市中，过去与现在在此无缝衔接，形成别具一格的城市风貌。全球罕有城市能像法兰克福般，将强烈的时代对比演绎得如此和谐自然。",
+  "descriptionPara3": "",
+  "isoDate": "20251222",
+  "headline": "历史与现代的交融",
+  "quickFact": "自1222年在官方文件中首次被提及以来，法兰克福的发展一直深受这座桥的影响。几个世纪以来，老桥至少被毁坏和重建了18次。",
+  "triviaId": "HPQuiz_20251222_FrankfurtAlteBruecke",
+  "triviaData": {
+    "question": "法兰克福旧桥在历史背景中以什么闻名？",
+    "options": [
+      {
+        "text": "贸易路线",
+        "url": "/search?q=%E8%B4%B8%E6%98%93%E8%B7%AF%E7%BA%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251222_FrankfurtAlteBruecke%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "艺术博物馆",
+        "url": "/search?q=%E8%B4%B8%E6%98%93%E8%B7%AF%E7%BA%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251222_FrankfurtAlteBruecke%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "公园",
+        "url": "/search?q=%E8%B4%B8%E6%98%93%E8%B7%AF%E7%BA%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251222_FrankfurtAlteBruecke%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
