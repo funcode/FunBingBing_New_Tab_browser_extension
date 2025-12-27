@@ -1,0 +1,46 @@
+{
+  "caption": "1973年《濒危物种法案》周年纪念",
+  "title": "马达加斯加的黑白环尾狐猴",
+  "description": "《濒危物种法》颁布至今已51年，其宗旨依然明确：保护濒临灭绝的物种，守护它们赖以生存的栖息地。该法案于1973年签署，成为全球最强有力的保护法律之一，影响力远超美国本土。它证明了当科学研究与执法行动协同时，物种复苏便成为可能。尤其对于那些命运系于国际关注的物种，这种影响更为深远。马达加斯加的黑白环尾狐猴就是典型代表。许多人因动画片《马达加斯加》认识狐猴，但现实中的它们却面临严酷的生存困境。这种外形醒目的灵长类动物已被列为极危物种，只能在日益破碎的森林中艰难存活，栖息地丧失始终是它们挥之不去的威胁。",
+  "copyright": "© Cyrielle Beaubois/Getty Images",
+  "date": "2025 12月 28",
+  "clickUrl": "/search?q=%e9%bb%91%e7%99%bd%e7%8e%af%e5%b0%be%e7%8b%90%e7%8c%b4&form=hpcapt&filters=HpDate:\"20251227_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.RuffedLemur_ZH-CN5636795490_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.RuffedLemur_ZH-CN5636795490_UHD.jpg",
+      "wallpaper": "/th?id=OHR.RuffedLemur_ZH-CN5636795490_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.RuffedLemur_ZH-CN5636795490_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.RuffedLemur_ZH-CN5636795490_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.RuffedLemur_ZH-CN5636795490_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "根据国际自然保护联盟的数据，该物种的数量因森林砍伐和狩猎活动而急剧减少。保护计划、全球资金以及科学防护措施仍然至关重要，这也体现了半个世纪前《濒危物种法》所确立的原则。",
+  "descriptionPara3": "",
+  "isoDate": "20251228",
+  "headline": "仍存野性",
+  "quickFact": "黑白环尾狐猴拥有一种少见的特性：雌性在群体中占据主导，无论是在进食时，还是在其他社交场合。这种雌性优势也出现在其他长毛狐猴、环尾狐猴以及红长毛狐猴身上。",
+  "triviaId": "HPQuiz_20251228_RuffedLemur",
+  "triviaData": {
+    "question": "哪种物种以来自马达加斯加的黑白狐猴为代表？",
+    "options": [
+      {
+        "text": "环尾狐猴",
+        "url": "/search?q=%E7%8E%AF%E5%B0%BE%E7%8B%90%E7%8C%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251228_RuffedLemur%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "环尾狐猴",
+        "url": "/search?q=%E7%8E%AF%E5%B0%BE%E7%8B%90%E7%8C%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251228_RuffedLemur%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "金狮面猴",
+        "url": "/search?q=%E7%8E%AF%E5%B0%BE%E7%8B%90%E7%8C%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251228_RuffedLemur%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
