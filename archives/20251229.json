@@ -1,0 +1,46 @@
+{
+  "caption": "阿尼遗址的圣格雷戈里教堂，卡尔斯省，土耳其",
+  "title": "阿尼遗址的圣格雷戈里教堂，卡尔斯省，土耳其",
+  "description": "在土耳其东部与亚美尼亚接壤的边境地带，一片风吹草低的台地上，阿尼古城遗址在荒野中清晰浮现。千年前，这里是丝绸之路上的繁华都城，城墙巍峨，街市喧闹，商旅往来不息，文化在此交汇。如今，风声取代了人声，但那沧桑的轮廓，仍默默诉说着昔日的辉煌。",
+  "copyright": "© Kenan Talas/Getty Images",
+  "date": "2025 12月 29",
+  "clickUrl": "/search?q=%e5%9c%9f%e8%80%b3%e5%85%b6%e9%98%bf%e5%b0%bc%e9%81%97%e5%9d%80&form=hpcapt&filters=HpDate:\"20251228_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AniTurkey_ZH-CN5838141955_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AniTurkey_ZH-CN5838141955_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AniTurkey_ZH-CN5838141955_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AniTurkey_ZH-CN5838141955_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AniTurkey_ZH-CN5838141955_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AniTurkey_ZH-CN5838141955_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这张照片展现了圣格雷戈里教堂，它是阿尼最具震撼力的遗迹之一。深色火山岩筑成的圆塔，依旧挺立，仿佛延续着昔日的精工细作。阿尼曾因“千座教堂之城”闻名，拱门、穹顶与立面的革新，曾在历史中掀起波澜，后来影响了哥特式建筑传统。即便在一片废墟中，其设计仍清晰可辨。",
+  "descriptionPara3": "阿尼的衰落，源于地震、入侵和贸易路线的转移，但这座城市从未真正消失。考古学家仍在不断发掘新的细节，保护工作也在与侵蚀和时间抗争。漫步于此，感觉不像是在探访废墟，更像是在遇见一座执意守护自己故事的城市。",
+  "isoDate": "20251229",
+  "headline": "一座比城市更悠久的教堂",
+  "quickFact": "公元961年至1045年间，这里曾是巴格拉图尼王朝亚美尼亚王国的首都，其疆域涵盖现今亚美尼亚大部分地区及土耳其东部。这座传奇之城常被誉为\"千座教堂之城\"，但实际教堂数量远不及此。",
+  "triviaId": "HPQuiz_20251229_AniTurkey",
+  "triviaData": {
+    "question": "历史上，阿尼因其多彩文化被称为何？",
+    "options": [
+      {
+        "text": "千教堂之城",
+        "url": "/search?q=%E5%8D%83%E6%95%99%E5%A0%82%E4%B9%8B%E5%9F%8E&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251229_AniTurkey%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "丝绸之路的首都",
+        "url": "/search?q=%E5%8D%83%E6%95%99%E5%A0%82%E4%B9%8B%E5%9F%8E&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251229_AniTurkey%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "亚美尼亚首都",
+        "url": "/search?q=%E5%8D%83%E6%95%99%E5%A0%82%E4%B9%8B%E5%9F%8E&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251229_AniTurkey%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
