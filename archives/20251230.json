@@ -1,0 +1,46 @@
+{
+  "caption": "结霜的树木，瑞典",
+  "title": "晨光透过结霜的树木洒下，瑞典",
+  "description": "冬季也总是有一些令人流连忘返的景色，例如瑞典的这片树林，就像踏入了一个银白的童话世界。高大的树木身披厚厚的霜雪外衣，像是忠诚的卫士，静静地伫立。每阳光透过树枝的缝隙洒下，形成一道道金色的光线，与洁白的雪相互交织，营造出一种如梦似幻的氛围。雪花在阳光的照耀下闪烁着晶莹的光芒，像是无数颗细碎的钻石，镶嵌在这银白的世界里。",
+  "copyright": "© Schon/Getty Images",
+  "date": "2025 12月 30",
+  "clickUrl": "/search?q=%e5%8c%97%e5%8d%8a%e7%90%83%e7%9a%84%e5%86%ac%e5%ad%a3&form=hpcapt&filters=HpDate:\"20251229_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SwedenSolstice_ZH-CN8975506700_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SwedenSolstice_ZH-CN8975506700_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SwedenSolstice_ZH-CN8975506700_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SwedenSolstice_ZH-CN8975506700_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SwedenSolstice_ZH-CN8975506700_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SwedenSolstice_ZH-CN8975506700_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "相信不只是瑞典冬季落雪的树林，北半球许多地方冬季都拥有这样梦幻的景致，这是大自然用雪和树谱写的一首壮丽诗篇，每一处景色都让人陶醉，每一刻时光都让人珍惜。",
+  "descriptionPara3": "",
+  "isoDate": "20251230",
+  "headline": "新太阳的诞生",
+  "quickFact": "在瑞典，从10月到次年3月你可挑战凛冽冬夜，回报将是自然界最壮观的景象之一——北极光。这些红，绿，紫色的光幕时常在天空中翩翩起舞起舞。",
+  "triviaId": "HPQuiz_20251230_SwedenSolstice",
+  "triviaData": {
+    "question": "阳光在雪林中创造了什么独特的视觉效果？",
+    "options": [
+      {
+        "text": "金色光芒",
+        "url": "/search?q=%E9%87%91%E8%89%B2%E5%85%89%E8%8A%92&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251230_SwedenSolstice%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "蓝色阴影",
+        "url": "/search?q=%E9%87%91%E8%89%B2%E5%85%89%E8%8A%92&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251230_SwedenSolstice%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "绿色倒影",
+        "url": "/search?q=%E9%87%91%E8%89%B2%E5%85%89%E8%8A%92&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251230_SwedenSolstice%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
