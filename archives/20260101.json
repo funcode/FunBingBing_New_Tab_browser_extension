@@ -1,0 +1,46 @@
+{
+  "caption": "新年快乐！",
+  "title": "正在睡觉的北极狐",
+  "description": "是否感觉需要补足整整一年的休息？今日图片上的这只北极狐懂你，它正窝在冰原岩石间，享受惬意时光。无论新年伴随寒风还是暖阳而来，请给自己五分钟，让身体舒展，再迎接接下来的365天。",
+  "copyright": "© Chansak Joe/Getty Images",
+  "date": "2026 1月 1",
+  "clickUrl": "/search?q=%e5%85%83%e6%97%a6&form=hpcapt&filters=HpDate:\"20251231_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.NewYearFox_ZH-CN9312618796_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.NewYearFox_ZH-CN9312618796_UHD.jpg",
+      "wallpaper": "/th?id=OHR.NewYearFox_ZH-CN9312618796_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.NewYearFox_ZH-CN9312618796_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.NewYearFox_ZH-CN9312618796_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.NewYearFox_ZH-CN9312618796_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "你可曾好奇一年为何有365天？这源于1582年启用的格里高利历——它以太阳年为基准，即地球绕太阳公转所需的时间。星辰虽为我们指引了方向，但未来数月的规划全由我们自己谱写。",
+  "descriptionPara3": "让我们以全新的姿态开启新的一年！读一本书、去自然中走走、练习冥想，这些零成本的小习惯能让生活更美好。当然，你也可以大胆一点：海外度假、学潜水，甚至挑战一门小众语言！深呼吸，或者先睡一觉再决定吧。",
+  "isoDate": "20260101",
+  "headline": "伸个懒腰，迈向新年！",
+  "quickFact": "格里高利历在儒略历的基础上优化了闰年制度，让历法更精准，避免季节随时间逐渐错位。",
+  "triviaId": "HPQuiz_20260101_NewYearFox",
+  "triviaData": {
+    "question": "图中哪种动物正在冰雪景观中享受时光？",
+    "options": [
+      {
+        "text": "北极狐",
+        "url": "/search?q=%E5%8C%97%E6%9E%81%E7%8B%90&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260101_NewYearFox%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "北极熊",
+        "url": "/search?q=%E5%8C%97%E6%9E%81%E7%8B%90&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260101_NewYearFox%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "雪豹",
+        "url": "/search?q=%E5%8C%97%E6%9E%81%E7%8B%90&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260101_NewYearFox%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
