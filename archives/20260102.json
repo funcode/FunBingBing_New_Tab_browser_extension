@@ -1,0 +1,46 @@
+{
+  "caption": "威尼斯鸟瞰图，意大利",
+  "title": "威尼斯鸟瞰图, 意大利",
+  "description": "从高空俯瞰威尼斯，宛如一幅迷人的水上画卷，但这座意大利瑰宝真正的魅力，藏在古老墙垣与曲折水巷之间。公元5世纪，它在潟湖中的一簇岛屿上诞生，由沼泽蜕变为海上霸主。中世纪时期，威尼斯成为连接欧洲与东方的重要贸易枢纽，财富与文化在此交织。如今，哥特式宫殿、文艺复兴艺术，以及圣马可大教堂、公爵宫、里亚托桥等地标，仍在诉说这座城市的辉煌历史。",
+  "copyright": "© Clement Leonard/Getty Images",
+  "date": "2026 1月 2",
+  "clickUrl": "/search?q=%e6%84%8f%e5%a4%a7%e5%88%a9%e5%a8%81%e5%b0%bc%e6%96%af&form=hpcapt&filters=HpDate:\"20260101_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.VeniceView_ZH-CN3088407995_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.VeniceView_ZH-CN3088407995_UHD.jpg",
+      "wallpaper": "/th?id=OHR.VeniceView_ZH-CN3088407995_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.VeniceView_ZH-CN3088407995_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.VeniceView_ZH-CN3088407995_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.VeniceView_ZH-CN3088407995_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "威尼斯的魅力，不仅在于桥梁与运河，更在于那些才华横溢的灵魂。《马可·波罗游记》讲述了这位探险家的奇幻旅程，维瓦尔第在这里谱写出《四季》的乐章。威尼斯更是文学与艺术的灵感源泉：托马斯·曼的《威尼斯之死》、莎士比亚的《威尼斯商人》和《奥赛罗》，以及亨利·詹姆斯的《阿斯彭文稿》，都在这座城市的光影中诞生。",
+  "descriptionPara3": "如今的威尼斯，在历史魅力与现代挑战之间保持微妙的平衡：既要守护脆弱的古迹，又要应对汹涌的游客潮。贡多拉依旧在百年老墙的倒影中轻轻滑过，而狂欢节等传统节庆，则让这座城市的古老风情延续至今。",
+  "isoDate": "20260102",
+  "headline": "威尼斯的灵魂",
+  "quickFact": "威尼斯的灵魂，古老而迷人，由118座岛屿织成水上锦图，400余座桥梁将它们串联。纵横的运河如脉络般流淌，贡多拉与船只穿梭不止，宛若一场永恒的奇迹。",
+  "triviaId": "HPQuiz_20260102_VeniceView",
+  "triviaData": {
+    "question": "中世纪时期，威尼斯扮演了什么重要角色？",
+    "options": [
+      {
+        "text": "欧亚贸易枢纽",
+        "url": "/search?q=%E6%AC%A7%E4%BA%9A%E8%B4%B8%E6%98%93%E6%9E%A2%E7%BA%BD&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260102_VeniceView%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "海军军事基地",
+        "url": "/search?q=%E6%AC%A7%E4%BA%9A%E8%B4%B8%E6%98%93%E6%9E%A2%E7%BA%BD&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260102_VeniceView%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "意大利农业中心",
+        "url": "/search?q=%E6%AC%A7%E4%BA%9A%E8%B4%B8%E6%98%93%E6%9E%A2%E7%BA%BD&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260102_VeniceView%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
