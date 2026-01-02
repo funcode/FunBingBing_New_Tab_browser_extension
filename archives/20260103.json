@@ -1,0 +1,46 @@
+{
+  "caption": "J.R.R.托尔金纪念日",
+  "title": "劳特布隆嫩的施陶巴赫瀑布, 伯尔尼州, 瑞士",
+  "description": "今日图片带我们走进瑞士劳特布隆嫩小镇，静谧山谷间，远处的施陶巴赫瀑布在阳光下闪烁。1911年，年轻的托尔金曾在徒步旅行中穿越这里，那时他还未成为《魔戒》和《霍比特人》的作者。巍峨的峭壁、银白的瀑流和清冽的山风，深深印刻在他的记忆中，被认为启发了他笔下的瑞文戴尔——中土世界中隐秘的精灵圣地。",
+  "copyright": "© pongnathee kluaythong/Getty Images",
+  "date": "2026 1月 3",
+  "clickUrl": "/search?q=%e6%96%bd%e9%99%b6%e5%b7%b4%e8%b5%ab%e7%80%91%e5%b8%83&form=hpcapt&filters=HpDate:\"20260102_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.LauterbrunnenValley_ZH-CN0118001217_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.LauterbrunnenValley_ZH-CN0118001217_UHD.jpg",
+      "wallpaper": "/th?id=OHR.LauterbrunnenValley_ZH-CN0118001217_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.LauterbrunnenValley_ZH-CN0118001217_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.LauterbrunnenValley_ZH-CN0118001217_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.LauterbrunnenValley_ZH-CN0118001217_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "1月3日，托尔金诞辰，世界各地的读者举杯庆祝“托尔金日”，晚上9点齐声向“教授”致敬。这一传统始于1972年，由托尔金协会发起，既追忆《魔戒》中弗罗多为比尔博举杯的场景，也缅怀作者在牛津的岁月。托尔金用一生塑造现代奇幻，将语言、神话与勇气交织成永恒的史诗。今天，我们纪念的不只是作家，更是梦想的缔造者——他让我们相信，即使最微小的旅程也能成就伟大，而奇迹就藏在身边，触手可及。",
+  "descriptionPara3": "",
+  "isoDate": "20260103",
+  "headline": "传奇故事前的篇章",
+  "quickFact": "劳特布隆嫩山谷以翼装低空跳伞胜地著称，峡谷狭长、岩壁陡峭，共有13个合法跳伞点，吸引世界各地的冒险者前来挑战。",
+  "triviaId": "HPQuiz_20260103_LauterbrunnenValley",
+  "triviaData": {
+    "question": "与劳特布龙嫩相关的著名瀑布是哪一个？",
+    "options": [
+      {
+        "text": "特吕梅尔巴赫瀑布",
+        "url": "/search?q=%E6%96%BD%E9%99%B6%E5%B7%B4%E8%B5%AB%E7%80%91%E5%B8%83&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260103_LauterbrunnenValley%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "施陶巴赫瀑布",
+        "url": "/search?q=%E6%96%BD%E9%99%B6%E5%B7%B4%E8%B5%AB%E7%80%91%E5%B8%83&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260103_LauterbrunnenValley%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "莱辛巴赫瀑布",
+        "url": "/search?q=%E6%96%BD%E9%99%B6%E5%B7%B4%E8%B5%AB%E7%80%91%E5%B8%83&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260103_LauterbrunnenValley%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
