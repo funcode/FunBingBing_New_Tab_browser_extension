@@ -1,0 +1,46 @@
+{
+  "caption": "一群高角羚, 隆多洛齐野生动物保护区, 南非",
+  "title": "一群高角羚, 隆多洛齐野生动物保护区, 南非",
+  "description": "隆多洛齐野生动物保护区的独特之处，不仅在于草原上的野生动物，更在于其坚守了近百年的守护。自1926年起，这片58平方英里的土地持续支持着野生动物研究工作，并监测着动物在自然栖息地中的行为。它坐落于萨比桑私人保护区，是非洲五大兽的栖息地，并与克鲁格国家公园相连，构建开放的生态系统，让象群、犀牛、狮子、豹、斑马和众多羚羊物种得以在无围栏阻隔的广袤天地间自由迁徙。",
+  "copyright": "© Mint Images/Getty Images",
+  "date": "2026 1月 5",
+  "clickUrl": "/search?q=%e9%ab%98%e8%a7%92%e7%be%9a&form=hpcapt&filters=HpDate:\"20260104_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ImpalaRooibok_ZH-CN2307890154_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ImpalaRooibok_ZH-CN2307890154_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ImpalaRooibok_ZH-CN2307890154_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ImpalaRooibok_ZH-CN2307890154_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ImpalaRooibok_ZH-CN2307890154_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ImpalaRooibok_ZH-CN2307890154_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在草原上，最常见的身影之一是高角羚——它们从不停歇，始终保持警觉。随着季节更替，高角羚灵活地在花草、金合欢荚果、草本植物和水果之间切换食物。它们的社会结构同样精彩：雌性与幼崽结群而行，雄性则在繁殖季为争夺领地展开激烈角逐。经过六到七个月孕期，幼崽多在初夏降生。即便身手敏捷，它们仍需提防豹、狮和猎豹的追击。干旱与栖息地压力让生存更艰难，因此隆多洛齐这样的保护区，成为高角羚延续生命的重要屏障。",
+  "descriptionPara3": "",
+  "isoDate": "20260105",
+  "headline": "高角羚群紧急戒备",
+  "quickFact": "根据国际自然保护联盟（IUCN）的分类，高角羚整体并不处于危险状态，被列为“无危”物种。但黑脸高角羚情况不同，它被认定为“易危”物种，截至2008年，野外数量估计不到1000只。",
+  "triviaId": "HPQuiz_20260105_ImpalaRooibok",
+  "triviaData": {
+    "question": "隆多洛齐保护区的景观有什么主要特征？",
+    "options": [
+      {
+        "text": "落基山脉",
+        "url": "/search?q=%E5%BC%80%E9%98%94%E7%9A%84%E8%8D%89%E5%8E%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260105_ImpalaRooibok%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "开阔的草原",
+        "url": "/search?q=%E5%BC%80%E9%98%94%E7%9A%84%E8%8D%89%E5%8E%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260105_ImpalaRooibok%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "茂密的森林",
+        "url": "/search?q=%E5%BC%80%E9%98%94%E7%9A%84%E8%8D%89%E5%8E%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260105_ImpalaRooibok%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
