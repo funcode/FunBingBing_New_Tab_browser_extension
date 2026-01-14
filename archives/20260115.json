@@ -1,0 +1,46 @@
+{
+  "caption": "雷讷渔村，挪威",
+  "title": "雷讷渔村, 挪威",
+  "description": "深藏在挪威北极圈的雷讷，宛如明信片上令人难以置信的梦幻之地，让人第一眼就怀疑它是否真实存在。这个仅有300余名居民的小渔村，因陡峭的山峰、安静的峡湾，以及沿着海岸散落的亮红色渔人小屋（rorbuer）而闻名。尽管渔村规模不大，雷讷每年仍吸引着成千上万的游客前来探访。",
+  "copyright": "© Roberto Moiola/Cavan Images/SuperStock",
+  "date": "2026 1月 15",
+  "clickUrl": "/search?q=%e9%9b%b7%e8%ae%b7&form=hpcapt&filters=HpDate:\"20260114_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ReineSunrise_ZH-CN6297586399_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ReineSunrise_ZH-CN6297586399_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ReineSunrise_ZH-CN6297586399_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ReineSunrise_ZH-CN6297586399_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ReineSunrise_ZH-CN6297586399_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ReineSunrise_ZH-CN6297586399_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "雷讷的大半段历史，都是个踏实劳作的小村子。18世纪时，它是重要的贸易站，而渔业更是村民日常生活的根基。哪怕二战期间德国军队曾焚毁村庄的一部分，当地人依然在废墟中重建，继续过着属于自己的日子。如今，人们来到这里，各有各的理由。有人攀登雷恩布林根山饱览壮阔风光，有人沿着海岸慢慢散步，或品尝清晨刚捕捞上岸的鲜鱼。住进修复后的木屋，更能感受到旅游业来到之前，这里最初的生活气息。雷讷真正让人难忘的，不是打卡的清单，而是它的历史与传统，还有那种一下车就感到温馨的村庄氛围。",
+  "descriptionPara3": "",
+  "isoDate": "20260115",
+  "headline": "小村庄，大视野",
+  "quickFact": "如今，小镇已基本从渔业转向旅游业，昔日的渔民小屋被改装成精品酒店客房，特色餐厅也纷纷开业。",
+  "triviaId": "HPQuiz_20260115_ReineSunrise",
+  "triviaData": {
+    "question": "雷讷渔屋的常见特点是什么？",
+    "options": [
+      {
+        "text": "鲜红色",
+        "url": "/search?q=%E9%B2%9C%E7%BA%A2%E8%89%B2&filters=mgzv3configlist%3A%22BingQA_QuizLanding_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260115_ReineSunrise%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "蓝色屋顶",
+        "url": "/search?q=%E9%B2%9C%E7%BA%A2%E8%89%B2&filters=mgzv3configlist%3A%22BingQA_QuizLanding_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260115_ReineSunrise%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "木制百叶窗",
+        "url": "/search?q=%E9%B2%9C%E7%BA%A2%E8%89%B2&filters=mgzv3configlist%3A%22BingQA_QuizLanding_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260115_ReineSunrise%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
