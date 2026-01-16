@@ -1,0 +1,46 @@
+{
+  "caption": "保罗圣方济圣殿，那不勒斯，意大利",
+  "title": "保罗圣方济圣殿，那不勒斯，意大利",
+  "description": "走进意大利那不勒斯的任意一座大广场，城市的历史便会在眼前次第展开。拱廊、长长的柱廊、带着古典气息的圆顶争相吸引你的目光。街道风格不断变换——紧凑的巴洛克立面与开阔的新古典主义庭院交替出现。继续向前，你会来到一处宽阔的广场，广场上矗立着一座乍看之下仿佛来自古罗马的建筑。这便是位于普雷比希托广场西侧的保罗圣方济圣殿。",
+  "copyright": "© javarman3/Getty Images",
+  "date": "2026 1月 17",
+  "clickUrl": "/search?q=%e9%82%a3%e4%b8%8d%e5%8b%92%e6%96%af%e4%bf%9d%e7%bd%97%e5%9c%a3%e8%8a%b3%e6%b5%8e%e5%9c%a3%e6%ae%bf&form=hpcapt&filters=HpDate:\"20260116_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.NaplesBasilica_ZH-CN6888150174_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.NaplesBasilica_ZH-CN6888150174_UHD.jpg",
+      "wallpaper": "/th?id=OHR.NaplesBasilica_ZH-CN6888150174_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.NaplesBasilica_ZH-CN6888150174_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.NaplesBasilica_ZH-CN6888150174_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.NaplesBasilica_ZH-CN6888150174_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这座大殿于1846年完工。两西西里国王费迪南一世重新掌权后，继续推进了此前由那不勒斯国王穆拉启动的工程，使建筑最终成型。整个设计一丝不苟地遵循新古典主义的架构理念：圆形的主体结构、挺拔的三角山墙，而最引人注目的，是那座借鉴了公元二世纪罗马万神殿的壮丽穹顶。",
+  "descriptionPara3": "殿内同样延续着严谨的几何之美：抛光大理石闪着柔光，宽阔的拱门让空间更具层次感，圆形回廊上礼拜堂一间一间静静排布。广场上，环形柱廊自然弯展，围合着大殿，也为那座宏伟圆顶勾勒出完美的背景。打算前往那不勒斯旅行吗？普雷比希托广场正等你来探索。",
+  "isoDate": "20260117",
+  "headline": "普雷比希托广场上的穹顶",
+  "quickFact": "在那不勒斯，保罗圣方济圣殿既是珍贵的城市文化遗产，也是新古典主义建筑中的瑰丽巨作。",
+  "triviaId": "HPQuiz_20260117_NaplesBasilica",
+  "triviaData": {
+    "question": "圣殿主要体现了哪种建筑风格？",
+    "options": [
+      {
+        "text": "哥特式",
+        "url": "/search?q=%E6%96%B0%E5%8F%A4%E5%85%B8%E4%B8%BB%E4%B9%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260117_NaplesBasilica%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "新古典主义",
+        "url": "/search?q=%E6%96%B0%E5%8F%A4%E5%85%B8%E4%B8%BB%E4%B9%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260117_NaplesBasilica%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "巴洛克",
+        "url": "/search?q=%E6%96%B0%E5%8F%A4%E5%85%B8%E4%B8%BB%E4%B9%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260117_NaplesBasilica%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
