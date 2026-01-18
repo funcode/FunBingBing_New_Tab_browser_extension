@@ -1,0 +1,46 @@
+{
+  "caption": "亚伯拉罕湖，艾伯塔省，加拿大",
+  "title": "亚伯拉罕湖冰封景象，艾伯塔省，加拿大",
+  "description": "湖面看似繁忙，却静得出奇。洁白的气泡一层层叠在透明的冰下，仿佛时间在某个化学反应的中途被按下了暂停键。奇特吗？当然。不过那份神秘感，也只存在于你还没走近它之前。这里就是亚伯拉罕湖，加拿大阿尔伯塔省最大的水库，位于加拿大落基山脉前缘的库特尼平原地带。严冬来临时，正是这片水域将上升中的气体半途冻结，造就了这幅冰封气泡的奇景。",
+  "copyright": "© Luis F Arevalo/Getty Images",
+  "date": "2026 1月 19",
+  "clickUrl": "/search?q=%e4%ba%9a%e4%bc%af%e6%8b%89%e7%bd%95%e6%b9%96&form=hpcapt&filters=HpDate:\"20260118_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BubblesAbraham_ZH-CN7203734882_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BubblesAbraham_ZH-CN7203734882_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BubblesAbraham_ZH-CN7203734882_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BubblesAbraham_ZH-CN7203734882_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BubblesAbraham_ZH-CN7203734882_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BubblesAbraham_ZH-CN7203734882_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "当湖面开始结冰时，化学便接管了这一切。暖季里，湖底的植物逐渐分解，释放出甲烷气体，一点点向水面升腾。等到冬天来临，冰层生成，正好把这些上升中的气泡冰封。夜里再经历一场严寒，又一层薄冰形成，湖面便这样一层层记录下气泡的轨迹。冻结时它们无害，但如果被打破释放出来，遇火就可能燃烧。因此，不建议游客在冰面钻孔或敲击。风向、温差和积雪都会影响气泡的清晰程度，所以每一年的亚伯拉罕湖都呈现出不一样的冰封景象。",
+  "descriptionPara3": "如果你也想亲眼见证这场奇景，把它写进自己的旅程故事，那么每年一月中旬到二月中旬是最理想的时段。那时冰层扎实、寒气稳定，视野清透——正好赶在春天重新改写湖面之前。",
+  "isoDate": "20260119",
+  "headline": "大自然的波普艺术",
+  "quickFact": "如果你在初冬前往亚伯拉罕湖，观赏冰泡的最佳地点，就是湖区名为“牧师角”的那一段水域。",
+  "triviaId": "HPQuiz_20260119_BubblesAbraham",
+  "triviaData": {
+    "question": "什么自然现象会使亚伯拉罕湖中的气体冻结？",
+    "options": [
+      {
+        "text": "冬季气温",
+        "url": "/search?q=%E5%86%AC%E5%AD%A3%E6%B0%94%E6%B8%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260119_BubblesAbraham%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "夏雨",
+        "url": "/search?q=%E5%86%AC%E5%AD%A3%E6%B0%94%E6%B8%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260119_BubblesAbraham%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "化学反应",
+        "url": "/search?q=%E5%86%AC%E5%AD%A3%E6%B0%94%E6%B8%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260119_BubblesAbraham%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
