@@ -1,0 +1,46 @@
+{
+  "caption": "苏格兰的伯恩斯之夜",
+  "title": "伯恩斯国家遗产公园，艾尔，南艾尔郡，苏格兰",
+  "description": "每年1月25日，苏格兰人及世界各地喜爱伯恩斯的人们都会举杯庆祝，纪念这位深受爱戴的民族诗人。伯恩斯之夜的宴席温暖而有趣：主菜是香气浓郁的哈吉斯，搭配芜菁泥和土豆泥；其间穿插伯恩斯诗句的朗诵，再来一口威士忌，这场庆典最终总在《友谊地久天长》的合唱里被推向高潮。即使人在海外，也能轻松延续这份传统：摆盘、诵诗、举杯，让节日的温暖自然蔓延开来。",
+  "copyright": "© Alister Firth/Alamy",
+  "date": "2026 1月 25",
+  "clickUrl": "/search?q=%e8%8b%8f%e6%a0%bc%e5%85%b0%e5%8d%97%e8%89%be%e5%b0%94%e9%83%a1&form=hpcapt&filters=HpDate:\"20260124_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BurnsPark_ZH-CN4442772228_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BurnsPark_ZH-CN4442772228_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BurnsPark_ZH-CN4442772228_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BurnsPark_ZH-CN4442772228_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BurnsPark_ZH-CN4442772228_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BurnsPark_ZH-CN4442772228_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在苏格兰南艾尔郡的艾尔小镇，伯恩斯国家遗产公园守护着这场传统的发源地。你可以走入伯恩斯诞生的茅屋，在博物馆里细读泛黄的手稿，然后漫步到Brig o'Doon——那座在《塔姆·欧·尚特》中被写得近乎神秘的十五世纪石桥。一旁古老的教堂Auld Kirk，同样为这则故事添上了几分阴影与灵感。沿途的每一处，都让旅程变成一段“能走进去的故事”。无论你是参加热闹的ceilidh，或只是与好友分享一盘哈吉斯，伯恩斯之夜始终承载着温暖、幽默，以及经久不息的诗意。",
+  "descriptionPara3": "",
+  "isoDate": "20260125",
+  "headline": "传统熠熠生辉",
+  "quickFact": "罗伯特·伯恩斯，这位出身于苏格兰艾尔郡的农夫兼诗人，在英国文学史上留下了深刻印记。他的代表作《友谊地久天长》家喻户晓，而他所写的诗歌以苏格兰民谣的旋律、以及对自由与民主的颂扬而备受推崇。",
+  "triviaId": "HPQuiz_20260125_BurnsPark",
+  "triviaData": {
+    "question": "伯恩斯之夜传统上供应的主菜是什么？",
+    "options": [
+      {
+        "text": "羊杂肚",
+        "url": "/search?q=%E7%BE%8A%E6%9D%82%E8%82%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260125_BurnsPark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "苏格兰馅饼",
+        "url": "/search?q=%E7%BE%8A%E6%9D%82%E8%82%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260125_BurnsPark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "鱼晚餐",
+        "url": "/search?q=%E7%BE%8A%E6%9D%82%E8%82%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260125_BurnsPark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
