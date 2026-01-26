@@ -1,0 +1,46 @@
+{
+  "caption": "卷羽鹈鹕，凯尔基尼湖，希腊",
+  "title": "卷羽鹈鹕，凯尔基尼湖，希腊",
+  "description": "在冬日的凯尔基尼湖，你能捕捉到欧洲最震撼的卷羽鹈鹕身影。它们巨大的身形在平静的湖面上成群滑行，沉稳而优雅，令人难以忽视。卷羽鹈鹕翼展超过10英尺，是世界上体型最大的飞行鸟类之一。得益于凯尔基尼湖稳定的冬季气候，你可以近距离欣赏它们的巨大身姿、优雅姿态，以及群体滑行时那种令人着迷的默契。",
+  "copyright": "© Guy Edwardes/naturepl.com",
+  "date": "2026 1月 27",
+  "clickUrl": "/search?q=%e5%8d%b7%e7%be%bd%e9%b9%88%e9%b9%95&form=hpcapt&filters=HpDate:\"20260126_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.DalmationPelicans_ZH-CN5252732863_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.DalmationPelicans_ZH-CN5252732863_UHD.jpg",
+      "wallpaper": "/th?id=OHR.DalmationPelicans_ZH-CN5252732863_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.DalmationPelicans_ZH-CN5252732863_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.DalmationPelicans_ZH-CN5252732863_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.DalmationPelicans_ZH-CN5252732863_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "进入深冬后，鹈鹕也进入繁殖季的“换装期”。它们的喉囊会染上一抹明亮的橙红，与浅灰的冬羽形成强烈对比。由于卷羽鹈鹕会在凯尔基尼湖固定集结，这些细微的变化几乎可以每周追踪，甚至能观察到它们的觅食方式、社群互动，以及宣告繁殖季到来的体态变化。湖区开阔的视野也让所有注意力自然落在鸟儿本身和它们的日常之中，不受外界干扰。",
+  "descriptionPara3": "尽管冬季数量可观，卷羽鹈鹕仍被列为“近危”物种。栖息地丧失、人类干扰以及与电线的碰撞，依然阻碍着它们的恢复。正因如此，凯尔基尼湖这类受保护的湿地，才成为维系繁殖族群与长期保育工作的关键。",
+  "isoDate": "20260127",
+  "headline": "羽翼预告：前方有鹈鹕",
+  "quickFact": "成年的卷羽鹈鹕羽色呈灰白色，头后方长着一撮卷曲、略显凌乱的冠羽，因此得名“卷羽鹈鹕”。",
+  "triviaId": "HPQuiz_20260127_DalmationPelicans",
+  "triviaData": {
+    "question": "哪个湖在冬季可观赏斑嘴鹈鹕聚集？",
+    "options": [
+      {
+        "text": "克尔基尼",
+        "url": "/search?q=%E5%85%8B%E5%B0%94%E5%9F%BA%E5%B0%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260127_DalmationPelicans%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "普雷斯帕",
+        "url": "/search?q=%E5%85%8B%E5%B0%94%E5%9F%BA%E5%B0%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260127_DalmationPelicans%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "奥赫里德",
+        "url": "/search?q=%E5%85%8B%E5%B0%94%E5%9F%BA%E5%B0%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260127_DalmationPelicans%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
