@@ -1,0 +1,46 @@
+{
+  "caption": "旺格努伊国家公园，雷塔鲁克，新西兰",
+  "title": "旺格努伊国家公园，雷塔鲁克，新西兰",
+  "description": "旺格努伊国家公园呈现了新西兰最具特色的河流景观。自1986年建立起，它便以约286平方英里的面积横跨北岛中部。旺格努伊河在茂密的森林中缓缓弯曲前行，静默而深远。虽然其本身不在公园的正式范围内，但它几乎塑造了周遭的一切，包括“旺格努伊之旅”——新西兰著名的“伟大步道”之一。",
+  "copyright": "© Matthew Micah Wright/Getty Images",
+  "date": "2026 1月 28",
+  "clickUrl": "/search?q=%e6%96%b0%e8%a5%bf%e5%85%b0%e6%97%ba%e6%a0%bc%e5%8a%aa%e4%bc%8a%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260127_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.WhanganuiPark_ZH-CN5664518836_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.WhanganuiPark_ZH-CN5664518836_UHD.jpg",
+      "wallpaper": "/th?id=OHR.WhanganuiPark_ZH-CN5664518836_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.WhanganuiPark_ZH-CN5664518836_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.WhanganuiPark_ZH-CN5664518836_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.WhanganuiPark_ZH-CN5664518836_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "公园大部分地形都披覆着低地的木麻黄与硬木混生林，其中卡希卡提亚、里木松与塔瓦等本土树种稳稳扎根其间。沿着河谷前行，野生动物时常现身，游客可能会遇见北岛棕几维鸟、濒危的蓝鸭，以及其他依赖这片森林庇护的本土鸟类。宽阔的山脊、陡坠的地势与连绵不断的绿意，让这座公园显得比实际范围更广阔、更幽深。",
+  "descriptionPara3": "这里的历史藏在一些细小却令人难忘的景物里，比如那座“通往无处之桥”——这座混凝土桥曾为废弃的旧聚居地而建，如今已被森林重新吞噬，只剩孤立的桥身。沿着河岸与通道前行，你会发现这片土地如何将自然景致与昔日社区的踪迹悄然交织在一起。",
+  "isoDate": "20260128",
+  "headline": "随河而行",
+  "quickFact": "河流本身不在国家公园范围内，却因“旺格努伊之旅”而广受欢迎——这是一条备受喜爱的划舟路线，也是新西兰“伟大步道”之一。",
+  "triviaId": "HPQuiz_20260128_WhanganuiPark",
+  "triviaData": {
+    "question": "该公园与哪条著名徒步路线相关？",
+    "options": [
+      {
+        "text": "米尔福德步道",
+        "url": "/search?q=%E6%97%BA%E5%8A%A0%E5%8A%AA%E4%BC%8A%E4%B9%8B%E6%97%85&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260128_WhanganuiPark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "旺加努伊之旅",
+        "url": "/search?q=%E6%97%BA%E5%8A%A0%E5%8A%AA%E4%BC%8A%E4%B9%8B%E6%97%85&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260128_WhanganuiPark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "鲁特本步道",
+        "url": "/search?q=%E6%97%BA%E5%8A%A0%E5%8A%AA%E4%BC%8A%E4%B9%8B%E6%97%85&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260128_WhanganuiPark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
