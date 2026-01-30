@@ -1,0 +1,46 @@
+{
+  "caption": "国际斑马日",
+  "title": "平原斑马, 埃托沙国家公园, 纳米比亚",
+  "description": "有些动物在荒野中悄悄穿行，但斑马不是。它们顶着一身醒目的黑白条纹，仿佛这是世界上最实用的“装备”——实际上也确实如此。每年的1月31日是国际斑马日，让这些黑白相间的主角从群体中走到聚光灯下，迎来属于自己的高光时刻。",
+  "copyright": "© Mogens Trolle/Shutterstock",
+  "date": "2026 1月 31",
+  "clickUrl": "/search?q=%e5%b9%b3%e5%8e%9f%e6%96%91%e9%a9%ac&form=hpcapt&filters=HpDate:\"20260130_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.EtoshaZebra_ZH-CN6068087794_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.EtoshaZebra_ZH-CN6068087794_UHD.jpg",
+      "wallpaper": "/th?id=OHR.EtoshaZebra_ZH-CN6068087794_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.EtoshaZebra_ZH-CN6068087794_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.EtoshaZebra_ZH-CN6068087794_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.EtoshaZebra_ZH-CN6068087794_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "斑马属于非洲的马科动物，共有三种：出现在今天图中的平原斑马，条纹大胆鲜明；山地斑马则拥有细密的“针织条纹”；格氏斑马的花纹更是纤细到像设计师的精巧作品。每匹斑马的花纹都独一无二，堪称移动的指纹。科学研究认为，这些条纹能迷惑天敌、避免虫咬，还能借气流帮助身体散热。",
+  "descriptionPara3": "观察一群斑马就知道它们有多群居——这种群体甚至有个专门的名字叫dazzle。它们会互相梳理毛发、帮忙照看幼崽，并用嘶叫和吠声交流。小斑马出生后几个小时内就能记住母亲的条纹。斑马速度极快，能跑到40英里/小时；遇到危险时，它们会围成紧密的圈防御。不过，栖息地破碎化、偷猎和与家畜的竞争仍威胁着它们，因此国际斑马日也变得尤为重要。",
+  "isoDate": "20260131",
+  "headline": "一见钟情",
+  "quickFact": "平原斑马是博茨瓦纳的国兽，它的条纹也出现在该国国旗上。旗上的黑白条纹同时象征着国家的种族和谐。",
+  "triviaId": "HPQuiz_20260131_EtoshaZebra",
+  "triviaData": {
+    "question": "哪种斑马的条纹图案最为精致？",
+    "options": [
+      {
+        "text": "山地斑马",
+        "url": "/search?q=%E6%A0%BC%E6%B0%8F%E6%96%91%E9%A9%AC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260131_EtoshaZebra%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "格氏斑马",
+        "url": "/search?q=%E6%A0%BC%E6%B0%8F%E6%96%91%E9%A9%AC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260131_EtoshaZebra%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "平原斑马",
+        "url": "/search?q=%E6%A0%BC%E6%B0%8F%E6%96%91%E9%A9%AC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260131_EtoshaZebra%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
