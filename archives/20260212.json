@@ -1,0 +1,46 @@
+{
+  "caption": "达尔文日",
+  "title": "蓝脚鲣鸟，加拉帕戈斯群岛, 厄瓜多尔",
+  "description": "达尔文日纪念的不只是一位科学家的诞生，更是一场人类思维方式的转变。查尔斯·达尔文以敏锐的目光观察世界，从个体差异、生存优势到性状遗传，逐步建立起全新的科学认知。多年研究雀鸟、化石和藤壶后，他逐渐识别出其中隐藏的规律，并在1859年出版《物种起源》，首次系统提出物种通过自然选择不断演化的理论框架。",
+  "copyright": "© Karine Aigner/TANDEM Stills + Motion",
+  "date": "2026 2月 12",
+  "clickUrl": "/search?q=%e8%93%9d%e8%84%9a%e9%b2%a3%e9%b8%9f&form=hpcapt&filters=HpDate:\"20260211_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.DarwinBooby_ZH-CN4925779873_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.DarwinBooby_ZH-CN4925779873_UHD.jpg",
+      "wallpaper": "/th?id=OHR.DarwinBooby_ZH-CN4925779873_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.DarwinBooby_ZH-CN4925779873_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.DarwinBooby_ZH-CN4925779873_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.DarwinBooby_ZH-CN4925779873_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在达尔文相关的研究中，常被提及的动物之一，正是今天画面里的蓝脚鲣鸟。这些海鸟广泛分布于加拉帕戈斯群岛及整个东太平洋热带海域，以一双醒目的蓝色脚掌闻名。脚色的深浅受食物影响——沙丁鱼、凤尾鱼等鱼类中的类胡萝卜素，塑造了它们独特的外观。无论雌雄，脚掌越鲜亮，往往代表健康状况越好、免疫系统越强。在求偶时，雄鸟会刻意高举双脚展示，而脚色更浓的雌鸟，也更可能孕育出体质健壮的后代。捕食时，它们会从高空高速俯冲入海，凭借敏锐的视力精准锁定鱼群。蓝脚鲣鸟的存在，正是进化仍在继续的生动例证。",
+  "descriptionPara3": "",
+  "isoDate": "20260212",
+  "headline": "聚焦进化",
+  "quickFact": "在求偶时，雄性蓝脚鲣鸟会把那双醒目的蓝色脚掌当作“王牌”，配合夸张的舞步来博得雌鸟青睐。它先把脚高高抬起，在雌鸟面前昂首阔步地走动，展开一场精心设计的表演。",
+  "triviaId": "HPQuiz_20260212_DarwinBooby",
+  "triviaData": {
+    "question": "蓝脚鲣鸟主要分布在哪个海域？",
+    "options": [
+      {
+        "text": "南大西洋",
+        "url": "/search?q=%E4%B8%9C%E5%A4%AA%E5%B9%B3%E6%B4%8B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260212_DarwinBooby%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "东太平洋",
+        "url": "/search?q=%E4%B8%9C%E5%A4%AA%E5%B9%B3%E6%B4%8B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260212_DarwinBooby%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "印度洋",
+        "url": "/search?q=%E4%B8%9C%E5%A4%AA%E5%B9%B3%E6%B4%8B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260212_DarwinBooby%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
