@@ -1,0 +1,46 @@
+{
+  "caption": "龙之眼，挪威乌塔克莱夫海滩",
+  "title": "乌塔克莱夫海滩的“龙之眼”岩层，挪威",
+  "description": "“龙之眼”这个名字听起来像是出自传说，而当你站在挪威罗弗敦群岛的乌塔克莱夫海滩上时，你很容易就能明白为什么它会得此美名。这处地貌由古老的岩石雕琢而成，四周环绕着沙滩和大海，看起来栩栩如生，仿佛大地本身正在注视着你。它历经数千年的冰雪和海水的侵蚀塑造而成，如今已成为该地区最迷人的景点之一。",
+  "copyright": "© reisegraf/Getty Images",
+  "date": "2026 2月 19",
+  "clickUrl": "/search?q=%e4%b9%8c%e5%a1%94%e5%85%8b%e8%8e%b1%e5%a4%ab%e6%b5%b7%e6%bb%a9&form=hpcapt&filters=HpDate:\"20260218_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.DragonsEyeRock_ZH-CN6164478776_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.DragonsEyeRock_ZH-CN6164478776_UHD.jpg",
+      "wallpaper": "/th?id=OHR.DragonsEyeRock_ZH-CN6164478776_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.DragonsEyeRock_ZH-CN6164478776_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.DragonsEyeRock_ZH-CN6164478776_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.DragonsEyeRock_ZH-CN6164478776_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "尽管龙眼有着神话般的名字，但它实际上是一个冰川坑洞。大约 2 万年前，汹涌的融水从广阔的芬诺斯坎迪亚冰原下流过，在变质岩中形成了一个圆形凹洞。在强大的压力下，携带着沙石的水流冲刷着基岩，逐渐侵蚀出壁面光滑的洼地。大约 1.6 万年前，冰雪退去，这些地貌显露出来，留下了像龙眼这样的地貌，龙眼的中心镶嵌着一块巨石或 “瞳孔”。",
+  "descriptionPara3": "如今，“眼睛 ”继续随着各种元素的变化而变化。根据潮汐的变化，海浪会淹没空洞或将其剥离，而藻类和光线则不断重塑其表现形式，模糊了传说与景观之间的界限。",
+  "isoDate": "20260219",
+  "headline": "大地凝视着我们",
+  "quickFact": "乌塔克莱夫是一个小社区，只有22名常住居民。除了“龙眼”岩层之外，该地区还以在沙丘上自由漫步和吃草的绵羊而闻名。",
+  "triviaId": "HPQuiz_20260219_DragonsEyeRock",
+  "triviaData": {
+    "question": "哪座挪威海滩拥有这一岩石景观？",
+    "options": [
+      {
+        "text": "恩斯塔德",
+        "url": "/search?q=%E4%B9%8C%E5%A1%94%E5%85%8B%E8%8E%B1%E5%A4%AB&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260219_DragonsEyeRock%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "乌塔克莱夫",
+        "url": "/search?q=%E4%B9%8C%E5%A1%94%E5%85%8B%E8%8E%B1%E5%A4%AB&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260219_DragonsEyeRock%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "豪克兰",
+        "url": "/search?q=%E4%B9%8C%E5%A1%94%E5%85%8B%E8%8E%B1%E5%A4%AB&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260219_DragonsEyeRock%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
