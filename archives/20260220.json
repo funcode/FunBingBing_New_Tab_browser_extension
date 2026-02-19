@@ -1,0 +1,46 @@
+{
+  "caption": "约塞米蒂国家公园里的火瀑布，加利福尼亚州",
+  "title": "约塞米蒂国家公园里的火瀑布，加利福尼亚州，美国",
+  "description": "今天，是安塞尔·亚当斯的诞辰。正是他的镜头，塑造了世人心中优胜美地的形象。这座国家公园以雄伟的花岗岩岩壁、壮观的瀑布和变幻莫测的光线闻名，持续激发着一代又一代艺术家的创作灵感。而其中最令人着迷的景象，是被称作“火瀑”的奇观。这一名称，其实源自优胜美地历史中的两种不同景象。在过去，人们曾聚集在冰川点，观看一种人工制造的奇观：炽热的余烬被推下悬崖，在夜幕中倾泻而下，宛如一条燃烧的火流。",
+  "copyright": "© Jorge Villalba/Getty Images",
+  "date": "2026 2月 20",
+  "clickUrl": "/search?q=%e7%ba%a6%e5%a1%9e%e7%b1%b3%e8%92%82%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad%e9%87%8c%e7%9a%84%e7%81%ab%e7%80%91%e5%b8%83&form=hpcapt&filters=HpDate:\"20260219_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AdamsFirefall_ZH-CN9409143565_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AdamsFirefall_ZH-CN9409143565_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AdamsFirefall_ZH-CN9409143565_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AdamsFirefall_ZH-CN9409143565_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AdamsFirefall_ZH-CN9409143565_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AdamsFirefall_ZH-CN9409143565_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "相比之下，真正令人着迷的，是埃尔卡皮坦山马尾瀑布上出现的自然火瀑。在二月中下旬的少数几个黄昏，落日以恰到好处的角度照亮瀑布，使水流染上一层炽亮的橙色，仿佛熔岩顺着山体缓缓倾泻。这一奇观并非年年可见，它依赖于晴朗的天空、充沛的水量，以及分秒不差的时机。1973年，摄影师盖伦·罗威尔首次捕捉到这一罕见瞬间，并拍下广为流传的影像，让这一天然奇观走入公众视野，成为优胜美地最令人惊叹的景象之一。",
+  "descriptionPara3": "",
+  "isoDate": "20260220",
+  "headline": "光照之处",
+  "quickFact": "唯有水量充沛、天空澄明，且阳光以恰当的角度洒落，火焰般的水幕才会显现。而这样的奇遇，并不会每年发生。",
+  "triviaId": "HPQuiz_20260220_AdamsFirefall",
+  "triviaData": {
+    "question": "哪个悬崖形成天然的火瀑布景观？",
+    "options": [
+      {
+        "text": "半圆顶",
+        "url": "/search?q=%E9%85%8B%E9%95%BF%E5%B2%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260220_AdamsFirefall%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "酋长岩",
+        "url": "/search?q=%E9%85%8B%E9%95%BF%E5%B2%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260220_AdamsFirefall%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "哨兵岩",
+        "url": "/search?q=%E9%85%8B%E9%95%BF%E5%B2%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260220_AdamsFirefall%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
