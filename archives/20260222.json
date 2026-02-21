@@ -1,0 +1,46 @@
+{
+  "caption": "马姆托尔，德比郡，英格兰",
+  "title": "马姆托尔山，德比郡，英格兰",
+  "description": "“颤抖的山”这个绰号听起来颇具戏剧性，但对马姆托尔来说，却是数百年来的真实写照。它耸立在英格兰峰区国家公园的卡斯尔顿上方，这里也是英国首个国家公园，占地约555平方英里。这座地标的名字源自古英语，“mam”意为“母亲”，暗指它仿佛怀抱着周围起伏的小丘。然而，这座“母亲之山”却以不稳定而闻名：页岩与砂岩层层叠加，使山体长期滑动，1979年的一次坍塌甚至导致A625公路永久关闭。",
+  "copyright": "© john finney photography/Getty Images",
+  "date": "2026 2月 22",
+  "clickUrl": "/search?q=%e9%a9%ac%e5%a7%86%e6%89%98%e5%b0%94%e5%b1%b1&form=hpcapt&filters=HpDate:\"20260221_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MamTorSunrise_ZH-CN9698497298_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MamTorSunrise_ZH-CN9698497298_UHD.jpg",
+      "wallpaper": "/th?id=OHR.MamTorSunrise_ZH-CN9698497298_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MamTorSunrise_ZH-CN9698497298_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MamTorSunrise_ZH-CN9698497298_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.MamTorSunrise_ZH-CN9698497298_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在工程技术介入之前，这座“不稳定”的山早已有了人类的足迹。约3500年前，青铜时代的人们在马姆托山顶筑起宏大的山堡。至今，山脊上仍清晰可见圆形居所与古老道路的遗迹，静静诉说着这里长期作为重要聚落的历史。",
+  "descriptionPara3": "从地质角度看，这座海拔约1696英尺的山峰，清晰呈现了峰区动荡不安的地质历史。峭壁间裸露的岩层，形成于3.2亿多年前的热带海洋环境；而附近的洞穴，如著名的蓝约翰洞穴，则孕育着世界上极为罕见的矿物。如今，马姆托尔依然是公园内最具代表性的徒步路线之一，沿着山脊行走，既能感受原始野性，又能行走得轻松自在。",
+  "isoDate": "20260222",
+  "headline": "群山的母亲",
+  "quickFact": "在这座山丘之巅，矗立着一处始建于青铜时代晚期至铁器时代早期的单壕山堡，周围还保留着两座青铜时代的碗状坟冢。",
+  "triviaId": "HPQuiz_20260222_MamTorSunrise",
+  "triviaData": {
+    "question": "“Mam Tor”这一名称源自哪种语言？",
+    "options": [
+      {
+        "text": "古英语",
+        "url": "/search?q=%E5%8F%A4%E8%8B%B1%E8%AF%AD&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260222_MamTorSunrise%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "威尔士语",
+        "url": "/search?q=%E5%8F%A4%E8%8B%B1%E8%AF%AD&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260222_MamTorSunrise%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "苏格兰盖尔语",
+        "url": "/search?q=%E5%8F%A4%E8%8B%B1%E8%AF%AD&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260222_MamTorSunrise%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
