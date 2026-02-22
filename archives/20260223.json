@@ -1,0 +1,46 @@
+{
+  "caption": "大白鹭，上巴伐利亚州，德国",
+  "title": "大白鹭，上巴伐利亚州，德国",
+  "description": "洁白的羽毛、修长的脖颈和鲜亮的黄喙，让大白鹭在湿地中格外醒目。这种大型鹭鸟分布广泛，几乎遍布全球，能适应多种水域环境。成年大白鹭体长约94至104厘米，翼展1.3至1.45米，体重约1公斤，身形高挑优雅。作为肉食性鸟类，大白鹭主要以鱼类为食，同时也捕食两栖动物、昆虫、小型哺乳动物和爬行动物。它们常在水边一动不动地耐心等待，随后以极快的速度完成一次精准的捕食。",
+  "copyright": "© Konrad Wothe/naturepl.com",
+  "date": "2026 2月 23",
+  "clickUrl": "/search?q=%e5%a4%a7%e7%99%bd%e9%b9%ad&form=hpcapt&filters=HpDate:\"20260222_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BavariaEgret_ZH-CN0521643213_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BavariaEgret_ZH-CN0521643213_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BavariaEgret_ZH-CN0521643213_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BavariaEgret_ZH-CN0521643213_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BavariaEgret_ZH-CN0521643213_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BavariaEgret_ZH-CN0521643213_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在今天的画面中，这只姿态挺拔的大白鹭伫立在德国上巴伐利亚的雪地中，洁白的羽毛几乎融入冬日景色。尽管寒风凛冽，它却显得安静而从容，让这片雪景显得愈发沉静。白鹭昂首伫立，专注而警觉，在凝固的雪景中如同一位无声的守望者。",
+  "descriptionPara3": "",
+  "isoDate": "20260223",
+  "headline": "雪原之王",
+  "quickFact": "大白鹭是一种适应性极强、分布广泛的物种，其活动范围仍在不断扩大，广泛出现在全球温带与热带地区的多种栖息环境中。",
+  "triviaId": "HPQuiz_20260223_BavariaEgret",
+  "triviaData": {
+    "question": "这种大型鸟类常适应哪种栖息地？",
+    "options": [
+      {
+        "text": "山峰",
+        "url": "/search?q=%E5%A4%9A%E7%A7%8D%E6%B9%BF%E5%9C%B0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260223_BavariaEgret%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "多种湿地",
+        "url": "/search?q=%E5%A4%9A%E7%A7%8D%E6%B9%BF%E5%9C%B0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260223_BavariaEgret%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "开阔的沙漠",
+        "url": "/search?q=%E5%A4%9A%E7%A7%8D%E6%B9%BF%E5%9C%B0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260223_BavariaEgret%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
