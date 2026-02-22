@@ -1,4 +1,6 @@
 
+importScripts('base.js');
+
 // on install
 chrome.runtime.onInstalled.addListener(function (object) {
 	// open manual link
@@ -17,19 +19,33 @@ chrome.runtime.onInstalled.addListener(function (object) {
 	}
 });
 
-const LOST_QUOTES_URL = "https://quotes-of-the-day.s3.ap-east-1.amazonaws.com/latest.json";
+const DEFAULT_LOST_QUOTES_URL = null;
 const LOST_QUOTES_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 let lostQuotesCache = null;
 let lostQuotesFetchedAt = 0;
+let lostQuotesCacheUrl = null;
+
+async function getLostQuotesUrl() {
+  await confReadyPromise;
+  const configuredUrl = readConf("qotd_url");
+  if (typeof configuredUrl === "string" && configuredUrl.trim()) {
+    return configuredUrl.trim();
+  }
+  return DEFAULT_LOST_QUOTES_URL;
+}
 
 async function fetchLostQuotes(force = false) {
+  const lostQuotesUrl = await getLostQuotesUrl();
+  if (!lostQuotesUrl) {
+    return {};
+  }
   const now = Date.now();
-  if (!force && lostQuotesCache && (now - lostQuotesFetchedAt) < LOST_QUOTES_CACHE_TTL_MS) {
+  if (!force && lostQuotesCache && lostQuotesCacheUrl === lostQuotesUrl && (now - lostQuotesFetchedAt) < LOST_QUOTES_CACHE_TTL_MS) {
     return lostQuotesCache;
   }
 
-  const response = await fetch(LOST_QUOTES_URL, {
+  const response = await fetch(lostQuotesUrl, {
     method: "GET",
     cache: "no-store"
   });
@@ -45,6 +61,7 @@ async function fetchLostQuotes(force = false) {
 
   lostQuotesCache = data;
   lostQuotesFetchedAt = now;
+  lostQuotesCacheUrl = lostQuotesUrl;
   return data;
 }
 
@@ -72,33 +89,68 @@ function normalizeQuotePayload(rawQuote) {
   };
 }
 
+function getLatestAvailableQuote(allQuotes) {
+  if (!allQuotes || typeof allQuotes !== "object") {
+    return { date: null, quote: null };
+  }
+
+  const latestDate = Object.keys(allQuotes)
+    .filter((date) => /^\d{8}$/.test(date))
+    .sort()
+    .at(-1) || null;
+
+  if (!latestDate) {
+    return { date: null, quote: null };
+  }
+
+  return {
+    date: latestDate,
+    quote: normalizeQuotePayload(allQuotes[latestDate])
+  };
+}
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message && message.type === "getLostQuotes") {
+  if (message && (message.type === "getQuotes" || message.type === "getLostQuotes")) {
     (async () => {
       try {
         const requestedDates = Array.isArray(message.dates)
           ? message.dates.filter(date => typeof date === "string" && date.trim().length > 0)
           : [];
 
-        if (requestedDates.length === 0) {
-          sendResponse({});
-          return;
-        }
-
         const allQuotes = await fetchLostQuotes();
         const responsePayload = {};
 
-        requestedDates.forEach((date) => {
-          const normalized = normalizeQuotePayload(allQuotes[date]);
-          if (normalized) {
-            responsePayload[date] = normalized;
+        if (requestedDates.length > 0) {
+          requestedDates.forEach((date) => {
+            const normalized = normalizeQuotePayload(allQuotes[date]);
+            if (normalized) {
+              responsePayload[date] = normalized;
+            }
+          });
+        }
+
+        // For "today" flow, return a latest quote when the requested date is missing.
+        const wantsLatestFallback = Boolean(message.includeLatestFallback);
+        if (wantsLatestFallback && requestedDates.length > 0) {
+          const hasAnyHit = Object.keys(responsePayload).length > 0;
+          if (!hasAnyHit) {
+            const { date, quote } = getLatestAvailableQuote(allQuotes);
+            if (date && quote) {
+              responsePayload[date] = quote;
+            }
           }
-        });
+        } else if (requestedDates.length === 0) {
+          // If no dates provided, return only latest available quote.
+          const { date, quote } = getLatestAvailableQuote(allQuotes);
+          if (date && quote) {
+            responsePayload[date] = quote;
+          }
+        }
 
         sendResponse(responsePayload);
       } catch (error) {
         //TODO: Retry logic could be added here
-        console.error("Error handling getLostQuotes message:", error);
+        console.error("Error handling getQuotes message:", error);
         sendResponse({});
       }
     })();
