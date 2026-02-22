@@ -341,6 +341,22 @@ async function collectBingDataInParallel() {
 	return results;
 }
 
+function getQuotesFromBackground(dates, includeLatestFallback) {
+	return new Promise((resolve) => {
+		chrome.runtime.sendMessage(
+			{ type: "getQuotes", dates, includeLatestFallback: Boolean(includeLatestFallback) },
+			(response) => {
+				if (chrome.runtime.lastError) {
+					console.debug('getQuotes failed:', chrome.runtime.lastError.message);
+					resolve({});
+					return;
+				}
+				resolve(response && typeof response === 'object' ? response : {});
+			}
+		);
+	});
+}
+
 // --- Process Bing Results ---
 async function handleBingDataResults(results) {
 	// --- Safely access images ---
@@ -391,6 +407,7 @@ async function handleBingDataResults(results) {
 
 			return { text, author, authorHref, caption };
 		}
+		let quoteResolved = false;
 		if (results.quoteOfTheDay) {
 			try {
 				const parser = new DOMParser();
@@ -403,21 +420,23 @@ async function handleBingDataResults(results) {
 						link: authorHref,
 						caption: authorCaption
 					};
+					quoteResolved = true;
 				}
 			} catch (e) {
 				console.error("Error parsing quote of the day HTML:", e);
 			}
-		} else {//Fallback: request from background.js
-/* 			chrome.runtime.sendMessage({ type: "getQuote" }, (response) => {
-				if (chrome.runtime.lastError) {
-					console.debug('getQuote message had no response:', chrome.runtime.lastError.message);
-					return;
+		}
+		if (!quoteResolved) {
+			try {
+				const response = await getQuotesFromBackground([images[0].isoDate], true);
+				const fallbackQuote = response[images[0].isoDate] || Object.values(response)[0];
+				if (fallbackQuote && fallbackQuote.text) {
+					images[0].quoteData = fallbackQuote;
+					quoteResolved = true;
 				}
-				console.log('Received quote response:', response);
-				if (response) {
-					images[0].quoteData = response;
-				} 
-			}); */
+			} catch (fallbackErr) {
+				console.error('Fallback quote resolution failed:', fallbackErr);
+			}
 		}
 
 		// Function to cache a new quote and backfill others
@@ -464,15 +483,40 @@ async function handleBingDataResults(results) {
 			}
 			if(Object.keys(lostQuotes).length>0){
 				writeConf("lost_quotes",Object.keys(lostQuotes));
-				chrome.runtime.sendMessage({ type: "getLostQuotes", dates: Object.keys(lostQuotes) }, (response) => {
+				chrome.runtime.sendMessage({ type: "getQuotes", dates: Object.keys(lostQuotes) }, (response) => {
 					if (chrome.runtime.lastError) {
-						console.debug('getLostQuotes failed:', chrome.runtime.lastError.message);
+						console.debug('getQuotes failed:', chrome.runtime.lastError.message);
 						return;
 					}
-					console.log('Received lost quotes response:', response);
-					//TODO: merge response
-					if (response) {
-						writeConf("s3_quote_of_the_day", { response });
+					console.log('Received quotes response:', response);
+					if (response && typeof response === 'object') {
+						let changed = false;
+						Object.keys(response).forEach((date) => {
+							const quote = response[date];
+							if (!quote || !quote.text) return;
+							if (!allQuotes[date]) {
+								tracker.last = (tracker.last % 8) + 1;
+								const slot = tracker.last;
+								const oldKey = tracker[slot];
+								if (oldKey && allQuotes[oldKey]) {
+									delete allQuotes[oldKey];
+								}
+								allQuotes[date] = quote;
+								tracker[slot] = date;
+								changed = true;
+							}
+							for (let i = 0; i < images.length; i++) {
+								if (images[i].isoDate === date) {
+									images[i].quoteData = quote;
+								}
+							}
+						});
+						if (changed) {
+							writeConf("cache_quote_tracker", tracker);
+							writeConf("cache_quote_of_the_day", allQuotes);
+						}
+						writeConf("bing_images", images);
+						writeConf("s3_quote_of_the_day", response);
 					}
 				});
 			}

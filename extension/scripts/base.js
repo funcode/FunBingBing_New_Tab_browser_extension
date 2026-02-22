@@ -21,7 +21,9 @@ const DEFAULT_SEARCH_ENGINES = Object.freeze([
     })
 ]);
 
-window.DEFAULT_SEARCH_ENGINES = DEFAULT_SEARCH_ENGINES;
+if (typeof globalThis !== "undefined") {
+  globalThis.DEFAULT_SEARCH_ENGINES = DEFAULT_SEARCH_ENGINES;
+}
 
 // ---- helper funcs ----
 
@@ -110,6 +112,7 @@ function initializeConf() {
         show_clock: "yes",
         show_quote: "yes",
         enable_uhd_wallpaper: "yes",
+        LOST_QUOTES_URL: "https://quotes-of-the-day.s3.ap-east-1.amazonaws.com/latest.json",
         wallpaper_date: "20000101",
         wallpaper_idx: "0",
         last_open_version: "0"
