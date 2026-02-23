@@ -1,0 +1,46 @@
+{
+  "caption": "欧亚红松鼠",
+  "title": "欧亚红松鼠",
+  "description": "画面里，一只欧亚红松鼠蹲在雪地上，披着冬日特有的浓密绒毛，耳尖的小簇毛格外惹眼。它们原生于欧洲和亚洲部分地区的森林，主要以种子、坚果和真菌为食，把粮食分散藏在林中各处，并在高高的树洞里垒起巢窝，安度漫长寒冬。",
+  "copyright": "© Galina Jacyna/Getty Images",
+  "date": "2026 1月 21",
+  "clickUrl": "/search?q=%e6%ac%a7%e4%ba%9a%e7%ba%a2%e6%9d%be%e9%bc%a0&form=hpcapt&filters=HpDate:\"20260120_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BerrySquirrel_ZH-CN7382553646_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BerrySquirrel_ZH-CN7382553646_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BerrySquirrel_ZH-CN7382553646_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BerrySquirrel_ZH-CN7382553646_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BerrySquirrel_ZH-CN7382553646_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BerrySquirrel_ZH-CN7382553646_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "“松鼠感谢日”定在每年的1月21日，最初由野生动物救护者员克里斯蒂·哈格罗夫于2001年发起，呼吁人们对这些动作敏捷、眼睛闪亮的小觅食者多一些善意。虽然它们有时被当成花园里的“小破坏王”或城市里的“麻烦精”，但松鼠在生态系统中扮演着重要角色——尤其是它们那到处埋藏食物的习性……",
+  "descriptionPara3": "",
+  "isoDate": "20260121",
+  "headline": "冬日白雪中的一抹红",
+  "quickFact": "欧亚红松鼠会在高高的树上，用树枝与树叶织出一个圆圆的“drey”巢穴，像个藏在枝丛间的小球窝。",
+  "triviaId": "HPQuiz_20260121_BerrySquirrel",
+  "triviaData": {
+    "question": "浆果松鼠主要偏好哪种栖息地？",
+    "options": [
+      {
+        "text": "沙漠",
+        "url": "/search?q=%E6%A3%AE%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260121_BerrySquirrel%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "森林",
+        "url": "/search?q=%E6%A3%AE%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260121_BerrySquirrel%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "稀树草原",
+        "url": "/search?q=%E6%A3%AE%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260121_BerrySquirrel%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

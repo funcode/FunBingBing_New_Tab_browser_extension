@@ -1,0 +1,46 @@
+{
+  "caption": "戈佐岛上的盐田, 马耳他",
+  "title": "戈佐岛上的盐田, 马耳他",
+  "description": "马耳他戈佐岛的什韦尼湾，总有一种魔力，能让海水、岩石与阳光呈现出一种宁静而有序的美感，令人不由得放慢脚步细看。几个世纪前，当地居民在石灰岩上开凿出层层盐池，形成数百个用来蓄海水的盆地。海水进入池中后，在阳光照射下逐渐蒸发，最终结晶成天然的地中海海盐。由于石灰岩海岸易于塑造，加上夏季温暖干燥，戈佐岛逐渐发展成重要的制盐地。每年五月左右，第一批盐晶生成，采盐季随即开始。工人们手工耙盐、清扫、堆放晾晒，最后装袋并储存在洞穴中。",
+  "copyright": "© Marius Roman/Getty Images",
+  "date": "2026 2月 5",
+  "clickUrl": "/search?q=%e9%a9%ac%e8%80%b3%e4%bb%96%e6%88%88%e4%bd%90%e5%b2%9b+&form=hpcapt&filters=HpDate:\"20260204_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MaltaSalt_ZH-CN7025158187_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MaltaSalt_ZH-CN7025158187_UHD.jpg",
+      "wallpaper": "/th?id=OHR.MaltaSalt_ZH-CN7025158187_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MaltaSalt_ZH-CN7025158187_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MaltaSalt_ZH-CN7025158187_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.MaltaSalt_ZH-CN7025158187_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "游客可以顺着海岸一路走到盐池旁，不过要注意避开标有“禁止进入”的区域。如果你在夏天造访，说不定还能看到工人们正在耙盐、晒盐的场景，不妨停下来欣赏一下眼前的景色。返程之前，也可以去马耳他各地的美食商店，挑一份盐味十足的纪念品带走。",
+  "descriptionPara3": "",
+  "isoDate": "20260205",
+  "headline": "困在网格里",
+  "quickFact": "夏天来临时，当地岛民会收集晒成晶体的盐粒，并储存在周边的天然洞穴里。如今，不少当地商家将这种盐分装成精致的礼品罐，作为纪念品在岛上的商店售卖。",
+  "triviaId": "HPQuiz_20260205_MaltaSalt",
+  "triviaData": {
+    "question": "戈佐海岸因何种自然特征适合建盐田？",
+    "options": [
+      {
+        "text": "玄武岩悬崖",
+        "url": "/search?q=%E7%9F%B3%E7%81%B0%E5%B2%A9%E6%B5%B7%E5%B2%B8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260205_MaltaSalt%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "石灰岩海岸",
+        "url": "/search?q=%E7%9F%B3%E7%81%B0%E5%B2%A9%E6%B5%B7%E5%B2%B8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260205_MaltaSalt%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "花岗岩山脊",
+        "url": "/search?q=%E7%9F%B3%E7%81%B0%E5%B2%A9%E6%B5%B7%E5%B2%B8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260205_MaltaSalt%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "caption": "世界鲸鱼日",
+  "title": "蒙特雷湾的大翅鲸(座头鲸)，加利福尼亚州，美国",
+  "description": "世界鲸鱼日定于每年2月的第3个星期日，起源于20世纪80年代的夏威夷。当时，当地社区会庆祝座头鲸在迁徙季节重返近海。这一纪念日随后逐渐受到国际关注，尤其是在1986年国际捕鲸委员会通过商业捕鲸禁令之后，该举措成为全球鲸类保护的重要里程碑。",
+  "copyright": "© Kiliii Fish/Cavan Images",
+  "date": "2026 2月 15",
+  "clickUrl": "/search?q=%e9%b2%b8%e9%b1%bc&form=hpcapt&filters=HpDate:\"20260214_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MontereyHumpbacks_ZH-CN5426789466_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MontereyHumpbacks_ZH-CN5426789466_UHD.jpg",
+      "wallpaper": "/th?id=OHR.MontereyHumpbacks_ZH-CN5426789466_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MontereyHumpbacks_ZH-CN5426789466_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MontereyHumpbacks_ZH-CN5426789466_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.MontereyHumpbacks_ZH-CN5426789466_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "座头鲸修长的胸鳍格外醒目，而它们在繁殖季发出的复杂歌声，更为海洋增添了神秘回响。座头鲸的迁徙路线高度规律，常年沿岸而行，不仅成为季节更替的自然标志，也使其成为最早被关注和保护的鲸类之一。",
+  "descriptionPara3": "鲸类保护不仅是禁捕，更关乎整个海洋环境。渔业、航运、噪音、塑料污染与海温变化，共同影响鲸的迁徙路径和觅食节奏。在蒙特雷湾，座头鲸的觅食依托于健康丰富的生态系统。猎物反哺海洋，营养滋养浮游生物，生命由此串联成完整的食物网。世界鲸鱼日，关注鲸鱼，也是关注海洋的未来。",
+  "isoDate": "20260215",
+  "headline": "浪涛下的歌谣",
+  "quickFact": "座头鲸广泛分布于世界各大洋，在中国，它们的活动范围涵盖黄海、东海以及南海海域。",
+  "triviaId": "HPQuiz_20260215_MontereyHumpbacks",
+  "triviaData": {
+    "question": "哪座太平洋海湾是座头鲸觅食的重要地点？",
+    "options": [
+      {
+        "text": "蒙特雷湾",
+        "url": "/search?q=%E8%92%99%E7%89%B9%E9%9B%B7%E6%B9%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260215_MontereyHumpbacks%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "哈德逊湾",
+        "url": "/search?q=%E8%92%99%E7%89%B9%E9%9B%B7%E6%B9%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260215_MontereyHumpbacks%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "桌湾",
+        "url": "/search?q=%E8%92%99%E7%89%B9%E9%9B%B7%E6%B9%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260215_MontereyHumpbacks%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

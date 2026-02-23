@@ -1,0 +1,46 @@
+{
+  "caption": "中国的除夕夜",
+  "title": "庆祝春节的龙形灯笼，中国西安",
+  "description": "除夕夜，街头的龙形灯笼正蜿蜒舒展，金鳞流转间仿佛蓄着时光的温度；而远处隐约响起的蹄声，恰似春风捎来骏马的问候——这是龙与马的相逢，是古老祥瑞与崭新朝气在岁月门楣的相会。",
+  "copyright": "© Pan Hong/Getty Images",
+  "date": "2026 2月 16",
+  "clickUrl": "/search?q=%e9%99%a4%e5%a4%95%e5%a4%9c&form=hpcapt&filters=HpDate:\"20260215_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ChineseNewYearEveY26_ZH-CN7770318975_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ChineseNewYearEveY26_ZH-CN7770318975_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ChineseNewYearEveY26_ZH-CN7770318975_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ChineseNewYearEveY26_ZH-CN7770318975_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ChineseNewYearEveY26_ZH-CN7770318975_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ChineseNewYearEveY26_ZH-CN7770318975_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这座龙灯以腾跃之姿盘绕成家门前的守护，又以马踏青云的昂扬，将锦绣前程写入每扇温暖的窗棂。新的一年将至，让我们将龙马精神融入血脉，每一步都是光芒蜿蜒处，每一程皆有长风万里随。",
+  "descriptionPara3": "",
+  "isoDate": "20260216",
+  "headline": "祝除夕团圆，新年顺遂！",
+  "quickFact": "“龙马精神”是一个富有深厚文化意蕴的中文成语，其核心含义是形容人像龙和马一样，拥有昂扬抖擞、健旺非凡的精神面貌和奋发向上的生命力。",
+  "triviaId": "HPQuiz_20260216_ChineseNewYearEveY26",
+  "triviaData": {
+    "question": "中国历史上首次将农历正月初一确定为岁首的朝代是？",
+    "options": [
+      {
+        "text": "秦朝",
+        "url": "/search?q=%E6%B1%89%E6%9C%9D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260216_ChineseNewYearEveY26%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "汉朝",
+        "url": "/search?q=%E6%B1%89%E6%9C%9D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260216_ChineseNewYearEveY26%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "周朝",
+        "url": "/search?q=%E6%B1%89%E6%9C%9D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260216_ChineseNewYearEveY26%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

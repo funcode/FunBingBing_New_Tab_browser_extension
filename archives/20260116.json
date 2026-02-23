@@ -1,0 +1,46 @@
+{
+  "caption": "埃托沙国家公园的豹子，纳米比亚",
+  "title": "埃托沙国家公园的豹子，纳米比亚",
+  "description": "看过野生动物纪录片的人，都记得那一幕：镜头滑过安静的草原，风声微动，下一秒，一只猎豹悄然浮现于草影间，仿佛它原本就是那片风景的一部分。这样无声的登场，就是猎豹的生存之道——精准、隐秘、像影子一样游走于草叶与树枝间。猎豹身形紧实而轻盈，既能攀上树梢，也能在大地上疾驰，而它们身上那独一无二的玫瑰斑纹，从清晨到夜色，都是最完美的伪装。",
+  "copyright": "© Norbert Achtelik/Cavan Images",
+  "date": "2026 1月 16",
+  "clickUrl": "/search?q=%e8%b1%b9%e5%ad%90&form=hpcapt&filters=HpDate:\"20260115_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.EtoshaLeopard_ZH-CN6654006040_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.EtoshaLeopard_ZH-CN6654006040_UHD.jpg",
+      "wallpaper": "/th?id=OHR.EtoshaLeopard_ZH-CN6654006040_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.EtoshaLeopard_ZH-CN6654006040_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.EtoshaLeopard_ZH-CN6654006040_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.EtoshaLeopard_ZH-CN6654006040_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这些善于游泳的猎手并没有固定的食谱：遇到羚羊便伏击，换成野兔或鸟也照样能下手，有时甚至会守在水塘旁，伺机捕捉聚集而来的动物。成功猎杀之后，猎豹通常会凭着强劲的前肢把战利品转移到安全的位置，比如树上或岩洞里，避免被狮子或鬣狗分食。",
+  "descriptionPara3": "猎豹的足迹遍布撒哈拉以南的非洲，也出现在印度、斯里兰卡，以及中亚和西亚的少数地区。今天这张照片拍摄于纳米比亚中北部的埃托沙国家公园——非洲标志性野生动物的重要栖息地。公园建于1907年，栖息着大象、狮子、猎豹、黑犀牛、角马、斑马和小岩羚等众多物种，为猎豹提供了宽阔的领地，让它们能自由地追猎与漫游。",
+  "isoDate": "20260116",
+  "headline": "眼神对上了",
+  "quickFact": "埃托沙国家公园位于纳米比亚西北部，是非洲面积最大的国家公园之一。",
+  "triviaId": "HPQuiz_20260116_EtoshaLeopard",
+  "triviaData": {
+    "question": "豹的主要捕猎策略是什么？",
+    "options": [
+      {
+        "text": "藏在高草中",
+        "url": "/search?q=%E8%97%8F%E5%9C%A8%E9%AB%98%E8%8D%89%E4%B8%AD&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260116_EtoshaLeopard%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "追逐于开阔田野",
+        "url": "/search?q=%E8%97%8F%E5%9C%A8%E9%AB%98%E8%8D%89%E4%B8%AD&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260116_EtoshaLeopard%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "爬树",
+        "url": "/search?q=%E8%97%8F%E5%9C%A8%E9%AB%98%E8%8D%89%E4%B8%AD&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260116_EtoshaLeopard%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

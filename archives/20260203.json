@@ -1,0 +1,46 @@
+{
+  "caption": "翡翠湾和范内特岛, 太浩湖, 加利福尼亚州",
+  "title": "翡翠湾和范内特岛, 太浩湖, 加利福尼亚州, 美国",
+  "description": "当一个地方同时被地质学家、电影镜头和民间传说反复提及，它必定不只是一处风景。横跨加州与内华达州的太浩湖，正是这样一片承载故事的水域。它诞生于冰河时代，断层活动与冰川雕琢造就了深不见底的湖盆，如今已成为美国最深的淡水湖之一。很久以前，瓦绍族人世代栖居湖畔，随季节更替捕鱼、采集。几个世纪后，矿工的脚步踏入此地，汽船划破湖面，太浩湖也由资源中心，转变为四季皆宜的休闲度假地。",
+  "copyright": "© Bill Stevenson/Cavan Images",
+  "date": "2026 2月 3",
+  "clickUrl": "/search?q=%e5%a4%aa%e6%b5%a9%e6%b9%96%e8%8c%83%e5%86%85%e7%89%b9%e5%b2%9b&form=hpcapt&filters=HpDate:\"20260202_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.FanetteIsland_ZH-CN6466809551_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.FanetteIsland_ZH-CN6466809551_UHD.jpg",
+      "wallpaper": "/th?id=OHR.FanetteIsland_ZH-CN6466809551_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.FanetteIsland_ZH-CN6466809551_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.FanetteIsland_ZH-CN6466809551_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.FanetteIsland_ZH-CN6466809551_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "今日画面中的翡翠湾，是太浩湖最上镜的角落之一。因水域较浅，湖水在这里呈现出更为明亮的碧色。水面之下，旧时的游艇与驳船静静躺卧，无声地讲述着湖泊的历史。位于湖心中央的范内特岛上，有一座小巧的石制“茶屋”，建于20世纪20年代，出自慈善家洛拉·奈特之手，她同时还主持兴建了附近的维京斯霍姆。故事并未止步于此，当地传说中提到的“太浩特西”，为这片湖水增添了一丝神秘感。也许某个不经意的水波，就会让你多看一眼，浮想联翩。",
+  "descriptionPara3": "",
+  "isoDate": "20260203",
+  "headline": "太浩湖视觉盛宴",
+  "quickFact": "地质学界普遍认为，翡翠湾是数千年前冰川侵蚀形成的地形。至于湾中的岛屿，则很可能是一条抗蚀性极强的花岗岩岩脊，在冰川越过时幸存下来。",
+  "triviaId": "HPQuiz_20260203_FanetteIsland",
+  "triviaData": {
+    "question": "在浅浅的翡翠湾中，哪种颜色最为鲜艳？",
+    "options": [
+      {
+        "text": "绿松石",
+        "url": "/search?q=%E7%BB%BF%E6%9D%BE%E7%9F%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260203_FanetteIsland%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "琥珀",
+        "url": "/search?q=%E7%BB%BF%E6%9D%BE%E7%9F%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260203_FanetteIsland%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "深红",
+        "url": "/search?q=%E7%BB%BF%E6%9D%BE%E7%9F%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260203_FanetteIsland%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

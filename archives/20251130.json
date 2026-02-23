@@ -1,0 +1,46 @@
+{
+  "caption": "莱比锡圣诞集市, 德国",
+  "title": "莱比锡圣诞集市, 德国",
+  "description": "你知道567年前的圣诞集市，人们都买些什么吗？不是昂贵的饰品，也不是精致的纪念品，而是蜡烛、香料、本地特产、针织品和玩具。莱比锡的圣诞集市始于1458年，很快成为商人和当地居民最喜爱的去处。如今，这个集市遍布历史老城，约有300个摊位，汇聚文化与美食，是德国规模最大的圣诞集市之一。想象一下，街道上商贩的叫卖声此起彼伏，孩子们追随着蜂蜜姜饼的甜香奔跑。这里是人们聚在一起庆祝冬季、边喝热红酒边聊新闻的地方。圣诞集市从来不仅仅是购物，它更是一种逃离日常的温暖仪式。",
+  "copyright": "© Krzysztof Baranowski/Getty Images",
+  "date": "2025 11月 30",
+  "clickUrl": "/search?q=%e8%8e%b1%e6%af%94%e9%94%a1&form=hpcapt&filters=HpDate:\"20251129_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.LeipzigMarket_ZH-CN1517513161_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.LeipzigMarket_ZH-CN1517513161_UHD.jpg",
+      "wallpaper": "/th?id=OHR.LeipzigMarket_ZH-CN1517513161_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.LeipzigMarket_ZH-CN1517513161_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.LeipzigMarket_ZH-CN1517513161_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.LeipzigMarket_ZH-CN1517513161_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "圣诞集市怎能少了圣诞老人？在莱比锡，圣诞老人的隆重到来是一项传统。每年将临期前的周六，家家户户都会迎接圣诞老人和他的随行队伍，他们乘坐特别的列车抵达中央火车站。城市的每个角落都在讲述故事：从历史悠久的圣托马斯教堂，到让孩子们欢笑了几代人的旋转木马。漫步其中，节日的气息仿佛一段活生生的故事，将数百年的习俗与现代的庆典交织在一起。",
+  "descriptionPara3": "",
+  "isoDate": "20251130",
+  "headline": "一路闪耀",
+  "quickFact": "除了奥古斯特广场上的童话世界，38米高的摩天轮还能让你俯瞰整座莱比锡，视野独一无二。",
+  "triviaId": "HPQuiz_20251130_LeipzigMarket",
+  "triviaData": {
+    "question": "莱比锡圣诞市场传统上出售哪些类型的商品？",
+    "options": [
+      {
+        "text": "昂贵的珠宝",
+        "url": "/search?q=%E8%9C%A1%E7%83%9B%E4%B8%8E%E6%9C%AC%E5%9C%B0%E6%89%8B%E5%B7%A5%E8%89%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251130_LeipzigMarket%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ蜡烛与本地手工艺",
+        "bullet": "A"
+      },
+      {
+        "text": "蜡烛与本地手工艺",
+        "url": "/search?q=%E8%9C%A1%E7%83%9B%E4%B8%8E%E6%9C%AC%E5%9C%B0%E6%89%8B%E5%B7%A5%E8%89%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251130_LeipzigMarket%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ蜡烛与本地手工艺",
+        "bullet": "B"
+      },
+      {
+        "text": "奢侈服装",
+        "url": "/search?q=%E8%9C%A1%E7%83%9B%E4%B8%8E%E6%9C%AC%E5%9C%B0%E6%89%8B%E5%B7%A5%E8%89%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251130_LeipzigMarket%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ蜡烛与本地手工艺",
+        "bullet": "C"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "caption": "马拉齐翁的圣迈克尔山, 康沃尔郡, 英格兰",
+  "title": "马拉齐翁的圣迈克尔山, 康沃尔郡, 英格兰",
+  "description": "想象一座从康沃尔海面升起的小岛，潮水退去时才会与陆地短暂相连。每天只有几小时，你可以沿着那条被无数朝圣者和渔民磨出的花岗岩堤道走到岛上。这就是位于马拉齐翁外海的圣迈克尔山，由国家信托基金管理，自17世纪起便是圣奥宾家族的住所，融合了传说、中世纪遗迹与壮阔的海岸景色。",
+  "copyright": "© Baxter Bradford/robertharding/Getty Images",
+  "date": "2026 1月 30",
+  "clickUrl": "/search?q=%e5%9c%a3%e8%bf%88%e5%85%8b%e5%b0%94%e5%b1%b1&form=hpcapt&filters=HpDate:\"20260129_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.StMichaelsCornwall_ZH-CN5878042411_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.StMichaelsCornwall_ZH-CN5878042411_UHD.jpg",
+      "wallpaper": "/th?id=OHR.StMichaelsCornwall_ZH-CN5878042411_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.StMichaelsCornwall_ZH-CN5878042411_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.StMichaelsCornwall_ZH-CN5878042411_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.StMichaelsCornwall_ZH-CN5878042411_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "小岛上流传着许多故事：从公元495年大天使米迦勒现身，引导水手脱险，到杰克巨人杀手战胜可怕的巨人科莫兰的民间传说，应有尽有。山顶的城堡最初是12世纪的修道院，后来逐渐改建成一座带有哥特式风格的要塞，内部设有华丽的会客厅、隐秘的楼梯，以及可以远眺海岸线的露台。",
+  "descriptionPara3": "山下港口的鹅卵石小路蜿蜒穿过一个历史悠久的渔村，曾经因渔船和贸易而热闹非凡。无论你是在峭壁花园间漫步，还是沿着城堡的防御墙遐想英国内战和西班牙无敌舰队的故事，圣迈克尔山都是一个让历史与传说同样鲜活的地方。",
+  "isoDate": "20260130",
+  "headline": "海潮退却之处",
+  "quickFact": "矗立在岩石高地上的城堡格外引人注目，内部收藏着盖恩斯伯勒的画作、奇彭代尔家具，以及拿破仑外套碎片等军事纪念物。",
+  "triviaId": "HPQuiz_20260130_StMichaelsCornwall",
+  "triviaData": {
+    "question": "自17世纪以来，哪一家族一直居住在圣迈克尔山？",
+    "options": [
+      {
+        "text": "特雷维廉",
+        "url": "/search?q=%E5%9C%A3%E5%A5%A5%E5%AE%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260130_StMichaelsCornwall%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "特里劳尼",
+        "url": "/search?q=%E5%9C%A3%E5%A5%A5%E5%AE%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260130_StMichaelsCornwall%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "圣奥宾",
+        "url": "/search?q=%E5%9C%A3%E5%A5%A5%E5%AE%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260130_StMichaelsCornwall%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

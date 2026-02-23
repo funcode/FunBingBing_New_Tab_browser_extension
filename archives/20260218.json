@@ -1,0 +1,46 @@
+{
+  "caption": "普氏野马",
+  "title": "普氏野马",
+  "description": "普氏野马从未被驯化，自始至终按照自己的方式生存，被认为是地球上最后的野马。它们曾广泛分布于中亚地区，但在20世纪60年代，由于狩猎、栖息地丧失以及与家畜竞争，普氏野马在野外一度消失。幸运的是，少数在20世纪初被带入圈养环境的个体保存了这个物种的火种，也孕育了今天所有的普氏野马。",
+  "copyright": "© Nemyrivskyi Viacheslav/Getty Images",
+  "date": "2026 2月 18",
+  "clickUrl": "/search?q=%e6%99%ae%e6%b0%8f%e9%87%8e%e9%a9%ac&form=hpcapt&filters=HpDate:\"20260217_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.PrzewalskisHorse_ZH-CN5785609662_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.PrzewalskisHorse_ZH-CN5785609662_UHD.jpg",
+      "wallpaper": "/th?id=OHR.PrzewalskisHorse_ZH-CN5785609662_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.PrzewalskisHorse_ZH-CN5785609662_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.PrzewalskisHorse_ZH-CN5785609662_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.PrzewalskisHorse_ZH-CN5785609662_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "借助全球协作的繁育与放归计划，普氏野马的命运开始出现转机。如今，它们以小而稳定的族群，生活在蒙古、中国和俄罗斯的保护区内。它们长时间低头取食，随着季节变化，在草类、野生植物和灌木之间游走。马群通常以家庭为单位生活，由一匹雄马带领；而年轻的雄马会另组队成“单身群”。每到春末，草木最盛时，母马会产下一匹幼驹。",
+  "descriptionPara3": "尽管取得了一定进展，但普氏野马的复苏依然脆弱。极端气候和遗传多样性受限，持续考验着种群的长期生存。2026年，恰逢中国农历马年，这一象征性的时刻，让这种曾濒临消失、却顽强延续至今的物种再次进入公众视野。",
+  "isoDate": "20260218",
+  "headline": "生而自由，永不驯服",
+  "quickFact": "早在两万年前，欧洲的洞穴壁画中就已描绘出类似普氏野马的野生马匹。",
+  "triviaId": "HPQuiz_20260218_PrzewalskisHorse",
+  "triviaData": {
+    "question": "哪个地区曾是野生普氏野马的栖息地？",
+    "options": [
+      {
+        "text": "中亚",
+        "url": "/search?q=%E4%B8%AD%E4%BA%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260218_PrzewalskisHorse%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "东欧",
+        "url": "/search?q=%E4%B8%AD%E4%BA%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260218_PrzewalskisHorse%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "南美洲",
+        "url": "/search?q=%E4%B8%AD%E4%BA%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260218_PrzewalskisHorse%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

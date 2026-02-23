@@ -1,0 +1,46 @@
+{
+  "caption": "白沙国家公园，新墨西哥州",
+  "title": "白沙国家公园，新墨西哥州，美国",
+  "description": "如果把《冰雪奇缘》里的冰换成白沙，画面大概就会像新墨西哥州的白沙国家公园——一望无际的洁白沙丘，乍看之下仿佛仍带着冰雪的凉意。193 年的今天，这里被设立为国家纪念地，用来保护一种罕见的地质奇观：世界最大的石膏沙丘群。这些沙丘由石膏晶体在数千年的风化中逐渐破碎堆积而成，形成了明亮起伏的沙浪，即使在盛夏也依然触手冰凉。",
+  "copyright": "© Francesco Carucci/Getty Images",
+  "date": "2026 1月 18",
+  "clickUrl": "/search?q=%e7%99%bd%e6%b2%99%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260117_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.WhiteSandsNM_ZH-CN7070772772_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.WhiteSandsNM_ZH-CN7070772772_UHD.jpg",
+      "wallpaper": "/th?id=OHR.WhiteSandsNM_ZH-CN7070772772_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.WhiteSandsNM_ZH-CN7070772772_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.WhiteSandsNM_ZH-CN7070772772_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.WhiteSandsNM_ZH-CN7070772772_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "白沙国家公园耸立于图拉罗萨盆地中央，占地275平方英里。在这片耀眼的白色沙海之下，沉睡着远比公园本身更古老的历史。古生物学家在此发现了人类、猛犸象与巨型地懒并行的化石足迹，成为重现冰河时代迁徙轨迹的最鲜明证据之一。",
+  "descriptionPara3": "尽管环境荒凉，这片沙丘依旧维持着自己的生存节奏。皂树丝兰抽出高高的花茎，灌木把根深深扎进土壤。阿帕奇袋鼠鼠、漂白无耳蜥蜴、踏沙骆驼蟋等动物，也都隐身在这片苍白的地貌之中。当电影人需要一种“超脱地球”的场景时，这片土地总会成为不二之选。《天外来客》《艾利之书》《变形金刚》都曾在这里借用过宛如“月光洒落地表”的独特光感。",
+  "isoDate": "20260118",
+  "headline": "伪装成沙漠的奇境",
+  "quickFact": "这片石膏沙丘是世界上同类地貌中规模最大的，沙层深度约30英尺（9.1米），沙丘最高可达60英尺（18米），蕴含的石膏砂总量约达45亿短吨（41亿公吨）。",
+  "triviaId": "HPQuiz_20260118_WhiteSandsNM",
+  "triviaData": {
+    "question": "白沙国家公园有哪些独特的地质特征？",
+    "options": [
+      {
+        "text": "石灰岩洞",
+        "url": "/search?q=%E7%9F%B3%E8%86%8F%E6%B2%99%E4%B8%98&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260118_WhiteSandsNM%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "石膏沙丘",
+        "url": "/search?q=%E7%9F%B3%E8%86%8F%E6%B2%99%E4%B8%98&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260118_WhiteSandsNM%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "花岗岩山脉",
+        "url": "/search?q=%E7%9F%B3%E8%86%8F%E6%B2%99%E4%B8%98&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260118_WhiteSandsNM%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

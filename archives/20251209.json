@@ -1,0 +1,46 @@
+{
+  "caption": "全国羊驼日",
+  "title": "原驼，北角，瓦尔德斯半岛, 阿根廷",
+  "description": "如果说羊驼是安第斯山脉中悠闲的明星，那么它们的表亲原驼，就是巴塔哥尼亚的自由精灵。而还有什么日子比“全国羊驼日”更适合让它们成为焦点呢？原驼与羊驼、美洲驼和小羊驼同属骆驼科，但与那些被驯化的亲戚不同，它们依然保留着野性的天性。它们主要分布在阿根廷、智利、秘鲁和玻利维亚的高原地带，天生适应高海拔的生活。厚实的皮毛让它们能抵御寒冷的山风，而柔软的脚掌则能在岩石地形上稳稳立足，连山羊都会为之叹服。",
+  "copyright": "© Sylvain Cordier/naturepl.com",
+  "date": "2025 12月 9",
+  "clickUrl": "/search?q=%e5%8e%9f%e9%a9%bc&form=hpcapt&filters=HpDate:\"20251208_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.LlamaDay_ZH-CN2646855786_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.LlamaDay_ZH-CN2646855786_UHD.jpg",
+      "wallpaper": "/th?id=OHR.LlamaDay_ZH-CN2646855786_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.LlamaDay_ZH-CN2646855786_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.LlamaDay_ZH-CN2646855786_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.LlamaDay_ZH-CN2646855786_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "原驼是群居动物，通常成群活动，由一只占主导地位的雄性带领，他会密切守护族群。在它们的世界里，沟通至关重要，因为一旦发现捕食者，原驼便会发出尖锐的警报声，意思大致就是：“快跑！”这些自由的旅者在生态系统中也扮演着重要角色。作为食草动物，它们帮助维持草原的生态平衡，而它们的粪便能为土壤提供养分，使巴塔哥尼亚的生态系统保持健康与活力。所以今天，当羊驼们依旧成为马克杯、表情包和圣诞毛衣上的可爱主角时，不妨也向它们那群自由奔放的亲戚原驼，致以一份敬意。",
+  "descriptionPara3": "",
+  "isoDate": "20251209",
+  "headline": "说“茄子”……或者“青草”",
+  "quickFact": "原驼是当今南美洲最大的本土陆生哺乳动物之一。",
+  "triviaId": "HPQuiz_20251209_LlamaDay",
+  "triviaData": {
+    "question": "安第斯山脉中哪种动物比羊驼更以野性著称？",
+    "options": [
+      {
+        "text": "原驼",
+        "url": "/search?q=%E5%8E%9F%E9%A9%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251209_LlamaDay%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "羊驼",
+        "url": "/search?q=%E5%8E%9F%E9%A9%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251209_LlamaDay%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "水豚",
+        "url": "/search?q=%E5%8E%9F%E9%A9%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251209_LlamaDay%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "caption": "大雪节气",
+  "title": "雪中的故宫，中国北京",
+  "description": "今天是中国传统二十四节气中的大雪节气。大雪的到来预示着气温将逐渐降低，冬季降水量也将增加。大雪期间，中国大部分地区已进入严冬，北方部分地区的气温甚至会降至零度以下。北方大地呈现出“万里冰封”的壮丽景象，而南方则展现出“雪花飘舞，万物银装素裹”的迷人景色。",
+  "copyright": "© Ian.CuiYi/Getty Images",
+  "date": "2025 12月 7",
+  "clickUrl": "/search?q=%e5%a4%a7%e9%9b%aa%e8%8a%82%e6%b0%94&form=hpcapt&filters=HpDate:\"20251206_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.TheGreatSnowY25_ZH-CN2448918230_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.TheGreatSnowY25_ZH-CN2448918230_UHD.jpg",
+      "wallpaper": "/th?id=OHR.TheGreatSnowY25_ZH-CN2448918230_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.TheGreatSnowY25_ZH-CN2448918230_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.TheGreatSnowY25_ZH-CN2448918230_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.TheGreatSnowY25_ZH-CN2448918230_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "今日照片中的紫禁城，在飘雪时分显得格外有韵味。宫墙披上银装，屋檐斗拱更显恢弘。雪花轻柔飘落，宛若纤柔的飞舞花瓣，营造出极致浪漫的意境。斑驳的光影让每个角落都成为绝美的画卷。",
+  "descriptionPara3": "",
+  "isoDate": "20251207",
+  "headline": "雪落下的声音",
+  "quickFact": "紫禁城是世界上规模最大、保存最完好的古代木构建筑群之一。",
+  "triviaId": "HPQuiz_20251207_TheGreatSnowY25",
+  "triviaData": {
+    "question": "大雪节气的到来对中国意味着什么？",
+    "options": [
+      {
+        "text": "气温上升",
+        "url": "/search?q=%E9%99%8D%E9%9B%A8%E9%87%8F%E5%A2%9E%E5%8A%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251207_TheGreatSnowY25%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "降雨量增加",
+        "url": "/search?q=%E9%99%8D%E9%9B%A8%E9%87%8F%E5%A2%9E%E5%8A%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251207_TheGreatSnowY25%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "更干燥更温暖",
+        "url": "/search?q=%E9%99%8D%E9%9B%A8%E9%87%8F%E5%A2%9E%E5%8A%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251207_TheGreatSnowY25%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "caption": "卡罗维瓦利，波西米亚，捷克共和国",
+  "title": "卡罗维瓦利，波西米亚，捷克共和国",
+  "description": "在今天的图片中，冬意已悄悄落在捷克的卡罗维瓦利，这座坐落于浅色山谷中的城市，因山间温泉而闻名。关于这座城市的起源，可追溯到14世纪：据说当时的波希米亚国王、后来成为神圣罗马帝国皇帝的查理四世路经此地，恰好遇见一池冒着白雾的温热泉水。正是这次邂逅，引领波希米亚这片宁静的山谷走上了温泉疗养圣地的道路。",
+  "copyright": "© Henryk Sadura/Getty Images",
+  "date": "2026 1月 22",
+  "clickUrl": "/search?q=%e5%8d%a1%e7%bd%97%e7%bb%b4%e7%93%a6%e5%88%a9&form=hpcapt&filters=HpDate:\"20260121_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.KarlovyVary_ZH-CN7585938362_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.KarlovyVary_ZH-CN7585938362_UHD.jpg",
+      "wallpaper": "/th?id=OHR.KarlovyVary_ZH-CN7585938362_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.KarlovyVary_ZH-CN7585938362_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.KarlovyVary_ZH-CN7585938362_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.KarlovyVary_ZH-CN7585938362_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "小镇顺着特普拉河与欧赫热河一路生长，它的轮廓也随之清晰起来：长长的柱廊、精致的建筑外立面，以及静静立于河畔的旅馆，共同构成了一种平缓而有序的气质。欧洲各地的贵族、作家和作曲家慕名而来，被温泉的暖意与慢节奏的生活吸引，停驻于此。久而久之，这座城市的独特气质在慢节奏、建筑与温润水气里逐渐显现出来。",
+  "descriptionPara3": "凭借着历史悠久的养生传统，卡罗维瓦利在2021年被纳入联合国教科文组织的“欧洲著名温泉古镇”名录，成为众多因天然温泉而发展起来的历史疗养城市之一。即使在冬日，这座城市仍展现着从容与自信，它的根脉依旧系于那股最初吸引人们走进山谷的温热泉水。",
+  "isoDate": "20260122",
+  "headline": "波西米亚温泉故事",
+  "quickFact": "这座城市以举办卡罗维瓦利国际电影节而闻名，该电影节是世界上历史最悠久的电影节之一，也是欧洲最重要的电影盛事之一。",
+  "triviaId": "HPQuiz_20260122_KarlovyVary",
+  "triviaData": {
+    "question": "哪位历史人物与卡罗维发利的起源有关？",
+    "options": [
+      {
+        "text": "查理四世",
+        "url": "/search?q=%E6%9F%A5%E7%90%86%E5%9B%9B%E4%B8%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260122_KarlovyVary%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "弗朗茨·卡夫卡",
+        "url": "/search?q=%E6%9F%A5%E7%90%86%E5%9B%9B%E4%B8%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260122_KarlovyVary%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "路德维希·范·贝多芬",
+        "url": "/search?q=%E6%9F%A5%E7%90%86%E5%9B%9B%E4%B8%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260122_KarlovyVary%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

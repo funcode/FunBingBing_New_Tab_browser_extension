@@ -1,0 +1,46 @@
+{
+  "caption": "圣诞节快乐",
+  "title": "海德堡圣诞市场上的雪球，德国",
+  "description": "在德国海德堡的冬日天空下，集市摊位间闪烁着一只只雪花水晶球，每个玻璃球都以微缩世界的形式捕捉着节日的氛围。如今的圣诞节一个关于信仰、光明与团聚的基督教庆典，邀请我们在一年中最寒冷的日子里迎来温暖与欢乐。在世界各地，窗台上的烛光温柔摇曳，花环装点着街巷与家门，常青树装饰一新，枝头挂满饰品，树下的礼物静静等待被打开。",
+  "copyright": "© George Pachantouris/Getty Images",
+  "date": "2025 12月 25",
+  "clickUrl": "/search?q=%e5%9c%a3%e8%af%9e%e8%8a%82&form=hpcapt&filters=HpDate:\"20251224_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SantaGlobe_ZH-CN7032279153_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SantaGlobe_ZH-CN7032279153_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SantaGlobe_ZH-CN7032279153_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SantaGlobe_ZH-CN7032279153_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SantaGlobe_ZH-CN7032279153_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SantaGlobe_ZH-CN7032279153_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "德国是许多圣诞传统的发源地，这些传统诞生于中世纪小镇，通过世代相传延续至今。其中的习俗包括装饰圣诞树、降临节日历以及深受喜爱的圣诞集市，集市里弥漫着烤坚果、肉桂和热红酒的香气，让城市充满节日氛围。在雪花飞舞、歌声回荡之中，这些集市仿佛与展示的雪花玻璃球一样永恒。在冬日的奔忙中，总有那么一瞬间，人们放慢了脚步，奇妙的氛围在空气里轻轻停留，足以让人静静品味。",
+  "descriptionPara3": "",
+  "isoDate": "20251225",
+  "headline": "微缩世界，无尽奇想",
+  "quickFact": "在大多数西方国家，圣诞节是一年中商业活动最为冷清的一天；几乎所有零售店、商铺和公共机构都会关门停业，几乎所有行业也都会暂停运作，无论法律是否有此规定。",
+  "triviaId": "HPQuiz_20251225_SantaGlobe",
+  "triviaData": {
+    "question": "圣诞节期间，哪种传统装饰起源于德国？",
+    "options": [
+      {
+        "text": "圣诞树",
+        "url": "/search?q=%E5%9C%A3%E8%AF%9E%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251225_SantaGlobe%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "复活节彩蛋",
+        "url": "/search?q=%E5%9C%A3%E8%AF%9E%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251225_SantaGlobe%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "万圣节南瓜",
+        "url": "/search?q=%E5%9C%A3%E8%AF%9E%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251225_SantaGlobe%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "caption": "南极日",
+  "title": "冰山上天然形成的拱门, 南极洲",
+  "description": "有些照片定格了自然的宏伟瞬间，而真正出色的作品更能揭示深层的故事：在一帧之中，力量与脆弱的微妙平衡，提醒我们地球的脆弱与伟大。今日这张展现南极冰山天然拱门的照片正是如此，它开启了关于宏伟、脆弱、环境与未来的对话。",
+  "copyright": "© Gabrielle/Adobe Stock",
+  "date": "2025 12月 1",
+  "clickUrl": "/search?q=%e5%8d%97%e6%9e%81%e6%97%a5&form=hpcapt&filters=HpDate:\"20251130_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AntarcticArch_ZH-CN1622701432_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AntarcticArch_ZH-CN1622701432_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AntarcticArch_ZH-CN1622701432_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AntarcticArch_ZH-CN1622701432_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AntarcticArch_ZH-CN1622701432_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AntarcticArch_ZH-CN1622701432_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "每年12月1日，“南极日”提醒我们，1959年的签署《南极条约》如何改变世界——这份协议将占地球近十分之一的大陆，变成和平与科学的圣地。南极，地球最冷、最孤寂的荒野，怀抱着全球60%的淡水，悄然影响着气候与海洋。南极冰盖是地球最大的连续冰体，冰芯中封存的古老故事，引领我们走向未来。纪念这一天，就是提醒我们：看似永恒的冰雪，并非不可改变。它的命运与我们紧密相连，它的沉默不是空白，而是一种追问——我们将以怎样的行动回应？",
+  "descriptionPara3": "",
+  "isoDate": "20251201",
+  "headline": "冰雪凝息之处",
+  "quickFact": "《南极条约》将南极确立为和平与科学研究的保护区，最初由12个国家签署并生效。如今，已有50多个国家认可这一条约。它奠定了数十年来科学探索与成果的基石。",
+  "triviaId": "HPQuiz_20251201_AntarcticArch",
+  "triviaData": {
+    "question": "1959年签署的《南极条约》在全球范围内促进了什么？",
+    "options": [
+      {
+        "text": "军事用途",
+        "url": "/search?q=%E5%92%8C%E5%B9%B3%E4%B8%8E%E7%A7%91%E5%AD%A6&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251201_AntarcticArch%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ和平与科学",
+        "bullet": "A"
+      },
+      {
+        "text": "和平与科学",
+        "url": "/search?q=%E5%92%8C%E5%B9%B3%E4%B8%8E%E7%A7%91%E5%AD%A6&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251201_AntarcticArch%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ和平与科学",
+        "bullet": "B"
+      },
+      {
+        "text": "旅游业发展",
+        "url": "/search?q=%E5%92%8C%E5%B9%B3%E4%B8%8E%E7%A7%91%E5%AD%A6&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251201_AntarcticArch%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ和平与科学",
+        "bullet": "C"
+      }
+    ]
+  }
+}

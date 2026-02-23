@@ -1,0 +1,46 @@
+{
+  "caption": "默塞德河, 优胜美地国家公园, 加利福尼亚",
+  "title": "默塞德河, 优胜美地国家公园, 加利福尼亚, 美国",
+  "description": "每一幅杰作都需要点睛之笔。而优胜美地的点睛之笔便是默塞德河。作为美国国家级“野生与风景河流”之一，这条水系起源于内华达山脉高处，汇集雪水，蜿蜒145英里，穿过优胜美地山谷，流入加州中央谷地。",
+  "copyright": "© Ron and Patty Thomas/Getty Images",
+  "date": "2025 12月 13",
+  "clickUrl": "/search?q=%e9%bb%98%e5%a1%9e%e5%be%b7%e6%b2%b3&form=hpcapt&filters=HpDate:\"20251212_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.YosemiteWinter_ZH-CN3824387818_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.YosemiteWinter_ZH-CN3824387818_UHD.jpg",
+      "wallpaper": "/th?id=OHR.YosemiteWinter_ZH-CN3824387818_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.YosemiteWinter_ZH-CN3824387818_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.YosemiteWinter_ZH-CN3824387818_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.YosemiteWinter_ZH-CN3824387818_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这条河的西班牙语名\"El Río de Nuestra Señora de la Merced\"，意为\"慈悲圣母河\"，恰如其分地诠释了它的双重性：随季节更迭，时而宁静如镜，时而奔腾如潮。春季，融雪使河水暴涨，激流在石桥下奔涌，冲过如春瀑、内华达瀑等轰鸣的瀑布群，成为优胜美地的主角。夏季河水转为平缓，吸引着漂流者和游泳者。秋日落叶随水漂流，为河面添上点点金黄；冬日万物归寂，河面如镜般澄澈。有趣的是，这条河滋养着麦克卢尔湖——每逢秋冬季水位下降，湖底便会浮现一座鬼城。河流下游曾矗立着默塞德瀑布，这座淘金热时期繁华的磨坊小镇，如今已归于沉寂。",
+  "descriptionPara3": "",
+  "isoDate": "20251213",
+  "headline": "冰封的倒影",
+  "quickFact": "默塞德河的主支流是夏季休闲的好去处，这里可以游泳、徒步、钓鱼、漂流、淘金、露营，享受各种户外乐趣。由于海拔较低，冬季也非常适合来一场轻松的日间徒步。",
+  "triviaId": "HPQuiz_20251213_YosemiteWinter",
+  "triviaData": {
+    "question": "优胜美地的默塞德河在西班牙语中叫什么名字？",
+    "options": [
+      {
+        "text": "圣母慈悲之河",
+        "url": "/search?q=%E5%9C%A3%E6%AF%8D%E6%85%88%E6%82%B2%E4%B9%8B%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251213_YosemiteWinter%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "约塞米蒂河",
+        "url": "/search?q=%E5%9C%A3%E6%AF%8D%E6%85%88%E6%82%B2%E4%B9%8B%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251213_YosemiteWinter%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "自然之河",
+        "url": "/search?q=%E5%9C%A3%E6%AF%8D%E6%85%88%E6%82%B2%E4%B9%8B%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251213_YosemiteWinter%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

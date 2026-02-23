@@ -1,0 +1,46 @@
+{
+  "caption": "马特洪峰, 采尔马特, 瑞士",
+  "title": "日出时分，马特洪峰的倒影映照在斯特利湖中, 采尔马特, 瑞士",
+  "description": "鲜有景致能像马特洪峰倒映在斯特利湖如镜的湖面上那般，完美呈现阿尔卑斯的灵魂。这座传奇山峰耸立在瑞士与意大利边境，海拔高达14,692英尺，象征着大自然的壮美与冒险精神，吸引着世界各地的攀登者、徒步者与追梦人。",
+  "copyright": "© Andy Trowbridge/naturepl.com",
+  "date": "2026 1月 10",
+  "clickUrl": "/search?q=%e9%a9%ac%e7%89%b9%e6%b4%aa%e5%b3%b0&form=hpcapt&filters=HpDate:\"20260109_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MatterhornSunrise_ZH-CN3171879631_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MatterhornSunrise_ZH-CN3171879631_UHD.jpg",
+      "wallpaper": "/th?id=OHR.MatterhornSunrise_ZH-CN3171879631_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MatterhornSunrise_ZH-CN3171879631_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MatterhornSunrise_ZH-CN3171879631_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.MatterhornSunrise_ZH-CN3171879631_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在瑞士那座迷人而无车的小镇采尔马特，马特洪峰主宰着整个地平线，它那锯齿般的山脊在天空下勾勒出一幅天然的艺术剪影。来到斯特利湖畔，景色更显魔幻——尤其在日出时分，山峰的倒影柔和地浮现在如镜的湖面上，仿佛大自然按下暂停键，只为让你静静品味这片刻的宁静。",
+  "descriptionPara3": "无论你是在高山小径徒步，捕捉变幻的光影，还是只是深深吸入那一口清冽的山间空气，这片景象都会默默提醒你：阿尔卑斯之所以能吸引旅行者数个世纪，其魅力就在这里。马特洪峰不仅是一座山，它更是瑞士之所以令人难忘的魅力——自然纯粹、冒险精神，以及让人一见便铭记的传奇之美。",
+  "isoDate": "20260110",
+  "headline": "纯粹的瑞士魔力",
+  "quickFact": "马特洪峰的首次攀登发生在 1865 年。当时的队伍中，有四人不幸罹难。但这并未阻止后来者，无数登山者依旧以登顶它为目标。",
+  "triviaId": "HPQuiz_20260110_MatterhornSunrise",
+  "triviaData": {
+    "question": "马特洪峰的高度是多少英尺？",
+    "options": [
+      {
+        "text": "14,692英尺",
+        "url": "/search?q=14%2C692%E8%8B%B1%E5%B0%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260110_MatterhornSunrise%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "15000英尺",
+        "url": "/search?q=14%2C692%E8%8B%B1%E5%B0%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260110_MatterhornSunrise%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "13500英尺",
+        "url": "/search?q=14%2C692%E8%8B%B1%E5%B0%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260110_MatterhornSunrise%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

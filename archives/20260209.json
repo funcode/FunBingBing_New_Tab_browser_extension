@@ -1,0 +1,46 @@
+{
+  "caption": "阿穆尔豹猫，俄罗斯",
+  "title": "阿穆尔豹猫，俄罗斯",
+  "description": "豹猫是一种体型较小的野生猫科动物，广泛分布于南亚、东南亚和东亚地区。它们体型与家猫相近，但四肢更修长、身形更为纤细，体长通常在15至30英寸之间，尾巴约7至12英寸。不同地区的成年豹猫体重差异较大，大致在1至16磅之间。外观变化也十分明显：南方种群多呈现温暖的金黄色皮毛，而分布在高纬度地区的豹猫则常拥有浅灰色皮毛，冬季时毛发会明显加厚。",
+  "copyright": "© Valeriy Maleev/naturepl.com",
+  "date": "2026 2月 9",
+  "clickUrl": "/search?q=%e8%b1%b9%e7%8c%ab&form=hpcapt&filters=HpDate:\"20260208_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.LeopardCat_ZH-CN4431427444_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.LeopardCat_ZH-CN4431427444_UHD.jpg",
+      "wallpaper": "/th?id=OHR.LeopardCat_ZH-CN4431427444_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.LeopardCat_ZH-CN4431427444_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.LeopardCat_ZH-CN4431427444_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.LeopardCat_ZH-CN4431427444_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "豹猫这一物种演化出了多个现存亚种，各自适应着截然不同的环境。从印度与东南亚的孟加拉豹猫，到印度尼西亚群岛上的爪哇、苏门答腊和婆罗洲豹猫，再到中国台湾豹猫，跨越地域广阔。而最引人注目的，正是画面中的阿穆尔豹猫，生活在俄罗斯远东、满洲、朝鲜半岛及附近岛屿。相比南方近缘种，它的体型更大、毛色更浅，整体形态更适合寒冷、积雪覆盖的森林。",
+  "descriptionPara3": "豹猫多在夜间捕食，以啮齿动物、鸟类、爬行动物和两栖动物为食。它们适应能力很强，从森林、湿地到山地，乃至农田景观，都能看到它们的身影。",
+  "isoDate": "20260209",
+  "headline": "斑纹流转",
+  "quickFact": "豹猫会游泳，但极少下水。它们的叫声与家猫相近。无论雌雄，都会通过喷洒尿液、在显眼处排便、蹭头和抓挠等方式标记领地。",
+  "triviaId": "HPQuiz_20260209_LeopardCat",
+  "triviaData": {
+    "question": "哪个地区是阿穆尔亚种的栖息地？",
+    "options": [
+      {
+        "text": "俄罗斯远东",
+        "url": "/search?q=%E4%BF%84%E7%BD%97%E6%96%AF%E8%BF%9C%E4%B8%9C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260209_LeopardCat%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "苏门答腊",
+        "url": "/search?q=%E4%BF%84%E7%BD%97%E6%96%AF%E8%BF%9C%E4%B8%9C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260209_LeopardCat%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "Java",
+        "url": "/search?q=%E4%BF%84%E7%BD%97%E6%96%AF%E8%BF%9C%E4%B8%9C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260209_LeopardCat%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

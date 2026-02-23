@@ -1,0 +1,46 @@
+{
+  "caption": "科潘玛雅遗址",
+  "title": "科潘的玛雅遗址，洪都拉斯",
+  "description": "在洪都拉斯西部一片静谧山谷中，坐落着科潘古城的遗址，这座城市曾是古代玛雅文明的璀璨明珠。在这座城市里，天空既是罗盘，又是日历，指引着天象，塑造了庙宇的方向、仪式的时间与人们的生活节奏。公元426年左右，来自玛雅腹地的勇士基尼奇·亚什·库克·莫建立了科潘，并开创了王室王朝。此后，科潘成为玛雅艺术、天文学与政治权力的中心。",
+  "copyright": "© diegograndi/Getty Images",
+  "date": "2025 12月 5",
+  "clickUrl": "/search?q=%e7%a7%91%e6%bd%98%e7%8e%9b%e9%9b%85%e9%81%97%e5%9d%80&form=hpcapt&filters=HpDate:\"20251204_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.CopanRuins_ZH-CN2157795324_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.CopanRuins_ZH-CN2157795324_UHD.jpg",
+      "wallpaper": "/th?id=OHR.CopanRuins_ZH-CN2157795324_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.CopanRuins_ZH-CN2157795324_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.CopanRuins_ZH-CN2157795324_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.CopanRuins_ZH-CN2157795324_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在科潘的核心区域，矗立着两座讲述历史的石碑：象形文字阶梯与Q祭坛，它们以石刻的语言记录了这座城的辉煌与智慧。象形文字阶梯共有63级石阶，刻有超过2000个玛雅文字，是迄今发现最长的玛雅铭文，记录了统治、仪式与野心的篇章，见证了权力的脉动。紧邻其旁的Q祭坛则以雕刻讲述历史，依次刻出16位君王的形象，将一个王朝的传承永恒镌刻于石上。科潘遗址于19世纪被重新发现，并于1980年被列入联合国教科文组织世界遗产名录。如今，它依旧被视为古代玛雅文明最杰出的成就之一。那精妙的石工工艺、对秩序与天象的理解，至今仍令人赞叹。正如它所证明的那样：艺术的生命力，终将超越孕育它的世界而长存。",
+  "descriptionPara3": "",
+  "isoDate": "20251205",
+  "headline": "绘制星图的城市",
+  "quickFact": "自2010年以来，考古学家在科潘遗址持续开展发掘与研究。这些发现共同揭示出，科潘是古典玛雅文明中政治上灵活、象征意义深远的中心，其历史叙事也在每一次新发现中不断延伸。",
+  "triviaId": "HPQuiz_20251205_CopanRuins",
+  "triviaData": {
+    "question": "古代城市科潘在玛雅世界中成为了什么中心？",
+    "options": [
+      {
+        "text": "天文学",
+        "url": "/search?q=%E5%A4%A9%E6%96%87%E5%AD%A6&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251205_CopanRuins%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "纺织品",
+        "url": "/search?q=%E5%A4%A9%E6%96%87%E5%AD%A6&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251205_CopanRuins%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "文学",
+        "url": "/search?q=%E5%A4%A9%E6%96%87%E5%AD%A6&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251205_CopanRuins%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

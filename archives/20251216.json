@@ -1,0 +1,46 @@
+{
+  "caption": "圣诞市集里的手工小精灵",
+  "title": "圣诞市场上的手工小矮人",
+  "description": "长胡子、红帽子，每年圣诞都要分走圣诞老人的一点光彩。来认识一下圣诞地精吧——瑞典叫‘tomte’，挪威称‘nisse’，各地习俗各不相同。源于北欧传说，这些小精灵守护家园与农场，陪伴人们度过漫长黑夜。但有个前提：待他们友善些，否则他们会恶作剧。圣诞夜一碗热腾腾的粥，是地精最爱的礼物。据说他们能带来好运与笑声，甚至可能和你花园里的小矮人打成一片，因为他们长得很像。",
+  "copyright": "© Veronika Seppanen/Shutterstock",
+  "date": "2025 12月 16",
+  "clickUrl": "/search?q=%e5%9c%a3%e8%af%9e%e5%9c%b0%e7%b2%be&form=hpcapt&filters=HpDate:\"20251215_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ChristmasGnomes_ZH-CN4405839101_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ChristmasGnomes_ZH-CN4405839101_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ChristmasGnomes_ZH-CN4405839101_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ChristmasGnomes_ZH-CN4405839101_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ChristmasGnomes_ZH-CN4405839101_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ChristmasGnomes_ZH-CN4405839101_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "人们相信圣诞地精懂得自然的智慧和大地的秘密，因此它们成为了家园的守护者。随着时光流转，这些帮手们脱下工装，换上红帽子和节日装扮，逐渐演变为我们熟知的圣诞地精。如今，人们用羊毛、毛毡和人造毛皮手工制作这些小精灵，为圣诞集市增添了缤纷色彩与独特魅力。仔细看，每一个都独一无二——有的调皮，有的可爱，一针一线都藏着故事。下次在圣诞集市遇见地精时，不妨把它当作一份静静的祝福与守护。",
+  "descriptionPara3": "",
+  "isoDate": "20251216",
+  "headline": "小帽子，大能量",
+  "quickFact": "圣诞袜的起源可追溯至圣尼古拉斯将礼物放入鞋中的传说，后来逐渐演变为炉边传统。",
+  "triviaId": "HPQuiz_20251216_ChristmasGnomes",
+  "triviaData": {
+    "question": "瑞典圣诞侏儒被称为“tomte”的名字是什么？",
+    "options": [
+      {
+        "text": "尼瑟",
+        "url": "/search?q=%E6%B1%A4%E7%89%B9&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251216_ChristmasGnomes%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "精灵",
+        "url": "/search?q=%E6%B1%A4%E7%89%B9&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251216_ChristmasGnomes%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "汤特",
+        "url": "/search?q=%E6%B1%A4%E7%89%B9&filters=mgzv3configlist%3A%22BingQA_Quiz_Layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20251216_ChristmasGnomes%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

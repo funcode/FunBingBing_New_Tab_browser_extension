@@ -1,0 +1,46 @@
+{
+  "caption": "努克，格陵兰",
+  "title": "努克, 格陵兰",
+  "description": "想象一下，日常通勤途中，映入眼底的是峡湾风光、漂移的冰块，以及天际舞动的极光——这不是梦，而是努克的日常。作为格陵兰的首都，这座小而灵动的北极城市，将因纽特文化与北欧现代气息交织融合。它的故事始于1728年，由丹麦-挪威传教士汉斯·埃格德创建，最初的名字叫“Godthaab”，寓意“美好希望”。",
+  "copyright": "© nevereverro/Getty Images",
+  "date": "2026 1月 6",
+  "clickUrl": "/search?q=%e5%8a%aa%e5%85%8b%e6%a0%bc%e9%99%b5%e5%85%b0%e5%b2%9b&form=hpcapt&filters=HpDate:\"20260105_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.NuukGreenland_ZH-CN2414771686_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.NuukGreenland_ZH-CN2414771686_UHD.jpg",
+      "wallpaper": "/th?id=OHR.NuukGreenland_ZH-CN2414771686_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.NuukGreenland_ZH-CN2414771686_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.NuukGreenland_ZH-CN2414771686_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.NuukGreenland_ZH-CN2414771686_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "走进努克，仿佛踏入历史长河：汉斯·埃格德故居、红木教堂静静诉说18世纪的故事。格陵兰国家博物馆陈列着因纽特人的文物，以及保存完好的奇拉基索克木乃伊，让人得以窥见这座岛屿的悠久历史。这里还有全球唯一的北极高尔夫球场！然而，努克的魅力不仅在于景点，更在于寒冷降临时，人们彼此守望的温情。",
+  "descriptionPara3": "冬日白昼短暂，落雪纷飞，努克却依然生机勃勃。人们纷纷踏上雪地，在峡湾沿岸进行越野滑雪、雪鞋健行、泛舟或狗拉雪橇。室内更是温馨，三五好友相约\"咖啡时光\"——这是格陵兰岛的传统，浓郁的格陵兰咖啡配上奶油与蛋糕，暖意融融。努克告诉我们，这里的冬季不是孤寂，而是人与人之间的陪伴，以及在寒冬深处绽放的生机与色彩。",
+  "isoDate": "20260106",
+  "headline": "努克的慵懒时光",
+  "quickFact": "努克虽是小镇，却发展了贸易、商业、航运等产业。与格陵兰大部分地区一样，努克高度依赖丹麦的资金支持与整体拨款。",
+  "triviaId": "HPQuiz_20260106_NuukGreenland",
+  "triviaData": {
+    "question": "努克在1728年建立时的原名是什么？",
+    "options": [
+      {
+        "text": "戈特霍布",
+        "url": "/search?q=%E6%88%88%E7%89%B9%E9%9C%8D%E5%B8%83&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260106_NuukGreenland%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "诺德哈芬",
+        "url": "/search?q=%E6%88%88%E7%89%B9%E9%9C%8D%E5%B8%83&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260106_NuukGreenland%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "新埃格德",
+        "url": "/search?q=%E6%88%88%E7%89%B9%E9%9C%8D%E5%B8%83&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260106_NuukGreenland%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
