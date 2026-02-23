@@ -273,12 +273,12 @@ async function collectBingDataInParallel() {
 			fetch("https://www.bing.com/HPImageArchive.aspx?format=js&n=1&mkt=zh-CN&idx=7"),
 			fetch("https://www.bing.com/hp/api/v1/imageoftheday?format=json&mkt=zh-CN"),
 			fetch("https://www.bing.com/hp/api/model?mkt=zh-CN"),
-			fetch("https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN", {
-				"body": null,
-				"method": "GET",
-				"mode": "cors",
-				"cache": 'no-store',
-				"credentials": "include"
+			fetch("https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN&form=QBRE", {
+				body: null,
+				method: "GET",
+				mode: "cors",
+				cache: "no-store",
+				credentials: "include"
 			})
 		]);
 
@@ -355,7 +355,7 @@ async function handleBingDataResults(results) {
 		images[0].quoteData = {
 			text: '',
 			source: i18n('quote_of_the_day_search'),
-			link: 'https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN',
+			link: 'https://www.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN&form=QBRE',
 			caption: ''
 		};
 		// --- Scrape Quote of the Day ---
@@ -369,23 +369,33 @@ async function handleBingDataResults(results) {
 		};
 		function extractQuote(doc) {
 			const textElement = selectFirst(doc, [
-			'#bt_qotdText .bt_quoteText',
-			'.bt_quoteText',
-			'.quoteText',
-			'.qotd_quote'
+				'#bt_qotdText .bt_quoteText',
+				'.bt_quoteText',
+				'.quoteText',
+				'.qotd_quote[data-quote-text]',
+				'.qotd_quote_clickable .qotd_quote',
+				'.qotd_quote_clickable',
+				'.qotd_quote'
 			]);
-			const text = textElement ? textElement.textContent.trim() : null;
+			const text = textElement
+				? (textElement.getAttribute('data-quote-text') || textElement.textContent).trim()
+				: null;
 
 			const authorElement = selectFirst(doc, [
-			'#bt_qotdText .bt_author .b_mText a',
-			'.qotd_author a'
+				'#bt_qotdText .bt_author .b_mText a',
+				'.qotd_author',
+				'.qotd_footer a'
 			]);
 			const author = authorElement ? authorElement.textContent.trim() : null;
-			const authorHref = authorElement ? authorElement.getAttribute('href') : '';
+			const authorLink = authorElement
+				? (authorElement.closest('a') || authorElement.querySelector('a'))
+				: null;
+			const authorHref = authorLink ? authorLink.getAttribute('href') || '' : '';
 
 			const captionElement = selectFirst(doc, [
-			'#bt_qotdText .bt_authorCaption',
-			'.qotd_desc'
+				'#bt_qotdText .bt_authorCaption',
+				'.qotd_desc',
+				'.qotd_footer .qotd_desc'
 			]);
 			const caption = captionElement ? captionElement.textContent.trim() : null;
 
