@@ -1,0 +1,46 @@
+{
+  "caption": "大天坑里的睡莲，图卢姆，墨西哥",
+  "title": "大天坑里的睡莲，图卢姆，墨西哥",
+  "description": "漂浮的睡莲点缀着澄澈如玻璃般的水池，隐藏着一个宁静的水下世界。这里是墨西哥图卢姆的大天然井，由数千年前石灰岩塌陷形成，地下淡水缓缓填满洞室，并与幽深的地下洞穴网相连。目光线停留在平静的水面上，睡莲缓缓漂浮，宽阔的叶片盛满阳光，滋养着整个水域的生态系统。作为地球上古老的开花植物谱系之一，睡莲已有约一亿二千五百万年的演化历史，它们通过花香、形态与花期吸引传粉者，在水中延续生命。",
+  "copyright": "© Christian Vizl/Tandem Stills + Motion",
+  "date": "2026 2月 24",
+  "clickUrl": "/search?q=%e5%9b%be%e5%8d%a2%e5%a7%86%e5%a4%a7%e5%a4%a9%e5%9d%91&form=hpcapt&filters=HpDate:\"20260223_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.TulumLilies_ZH-CN0959403613_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.TulumLilies_ZH-CN0959403613_UHD.jpg",
+      "wallpaper": "/th?id=OHR.TulumLilies_ZH-CN0959403613_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.TulumLilies_ZH-CN0959403613_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.TulumLilies_ZH-CN0959403613_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.TulumLilies_ZH-CN0959403613_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "镜头贴近，水下世界便鲜活起来：鱼儿在盘根错节的根系间穿梭，海龟在树叶投下的阴影中悠然滑行。头顶上，蜻蜓划出优雅弧线，昆虫点起一圈圈细碎水纹。睡莲漂浮其间，如自然的艺术装置，运动、倒影与光影交织，显露出延续数百万年的生命节律。",
+  "descriptionPara3": "",
+  "isoDate": "20260224",
+  "headline": "池底的生命律动",
+  "quickFact": "在墨西哥，仅尤卡坦半岛一地就分布着约一万座天然井。这些充满清水的陷穴由石灰岩塌陷自然形成，散布在半岛各处。",
+  "triviaId": "HPQuiz_20260224_TulumLilies",
+  "triviaData": {
+    "question": "图卢姆天坑是由哪种地质过程形成的？",
+    "options": [
+      {
+        "text": "火山喷发",
+        "url": "/search?q=%E7%9F%B3%E7%81%B0%E5%B2%A9%E5%9D%8D%E5%A1%8C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260224_TulumLilies%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "石灰岩坍塌",
+        "url": "/search?q=%E7%9F%B3%E7%81%B0%E5%B2%A9%E5%9D%8D%E5%A1%8C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260224_TulumLilies%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "冰川雕刻",
+        "url": "/search?q=%E7%9F%B3%E7%81%B0%E5%B2%A9%E5%9D%8D%E5%A1%8C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260224_TulumLilies%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
