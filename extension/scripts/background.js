@@ -3,7 +3,7 @@
 chrome.runtime.onInstalled.addListener(function (object) {
 	// open manual link
 	if (chrome.runtime.OnInstalledReason.INSTALL === object.reason) {
-		chrome.tabs.create({ url: "https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN" });
+		chrome.tabs.create({ url: "https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN&form=QBRE" });
 		fetch('https://www.bing.com/favicon.ico', {
 			method: "GET",
 			cache: 'no-store'
