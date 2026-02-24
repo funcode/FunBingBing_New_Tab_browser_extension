@@ -1,0 +1,46 @@
+{
+  "caption": "门登霍尔冰川，阿拉斯加",
+  "title": "门登霍尔冰川的冰洞，阿拉斯加州，美国",
+  "description": "阿拉斯加朱诺城外，门登霍尔冰川静静隐匿其间，内外皆仿佛幻境。走入罕见的蓝色冰洞，世界骤然安静，光线透过历经数百年压实的冰层，映照四周。冰川自朱诺冰原绵延约十三英里，缓缓流向下方山谷，在年复一年的流动中悄然改变形态。",
+  "copyright": "© Designpics/Adobe Stock",
+  "date": "2026 2月 25",
+  "clickUrl": "/search?q=%e9%97%a8%e7%99%bb%e9%9c%8d%e5%b0%94%e5%86%b0%e5%b7%9d&form=hpcapt&filters=HpDate:\"20260224_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MendenhallCave_ZH-CN1850649760_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MendenhallCave_ZH-CN1850649760_UHD.jpg",
+      "wallpaper": "/th?id=OHR.MendenhallCave_ZH-CN1850649760_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MendenhallCave_ZH-CN1850649760_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MendenhallCave_ZH-CN1850649760_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.MendenhallCave_ZH-CN1850649760_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "湛蓝的色泽源于高密度冰体对光线的吸收，其他波段被吞没，只留下蓝色。冰洞转瞬即逝，融水不断雕刻出通道，随着冰川消退与坍塌，光影也随之消散。",
+  "descriptionPara3": "如今，进入冰洞已变得越来越罕见，且难以预测，但这条冰川依然是科学研究的重点。冰川在过去一个多世纪里被研究、被凝视、被敬畏，如今不断退却，为科学家们提供了一份清晰可见的环境变化记录。在这些泛着光芒的冰洞内，壮丽与脆弱并存，时刻提醒着人们：阿拉斯加的冰封景观，始终在变动之中，且稍纵即逝。",
+  "isoDate": "20260225",
+  "headline": "冰，由内而外透出光芒",
+  "quickFact": "2012年，冰川消退后，埋藏其下的树桩和原木逐渐显现，根系与树皮仍然完整。因长久埋藏在砾石之下，这层覆盖恰好成了天然的保护屏障，所以它们仍保持着原本的生长姿态。当这些遗存被揭开，科学家得以窥见冰川形成之前的生态环境。",
+  "triviaId": "HPQuiz_20260225_MendenhallCave",
+  "triviaData": {
+    "question": "何种自然过程形成新的冰洞通道？",
+    "options": [
+      {
+        "text": "冰川融化",
+        "url": "/search?q=%E5%86%B0%E5%B7%9D%E8%9E%8D%E5%8C%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260225_MendenhallCave%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "风蚀",
+        "url": "/search?q=%E5%86%B0%E5%B7%9D%E8%9E%8D%E5%8C%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260225_MendenhallCave%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "熔岩流",
+        "url": "/search?q=%E5%86%B0%E5%B7%9D%E8%9E%8D%E5%8C%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260225_MendenhallCave%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
