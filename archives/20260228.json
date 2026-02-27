@@ -1,0 +1,46 @@
+{
+  "caption": "奥洛乌佩纳瀑布, 莫洛凯岛, 夏威夷",
+  "title": "奥洛乌佩纳瀑布, 莫洛凯岛, 夏威夷, 美国",
+  "description": "莫洛凯岛常被称为“最具夏威夷气息岛屿”，这里的节奏缓慢而从容，由自然环境与紧密相连的社区共同塑造。岛屿形成于一百多万年前的火山活动，占地约260平方英里，从太平洋中隆起，延展出修长的山脊与开阔的谷地。与喧闹的邻岛不同，莫洛凯岛拒绝大规模开发，保留了强烈的在地凝聚力，家庭、传统以及对土地的守护构成了这里的核心价值。人们的生活围绕着海洋、土地，以及代代相传的故事展开。",
+  "copyright": "© Andrew Aylett/Getty Images",
+  "date": "2026 2月 28",
+  "clickUrl": "/search?q=%e8%8e%ab%e6%b4%9b%e5%87%af%e5%b2%9b&form=hpcapt&filters=HpDate:\"20260227_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.OloupenaFalls_ZH-CN2980118660_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.OloupenaFalls_ZH-CN2980118660_UHD.jpg",
+      "wallpaper": "/th?id=OHR.OloupenaFalls_ZH-CN2980118660_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.OloupenaFalls_ZH-CN2980118660_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.OloupenaFalls_ZH-CN2980118660_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.OloupenaFalls_ZH-CN2980118660_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "今天的画面中，奥洛乌佩纳瀑布矗立在岛屿北岸之上，从陡峭的海崖倾泻而下，落差达2953英尺。水源来自季节性降雨，水流常常散落成细密的银色水帘。环绕其间的海蚀峭壁高耸入云，跻身世界最高之列，只能通过直升机或船只抵达，为这片景观更添幽秘氛围。",
+  "descriptionPara3": "如今，行走在莫洛凯岛宁静的道路上，面对空旷的海滩与亲密的社区，人们仿佛回到从前的夏威夷：安静而真诚，生活与土地紧紧相依。",
+  "isoDate": "20260228",
+  "headline": "洋溢着社区氛围",
+  "quickFact": "这些瀑布极为偏远，只能从空中或海上远望。附近既没有公路，也没有步道。最近的城镇是考纳卡凯，这是岛上的主要城镇。",
+  "triviaId": "HPQuiz_20260228_OloupenaFalls",
+  "triviaData": {
+    "question": "哪座岛屿是隐秘的奥洛乌佩纳瀑布的所在地？",
+    "options": [
+      {
+        "text": "摩洛凯",
+        "url": "/search?q=%E6%91%A9%E6%B4%9B%E5%87%AF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260228_OloupenaFalls%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "毛伊",
+        "url": "/search?q=%E6%91%A9%E6%B4%9B%E5%87%AF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260228_OloupenaFalls%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "考艾岛",
+        "url": "/search?q=%E6%91%A9%E6%B4%9B%E5%87%AF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260228_OloupenaFalls%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
