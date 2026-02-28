@@ -1,0 +1,46 @@
+{
+  "caption": "伊维萨岛, 巴利阿里群岛, 西班牙",
+  "title": "伊维萨岛, 巴利阿里群岛, 西班牙",
+  "description": "今天，我们一同庆祝西班牙迷人的巴利阿里群岛。巴利阿里群岛日致敬这一片多样却紧密相连的地中海土地——马略卡、梅诺卡、伊维萨与福门特拉，共同构成独特的群岛身份。这个日子同时纪念《巴利阿里自治法》，该法案于1983年3月1日正式生效，确立群岛作为西班牙的一个自治区。",
+  "copyright": "© tokar/Shutterstock",
+  "date": "2026 3月 1",
+  "clickUrl": "/search?q=%e4%bc%8a%e7%bb%b4%e8%90%a8%e5%b2%9b&form=hpcapt&filters=HpDate:\"20260228_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BalearesDay_ZH-CN5024902433_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BalearesDay_ZH-CN5024902433_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BalearesDay_ZH-CN5024902433_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BalearesDay_ZH-CN5024902433_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BalearesDay_ZH-CN5024902433_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BalearesDay_ZH-CN5024902433_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "巴利阿里群岛的底色，源于与海相伴的生活方式，也来自音乐、手工艺与热情好客共同孕育的文化传统。这里的自然环境脆弱而珍贵：梅诺卡岛在守护生态的同时保留着真实的岛屿生活；福门特拉岛则珍藏着重要的海洋栖息地；马略卡岛将群山、原野与海岸融为一体，城镇中至今延续着传统工艺与建筑风貌。今日伊维萨岛上空的日落航拍，让人心怀敬意望向远方，也映现出这座岛屿在传统底蕴与当代创造力之间的独特平衡。",
+  "descriptionPara3": "这一天旨在倡导尊重文化多样性、践行可持续理念、促进教育发展，确保地中海的文化遗产能够世代相传、生生不息。",
+  "isoDate": "20260301",
+  "headline": "每一步，都是传承",
+  "quickFact": "伊维萨岛不仅是游客青睐的度假胜地，更因狂欢不息的夜生活文化而闻名世界，由此被誉为“世界派对之都”。",
+  "triviaId": "HPQuiz_20260301_BalearesDay",
+  "triviaData": {
+    "question": "哪个岛屿以保护海洋栖息地而闻名？",
+    "options": [
+      {
+        "text": "福门特拉",
+        "url": "/search?q=%E7%A6%8F%E9%97%A8%E7%89%B9%E6%8B%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260301_BalearesDay%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "伊比萨",
+        "url": "/search?q=%E7%A6%8F%E9%97%A8%E7%89%B9%E6%8B%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260301_BalearesDay%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "马略卡",
+        "url": "/search?q=%E7%A6%8F%E9%97%A8%E7%89%B9%E6%8B%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260301_BalearesDay%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
