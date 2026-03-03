@@ -1,0 +1,46 @@
+{
+  "caption": "紫番红花, 里拉七湖, 保加利亚",
+  "title": "紫番红花, 里拉七湖, 保加利亚",
+  "description": "随着保加利亚西南部里拉山脉冬季寒意减退，番红花从积雪中破土而出，标志着该国最高山脉春天的来临。作为早春花卉，它们利用储存的养分，在寒冷条件下迅速生长，并在更高大的植物出现之前完成生命周期。成簇的花朵在高山草甸上绽放，如紫色缎带般铺展，与雪原形成鲜明对比，在清晨的光线中格外醒目。",
+  "copyright": "© Maya Karkalicheva/Getty Images",
+  "date": "2026 3月 4",
+  "clickUrl": "/search?q=%e4%bf%9d%e5%8a%a0%e5%88%a9%e4%ba%9a%e9%87%8c%e6%8b%89%e4%b8%83%e6%b9%96%e7%95%aa%e7%ba%a2%e8%8a%b1&form=hpcapt&filters=HpDate:\"20260303_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.RilaCrocuses_ZH-CN3650360951_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.RilaCrocuses_ZH-CN3650360951_UHD.jpg",
+      "wallpaper": "/th?id=OHR.RilaCrocuses_ZH-CN3650360951_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.RilaCrocuses_ZH-CN3650360951_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.RilaCrocuses_ZH-CN3650360951_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.RilaCrocuses_ZH-CN3650360951_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "番红花在保加利亚里拉国家公园茁壮生长。该公园成立于1992年，是该国最大的自然保护区之一，拥有重要的生态系统，涵盖120多处常年冰川湖和30处季节性冰川湖，里拉七湖群尤为知名。澄澈的湖水与高山地貌相映成景，温暖季节吸引众多游客。初春时节，番红花与融雪交替出现，展现季节更迭的独特画面。",
+  "descriptionPara3": "",
+  "isoDate": "20260304",
+  "headline": "聚光灯下的番红花",
+  "quickFact": "在人类文明的早期记载中，番红花就已出现，最重要的原因是它能产出藏红花。藏红花采自一种秋日开花的番红花属植物，其干燥的雌蕊既可调味，也可染色，是世上最昂贵的香料之一。",
+  "triviaId": "HPQuiz_20260304_RilaCrocuses",
+  "triviaData": {
+    "question": "保加利亚哪一地区拥有最高的山峰？",
+    "options": [
+      {
+        "text": "里拉山脉",
+        "url": "/search?q=%E9%87%8C%E6%8B%89%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260304_RilaCrocuses%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "罗多彼山脉",
+        "url": "/search?q=%E9%87%8C%E6%8B%89%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260304_RilaCrocuses%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "皮林",
+        "url": "/search?q=%E9%87%8C%E6%8B%89%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260304_RilaCrocuses%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
