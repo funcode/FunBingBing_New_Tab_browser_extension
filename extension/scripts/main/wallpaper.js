@@ -526,7 +526,6 @@ async function handleBingDataResults(results) {
 							writeConf("cache_quote_of_the_day", allQuotes);
 						}
 						writeConf("bing_images", images);
-						writeConf("s3_quote_of_the_day", response);
 					}
 				});
 			}

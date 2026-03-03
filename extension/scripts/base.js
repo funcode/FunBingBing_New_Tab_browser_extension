@@ -112,7 +112,7 @@ function initializeConf() {
         show_clock: "yes",
         show_quote: "yes",
         enable_uhd_wallpaper: "yes",
-        LOST_QUOTES_URL: "https://quotes-of-the-day.s3.ap-east-1.amazonaws.com/latest.json",
+        qotd_url: "",
         wallpaper_date: "20000101",
         wallpaper_idx: "0",
         last_open_version: "0"
