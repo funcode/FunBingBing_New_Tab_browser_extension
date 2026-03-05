@@ -22,6 +22,8 @@ chrome.runtime.onInstalled.addListener(function (object) {
 const DEFAULT_LOST_QUOTES_URL = null;
 const LOST_QUOTES_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 
+let latestQuoteSyncRequestId = 0;
+
 let lostQuotesCache = null;
 let lostQuotesFetchedAt = 0;
 let lostQuotesCacheUrl = null;
@@ -89,73 +91,155 @@ function normalizeQuotePayload(rawQuote) {
   };
 }
 
-function getLatestAvailableQuote(allQuotes) {
-  if (!allQuotes || typeof allQuotes !== "object") {
-    return { date: null, quote: null };
-  }
-
-  const latestDate = Object.keys(allQuotes)
-    .filter((date) => /^\d{8}$/.test(date))
-    .sort()
-    .at(-1) || null;
-
-  if (!latestDate) {
-    return { date: null, quote: null };
-  }
-
+function getDefaultTracker() {
   return {
-    date: latestDate,
-    quote: normalizeQuotePayload(allQuotes[latestDate])
+    //0 is the initial value, meaning no quotes cached yet. It will be set to 1-8 as quotes are cached, indicating the current slot to overwrite next.
+    last: 0,
+    "1": null, "2": null, "3": null, "4": null,
+    "5": null, "6": null, "7": null, "8": null
   };
 }
 
+function insertQuoteIntoCache(date, quote, allQuotes, tracker) {
+  const normalizedQuote = normalizeQuotePayload(quote);
+  if (!date || !normalizedQuote) return false;
+  if (!allQuotes[date]) {
+    tracker.last = (tracker.last % 8) + 1;
+    const slot = tracker.last;
+    const oldKey = tracker[slot];
+    if (oldKey && allQuotes[oldKey]) {
+      delete allQuotes[oldKey];
+    }
+    allQuotes[date] = normalizedQuote;
+    tracker[slot] = date;
+    return true;
+  }
+  return false;
+}
+
+function patchBingImagesQuoteData(bingImages, quoteMap) {
+  if (!Array.isArray(bingImages) || !quoteMap) return bingImages || [];
+  for (let i = 0; i < bingImages.length; i++) {
+    const img = bingImages[i];
+    if (!img || !img.isoDate) continue;
+    const patch = quoteMap[img.isoDate];
+    if (patch) {
+      img.quoteData = patch;
+    }
+  }
+  return bingImages;
+}
+
+function computeMissingDates(imageDates, bingImages, allQuotes) {
+  const missing = new Set();
+  const quoteMap = allQuotes || {};
+  const imagesByDate = new Map();
+  if (Array.isArray(bingImages)) {
+    bingImages.forEach((img) => {
+      if (img && typeof img.isoDate === "string") {
+        imagesByDate.set(img.isoDate, img);
+      }
+    });
+  }
+
+  (imageDates || []).forEach((date) => {
+    if (typeof date !== "string" || !date.trim()) return;
+    const cachedQuote = normalizeQuotePayload(quoteMap[date]);
+    if (cachedQuote) return;
+    const img = imagesByDate.get(date);
+    const existing = img ? normalizeQuotePayload(img.quoteData) : null;
+    if (!existing) missing.add(date);
+  });
+
+  return Array.from(missing);
+}
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message && (message.type === "getQuotes" || message.type === "getLostQuotes")) {
+  if (message && message.type === "syncQuotesForImages") {
     (async () => {
       try {
-        const requestedDates = Array.isArray(message.dates)
-          ? message.dates.filter(date => typeof date === "string" && date.trim().length > 0)
-          : [];
-
-        const allQuotes = await fetchLostQuotes();
-        const responsePayload = {};
-
-        if (requestedDates.length > 0) {
-          requestedDates.forEach((date) => {
-            const normalized = normalizeQuotePayload(allQuotes[date]);
-            if (normalized) {
-              responsePayload[date] = normalized;
-            }
-          });
+        const { requestId, todayDate, todayQuote, imageDates } = message;
+        if (!Number.isFinite(requestId)) {
+          sendResponse({ ok: false, error: "invalid requestId" });
+          return;
         }
 
-        // For "today" flow, return a latest quote when the requested date is missing.
-        const wantsLatestFallback = Boolean(message.includeLatestFallback);
-        if (wantsLatestFallback && requestedDates.length > 0) {
-          const hasAnyHit = Object.keys(responsePayload).length > 0;
-          if (!hasAnyHit) {
-            const { date, quote } = getLatestAvailableQuote(allQuotes);
-            if (date && quote) {
-              responsePayload[date] = quote;
-            }
-          }
-        } else if (requestedDates.length === 0) {
-          // If no dates provided, return only latest available quote.
-          const { date, quote } = getLatestAvailableQuote(allQuotes);
-          if (date && quote) {
-            responsePayload[date] = quote;
+        if (requestId < latestQuoteSyncRequestId) {
+          sendResponse({ ok: false, stale: true });
+          return;
+        }
+        latestQuoteSyncRequestId = Math.max(latestQuoteSyncRequestId, requestId);
+
+        await confReadyPromise;
+
+        let allQuotes = readConf("cache_quote_of_the_day") || {};
+        let tracker = readConf("cache_quote_tracker") || getDefaultTracker();
+        const bingImages = readConf("bing_images") || [];
+
+        const quoteMapForPatch = {};
+
+        if (todayDate) {
+          const inserted = insertQuoteIntoCache(todayDate, todayQuote, allQuotes, tracker);
+          const normalizedTodayQuote = normalizeQuotePayload(todayQuote);
+          if (inserted || normalizedTodayQuote) {
+            quoteMapForPatch[todayDate] = normalizedTodayQuote || allQuotes[todayDate];
           }
         }
 
-        sendResponse(responsePayload);
+        const dates = Array.isArray(imageDates) ? imageDates.filter(d => typeof d === "string" && d.trim()) : [];
+        const missingDates = computeMissingDates(dates, bingImages, allQuotes);
+
+        if (missingDates.length > 0) {
+          try {
+            const remote = await fetchLostQuotes();
+            missingDates.forEach((date) => {
+              const candidate = normalizeQuotePayload(remote[date]);
+              if (candidate) {
+                quoteMapForPatch[date] = candidate;
+                insertQuoteIntoCache(date, candidate, allQuotes, tracker);
+              }
+            });
+          } catch (err) {
+            console.error("Failed to fetch lost quotes:", err);
+          }
+        }
+
+        // Include cached quotes for dates that had them already
+        dates.forEach((date) => {
+          if (!quoteMapForPatch[date]) {
+            const cached = normalizeQuotePayload(allQuotes[date]);
+            if (cached) {
+              quoteMapForPatch[date] = cached;
+            }
+          }
+        });
+
+        if (requestId !== latestQuoteSyncRequestId) {
+          sendResponse({ ok: false, stale: true });
+          return;
+        }
+
+        const patchedImages = patchBingImagesQuoteData(bingImages, quoteMapForPatch);
+        writeConf("bing_images", patchedImages);
+        writeConf("cache_quote_of_the_day", allQuotes);
+        writeConf("cache_quote_tracker", tracker);
+
+        const unresolved = computeMissingDates(dates, patchedImages, allQuotes);
+        writeConf("lost_quotes", unresolved);
+
+        const updatedDates = Object.keys(quoteMapForPatch);
+        if (updatedDates.length > 0) {
+          chrome.runtime.sendMessage({ type: "quotesUpdated", requestId, updatedDates });
+        }
+
+        sendResponse({ ok: true, stale: false, updatedDates, missingDates: unresolved });
       } catch (error) {
-        //TODO: Retry logic could be added here
-        console.error("Error handling getQuotes message:", error);
-        sendResponse({});
+        console.error("Error handling syncQuotesForImages:", error);
+        sendResponse({ ok: false, error: error.message });
       }
     })();
 
-    return true; // keeps the message channel open for async response
+    return true;
   }
 
   return false;
