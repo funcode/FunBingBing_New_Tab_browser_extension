@@ -89,7 +89,7 @@ async function fetchWallpaperBlob(url) {
 	return response.blob();
 }
 
-async function applyWallpaperFromBlob(blob, originalUrl, image) {
+async function applyWallpaperFromBlob(blob, originalUrl, image, options = {}) {
 	const body = document.getElementById('main-body');
 	if (!body) return;
 	const objectUrl = URL.createObjectURL(blob);
@@ -100,7 +100,7 @@ async function applyWallpaperFromBlob(blob, originalUrl, image) {
 	} catch (preloadError) {
 		console.warn('Wallpaper preloading failed, applying immediately:', preloadError);
 	}
-	setContents(image);
+	setContents(image, options);
 	body.style.backgroundImage = `url('${objectUrl}')`;
 	body.removeAttribute('data-wallpaper-fallback');
 	body.classList.remove('wallpaper-fallback-active');
@@ -113,7 +113,7 @@ async function applyWallpaperFromBlob(blob, originalUrl, image) {
 }
 
 // set wallpaper to default
-async function showDefaultWallpaper() {
+async function showDefaultWallpaper(options = {}) {
 	function activateFallbackPlaceholder() {
 		revokeCurrentWallpaperObjectUrl();
 		body.style.backgroundImage = '';
@@ -151,7 +151,7 @@ async function showDefaultWallpaper() {
 				}
 			}
 			const blob = await fetchWallpaperBlob(wallpaperUrl);
-			await applyWallpaperFromBlob(blob, wallpaperUrl, imageForContent);
+			await applyWallpaperFromBlob(blob, wallpaperUrl, imageForContent, options);
 			return;
 		} catch (err) {
 			console.error('Failed to load cached wallpaper via Cache Storage:', err);
@@ -253,7 +253,7 @@ async function initWallpaper() {
 	} else {
 		// No cache match, fetch new data		
 		setFooterText(i18n('updating_wallpaper'));
-		await showDefaultWallpaper();
+		await showDefaultWallpaper({ preserveUpdatingHeadline: true });
 		try {
 			const results = await collectBingDataInParallel();
 			await handleBingDataResults(results);
@@ -606,8 +606,9 @@ function renderQuoteSection(quoteData) {
 	}
 }
 
-function setContents(image) {
+function setContents(image, options = {}) {
 	if (!image) return;
+	const preserveUpdatingHeadline = Boolean(options?.preserveUpdatingHeadline);
 
 	// --- Format date helper ---
 	const formatDate = (isoDate) => {
@@ -618,7 +619,9 @@ function setContents(image) {
 	};
 
 	// --- Set footer and headline link ---
-	setFooterText(image.headline);
+	if (!preserveUpdatingHeadline) {
+		setFooterText(image.headline);
+	}
 	const headlineLink = document.getElementById('headline-link');
 	if (headlineLink) headlineLink.href = `https://cn.bing.com${image.clickUrl}`;
 
