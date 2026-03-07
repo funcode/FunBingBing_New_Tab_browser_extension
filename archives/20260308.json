@@ -1,0 +1,46 @@
+{
+  "caption": "夏令时",
+  "title": "乌尔姆市政厅的天文钟, 德国",
+  "description": "每年三月，美国大部分地区开始实行夏令时，时钟拨快以最大限度地利用日光。这一想法可以追溯到1784年，当时本杰明·富兰克林曾幽默地建议人们早起以节省蜡烛的使用。美国在第一次世界大战期间，于1918年正式采用夏令时，作为一项节能措施。经过多年执行不一之后，1966年的《统一时间法案》确立了全国范围内季节性时钟调整的标准。虽然如今大多数州都实行夏令时，但夏威夷州和亚利桑那州（纳瓦霍族保留地除外）不实行，理由是日光变化幅度很小，且出于气候方面的考虑。此外，美国的一些属地全年也保持标准时间。",
+  "copyright": "© Tomekbudujedomek/Getty Images",
+  "date": "2026 3月 8",
+  "clickUrl": "/search?q=%e5%a4%a9%e6%96%87%e9%92%9f&form=hpcapt&filters=HpDate:\"20260307_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.UlmClock_ZH-CN9282560066_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.UlmClock_ZH-CN9282560066_UHD.jpg",
+      "wallpaper": "/th?id=OHR.UlmClock_ZH-CN9282560066_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.UlmClock_ZH-CN9282560066_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.UlmClock_ZH-CN9282560066_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.UlmClock_ZH-CN9282560066_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "今天的图片展示的是德国乌尔姆市政厅上的天文钟。这座天文钟安装于16世纪，它追踪的是太阳和月亮的周期，而不是法定时间，提醒我们日光本身是由天文规律决定的，而不是由根据现代时间表调整的时钟决定的。",
+  "descriptionPara3": "",
+  "isoDate": "20260308",
+  "headline": "节约日光的艺术",
+  "quickFact": "位于德国乌尔姆市市政厅的天文钟是一座历史悠久的时钟，以其精巧的机械结构和详尽的天文显示而闻名。",
+  "triviaId": "HPQuiz_20260308_UlmClock",
+  "triviaData": {
+    "question": "哪位发明家曾幽默地提议节省蜡烛？",
+    "options": [
+      {
+        "text": "艾萨克·牛顿",
+        "url": "/search?q=%E6%9C%AC%E6%9D%B0%E6%98%8E%C2%B7%E5%AF%8C%E5%85%B0%E5%85%8B%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260308_UlmClock%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "本杰明·富兰克林",
+        "url": "/search?q=%E6%9C%AC%E6%9D%B0%E6%98%8E%C2%B7%E5%AF%8C%E5%85%B0%E5%85%8B%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260308_UlmClock%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "托马斯·爱迪生",
+        "url": "/search?q=%E6%9C%AC%E6%9D%B0%E6%98%8E%C2%B7%E5%AF%8C%E5%85%B0%E5%85%8B%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260308_UlmClock%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
