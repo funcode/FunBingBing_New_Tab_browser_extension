@@ -1,0 +1,46 @@
+{
+  "caption": "在海滩上睡觉的灰海豹, 奥克尼群岛, 苏格兰",
+  "title": "在海滩上睡觉的灰海豹, 奥克尼群岛, 苏格兰",
+  "description": "全国午睡日真是选得恰到好处。它恰逢夏令时开始后的星期一，届时时钟会拨快一小时，我们所有人都会少睡一个小时。不妨把今天当作一个正式的理由，放慢脚步，好好补补觉。这张照片中，一只在苏格兰海岸边酣睡的灰海豹，正是对这一天的绝佳提醒：休息至关重要。",
+  "copyright": "© Andrew Mason/Minden Pictures",
+  "date": "2026 3月 9",
+  "clickUrl": "/search?q=%e7%81%b0%e6%b5%b7%e8%b1%b9&form=hpcapt&filters=HpDate:\"20260308_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.NappingSeal_ZH-CN9424683964_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.NappingSeal_ZH-CN9424683964_UHD.jpg",
+      "wallpaper": "/th?id=OHR.NappingSeal_ZH-CN9424683964_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.NappingSeal_ZH-CN9424683964_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.NappingSeal_ZH-CN9424683964_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.NappingSeal_ZH-CN9424683964_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "灰海豹的睡眠方式出人意料地讲究策略。它们不会长时间沉睡，而是根据环境灵活地进行短时间的睡眠。在水中，海豹会浅睡，以便随时浮出水面呼吸。而在陆地上，尤其是在宁静的海滩和岩石岛屿上，它们会睡得更深、时间更长。这种灵活的睡眠模式有助于它们节省能量，同时又能更好地躲避威胁。",
+  "descriptionPara3": "在全国午睡日，不妨向海豹学习：放慢脚步，享受休息，让科学和自然证明午睡确实值得。",
+  "isoDate": "20260309",
+  "headline": "一次恰到好处的午睡",
+  "quickFact": "苏格兰奥克尼群岛的灰海豹是一种大型海洋哺乳动物，以其独特的斑点皮毛和在崎岖海岸上的活泼行为而闻名。",
+  "triviaId": "HPQuiz_20260309_NappingSeal",
+  "triviaData": {
+    "question": "照片中的灰海豹当时在何处休息？",
+    "options": [
+      {
+        "text": "苏格兰海岸",
+        "url": "/search?q=%E8%8B%8F%E6%A0%BC%E5%85%B0%E6%B5%B7%E5%B2%B8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260309_NappingSeal%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "爱尔兰海岸",
+        "url": "/search?q=%E8%8B%8F%E6%A0%BC%E5%85%B0%E6%B5%B7%E5%B2%B8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260309_NappingSeal%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "威尔士海湾",
+        "url": "/search?q=%E8%8B%8F%E6%A0%BC%E5%85%B0%E6%B5%B7%E5%B2%B8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260309_NappingSeal%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
