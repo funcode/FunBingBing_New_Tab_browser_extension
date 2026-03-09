@@ -331,8 +331,8 @@ async function collectBingDataInParallel() {
 		}
 
 		// Parse quote of the day
-		if (quoteRes.status === "fulfilled" && typeof quoteRes.value === 'string') {
-			results.quoteOfTheDay = quoteRes.value;
+		if (quoteRes.status === "fulfilled" && quoteRes.value.ok) {
+			results.quoteOfTheDay = await quoteRes.value.text();
 		} else {
 			results.errors.push("QuoteOfTheDay request failed");
 		}
