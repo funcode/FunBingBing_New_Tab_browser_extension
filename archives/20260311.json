@@ -1,0 +1,46 @@
+{
+  "caption": "谢萨的桃树,穆尔西亚, 西班牙",
+  "title": "盛开的桃树, 谢萨, 穆尔西亚, 西班牙",
+  "description": "在谢萨，春天的到来别具一格。它并非缓缓展开，而是色彩缤纷，绚烂夺目。每年二月至三月，这座位于西班牙穆尔西亚地区的小城便成为“花期”（La Floración）的中心，也就是桃树盛开的季节。短短几天内，超过12000英亩的土地——西班牙最大的城市桃园——便会变成我们今天看到的这片色彩斑斓的海洋。",
+  "copyright": "© Juan Maria Coy Vergara/Getty Images",
+  "date": "2026 3月 11",
+  "clickUrl": "/search?q=%e8%a5%bf%e7%8f%ad%e7%89%99%e8%b0%a2%e8%90%a8&form=hpcapt&filters=HpDate:\"20260310_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.PeachBloom_ZH-CN9660251274_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.PeachBloom_ZH-CN9660251274_UHD.jpg",
+      "wallpaper": "/th?id=OHR.PeachBloom_ZH-CN9660251274_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.PeachBloom_ZH-CN9660251274_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.PeachBloom_ZH-CN9660251274_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.PeachBloom_ZH-CN9660251274_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "桃子是切萨镇不可或缺的一部分。这里的农民沿袭古罗马的种植技艺，年复一年地精益求精。他们的辛勤耕耘结出了丰硕的果实？便是远近闻名的切萨桃，这种桃子皮薄如天鹅绒，香气扑鼻，饱含着这片土地的阳光、土壤和历史。",
+  "descriptionPara3": "在短短几周的盛花期里，缤纷的色彩和芬芳的气息吸引着游客走进果园，带动了当地市场、农业旅游以及“花卉节”等庆祝活动。随着花朵凋谢，它们留下了丰收的希望，以及一种持续到春天之后的甜蜜。",
+  "isoDate": "20260311",
+  "headline": "一个美好的春天",
+  "quickFact": "西班牙穆尔西亚的锡耶萨以春季盛开的桃花而闻名，粉白色的花海为大地披上了美丽的色彩。",
+  "triviaId": "HPQuiz_20260311_PeachBloom",
+  "triviaData": {
+    "question": "西班牙哪个地区有谢萨镇？",
+    "options": [
+      {
+        "text": "安达卢西亚",
+        "url": "/search?q=%E7%A9%86%E5%B0%94%E8%A5%BF%E4%BA%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260311_PeachBloom%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "穆尔西亚",
+        "url": "/search?q=%E7%A9%86%E5%B0%94%E8%A5%BF%E4%BA%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260311_PeachBloom%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "加泰罗尼亚",
+        "url": "/search?q=%E7%A9%86%E5%B0%94%E8%A5%BF%E4%BA%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260311_PeachBloom%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
