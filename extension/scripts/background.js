@@ -220,12 +220,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         }
 
         const patchedImages = patchBingImagesQuoteData(bingImages, quoteMapForPatch);
-        writeConf("bing_images", patchedImages);
-        writeConf("cache_quote_of_the_day", allQuotes);
-        writeConf("cache_quote_tracker", tracker);
+        await writeConf("bing_images", patchedImages);
+        await writeConf("cache_quote_of_the_day", allQuotes);
+        await writeConf("cache_quote_tracker", tracker);
 
         const unresolved = computeMissingDates(dates, patchedImages, allQuotes);
-        writeConf("lost_quotes", unresolved);
+        await writeConf("lost_quotes", unresolved);
 
         const updatedDates = Object.keys(quoteMapForPatch);
         if (updatedDates.length > 0) {
