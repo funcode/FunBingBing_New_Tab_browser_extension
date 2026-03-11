@@ -183,6 +183,7 @@ async function changeWallpaper(idx) {
 	}
 	const image = images[idx];
 	currentImageDate = image?.isoDate || null;
+	//TODO: scrape this baseurl from modelResult in collectBingDataInParallel
 	const baseurl = 'https://cn.bing.com';
 	const landscape = image?.imageUrls?.landscape;
 	const path = readConf('enable_uhd_wallpaper') == 'yes'
@@ -475,36 +476,17 @@ async function handleBingDataResults(results) {
 	// --- Execute both async tasks in parallel ---
 	await Promise.all([triviaFetch(), quickFactsUpdate(), quoteTask()]);
 
+	mergeCachedQuotesIntoImages(images);
+	const quoteSyncPayload = buildQuoteSyncPayload(images);
+
 	// --- Save merged images ---
-	writeConf("bing_images", images);
+	await writeConf("bing_images", images);
 	writeConf("wallpaper_date", images[0].isoDate);
 	console.log("Saved bing_images with merged contents.");
 
-	const fireQuoteSync = () => {
-		const imageDates = images.map(img => img?.isoDate).filter(d => typeof d === 'string' && d.trim());
-		const payload = {
-			type: "syncQuotesForImages",
-			requestId: Date.now(),
-			todayDate: images[0]?.isoDate,
-			todayQuote: images[0]?.quoteData,
-			imageDates
-		};
-		try {
-			chrome.runtime.sendMessage(payload, (response) => {
-				if (chrome.runtime.lastError) {
-					console.debug('syncQuotesForImages failed:', chrome.runtime.lastError.message);
-					return;
-				}
-				if (response && response.stale) {
-					console.debug('syncQuotesForImages skipped stale response');
-				}
-			});
-		} catch (err) {
-			console.error('Failed to send syncQuotesForImages:', err);
-		}
-	};
-
-	fireQuoteSync();
+	if (quoteSyncPayload) {
+		fireQuoteSync(quoteSyncPayload);
+	}
 
 	// --- Log errors ---
 	if (results.errors?.length > 0) {
@@ -629,6 +611,73 @@ function renderQuoteSection(quoteData) {
 	}
 }
 
+function normalizeCachedQuotePayload(rawQuote) {
+	if (!rawQuote || typeof rawQuote !== 'object') return null;
+	const text = typeof rawQuote.text === 'string' ? rawQuote.text.trim() : '';
+	if (!text) return null;
+	return {
+		text,
+		source: typeof rawQuote.source === 'string' ? rawQuote.source : '',
+		caption: typeof rawQuote.caption === 'string' ? rawQuote.caption : '',
+		link: typeof rawQuote.link === 'string' && rawQuote.link.trim()
+			? rawQuote.link
+			: rawQuote.source
+				? `https://cn.bing.com/search?q=${encodeURIComponent(rawQuote.source)}&form=BTQUOT`
+				: ''
+	};
+}
+
+function mergeCachedQuotesIntoImages(images) {
+	const cachedQuotes = readConf('cache_quote_of_the_day') || {};
+	if (!Array.isArray(images) || !cachedQuotes) return [];
+	images.forEach((img) => {
+		if (!img || typeof img !== 'object') return;
+		const existingQuote = normalizeCachedQuotePayload(img.quoteData);
+		if (existingQuote) return;
+		const isoDate = img.isoDate;
+		if (!isoDate || !cachedQuotes[isoDate]) return;
+		const cachedQuote = normalizeCachedQuotePayload(cachedQuotes[isoDate]);
+		if (!cachedQuote) return;
+		img.quoteData = cachedQuote;
+	});
+	return;
+}
+
+function buildQuoteSyncPayload(images) {
+	if (!Array.isArray(images) || images.length === 0) return null;
+	const imageDates = images
+		.map((img) => (img && typeof img.isoDate === 'string' ? img.isoDate : null))
+		.filter((date) => typeof date === 'string' && date.trim());
+	if (imageDates.length === 0) return null;
+	return {
+		type: 'syncQuotesForImages',
+		requestId: Date.now(),
+		todayDate: images[0]?.isoDate,
+		todayQuote: images[0]?.quoteData,
+		imageDates
+	};
+}
+
+let latestForegroundQuoteRequestId = 0;
+
+function fireQuoteSync(payload) {
+	if (!payload) return;
+	latestForegroundQuoteRequestId = Math.max(latestForegroundQuoteRequestId, payload.requestId);
+	try {
+		chrome.runtime.sendMessage(payload, (response) => {
+			if (chrome.runtime.lastError) {
+				console.debug('syncQuotesForImages failed:', chrome.runtime.lastError.message);
+				return;
+			}
+			if (response && response.stale && payload.requestId === latestForegroundQuoteRequestId) {
+				console.debug('syncQuotesForImages skipped stale response');
+			}
+		});
+	} catch (err) {
+		console.error('Failed to send syncQuotesForImages:', err);
+	}
+}
+
 function setContents(image, options = {}) {
 	if (!image) return;
 	const preserveUpdatingHeadline = Boolean(options?.preserveUpdatingHeadline);
@@ -741,6 +790,8 @@ function refreshCurrentQuoteFromStorage() {
 	if (currentImageDate) {
 		image = images.find(img => img && img.isoDate === currentImageDate) || null;
 	}
+	//TODO: Remove fallback to current index once we have a more robust way to correlate quote updates with the correct image
+	//Bug Fix: An old wallpaper is displayed with the latest quote, but the wallpaper is not changed， probably due to the image is not successfully loaded.
 	if (!image) {
 		let idx = readConf('wallpaper_idx');
 		idx = Number.parseInt(idx, 10);
@@ -749,8 +800,6 @@ function refreshCurrentQuoteFromStorage() {
 		}
 		image = images[idx];
 	}
-	if (!image) return;
-	currentImageDate = image.isoDate || currentImageDate;
 	updateQuoteOnly(image);
 }
 
