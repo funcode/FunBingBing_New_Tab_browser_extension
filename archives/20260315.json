@@ -1,0 +1,46 @@
+{
+  "caption": "掀起浪花",
+  "title": "太平洋沿岸国家公园保护区，温哥华岛，加拿大",
+  "description": "在加拿大，“太平洋沿岸鲸鱼节”庆祝成千上万头灰鲸每年春季的迁徙盛况——它们沿着岛屿西海岸近岸而行，场面壮观。这项节日由当地社区于20世纪80年代发起，旨在纪念灰鲸从墨西哥下加利福尼亚的繁殖潟湖启程，踏上北返旅程的重要时刻。",
+  "copyright": "© EmilyNorton/Getty Images",
+  "date": "2026 3月 15",
+  "clickUrl": "/search?q=%e7%8e%af%e5%a4%aa%e5%b9%b3%e6%b4%8b%e9%b2%b8%e9%b1%bc%e8%8a%82&form=hpcapt&filters=HpDate:\"20260314_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.PacificRimNP_ZH-CN0350089584_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.PacificRimNP_ZH-CN0350089584_UHD.jpg",
+      "wallpaper": "/th?id=OHR.PacificRimNP_ZH-CN0350089584_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.PacificRimNP_ZH-CN0350089584_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.PacificRimNP_ZH-CN0350089584_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.PacificRimNP_ZH-CN0350089584_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "随着时间推移，这一节庆已发展为为期数天的系列活动，聚焦海洋教育与负责任的野生动物观赏。每年3月及4月初是观鲸高峰期，灰鲸在北迁途中会沿海岸停歇、觅食。想知道它们要游多远吗？一次完整的往返迁徙通常长达约1万至1.4万英里。",
+  "descriptionPara3": "太平洋沿岸国家公园保护区在这段故事中扮演着重要角色。它受海浪冲刷的海岸线和近海水域，正好位于灰鲸迁徙路线之上。灰鲸是这个季节的主角，而随着座头鲸数量恢复，它们的身影也越来越常见。从长滩的观鲸点到宁静的海角，只要耐心——再加上一点运气——游客就有机会收获难忘的观鲸瞬间。",
+  "isoDate": "20260315",
+  "headline": "掠海而过",
+  "quickFact": "太平洋沿岸鲸鱼节不仅是观鲸活动，还包括海洋主题艺术展、社区巡游和公众讲座，体现了当地居民对海洋文化的长期关注与参与。",
+  "triviaId": "HPQuiz_20260315_PacificRimNP",
+  "triviaData": {
+    "question": "这场海岸节日的主要关注对象是哪种海洋哺乳动物？",
+    "options": [
+      {
+        "text": "灰鲸",
+        "url": "/search?q=%E7%81%B0%E9%B2%B8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260315_PacificRimNP%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "斯特勒海狮",
+        "url": "/search?q=%E7%81%B0%E9%B2%B8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260315_PacificRimNP%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "座头鲸",
+        "url": "/search?q=%E7%81%B0%E9%B2%B8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260315_PacificRimNP%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
