@@ -1,0 +1,46 @@
+{
+  "caption": "圣帕特里克节快乐！",
+  "title": "艾利赫格里安南环形堡，多内加尔，爱尔兰",
+  "description": "圣帕特里克是爱尔兰的守护圣人，约生于公元4世纪末至5世纪初的罗马不列颠。据传说，他在16岁时被爱尔兰掠夺者绑架，带到爱尔兰成为奴隶。逃回家乡后，他成为传教士，将基督教传播到整个爱尔兰岛。后来的传统中，他以三叶草来解释三位一体而闻名。圣帕特里克的信仰遗产，使得圣帕特里克节成为全球性的庆典。",
+  "copyright": "© Lukassek/Getty Images",
+  "date": "2026 3月 17",
+  "clickUrl": "/search?q=%e5%9c%a3%e5%b8%95%e7%89%b9%e9%87%8c%e5%85%8b%e8%8a%82&form=hpcapt&filters=HpDate:\"20260316_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.DonegalFort_ZH-CN0718842170_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.DonegalFort_ZH-CN0718842170_UHD.jpg",
+      "wallpaper": "/th?id=OHR.DonegalFort_ZH-CN0718842170_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.DonegalFort_ZH-CN0718842170_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.DonegalFort_ZH-CN0718842170_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.DonegalFort_ZH-CN0718842170_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "今天，我们来到爱尔兰西北部的多内加尔郡。虽然这里不是圣帕特里克的出生地，但这片土地承载着爱尔兰丰富的精神历史。艾利赫格里安南环形堡，一座曾是阿尔斯特国王居所的古老铁器时代环形堡，就矗立在这里。它的城墙提醒我们，早在圣帕特里克传播基督教之前，爱尔兰就已有古老的凯尔特传统。如今，圣帕特里克节已成为充满三叶草的庆典，庆祝爱尔兰的文化、信仰，以及这一永恒的民族精神，它持续激励着全世界。",
+  "descriptionPara3": "",
+  "isoDate": "20260317",
+  "headline": "爱尔兰的精神十字路口",
+  "quickFact": "艾利赫格里安南环形堡曾是阿尔斯特国王的居所，其铁器时代的石墙与结构展示了古凯尔特人的防御智慧和社会组织能力。",
+  "triviaId": "HPQuiz_20260317_DonegalFort",
+  "triviaData": {
+    "question": "多尼戈尔哪处遗址曾是阿尔斯特国王的住所？",
+    "options": [
+      {
+        "text": "艾莱赫的格里安南",
+        "url": "/search?q=%E8%89%BE%E8%8E%B1%E8%B5%AB%E7%9A%84%E6%A0%BC%E9%87%8C%E5%AE%89%E5%8D%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260317_DonegalFort%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "邓卢斯城堡",
+        "url": "/search?q=%E8%89%BE%E8%8E%B1%E8%B5%AB%E7%9A%84%E6%A0%BC%E9%87%8C%E5%AE%89%E5%8D%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260317_DonegalFort%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "纽格兰奇",
+        "url": "/search?q=%E8%89%BE%E8%8E%B1%E8%B5%AB%E7%9A%84%E6%A0%BC%E9%87%8C%E5%AE%89%E5%8D%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260317_DonegalFort%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
