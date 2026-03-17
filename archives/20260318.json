@@ -1,0 +1,46 @@
+{
+  "caption": "汤姆·麦考尔滨水公园，波特兰，俄勒冈",
+  "title": "汤姆·麦考尔滨水公园的樱花，波特兰，俄勒冈州，美国",
+  "description": "汤姆·麦考尔滨水公园位于俄勒冈州波特兰威拉米特河畔，占地36英亩，是这座城市最受欢迎的绿地之一。每年春季——通常从3月中旬到4月初——公园会被粉色与白色的樱花覆盖，仿佛置身花海。沿着风景优美的步道漫步，这些充满生机的樱树为城市中心提供了一片宁静的休憩空间。公园内还有多处著名景点，如萨蒙街喷泉（Salmon Street Springs），一个拥有众多水柱的互动喷泉，以及波特兰周六市场（Portland Saturday Market），是当地居民和游客喜爱的热门去处。",
+  "copyright": "© Eric Vogt/Tandem Stills + Motion",
+  "date": "2026 3月 18",
+  "clickUrl": "/search?q=%e6%b1%a4%e5%a7%86%c2%b7%e9%ba%a6%e8%80%83%e5%b0%94%e6%bb%a8%e6%b0%b4%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260317_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.PortlandBlossoms_ZH-CN0814501668_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.PortlandBlossoms_ZH-CN0814501668_UHD.jpg",
+      "wallpaper": "/th?id=OHR.PortlandBlossoms_ZH-CN0814501668_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.PortlandBlossoms_ZH-CN0814501668_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.PortlandBlossoms_ZH-CN0814501668_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.PortlandBlossoms_ZH-CN0814501668_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "沿着公园的步道，游客可以欣赏到威拉米特河全景、波特兰的各座桥梁，以及晴朗天气下远处耸立的胡德山。汤姆·麦考尔滨水公园将自然之美与都市魅力完美融合。无论是在樱花树下悠闲漫步，还是探索开阔的绿地空间，它都象征着波特兰与自然和社区的深厚联系，为游客提供了一片远离城市喧嚣的清新天地。",
+  "descriptionPara3": "",
+  "isoDate": "20260318",
+  "headline": "城市花开",
+  "quickFact": "汤姆·麦考尔滨水公园曾是港口和工业区，但经过城市改造，如今成为市民休闲和文化活动的核心空间。",
+  "triviaId": "HPQuiz_20260318_PortlandBlossoms",
+  "triviaData": {
+    "question": "汤姆·麦考尔滨水公园旁流淌的是哪条河？",
+    "options": [
+      {
+        "text": "哥伦比亚河",
+        "url": "/search?q=%E5%A8%81%E6%8B%89%E7%B1%B3%E7%89%B9%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260318_PortlandBlossoms%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "威拉米特河",
+        "url": "/search?q=%E5%A8%81%E6%8B%89%E7%B1%B3%E7%89%B9%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260318_PortlandBlossoms%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "桑提亚姆河",
+        "url": "/search?q=%E5%A8%81%E6%8B%89%E7%B1%B3%E7%89%B9%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260318_PortlandBlossoms%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
