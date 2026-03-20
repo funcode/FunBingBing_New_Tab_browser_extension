@@ -1,0 +1,46 @@
+{
+  "caption": "国际森林日",
+  "title": "莱泰亚森林，多瑙河三角洲，罗马尼亚",
+  "description": "如果地球有一支“维护团队”，森林一定会冲在最前线。它们吸收碳排放，减少水土流失，保护生物多样性，影响降雨，并帮助维持清洁的水源。目前，森林仍覆盖着全球约31%的陆地面积，但其持续减少表明，这些自然系统正变得愈发脆弱。大片森林仍在被开垦，用于农业生产、基础设施建设和资源开发，使生态系统以令人担忧的速度不断削弱。",
+  "copyright": "© Wild Wonders of Europe/Widstrand/Nature Picture Library",
+  "date": "2026 3月 21",
+  "clickUrl": "/search?q=%e5%9b%bd%e9%99%85%e6%a3%ae%e6%9e%97%e6%97%a5&form=hpcapt&filters=HpDate:\"20260320_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.LeteaForest_ZH-CN4153496399_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.LeteaForest_ZH-CN4153496399_UHD.jpg",
+      "wallpaper": "/th?id=OHR.LeteaForest_ZH-CN4153496399_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.LeteaForest_ZH-CN4153496399_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.LeteaForest_ZH-CN4153496399_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.LeteaForest_ZH-CN4153496399_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "国际森林日定于每年3月21日，由联合国于2012年设立，旨在提高公众意识并推动切实行动。各国政府、组织和社区通常通过植树造林、分享研究成果以及推广可持续森林经营等方式来纪念这一天。为什么这一天如此重要？因为森林的健康状况直接关系到气候稳定、生物多样性保护以及全球粮食安全。",
+  "descriptionPara3": "今天图片中展示的罗马尼亚莱泰亚森林，正体现了保护行动的实际成果。它是多瑙河三角洲生物圈保护区的一部分，生长在由水流与风力长期塑造而成的海洋沙质地貌上。保护像莱泰亚森林这样的森林，有助于确保后代能够继承依然稳固、持续运转的生态系统。",
+  "isoDate": "20260321",
+  "headline": "根系自由生长的地方",
+  "quickFact": "联合国粮食及农业组织估计，每年约有2470万英亩（约1000万公顷）的森林被砍伐。",
+  "triviaId": "HPQuiz_20260321_LeteaForest",
+  "triviaData": {
+    "question": "哪个欧洲国家拥有莱泰亚森林？",
+    "options": [
+      {
+        "text": "罗马尼亚",
+        "url": "/search?q=%E7%BD%97%E9%A9%AC%E5%B0%BC%E4%BA%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260321_LeteaForest%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "保加利亚",
+        "url": "/search?q=%E7%BD%97%E9%A9%AC%E5%B0%BC%E4%BA%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260321_LeteaForest%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "匈牙利",
+        "url": "/search?q=%E7%BD%97%E9%A9%AC%E5%B0%BC%E4%BA%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260321_LeteaForest%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
