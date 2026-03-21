@@ -1,0 +1,46 @@
+{
+  "caption": "世界水日",
+  "title": "坦噶尼喀湖，非洲",
+  "description": "今天是世界水日。该纪念日由联合国于1992年设立，并于次年首次举行。人类已不能再随波逐流——我们必须守护那些维系生命的水流。在非洲东部大裂谷的坦噶尼喀湖，几乎最能体现这种紧迫感。从太空俯瞰，它宛如一条长约420英里（约676公里）的蓝色丝带，连接着坦桑尼亚、布隆迪、刚果民主共和国和赞比亚。在湖岸边，它则是一处拥有约1000万年历史的裂谷盆地，由地壳缓慢张裂形成。",
+  "copyright": "© BEST-BACKGROUNDS/NASA/Shutterstock",
+  "date": "2026 3月 22",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e6%b0%b4%e6%97%a5&form=hpcapt&filters=HpDate:\"20260321_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.TanganyikaWater_ZH-CN4884850067_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.TanganyikaWater_ZH-CN4884850067_UHD.jpg",
+      "wallpaper": "/th?id=OHR.TanganyikaWater_ZH-CN4884850067_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.TanganyikaWater_ZH-CN4884850067_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.TanganyikaWater_ZH-CN4884850067_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.TanganyikaWater_ZH-CN4884850067_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "坦噶尼喀湖最深处超过4800英尺（约1460米），储存着地球未冻结地表淡水资源的约16%。它养育着数百万人，提供饮用水、食物来源以及交通通道。湖中生活着色彩鲜艳的慈鲷等特有物种，这些在世界其他地方找不到的鱼类，使湖泊深处成为一座“活的进化实验室”。",
+  "descriptionPara3": "从空中俯瞰，这座古老的水库似乎坚不可摧；但近距离观察，它却正面临水温升高、污染和过度捕捞等威胁。今天的图片提醒我们一个现实：水不仅滋养生命，也引导着生命的方向。而每一滴水，都值得我们去守护。",
+  "isoDate": "20260322",
+  "headline": "当水划出界线",
+  "quickFact": "坦噶尼喀湖是世界上最长的淡水湖，也是世界第二深湖，仅次于俄罗斯的贝加尔湖。",
+  "triviaId": "HPQuiz_20260322_TanganyikaWater",
+  "triviaData": {
+    "question": "哪条裂谷地貌中有一座超过一千万年历史的湖泊？",
+    "options": [
+      {
+        "text": "坦噶尼喀湖",
+        "url": "/search?q=%E5%9D%A6%E5%99%B6%E5%B0%BC%E5%96%80%E6%B9%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260322_TanganyikaWater%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "大盐湖",
+        "url": "/search?q=%E5%9D%A6%E5%99%B6%E5%B0%BC%E5%96%80%E6%B9%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260322_TanganyikaWater%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "苏必利尔湖",
+        "url": "/search?q=%E5%9D%A6%E5%99%B6%E5%B0%BC%E5%96%80%E6%B9%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260322_TanganyikaWater%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
