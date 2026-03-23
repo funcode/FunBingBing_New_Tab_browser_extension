@@ -1,0 +1,46 @@
+{
+  "caption": "东湖樱花园的樱花，武汉，中国",
+  "title": "东湖樱花园的樱花，武汉，中国",
+  "description": "从空中俯瞰，中国武汉的东湖樱花园宛如一朵淡紫色的云，轻柔地停驻在大地之上。成千上万株樱花同时盛放，浅色花瓣在公园中心一座金色五层宝塔周围织就出一片生机盎然的花海穹顶。宝塔以沉静而对称的姿态挺立，层层飞檐在柔和的春日色彩映衬下熠熠生辉。",
+  "copyright": "© Zhang Qiao/VCG/Getty Images",
+  "date": "2026 3月 24",
+  "clickUrl": "/search?q=%e4%b8%ad%e5%9b%bd%e6%ad%a6%e6%b1%89%e4%b8%9c%e6%b9%96%e6%a8%b1%e8%8a%b1%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260323_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.WuhanCherryBlossom_ZH-CN1031985926_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.WuhanCherryBlossom_ZH-CN1031985926_UHD.jpg",
+      "wallpaper": ""
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.WuhanCherryBlossom_ZH-CN1031985926_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.WuhanCherryBlossom_ZH-CN1031985926_1080x1920.jpg",
+      "wallpaper": ""
+    }
+  },
+  "descriptionPara2": "这座园区隶属于更大的东湖风景区——中国最大的城市湖泊公园之一，现已成为全国最负盛名的赏樱胜地之一。许多樱花树可追溯至20世纪中日往来的历史时期，见证了文化交流的成果，也映照出那段历史中更为复杂与艰难的篇章。",
+  "descriptionPara3": "",
+  "isoDate": "20260324",
+  "headline": "春天的形状",
+  "quickFact": "武汉樱花花期很短，单株3—5天盛放，最佳观赏期常不足一周。气温每升高1℃，花期都会提前。",
+  "triviaId": "HPQuiz_20260324_WuhanCherryBlossom",
+  "triviaData": {
+    "question": "花园中哪一景观是核心所在？",
+    "options": [
+      {
+        "text": "金色宝塔",
+        "url": "/search?q=%E9%87%91%E8%89%B2%E5%AE%9D%E5%A1%94&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260324_WuhanCherryBlossom%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "大理石拱门",
+        "url": "/search?q=%E9%87%91%E8%89%B2%E5%AE%9D%E5%A1%94&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260324_WuhanCherryBlossom%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "石桥",
+        "url": "/search?q=%E9%87%91%E8%89%B2%E5%AE%9D%E5%A1%94&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260324_WuhanCherryBlossom%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
