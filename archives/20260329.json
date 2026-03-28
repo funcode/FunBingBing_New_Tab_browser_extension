@@ -1,0 +1,46 @@
+{
+  "caption": "佩吉角灯塔, 大西洋海岸, 新斯科舍省, 加拿大",
+  "title": "佩吉角灯塔, 大西洋海岸, 新斯科舍省, 加拿大",
+  "description": "佩吉湾是新斯科舍省崎岖海岸线上一个迷人而小巧的村庄，展现了海滨生活的一角。村里最著名的地标是佩吉角灯塔（也称佩吉湾灯塔），它最初建于1868年，后于1915年被现在的灯塔所取代。一个多世纪以来，它指引着船只穿梭于变幻莫测的大西洋，成为海岸生活永恒的象征。周围的景色，海风吹拂，波涛汹涌，仿佛时间在这里停滞。",
+  "copyright": "© Prashanth Bala/Shutterstock",
+  "date": "2026 3月 29",
+  "clickUrl": "/search?q=%e4%bd%a9%e5%90%89%e8%a7%92%e7%81%af%e5%a1%94&form=hpcapt&filters=HpDate:\"20260328_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.PeggysLighthouse_ZH-CN5730463973_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.PeggysLighthouse_ZH-CN5730463973_UHD.jpg",
+      "wallpaper": "/th?id=OHR.PeggysLighthouse_ZH-CN5730463973_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.PeggysLighthouse_ZH-CN5730463973_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.PeggysLighthouse_ZH-CN5730463973_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.PeggysLighthouse_ZH-CN5730463973_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这个温馨多彩的小村庄，海岸线上点缀着古朴的房屋和当地特色小店。佩吉湾以其宁静祥和而闻名，同时也拥有充满活力的艺术氛围，画廊和工作室林立，展现着当地的创造力。这里是海鲜爱好者的天堂，附近的餐厅供应最新鲜的龙虾料理。来这里旅行不仅仅是一次观光，更是一次放慢脚步，享受海岸生活简单美好的邀请。",
+  "descriptionPara3": "",
+  "isoDate": "20260329",
+  "headline": "海边的宁静",
+  "quickFact": "佩吉湾村周围是佩吉湾保护区，这是一片占地 1000 英亩的受保护土地，拥有敏感的生态系统。",
+  "triviaId": "HPQuiz_20260329_PeggysLighthouse",
+  "triviaData": {
+    "question": "这个海滨村庄位于哪个省份？",
+    "options": [
+      {
+        "text": "新斯科舍",
+        "url": "/search?q=%E6%96%B0%E6%96%AF%E7%A7%91%E8%88%8D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260329_PeggysLighthouse%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "纽芬兰",
+        "url": "/search?q=%E6%96%B0%E6%96%AF%E7%A7%91%E8%88%8D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260329_PeggysLighthouse%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "魁北克",
+        "url": "/search?q=%E6%96%B0%E6%96%AF%E7%A7%91%E8%88%8D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260329_PeggysLighthouse%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
