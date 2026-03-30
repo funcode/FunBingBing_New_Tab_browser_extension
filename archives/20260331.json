@@ -1,0 +1,46 @@
+{
+  "caption": "天堂洞, 峰牙-格邦国家公园, 越南",
+  "title": "天堂洞, 峰牙-格邦国家公园, 越南",
+  "description": "天堂洞给人的第一印象极其震撼，游客一踏入其中便会为之惊叹。这座巨大的石灰岩洞穴位于越南中部峰牙-己榜国家公园深处，该地区以崎岖的山脉和无数隐秘的洞穴而闻名。天堂洞绵延超过19英里，是亚洲最长的旱洞之一，其规模之宏大令人叹为观止。高耸的洞顶俯瞰着步道，富含矿物质的水流经数百万年形成层层叠叠的图案遍布洞壁。",
+  "copyright": "© Pakawat Thongcharoen/Getty Images",
+  "date": "2026 3月 31",
+  "clickUrl": "/search?q=%e8%b6%8a%e5%8d%97%e5%a4%a9%e5%a0%82%e6%b4%9e&form=hpcapt&filters=HpDate:\"20260330_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ParadiseCave_ZH-CN6371627729_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ParadiseCave_ZH-CN6371627729_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ParadiseCave_ZH-CN6371627729_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ParadiseCave_ZH-CN6371627729_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ParadiseCave_ZH-CN6371627729_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ParadiseCave_ZH-CN6371627729_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "到达洞口需要先攀爬一段林间小路，然后下降到凉爽的空气中。洞内，柔和的灯光映照出高耸的石柱、精致的钟乳石和宽敞的洞室，令人感觉格外开阔。一条木栈道安全地引导游客，并让他们近距离欣赏这些奇特的地貌。这个庞大的洞穴系统只有一小部分对外开放；大部分区域都延伸到已开发的步道之外，至今仍受到保护，不对外开放。宁静、宽敞而古老，天堂洞为人们提供了一个静谧的机会，窥见该地区深远的地质历史。",
+  "descriptionPara3": "",
+  "isoDate": "20260331",
+  "headline": "地下天堂",
+  "quickFact": "天堂洞是亚洲最长的旱洞，全长31.4公里。然而，只有天堂洞的前1公里对公众开放，而7公里的探险之旅则允许游客进行更深入的探索。",
+  "triviaId": "HPQuiz_20260331_ParadiseCave",
+  "triviaData": {
+    "question": "哪个国家公园拥有这座巨大的石灰岩洞穴？",
+    "options": [
+      {
+        "text": "丰芽-格邦",
+        "url": "/search?q=%E4%B8%B0%E8%8A%BD-%E6%A0%BC%E9%82%A6&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260331_ParadiseCave%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "巴贝",
+        "url": "/search?q=%E4%B8%B0%E8%8A%BD-%E6%A0%BC%E9%82%A6&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260331_ParadiseCave%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "吉婆岛",
+        "url": "/search?q=%E4%B8%B0%E8%8A%BD-%E6%A0%BC%E9%82%A6&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260331_ParadiseCave%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
