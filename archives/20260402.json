@@ -1,0 +1,46 @@
+{
+  "caption": "野花绽放, 中央谷地, 加利福尼亚州",
+  "title": "野花绽放, 中央谷地, 加利福尼亚州, 美国",
+  "description": "春意盎然的加州中央谷地在冬雨过后，野花竞相绽放，宣告着春天的到来。这片南北绵延约450英里、面积约2万平方英里的山谷，是世界上农业生产力最高的地区之一。然而，在早春时节，这里又会短暂地展现出一种古老的景象。从三月到四月，当气温和土壤湿度达到适宜水平时，金盏花、整齐叶草和猫头鹰三叶草等本地一年生植物便会迅速发芽。它们争分夺秒地完成生命周期，以迎接漫长旱季的到来。",
+  "copyright": "© Jeff Lewis/Tandem Stills + Motion",
+  "date": "2026 4月 2",
+  "clickUrl": "/search?q=%e5%8a%a0%e5%88%a9%e7%a6%8f%e5%b0%bc%e4%ba%9a%e5%b7%9e%e4%b8%ad%e5%a4%ae%e8%b0%b7%e5%9c%b0&form=hpcapt&filters=HpDate:\"20260401_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.WildflowerValley_ZH-CN7048300331_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.WildflowerValley_ZH-CN7048300331_UHD.jpg",
+      "wallpaper": "/th?id=OHR.WildflowerValley_ZH-CN7048300331_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.WildflowerValley_ZH-CN7048300331_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.WildflowerValley_ZH-CN7048300331_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.WildflowerValley_ZH-CN7048300331_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这些物种大多是加州原始草原生态系统的遗存。如今，它们主要栖息在自然保护区、未开垦的土地以及田野间的狭长地带。它们的种子可以保持活力数十年，只有在特定条件下才会发芽。降雨模式会影响花期的强度和分布。土壤质地和排水情况的差异造就了每年春天出现在山谷底部的条带状和斑块状花海。在短短几周内，农业历史和生态历史交织在同一片土地上。",
+  "descriptionPara3": "",
+  "isoDate": "20260402",
+  "headline": "春天的图案",
+  "quickFact": "中央谷地以其农业生产力而闻名。它为加利福尼亚州提供了大部分食品，而加利福尼亚州又提供了美国一半以上的水果、蔬菜和坚果。",
+  "triviaId": "HPQuiz_20260402_WildflowerValley",
+  "triviaData": {
+    "question": "哪种本土植物以鲜艳的金色花朵闻名？",
+    "options": [
+      {
+        "text": "羽扇豆",
+        "url": "/search?q=%E9%87%91%E7%9B%8F%E8%8A%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260402_WildflowerValley%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "金盏花",
+        "url": "/search?q=%E9%87%91%E7%9B%8F%E8%8A%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260402_WildflowerValley%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "金盏花",
+        "url": "/search?q=%E9%87%91%E7%9B%8F%E8%8A%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260402_WildflowerValley%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
