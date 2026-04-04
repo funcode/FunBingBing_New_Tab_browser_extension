@@ -1,0 +1,46 @@
+{
+  "caption": "雪钟花",
+  "title": "春天的雪钟花",
+  "description": "雪滴花是最早开放的花之一，常常在冬天尚未完全离去时，就从寒冷的土壤中探出身来。它低垂的钟形花朵看起来柔弱，却为早春而生。其细胞中含有特殊的抗冻蛋白，能够帮助植物抵御霜冻，使它们能够适应冬末多变而寒冷的天气。",
+  "copyright": "© klagyivik/Getty Images",
+  "date": "2026 4月 5",
+  "clickUrl": "/search?q=%e9%9b%aa%e9%92%9f%e8%8a%b1&form=hpcapt&filters=HpDate:\"20260404_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SpringSnowdrops_ZH-CN2933051747_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SpringSnowdrops_ZH-CN2933051747_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SpringSnowdrops_ZH-CN2933051747_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SpringSnowdrops_ZH-CN2933051747_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SpringSnowdrops_ZH-CN2933051747_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SpringSnowdrops_ZH-CN2933051747_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20260405",
+  "headline": "静静绽放的变化",
+  "quickFact": "痴迷于雪花莲的收藏者被称为“雪花莲爱好者”",
+  "triviaId": "HPQuiz_20260405_SpringSnowdrops",
+  "triviaData": {
+    "question": "哪些独特特征帮助雪滴花在晚冬霜冻中存活？",
+    "options": [
+      {
+        "text": "厚树皮",
+        "url": "/search?q=%E6%8A%97%E5%86%BB%E8%9B%8B%E7%99%BD&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260405_SpringSnowdrops%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "抗冻蛋白",
+        "url": "/search?q=%E6%8A%97%E5%86%BB%E8%9B%8B%E7%99%BD&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260405_SpringSnowdrops%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "深根系",
+        "url": "/search?q=%E6%8A%97%E5%86%BB%E8%9B%8B%E7%99%BD&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260405_SpringSnowdrops%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
