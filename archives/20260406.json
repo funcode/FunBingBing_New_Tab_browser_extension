@@ -1,0 +1,46 @@
+{
+  "caption": "弘前，日本",
+  "title": "樱花盛开的弘前城，弘前，日本",
+  "description": "想象一下17世纪初的日本北部：城堡矗立在政治、贸易与行政的交汇点上，是权力与治理的重要中心。随着时间推移，这些城堡不仅见证了紧张与冲突的历史，也记录了坚守、变迁以及人们的日常生活。每年4月6日庆祝的日本城堡日正是为了让人们关注这段多层次的历史。这一天的日期来自一个有趣的日语谐音：“shi”（4）和“ro”（6）**组合成 “Shiro-no-Hi”，因为 “shiro” 在日语中意为“城堡”。",
+  "copyright": "© Glenn Waters/Getty Images",
+  "date": "2026 4月 6",
+  "clickUrl": "/search?q=%e6%97%a5%e6%9c%ac%e7%9a%84%e6%a8%b1%e8%8a%b1&form=hpcapt&filters=HpDate:\"20260405_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.CastleBlossoms_ZH-CN3064288127_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.CastleBlossoms_ZH-CN3064288127_UHD.jpg",
+      "wallpaper": "/th?id=OHR.CastleBlossoms_ZH-CN3064288127_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.CastleBlossoms_ZH-CN3064288127_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.CastleBlossoms_ZH-CN3064288127_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.CastleBlossoms_ZH-CN3064288127_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20260406",
+  "headline": "芬芳四月",
+  "quickFact": "樱花在日本被称为“sakura”，每年春天只盛开短短一段时间。正因花期短暂，樱花在日本文化中象征着生命的短暂与珍贵。人们常在花开时举行“花见（hanami）”，与家人朋友一起赏花庆祝春天的到来。",
+  "triviaId": "HPQuiz_20260406_CastleBlossoms",
+  "triviaData": {
+    "question": "17世纪初日本北部的城堡主要起到什么作用？",
+    "options": [
+      {
+        "text": "政治中心",
+        "url": "/search?q=%E6%94%BF%E6%B2%BB%E4%B8%AD%E5%BF%83&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260406_CastleBlossoms%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "茶馆",
+        "url": "/search?q=%E6%94%BF%E6%B2%BB%E4%B8%AD%E5%BF%83&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260406_CastleBlossoms%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "宗教学校",
+        "url": "/search?q=%E6%94%BF%E6%B2%BB%E4%B8%AD%E5%BF%83&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260406_CastleBlossoms%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
