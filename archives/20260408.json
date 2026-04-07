@@ -1,0 +1,46 @@
+{
+  "caption": "西雅图，华盛顿州",
+  "title": "西雅图，华盛顿州，美国",
+  "description": "每年4月7日的国际河狸日，旨在致敬这位默默工作的“小工程师”。河狸凭借一根根树枝，悄然改变着自然环境。河狸长着标志性的门牙和桨状尾巴，以勤劳著称。数百万年来，它们一直在重塑淡水生态环境。河狸拥有呈橙色、富含铁质的坚硬门牙，可以轻松啃倒树木，并利用树枝和泥土建造水坝。这些水坝能够减缓水流、改善水质，并形成湿地，从而为多种动植物提供栖息地。它们还会用树枝和泥土搭建坚固的巢穴，入口通常位于水下，不仅能躲避捕食者，也为整个家族提供安全的居所。",
+  "copyright": "© Jim Patterson/Tandem Stills + Motion",
+  "date": "2026 4月 8",
+  "clickUrl": "/search?q=%e8%a5%bf%e9%9b%85%e5%9b%be&form=hpcapt&filters=HpDate:\"20260407_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SeattleSunrise_ZH-CN2884575647_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SeattleSunrise_ZH-CN2884575647_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SeattleSunrise_ZH-CN2884575647_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SeattleSunrise_ZH-CN2884575647_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SeattleSunrise_ZH-CN2884575647_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SeattleSunrise_ZH-CN2884575647_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "作为世界上体型最大的啮齿动物之一，河狸的身体长度（不含尾巴）可接近 3 英尺（约 90 厘米）。它们对水生环境具有出色的适应能力，一次潜水最长可达约 15 分钟。过去，河狸曾因皮毛贸易而被大量捕猎，也常被人们误解。但如今，它们被广泛认为是重要的生态工程师。无论河狸在哪里定居，它们建造的水坝和湿地都会孕育出丰富的生命环境——证明即使是看似不起眼的“建筑者”，也能塑造庞大的生态系统。",
+  "descriptionPara3": "",
+  "isoDate": "20260408",
+  "headline": "翡翠之城",
+  "quickFact": "画面中的“建筑师”是河狸。河狸是著名的“自然工程师”，会用树枝、泥土和石块在河流或溪流中建造水坝和巢穴。这些结构不仅为它们提供栖息地，也会改变水流环境，为鱼类、两栖动物和湿地植物创造新的生态空间。",
+  "triviaId": "HPQuiz_20260408_SeattleSunrise",
+  "triviaData": {
+    "question": "哪种特征帮助海狸轻松啃咬坚硬木材？",
+    "options": [
+      {
+        "text": "强壮臼齿",
+        "url": "/search?q=%E6%A9%99%E8%89%B2%E9%97%A8%E9%BD%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260408_SeattleSunrise%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "橙色门齿",
+        "url": "/search?q=%E6%A9%99%E8%89%B2%E9%97%A8%E9%BD%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260408_SeattleSunrise%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "弯曲犬齿",
+        "url": "/search?q=%E6%A9%99%E8%89%B2%E9%97%A8%E9%BD%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260408_SeattleSunrise%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
