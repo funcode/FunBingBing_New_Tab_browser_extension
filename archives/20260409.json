@@ -1,0 +1,46 @@
+{
+  "caption": "雪落瀑布，布雷肯比肯斯国家公园，威尔士",
+  "title": "雪落瀑布，布雷肯比肯斯国家公园，威尔士",
+  "description": "清澈的水流沿着岩壁整齐地倾泻而下，形成了这座瀑布，这是威尔士南部最具特色的瀑布之一。它的威尔士语名称意为“雪落瀑布”，形容水流像一层淡白色的水帘从岩壁上滑落。这座瀑布的独特之处在于可以从瀑布后方穿行。一条狭窄的小径将游客引到水帘背后，让人近距离感受水声、光线与水雾交织的自然景象。",
+  "copyright": "© Guy Edwardes/Nature Picture Library",
+  "date": "2026 4月 9",
+  "clickUrl": "/search?q=%e5%b8%83%e9%9b%b7%e8%82%af%e6%af%94%e8%82%af%e6%96%af%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260408_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.WalesWaterfall_ZH-CN3175091833_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.WalesWaterfall_ZH-CN3175091833_UHD.jpg",
+      "wallpaper": "/th?id=OHR.WalesWaterfall_ZH-CN3175091833_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.WalesWaterfall_ZH-CN3175091833_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.WalesWaterfall_ZH-CN3175091833_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.WalesWaterfall_ZH-CN3175091833_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "雪落瀑布位于布雷肯比肯斯国家公园内。这里因众多河流与瀑布在森林峡谷间交错分布，而被称为“瀑布之国”。标识清晰的步道沿着赫普斯特河将多处瀑布连接起来，使这里成为长距离徒步路线中的热门停留点。",
+  "descriptionPara3": "在峡谷之上，地貌逐渐过渡为起伏的荒原与绵延的山脊。高地上的步道常常受到强风与多变天气的影响。这种从开阔高地到隐秘水谷的鲜明对比，正是布雷肯比肯斯国家公园独特景观的重要特征。",
+  "isoDate": "20260409",
+  "headline": "光之水帘",
+  "quickFact": "布雷肯比肯斯国家公园中的雪落瀑布位于一片以瀑布步道闻名的自然区域。瀑布周围的峡谷生长着苔藓、蕨类和古老森林，常年水汽弥漫，形成清凉湿润的生态环境，是徒步和自然摄影的理想地点。",
+  "triviaId": "HPQuiz_20260409_WalesWaterfall",
+  "triviaData": {
+    "question": "“雪瀑布”最独特的特点是什么？",
+    "options": [
+      {
+        "text": "彩虹景观",
+        "url": "/search?q=%E5%8F%AF%E4%BB%8E%E7%80%91%E5%B8%83%E5%90%8E%E6%96%B9%E8%A1%8C%E8%B5%B0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260409_WalesWaterfall%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "可从瀑布后方行走",
+        "url": "/search?q=%E5%8F%AF%E4%BB%8E%E7%80%91%E5%B8%83%E5%90%8E%E6%96%B9%E8%A1%8C%E8%B5%B0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260409_WalesWaterfall%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "夜间发光",
+        "url": "/search?q=%E5%8F%AF%E4%BB%8E%E7%80%91%E5%B8%83%E5%90%8E%E6%96%B9%E8%A1%8C%E8%B5%B0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260409_WalesWaterfall%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
