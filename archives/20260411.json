@@ -1,0 +1,46 @@
+{
+  "caption": "帕帕加约海滩, 兰萨罗特, 加那利群岛, 西班牙",
+  "title": "帕帕加约海滩, 兰萨罗特, 加那利群岛, 西班牙",
+  "description": "由火焰孕育而成的海滩很少能如此低调，而帕帕加约海滩正好做到了这一点。我们今天看到的海岸线位于西班牙加那利群岛兰萨罗特岛的南端。热带幻想？更像是火山般的精准。数百万年前，这片土地在海底火山喷发的推动下，逐层由玄武岩和火山灰堆积升起。",
+  "copyright": "© Gavin Hellier/Getty Images",
+  "date": "2026 4月 11",
+  "clickUrl": "/search?q=%e8%a5%bf%e7%8f%ad%e7%89%99%e5%8a%a0%e9%82%a3%e5%88%a9%e7%be%a4%e5%b2%9b%e5%85%b0%e8%90%a8%e7%bd%97%e7%89%b9%e5%b2%9b&form=hpcapt&filters=HpDate:\"20260410_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.PlayaPapagayo_ZH-CN7708804019_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.PlayaPapagayo_ZH-CN7708804019_UHD.jpg",
+      "wallpaper": "/th?id=OHR.PlayaPapagayo_ZH-CN7708804019_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.PlayaPapagayo_ZH-CN7708804019_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.PlayaPapagayo_ZH-CN7708804019_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.PlayaPapagayo_ZH-CN7708804019_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "约400英尺长的小海湾给人一种亲密的感觉。它坐落在洛斯阿乔奇自然纪念地内，仍然受到保护，并故意保持低调。曾经，这里为在非洲和欧洲之间航行的水手提供庇护。如今，人们可以步行、乘船或沿着著名的颠簸土路到达这里——通过不便实现保护。悬崖环绕着海湾，形成天然的防波堤，使大西洋的海水在这里变得平静而清澈。鱼在光影中闪动，螃蟹在潮间带巡逻，章鱼消失在岩石之间。沙子的温暖金色调来自粉碎的贝壳与火山岩的混合，经过千年潮汐的精炼。帕帕加约的魅力在于其对比：由火山喷发锻造，由侵蚀塑形，并通过克制得以保存。",
+  "descriptionPara3": "",
+  "isoDate": "20260411",
+  "headline": "火山外衣",
+  "quickFact": "这片海滩是一个新月形的海湾，四周环绕着岩石悬崖和茂密的植被。沙子柔软而金黄，水清澈平静，非常适合游泳、浮潜和日光浴。",
+  "triviaId": "HPQuiz_20260411_PlayaPapagayo",
+  "triviaData": {
+    "question": "哪座岛屿拥有火山地貌的帕帕加约海滩？",
+    "options": [
+      {
+        "text": "特内里费岛",
+        "url": "/search?q=%E5%85%B0%E8%90%A8%E7%BD%97%E7%89%B9%E5%B2%9B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260411_PlayaPapagayo%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "兰萨罗特岛",
+        "url": "/search?q=%E5%85%B0%E8%90%A8%E7%BD%97%E7%89%B9%E5%B2%9B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260411_PlayaPapagayo%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "富埃特文图拉岛",
+        "url": "/search?q=%E5%85%B0%E8%90%A8%E7%BD%97%E7%89%B9%E5%B2%9B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260411_PlayaPapagayo%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
