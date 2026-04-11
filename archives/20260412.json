@@ -1,0 +1,46 @@
+{
+  "caption": "国际人类航天日",
+  "title": "城市灯光在下方划过, 拍摄于国际空间站",
+  "description": "今天，世界纪念国际载人航天日，这是联合国设立的纪念日，旨在纪念人类首次进入太空的旅程以及人类太空时代的开始。这个日期回忆起1961年4月12日，尤里·加加林绕地球飞行，证明人类可以离开地球并安全返回。",
+  "copyright": "© NASA",
+  "date": "2026 4月 12",
+  "clickUrl": "/search?q=%e5%9b%bd%e9%99%85%e4%ba%ba%e7%b1%bb%e8%88%aa%e5%a4%a9%e6%97%a5&form=hpcapt&filters=HpDate:\"20260411_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SpaceTrails_ZH-CN8377463217_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SpaceTrails_ZH-CN8377463217_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SpaceTrails_ZH-CN8377463217_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SpaceTrails_ZH-CN8377463217_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SpaceTrails_ZH-CN8377463217_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SpaceTrails_ZH-CN8377463217_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这种探索精神在国际空间站上依然存在。从国际空间站上，宇航员拍摄发光的城市网格和穿越地球大气层的强烈雷暴——这些景象将科学变成了魔法。空间站绕地球运行的高度大约为250英里，每90分钟环绕地球一圈，使船员每天最多可以看到16次日出和日落。自2000年以来，空间站一直有人居住，由美国、俄罗斯、欧洲、日本和加拿大的合作伙伴共同运营。在空间站内部，宇航员进行推进医学、材料和气候科学的研究，同时也学习人类如何在离地球更远的地方生活和工作。",
+  "descriptionPara3": "",
+  "isoDate": "20260412",
+  "headline": "离开地球的第一步",
+  "quickFact": "联合国在2011年设立了国际人类航天日，距首次有人类航天飞行已有50年。",
+  "triviaId": "HPQuiz_20260412_SpaceTrails",
+  "triviaData": {
+    "question": "历史上第一位绕地飞行的宇航员是谁？",
+    "options": [
+      {
+        "text": "尼尔·阿姆斯特朗",
+        "url": "/search?q=%E5%B0%A4%E9%87%8C%C2%B7%E5%8A%A0%E5%8A%A0%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260412_SpaceTrails%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "尤里·加加林",
+        "url": "/search?q=%E5%B0%A4%E9%87%8C%C2%B7%E5%8A%A0%E5%8A%A0%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260412_SpaceTrails%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "巴兹·奥尔德林",
+        "url": "/search?q=%E5%B0%A4%E9%87%8C%C2%B7%E5%8A%A0%E5%8A%A0%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260412_SpaceTrails%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
