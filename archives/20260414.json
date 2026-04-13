@@ -1,0 +1,46 @@
+{
+  "caption": "海葵中的普通小丑鱼, 拉贾安帕特群岛, 印度尼西亚",
+  "title": "海葵中的普通小丑鱼, 拉贾安帕特群岛, 印度尼西亚",
+  "description": "海葵看起来像水下花朵，但实际上是动物——与水母和珊瑚是近亲。它们附着在岩石或珊瑚礁上，利用黏性基部和顶端挥动的触手（触手上长有细小的刺细胞）来捕获过往的猎物。这些刺细胞能麻痹小型鱼类，但有一种著名的“邻居”却对此免疫。",
+  "copyright": "© Magnus Lundgren/Nature Picture Library",
+  "date": "2026 4月 14",
+  "clickUrl": "/search?q=%e6%b5%b7%e8%91%b5&form=hpcapt&filters=HpDate:\"20260413_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.OcellarisClownfish_ZH-CN9362948727_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.OcellarisClownfish_ZH-CN9362948727_UHD.jpg",
+      "wallpaper": "/th?id=OHR.OcellarisClownfish_ZH-CN9362948727_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.OcellarisClownfish_ZH-CN9362948727_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.OcellarisClownfish_ZH-CN9362948727_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.OcellarisClownfish_ZH-CN9362948727_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "照片中，一条普通小丑鱼从它栖息的海葵中探出头来。这片位于印度尼西亚拉贾安帕特群岛的偏远群岛，地处珊瑚三角区的中心地带，以其非凡的海洋生物多样性而闻名。小丑鱼身上特殊的黏液层保护着它免受伤害，使它能够安全地藏身于海葵的触手之间。作为回报，小丑鱼帮助海葵抵御捕食者，并留下食物残渣供海葵食用。",
+  "descriptionPara3": "在拉贾安帕特群岛的珊瑚礁中，这样的时刻随处可见——静悄悄的联盟让海水充满生机。",
+  "isoDate": "20260414",
+  "headline": "珊瑚礁邻居",
+  "quickFact": "海葵是珊瑚和水母的近亲，是一种带刺的水螅体动物。它们大部分时间都附着在海底的岩石上或珊瑚礁上，等待鱼儿游近，然后用充满毒液的触手将其缠住。",
+  "triviaId": "HPQuiz_20260414_OcellarisClownfish",
+  "triviaData": {
+    "question": "哪种适应性使小丑鱼免受海葵刺细胞的伤害？",
+    "options": [
+      {
+        "text": "厚鳞片",
+        "url": "/search?q=%E7%89%B9%E6%AE%8A%E9%BB%8F%E6%B6%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260414_OcellarisClownfish%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "特殊黏液",
+        "url": "/search?q=%E7%89%B9%E6%AE%8A%E9%BB%8F%E6%B6%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260414_OcellarisClownfish%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "坚硬鳍条",
+        "url": "/search?q=%E7%89%B9%E6%AE%8A%E9%BB%8F%E6%B6%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260414_OcellarisClownfish%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
