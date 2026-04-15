@@ -1,0 +1,46 @@
+{
+  "caption": "斯卡吉特谷郁金香节",
+  "title": "斯卡吉特谷地郁金香花田, 华盛顿, 美国",
+  "description": "每年春天，华盛顿州的斯卡吉特山谷都会变成一片色彩斑斓的花海，斯卡吉特山谷郁金香节在此欢庆花季的到来。整个四月，游客们可以漫步于郁金香花园和农田，欣赏成排盛开的郁金香，远眺群山美景。",
+  "copyright": "© Alan Majchrowicz/Getty Images",
+  "date": "2026 4月 16",
+  "clickUrl": "/search?q=%e5%8d%8e%e7%9b%9b%e9%a1%bf%e5%b7%9e%e6%96%af%e5%8d%a1%e5%90%89%e7%89%b9%e8%b0%b7&form=hpcapt&filters=HpDate:\"20260415_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SkagitTulips_ZH-CN4234324174_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SkagitTulips_ZH-CN4234324174_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SkagitTulips_ZH-CN4234324174_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SkagitTulips_ZH-CN4234324174_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SkagitTulips_ZH-CN4234324174_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SkagitTulips_ZH-CN4234324174_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这个节日并非局限于一个地点——它横跨整个山谷，邀请游客探索多个花园，每个花园都各具特色。有些花园注重精心设计的花卉布置，而另一些则展现了仍在运营的农场和广袤的田野。除了鲜花，这个节日还为游客提供艺术展览、适合家庭的活动以及在该地区举办的社区活动。",
+  "descriptionPara3": "展览选址于一座废弃的石灰岩采石场，将梵高的画作转化为一个共享的实体空间，投影在高耸的石墙和地板上。参观者不再是退后观赏，而是穿梭于色彩、韵律和尺度之间，体验科技如何重塑我们欣赏艺术的方式。这恰如其分地体现了世界艺术日的宗旨：不仅在于致敬艺术杰作，更在于重新思考艺术如何存在、发展并持续吸引新的观众。",
+  "isoDate": "20260416",
+  "headline": "花瓣巡游",
+  "quickFact": "郁金香谷农场占地15 英亩，种植着130种花卉，其中包括100多种郁金香。",
+  "triviaId": "HPQuiz_20260416_SkagitTulips",
+  "triviaData": {
+    "question": "斯卡吉特谷郁金香节主要在哪个月举行？",
+    "options": [
+      {
+        "text": "三月",
+        "url": "/search?q=%E5%9B%9B%E6%9C%88&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260416_SkagitTulips%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "四月",
+        "url": "/search?q=%E5%9B%9B%E6%9C%88&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260416_SkagitTulips%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "五月",
+        "url": "/search?q=%E5%9B%9B%E6%9C%88&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260416_SkagitTulips%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
