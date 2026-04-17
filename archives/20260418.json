@@ -1,0 +1,46 @@
+{
+  "caption": "世界遗产日",
+  "title": "摩艾石像采石场，拉诺拉拉库，复活节岛，智利",
+  "description": "在今天的世界遗产日，人们将目光投向那些讲述人类共同历史的地方——这些地点因其卓越的文化或自然价值而受到保护。其中之一，便矗立在智利复活节岛的火山岩之上。在拉诺拉拉库，一座已熄灭火山的山坡曾是岛上绝大多数著名摩艾石像的雕刻工坊。画面展现的正是这一非凡的采石场：半成品的巨像从岩石中显现，仿佛在创作的瞬间被定格。",
+  "copyright": "© Gavin Hellier/Alamy",
+  "date": "2026 4月 18",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e9%81%97%e4%ba%a7%e6%97%a5&form=hpcapt&filters=HpDate:\"20260417_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MaoiStatues_ZH-CN3219447748_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MaoiStatues_ZH-CN3219447748_UHD.jpg",
+      "wallpaper": ""
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MaoiStatues_ZH-CN3219447748_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MaoiStatues_ZH-CN3219447748_1080x1920.jpg",
+      "wallpaper": ""
+    }
+  },
+  "descriptionPara2": "这些石像由拉帕努伊人在约13世纪至16世纪间雕刻而成，直接取材于压实的火山灰岩。完成后，它们被运往岛上的祭祀平台，用于宗教与仪式活动。拉诺拉拉库位于拉帕努伊国家公园之内，该公园被列入联合国教科文组织世界遗产名录，以其独特的考古景观和延续至今的波利尼西亚文化而闻名。",
+  "descriptionPara3": "世界遗产日提醒我们，保护这些地方的重要性。像拉诺拉拉库这样的遗址，不仅仅是地标，更是人类智慧、信仰以及与土地之间联系的见证。这些珍贵的遗产被保存下来，让后代得以继续研究与感受。",
+  "isoDate": "20260418",
+  "headline": "未完成巨像的静默",
+  "quickFact": "在拉诺拉拉库，许多摩艾石像长期以来只露出头部，仿佛被埋藏于地下。考古发掘发现，这些石像其实拥有完整的身体，背部还刻有精细的岩画纹饰，为了解拉帕努伊人的艺术风格与文化传统提供了重要线索。",
+  "triviaId": "HPQuiz_20260418_MaoiStatues",
+  "triviaData": {
+    "question": "岛上雕像是用什么材料雕刻的？",
+    "options": [
+      {
+        "text": "玄武岩",
+        "url": "/search?q=%E5%BC%BA%E6%82%8D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260418_MaoiStatues%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "强悍",
+        "url": "/search?q=%E5%BC%BA%E6%82%8D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260418_MaoiStatues%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "花岗岩",
+        "url": "/search?q=%E5%BC%BA%E6%82%8D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260418_MaoiStatues%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
