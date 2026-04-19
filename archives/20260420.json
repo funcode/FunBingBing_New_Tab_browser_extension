@@ -1,0 +1,46 @@
+{
+  "caption": "峡谷地国家公园",
+  "title": "夕阳下的峡谷地国家公园，莫阿布，犹他州，美国",
+  "description": "国家公园周，是你暂别日常、走向自然的最佳契机。这一为期九天的庆祝活动将于4月18日至26日举行，聚焦国家公园体系中400多处自然与文化遗产地。在这里，自然风光与人文历史交织，为人们带来难忘的户外体验。从海岸线与森林，到辽阔的沙漠景观，这些受保护的区域邀请人们走进自然，感受宁静，心怀敬畏。",
+  "copyright": "© Jason Hatfield/Tandem Stills + Motion",
+  "date": "2026 4月 20",
+  "clickUrl": "/search?q=%e5%b3%a1%e8%b0%b7%e5%9c%b0%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260419_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SunsetKiva_ZH-CN3978606378_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SunsetKiva_ZH-CN3978606378_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SunsetKiva_ZH-CN3978606378_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SunsetKiva_ZH-CN3978606378_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SunsetKiva_ZH-CN3978606378_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SunsetKiva_ZH-CN3978606378_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在美国犹他州东南部，靠近莫阿布的峡谷地国家公园，则提醒人们：冒险并不会在日落时结束。当最后一缕阳光隐去，科罗拉多河与格林河在深邃的峡谷间蜿蜒流淌，穿行于高耸的孤峰与嶙峋的岩柱之间。由于地处偏远、光污染极少，这里的夜空清澈通透，繁星如幕，令人叹为观止。",
+  "descriptionPara3": "作为“国际暗夜天空公园”，峡谷地国家公园是体验沙漠夜晚的理想之地。在这里观星，无需深入荒野腹地——只需短途步行或在观景点驻足，便能收获难忘的夜间景致。尤其是在无月之夜，银河横贯天际，璀璨壮丽。",
+  "isoDate": "20260420",
+  "headline": "日落之后，探索仍在继续",
+  "quickFact": "你看到的银河，其实并不是“实时画面”。 在像峡谷地国家公园这样光污染极低的地方，人眼可以看到的银河中心区域，距离地球约2.6万光年——也就是说，你看到的是2.6万年前发出的光。",
+  "triviaId": "HPQuiz_20260420_SunsetKiva",
+  "triviaData": {
+    "question": "哪两条河流经峡谷地国家公园？",
+    "options": [
+      {
+        "text": "科罗拉多与格林",
+        "url": "/search?q=%E7%A7%91%E7%BD%97%E6%8B%89%E5%A4%9A%E4%B8%8E%E6%A0%BC%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260420_SunsetKiva%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "密苏里与蛇",
+        "url": "/search?q=%E7%A7%91%E7%BD%97%E6%8B%89%E5%A4%9A%E4%B8%8E%E6%A0%BC%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260420_SunsetKiva%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "普拉特与里奥格兰德",
+        "url": "/search?q=%E7%A7%91%E7%BD%97%E6%8B%89%E5%A4%9A%E4%B8%8E%E6%A0%BC%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260420_SunsetKiva%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
