@@ -1,0 +1,46 @@
+{
+  "caption": "世界地球日",
+  "title": "阿拉姆-佩德亚自然保护区，塔尔图县，爱沙尼亚",
+  "description": "地球日从不是轻轻敲门，而是一次将大门猛然推开的觉醒。1970年，沾满石油的海滩、燃烧的河流与充满毒素的空气，让数百万人走上街头抗议。当人们再也无法视而不见，环境保护被推上政治议程，催生出一系列里程碑式的环保法案，也让“守护地球”从边缘议题跃升为全球共识。每年4月22日，全球190多个国家都会在这一天停下脚步，反思、审视，并重新思考我们与地球的关系。",
+  "copyright": "© Sven Zacek/Nature Picture Library",
+  "date": "2026 4月 22",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e5%9c%b0%e7%90%83%e6%97%a5&form=hpcapt&filters=HpDate:\"20260421_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.TartuEstonia_ZH-CN5477370206_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.TartuEstonia_ZH-CN5477370206_UHD.jpg",
+      "wallpaper": "/th?id=OHR.TartuEstonia_ZH-CN5477370206_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.TartuEstonia_ZH-CN5477370206_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.TartuEstonia_ZH-CN5477370206_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.TartuEstonia_ZH-CN5477370206_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "2026年的主题“我们的力量，我们的星球”（Our Power, Our Planet）提出了一个雄心勃勃的目标：到2030年，将全球可再生能源产能提升至三倍。但真正的行动，不仅关乎风力涡轮与太阳能板，也在于守护那些早已默默运转的“自然引擎”。例如图中的爱沙尼亚塔尔图县阿拉姆-佩德亚自然保护区。自1994年以来，这里一直守护着欧洲最大的湿地系统之一。而它的方式，其实很简单——让自然顺其本来。河流自由流淌，泥炭沼泽悄然储存碳汇，洪泛平原吸纳多余水量，无需人工筑坝干预。驼鹿、猞猁与黑鹳在这里自在栖息，四季更替不断重绘这片土地的边界。阿拉姆-佩德亚告诉我们：有时候，最有力的行动不是干预，而是克制——退后一步，让自然引领方向。",
+  "descriptionPara3": "",
+  "isoDate": "20260422",
+  "headline": "行动的力量",
+  "quickFact": "湿地常被称为“地球的肾脏”。虽然只覆盖全球陆地面积的一小部分，但它们却能储存约三分之一的土壤碳。像阿拉姆-佩德亚这样的湿地系统，通过自然积累的泥炭层，将大量碳长期封存，从而在减缓气候变化中发挥着关键作用。",
+  "triviaId": "HPQuiz_20260422_TartuEstonia",
+  "triviaData": {
+    "question": "爱沙尼亚哪个保护区守护着大片湿地？",
+    "options": [
+      {
+        "text": "阿拉姆-佩德亚",
+        "url": "/search?q=%E9%98%BF%E6%8B%89%E5%A7%86-%E4%BD%A9%E5%BE%B7%E4%BA%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260422_TartuEstonia%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "卡列夫",
+        "url": "/search?q=%E9%98%BF%E6%8B%89%E5%A7%86-%E4%BD%A9%E5%BE%B7%E4%BA%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260422_TartuEstonia%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "卡姆拉德",
+        "url": "/search?q=%E9%98%BF%E6%8B%89%E5%A7%86-%E4%BD%A9%E5%BE%B7%E4%BA%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260422_TartuEstonia%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
