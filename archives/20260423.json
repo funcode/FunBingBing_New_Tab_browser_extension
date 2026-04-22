@@ -1,0 +1,46 @@
+{
+  "caption": "莎士比亚日",
+  "title": "安妮·海瑟薇的小屋与花园，埃文河畔斯特拉特，英格兰",
+  "description": "每年4月23日，世界都会再次聚焦威廉·莎士比亚的生平与遗产。这位剧作家的文字，至今仍在全球文学舞台上熠熠生辉。“莎士比亚日”既是他于1616年逝世的纪念日，也被普遍视为他1564年的诞辰。这一巧合般的日期，为这位重塑英语文学的伟大作家赋予了象征性的意义。从《哈姆雷特》中对人性深处的探寻，到《罗密欧与朱丽叶》里跨越生死的爱情，他的语言至今仍回荡在课堂、剧院与日常表达之中。莎士比亚的作品已被翻译成多种语言，并在世界各地不断上演，跨越时间与文化，持续影响着一代又一代人。",
+  "copyright": "© David Steele/Shutterstock",
+  "date": "2026 4月 23",
+  "clickUrl": "/search?q=%e8%8e%8e%e5%a3%ab%e6%af%94%e4%ba%9a%e6%97%a5&form=hpcapt&filters=HpDate:\"20260422_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.HathawayCottage_ZH-CN5558945636_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.HathawayCottage_ZH-CN5558945636_UHD.jpg",
+      "wallpaper": ""
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.HathawayCottage_ZH-CN5558945636_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.HathawayCottage_ZH-CN5558945636_1080x1920.jpg",
+      "wallpaper": ""
+    }
+  },
+  "descriptionPara2": "今天的图片展示的是位于英国斯特拉特福德镇的安妮·海瑟薇小屋，这里是威廉·莎士比亚未来妻子的童年故居。这座建于15世纪的茅草屋如今被保存为博物馆，为人们提供了一个难得的窗口，得以一窥这位年轻剧作家成长年代所处的日常生活环境。游客可以在这里探访保留下来的原始结构、历经数百年的家具陈设，以及以都铎时代生活为灵感打造的花园。在这样充满历史气息的空间中，人们也更容易沉浸其中，感受这段跨越时光、至今仍不断激发灵感的文化遗产。",
+  "descriptionPara3": "",
+  "isoDate": "20260423",
+  "headline": "一座充满故事的小屋",
+  "quickFact": "你现在读到的莎士比亚作品，其实和他当年写下的版本并不完全一样。17世纪早期并没有统一的拼写标准，同一个词在不同版本中可能有多种写法。许多我们今天熟悉的文本，都是后来根据演员记忆、手稿和印刷本整理校订而成的。",
+  "triviaId": "HPQuiz_20260423_HathawayCottage",
+  "triviaData": {
+    "question": "哪座英国小镇有安妮·海瑟薇的童年故居？",
+    "options": [
+      {
+        "text": "埃文河畔斯特拉特福",
+        "url": "/search?q=%E5%9F%83%E6%96%87%E6%B2%B3%E7%95%94%E6%96%AF%E7%89%B9%E6%8B%89%E7%89%B9%E7%A6%8F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260423_HathawayCottage%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "沃里克",
+        "url": "/search?q=%E5%9F%83%E6%96%87%E6%B2%B3%E7%95%94%E6%96%AF%E7%89%B9%E6%8B%89%E7%89%B9%E7%A6%8F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260423_HathawayCottage%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "牛津",
+        "url": "/search?q=%E5%9F%83%E6%96%87%E6%B2%B3%E7%95%94%E6%96%AF%E7%89%B9%E6%8B%89%E7%89%B9%E7%A6%8F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260423_HathawayCottage%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
