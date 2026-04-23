@@ -184,7 +184,7 @@ async function changeWallpaper(idx) {
 	const image = images[idx];
 	currentImageDate = image?.isoDate || null;
 	//TODO: scrape this baseurl from modelResult in collectBingDataInParallel
-	const baseurl = 'https://cn.bing.com';
+	const baseurl = 'https://ts1.tc.mm.bing.net';
 	const landscape = image?.imageUrls?.landscape;
 	const path = readConf('enable_uhd_wallpaper') == 'yes'
 		? landscape?.ultraHighDef
@@ -792,6 +792,7 @@ function refreshCurrentQuoteFromStorage() {
 	}
 	//TODO: Remove fallback to current index once we have a more robust way to correlate quote updates with the correct image
 	//Bug Fix: An old wallpaper is displayed with the latest quote, but the wallpaper is not changed， probably due to the image is not successfully loaded.
+	//TODO: Nicely handle the situation when loading the new wallpaper is interupted by opening a web page, the new image loading is aborted, and the wallpaper_idx is not changed
 	if (!image) {
 		let idx = readConf('wallpaper_idx');
 		idx = Number.parseInt(idx, 10);
