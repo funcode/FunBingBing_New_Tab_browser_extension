@@ -1,0 +1,46 @@
+{
+  "caption": "世界企鹅日",
+  "title": "加拉帕戈斯企鹅游泳, 加拉帕戈斯群岛, 厄瓜多尔",
+  "description": "企鹅通常让人联想到南极，但这些可爱的不会飞的海鸟并非总是追随冰雪而来。在世界企鹅日，图中这些加拉帕戈斯企鹅为我们展现了一个鲜明的对比。这种企鹅仅分布于加拉帕戈斯群岛——位于厄瓜多尔海岸约600英里外的火山群岛——是所有企鹅中分布最北的物种。凉爽且富含营养的洋流为它们提供了食物，并将周围水域的温度维持在适宜生存的范围内，从而使这种赤道栖息地成为可能。这些体型紧凑、行动敏捷的企鹅一天中的大部分时间都待在水中以保持凉爽。",
+  "copyright": "© Henley Spiers/Nature Picture Library",
+  "date": "2026 4月 25",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e4%bc%81%e9%b9%85%e6%97%a5&form=hpcapt&filters=HpDate:\"20260424_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.GalapagosPenguins_ZH-CN5791845489_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.GalapagosPenguins_ZH-CN5791845489_UHD.jpg",
+      "wallpaper": "/th?id=OHR.GalapagosPenguins_ZH-CN5791845489_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.GalapagosPenguins_ZH-CN5791845489_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.GalapagosPenguins_ZH-CN5791845489_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.GalapagosPenguins_ZH-CN5791845489_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "由于栖息地范围狭窄，它们特别容易受到海洋温度变化和食物供应的影响。在世界企鹅日，这罕见的热带景象凸显了世界各地企鹅的惊人多样性，以及维持生活在栖息地边缘物种生存的脆弱平衡。",
+  "descriptionPara3": "",
+  "isoDate": "20260425",
+  "headline": "打破企鹅规则",
+  "quickFact": "每只企鹅都有自己独特的叫声。这有助于它们在庞大的企鹅群落中找到伴侣和幼崽，这些企鹅群落的数量从几百只到几万只不等。",
+  "triviaId": "HPQuiz_20260425_GalapagosPenguins",
+  "triviaData": {
+    "question": "哪些岛屿是最北端企鹅的栖息地？",
+    "options": [
+      {
+        "text": "加拉帕戈斯",
+        "url": "/search?q=%E5%8A%A0%E6%8B%89%E5%B8%95%E6%88%88%E6%96%AF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260425_GalapagosPenguins%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "福克兰群岛",
+        "url": "/search?q=%E5%8A%A0%E6%8B%89%E5%B8%95%E6%88%88%E6%96%AF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260425_GalapagosPenguins%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "塞舌尔",
+        "url": "/search?q=%E5%8A%A0%E6%8B%89%E5%B8%95%E6%88%88%E6%96%AF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260425_GalapagosPenguins%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
