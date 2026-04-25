@@ -1,0 +1,46 @@
+{
+  "caption": "粉红色的苹果花, 阿维拉海滩, 加利福尼亚州, 美国",
+  "title": "粉红色的苹果花, 阿维拉海滩, 加利福尼亚州, 美国",
+  "description": "春天，苹果树绽放出朵朵柔和的粉色花朵，生机盎然。娇嫩的花瓣点缀着果园和山坡，在湛蓝的天空映衬下格外醒目，标志着季节从寒冬走向温暖。这些花朵吸引着蜜蜂和蝴蝶等授粉昆虫，帮助果树结出丰硕的果实，为来年晚些时候的苹果生长做好准备。",
+  "copyright": "© Mimi Ditchie Photography/Getty Images",
+  "date": "2026 4月 26",
+  "clickUrl": "/search?q=%e8%8b%b9%e6%9e%9c%e6%a0%91&form=hpcapt&filters=HpDate:\"20260425_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AppleBlossoms_ZH-CN5887711928_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AppleBlossoms_ZH-CN5887711928_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AppleBlossoms_ZH-CN5887711928_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AppleBlossoms_ZH-CN5887711928_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AppleBlossoms_ZH-CN5887711928_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AppleBlossoms_ZH-CN5887711928_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "加州中部沿海地区气候温和，阳光充足，适宜春季赏花。在阿维拉海滩等地，开花的树木遍布附近的山谷和山丘，海风轻拂，美不胜收。春暖花开也吸引着人们走出户外，进行骑行、徒步和高尔夫等活动。",
+  "descriptionPara3": "苹果园体现了该地区悠久的农业传统。当年种植的果树和遮荫树至今仍遍布周围的山谷，将今日的景色与早期的耕作方式连接起来。春天漫步在盛开的苹果树间，色彩斑斓，香气扑鼻，让人不禁想起加州海岸四季更迭的韵律。",
+  "isoDate": "20260426",
+  "headline": "繁花盛放",
+  "quickFact": "苹果花可以新鲜食用，也可以晒干后食用，香气浓郁，带有甜美的花香，是各种烹饪用途的理想食材。",
+  "triviaId": "HPQuiz_20260426_AppleBlossoms",
+  "triviaData": {
+    "question": "哪些昆虫有助于春季苹果树的授粉？",
+    "options": [
+      {
+        "text": "蝴蝶",
+        "url": "/search?q=%E8%9D%B4%E8%9D%B6&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260426_AppleBlossoms%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "甲虫",
+        "url": "/search?q=%E8%9D%B4%E8%9D%B6&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260426_AppleBlossoms%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "蛾",
+        "url": "/search?q=%E8%9D%B4%E8%9D%B6&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260426_AppleBlossoms%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
