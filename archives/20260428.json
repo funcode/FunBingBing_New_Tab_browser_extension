@@ -1,0 +1,46 @@
+{
+  "caption": "眼镜熊在树上休息, 厄瓜多尔",
+  "title": "眼镜熊在树上休息, 厄瓜多尔",
+  "description": "眼镜熊，又称安第斯熊，是熊科中唯一的南美洲熊类。它们栖息于安第斯山脉北部和中部，主要生活在森林地区，以嫩芽和果实为食。眼睛周围的浅色斑纹酷似眼镜，因此得名“眼镜熊”。",
+  "copyright": "© Andy Rouse/Nature Picture Library",
+  "date": "2026 4月 28",
+  "clickUrl": "/search?q=%e7%9c%bc%e9%95%9c%e7%86%8a&form=hpcapt&filters=HpDate:\"20260427_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AndeanBear_ZH-CN6152330738_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AndeanBear_ZH-CN6152330738_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AndeanBear_ZH-CN6152330738_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AndeanBear_ZH-CN6152330738_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AndeanBear_ZH-CN6152330738_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AndeanBear_ZH-CN6152330738_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这种动物是优秀的攀爬者，大部分时间都生活在树上，有时会用树枝搭建平台觅食或休息。它们的食物主要为素食，包括水果、树叶和其他植物，但也吃昆虫或小动物。它们通常害羞且独居，倾向于避免与人类接触。由于栖息地丧失、狩猎和其他人为压力，世界自然保护联盟（IUCN）将它们列为易危物种。保护眼镜熊意味着保护安第斯山脉的活宝，并确保这种温顺的森林守护者能够继续繁衍生息。",
+  "descriptionPara3": "",
+  "isoDate": "20260428",
+  "headline": "野外奇观",
+  "quickFact": "每只眼镜熊都有独特的面部标记，科学家利用这些标记来识别和追踪野生个体。",
+  "triviaId": "HPQuiz_20260428_AndeanBear",
+  "triviaData": {
+    "question": "哪座山脉是这种害羞熊的栖息地？",
+    "options": [
+      {
+        "text": "\"Error: Load balancer failed to send request. Code: SchedulingRejected; Message: \"\"Load balancer reaches the max retry number\"\"\"",
+        "url": "/search?q=%22Error%3A+Load+balancer+failed+to+send+request.+Code%3A+SchedulingRejected%3B+Message%3A+%22%22Load+balancer+reaches+the+max+retry+number%22%22%22&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260428_AndeanBear%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "\"Error: Load balancer failed to send request. Code: SchedulingRejected; Message: \"\"Load balancer reaches the max retry number\"\"\"",
+        "url": "/search?q=%22Error%3A+Load+balancer+failed+to+send+request.+Code%3A+SchedulingRejected%3B+Message%3A+%22%22Load+balancer+reaches+the+max+retry+number%22%22%22&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260428_AndeanBear%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "落基山脉",
+        "url": "/search?q=%22Error%3A+Load+balancer+failed+to+send+request.+Code%3A+SchedulingRejected%3B+Message%3A+%22%22Load+balancer+reaches+the+max+retry+number%22%22%22&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260428_AndeanBear%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
