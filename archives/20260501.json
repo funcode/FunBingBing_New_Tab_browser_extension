@@ -1,0 +1,46 @@
+{
+  "caption": "中国夏季的长城",
+  "title": "中国的长城",
+  "description": "五月的中国北方，仿佛刚从春天的画卷中苏醒，带着清新的气息与恰到好处的温度，向远方的旅人发出邀请。无论是在古城街巷间寻访历史的回声，还是沿着万里长城的脊线远望群山，五月的北方都以其明净与舒展，呈现出一年中最适合出行的模样。此时出发，不仅能避开盛夏的炎热，也能在恰好的光影与温度中，收获一段轻盈而难忘的旅途。",
+  "copyright": "© aphotostory/Getty Images",
+  "date": "2026 5月 1",
+  "clickUrl": "/search?q=%e9%95%bf%e5%9f%8e&form=hpcapt&filters=HpDate:\"20260430_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MayLaborDayY26_ZH-CN7554485395_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MayLaborDayY26_ZH-CN7554485395_UHD.jpg",
+      "wallpaper": "/th?id=OHR.MayLaborDayY26_ZH-CN7554485395_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MayLaborDayY26_ZH-CN7554485395_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MayLaborDayY26_ZH-CN7554485395_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.MayLaborDayY26_ZH-CN7554485395_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "初夏的万里长城，呈现出与春秋截然不同的生命力。连绵起伏的山峦被郁郁葱葱的植被覆盖，长城宛如一条蜿蜒的巨龙，在翠绿之间若隐若现。阳光充足时，城墙的砖石在蓝天映衬下显得格外鲜明，视野开阔、层次分明。这一时节的长城更具活力，但气温也相对较高，尤其是像八达岭长城这样的热门段落，人流较多、体感较热。相比之下，慕田峪长城等区域植被覆盖更丰富，环境相对清幽，是不少人避开拥挤、享受自然的选择。",
+  "descriptionPara3": "",
+  "isoDate": "20260501",
+  "headline": "初夏·翠微长城",
+  "quickFact": "长城并非一条首尾相连的孤线，而是由历代王朝因地制宜、悉心营建的宏大防御体系。从大漠深处的夯土堡垒，到崇山峻岭间的砖石屏障，长城的每一寸肌理都闪烁着先民顺应自然、化繁为简的智慧光芒，堪称人类建筑史上与地理环境完美融合的典范。",
+  "triviaId": "HPQuiz_20260501_MayLaborDayY26",
+  "triviaData": {
+    "question": "长城的哪个路段以植被更茂密而闻名？",
+    "options": [
+      {
+        "text": "八达岭",
+        "url": "/search?q=%E6%85%95%E7%94%B0%E5%B3%AA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260501_MayLaborDayY26%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "慕田峪",
+        "url": "/search?q=%E6%85%95%E7%94%B0%E5%B3%AA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260501_MayLaborDayY26%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "居庸关",
+        "url": "/search?q=%E6%85%95%E7%94%B0%E5%B3%AA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260501_MayLaborDayY26%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
