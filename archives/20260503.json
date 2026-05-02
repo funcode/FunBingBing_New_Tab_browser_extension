@@ -1,0 +1,46 @@
+{
+  "caption": "国际豹类日",
+  "title": "萨瓦纳草原的树上睡觉的豹子，马赛马拉国家保护区，肯尼亚",
+  "description": "在肯尼亚马赛马拉萨瓦纳草原的高处，一只豹蜷缩在树枝上，在落日的余晖中静静小憩。在5月3日“国际豹类日”之际，我们共同致敬这种世界上适应力最强的大型猫科动物之一。豹的足迹遍布非洲及亚洲部分地区，无论是茂密的森林、险峻的山脉，还是开阔的萨瓦纳草原，它们都能茁壮成长。每只豹身上的斑点都是独一无二的，如同人类的指纹；而它们高超的攀爬技巧，则能将猎物拖至高树顶端，从而避开其他食腐动物的抢夺。",
+  "copyright": "© Klein & Hubert/Nature Picture Library",
+  "date": "2026 5月 3",
+  "clickUrl": "/search?q=%e5%9b%bd%e9%99%85%e8%b1%b9%e7%b1%bb%e6%97%a5&form=hpcapt&filters=HpDate:\"20260502_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MasaiLeopard_ZH-CN3406483238_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MasaiLeopard_ZH-CN3406483238_UHD.jpg",
+      "wallpaper": "/th?id=OHR.MasaiLeopard_ZH-CN3406483238_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MasaiLeopard_ZH-CN3406483238_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MasaiLeopard_ZH-CN3406483238_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.MasaiLeopard_ZH-CN3406483238_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "豹主要在夜间活动，它们并不依靠速度取胜，而是凭借极佳的隐蔽性、敏锐的感官以及超乎常人的耐性进行捕猎。尽管豹具有顽强的生存韧性，但受栖息地丧失及人兽冲突的影响，其全球种群数量仍在持续下降。国际豹类日号召我们深入了解这一物种——并共同努力，确保这些非凡的大猫能在这片荒野中拥有一席之地。",
+  "descriptionPara3": "",
+  "isoDate": "20260503",
+  "headline": "萨瓦纳的晚霞",
+  "quickFact": "豹已丧失了约75%的历史分布区，并被世界自然保护联盟（IUCN）列为“易危”物种。",
+  "triviaId": "HPQuiz_20260503_MasaiLeopard",
+  "triviaData": {
+    "question": "哪种特征有助于豹保护猎物免遭食腐动物抢夺？",
+    "options": [
+      {
+        "text": "爬树",
+        "url": "/search?q=%E7%88%AC%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260503_MasaiLeopard%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "高速",
+        "url": "/search?q=%E7%88%AC%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260503_MasaiLeopard%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "群居生活",
+        "url": "/search?q=%E7%88%AC%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260503_MasaiLeopard%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
