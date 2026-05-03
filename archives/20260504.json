@@ -1,0 +1,46 @@
+{
+  "caption": "星球大战日",
+  "title": "乌莱德·索尔坦克萨尔，塔塔温区，突尼斯南部",
+  "description": "“愿原力与你同在！”在星球大战日这一天，现实仿佛披上科幻的外衣，让人一时难以分辨虚实。画面将我们带到突尼斯南部塔塔温地区的乌莱德·索尔坦克萨尔，这里层层堆叠的土坯粮仓宛如沙色堡垒，充满异域与未来感。这座建筑群始建于 15 世纪，由当地柏柏尔人修建，用于保护粮食免受高温、盗窃和时间侵蚀。它的设计首先服务于实用功能，而独特的美感则在不经意间自然呈现——仿佛现实中的“科幻场景”。",
+  "copyright": "© Dark_Eni/Getty Images Plus",
+  "date": "2026 5月 4",
+  "clickUrl": "/search?q=%e6%98%9f%e7%90%83%e5%a4%a7%e6%88%98%e6%97%a5&form=hpcapt&filters=HpDate:\"20260503_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.KsarOuledSoltane_ZH-CN3569810663_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.KsarOuledSoltane_ZH-CN3569810663_UHD.jpg",
+      "wallpaper": "/th?id=OHR.KsarOuledSoltane_ZH-CN3569810663_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.KsarOuledSoltane_ZH-CN3569810663_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.KsarOuledSoltane_ZH-CN3569810663_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.KsarOuledSoltane_ZH-CN3569810663_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "几个世纪之后，电影制作人偶然发现了这些建筑，并立刻意识到，这正是他们一直在寻找的“世界”。这些独特的建筑风格几乎无需改动，便自然融入了《星球大战》的叙事体系之中，成为塑造虚构星球“塔图因”的重要灵感来源——这个名字本身，也与现实中的“塔塔温”相呼应。",
+  "descriptionPara3": "每年5月4日，这个最初源于谐音玩笑的日子，逐渐发展为一场面向全球的文化致敬——致敬视觉想象力、故事创作，以及那个“遥远的银河系”。像这样的地方，正是想象力得以具象化的来源：开阔的地平线、被阳光炙烤的夯土，以及人类智慧的结合，共同构成了独特的质感。电影的奇观并不只存在于特效之中——有时，大自然本身，就是最完美的“取景地”。",
+  "isoDate": "20260504",
+  "headline": "科幻源于现实",
+  "quickFact": "突尼斯索尔塔纳堡的多层土窖（Ghorfas）助力社区在严酷的沙漠气候中实现集体储粮与防御。",
+  "triviaId": "HPQuiz_20260504_KsarOuledSoltane",
+  "triviaData": {
+    "question": "15世纪是谁建造了奥莱德·索尔坦堡？",
+    "options": [
+      {
+        "text": "柏柏尔人",
+        "url": "/search?q=%E6%9F%8F%E6%9F%8F%E5%B0%94%E4%BA%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260504_KsarOuledSoltane%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "摩尔人",
+        "url": "/search?q=%E6%9F%8F%E6%9F%8F%E5%B0%94%E4%BA%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260504_KsarOuledSoltane%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "奥斯曼人",
+        "url": "/search?q=%E6%9F%8F%E6%9F%8F%E5%B0%94%E4%BA%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260504_KsarOuledSoltane%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
