@@ -1,0 +1,46 @@
+{
+  "caption": "保加利亚，多瑙河平原",
+  "title": "平原上空的雷暴，保加利亚",
+  "description": "在壮阔的天幕下，保加利亚的两大平原展现了国家的农业核心。多瑙河平原横跨北部，起伏的田野与河谷受温带大陆性气候影响，炎热的夏季常催生强烈的雷暴。再往南是上色雷斯平原，地势更低且更温暖，受大陆系统及从爱琴海地区涌入的地中海气流共同影响。在这里，酷暑与马里查河流域的水汽交织，使该地区极易发生剧烈的夏季风暴——正如此刻在图像中平原上空上演的景象。",
+  "copyright": "© Revolu7ion93/Getty Images",
+  "date": "2026 5月 6",
+  "clickUrl": "/search?q=%e4%bf%9d%e5%8a%a0%e5%88%a9%e4%ba%9a&form=hpcapt&filters=HpDate:\"20260505_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BulgariaPlains_ZH-CN3853985252_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BulgariaPlains_ZH-CN3853985252_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BulgariaPlains_ZH-CN3853985252_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BulgariaPlains_ZH-CN3853985252_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BulgariaPlains_ZH-CN3853985252_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BulgariaPlains_ZH-CN3853985252_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这两大平原共同构成了保加利亚粮食生产的支柱，映射出一片天气、地理与人类历史紧密相连的土地。",
+  "descriptionPara3": "",
+  "isoDate": "20260506",
+  "headline": "承受压力之下的平原",
+  "quickFact": "保加利亚坐落在巴尔干半岛东部，地处欧亚交汇的十字路口。在这里，古老文明、肥沃景观与多变的气候交相感应。",
+  "triviaId": "HPQuiz_20260506_BulgariaPlains",
+  "triviaData": {
+    "question": "哪条河谷流经上色雷斯平原？",
+    "options": [
+      {
+        "text": "多瑙河",
+        "url": "/search?q=%E9%A9%AC%E9%87%8C%E6%9F%A5&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260506_BulgariaPlains%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "马里查",
+        "url": "/search?q=%E9%A9%AC%E9%87%8C%E6%9F%A5&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260506_BulgariaPlains%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "伊斯卡",
+        "url": "/search?q=%E9%A9%AC%E9%87%8C%E6%9F%A5&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260506_BulgariaPlains%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
