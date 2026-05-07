@@ -1,0 +1,46 @@
+{
+  "caption": "世界驴日",
+  "title": "撒丁岛母驴和幼崽, 法国",
+  "description": "世界驴日旨在庆祝人类最默默无闻却能力出众的伙伴之一——驴。数千年来，驴一直与人类并肩工作，它们以耐力、敏锐的记忆力和在崎岖地形上稳健的步伐而备受推崇。人们常常误以为它们固执，但实际上它们是谨慎的思考者——它们会停下来评估风险，而不是贸然行事。",
+  "copyright": "© Klein & Hubert/Nature Picture Library",
+  "date": "2026 5月 8",
+  "clickUrl": "/search?q=%e9%a9%b4&form=hpcapt&filters=HpDate:\"20260507_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SardinianDonkey_ZH-CN0758031524_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SardinianDonkey_ZH-CN0758031524_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SardinianDonkey_ZH-CN0758031524_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SardinianDonkey_ZH-CN0758031524_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SardinianDonkey_ZH-CN0758031524_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SardinianDonkey_ZH-CN0758031524_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "图中，一头撒丁岛母驴依偎在小驴驹身边，这提醒我们，这些动物不仅勤劳，而且具有很强的社会性。驴子之间会建立起牢固的联系，即使分离很久也能认出熟悉的面孔，它们还会用嘶鸣声进行交流，这种声音可以传遍数英里之外的广袤土地。它们那著名的长耳朵，既有助于听觉，也有助于在炎热的气候中散热。",
+  "descriptionPara3": "驴子最初是由非洲野驴驯化而来，在发动机出现之前，它们就帮助人们运输货物、规划贸易路线，并支撑着日常生活。每年的5月8日是世界驴日，旨在提醒我们关注驴子的智慧、韧性和它们在人类历史中扮演的重要角色——无论过去、现在，还是未来，它们都将继续骄傲地嘶鸣着。",
+  "isoDate": "20260508",
+  "headline": "不仅仅是一声咿呀学语",
+  "quickFact": "骡子是公驴和母马杂交产生的后代。",
+  "triviaId": "HPQuiz_20260508_SardinianDonkey",
+  "triviaData": {
+    "question": "哪种关键特质有助于驴在崎岖地形中行走？",
+    "options": [
+      {
+        "text": "稳健的动作",
+        "url": "/search?q=%E7%A8%B3%E5%81%A5%E7%9A%84%E5%8A%A8%E4%BD%9C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260508_SardinianDonkey%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "锋利的爪子",
+        "url": "/search?q=%E7%A8%B3%E5%81%A5%E7%9A%84%E5%8A%A8%E4%BD%9C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260508_SardinianDonkey%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "灵活的脊柱",
+        "url": "/search?q=%E7%A8%B3%E5%81%A5%E7%9A%84%E5%8A%A8%E4%BD%9C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260508_SardinianDonkey%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
