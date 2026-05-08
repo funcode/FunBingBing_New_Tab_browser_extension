@@ -1,5 +1,6 @@
 const WALLPAPER_CACHE_NAME = 'funbingbing-wallpaper-cache-v1';
 let currentWallpaperObjectUrl = null;
+let currentImageDate = null;
 
 function paintPreloadedWallpaperIfAvailable() {
 	try {
@@ -181,6 +182,7 @@ async function changeWallpaper(idx) {
 		idx = 0;
 	}
 	const image = images[idx];
+	currentImageDate = image?.isoDate || null;
 	const baseurl = 'https://cn.bing.com';
 	const landscape = image?.imageUrls?.landscape;
 	const path = readConf('enable_uhd_wallpaper') == 'yes'
@@ -341,22 +343,6 @@ async function collectBingDataInParallel() {
 	return results;
 }
 
-function getQuotesFromBackground(dates, includeLatestFallback) {
-	return new Promise((resolve) => {
-		chrome.runtime.sendMessage(
-			{ type: "getQuotes", dates, includeLatestFallback: Boolean(includeLatestFallback) },
-			(response) => {
-				if (chrome.runtime.lastError) {
-					console.debug('getQuotes failed:', chrome.runtime.lastError.message);
-					resolve({});
-					return;
-				}
-				resolve(response && typeof response === 'object' ? response : {});
-			}
-		);
-	});
-}
-
 // --- Process Bing Results ---
 async function handleBingDataResults(results) {
 	// --- Safely access images ---
@@ -417,7 +403,6 @@ async function handleBingDataResults(results) {
 
 			return { text, author, authorHref, caption };
 		}
-		let quoteResolved = false;
 		if (results.quoteOfTheDay) {
 			try {
 				const parser = new DOMParser();
@@ -430,115 +415,12 @@ async function handleBingDataResults(results) {
 						link: authorHref,
 						caption: authorCaption
 					};
-					quoteResolved = true;
 				}
 			} catch (e) {
 				console.error("Error parsing quote of the day HTML:", e);
 			}
 		}
-		if (!quoteResolved) {
-			try {
-				const response = await getQuotesFromBackground([images[0].isoDate], true);
-				const fallbackQuote = response[images[0].isoDate] || Object.values(response)[0];
-				if (fallbackQuote && fallbackQuote.text) {
-					images[0].quoteData = fallbackQuote;
-					quoteResolved = true;
-				}
-			} catch (fallbackErr) {
-				console.error('Fallback quote resolution failed:', fallbackErr);
-			}
-		}
 
-		// Function to cache a new quote and backfill others
-		function addQuote(key, value) {
-			// Quotes storage (main data)
-			let allQuotes = readConf("cache_quote_of_the_day") || {};
-
-			// Helper object (circular buffer for keys)
-			let tracker = readConf("cache_quote_tracker") || {
-				last: 0, // points to the most recently used slot
-				"1": null, "2": null, "3": null, "4": null,
-				"5": null, "6": null, "7": null, "8": null
-			};
-
-			// If today's quote is new and valid, add it and manage the cache
-			if (value && value.text && !allQuotes[key]) {
-				// Advance "last" in circular fashion
-				tracker.last = (tracker.last % 8) + 1; 
-				const slot = tracker.last;
-				const oldKey = tracker[slot];
-
-				// If there was an old key in this slot, delete it
-				if (oldKey && allQuotes[oldKey]) {
-					delete allQuotes[oldKey];
-				}
-
-				// Store new quote
-				allQuotes[key] = value;
-				// Update tracker slot with the new key
-				tracker[slot] = key;
-				
-				writeConf("cache_quote_tracker", tracker);
-				writeConf("cache_quote_of_the_day", allQuotes);
-			}
-			let lostQuotes = {};
-			// Backfill quoteData for other images from the full cache
-			for (let i = 0; i < images.length; i++) {
-				const date = images[i].isoDate;
-				if (allQuotes[date]) {
-					images[i].quoteData = allQuotes[date];
-				}else if(i>0||!images[i].quoteData.text){
-					lostQuotes[date] = true;
-				}
-			}
-			if(Object.keys(lostQuotes).length>0){
-				writeConf("lost_quotes",Object.keys(lostQuotes));
-				chrome.runtime.sendMessage({ type: "getQuotes", dates: Object.keys(lostQuotes) }, (response) => {
-					if (chrome.runtime.lastError) {
-						console.debug('getQuotes failed:', chrome.runtime.lastError.message);
-						return;
-					}
-					console.log('Received quotes response:', response);
-					if (response && typeof response === 'object') {
-						let changed = false;
-						Object.keys(response).forEach((date) => {
-							const quote = response[date];
-							if (!quote || !quote.text) return;
-							if (!allQuotes[date]) {
-								tracker.last = (tracker.last % 8) + 1;
-								const slot = tracker.last;
-								const oldKey = tracker[slot];
-								if (oldKey && allQuotes[oldKey]) {
-									delete allQuotes[oldKey];
-								}
-								allQuotes[date] = quote;
-								tracker[slot] = date;
-								changed = true;
-							}
-							for (let i = 0; i < images.length; i++) {
-								if (images[i].isoDate === date) {
-									images[i].quoteData = quote;
-								}
-							}
-						});
-						if (changed) {
-							writeConf("cache_quote_tracker", tracker);
-							writeConf("cache_quote_of_the_day", allQuotes);
-						}
-						writeConf("bing_images", images);
-					}
-				});
-			}
-			// Also backfill today's quote if it was missing text
-			// This can happen if scraping failed (may due to clearing the browser cache)
-			// but we have a cached quote
-/* 			const today = images[0].isoDate;
-			if ((!images[0].quoteData || !images[0].quoteData.text) && allQuotes[today]) {
-				images[0].quoteData = allQuotes[today];
-			} */
-		}
-
-		addQuote(images[0].isoDate, images[0].quoteData);
 	};
 
 	// --- Merge processedMediaContents ---
@@ -603,6 +485,32 @@ async function handleBingDataResults(results) {
 	writeConf("wallpaper_date", images[0].isoDate);
 	console.log("Saved bing_images with merged contents.");
 
+	const fireQuoteSync = () => {
+		const imageDates = images.map(img => img?.isoDate).filter(d => typeof d === 'string' && d.trim());
+		const payload = {
+			type: "syncQuotesForImages",
+			requestId: Date.now(),
+			todayDate: images[0]?.isoDate,
+			todayQuote: images[0]?.quoteData,
+			imageDates
+		};
+		try {
+			chrome.runtime.sendMessage(payload, (response) => {
+				if (chrome.runtime.lastError) {
+					console.debug('syncQuotesForImages failed:', chrome.runtime.lastError.message);
+					return;
+				}
+				if (response && response.stale) {
+					console.debug('syncQuotesForImages skipped stale response');
+				}
+			});
+		} catch (err) {
+			console.error('Failed to send syncQuotesForImages:', err);
+		}
+	};
+
+	fireQuoteSync();
+
 	// --- Log errors ---
 	if (results.errors?.length > 0) {
 		console.error("Errors during parallel data collection:", results.errors);
@@ -643,6 +551,69 @@ function setDownloadLink() {
 	var downloadLink = document.getElementById('wallpaper-download-link');
 	downloadLink.href = document.getElementById('main-body').style.backgroundImage.replace('url("', '').replace('")', '');
 	downloadLink.download = 'bing-wallpaper-' + getDateString();
+}
+
+function handleQuoteLinkClick() {
+	// Force a data refresh the next time a tab opens when the quote is missing
+	writeConf('wallpaper_date', '20000101');
+}
+
+function renderQuoteSection(quoteData) {
+	if (!quoteData) return;
+	const qt = document.getElementById('quote-text');
+	const qf = document.getElementById('quote-full-text');
+	const qsLinkElem = document.getElementById('quote-source-link');
+	const qc = document.getElementById('quote-caption');
+	const hasQuoteText = typeof quoteData?.text === 'string' && quoteData.text.trim().length > 0;
+
+	if (hasQuoteText) {
+		let raw = quoteData.text.trim();
+		if (/^["'“”‘’].+["'“”‘’]$/.test(raw)) {
+			const first = raw[0];
+			const last = raw[raw.length - 1];
+			if (/["'“”‘’]/.test(first) && /["'“”‘’]/.test(last)) {
+				raw = raw.substring(1, raw.length - 1).trim();
+			}
+		}
+		const wrapped = `“${raw}”`;
+		if (qt) qt.textContent = wrapped;
+		if (qf) qf.textContent = wrapped;
+	} else {
+		if (qt) qt.textContent = '';
+		if (qf) qf.textContent = '';
+	}
+
+	if (qsLinkElem) {
+		qsLinkElem.removeEventListener('click', handleQuoteLinkClick);
+		if (!hasQuoteText) {
+			qsLinkElem.addEventListener('click', handleQuoteLinkClick);
+		}
+		if (quoteData && quoteData.source) {
+			qsLinkElem.textContent = quoteData.source;
+			qsLinkElem.style.display = 'inline';
+		} else {
+			qsLinkElem.textContent = '';
+			qsLinkElem.style.display = 'none';
+		}
+		let href = quoteData?.link;
+		if (!href && quoteData?.source) {
+			const encodedSource = encodeURIComponent(quoteData.source);
+			href = `https://cn.bing.com/search?q=${encodedSource}&form=BTQUOT`;
+		}
+		if (href) {
+			qsLinkElem.setAttribute('href', href);
+			qsLinkElem.setAttribute('rel', 'noopener noreferrer');
+			qsLinkElem.setAttribute('target', '_blank');
+		} else {
+			qsLinkElem.removeAttribute('href');
+			qsLinkElem.removeAttribute('rel');
+			qsLinkElem.removeAttribute('target');
+		}
+	}
+
+	if (qc) {
+		qc.textContent = quoteData?.caption || '';
+	}
 }
 
 function setContents(image) {
@@ -738,69 +709,44 @@ function setContents(image) {
 			optionsUl.appendChild(li);
 		});
 	}
-
 	// --- Populate quote of the day blocks ---
-	if (image.quoteData) {
-		// Normalize and wrap quote text with curly quotes
-		const qt = document.getElementById('quote-text');
-		const qf = document.getElementById('quote-full-text');
-		if (image.quoteData.text) {
-			let raw = image.quoteData.text.trim();
-			// Remove any existing wrapping straight or curly quotes to prevent doubling
-			if (/^["'“”‘’].+["'“”‘’]$/.test(raw)) {
-				// Strip only one level if first and last are quote-like
-				const first = raw[0];
-				const last = raw[raw.length - 1];
-				if (/["'“”‘’]/.test(first) && /["'“”‘’]/.test(last)) {
-					raw = raw.substring(1, raw.length - 1).trim();
-				}
-			}
-			const wrapped = `“${raw}”`;
-			if (qt) qt.textContent = wrapped;
-			if (qf) qf.textContent = wrapped;
-			const quoteSourceLink = document.getElementById('quote-source-link');
-			if (quoteSourceLink && typeof handleQuoteLinkClick === 'function') {
-				quoteSourceLink.removeEventListener('click', handleQuoteLinkClick);
-			}
-		}
-		else if (qt) {
-			function handleQuoteLinkClick() {
-				//Refetch data when opening a new tab
-				writeConf('wallpaper_date', '20000101');
-			}
-			document.getElementById('quote-source-link').addEventListener('click', handleQuoteLinkClick);
-		}
-		const qsLinkElem = document.getElementById('quote-source-link');
-		if (qsLinkElem) {
-			if (image.quoteData.source) {
-				qsLinkElem.textContent = image.quoteData.source;
-				qsLinkElem.style.display = 'inline';
-			} else {
-				qsLinkElem.textContent = '';
-				qsLinkElem.style.display = 'none';
-			}
-			// Manage navigable link attributes
-			let href = image.quoteData.link;
-			if (!href && image.quoteData.source) {
-				const encodedSource = encodeURIComponent(image.quoteData.source);
-				href = `https://cn.bing.com/search?q=${encodedSource}&form=BTQUOT`;
-			}
+	renderQuoteSection(image.quoteData || null);
+}
 
-			if (href) {
-				qsLinkElem.setAttribute('href', href);
-				qsLinkElem.setAttribute('rel', 'noopener noreferrer');
-				qsLinkElem.setAttribute('target', '_blank');
-			} else {
-				qsLinkElem.removeAttribute('href');
-				qsLinkElem.removeAttribute('rel');
-				qsLinkElem.removeAttribute('target');
-			}
-		}
-		const qc = document.getElementById('quote-caption');
-		if (qc && image.quoteData.caption) qc.textContent = image.quoteData.caption || '';
+function updateQuoteOnly(image) {
+	if (!image) return;
+	renderQuoteSection(image.quoteData || null);
+}
 
+function refreshCurrentQuoteFromStorage() {
+	const images = readConf('bing_images');
+	if (!Array.isArray(images) || images.length === 0) return;
+	let image = null;
+	if (currentImageDate) {
+		image = images.find(img => img && img.isoDate === currentImageDate) || null;
+	}
+	if (!image) {
+		let idx = readConf('wallpaper_idx');
+		idx = Number.parseInt(idx, 10);
+		if (!Number.isFinite(idx) || idx < 0 || idx >= images.length) {
+			idx = 0;
+		}
+		image = images[idx];
+	}
+	if (!image) return;
+	currentImageDate = image.isoDate || currentImageDate;
+	updateQuoteOnly(image);
+}
+
+chrome.runtime.onMessage.addListener((message) => {
+	if (message && message.type === 'quotesUpdated') {
+		if (!Array.isArray(message.updatedDates) || message.updatedDates.length === 0) return;
+		const activeDate = currentImageDate;
+		if (activeDate && message.updatedDates.includes(activeDate)) {
+			refreshCurrentQuoteFromStorage();
 		}
 	}
+});
 
 // --------------------------------------------------
 
