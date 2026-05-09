@@ -376,10 +376,15 @@ async function handleBingDataResults(results) {
 
 			const authorElement = selectFirst(doc, [
 			'#bt_qotdText .bt_author .b_mText a',
-			'.qotd_author a'
+			'.qotd_author a',
+			'.qotd_author'
 			]);
 			const author = authorElement ? authorElement.textContent.trim() : null;
-			const authorHref = authorElement ? authorElement.getAttribute('href') : '';
+			const authorHref = authorElement
+				? (authorElement.tagName === 'A'
+					? authorElement.getAttribute('href')
+					: authorElement.closest('a')?.getAttribute('href') || '')
+				: '';
 
 			const captionElement = selectFirst(doc, [
 			'#bt_qotdText .bt_authorCaption',
