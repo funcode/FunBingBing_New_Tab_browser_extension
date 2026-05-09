@@ -381,6 +381,7 @@ async function handleBingDataResults(results) {
 
 			const authorElement = selectFirst(doc, [
 				'#bt_qotdText .bt_author .b_mText a',
+				'.qotd_author a',
 				'.qotd_author',
 				'.qotd_footer a'
 			]);
