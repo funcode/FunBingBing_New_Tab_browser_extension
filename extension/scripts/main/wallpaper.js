@@ -331,8 +331,8 @@ async function collectBingDataInParallel() {
 		}
 
 		// Parse quote of the day
-		if (quoteRes.status === "fulfilled" && typeof quoteRes.value === 'string') {
-			results.quoteOfTheDay = quoteRes.value;
+		if (quoteRes.status === "fulfilled" && quoteRes.value.ok) {
+			results.quoteOfTheDay = await quoteRes.value.text();
 		} else {
 			results.errors.push("QuoteOfTheDay request failed");
 		}
@@ -354,7 +354,12 @@ async function handleBingDataResults(results) {
 
 	// --- Async task: Handle Quote of the Day ---
 	const quoteTask = async () => {
-		images[0].quoteData = getDefaultQuotePlaceholderData();
+		images[0].quoteData = {
+			text: '',
+			source: i18n('quote_of_the_day_search'),
+			link: 'https://www.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN&form=QBRE',
+			caption: ''
+		};
 		// --- Scrape Quote of the Day ---
 		// --- The 2 functions below are adapted from FunBingBing repo ---
 		const selectFirst = (doc, selectors) => {
@@ -553,30 +558,12 @@ function handleQuoteLinkClick() {
 	writeConf('wallpaper_date', '20000101');
 }
 
-function getDefaultQuotePlaceholderData() {
-	return {
-		text: '',
-		source: i18n('quote_of_the_day_search'),
-		link: 'https://www.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN&form=QBRE',
-		caption: ''
-	};
-}
-
 function renderQuoteSection(quoteData) {
+	if (!quoteData) return;
 	const qt = document.getElementById('quote-text');
 	const qf = document.getElementById('quote-full-text');
 	const qsLinkElem = document.getElementById('quote-source-link');
 	const qc = document.getElementById('quote-caption');
-	if (!quoteData) {
-		const hasExistingQuoteUiContent = Boolean(
-			qt?.textContent?.trim() ||
-			qf?.textContent?.trim() ||
-			qsLinkElem?.textContent?.trim() ||
-			qc?.textContent?.trim()
-		);
-		if (hasExistingQuoteUiContent) return;
-		quoteData = getDefaultQuotePlaceholderData();
-	}
 	const hasQuoteText = typeof quoteData?.text === 'string' && quoteData.text.trim().length > 0;
 
 	if (hasQuoteText) {
