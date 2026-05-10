@@ -1,0 +1,46 @@
+{
+  "caption": "从上方俯瞰大堡礁, 昆士兰州, 澳大利亚",
+  "title": "从上方俯瞰大堡礁, 昆士兰州, 澳大利亚",
+  "description": "世界最伟大的自然奇观之一，绵延在澳大利亚东北海岸线外的珊瑚海碧绿海水中。大堡礁沿着昆士兰海岸延伸，是世界上最大的珊瑚礁系统。它由近3000个独立的珊瑚礁和数百个岛屿组成，绵延超过1400英里。",
+  "copyright": "© Francesco Riccardo Iacomino/Getty Images",
+  "date": "2026 5月 11",
+  "clickUrl": "/search?q=%e6%be%b3%e5%a4%a7%e5%88%a9%e4%ba%9a%e5%a4%a7%e5%a0%a1%e7%a4%81&form=hpcapt&filters=HpDate:\"20260510_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.QueenslandReef_ZH-CN1138150002_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.QueenslandReef_ZH-CN1138150002_UHD.jpg",
+      "wallpaper": "/th?id=OHR.QueenslandReef_ZH-CN1138150002_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.QueenslandReef_ZH-CN1138150002_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.QueenslandReef_ZH-CN1138150002_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.QueenslandReef_ZH-CN1138150002_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这片非凡的海洋景观孕育着极其丰富的生物多样性，包括数百种珊瑚、超过1600种鱼类，以及海龟、鳐鱼、海鸟和礁鲨。其浅水泻湖、珊瑚礁岛和较深的外礁交错分布，构成了一幅地球上其他任何地方都无法比拟的壮丽景观。",
+  "descriptionPara3": "作为联合国教科文组织世界遗产，这片珊瑚礁不仅因其规模和美景而备受珍视，更因其重要的生态意义以及与澳大利亚原住民深厚的文化联系而熠熠生辉。如今，研究人员、社区和政府携手合作，共同保护这片脆弱的生态系统，致力于为子孙后代守护珊瑚礁复杂的生态格局和生机勃勃的海洋生物。",
+  "isoDate": "20260511",
+  "headline": "水下建筑",
+  "quickFact": "纬度和跨陆架多样性，加上水体深度的多样性，构成了全球独一无二的生态群落、栖息地和物种。",
+  "triviaId": "HPQuiz_20260511_QueenslandReef",
+  "triviaData": {
+    "question": "哪片水域与大堡礁接壤？",
+    "options": [
+      {
+        "text": "珊瑚海",
+        "url": "/search?q=%E7%8F%8A%E7%91%9A%E6%B5%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260511_QueenslandReef%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "帝汶海",
+        "url": "/search?q=%E7%8F%8A%E7%91%9A%E6%B5%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260511_QueenslandReef%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "塔斯曼海",
+        "url": "/search?q=%E7%8F%8A%E7%91%9A%E6%B5%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260511_QueenslandReef%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
