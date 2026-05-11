@@ -1,4 +1,6 @@
 const WALLPAPER_CACHE_NAME = 'funbingbing-wallpaper-cache-v1';
+const WALLPAPER_FETCH_LOCK_KEY = 'wallpaper_fetch_lock';
+const WALLPAPER_FETCH_LOCK_TTL_MS = 30_000;
 let currentWallpaperObjectUrl = null;
 let currentImageDate = null;
 
@@ -173,7 +175,7 @@ async function changeWallpaper(idx) {
 	const images = readConf('bing_images');
 	if (!Array.isArray(images) || images.length === 0) {
 		await showDefaultWallpaper();
-		return;
+		return false;
 	}
 	if (!Number.isFinite(idx) || idx < 0) {
 		idx = 0;
@@ -197,7 +199,7 @@ async function changeWallpaper(idx) {
 	if (!imgurl) {
 		console.warn('Unable to resolve wallpaper URL for index', idx);
 		await showDefaultWallpaper();
-		return;
+		return false;
 	}
 	try {
 		const hdPromise = (async () => {
@@ -220,9 +222,11 @@ async function changeWallpaper(idx) {
 			}
 		})();
 		await Promise.all([hdPromise, previewPromise]);
+		return true;
 	} catch (error) {
 		console.error('Failed to load wallpaper image:', error);
 		await showDefaultWallpaper();
+		return false;
 	}
 }
 
@@ -230,12 +234,82 @@ async function changeWallpaper(idx) {
 // then load and change wallpaper
 async function updateWallpaper(idx) {
 	try {
-		await changeWallpaper(idx);
-		writeConf('wallpaper_idx', idx.toString());
+		const changed = await changeWallpaper(idx);
+		if (!changed) return false;
+		await writeConf('wallpaper_idx', idx.toString());
+		return true;
 	} catch (e) {
 		console.error('Failed to update wallpaper:', e);
 		await showDefaultWallpaper();
+		return false;
 	}
+}
+
+async function refreshConfCacheIfAvailable() {
+		await initConfCache();
+}
+
+async function isTodayWallpaperReady() {
+	return await readStorageKey('wallpaper_date') === getDateString();
+}
+
+function isFreshWallpaperFetchLock(lockValue) {
+	const lockTime = Number(lockValue);
+	return Number.isFinite(lockTime)
+		&& lockTime > 0
+		&& Date.now() - lockTime < WALLPAPER_FETCH_LOCK_TTL_MS;
+}
+
+async function waitForTodayWallpaperReady(timeoutMs = WALLPAPER_FETCH_LOCK_TTL_MS) {
+	return new Promise((resolve) => {
+		let settled = false;
+		let timeoutId;
+
+		const finish = (ready) => {
+			if (settled) return;
+			settled = true;
+			clearTimeout(timeoutId);
+			chrome.storage.onChanged.removeListener(onChanged);
+			resolve(Boolean(ready));
+		};
+
+		const onChanged = (changes, area) => {
+			if (area === 'local' && changes.wallpaper_date?.newValue === getDateString()) {
+				finish(true);
+			}
+		};
+
+		chrome.storage.onChanged.addListener(onChanged);
+		timeoutId = setTimeout(() => finish(false), timeoutMs);
+
+		readStorageKey('wallpaper_date')
+			.then((wallpaperDate) => {
+				if (wallpaperDate === getDateString()) {
+					finish(true);
+				}
+			})
+			.catch((err) => {
+				console.warn('Failed to check wallpaper_date while waiting:', err);
+			});
+	});
+}
+
+async function runWallpaperFetchRefresh() {
+	setFooterText(i18n('updating_wallpaper'));
+	await showDefaultWallpaper({ preserveUpdatingHeadline: true });
+
+	const results = await collectBingDataInParallel();
+	const todayDate = await handleBingDataResults(results);
+	if (!todayDate) {
+		await showDefaultWallpaper();
+		return false;
+	}
+
+	const updated = await updateWallpaper(0);
+	if (!updated) return false;
+
+	await writeConf('wallpaper_date', todayDate);
+	return true;
 }
 
 // --- Main entry point ---
@@ -252,13 +326,31 @@ async function initWallpaper() {
 			await updateWallpaper(0);
 		}
 	} else {
-		// No cache match, fetch new data		
-		setFooterText(i18n('updating_wallpaper'));
-		await showDefaultWallpaper({ preserveUpdatingHeadline: true });
 		try {
-			const results = await collectBingDataInParallel();
-			await handleBingDataResults(results);
-			await updateWallpaper(0); // guaranteed after data + writeConf
+			if (await isTodayWallpaperReady()) {
+				await refreshConfCacheIfAvailable();
+				if (await changeWallpaper(0)) return;
+			}
+
+			const lockValue = await readStorageKey(WALLPAPER_FETCH_LOCK_KEY);
+			if (isFreshWallpaperFetchLock(lockValue)) {
+				setFooterText(i18n('updating_wallpaper'));
+				await showDefaultWallpaper({ preserveUpdatingHeadline: true });
+				const ready = await waitForTodayWallpaperReady();
+				if (ready || await isTodayWallpaperReady()) {
+					await refreshConfCacheIfAvailable();
+					if (await changeWallpaper(0)) return;
+					console.warn('Today wallpaper became ready, but display failed; refreshing.');
+				}
+			}
+
+			// Best-effort cross-tab throttle; storage get/set is not atomic.
+			await writeConf(WALLPAPER_FETCH_LOCK_KEY, Date.now());
+			try {
+				await runWallpaperFetchRefresh();
+			} finally {
+				await writeConf(WALLPAPER_FETCH_LOCK_KEY, 0);
+			}
 		} catch (err) {
 			console.error("Error initializing wallpaper:", err);
 			await showDefaultWallpaper();
@@ -350,7 +442,7 @@ async function handleBingDataResults(results) {
 	const images = results.imageOfTheDay?.data?.images ?? [];
 	if (images.length === 0) {
 		console.error("No imageOfTheDay data found");
-		return;
+		return null;
 	}
 
 	// --- Async task: Handle Quote of the Day ---
@@ -482,7 +574,6 @@ async function handleBingDataResults(results) {
 
 	// --- Save merged images ---
 	await writeConf("bing_images", images);
-	await writeConf("wallpaper_date", images[0].isoDate);
 	console.log("Saved bing_images with merged contents.");
 
 	if (quoteSyncPayload) {
@@ -494,6 +585,8 @@ async function handleBingDataResults(results) {
 		console.error("Errors during parallel data collection:", results.errors);
 		writeConf("bing_data_errors", results.errors);
 	}
+
+	return images[0].isoDate || null;
 }
 
 
@@ -798,8 +891,7 @@ function updateQuoteOnly(image, quoteCache) {
 async function refreshCurrentQuoteFromStorage() {
 	const images = readConf('bing_images');
 	if (!Array.isArray(images) || images.length === 0) return;
-	const storedQuotes = await chrome.storage.local.get('cache_quote_of_the_day');
-	const quoteCache = storedQuotes.cache_quote_of_the_day || readConf('cache_quote_of_the_day') || {};
+	const quoteCache = await readStorageKey('cache_quote_of_the_day') || readConf('cache_quote_of_the_day') || {};
 	let image = null;
 	if (currentImageDate) {
 		image = images.find(img => img && img.isoDate === currentImageDate) || null;

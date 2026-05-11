@@ -53,6 +53,12 @@ function readConf(key) {
   return confCache[key];
 }
 
+// Fresh read: bypass the in-memory cache for cross-context coordination.
+async function readStorageKey(key) {
+  const result = await chrome.storage.local.get(key);
+  return result?.[key];
+}
+
 const confReadyPromise = (async () => {
   try {
     await initConfCache();

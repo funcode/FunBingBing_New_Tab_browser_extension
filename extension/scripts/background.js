@@ -151,7 +151,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           return;
         }
 
-        if (requestId < latestQuoteSyncRequestId) {
+        if (requestId <= latestQuoteSyncRequestId) {
           sendResponse({ ok: false, stale: true });
           return;
         }
@@ -161,9 +161,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         let allQuotes = readConf("cache_quote_of_the_day") || {};
         let tracker = readConf("cache_quote_tracker") || getDefaultTracker();
-        const initialStoredImages = await chrome.storage.local.get("bing_images");
-        const bingImagesForMissing = Array.isArray(initialStoredImages.bing_images)
-          ? initialStoredImages.bing_images
+        const storedBingImages = await readStorageKey("bing_images");
+        const bingImagesForMissing = Array.isArray(storedBingImages)
+          ? storedBingImages
           : [];
 
         const quoteMapForPatch = {};
