@@ -1,0 +1,46 @@
+{
+  "caption": "北极海鹦, 威尔士",
+  "title": "北极海鹦, 威尔士",
+  "description": "在北大西洋崎岖的海岸线上，大西洋海鹦栖息于洞穴和峭壁缝隙中。这些羽毛黑白相间、喙色艳丽的海鸟，由于过度捕捞和海洋环境变化导致猎物数量减少，被世界自然保护联盟（IUCN）列为易危物种。每年春天，它们都会返回此地繁殖，在精心挖掘的洞穴中产下一枚卵。作为游泳健将，它们在捕食鲱鱼和沙鳗等小型鱼类时，会利用翅膀在水下“飞行”。",
+  "copyright": "© FLPA/Alamy",
+  "date": "2026 5月 12",
+  "clickUrl": "/search?q=%e5%8c%97%e6%9e%81%e6%b5%b7%e9%b9%a6&form=hpcapt&filters=HpDate:\"20260511_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.Fratercula_ZH-CN1239275412_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.Fratercula_ZH-CN1239275412_UHD.jpg",
+      "wallpaper": "/th?id=OHR.Fratercula_ZH-CN1239275412_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.Fratercula_ZH-CN1239275412_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.Fratercula_ZH-CN1239275412_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.Fratercula_ZH-CN1239275412_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "繁殖季节，它们的喙会变得色彩鲜艳，以此吸引配偶。观察海鹦在自然栖息地中的生活，你会发现这种海鸟完美地适应了空中和海洋环境，它们适应力强，但也面临着现代环境的挑战。一个有趣的流行文化梗：这些魅力十足的鸟类启发了《星球大战：最后的绝地武士》中可爱的鸟类生物“波格鸟”的创作。电影制作人员并没有使用数字技术将它们从真实的海洋岛屿布景中移除，而是保留了它们的形象。",
+  "descriptionPara3": "",
+  "isoDate": "20260512",
+  "headline": "振翅, 潜水, 生存",
+  "quickFact": "大西洋海鹦的飞行路线是直线飞行，通常在海面以上10米（35 英尺）处，比大多数其他海雀飞得更高。",
+  "triviaId": "HPQuiz_20260512_Fratercula",
+  "triviaData": {
+    "question": "哪种小鱼是海鹦常见的猎物？",
+    "options": [
+      {
+        "text": "鲱鱼",
+        "url": "/search?q=%E9%B2%B1%E9%B1%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260512_Fratercula%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "鳟鱼",
+        "url": "/search?q=%E9%B2%B1%E9%B1%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260512_Fratercula%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "凤尾鱼",
+        "url": "/search?q=%E9%B2%B1%E9%B1%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260512_Fratercula%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
