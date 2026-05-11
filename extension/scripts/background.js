@@ -117,19 +117,6 @@ function insertQuoteIntoCache(date, quote, allQuotes, tracker) {
   return false;
 }
 
-function patchBingImagesQuoteData(bingImages, quoteMap) {
-  if (!Array.isArray(bingImages) || !quoteMap) return bingImages || [];
-  for (let i = 0; i < bingImages.length; i++) {
-    const img = bingImages[i];
-    if (!img || !img.isoDate) continue;
-    const patch = quoteMap[img.isoDate];
-    if (patch) {
-      img.quoteData = patch;
-    }
-  }
-  return bingImages;
-}
-
 function computeMissingDates(imageDates, bingImages, allQuotes) {
   const missing = new Set();
   const quoteMap = allQuotes || {};
@@ -222,19 +209,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           return;
         }
 
-        // Re-read from storage after any async quote fetch so we only patch the
-        // latest bing_images array, not an earlier snapshot from this handler.
-        const latestStoredImages = await chrome.storage.local.get("bing_images");
-        const latestBingImages = latestStoredImages.bing_images;
-        let patchedImages = [];
-        if (Array.isArray(latestBingImages)) {
-          patchedImages = patchBingImagesQuoteData(latestBingImages, quoteMapForPatch);
-          await writeConf("bing_images", patchedImages);
-        }
         await writeConf("cache_quote_of_the_day", allQuotes);
         await writeConf("cache_quote_tracker", tracker);
 
-        const unresolved = computeMissingDates(dates, patchedImages, allQuotes);
+        const unresolved = computeMissingDates(dates, bingImagesForMissing, allQuotes);
         await writeConf("lost_quotes", unresolved);
 
         const updatedDates = Object.keys(quoteMapForPatch);

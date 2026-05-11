@@ -612,7 +612,7 @@ function renderQuoteSection(quoteData) {
 	}
 }
 
-function normalizeCachedQuotePayload(rawQuote) {
+function normalizeQuoteForRender(rawQuote) {
 	if (!rawQuote || typeof rawQuote !== 'object') return null;
 	const text = typeof rawQuote.text === 'string' ? rawQuote.text.trim() : '';
 	if (!text) return null;
@@ -628,16 +628,25 @@ function normalizeCachedQuotePayload(rawQuote) {
 	};
 }
 
+// Quote cache is the live sync source. Use it over embedded bing_images.quoteData
+// when present; fall back to embedded quoteData for freshly fetched or legacy data.
+function getImageWithCachedQuote(image, quoteCache = readConf('cache_quote_of_the_day') || {}) {
+	if (!image || typeof image !== 'object') return image;
+	const cachedQuote = normalizeQuoteForRender(quoteCache?.[image.isoDate]);
+	if (!cachedQuote) return image;
+	return { ...image, quoteData: cachedQuote };
+}
+
 function mergeCachedQuotesIntoImages(images) {
 	const cachedQuotes = readConf('cache_quote_of_the_day') || {};
 	if (!Array.isArray(images) || !cachedQuotes) return [];
 	images.forEach((img) => {
 		if (!img || typeof img !== 'object') return;
-		const existingQuote = normalizeCachedQuotePayload(img.quoteData);
+		const existingQuote = normalizeQuoteForRender(img.quoteData);
 		if (existingQuote) return;
 		const isoDate = img.isoDate;
 		if (!isoDate || !cachedQuotes[isoDate]) return;
-		const cachedQuote = normalizeCachedQuotePayload(cachedQuotes[isoDate]);
+		const cachedQuote = normalizeQuoteForRender(cachedQuotes[isoDate]);
 		if (!cachedQuote) return;
 		img.quoteData = cachedQuote;
 	});
@@ -681,6 +690,7 @@ function fireQuoteSync(payload) {
 
 function setContents(image, options = {}) {
 	if (!image) return;
+	image = getImageWithCachedQuote(image);
 	const preserveUpdatingHeadline = Boolean(options?.preserveUpdatingHeadline);
 
 	// --- Format date helper ---
@@ -779,14 +789,17 @@ function setContents(image, options = {}) {
 	renderQuoteSection(image.quoteData || null);
 }
 
-function updateQuoteOnly(image) {
+function updateQuoteOnly(image, quoteCache) {
 	if (!image) return;
-	renderQuoteSection(image.quoteData || null);
+	const imageWithQuote = getImageWithCachedQuote(image, quoteCache);
+	renderQuoteSection(imageWithQuote.quoteData || null);
 }
 
-function refreshCurrentQuoteFromStorage() {
+async function refreshCurrentQuoteFromStorage() {
 	const images = readConf('bing_images');
 	if (!Array.isArray(images) || images.length === 0) return;
+	const storedQuotes = await chrome.storage.local.get('cache_quote_of_the_day');
+	const quoteCache = storedQuotes.cache_quote_of_the_day || readConf('cache_quote_of_the_day') || {};
 	let image = null;
 	if (currentImageDate) {
 		image = images.find(img => img && img.isoDate === currentImageDate) || null;
@@ -802,7 +815,7 @@ function refreshCurrentQuoteFromStorage() {
 		}
 		image = images[idx];
 	}
-	updateQuoteOnly(image);
+	updateQuoteOnly(image, quoteCache);
 }
 
 chrome.runtime.onMessage.addListener((message) => {
@@ -810,7 +823,9 @@ chrome.runtime.onMessage.addListener((message) => {
 		if (!Array.isArray(message.updatedDates) || message.updatedDates.length === 0) return;
 		const activeDate = currentImageDate;
 		if (activeDate && message.updatedDates.includes(activeDate)) {
-			refreshCurrentQuoteFromStorage();
+			refreshCurrentQuoteFromStorage().catch((err) => {
+				console.error('Failed to refresh quote from storage:', err);
+			});
 		}
 	}
 });
