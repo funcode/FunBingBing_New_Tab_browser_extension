@@ -174,7 +174,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         let allQuotes = readConf("cache_quote_of_the_day") || {};
         let tracker = readConf("cache_quote_tracker") || getDefaultTracker();
-        const bingImages = readConf("bing_images") || [];
+        const initialStoredImages = await chrome.storage.local.get("bing_images");
+        const bingImagesForMissing = Array.isArray(initialStoredImages.bing_images)
+          ? initialStoredImages.bing_images
+          : [];
 
         const quoteMapForPatch = {};
 
@@ -187,7 +190,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         }
 
         const dates = Array.isArray(imageDates) ? imageDates.filter(d => typeof d === "string" && d.trim()) : [];
-        const missingDates = computeMissingDates(dates, bingImages, allQuotes);
+        const missingDates = computeMissingDates(dates, bingImagesForMissing, allQuotes);
 
         if (missingDates.length > 0) {
           try {
@@ -219,8 +222,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           return;
         }
 
-        const patchedImages = patchBingImagesQuoteData(bingImages, quoteMapForPatch);
-        await writeConf("bing_images", patchedImages);
+        // Re-read from storage after any async quote fetch so we only patch the
+        // latest bing_images array, not an earlier snapshot from this handler.
+        const latestStoredImages = await chrome.storage.local.get("bing_images");
+        const latestBingImages = latestStoredImages.bing_images;
+        let patchedImages = [];
+        if (Array.isArray(latestBingImages)) {
+          patchedImages = patchBingImagesQuoteData(latestBingImages, quoteMapForPatch);
+          await writeConf("bing_images", patchedImages);
+        }
         await writeConf("cache_quote_of_the_day", allQuotes);
         await writeConf("cache_quote_tracker", tracker);
 

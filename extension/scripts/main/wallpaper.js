@@ -482,7 +482,7 @@ async function handleBingDataResults(results) {
 
 	// --- Save merged images ---
 	await writeConf("bing_images", images);
-	writeConf("wallpaper_date", images[0].isoDate);
+	await writeConf("wallpaper_date", images[0].isoDate);
 	console.log("Saved bing_images with merged contents.");
 
 	if (quoteSyncPayload) {
