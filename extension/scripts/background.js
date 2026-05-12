@@ -91,18 +91,37 @@ function normalizeQuotePayload(rawQuote) {
   };
 }
 
-function getDefaultTracker() {
+function getDefaultQuoteState() {
   return {
-    //0 is the initial value, meaning no quotes cached yet. It will be set to 1-8 as quotes are cached, indicating the current slot to overwrite next.
-    last: 0,
-    "1": null, "2": null, "3": null, "4": null,
-    "5": null, "6": null, "7": null, "8": null
+    quotes: {},
+    tracker: {
+      //0 is the initial value, meaning no quotes cached yet. It will be set to 1-8 as quotes are cached, indicating the current slot to overwrite next.
+      last: 0,
+      "1": null, "2": null, "3": null, "4": null,
+      "5": null, "6": null, "7": null, "8": null
+    }
   };
 }
 
-function insertQuoteIntoCache(date, quote, allQuotes, tracker) {
+function getQuoteState() {
+  const quoteState = readConf("cache_quote_state");
+  if (!quoteState || typeof quoteState !== "object") {
+    return getDefaultQuoteState();
+  }
+  if (!quoteState.quotes || typeof quoteState.quotes !== "object") {
+    quoteState.quotes = {};
+  }
+  if (!quoteState.tracker || typeof quoteState.tracker !== "object") {
+    quoteState.tracker = getDefaultQuoteState().tracker;
+  }
+  return quoteState;
+}
+
+function insertQuoteIntoCache(date, quote, quoteState) {
   const normalizedQuote = normalizeQuotePayload(quote);
   if (!date || !normalizedQuote) return false;
+  const allQuotes = quoteState.quotes;
+  const tracker = quoteState.tracker;
   if (!allQuotes[date]) {
     tracker.last = (tracker.last % 8) + 1;
     const slot = tracker.last;
@@ -159,8 +178,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         await confReadyPromise;
 
-        let allQuotes = readConf("cache_quote_of_the_day") || {};
-        let tracker = readConf("cache_quote_tracker") || getDefaultTracker();
+        const quoteState = getQuoteState();
+        const allQuotes = quoteState.quotes;
         const storedBingImages = await readStorageKey("bing_images");
         const bingImagesForMissing = Array.isArray(storedBingImages)
           ? storedBingImages
@@ -169,7 +188,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         const quoteMapForPatch = {};
 
         if (todayDate) {
-          const inserted = insertQuoteIntoCache(todayDate, todayQuote, allQuotes, tracker);
+          const inserted = insertQuoteIntoCache(todayDate, todayQuote, quoteState);
           const normalizedTodayQuote = normalizeQuotePayload(todayQuote);
           if (inserted || normalizedTodayQuote) {
             quoteMapForPatch[todayDate] = normalizedTodayQuote || allQuotes[todayDate];
@@ -186,7 +205,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
               const candidate = normalizeQuotePayload(remote[date]);
               if (candidate) {
                 quoteMapForPatch[date] = candidate;
-                insertQuoteIntoCache(date, candidate, allQuotes, tracker);
+                insertQuoteIntoCache(date, candidate, quoteState);
               }
             });
           } catch (err) {
@@ -209,8 +228,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           return;
         }
 
-        await writeConf("cache_quote_of_the_day", allQuotes);
-        await writeConf("cache_quote_tracker", tracker);
+        await writeConf("cache_quote_state", quoteState);
 
         const unresolved = computeMissingDates(dates, bingImagesForMissing, allQuotes);
         await writeConf("lost_quotes", unresolved);

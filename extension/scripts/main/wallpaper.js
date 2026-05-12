@@ -721,9 +721,15 @@ function normalizeQuoteForRender(rawQuote) {
 	};
 }
 
+function getCachedQuotesFromState(state = readConf('cache_quote_state')) {
+	return state && typeof state === 'object' && state.quotes && typeof state.quotes === 'object'
+		? state.quotes
+		: {};
+}
+
 // Quote cache is the live sync source. Use it over embedded bing_images.quoteData
-// when present; fall back to embedded quoteData for freshly fetched or legacy data.
-function getImageWithCachedQuote(image, quoteCache = readConf('cache_quote_of_the_day') || {}) {
+// when present; fall back to embedded quoteData for freshly fetched data.
+function getImageWithCachedQuote(image, quoteCache = getCachedQuotesFromState()) {
 	if (!image || typeof image !== 'object') return image;
 	const cachedQuote = normalizeQuoteForRender(quoteCache?.[image.isoDate]);
 	if (!cachedQuote) return image;
@@ -731,7 +737,7 @@ function getImageWithCachedQuote(image, quoteCache = readConf('cache_quote_of_th
 }
 
 function mergeCachedQuotesIntoImages(images) {
-	const cachedQuotes = readConf('cache_quote_of_the_day') || {};
+	const cachedQuotes = getCachedQuotesFromState();
 	if (!Array.isArray(images) || !cachedQuotes) return [];
 	images.forEach((img) => {
 		if (!img || typeof img !== 'object') return;
@@ -891,7 +897,9 @@ function updateQuoteOnly(image, quoteCache) {
 async function refreshCurrentQuoteFromStorage() {
 	const images = readConf('bing_images');
 	if (!Array.isArray(images) || images.length === 0) return;
-	const quoteCache = await readStorageKey('cache_quote_of_the_day') || readConf('cache_quote_of_the_day') || {};
+	// quotesUpdated can arrive before this page's confCache sees storage.onChanged.
+	// Fresh-read the quote state written by background before repainting.
+	const quoteCache = getCachedQuotesFromState(await readStorageKey('cache_quote_state'));
 	let image = null;
 	if (currentImageDate) {
 		image = images.find(img => img && img.isoDate === currentImageDate) || null;
