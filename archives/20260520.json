@@ -1,0 +1,46 @@
+{
+  "caption": "世界蜜蜂日",
+  "title": "熊蜂在授粉, 伍斯特, 英格兰",
+  "description": "一声轻柔的嗡嗡声，伴随着细微的花粉飞扬，足以塑造我们食物的未来。每年5月20日是“世界蜜蜂日”，这一节日旨在礼赞像图中这只大黄蜂一样的授粉昆虫，致敬它们那看似悄无声息却至关重要的辛勤工作。与许多昆虫不同，大黄蜂采用一种独特的“振动授粉”方式——通过振动飞行肌，将花粉从花朵中抖落出来；对于番茄、辣椒和蓝莓等农作物而言，这种授粉方式至关重要。",
+  "copyright": "© SimonEastwood87/Shutterstock",
+  "date": "2026 5月 20",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e8%9c%9c%e8%9c%82%e6%97%a5&form=hpcapt&filters=HpDate:\"20260519_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BumbleBee_ZH-CN6429376340_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BumbleBee_ZH-CN6429376340_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BumbleBee_ZH-CN6429376340_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BumbleBee_ZH-CN6429376340_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BumbleBee_ZH-CN6429376340_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BumbleBee_ZH-CN6429376340_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "蜜蜂及其他授粉昆虫为全球超过75%的主要粮食作物做出了贡献，不仅提高了产量，也改善了品质。鉴于其重要性，联合国于2018年设立了“世界蜜蜂日”，旨在唤起人们对其所发挥作用的关注，并警示它们正面临着从栖息地丧失到气候变化等日益严峻的威胁。",
+  "descriptionPara3": "全球拥有超过两万种蜜蜂——其中绝大多数为野生种类——因此，保护​​授粉昆虫也意味着守护整个生态系统。每一次造访花朵——正如眼前这一幕——都在为生物多样性提供支持，并以每一次振翅的微小力量，助力维持粮食系统的韧性。",
+  "isoDate": "20260520",
+  "headline": "喧闹从这里开始",
+  "quickFact": "蜜蜂有五只眼睛——两只大的，以及三只位于头部中央的小眼睛。",
+  "triviaId": "HPQuiz_20260520_BumbleBee",
+  "triviaData": {
+    "question": "哪种作物从熊蜂振动授粉中获益最大？",
+    "options": [
+      {
+        "text": "西红柿",
+        "url": "/search?q=%E8%A5%BF%E7%BA%A2%E6%9F%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260520_BumbleBee%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ西红柿",
+        "bullet": "A"
+      },
+      {
+        "text": "大米",
+        "url": "/search?q=%E8%A5%BF%E7%BA%A2%E6%9F%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260520_BumbleBee%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ西红柿",
+        "bullet": "B"
+      },
+      {
+        "text": "小麦",
+        "url": "/search?q=%E8%A5%BF%E7%BA%A2%E6%9F%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260520_BumbleBee%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ西红柿",
+        "bullet": "C"
+      }
+    ]
+  }
+}
