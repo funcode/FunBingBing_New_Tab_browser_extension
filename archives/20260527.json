@@ -1,0 +1,46 @@
+{
+  "caption": "世界水獭日",
+  "title": "海獭，霍默卡奇马克湾，阿拉斯加州，美国",
+  "description": "在世界水獭日这一天，不妨看看这只在美国阿拉斯加卡奇马克湾水域中畅游的小可爱！水獭是极具魅力的动物，在维持生态系统健康方面发挥着关键作用。在水獭专家组（OSG）的支持下——这一致力于保护全部14种水獭的全球专业网络——这一纪念日强调了水獭对自然环境的重要贡献。它们以活泼的行为和出色的智慧著称，也是水域健康的重要指示物种。然而，随着栖息地减少和污染加剧，水獭正面临日益严峻的生存挑战。",
+  "copyright": "© roclwyr/Getty Images",
+  "date": "2026 5月 27",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e6%b0%b4%e7%8d%ad%e6%97%a5&form=hpcapt&filters=HpDate:\"20260526_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.OtterDay_ZH-CN7735013625_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.OtterDay_ZH-CN7735013625_UHD.jpg",
+      "wallpaper": "/th?id=OHR.OtterDay_ZH-CN7735013625_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.OtterDay_ZH-CN7735013625_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.OtterDay_ZH-CN7735013625_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.OtterDay_ZH-CN7735013625_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "海獭在沿海生态系统中尤为重要，它们与海藻森林之间的关系，使其被称为“气候英雄”。海獭通过捕食海胆来维持海藻的生长，否则海胆会大量啃食这些褐藻，而这些海藻正是众多海洋生物赖以栖息和获取食物的重要基础。",
+  "descriptionPara3": "它们的存在不仅对维持生物多样性至关重要，也在应对气候变化方面发挥着关键作用。健康的海藻森林能够吸收并储存碳，同时保护海岸线免受侵蚀。保护这些富有魅力的海獭，也就意味着守护地球脆弱的沿海生态环境的未来。",
+  "isoDate": "20260527",
+  "headline": "它们“獭”独一无二",
+  "quickFact": "世界水獭日在每年5月的最后一个星期三举行，旨在提升全球对水獭保护的关注。",
+  "triviaId": "HPQuiz_20260527_OtterDay",
+  "triviaData": {
+    "question": "哪一个美国海湾因有游泳的海獭而闻名？",
+    "options": [
+      {
+        "text": "卡切马克湾",
+        "url": "/search?q=%E5%8D%A1%E5%88%87%E9%A9%AC%E5%85%8B%E6%B9%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260527_OtterDay%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ卡切马克湾",
+        "bullet": "A"
+      },
+      {
+        "text": "蒙特雷湾",
+        "url": "/search?q=%E5%8D%A1%E5%88%87%E9%A9%AC%E5%85%8B%E6%B9%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260527_OtterDay%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ卡切马克湾",
+        "bullet": "B"
+      },
+      {
+        "text": "冰川湾",
+        "url": "/search?q=%E5%8D%A1%E5%88%87%E9%A9%AC%E5%85%8B%E6%B9%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260527_OtterDay%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ卡切马克湾",
+        "bullet": "C"
+      }
+    ]
+  }
+}
