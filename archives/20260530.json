@@ -1,0 +1,46 @@
+{
+  "caption": "纳米比亚埃托沙国家公园的平原斑马幼崽",
+  "title": "平原斑马幼崽，埃托沙国家公园，纳米比亚",
+  "description": "平原斑马身上鲜明的黑白条纹并不只是装饰，它们能够干扰捕食者的视觉判断，让猎手难以锁定单独个体。每只斑马的纹路都独一无二，但当它们聚集行动时，交错的条纹会形成复杂的视觉迷阵，增加捕食难度。这种生存策略十分有效。如今，数十万只平原斑马分布于非洲各地，在埃托沙等自然保护区中依然维持着稳定数量。",
+  "copyright": "© Sharon Heald/Nature Picture Library",
+  "date": "2026 5月 30",
+  "clickUrl": "/search?q=%e5%b9%b3%e5%8e%9f%e6%96%91%e9%a9%ac&form=hpcapt&filters=HpDate:\"20260529_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.EquusQuagga_ZH-CN9323988132_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.EquusQuagga_ZH-CN9323988132_UHD.jpg",
+      "wallpaper": "/th?id=OHR.EquusQuagga_ZH-CN9323988132_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.EquusQuagga_ZH-CN9323988132_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.EquusQuagga_ZH-CN9323988132_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.EquusQuagga_ZH-CN9323988132_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "对于平原斑马来说，群体协作同样重要。它们会通过观察环境、保持队形以及紧密行动来提高警觉性与生存概率。当斑马群一同穿越草原时，整齐流动的条纹不仅形成独特景观，也成为它们抵御天敌的重要天然屏障。",
+  "descriptionPara3": "",
+  "isoDate": "20260530",
+  "headline": "读懂黑白之间",
+  "quickFact": "平原斑马幼崽幼崽刚出生时，身上的条纹通常呈棕白色，而不是成年斑马鲜明的黑白配色。随着成长，它们的条纹会逐渐加深，更适合融入非洲干燥草原的自然环境。",
+  "triviaId": "HPQuiz_20260530_EquusQuagga",
+  "triviaData": {
+    "question": "平原斑马条纹的主要作用是什么？",
+    "options": [
+      {
+        "text": "伪装",
+        "url": "/search?q=%E8%A7%86%E8%A7%89%E6%B7%B7%E4%B9%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260530_EquusQuagga%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ视觉混乱",
+        "bullet": "A"
+      },
+      {
+        "text": "温度控制",
+        "url": "/search?q=%E8%A7%86%E8%A7%89%E6%B7%B7%E4%B9%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260530_EquusQuagga%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ视觉混乱",
+        "bullet": "B"
+      },
+      {
+        "text": "视觉混乱",
+        "url": "/search?q=%E8%A7%86%E8%A7%89%E6%B7%B7%E4%B9%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260530_EquusQuagga%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ视觉混乱",
+        "bullet": "C"
+      }
+    ]
+  }
+}
