@@ -1,0 +1,46 @@
+{
+  "caption": "退潮时裸露在乌尔萨海滩海岸上的帽贝, 葡萄牙",
+  "title": "退潮时裸露在乌尔萨海滩海岸上的帽贝, 葡萄牙",
+  "description": "乌尔萨海滩（Praia da Ursa）深藏在欧洲大陆最西端——罗卡角（Cabo da Roca）附近的陡峭悬崖之下，置身其中，仿佛来到了大陆的尽头。沿着一条狭窄崎岖的小径便可抵达这片隐秘的沙滩。在葡萄牙的大西洋沿岸，风、岩石与惊涛骇浪共同塑造了这里的地貌。当潮水退去，海岸线短暂地变得宽阔，平滑的岩石显露出来，随之而来的还有微小的生命迹象。帽贝紧紧贴在裸露的岩石上，在海浪平日拍打的地方顽强地驻守。",
+  "copyright": "© Theo Bosboom/Nature Picture Library",
+  "date": "2026 6月 11",
+  "clickUrl": "/search?q=%e8%91%a1%e8%90%84%e7%89%99%e4%b9%8c%e5%b0%94%e8%90%a8%e6%b5%b7%e6%bb%a9&form=hpcapt&filters=HpDate:\"20260610_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.Limpets_ZH-CN4991771513_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.Limpets_ZH-CN4991771513_UHD.jpg",
+      "wallpaper": "/th?id=OHR.Limpets_ZH-CN4991771513_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.Limpets_ZH-CN4991771513_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.Limpets_ZH-CN4991771513_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.Limpets_ZH-CN4991771513_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这些其貌不扬的海螺已完全适应了此地的环境：它们凭借强劲的吸附力与低矮的螺壳，从容抵御着海浪的冲击、气温的骤变以及长时间的离水曝晒。每逢涨潮或被海水淹没之时，它们便以海藻为食；待潮水退去，又会回到各自熟悉的栖息之地。乌尔萨海滩（Praia da Ursa）地处偏僻，正因如此，这些细微的瞬间往往容易被游人忽略，而一旦留心察觉，便会倍感惊喜与充实。在这片以宏大尺度与磅礴力量为主调的海岸景观中，哪怕是最微小的幸存者，亦折射出了大西洋海岸那份宁静而坚韧的生命力。",
+  "descriptionPara3": "",
+  "isoDate": "20260611",
+  "headline": "沉静的力量",
+  "quickFact": "这片海滩的名字“乌尔萨”（熊）源于当地的一个神话。传说中，一只母熊在冰川融化期间拒绝离开海岸；众神将她变成了石头，让她永远留在那里。",
+  "triviaId": "HPQuiz_20260611_Limpets",
+  "triviaData": {
+    "question": "哪种自然能力帮助帽贝抵御强浪？",
+    "options": [
+      {
+        "text": "伪装",
+        "url": "/search?q=%E5%90%B8%E9%99%84&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260611_Limpets%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ吸附",
+        "bullet": "A"
+      },
+      {
+        "text": "跳跃",
+        "url": "/search?q=%E5%90%B8%E9%99%84&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260611_Limpets%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ吸附",
+        "bullet": "B"
+      },
+      {
+        "text": "吸附",
+        "url": "/search?q=%E5%90%B8%E9%99%84&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260611_Limpets%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ吸附",
+        "bullet": "C"
+      }
+    ]
+  }
+}
