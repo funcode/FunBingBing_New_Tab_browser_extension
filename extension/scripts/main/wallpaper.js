@@ -3,6 +3,8 @@ const WALLPAPER_FETCH_LOCK_KEY = 'wallpaper_fetch_lock';
 const WALLPAPER_FETCH_LOCK_TTL_MS = 30_000;
 let currentWallpaperObjectUrl = null;
 let currentImageDate = null;
+let currentTransientQuoteDate = null;
+let currentTransientQuote = null;
 
 function paintPreloadedWallpaperIfAvailable() {
 	try {
@@ -447,7 +449,6 @@ async function handleBingDataResults(results) {
 
 	// --- Async task: Handle Quote of the Day ---
 	const quoteTask = async () => {
-		images[0].quoteData = getDefaultQuotePlaceholderData();
 		// --- Scrape Quote of the Day ---
 		// --- The 2 functions below are adapted from FunBingBing repo ---
 		const selectFirst = (doc, selectors) => {
@@ -498,7 +499,7 @@ async function handleBingDataResults(results) {
 				const doc = parser.parseFromString(results.quoteOfTheDay, "text/html");
 				let { text: quoteText, author: authorText, authorHref, caption: authorCaption } = extractQuote(doc);
 				if (quoteText && authorText) {
-					images[0].quoteData = {
+					return {
 						text: quoteText,
 						source: authorText,
 						link: authorHref,
@@ -509,6 +510,7 @@ async function handleBingDataResults(results) {
 				console.error("Error parsing quote of the day HTML:", e);
 			}
 		}
+		return null;
 
 	};
 
@@ -566,13 +568,19 @@ async function handleBingDataResults(results) {
 		writeConf("cache_quick_facts", results.quickFactsBySsd);
 	};
 
-	// --- Execute both async tasks in parallel ---
-	await Promise.all([triviaFetch(), quickFactsUpdate(), quoteTask()]);
+	// --- Execute all async tasks in parallel ---
+	const [, , todayQuote] = await Promise.all([triviaFetch(), quickFactsUpdate(), quoteTask()]);
 
-	mergeCachedQuotesIntoImages(images);
-	const quoteSyncPayload = buildQuoteSyncPayload(images);
+	setTransientQuote(images[0].isoDate, todayQuote);
+	const quoteSyncPayload = buildQuoteSyncPayload(images, todayQuote);
 
-	// --- Save merged images ---
+	images.forEach((img) => {
+		if (img && typeof img === 'object') {
+			delete img.quoteData;
+		}
+	});
+
+	// --- Save image metadata; quotes are persisted only in cache_quote_state ---
 	await writeConf("bing_images", images);
 	console.log("Saved bing_images with merged contents.");
 
@@ -727,32 +735,36 @@ function getCachedQuotesFromState(state = readConf('cache_quote_state')) {
 		: {};
 }
 
-// Quote cache is the live sync source. Use it over embedded bing_images.quoteData
-// when present; fall back to embedded quoteData for freshly fetched data.
-function getImageWithCachedQuote(image, quoteCache = getCachedQuotesFromState()) {
-	if (!image || typeof image !== 'object') return image;
-	const cachedQuote = normalizeQuoteForRender(quoteCache?.[image.isoDate]);
-	if (!cachedQuote) return image;
-	return { ...image, quoteData: cachedQuote };
+function setTransientQuote(date, quote) {
+	const normalizedQuote = normalizeQuoteForRender(quote);
+	if (!date || !normalizedQuote) {
+		if (date && currentTransientQuoteDate === date) {
+			currentTransientQuoteDate = null;
+			currentTransientQuote = null;
+		}
+		return;
+	}
+	currentTransientQuoteDate = date;
+	currentTransientQuote = normalizedQuote;
 }
 
-function mergeCachedQuotesIntoImages(images) {
-	const cachedQuotes = getCachedQuotesFromState();
-	if (!Array.isArray(images) || !cachedQuotes) return [];
-	images.forEach((img) => {
-		if (!img || typeof img !== 'object') return;
-		const existingQuote = normalizeQuoteForRender(img.quoteData);
-		if (existingQuote) return;
-		const isoDate = img.isoDate;
-		if (!isoDate || !cachedQuotes[isoDate]) return;
-		const cachedQuote = normalizeQuoteForRender(cachedQuotes[isoDate]);
-		if (!cachedQuote) return;
-		img.quoteData = cachedQuote;
-	});
-	return;
+function clearTransientQuote(date) {
+	if (date && currentTransientQuoteDate === date) {
+		currentTransientQuoteDate = null;
+		currentTransientQuote = null;
+	}
 }
 
-function buildQuoteSyncPayload(images) {
+function getQuoteForImage(image, quoteCache = getCachedQuotesFromState()) {
+	if (!image || typeof image !== 'object') return null;
+	if (image.isoDate && image.isoDate === currentTransientQuoteDate) {
+		const transientQuote = normalizeQuoteForRender(currentTransientQuote);
+		if (transientQuote) return transientQuote;
+	}
+	return normalizeQuoteForRender(quoteCache?.[image.isoDate]);
+}
+
+function buildQuoteSyncPayload(images, todayQuote) {
 	if (!Array.isArray(images) || images.length === 0) return null;
 	const imageDates = images
 		.map((img) => (img && typeof img.isoDate === 'string' ? img.isoDate : null))
@@ -762,7 +774,7 @@ function buildQuoteSyncPayload(images) {
 		type: 'syncQuotesForImages',
 		requestId: Date.now(),
 		todayDate: images[0]?.isoDate,
-		todayQuote: images[0]?.quoteData,
+		todayQuote,
 		imageDates
 	};
 }
@@ -789,7 +801,7 @@ function fireQuoteSync(payload) {
 
 function setContents(image, options = {}) {
 	if (!image) return;
-	image = getImageWithCachedQuote(image);
+	const quoteData = getQuoteForImage(image);
 	const preserveUpdatingHeadline = Boolean(options?.preserveUpdatingHeadline);
 
 	// --- Format date helper ---
@@ -885,13 +897,12 @@ function setContents(image, options = {}) {
 		});
 	}
 	// --- Populate quote of the day blocks ---
-	renderQuoteSection(image.quoteData || null);
+	renderQuoteSection(quoteData || null);
 }
 
 function updateQuoteOnly(image, quoteCache) {
 	if (!image) return;
-	const imageWithQuote = getImageWithCachedQuote(image, quoteCache);
-	renderQuoteSection(imageWithQuote.quoteData || null);
+	renderQuoteSection(getQuoteForImage(image, quoteCache));
 }
 
 async function refreshCurrentQuoteFromStorage() {
@@ -902,6 +913,9 @@ async function refreshCurrentQuoteFromStorage() {
 	const quoteCache = getCachedQuotesFromState(await readStorageKey('cache_quote_state'));
 	let image = null;
 	if (currentImageDate) {
+		if (normalizeQuoteForRender(quoteCache[currentImageDate])) {
+			clearTransientQuote(currentImageDate);
+		}
 		image = images.find(img => img && img.isoDate === currentImageDate) || null;
 	}
 	//TODO: Remove fallback to current index once we have a more robust way to correlate quote updates with the correct image

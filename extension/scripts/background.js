@@ -20,6 +20,7 @@ chrome.runtime.onInstalled.addListener(function (object) {
 });
 
 const DEFAULT_LOST_QUOTES_URL = null;
+const QUOTE_CACHE_SLOTS = 8;
 const LOST_QUOTES_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 let latestQuoteSyncRequestId = 0;
@@ -117,13 +118,19 @@ function getQuoteState() {
   return quoteState;
 }
 
-function insertQuoteIntoCache(date, quote, quoteState) {
+function insertQuoteIntoCache(date, quote, quoteState, options = {}) {
   const normalizedQuote = normalizeQuotePayload(quote);
   if (!date || !normalizedQuote) return false;
   const allQuotes = quoteState.quotes;
   const tracker = quoteState.tracker;
-  if (!allQuotes[date]) {
-    tracker.last = (tracker.last % 8) + 1;
+  if (allQuotes[date]) {
+    if (options.replaceExisting) {
+      allQuotes[date] = normalizedQuote;
+      return true;
+    }
+    return false;
+  } else {
+    tracker.last = (tracker.last % QUOTE_CACHE_SLOTS) + 1;
     const slot = tracker.last;
     const oldKey = tracker[slot];
     if (oldKey && allQuotes[oldKey]) {
@@ -133,28 +140,17 @@ function insertQuoteIntoCache(date, quote, quoteState) {
     tracker[slot] = date;
     return true;
   }
-  return false;
 }
 
-function computeMissingDates(imageDates, bingImages, allQuotes) {
+function computeMissingDates(imageDates, allQuotes) {
   const missing = new Set();
   const quoteMap = allQuotes || {};
-  const imagesByDate = new Map();
-  if (Array.isArray(bingImages)) {
-    bingImages.forEach((img) => {
-      if (img && typeof img.isoDate === "string") {
-        imagesByDate.set(img.isoDate, img);
-      }
-    });
-  }
 
   (imageDates || []).forEach((date) => {
     if (typeof date !== "string" || !date.trim()) return;
     const cachedQuote = normalizeQuotePayload(quoteMap[date]);
     if (cachedQuote) return;
-    const img = imagesByDate.get(date);
-    const existing = img ? normalizeQuotePayload(img.quoteData) : null;
-    if (!existing) missing.add(date);
+    missing.add(date);
   });
 
   return Array.from(missing);
@@ -180,15 +176,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         const quoteState = getQuoteState();
         const allQuotes = quoteState.quotes;
-        const storedBingImages = await readStorageKey("bing_images");
-        const bingImagesForMissing = Array.isArray(storedBingImages)
-          ? storedBingImages
-          : [];
 
         const quoteMapForPatch = {};
 
         if (todayDate) {
-          const inserted = insertQuoteIntoCache(todayDate, todayQuote, quoteState);
+          const inserted = insertQuoteIntoCache(todayDate, todayQuote, quoteState, { replaceExisting: true });
           const normalizedTodayQuote = normalizeQuotePayload(todayQuote);
           if (inserted || normalizedTodayQuote) {
             quoteMapForPatch[todayDate] = normalizedTodayQuote || allQuotes[todayDate];
@@ -196,7 +188,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         }
 
         const dates = Array.isArray(imageDates) ? imageDates.filter(d => typeof d === "string" && d.trim()) : [];
-        const missingDates = computeMissingDates(dates, bingImagesForMissing, allQuotes);
+        const missingDates = computeMissingDates(dates, allQuotes);
 
         if (missingDates.length > 0) {
           try {
@@ -230,7 +222,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         await writeConf("cache_quote_state", quoteState);
 
-        const unresolved = computeMissingDates(dates, bingImagesForMissing, allQuotes);
+        const unresolved = computeMissingDates(dates, allQuotes);
         await writeConf("lost_quotes", unresolved);
 
         const updatedDates = Object.keys(quoteMapForPatch);
