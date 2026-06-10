@@ -1,0 +1,46 @@
+{
+  "caption": "拱门与银河, 阿拉巴马山, 内华达山脉, 加利福尼亚州,",
+  "title": "拱门与银河, 阿拉巴马山, 内华达山脉, 加利福尼亚州, 美国",
+  "description": "在今天这张照片中，阿拉巴马山的花岗岩拱门将银河框入加州东部内华达山脉崎岖的地貌之中。这片区域以其圆润的巨石和风化的岩层而闻名，大约在1亿年前由火山活动形成。水和风逐渐将岩石塑造成如今光滑的形状。游客可以探索天然拱门，在岩石间徒步，拍摄独特的景观，骑马或骑山地自行车，并欣赏季节性的野花盛开。",
+  "copyright": "© Tim Fitzharris/Minden Pictures",
+  "date": "2026 5月 13",
+  "clickUrl": "/search?q=%e9%98%bf%e6%8b%89%e5%b7%b4%e9%a9%ac%e5%b1%b1&form=hpcapt&filters=HpDate:\"20260512_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AlabamaHills_ZH-CN1387018045_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AlabamaHills_ZH-CN1387018045_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AlabamaHills_ZH-CN1387018045_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AlabamaHills_ZH-CN1387018045_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AlabamaHills_ZH-CN1387018045_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AlabamaHills_ZH-CN1387018045_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "由于光污染极少，这些山丘是观星和夜间摄影的热门地点。在晴朗的夜晚，构成我们银河系的密集星带肉眼可见。虽然如今这里看起来像一片宁静的沙漠，但这片地形却在银幕上扮演过许多角色。自20世纪20年代以来，数百部电影和电视剧都曾以这些山丘为背景，拍摄西部片和科幻冒险片，其中包括格里高利·派克主演的《黄沙》、昆汀·塔伦蒂诺执导的《被解救的姜戈》以及乔恩·费儒执导的漫威经典之作《钢铁侠》。",
+  "descriptionPara3": "",
+  "isoDate": "20260513",
+  "headline": "银河系，摇滚吧！",
+  "quickFact": "在这片干旱的土地上，翠绿的沙漠橄榄）、黄柳和芦苇竞相绽放。",
+  "triviaId": "HPQuiz_20260513_AlabamaHills",
+  "triviaData": {
+    "question": "哪种自然过程塑造了阿拉巴马丘陵的光滑巨石？",
+    "options": [
+      {
+        "text": "冰川",
+        "url": "/search?q=%E9%A3%8E%E4%B8%8E%E6%B0%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260513_AlabamaHills%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "风与水",
+        "url": "/search?q=%E9%A3%8E%E4%B8%8E%E6%B0%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260513_AlabamaHills%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "冰蚀",
+        "url": "/search?q=%E9%A3%8E%E4%B8%8E%E6%B0%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260513_AlabamaHills%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

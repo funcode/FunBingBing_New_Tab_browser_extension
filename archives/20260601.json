@@ -1,0 +1,46 @@
+{
+  "caption": "巴勒莫，西西里岛，意大利",
+  "title": "巴勒莫暮色下的天际线，西西里岛，意大利",
+  "description": "巴勒莫（Palermo）坐落于意大利南部，是西西里岛的首府。这是一座历史、艺术与文化交织的城市，呈现出一种生动且带有几分繁杂之美的和谐。它由腓尼基人始建，后历经罗马人、阿拉伯人、诺曼人及西班牙人的雕琢，承载了地中海沿岸诸多文明迁移的印记。这种厚重的历史底蕴在建筑中清晰可见：从被联合国教科文组织（UNESCO）列入名录的阿拉伯-诺曼式宫殿与教堂，到勾勒出历史街区轮廓的巴洛克式立面，无不昭示着往昔的辉煌。",
+  "copyright": "© Sean Pavone/Getty Images",
+  "date": "2026 6月 1",
+  "clickUrl": "/search?q=%e6%84%8f%e5%a4%a7%e5%88%a9%e5%b7%b4%e5%8b%92%e8%8e%ab&form=hpcapt&filters=HpDate:\"20260531_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.OlivaPalermo_ZH-CN9639920195_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.OlivaPalermo_ZH-CN9639920195_UHD.jpg",
+      "wallpaper": "/th?id=OHR.OlivaPalermo_ZH-CN9639920195_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.OlivaPalermo_ZH-CN9639920195_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.OlivaPalermo_ZH-CN9639920195_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.OlivaPalermo_ZH-CN9639920195_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在巴勒莫，艺术与传统自然地融入了日常生活，在巴拉罗（Ballarò）和武奇里亚（Vucciria）等熙攘的集市中表现尤为显著——斑斓的色彩、叫卖声与香气交织出一种令人难忘的氛围。巴勒莫亦是一座“风味之城”，以其独特的街头饮食文化闻名遐迩。从炸饭团（arancine）、鹰嘴豆饼（panelle）到甜美的奶油甜馅煎饼卷（cannoli），每一道珍馐都折射出数世纪以来的文化融合。城市依山傍海，历史并非禁锢于博物馆墙内，而是鲜活地流淌在街道、饮食以及居民的血脉之中。",
+  "descriptionPara3": "",
+  "isoDate": "20260601",
+  "headline": "历史的况味",
+  "quickFact": "您知道吗？巴勒莫的马西莫剧院（Teatro Massimo）是意大利最大的歌剧院。它以近乎完美的音效闻名于世，同时也是电影《教父3》那段震撼人心的结尾戏的取景地。",
+  "triviaId": "HPQuiz_20260601_OlivaPalermo",
+  "triviaData": {
+    "question": "哪个岛屿以巴勒莫为其地区首府？",
+    "options": [
+      {
+        "text": "西西里",
+        "url": "/search?q=%E8%A5%BF%E8%A5%BF%E9%87%8C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260601_OlivaPalermo%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ西西里",
+        "bullet": "A"
+      },
+      {
+        "text": "撒丁岛",
+        "url": "/search?q=%E8%A5%BF%E8%A5%BF%E9%87%8C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260601_OlivaPalermo%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ西西里",
+        "bullet": "B"
+      },
+      {
+        "text": "厄尔巴",
+        "url": "/search?q=%E8%A5%BF%E8%A5%BF%E9%87%8C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260601_OlivaPalermo%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ西西里",
+        "bullet": "C"
+      }
+    ]
+  }
+}

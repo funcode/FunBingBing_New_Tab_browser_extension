@@ -1,0 +1,46 @@
+{
+  "caption": "三峰自然公园，意大利",
+  "title": "三峰自然公园，南蒂罗尔，意大利",
+  "description": "“欧洲公园日”旨在庆祝欧洲大陆上的自然保护区，并纪念1909年欧洲首批国家公园的诞生。这一节日提醒着世人：现今诸多最具代表性的自然景观，皆得益于长期的生态保育努力。今日的影像向我们展示了这一文化遗产的典范——位于意大利北部的三峰自然公园。",
+  "copyright": "© Adisorn Fineday Chutikunakorn/Getty Images",
+  "date": "2026 5月 24",
+  "clickUrl": "/search?q=%e6%84%8f%e5%a4%a7%e5%88%a9%e4%b8%89%e5%b3%b0%e8%87%aa%e7%84%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260523_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.DolomitesPark_ZH-CN7134423478_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.DolomitesPark_ZH-CN7134423478_UHD.jpg",
+      "wallpaper": "/th?id=OHR.DolomitesPark_ZH-CN7134423478_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.DolomitesPark_ZH-CN7134423478_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.DolomitesPark_ZH-CN7134423478_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.DolomitesPark_ZH-CN7134423478_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "该公园设立于1981年，坐落于多洛米蒂山脉之中。多洛米蒂山脉因其卓越的地质特征被列入《世界自然遗产名录》。公园内最负盛名的景观当属拉瓦莱多三峰（Tre Cime di Lavaredo）：这三座巍峨的白云岩峰丛，从高山草甸中拔地而起。其陡峭的绝壁使其成为了阿尔卑斯山脉辨识度最高的地标之一。",
+  "descriptionPara3": "三峰自然公园的建立旨在保护脆弱的高山生态系统，在自然保育与适度开发之间寻求平衡。修缮良好的步道引导游客穿行于景观之中，而对开发建设的严格限制则有效地保护了本土野生动物及该地区原始荒野的面貌。“欧洲公园日”时刻提醒我们，唯有坚持将生态保护放在首位，这些圣地才能经久不衰。",
+  "isoDate": "20260524",
+  "headline": "守护欧洲的自然净土",
+  "quickFact": "尽管这里以卓越的地质特征闻名，但它也承载着黑暗的历史。第一次世界大战期间，这片崎岖的景观曾是意大利和奥匈帝国军队展开残酷壕沟战的最前线，双方士兵曾在皑皑峰峦间忍受战火与雪崩的双重考验。",
+  "triviaId": "HPQuiz_20260524_DolomitesPark",
+  "triviaData": {
+    "question": "哪座意大利山脉有拉瓦雷多三峰？",
+    "options": [
+      {
+        "text": "亚平宁山脉",
+        "url": "/search?q=%E5%A4%9A%E6%B4%9B%E7%B1%B3%E8%92%82%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260524_DolomitesPark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ多洛米蒂山脉",
+        "bullet": "A"
+      },
+      {
+        "text": "阿尔卑斯山",
+        "url": "/search?q=%E5%A4%9A%E6%B4%9B%E7%B1%B3%E8%92%82%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260524_DolomitesPark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ多洛米蒂山脉",
+        "bullet": "B"
+      },
+      {
+        "text": "多洛米蒂山脉",
+        "url": "/search?q=%E5%A4%9A%E6%B4%9B%E7%B1%B3%E8%92%82%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260524_DolomitesPark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ多洛米蒂山脉",
+        "bullet": "C"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "caption": "国际博物馆日",
+  "title": "伦敦自然历史博物馆, 英格兰",
+  "description": "当你步入博物馆，时光仿佛瞬间流转。一枚化石，诉说着数百万年前生命的印迹；一颗宝石，映照着肉眼难见的沧海桑田。正是这种深切的联结感，构成了“国际博物馆日”——这一由国际博物馆协会于1977年创立的节日——所旨在颂扬的核心精神。",
+  "copyright": "© Colm Keating/Tandem Stills + Motion",
+  "date": "2026 5月 18",
+  "clickUrl": "/search?q=%e5%9b%bd%e9%99%85%e5%8d%9a%e7%89%a9%e9%a6%86%e6%97%a5&form=hpcapt&filters=HpDate:\"20260517_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MuseumLondon_ZH-CN5602977820_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MuseumLondon_ZH-CN5602977820_UHD.jpg",
+      "wallpaper": ""
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MuseumLondon_ZH-CN5602977820_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MuseumLondon_ZH-CN5602977820_1080x1920.jpg",
+      "wallpaper": ""
+    }
+  },
+  "descriptionPara2": "位于伦敦的自然历史博物馆始建于1881年，步入其中，那些令人惊叹的时刻便会接踵而至。这座建筑采用罗马式复兴风格，其设计巧妙地融入了自然形态；馆内展区则划分为四个以颜色区分的区域，按主题对展厅进行了归类。如今，馆内收藏着逾8000万件标本，涵盖植物学、动物学、矿物学及古生物学等多个领域。其中，博物馆的恐龙展厅以及悬挂在欣策大厅（Hintze Hall）上方、名为“希望”（Hope）的巨型蓝鲸骨架，堪称该馆最具代表性的展品。",
+  "descriptionPara3": "究竟是什么吸引着人们——是好奇心，还是怀旧情怀？博物馆将抽象的概念转化为触手可及的实物，供你亲眼观赏并探究追问。从科学纪录片到《博物馆奇妙夜》一类的电影，它们都在提醒我们：探索之旅绝非止步于教科书之中——当你迈入博物馆大门的那一刻，真正的探索才刚刚开始。",
+  "isoDate": "20260518",
+  "headline": "大厅里的希望",
+  "quickFact": "国际博物馆日（IMD）是由国际博物馆协会（ICOM）协调举办的国际性节日，于每年5月18日或前后举行。",
+  "triviaId": "HPQuiz_20260518_MuseumLondon",
+  "triviaData": {
+    "question": "and suddenly time shifts. A fossil hints at life millions of years ago. A gemstone reflects geological change you can't see. That sense of connection is exactly what International Museum Day",
+    "options": [
+      {
+        "text": "created in 1977 by the International Council of Museums",
+        "url": "/search?q=created+in+1977+by+the+International+Council+of+Museums&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260518_MuseumLondon%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZcreated in 1977 by the International Council of Museums",
+        "bullet": "A"
+      },
+      {
+        "text": "aims to celebrate.</br></br>At the Natural History Museum in London",
+        "url": "/search?q=created+in+1977+by+the+International+Council+of+Museums&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260518_MuseumLondon%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZcreated in 1977 by the International Council of Museums",
+        "bullet": "B"
+      },
+      {
+        "text": "which opened in 1881",
+        "url": "/search?q=created+in+1977+by+the+International+Council+of+Museums&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260518_MuseumLondon%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZcreated in 1977 by the International Council of Museums",
+        "bullet": "C"
+      }
+    ]
+  }
+}

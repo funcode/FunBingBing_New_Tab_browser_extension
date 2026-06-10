@@ -1,0 +1,46 @@
+{
+  "caption": "抹香鲸",
+  "title": "一群抹香鲸, 印度洋",
+  "description": "集智慧、力量与惊人的深潜本领于一身——抹香鲸绝不满足于浅层的生存。在这个“濒危物种日”，让我们一同认识这位胸怀大志、潜得更深的海洋巨兽。",
+  "copyright": "© Tony Wu/Nature Picture Library",
+  "date": "2026 5月 15",
+  "clickUrl": "/search?q=%e6%8a%b9%e9%a6%99%e9%b2%b8&form=hpcapt&filters=HpDate:\"20260514_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.EndangeredWhales_ZH-CN4053106967_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.EndangeredWhales_ZH-CN4053106967_UHD.jpg",
+      "wallpaper": "/th?id=OHR.EndangeredWhales_ZH-CN4053106967_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.EndangeredWhales_ZH-CN4053106967_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.EndangeredWhales_ZH-CN4053106967_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.EndangeredWhales_ZH-CN4053106967_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "抹香鲸拥有迄今为止记录到的最大脑部——重量可达20磅（约为人类脑重的五倍）。它们那硕大的头部约占体长的三分之一，内部储存着鲸蜡（spermaceti）；这是一种蜡状油脂，曾因可用于制作蜡烛和机械润滑而备受珍视。此外，它们还是潜水领域的纪录保持者，能够潜入超过3000英尺的深海，屏息长达90分钟以捕食鱿鱼。在深海之中，它们依靠回声定位发出的“咔嗒”声来导航捕猎；这些声波的强度可达约230分贝，使抹香鲸成为了地球上声音最响亮的动物。",
+  "descriptionPara3": "它们常呈垂直姿态小憩，每日进食量高达两吨，且喷气孔位置偏侧。它们生活在由雌性主导的群体之中，雄性则独自游荡；彼此间通过一种被称为“尾声”（codas）的咔嗒声模式进行交流。这些鲸类曾因其鲸油和龙涎香而遭捕杀，如今却面临着船只撞击、噪音干扰以及塑料污染的威胁。鲸类早已练就了深潜的绝技，而今，守护它们的未来不至沉沦，已成为我们义不容辞的责任。",
+  "isoDate": "20260515",
+  "headline": "鲸鱼，你会救我吗？",
+  "quickFact": "“Cachalot”一词常用于指代抹香鲸，源自一个古法语词汇，意为“大牙齿”。",
+  "triviaId": "HPQuiz_20260515_EndangeredWhales",
+  "triviaData": {
+    "question": "抹香鲸体内哪个器官是地球上最大的？",
+    "options": [
+      {
+        "text": "大脑",
+        "url": "/search?q=%E5%A4%A7%E8%84%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260515_EndangeredWhales%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ大脑",
+        "bullet": "A"
+      },
+      {
+        "text": "心",
+        "url": "/search?q=%E5%A4%A7%E8%84%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260515_EndangeredWhales%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ大脑",
+        "bullet": "B"
+      },
+      {
+        "text": "肝脏",
+        "url": "/search?q=%E5%A4%A7%E8%84%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260515_EndangeredWhales%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ大脑",
+        "bullet": "C"
+      }
+    ]
+  }
+}

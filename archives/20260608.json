@@ -1,0 +1,46 @@
+{
+  "caption": "世界海洋日",
+  "title": "在海洋中游动的狮鬃水母",
+  "description": "今天是世界海洋日，让我们跟随这种随波逐流的生物的脚步吧！想看看狮鬃水母吗？那就去寒冷的北方海域寻找吧。它的伞状体分为八个瓣状结构，伞状体下方垂着长长的触手和口腕。随着水流漂移，它身上的刺细胞会捕获浮游生物和小鱼。对人类来说，被蜇一下会很疼。每个人的反应都不一样，即使是搁浅在海里的触手也可能造成疼痛。所以，记住一条简单的原则：欣赏它，然后就不要打扰它。北极水域的一些狮鬃水母伞状体直径超过6英尺（约1.8米），但大多数目击到的都是风暴或强流过后靠近海岸的小型个体。",
+  "copyright": "© Alexander Semenov Images/Shutterstock",
+  "date": "2026 6月 8",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e6%b5%b7%e6%b4%8b%e6%97%a5&form=hpcapt&filters=HpDate:\"20260607_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.Cyanea_ZH-CN3858079050_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.Cyanea_ZH-CN3858079050_UHD.jpg",
+      "wallpaper": "/th?id=OHR.Cyanea_ZH-CN3858079050_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.Cyanea_ZH-CN3858079050_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.Cyanea_ZH-CN3858079050_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.Cyanea_ZH-CN3858079050_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "世界海洋日不是一场说教，而是一个提醒：海洋健康是一个环环相扣的链条，从浮游生物到捕食者，无一例外。减少一次性塑料的使用，支持更清洁的航运和捕鱼规则，并在你居住的地方支持栖息地保护。维护海洋的健康，野生动植物才能得以生存。",
+  "descriptionPara3": "",
+  "isoDate": "20260608",
+  "headline": "随波逐流",
+  "quickFact": "虽然大部分是水，但狮鬃水母的长度可达 120 英尺——甚至超过了蓝鲸。",
+  "triviaId": "HPQuiz_20260608_Cyanea",
+  "triviaData": {
+    "question": "哪片海域是狮鬃水母的栖息地？",
+    "options": [
+      {
+        "text": "北极海域",
+        "url": "/search?q=%E5%8C%97%E6%9E%81%E6%B5%B7%E5%9F%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260608_Cyanea%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ北极海域",
+        "bullet": "A"
+      },
+      {
+        "text": "珊瑚海",
+        "url": "/search?q=%E5%8C%97%E6%9E%81%E6%B5%B7%E5%9F%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260608_Cyanea%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ北极海域",
+        "bullet": "B"
+      },
+      {
+        "text": "印度洋",
+        "url": "/search?q=%E5%8C%97%E6%9E%81%E6%B5%B7%E5%9F%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260608_Cyanea%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ北极海域",
+        "bullet": "C"
+      }
+    ]
+  }
+}

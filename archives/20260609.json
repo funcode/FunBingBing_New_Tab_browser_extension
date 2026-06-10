@@ -1,0 +1,46 @@
+{
+  "caption": "韦尔纳扎, 五渔村, 利古里亚, 意大利",
+  "title": "韦尔纳扎, 五渔村, 利古里亚, 意大利",
+  "description": "韦尔纳扎是意大利利古里亚大区五渔村的一个海滨小镇。它围绕着该地区唯一的天然港口而建，自古以来就与大海紧密相连。韦尔纳扎最早的文字记载可追溯到1080年，当时它是一个设防的定居点和海上基地，后来成为热那亚共和国海岸防御体系的一部分。时至今日，小镇依然保留着昔日的风貌，多利亚城堡的遗址和俯瞰海湾的瞭望塔诉说着它的历史。在水边，矗立着圣玛格丽塔·安提阿教堂，这座教堂最早的文字记载可追溯到1318年，并在之后的几个世纪中不断扩建，如今教堂的钟楼俯瞰着港口。房屋和狭窄的街道上方，陡峭的梯田上种植着葡萄园和橄榄树，这些梯田是由一代又一代的工匠用石头精心雕琢而成，构成了五渔村国家公园的景观，而五渔村国家公园本身也是联合国教科文组织世界遗产的一部分。想象一下这里的餐前小酌：一杯当地白葡萄酒，港口景色尽收眼底，还有利古里亚的特色美食，如佛卡夏面包和罗勒香蒜酱——简直就是一张可以品尝的明信片。",
+  "copyright": "© Kelly Cheng/Getty Images",
+  "date": "2026 6月 9",
+  "clickUrl": "/search?q=%e6%84%8f%e5%a4%a7%e5%88%a9%e9%9f%a6%e5%b0%94%e7%ba%b3%e6%89%8e%e4%ba%94%e6%b8%94%e6%9d%91&form=hpcapt&filters=HpDate:\"20260608_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.CTNPVernazza_ZH-CN3971102271_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.CTNPVernazza_ZH-CN3971102271_UHD.jpg",
+      "wallpaper": "/th?id=OHR.CTNPVernazza_ZH-CN3971102271_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.CTNPVernazza_ZH-CN3971102271_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.CTNPVernazza_ZH-CN3971102271_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.CTNPVernazza_ZH-CN3971102271_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20260609",
+  "headline": "品尝日落",
+  "quickFact": "韦尔纳扎港湾的日落被认为是意大利最常被拍摄的景观之一。",
+  "triviaId": "HPQuiz_20260609_CTNPVernazza",
+  "triviaData": {
+    "question": "哪个利古里亚村庄拥有唯一的天然港口？",
+    "options": [
+      {
+        "text": "韦尔纳扎",
+        "url": "/search?q=%E9%9F%A6%E5%B0%94%E7%BA%B3%E6%89%8E&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260609_CTNPVernazza%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ韦尔纳扎",
+        "bullet": "A"
+      },
+      {
+        "text": "马纳罗拉",
+        "url": "/search?q=%E9%9F%A6%E5%B0%94%E7%BA%B3%E6%89%8E&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260609_CTNPVernazza%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ韦尔纳扎",
+        "bullet": "B"
+      },
+      {
+        "text": "里奥马焦雷",
+        "url": "/search?q=%E9%9F%A6%E5%B0%94%E7%BA%B3%E6%89%8E&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260609_CTNPVernazza%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ韦尔纳扎",
+        "bullet": "C"
+      }
+    ]
+  }
+}
