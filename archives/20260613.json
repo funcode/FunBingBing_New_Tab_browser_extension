@@ -1,0 +1,46 @@
+{
+  "caption": "南达科他州恶地国家公园的落日",
+  "title": "落日，恶地国家公园，南达科他州，美国",
+  "description": "层叠的嵴线横跨南达科他州的恶地国家公园。随着光影变幻，饱受侵蚀的山峰与沟谷悉数呈现在眼前，其间交织着粉红、灰白与金黄的岩层条带。时至今日，风力和流水仍在持续重塑这片地貌，不断剥蚀着质地松软的沉积岩，从而让数百万年的地球历史展露无遗。这些岩层分别由远古河流的沉积物、火山灰，以及该区域曾被浅海覆盖时期的沉积物交替堆积而成。",
+  "copyright": "© Troy Harrison/Getty Images",
+  "date": "2026 6月 13",
+  "clickUrl": "/search?q=%e6%81%b6%e5%9c%b0%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260612_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BadSunset_ZH-CN9050997938_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BadSunset_ZH-CN9050997938_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BadSunset_ZH-CN9050997938_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BadSunset_ZH-CN9050997938_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BadSunset_ZH-CN9050997938_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BadSunset_ZH-CN9050997938_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在这片崎岖不平的地表之下，埋藏着全球最丰富的化石群之一。这里保存了曾漫步于该区域的早期哺乳动物遗骸，例如古马类以及现代犀牛的近亲。然而，恶地国家公园不仅是一扇窥探过去的窗口。在当下，美洲野牛在开阔的普利里草原上觅食，大角羊在陡峭的嵴线间穿行，而黑尾土拨鼠则以活跃的集群形式聚居于草场之上。",
+  "descriptionPara3": "景观公路与观景点顺应着地形的起伏绵延，为访客提供了极目远眺的壮阔视野。即便在此时此刻，随着地貌的缓慢演变，那些尘封于过去的岩层仍在不断破土而出。",
+  "isoDate": "20260613",
+  "headline": "岁月的层峦",
+  "quickFact": "恶地公园的黄土丘揭示了 3400 万年前的一场重大气候剧变——当时的温暖海域逐渐干涸，演变为气候更凉爽的陆地地貌。",
+  "triviaId": "HPQuiz_20260613_BadSunset",
+  "triviaData": {
+    "question": "荒地国家公园以哪种岩石为主？",
+    "options": [
+      {
+        "text": "火成岩",
+        "url": "/search?q=%E6%B2%89%E7%A7%AF%E5%B2%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260613_BadSunset%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "沉积岩",
+        "url": "/search?q=%E6%B2%89%E7%A7%AF%E5%B2%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260613_BadSunset%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "变质岩",
+        "url": "/search?q=%E6%B2%89%E7%A7%AF%E5%B2%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260613_BadSunset%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
