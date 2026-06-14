@@ -1,0 +1,46 @@
+{
+  "caption": "大烟山国家公园迎来建立92周年",
+  "title": "大烟山国家公园，田纳西州，美国",
+  "description": "这片山脉历经了漫长地质岁月的雕琢，而1934年6月15日的法令则让它们获得了长久的保护——就在这一天，横跨田纳西州与北卡罗来纳州的大烟山国家公园正式建立。该公园占地面积超过522,000英亩（约21.1万公顷），其名称源于常年环绕在其嵴线之上的天然蓝色烟雾。作为阿巴拉契亚山脉的一部分，这些山峰的形成史可以追溯到3亿多年前。",
+  "copyright": "© Mint Images/Getty Images",
+  "date": "2026 6月 15",
+  "clickUrl": "/search?q=%e5%a4%a7%e7%83%9f%e5%b1%b1%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260614_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ParkEstd_ZH-CN3419035151_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ParkEstd_ZH-CN3419035151_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ParkEstd_ZH-CN3419035151_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ParkEstd_ZH-CN3419035151_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ParkEstd_ZH-CN3419035151_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ParkEstd_ZH-CN3419035151_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "美洲原住民在这片山脉中的狩猎历史可追溯至约14,000年前。考古学家在动物迁徙通道沿线发现了远古时期的抛射物弹头（如石镞）；而林地时期的遗址则出土了具有2000年历史的陶器，并揭示了早期农业耕作的痕迹。",
+  "descriptionPara3": "大烟山国家公园被誉为“世界蝾螈之都”，是一处生物多样性热点地区。这里栖息着约30种蝾螈、美洲黑熊、加拿大马鹿以及200多种鸟类，并生长着数千种植物。公园内的森林类型随海拔高度的变化而呈现出明显的地带性更替，构成了丰富的生态系统。库沃希峰（Kuwohi）作为全园最高点，拥有极目远眺的壮阔视野。与此同时，凯德斯湾（Cades Cove）与卡塔卢契谷（Cataloochee Valley）内完好保留着诸多历史建筑，真实再现了公园建立前该区域的居民生活图景。",
+  "isoDate": "20260615",
+  "headline": "岁月雕琢，风景始成",
+  "quickFact": "每年六月，大烟山国家公园都会迎来同步发光萤火虫。它们齐声闪烁，上演一场罕见而壮观的天然灯光秀。",
+  "triviaId": "HPQuiz_20260615_ParkEstd",
+  "triviaData": {
+    "question": "大雾山国家公园中最高的山峰是哪一座？",
+    "options": [
+      {
+        "text": "勒孔特山",
+        "url": "/search?q=%E5%BA%93%E7%93%A6%E5%B8%8C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260615_ParkEstd%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "克林曼山穹顶",
+        "url": "/search?q=%E5%BA%93%E7%93%A6%E5%B8%8C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260615_ParkEstd%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "库瓦希",
+        "url": "/search?q=%E5%BA%93%E7%93%A6%E5%B8%8C&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260615_ParkEstd%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
