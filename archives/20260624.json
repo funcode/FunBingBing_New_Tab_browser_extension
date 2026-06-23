@@ -1,0 +1,46 @@
+{
+  "caption": "蝴蝶授粉",
+  "title": "蝴蝶正在黄花上授粉",
+  "description": "放大观察维持大地生机的微小交易：一只蝴蝶停在黄色的花朵上，吮吸着花蜜。它吸食花蜜的同时，花粉沾满了它的身体，搭上了前往下一朵花的“顺风车”——这是开花植物悄无声息的繁殖方式之一。传粉者并非只有蜜蜂。蝴蝶、鸟类、蝙蝠、甲虫以及许多其他昆虫都在帮助传播花粉，从而支持野生植物以及我们食用的许多水果和蔬菜的生长。",
+  "copyright": "© lzh/Getty Images",
+  "date": "2026 6月 24",
+  "clickUrl": "/search?q=%e8%9d%b4%e8%9d%b6%e6%8e%88%e7%b2%89&form=hpcapt&filters=HpDate:\"20260623_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BFPollin_ZH-CN7654067396_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BFPollin_ZH-CN7654067396_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BFPollin_ZH-CN7654067396_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BFPollin_ZH-CN7654067396_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BFPollin_ZH-CN7654067396_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BFPollin_ZH-CN7654067396_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这就是“授粉昆虫周”的理念所在，它每年提醒人们关注这些物种，并保护它们所需的栖息地。在美国，科学家们正在追踪蝴蝶的种群趋势，因为许多地方的昆虫数量都在下降，而蝴蝶是研究最为深入的昆虫类群之一。解决办法其实很简单：种植富含花蜜的植物，最好是本地植物；种植毛毛虫的寄主植物；减少杀虫剂的使用。先从一小块阳光充足的地方开始。然后再次观察。如果一只蝴蝶选择了你的花，你就为它的生命搭建了一条小小的通道。",
+  "descriptionPara3": "",
+  "isoDate": "20260624",
+  "headline": "花粉与翅膀相遇",
+  "quickFact": "我们所吃的食物中，大约有三分之一要归功于授粉昆虫。",
+  "triviaId": "HPQuiz_20260624_BFPollin",
+  "triviaData": {
+    "question": "美国追踪哪种生物以监测其种群趋势？",
+    "options": [
+      {
+        "text": "蝴蝶",
+        "url": "/search?q=%E8%9D%B4%E8%9D%B6&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260624_BFPollin%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "萤火虫",
+        "url": "/search?q=%E8%9D%B4%E8%9D%B6&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260624_BFPollin%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "蚱蜢",
+        "url": "/search?q=%E8%9D%B4%E8%9D%B6&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260624_BFPollin%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
