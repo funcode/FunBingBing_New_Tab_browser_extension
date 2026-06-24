@@ -131,6 +131,7 @@
     color: inherit;
     font-size: var(--panel-font-size);
     margin-top: 4px;
+    text-wrap: balance;
 }
 
 /* Improve readability on bright backgrounds */
