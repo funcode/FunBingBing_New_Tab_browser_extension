@@ -1,0 +1,46 @@
+{
+  "caption": "世界海龟日",
+  "title": "七英里海滩附近的玳瑁海龟伴侣，大开曼岛，开曼群岛",
+  "description": "世界海龟日”聚焦于海洋中最古老的“航行者”——这些爬行动物已在地球上生存了超过一亿年。每年的6月 16日定为世界海龟日，旨在提高公众对海龟生态重要性及其面临日益严峻威胁的关注。海龟在维持海草床和珊瑚礁系统健康方面发挥着核心作用，而这些生态系统支撑着多样化的海洋生物。在觅食地与筑巢地之间的长途迁徙是其生命周期的关键环节。尽管海龟具有极强的韧性，但目前所有物种都面临着栖息地丧失、塑料污染、气候变化以及渔具误捕的威胁。",
+  "copyright": "© Alex Mustard/Nature Picture Library",
+  "date": "2026 6月 16",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e6%b5%b7%e9%be%9f%e6%97%a5&form=hpcapt&filters=HpDate:\"20260615_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SevenMileTurtle_ZH-CN4346512721_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SevenMileTurtle_ZH-CN4346512721_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SevenMileTurtle_ZH-CN4346512721_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SevenMileTurtle_ZH-CN4346512721_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SevenMileTurtle_ZH-CN4346512721_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SevenMileTurtle_ZH-CN4346512721_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "图为在开曼群岛（Cayman Islands）附近，一对玳瑁海龟正滑过清澈的加勒比海域。玳瑁海龟以其带有花纹的背甲和狭窄如鹰喙般的嘴部而闻名，它们通过主要捕食海绵来维持珊瑚礁的平衡，从而防止海绵过度生长并挤占珊瑚的生存空间。作为极危物种，它们是现存最稀有的海龟物种之一，这使得像这样在野外的邂逅显得愈发弥足珍贵。",
+  "descriptionPara3": "",
+  "isoDate": "20260616",
+  "headline": "蔚蓝海礁的守护者",
+  "quickFact": "海龟卵孵化期间的沙子温度，决定了新生幼体是雄性还是雌性。",
+  "triviaId": "HPQuiz_20260616_SevenMileTurtle",
+  "triviaData": {
+    "question": "哪个加勒比地区靠近玳瑁栖息地？",
+    "options": [
+      {
+        "text": "巴巴多斯",
+        "url": "/search?q=%E5%BC%80%E6%9B%BC%E7%BE%A4%E5%B2%9B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260616_SevenMileTurtle%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "阿鲁巴",
+        "url": "/search?q=%E5%BC%80%E6%9B%BC%E7%BE%A4%E5%B2%9B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260616_SevenMileTurtle%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "开曼群岛",
+        "url": "/search?q=%E5%BC%80%E6%9B%BC%E7%BE%A4%E5%B2%9B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260616_SevenMileTurtle%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

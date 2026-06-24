@@ -1,0 +1,46 @@
+{
+  "caption": "世界雨林日",
+  "title": "奎诺尔特雨林, 奥林匹克国家公园, 华盛顿州, 美国",
+  "description": "6月22日是世界雨林日，这是一个全球性的日子，也是全年呼吁人们保护世界剩余雨林的行动。这些生态系统并非地图上的点点星罗棋布。它们遍布热带地区及其他地区，却仅覆盖地球表面约6%的面积。想想南美洲的亚马逊雨林、非洲的刚果盆地以及东南亚的森林吧。",
+  "copyright": "© Chris Moore/Tandem Stills + Motion",
+  "date": "2026 6月 22",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e9%9b%a8%e6%9e%97%e6%97%a5&form=hpcapt&filters=HpDate:\"20260621_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.QuinaultFerns_ZH-CN6696428927_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.QuinaultFerns_ZH-CN6696428927_UHD.jpg",
+      "wallpaper": "/th?id=OHR.QuinaultFerns_ZH-CN6696428927_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.QuinaultFerns_ZH-CN6696428927_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.QuinaultFerns_ZH-CN6696428927_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.QuinaultFerns_ZH-CN6696428927_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "位于华盛顿州奥林匹克国家公园的奎诺特雨林是一片原始的温带雨林。雨水和雾气滋养着它，使每一根树枝都成为鲜活的生命之源。仔细观察，你会发现这里郁郁葱葱，湿润丰饶：西加云杉和西部铁杉，披着苔藓和蕨类的大叶枫，以及倒下的参天大树上萌发新芽的“保育原木”。森林地面是真菌、昆虫和两栖动物的柔软实验室。如果你要来这里游览，可以从奎诺特雨林护林站出发，沿着枫树林步道走一小段，就能与森林平视相望。6月22日提醒我们行动起来。让我们每天都为森林挺身而出，守护那些依然屹立的生机。",
+  "descriptionPara3": "",
+  "isoDate": "20260622",
+  "headline": "一个郁郁葱葱的王国",
+  "quickFact": "尽管热带雨林仅占地球表面积的 6%，但却是世界上一半以上物种的家园。",
+  "triviaId": "HPQuiz_20260622_QuinaultFerns",
+  "triviaData": {
+    "question": "奎诺特雨林中分布着哪些树种？",
+    "options": [
+      {
+        "text": "海岸红杉",
+        "url": "/search?q=%E8%A5%BF%E9%83%A8%E9%93%81%E6%9D%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260622_QuinaultFerns%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "西部铁杉",
+        "url": "/search?q=%E8%A5%BF%E9%83%A8%E9%93%81%E6%9D%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260622_QuinaultFerns%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "白云杉",
+        "url": "/search?q=%E8%A5%BF%E9%83%A8%E9%93%81%E6%9D%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260622_QuinaultFerns%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "caption": "父亲节快乐！",
+  "title": "企鹅爸爸正在检查蛋的情况",
+  "description": "六月的第三个星期日是父亲节——一个感谢那些默默守护、悉心照料孩子成长的长辈们的日子。在世界各地，父亲的角色可以呈现出令人意想不到的非凡形式。",
+  "copyright": "© McDonald Wildlife Photography Inc./Getty Images",
+  "date": "2026 6月 21",
+  "clickUrl": "/search?q=%e7%88%b6%e4%ba%b2%e8%8a%82&form=hpcapt&filters=HpDate:\"20260620_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.EggDad_ZH-CN6045387630_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.EggDad_ZH-CN6045387630_UHD.jpg",
+      "wallpaper": "/th?id=OHR.EggDad_ZH-CN6045387630_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.EggDad_ZH-CN6045387630_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.EggDad_ZH-CN6045387630_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.EggDad_ZH-CN6045387630_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "照片中，一只帝企鹅爸爸小心翼翼地用脚托着一枚蛋，蛋被温暖的育儿袋包裹着。产卵后，雌企鹅会游向大海恢复体力，留下企鹅爸爸负责孵化，防止蛋被冻伤。这里没有巢穴——只有平衡、耐心和精准。他可能连续几周几乎一动不动地站着，挨饿，守护着他脆弱的“宝贝”。它们的日常是一种精心安排的轮换：一方守护，一方哺育，然后它们按照大自然赋予的完美节奏交换角色。",
+  "descriptionPara3": "无论是在繁华的大都市还是在风吹日晒的偏远乡村，父亲的角色往往都是一样的——需要在力量、牺牲和默默奉献之间小心翼翼地保持平衡。",
+  "isoDate": "20260621",
+  "headline": "鸟类好爸爸",
+  "quickFact": "对海马而言，雄性会将受精卵放入自己的育儿袋中，并在孵化前为它们提供氧气、养分和全方位的保护。",
+  "triviaId": "HPQuiz_20260621_EggDad",
+  "triviaData": {
+    "question": "哪种鸟类的雄性会用脚孵蛋？",
+    "options": [
+      {
+        "text": "帝企鹅",
+        "url": "/search?q=%E5%B8%9D%E4%BC%81%E9%B9%85&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260621_EggDad%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "信天翁",
+        "url": "/search?q=%E5%B8%9D%E4%BC%81%E9%B9%85&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260621_EggDad%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "翠鸟",
+        "url": "/search?q=%E5%B8%9D%E4%BC%81%E9%B9%85&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260621_EggDad%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "caption": "南极半岛西部，南大洋，拱形冰山",
+  "title": "漂浮在南极半岛西部海域的拱形冰山, 南大洋",
+  "description": "在南极半岛沿岸，一道冰雕般的拱形结构从南大洋拔地而起，而南极半岛是地球上变暖速度最快的地区之一。这道拱形结构最初是由积雪压实而成，历经数千年演变为冰川。最终，冰川或漂浮冰架的一部分断裂脱落——这一过程被称为冰崩——形成了漂浮的冰山。",
+  "copyright": "© Steven Kazlowski/Nature Picture Library",
+  "date": "2026 6月 20",
+  "clickUrl": "/search?q=%e5%86%b0%e5%b1%b1&form=hpcapt&filters=HpDate:\"20260619_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ArchedIceberg_ZH-CN2698040371_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ArchedIceberg_ZH-CN2698040371_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ArchedIceberg_ZH-CN2698040371_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ArchedIceberg_ZH-CN2698040371_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ArchedIceberg_ZH-CN2698040371_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ArchedIceberg_ZH-CN2698040371_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "冰山按大小和形状分类。要符合冰山的定义，冰山的高度必须超过海平面约16英尺（约4.9米），但其近90%仍隐藏在水面之下。顶部平坦的“板状”冰山在南极洲很常见，而像图中这种拱形冰山则属于不规则的非板状冰山。",
+  "descriptionPara3": "这些看似荒芜的漂浮巨物，实则孕育着生命。藻类附着在它们的底部，为成群的磷虾提供食物，而磷虾又为鱼类、海豹和鲸鱼提供养分。随着冰层融化，释放出的营养物质滋养着周围的水域，使这些冰雕变成了移动的生态系统。",
+  "isoDate": "20260620",
+  "headline": "海洋中冰封的大教堂",
+  "quickFact": "冰山在融化过程中可能因重心变化突然翻转，其释放的能量甚至足以在平静海面上掀起较大波浪。",
+  "triviaId": "HPQuiz_20260620_ArchedIceberg",
+  "triviaData": {
+    "question": "哪种自然过程会导致冰川部分脱落？",
+    "options": [
+      {
+        "text": "冰川蠕动",
+        "url": "/search?q=%E5%86%B0%E5%B7%9D%E5%B4%A9%E8%A7%A3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260620_ArchedIceberg%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "冰川崩解",
+        "url": "/search?q=%E5%86%B0%E5%B7%9D%E5%B4%A9%E8%A7%A3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260620_ArchedIceberg%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "永久冻土融化",
+        "url": "/search?q=%E5%86%B0%E5%B7%9D%E5%B4%A9%E8%A7%A3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260620_ArchedIceberg%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
