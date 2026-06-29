@@ -118,17 +118,13 @@ function getQuoteState() {
   return quoteState;
 }
 
-function insertQuoteIntoCache(date, quote, quoteState, options = {}) {
+function insertQuoteIntoCache(date, quote, quoteState) {
   const normalizedQuote = normalizeQuotePayload(quote);
-  if (!date || !normalizedQuote) return false;
+  if (!date || !normalizedQuote) return null;
   const allQuotes = quoteState.quotes;
   const tracker = quoteState.tracker;
   if (allQuotes[date]) {
-    if (options.replaceExisting) {
-      allQuotes[date] = normalizedQuote;
-      return true;
-    }
-    return false;
+    allQuotes[date] = normalizedQuote;
   } else {
     tracker.last = (tracker.last % QUOTE_CACHE_SLOTS) + 1;
     const slot = tracker.last;
@@ -138,8 +134,8 @@ function insertQuoteIntoCache(date, quote, quoteState, options = {}) {
     }
     allQuotes[date] = normalizedQuote;
     tracker[slot] = date;
-    return true;
   }
+  return normalizedQuote;
 }
 
 function computeMissingDates(imageDates, allQuotes) {
@@ -181,10 +177,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         const quoteMapForPatch = {};
 
         if (todayDate) {
-          const inserted = insertQuoteIntoCache(todayDate, todayQuote, quoteState, { replaceExisting: true });
-          const normalizedTodayQuote = normalizeQuotePayload(todayQuote);
-          if (inserted || normalizedTodayQuote) {
-            quoteMapForPatch[todayDate] = normalizedTodayQuote || allQuotes[todayDate];
+          const todayCandidate = insertQuoteIntoCache(todayDate, todayQuote, quoteState);
+          if (todayCandidate) {
+            quoteMapForPatch[todayDate] = todayCandidate;
           }
         }
 
@@ -196,10 +191,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             console.log(`[${new Date().toISOString()}] Fetching lost quotes for missing dates: ${missingDates.join(", ")}`);
             const remote = await fetchLostQuotes();
             missingDates.forEach((date) => {
-              const candidate = normalizeQuotePayload(remote[date]);
+              const candidate = insertQuoteIntoCache(date, remote[date], quoteState);
               if (candidate) {
                 quoteMapForPatch[date] = candidate;
-                insertQuoteIntoCache(date, candidate, quoteState);
               }
             });
           } catch (err) {
