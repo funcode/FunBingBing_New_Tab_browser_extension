@@ -170,6 +170,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           sendResponse({ ok: false, stale: true });
           return;
         }
+        console.log(`[${new Date().toISOString()}] Handling syncQuotesForImages requestId=${requestId}, todayDate=${todayDate}, imageDates=${JSON.stringify(imageDates)}`);
         latestQuoteSyncRequestId = Math.max(latestQuoteSyncRequestId, requestId);
 
         await confReadyPromise;
@@ -192,6 +193,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         if (missingDates.length > 0) {
           try {
+            console.log(`[${new Date().toISOString()}] Fetching lost quotes for missing dates: ${missingDates.join(", ")}`);
             const remote = await fetchLostQuotes();
             missingDates.forEach((date) => {
               const candidate = normalizeQuotePayload(remote[date]);
