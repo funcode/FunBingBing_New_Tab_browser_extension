@@ -1,0 +1,46 @@
+{
+  "caption": "埃斯纳神庙穹顶天花板, 埃及",
+  "title": "埃斯纳神庙穹顶天花板, 埃及",
+  "description": "在埃及卢克索以南的埃斯纳神庙（Temple of Esna），游客将步入一个充满生机的世界，这里供奉着公羊头神——赫努姆（Khnum）；传说他曾用尼罗河的黏土塑造了人类。这座神庙主要建于托勒密王朝和罗马统治时期，其现存的大厅由24根高耸的石柱支撑，每根柱子上都雕刻着精美的浮雕与颂扬诸神的仪式铭文。",
+  "copyright": "© Nick Brundle Photography/Getty Images",
+  "date": "2026 7月 2",
+  "clickUrl": "/search?q=%e5%9f%83%e5%8f%8a%e5%9f%83%e6%96%af%e7%ba%b3%e7%a5%9e%e5%ba%99&form=hpcapt&filters=HpDate:\"20260701_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.TempleEsna_ZH-CN9834689523_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.TempleEsna_ZH-CN9834689523_UHD.jpg",
+      "wallpaper": "/th?id=OHR.TempleEsna_ZH-CN9834689523_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.TempleEsna_ZH-CN9834689523_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.TempleEsna_ZH-CN9834689523_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.TempleEsna_ZH-CN9834689523_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在古代，进入该处受到严格管控。祭司在入内之前，必须剃净全身毛发、修剪指甲、反复进行仪式性净身，并仅穿亚麻衣物。此外，在为库努姆（Khnum）主持祭祀与仪式前，他们还需禁食某些食物，以确保身体洁净。",
+  "descriptionPara3": "在他们头顶上方，天花板（如图所示）宛如一幅装饰华丽的苍穹画卷，绘满了色彩鲜艳的天文景象、黄道十二宫符号及神圣人物形象。这些雕饰绝非仅仅为了装饰：立柱与天花板交相辉映，引领着信众穿行于一个充满象征意义的宇宙之中——在这里，神圣秩序、仪式实践与宇宙循环彼此交织，密不可分。",
+  "isoDate": "20260702",
+  "headline": "走进埃斯纳神圣的世界",
+  "quickFact": "数个世纪以来，埃斯纳神庙的大部分区域曾被淤泥和周边建筑掩埋，这在一定程度上减少了风化作用，使许多雕刻得以较好保存。",
+  "triviaId": "HPQuiz_20260702_TempleEsna",
+  "triviaData": {
+    "question": "在埃斯纳，哪位羊头神受到尊崇？",
+    "options": [
+      {
+        "text": "库努姆",
+        "url": "/search?q=%E5%BA%93%E5%8A%AA%E5%A7%86&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260702_TempleEsna%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "荷鲁斯",
+        "url": "/search?q=%E5%BA%93%E5%8A%AA%E5%A7%86&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260702_TempleEsna%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "阿努比斯",
+        "url": "/search?q=%E5%BA%93%E5%8A%AA%E5%A7%86&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260702_TempleEsna%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
