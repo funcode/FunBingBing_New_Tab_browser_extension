@@ -1,0 +1,46 @@
+{
+  "caption": "凯泽斯堡，阿尔萨斯，法国",
+  "title": "凯泽斯堡，阿尔萨斯，法国",
+  "description": "7月4日，环法自行车赛拉开帷幕——这正是聚焦法国东北部阿尔萨斯地区凯泽斯堡（Kaysersberg）村落的绝佳时机。这座历史名城坐落在维斯河（Weiss River）畔，位于科尔马（Colmar）西北约12公里处，地处孚日山脉（Vosges Mountains）的东坡。",
+  "copyright": "© Federica Gentile/Getty Images",
+  "date": "2026 7月 4",
+  "clickUrl": "/search?q=%e5%87%af%e6%b3%bd%e6%96%af%e5%a0%a1&form=hpcapt&filters=HpDate:\"20260703_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.KaysersbergVillage_ZH-CN0445080679_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.KaysersbergVillage_ZH-CN0445080679_UHD.jpg",
+      "wallpaper": "/th?id=OHR.KaysersbergVillage_ZH-CN0445080679_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.KaysersbergVillage_ZH-CN0445080679_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.KaysersbergVillage_ZH-CN0445080679_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.KaysersbergVillage_ZH-CN0445080679_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "凯泽斯堡的名字意为“皇帝之山”，反映了其显赫的战略往昔。村庄上方矗立着一座山顶堡垒，最早记载于1227年，当时神圣罗马帝国皇帝腓特烈二世（Frederick II）购入并加固了此地。如今，这份遗产向四面八方铺展开来：粉色系的半木结构房屋错落有致地排列在鹅卵石街道旁，一座建于16世纪初、极具视觉冲击力的加固石桥横跨河流，连接着老城的各个街区。",
+  "descriptionPara3": "走进圣克鲁瓦教堂（Sainte Croix Church），可以发现追溯至13世纪的建筑层级；或者漫步向被葡萄园覆盖的山丘，正是这些葡萄园在数世纪间形塑了这里的生活。不妨配上一杯清脆爽口的灰皮诺（Pinot Gris）多停留片刻，让阿尔萨斯的这处角落以其特有的悠闲步调徐徐展开。",
+  "isoDate": "20260704",
+  "headline": "此行，不虚绕道",
+  "quickFact": "白鹳（Ciconia ciconia）的复育生境在凯泽斯堡，阿尔萨斯，法国具有典型的生态指标意义，自1970年代险些灭绝后的保护行动，使这种标志性鸟类重新在村落的烟囱顶端筑巢，成为衡量当地跨区域生态系统健康的重要标志。",
+  "triviaId": "HPQuiz_20260704_KaysersbergVillage",
+  "triviaData": {
+    "question": "阿尔萨斯凯塞贝格旁流淌的是哪条河？",
+    "options": [
+      {
+        "text": "魏斯河",
+        "url": "/search?q=%E9%AD%8F%E6%96%AF%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260704_KaysersbergVillage%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "罗讷河",
+        "url": "/search?q=%E9%AD%8F%E6%96%AF%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260704_KaysersbergVillage%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "塞纳河",
+        "url": "/search?q=%E9%AD%8F%E6%96%AF%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260704_KaysersbergVillage%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
