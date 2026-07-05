@@ -1,0 +1,46 @@
+{
+  "caption": "锡拉库萨，西西里岛，意大利",
+  "title": "锡拉库萨的日落，西西里岛，意大利",
+  "description": "意大利锡拉库萨（Syracuse）位于西西里岛，由来自科林斯的希腊移民于公元前 734 年左右建立。它曾发展成为古地中海最伟大的强权之一，现已被列入联合国教科文组织世界遗产名录——“锡拉库萨和潘塔立克石墓群”。这座城市永远与阿基米德（Archimedes）联系在一起，他的天才至今仍在塑造着城市的身份；同时也与柏拉图（Plato）紧密相连，他曾满怀着哲学可能重塑政治生活的希望来到此处。这种层叠的历史在马尼亚切城堡（Castello Maniace）中依然清晰可感，这座 13 世纪为神圣罗马帝国皇帝腓特烈二世建造的海滨要塞，至今仍令世人赞叹。",
+  "copyright": "© Balate Dorin/Getty Images",
+  "date": "2026 7月 6",
+  "clickUrl": "/search?q=%e9%94%a1%e6%8b%89%e5%ba%93%e8%90%a8+%e8%a5%bf%e8%a5%bf%e9%87%8c%e5%b2%9b&form=hpcapt&filters=HpDate:\"20260705_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SyracuseItaly_ZH-CN1001695972_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SyracuseItaly_ZH-CN1001695972_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SyracuseItaly_ZH-CN1001695972_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SyracuseItaly_ZH-CN1001695972_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SyracuseItaly_ZH-CN1001695972_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SyracuseItaly_ZH-CN1001695972_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "2009年，这座城堡成为了《锡拉库萨宣言》（Carta di Siracusa）的签署地，该文件聚焦于生物多样性以及自然、文化与发展之间的关系。锡拉库萨也为电影人提供了一个天然的舞台，从马塞洛·马斯楚安尼主演的《卡萨诺瓦70》到《夺宝奇兵：命运转盘》均在此取景。在这里，意大利不仅仅代表着阳光、美酒和佳肴：它更是依然在当下跳动着的鲜活历史。",
+  "descriptionPara3": "",
+  "isoDate": "20260706",
+  "headline": "百代镌刻之城",
+  "quickFact": "原生纸莎草的生态孤岛在锡拉库萨，西西里岛，意大利表现出极高的植物学价值，林特奥斯河（Arethusa Spring）不仅是当地重要的淡水水源，更是全欧洲唯一一处野生纸莎草自然生长的原生生境。",
+  "triviaId": "HPQuiz_20260706_SyracuseItaly",
+  "triviaData": {
+    "question": "哪个古代民族在西西里建立了叙拉古？",
+    "options": [
+      {
+        "text": "腓尼基人",
+        "url": "/search?q=%E5%B8%8C%E8%85%8A%E4%BA%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260706_SyracuseItaly%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "希腊人",
+        "url": "/search?q=%E5%B8%8C%E8%85%8A%E4%BA%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260706_SyracuseItaly%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "伊特鲁里亚人",
+        "url": "/search?q=%E5%B8%8C%E8%85%8A%E4%BA%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260706_SyracuseItaly%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
