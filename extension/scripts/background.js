@@ -94,13 +94,7 @@ function normalizeQuotePayload(rawQuote) {
 
 function getDefaultQuoteState() {
   return {
-    quotes: {},
-    tracker: {
-      //0 is the initial value, meaning no quotes cached yet. It will be set to 1-8 as quotes are cached, indicating the current slot to overwrite next.
-      last: 0,
-      "1": null, "2": null, "3": null, "4": null,
-      "5": null, "6": null, "7": null, "8": null
-    }
+    quotes: {}
   };
 }
 
@@ -112,29 +106,30 @@ function getQuoteState() {
   if (!quoteState.quotes || typeof quoteState.quotes !== "object") {
     quoteState.quotes = {};
   }
-  if (!quoteState.tracker || typeof quoteState.tracker !== "object") {
-    quoteState.tracker = getDefaultQuoteState().tracker;
-  }
   return quoteState;
+}
+
+function pruneQuoteCache(allQuotes) {
+  const keep = new Set(
+    Object.keys(allQuotes)
+      .sort()
+      .reverse()
+      .slice(0, QUOTE_CACHE_SLOTS)
+  );
+
+  Object.keys(allQuotes).forEach((date) => {
+    if (!keep.has(date)) {
+      delete allQuotes[date];
+    }
+  });
 }
 
 function insertQuoteIntoCache(date, quote, quoteState) {
   const normalizedQuote = normalizeQuotePayload(quote);
   if (!date || !normalizedQuote) return null;
   const allQuotes = quoteState.quotes;
-  const tracker = quoteState.tracker;
-  if (allQuotes[date]) {
-    allQuotes[date] = normalizedQuote;
-  } else {
-    tracker.last = (tracker.last % QUOTE_CACHE_SLOTS) + 1;
-    const slot = tracker.last;
-    const oldKey = tracker[slot];
-    if (oldKey && allQuotes[oldKey]) {
-      delete allQuotes[oldKey];
-    }
-    allQuotes[date] = normalizedQuote;
-    tracker[slot] = date;
-  }
+  allQuotes[date] = normalizedQuote;
+  pruneQuoteCache(allQuotes);
   return normalizedQuote;
 }
 
