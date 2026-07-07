@@ -1,0 +1,46 @@
+{
+  "caption": "日出在阿蒂特兰湖，危地马拉",
+  "title": "阿蒂特兰湖的日出，危地马拉",
+  "description": "阿蒂特兰湖（Lake Atitlán）坐落于危地马拉西部高地，占据了一处巨大的破火山口。其深蓝色的湖水被陡峭的火山口壁以及阿蒂特兰（Atitlán）、托利曼（Tolimán）和圣佩德罗（San Pedro）这三座锥形火山所环绕。木质码头向静谧的湖面延伸，勾勒出平静水面与火山活动造就的崎岖地形之间的强烈对比。",
+  "copyright": "© shayes17/Getty Images",
+  "date": "2026 7月 8",
+  "clickUrl": "/search?q=%e5%8d%b1%e5%9c%b0%e9%a9%ac%e6%8b%89+%e9%98%bf%e8%92%82%e7%89%b9%e5%85%b0%e6%b9%96&form=hpcapt&filters=HpDate:\"20260707_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.LakeAtitlan_ZH-CN1920221893_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.LakeAtitlan_ZH-CN1920221893_UHD.jpg",
+      "wallpaper": "/th?id=OHR.LakeAtitlan_ZH-CN1920221893_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.LakeAtitlan_ZH-CN1920221893_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.LakeAtitlan_ZH-CN1920221893_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.LakeAtitlan_ZH-CN1920221893_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "该湖形成于约 8.4 万年前的一次大规模火山喷发，通常被认为是中美洲最深的湖泊，深度达 1,100 英尺（约 335 米）左右。陡峭的断崖环绕着盆地，将湖水笼罩在一个宏伟的“天然剧场”之中，无声地诉说着其剧烈的爆发式起源。",
+  "descriptionPara3": "湖面之下隐藏着拥有 1,500 多年历史的玛雅水下遗址，其中包括暗示了昔日繁荣湖岸文化的祭祀建筑残骸。沿岸的卡克奇克尔（Kaqchikel）和楚图希尔（Tz'utujil）玛雅社群依然传承着他们的语言和纺织传统，其日常生活仍与这片高地景观的律动紧密相连。",
+  "isoDate": "20260708",
+  "headline": "远古火山的回响",
+  "quickFact": "独特的内流盆地机制在阿蒂特兰湖，危地马拉表现显著，该湖泊没有通往海洋的天然地表出口，其水位主要依靠自然蒸发和地下的火山裂缝网络进行调节。",
+  "triviaId": "HPQuiz_20260708_LakeAtitlan",
+  "triviaData": {
+    "question": "与阿蒂特兰和托利曼共同环绕阿蒂特兰湖的是哪座火山？",
+    "options": [
+      {
+        "text": "富埃戈",
+        "url": "/search?q=%E5%9C%A3%E4%BD%A9%E5%BE%B7%E7%BD%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260708_LakeAtitlan%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "阿瓜",
+        "url": "/search?q=%E5%9C%A3%E4%BD%A9%E5%BE%B7%E7%BD%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260708_LakeAtitlan%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "圣佩德罗",
+        "url": "/search?q=%E5%9C%A3%E4%BD%A9%E5%BE%B7%E7%BD%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260708_LakeAtitlan%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
