@@ -86,20 +86,45 @@ async function fetchWallpaperBlob(url) {
 		}
 		return response;
 	};
-
-	if (!('caches' in window)) {
+	const fetchBlobFromNetwork = async () => {
 		const networkResponse = await fetchFromNetwork();
 		return networkResponse.blob();
+	};
+
+	if (!('caches' in window)) {
+		return fetchBlobFromNetwork();
 	}
 
-	const cache = await caches.open(WALLPAPER_CACHE_NAME);
-	let response = await cache.match(url);
+	let cache;
+	try {
+		cache = await caches.open(WALLPAPER_CACHE_NAME);
+	} catch (err) {
+		console.warn('Unable to open wallpaper cache, fetching from network:', err);
+		return fetchBlobFromNetwork();
+	}
+
+	let response;
+	try {
+		response = await cache.match(url);
+	} catch (err) {
+		console.warn('Unable to read wallpaper cache, fetching from network:', err);
+		return fetchBlobFromNetwork();
+	}
+
 	if (!response) {
 		response = await fetchFromNetwork();
 		const responseForCache = response.clone();
 		const blobPromise = response.blob();
 
-		await cache.put(url, responseForCache);
+		try {
+			await cache.put(url, responseForCache);
+		} catch (err) {
+			console.warn('Unable to write wallpaper cache:', err);
+			return blobPromise;
+		}
+		//fire and forget the pruning of the wallpaper cache
+		//it may cause race with match if multiple pages are running simultaneously
+		//but it should be fine since we only prune old entries
 		pruneWallpaperCache(cache).catch((err) => {
 			console.warn('Failed to prune wallpaper cache:', err);
 		});
