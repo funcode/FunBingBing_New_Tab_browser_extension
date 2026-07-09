@@ -96,10 +96,14 @@ async function fetchWallpaperBlob(url) {
 	let response = await cache.match(url);
 	if (!response) {
 		response = await fetchFromNetwork();
-		await cache.put(url, response.clone());
+		const responseForCache = response.clone();
+		const blobPromise = response.blob();
+
+		await cache.put(url, responseForCache);
 		pruneWallpaperCache(cache).catch((err) => {
 			console.warn('Failed to prune wallpaper cache:', err);
 		});
+		return blobPromise;
 	}
 	return response.blob();
 }
