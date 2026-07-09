@@ -178,7 +178,7 @@ async function showDefaultWallpaper(options = {}) {
 // set footer text
 function setFooterText(text) {
 	var headline_text = document.getElementById('headline');
-	headline_text.innerHTML = text;
+	headline_text.textContent = text ?? '';
 }
 
 // pre-load image from url
