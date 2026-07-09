@@ -613,31 +613,24 @@ async function handleBingDataResults(results) {
 }
 
 
-// if user want to show old wallpapers.
-async function switchPrevWallpaper() {
+async function switchWallpaper(offset) {
 	var MAX_OLD_DAYS = 8;
-	// calculate idx
 	var cache_idx = readConf("wallpaper_idx");
 	if (!cache_idx) {
 		cache_idx = 0;
 	}
-	cache_idx = parseInt(cache_idx);
-	cache_idx = (cache_idx + 1) % MAX_OLD_DAYS;
-	// reload wallpaper
+	cache_idx = parseInt(cache_idx,10);
+	cache_idx = (cache_idx + offset + MAX_OLD_DAYS) % MAX_OLD_DAYS;
 	await updateWallpaper(cache_idx);
 }
 
+// if user want to show old wallpapers.
+async function switchPrevWallpaper() {
+	await switchWallpaper(1);
+}
+
 async function switchNextWallpaper() {
-	var MAX_OLD_DAYS = 8;
-	// calculate idx
-	var cache_idx = readConf("wallpaper_idx");
-	if (!cache_idx) {
-		cache_idx = 0;
-	}
-	cache_idx = parseInt(cache_idx);
-	cache_idx = (cache_idx - 1 + MAX_OLD_DAYS) % MAX_OLD_DAYS;
-	// reload wallpaper
-	await updateWallpaper(cache_idx);
+	await switchWallpaper(-1);
 }
 
 // set wallpaper download link
@@ -681,11 +674,7 @@ function renderQuoteSection(quoteData) {
 	if (hasQuoteText) {
 		let raw = quoteData.text.trim();
 		if (/^["'“”‘’].+["'“”‘’]$/.test(raw)) {
-			const first = raw[0];
-			const last = raw[raw.length - 1];
-			if (/["'“”‘’]/.test(first) && /["'“”‘’]/.test(last)) {
-				raw = raw.substring(1, raw.length - 1).trim();
-			}
+			raw = raw.substring(1, raw.length - 1).trim();
 		}
 		const wrapped = `“${raw}”`;
 		if (qt) qt.textContent = wrapped;

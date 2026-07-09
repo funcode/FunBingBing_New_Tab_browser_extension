@@ -90,7 +90,7 @@ function handleCustomAction(action) {
 	if (wallpaper_idx === "") {
 		wallpaper_idx = 0;
 	}
-	wallpaper_idx = parseInt(wallpaper_idx);
+	wallpaper_idx = parseInt(wallpaper_idx,10);
 
 	const bing_images = readConf("bing_images");
 	let isoDate="";
