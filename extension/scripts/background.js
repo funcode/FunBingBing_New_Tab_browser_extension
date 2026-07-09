@@ -110,14 +110,17 @@ function getQuoteState() {
 }
 
 function pruneQuoteCache(allQuotes) {
+  const dates = Object.keys(allQuotes);
+  if (dates.length <= QUOTE_CACHE_SLOTS) return;
+
   const keep = new Set(
-    Object.keys(allQuotes)
+    dates
       .sort()
       .reverse()
       .slice(0, QUOTE_CACHE_SLOTS)
   );
 
-  Object.keys(allQuotes).forEach((date) => {
+  dates.forEach((date) => {
     if (!keep.has(date)) {
       delete allQuotes[date];
     }
@@ -206,6 +209,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           }
         });
 
+        // Prevent an older syncQuotesForImages request from writing results after a newer request has already started.
         if (requestId !== latestQuoteSyncRequestId) {
           sendResponse({ ok: false, stale: true });
           return;
@@ -213,8 +217,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         await writeConf("cache_quote_state", quoteState);
 
+        //It is useless now. Kept for debugging purposes. May drop it in future.
         const unresolved = computeMissingDates(dates, allQuotes);
-        await writeConf("lost_quotes", unresolved);
+        writeConf("lost_quotes", unresolved);
 
         const updatedDates = Object.keys(quoteMapForPatch);
         if (updatedDates.length > 0) {

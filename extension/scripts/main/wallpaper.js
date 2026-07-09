@@ -1,4 +1,5 @@
 const WALLPAPER_CACHE_NAME = 'funbingbing-wallpaper-cache-v1';
+const WALLPAPER_CACHE_MAX_ENTRIES = 32;
 const WALLPAPER_FETCH_LOCK_KEY = 'wallpaper_fetch_lock';
 const WALLPAPER_FETCH_LOCK_TTL_MS = 30_000;
 let currentWallpaperObjectUrl = null;
@@ -63,6 +64,13 @@ async function cachePreloadWallpaper(blob) {
 	}
 }
 
+async function pruneWallpaperCache(cache) {
+	const keys = await cache.keys();
+	if (keys.length <= WALLPAPER_CACHE_MAX_ENTRIES) return;
+	const staleKeys = keys.slice(0, keys.length - WALLPAPER_CACHE_MAX_ENTRIES);
+	await Promise.all(staleKeys.map((request) => cache.delete(request)));
+}
+
 async function fetchWallpaperBlob(url) {
 	if (!url) {
 		throw new Error('Invalid wallpaper url');
@@ -89,6 +97,9 @@ async function fetchWallpaperBlob(url) {
 	if (!response) {
 		response = await fetchFromNetwork();
 		await cache.put(url, response.clone());
+		pruneWallpaperCache(cache).catch((err) => {
+			console.warn('Failed to prune wallpaper cache:', err);
+		});
 	}
 	return response.blob();
 }
