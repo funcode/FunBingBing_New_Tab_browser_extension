@@ -1,0 +1,46 @@
+{
+  "caption": "圣古斯当港，欧赖，布列塔尼大区，法国",
+  "title": "圣古斯坦港, 欧赖, 布列塔尼, 法国",
+  "description": "在法国，圣古斯坦港位于奥雷上城区下方，一条小海湾在此汇入莫尔比昂湾。港口坐落于奥雷河与洛克河的交汇处，营造出如诗如画的静谧氛围。13世纪，布列塔尼公爵在此修建了一座桥梁、一座港口和一座城堡；如今城堡已不复存在，但鹅卵石铺就的码头、狭窄的巷道和木结构房屋依然沿水而建。从共和国广场出发，沿着城堡街一路向下，途经艺术工作室和画廊，最终抵达海滨；洛克河畔的坡道建于古老的防御工事之上，可以饱览港口的景色。穿过四拱石桥，即可到达圣索沃尔广场，然后拾级而上，前往圣吉尔达教堂，小镇从那里开始逐渐升高，俯瞰着港口。码头也见证了一段跨大西洋的历史：本杰明·富兰克林于1776年抵达此地，如今一个码头以他的名字命名。如今，咖啡馆和小船点缀着这片区域，而附近的奥雷镇则拥有远近闻名的每周集市和热闹的夏季活动。",
+  "copyright": "© Rolf E. Staerk/Shutterstock",
+  "date": "2026 7月 11",
+  "clickUrl": "/search?q=%e6%b3%95%e5%9b%bd%e6%ac%a7%e8%b5%96%e5%9c%a3%e5%8f%a4%e6%96%af%e5%bd%93%e6%b8%af&form=hpcapt&filters=HpDate:\"20260710_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AurayBrittany_ZH-CN5549157888_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AurayBrittany_ZH-CN5549157888_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AurayBrittany_ZH-CN5549157888_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AurayBrittany_ZH-CN5549157888_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AurayBrittany_ZH-CN5549157888_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AurayBrittany_ZH-CN5549157888_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20260711",
+  "headline": "布列塔尼的潮汐之约",
+  "quickFact": "该港口水源流向的莫尔比汉湾拥有欧洲最强劲的潮汐流，在其狭窄的湾口处，水流速度可高达每秒4米。",
+  "triviaId": "HPQuiz_20260711_AurayBrittany",
+  "triviaData": {
+    "question": "圣古斯坦港是哪两条河流的交汇处？",
+    "options": [
+      {
+        "text": "加龙河与洛特河",
+        "url": "/search?q=%E5%A5%A5%E8%B5%96%E6%B2%B3%E4%B8%8E%E6%B4%9B%E8%B5%AB%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260711_AurayBrittany%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "卢瓦尔河与塞纳河",
+        "url": "/search?q=%E5%A5%A5%E8%B5%96%E6%B2%B3%E4%B8%8E%E6%B4%9B%E8%B5%AB%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260711_AurayBrittany%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "奥赖河与洛赫河",
+        "url": "/search?q=%E5%A5%A5%E8%B5%96%E6%B2%B3%E4%B8%8E%E6%B4%9B%E8%B5%AB%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260711_AurayBrittany%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
