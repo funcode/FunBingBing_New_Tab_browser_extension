@@ -1,0 +1,46 @@
+{
+  "caption": "泰晤士河, 伦敦, 英格兰",
+  "title": "泰晤士河, 伦敦, 英格兰",
+  "description": "议会大厦、钟楼和巨型摩天轮有什么共同之处？它们都矗立在泰晤士河畔，仿佛伦敦为了营造戏剧性效果而精心布局了这些标志性建筑。",
+  "copyright": "© Daniel Lange/Getty Images",
+  "date": "2026 6月 26",
+  "clickUrl": "/search?q=%e6%b3%b0%e6%99%a4%e5%a3%ab%e6%b2%b3&form=hpcapt&filters=HpDate:\"20260625_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ThamesSummer_ZH-CN5292532714_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ThamesSummer_ZH-CN5292532714_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ThamesSummer_ZH-CN5292532714_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ThamesSummer_ZH-CN5292532714_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ThamesSummer_ZH-CN5292532714_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ThamesSummer_ZH-CN5292532714_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "右侧矗立着作为英国政府所在地的威斯敏斯特宫，它在1834年的一场大火后以哥特式风格重建。大本钟——即伊丽莎白塔内那口大钟——自1859年起便开始报时，其钟声悠扬，传遍城外。河对岸，郡政厅沿岸延伸；而伦敦眼则在缓慢的旋转中，为人们提供了独特的观景视角。",
+  "descriptionPara3": "从水面上望去，眼前的景象仿佛经过了精妙绝伦的布局与选角，宛如天成。然而，这份功劳主要应归于泰晤士河。公元43年之后不久，罗马人在此建立了伦底纽姆（Londinium）；之所以选址于此，是因为这条河既极具利用价值，又难以被彻底掌控。自那时起，它便承载着贸易往来、流言蜚语、权势更迭以及种种世界观。商人依它为生，君王沿它航行，艺术家为它赋予浪漫色彩。至于伦敦这座城市——它历经数世纪，向高空、向四方不断延展，但始终紧依着这条河流而生",
+  "isoDate": "20260626",
+  "headline": "时事",
+  "quickFact": "泰晤士河防洪闸于1984年建成，是世界上规模最大的可移动防洪设施之一，用于保护伦敦免受北海风暴潮引发的洪水威胁。",
+  "triviaId": "HPQuiz_20260626_ThamesSummer",
+  "triviaData": {
+    "question": "哪座建筑自1859年起持续报时，并以悠扬钟声闻名？",
+    "options": [
+      {
+        "text": "伦敦眼",
+        "url": "/search?q=%E4%BC%8A%E4%B8%BD%E8%8E%8E%E7%99%BD%E5%A1%94%E4%B8%AD%E7%9A%84%E5%A4%A7%E6%9C%AC%E9%92%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260626_ThamesSummer%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "伊丽莎白塔中的大本钟",
+        "url": "/search?q=%E4%BC%8A%E4%B8%BD%E8%8E%8E%E7%99%BD%E5%A1%94%E4%B8%AD%E7%9A%84%E5%A4%A7%E6%9C%AC%E9%92%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260626_ThamesSummer%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "郡政厅",
+        "url": "/search?q=%E4%BC%8A%E4%B8%BD%E8%8E%8E%E7%99%BD%E5%A1%94%E4%B8%AD%E7%9A%84%E5%A4%A7%E6%9C%AC%E9%92%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260626_ThamesSummer%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "caption": "板嘴山巨嘴鸟，厄瓜多尔",
+  "title": "板嘴山巨嘴鸟与兰花，厄瓜多尔",
+  "description": "拥有如多功能工具般的喙部和色彩斑斓的羽毛——板嘴山巨嘴鸟（Plate-billed mountain toucan）是安第斯山脉最具辨识度的鸟类之一。它栖息在厄瓜多尔和哥伦比亚西南部潮湿的山地森林中，已完全适应了林冠层高处的生存环境。",
+  "copyright": "© Murray Cooper/Minden Pictures",
+  "date": "2026 7月 7",
+  "clickUrl": "/search?q=%e6%9d%bf%e5%98%b4%e5%b1%b1%e5%b7%a8%e5%98%b4%e9%b8%9f&form=hpcapt&filters=HpDate:\"20260706_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MountainToucanOrchids_ZH-CN1400221431_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MountainToucanOrchids_ZH-CN1400221431_UHD.jpg",
+      "wallpaper": "/th?id=OHR.MountainToucanOrchids_ZH-CN1400221431_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MountainToucanOrchids_ZH-CN1400221431_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MountainToucanOrchids_ZH-CN1400221431_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.MountainToucanOrchids_ZH-CN1400221431_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这种巨嘴鸟高度依赖果实，主要以浆果、无花果及其他森林产物为食。凭借强壮且功能多样的喙部，它能游刃有余地获取并处理食物。它们通常成对或结成小群在林冠层谨慎活动，展现出在茂密叶簇间穿梭的惊人敏捷性。在进食的同时，它也通过传播种子成为森林再生的重要贡献者。",
+  "descriptionPara3": "图为一只板嘴山巨嘴鸟正栖息在兰花丛中。这一画面让人得以一窥其葱郁的栖息地，以及它协助维持的生态平衡。但在夺目的色彩之下，该物种正面临挑战：随着栖息地丧失持续改变安第斯云雾林的景观，板嘴山巨嘴鸟已被列为近危（Near Threatened）物种。",
+  "isoDate": "20260707",
+  "headline": "林冠华彩",
+  "quickFact": "板嘴山巨嘴鸟色彩艳丽的喙部带有一个淡黄色的“角质板”，这一罕见特征正是其命名的由来。",
+  "triviaId": "HPQuiz_20260707_MountainToucanOrchids",
+  "triviaData": {
+    "question": "哪座山脉是板嘴山巨嘴鸟的栖息地？",
+    "options": [
+      {
+        "text": "落基山脉",
+        "url": "/search?q=%E5%AE%89%E7%AC%AC%E6%96%AF%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260707_MountainToucanOrchids%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "安第斯山脉",
+        "url": "/search?q=%E5%AE%89%E7%AC%AC%E6%96%AF%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260707_MountainToucanOrchids%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "阿尔卑斯山",
+        "url": "/search?q=%E5%AE%89%E7%AC%AC%E6%96%AF%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260707_MountainToucanOrchids%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

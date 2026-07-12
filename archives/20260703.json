@@ -1,0 +1,46 @@
+{
+  "caption": "萤火虫发光在小溪上方，冈山县，日本",
+  "title": "小溪上方的萤火虫，冈山县，日本",
+  "description": "在冈山县（Okayama Prefecture），当湿润的空气笼罩在溪流之上，被称为“hotaru”的日本萤火虫便开始发出信号。在温暖无风的夜晚，如果条件理想，它们通常会在日落约两小时后开始发光，发散出一种水边独有的静谧感。",
+  "copyright": "© tdub303/Getty Images",
+  "date": "2026 7月 3",
+  "clickUrl": "/search?q=%e8%90%a4%e7%81%ab%e8%99%ab&form=hpcapt&filters=HpDate:\"20260702_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.FirefliesJapan_ZH-CN0071253415_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.FirefliesJapan_ZH-CN0071253415_UHD.jpg",
+      "wallpaper": "/th?id=OHR.FirefliesJapan_ZH-CN0071253415_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.FirefliesJapan_ZH-CN0071253415_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.FirefliesJapan_ZH-CN0071253415_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.FirefliesJapan_ZH-CN0071253415_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "萤火虫并非蝇类，而是甲虫（Beetles），大多数种类栖息在水边，如池塘、溪流、沼泽和河流。白天，它们隐藏在低矮的草丛中；入夜后，它们爬上植被并起飞，通过闪烁光芒来寻找配偶。它们的光源自腹部的化学反应，而特定物种的闪烁频率有助于伴侣识别正确的信号。它们的幼虫生活在更安静且充满饥饿感的阶段：作为肉食性动物，幼虫以蜗牛和蛞蝓等软体动物为食；而成年萤火虫则可能采食昆虫、花蜜或花粉。",
+  "descriptionPara3": "在日本，“萤狩”（Hotaru-gari，即观赏萤火虫）有着深厚的文化根基。平安时代（794–1185）的作家如清少纳言（Sei Shōnagon）曾在著作中描写过萤火虫，后世的文学作品和浮世绘（Ukiyo-e，一种传统的木版画和绘画形式）也常借其转瞬即逝的光芒来隐喻生命之无常",
+  "isoDate": "20260703",
+  "headline": "流光之诗",
+  "quickFact": "环境健康的生物指标在冈山县，日本表现得尤为典型，特别是源氏萤（Luciola cruciata）对水质极其敏感，它们需要含氧量高且清澈的流动水源以及极低的光污染环境才能完成其复杂的生命周期",
+  "triviaId": "HPQuiz_20260703_FirefliesJapan",
+  "triviaData": {
+    "question": "日本的萤火虫属于哪类昆虫？",
+    "options": [
+      {
+        "text": "黄蜂",
+        "url": "/search?q=%E7%94%B2%E8%99%AB&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260703_FirefliesJapan%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "蛾",
+        "url": "/search?q=%E7%94%B2%E8%99%AB&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260703_FirefliesJapan%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "甲虫",
+        "url": "/search?q=%E7%94%B2%E8%99%AB&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260703_FirefliesJapan%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

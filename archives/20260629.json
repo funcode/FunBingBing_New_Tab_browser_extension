@@ -1,0 +1,46 @@
+{
+  "caption": "国际热带日",
+  "title": "波拉波拉岛及其泻湖, 南太平洋, 法属波利尼西亚",
+  "description": "“国际热带日”于每年6月29日纪念，旨在聚焦北回归线与南回归线之间那片广阔的区域——在这里，温暖的气候与充沛的降水塑造着人们的日常生活。该区域虽仅占地球表面积的约40%，却承载了全球约80%的生物多样性，对于地球生态健康与人类文化而言至关重要。",
+  "copyright": "© Frederick Millett/Shutterstock",
+  "date": "2026 6月 29",
+  "clickUrl": "/search?q=%e5%9b%bd%e9%99%85%e7%83%ad%e5%b8%a6%e6%97%a5&form=hpcapt&filters=HpDate:\"20260628_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BoraBoraLagoon_ZH-CN9234363590_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BoraBoraLagoon_ZH-CN9234363590_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BoraBoraLagoon_ZH-CN9234363590_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BoraBoraLagoon_ZH-CN9234363590_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BoraBoraLagoon_ZH-CN9234363590_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BoraBoraLagoon_ZH-CN9234363590_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在法属波利尼西亚，波拉波拉岛生动地展现了这种复杂性。这座岛屿是一座古老火山经侵蚀后留下的核心部分，其深色的玄武岩山峰——奥特马努山（Mount Otemanu）和帕希亚山（Mount Pahia）——从浅浅的绿松石色海水中拔地而起。随着火山岩体缓慢下沉而珊瑚礁向上生长，环绕岛屿的堡礁围合出一片平静的水域，形成了一处泻湖。该岛在塔希提语中被称为“Pora Pora”（意为“长子”），既见证了漫长的地质演变，也承载着鲜活的文化，体现了语言、海洋生态系统与地貌特征之间紧密的联系",
+  "descriptionPara3": "",
+  "isoDate": "20260629",
+  "headline": "生于烈火，拥于碧水",
+  "quickFact": "波拉波拉岛的泻湖栖息着鹰魟，它们常成群活动，在太平洋最清澈的海域之一的沙质海底优雅滑行。",
+  "triviaId": "HPQuiz_20260629_BoraBoraLagoon",
+  "triviaData": {
+    "question": "波拉波拉环礁湖中最高的山峰是哪一座？",
+    "options": [
+      {
+        "text": "泰德峰",
+        "url": "/search?q=%E5%A5%A5%E7%89%B9%E9%A9%AC%E5%8A%AA%E5%B1%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260629_BoraBoraLagoon%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "奥特马努山",
+        "url": "/search?q=%E5%A5%A5%E7%89%B9%E9%A9%AC%E5%8A%AA%E5%B1%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260629_BoraBoraLagoon%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "帕希亚山",
+        "url": "/search?q=%E5%A5%A5%E7%89%B9%E9%A9%AC%E5%8A%AA%E5%B1%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260629_BoraBoraLagoon%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}

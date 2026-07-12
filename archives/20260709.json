@@ -1,0 +1,46 @@
+{
+  "caption": "水稻田在沙巴，老街，越南",
+  "title": "在沙巴的水稻田，老街，越南",
+  "description": "阳光穿透流云，洒在沙巴（Sapa）的层层坡地之上，那里的水稻田宛如“活的阶梯”，顺着山脊倾泻而下。这一高地地区位于越南老街省（Lào Cai），其地貌既受大自然的造化，也离不开人类双手的雕琢。数个世纪以来，包括赫蒙族（Hmong）在内的当地少数民族世代在此开垦并维护着这些梯田，他们引导水源流过陡峭的山坡，以维持每个生长季节的灌溉需求。",
+  "copyright": "© Anujak Jaimook/Getty Images",
+  "date": "2026 7月 9",
+  "clickUrl": "/search?q=%e8%b6%8a%e5%8d%97%e8%80%81%e8%a1%97&form=hpcapt&filters=HpDate:\"20260708_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SapaVietnam_ZH-CN2178893672_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SapaVietnam_ZH-CN2178893672_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SapaVietnam_ZH-CN2178893672_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SapaVietnam_ZH-CN2178893672_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SapaVietnam_ZH-CN2178893672_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SapaVietnam_ZH-CN2178893672_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "每一层梯田都蓄着薄薄的水层，倒映着天空，在稻田由翠绿转为丰收时的暖金之前，滋养着幼嫩的禾苗。薄雾在山谷间游走，不时显露出层叠的山丘与蜿蜒的小径，在印度支那最高峰——番西邦峰（Fansipan）之下，营造出一种瞬息万变之感。尽管地处偏远，但沙巴已成为一个日益受欢迎的旅游目的地，吸引着无数游客慕名而来欣赏壮丽景色，并在离开时对这片依然保留传统色彩的土地有了更深的理解。",
+  "descriptionPara3": "",
+  "isoDate": "20260709",
+  "headline": "步步传承",
+  "quickFact": "“稻-鱼-鸭”共生系统在沙巴，老街，越南被广泛应用，通过在该生态位引入鱼类与鸭子实现自然肥田并控制病虫害，显著提升了高地农业的可持续性。",
+  "triviaId": "HPQuiz_20260709_SapaVietnam",
+  "triviaData": {
+    "question": "沙坝位于越南的哪个省？",
+    "options": [
+      {
+        "text": "北宁",
+        "url": "/search?q=%E8%80%81%E8%A1%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260709_SapaVietnam%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "老街",
+        "url": "/search?q=%E8%80%81%E8%A1%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260709_SapaVietnam%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "广南",
+        "url": "/search?q=%E8%80%81%E8%A1%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260709_SapaVietnam%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
