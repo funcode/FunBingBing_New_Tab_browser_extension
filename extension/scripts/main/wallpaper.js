@@ -7,23 +7,6 @@ let currentImageDate = null;
 let currentTransientQuoteDate = null;
 let currentTransientQuote = null;
 
-function paintPreloadedWallpaperIfAvailable() {
-	try {
-		const body = document.getElementById('main-body');
-		if (!body || typeof readConf !== 'function') return;
-		const preloadDataUrl = readConf('wallpaper_preload_data_url');
-		if (!preloadDataUrl) return;
-		body.style.backgroundImage = `url('${preloadDataUrl}')`;
-		body.style.backgroundColor = '';
-		body.classList.remove('wallpaper-fallback-active');
-		body.removeAttribute('data-wallpaper-fallback');
-	} catch (err) {
-		console.warn('Unable to paint cached wallpaper preload:', err);
-	}
-}
-
-paintPreloadedWallpaperIfAvailable();
-
 function revokeCurrentWallpaperObjectUrl() {
 	if (currentWallpaperObjectUrl) {
 		URL.revokeObjectURL(currentWallpaperObjectUrl);
@@ -150,10 +133,6 @@ async function applyWallpaperFromBlob(blob, originalUrl, image, options = {}) {
 	body.classList.remove('wallpaper-fallback-active');
 	body.style.backgroundColor = '';
 	writeConf('wallpaper_url', originalUrl);
-	const existingIframe = body.querySelector('iframe[src="offline.html"]');
-	if (existingIframe) {
-		body.removeChild(existingIframe);
-	}
 }
 
 // set wallpaper to default
@@ -164,10 +143,6 @@ async function showDefaultWallpaper(options = {}) {
 		body.style.backgroundColor = '#000';
 		body.setAttribute('data-wallpaper-fallback', 'visible');
 		body.classList.add('wallpaper-fallback-active');
-		const leftoverOfflineIframe = body.querySelector('iframe[src="offline.html"]');
-		if (leftoverOfflineIframe) {
-			body.removeChild(leftoverOfflineIframe);
-		}
 	}
 	const body = document.getElementById('main-body');
 	if (!body) return;
@@ -255,9 +230,8 @@ async function changeWallpaper(idx) {
 					previewBlob = await fetchWallpaperBlob(img_640x360);
 					// Reduce the flash when opening a new tab
 					cachePreloadWallpaper(previewBlob);
-					/* await applyWallpaperFromBlob(previewBlob, img_640x360, image);
-					// slight delay to ensure smooth transition
-					await delay(100); */
+					// No need to show the preview to avoid flicker
+					// await applyWallpaperFromBlob(previewBlob, img_640x360, image);
 				} catch (previewError) {
 					console.warn('Failed to load preview resolution wallpaper, skipping preload cache:', previewError);
 				}

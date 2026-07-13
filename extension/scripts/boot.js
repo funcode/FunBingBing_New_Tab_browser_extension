@@ -1,5 +1,18 @@
 (window.confReadyPromise || Promise.resolve())
   .then(() => {
+    try {
+      const body = document.getElementById('main-body');
+      const preloadDataUrl = typeof readConf === 'function'
+        ? readConf('wallpaper_preload_data_url')
+        : null;
+      if (body && preloadDataUrl) {
+        body.style.backgroundImage = `url('${preloadDataUrl}')`;
+        body.style.backgroundColor = '';
+      }
+    } catch (err) {
+      console.warn('Unable to paint cached wallpaper preload:', err);
+    }
+
     const scriptsToLoad = [
       "scripts/main/i18n.js",
       "scripts/main/top_sites.js",
