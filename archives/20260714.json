@@ -1,0 +1,46 @@
+{
+  "caption": "柠檬鲨",
+  "title": "柠檬鲨幼崽在红树林中，伊柳塞拉岛，巴哈马",
+  "description": "7月14日是世界鲨鱼日，它呼吁我们用海洋的真实面貌取代电影中的恐慌。鲨鱼已经在海洋中遨游了超过4.2亿年，作为顶级掠食者，它们有助于维持海洋生态系统的平衡。",
+  "copyright": "© Shane Gross/Nature Picture Library",
+  "date": "2026 7月 14",
+  "clickUrl": "/search?q=%e6%9f%a0%e6%aa%ac%e9%b2%a8&form=hpcapt&filters=HpDate:\"20260713_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.LemonShark_ZH-CN4650331008_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.LemonShark_ZH-CN4650331008_UHD.jpg",
+      "wallpaper": "/th?id=OHR.LemonShark_ZH-CN4650331008_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.LemonShark_ZH-CN4650331008_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.LemonShark_ZH-CN4650331008_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.LemonShark_ZH-CN4650331008_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "照片中这位小小的探险家——一条柠檬鲨幼崽在巴哈马群岛伊柳塞拉岛的红树林中穿梭——完美地提醒我们，它们的故事并非始于惊险刺激，而是始于育幼和生存。柠檬鲨是胎生动物，幼鲨会在浅水红树林中生活数年，那里的掩护和宁静的水面有助于它们的成长。然而，它们却被列为近危物种，世界各地的鲨鱼都面临着过度捕捞、出于恐惧而进行的猎杀以及栖息地丧失带来的巨大压力。保护它们远不止保护一个物种：健康的鲨鱼种群支撑着珊瑚礁、海草床以及更广阔的海洋食物网。今天，我们发出的不是恐慌，而是敬畏——以及更深切的尊重。",
+  "descriptionPara3": "",
+  "isoDate": "20260714",
+  "headline": "奇妙的真相",
+  "quickFact": "格陵兰鲨的寿命可达400年，是脊椎动物中寿命最长的物种之一。",
+  "triviaId": "HPQuiz_20260714_LemonShark",
+  "triviaData": {
+    "question": "哪种栖息地有助于幼年柠檬鲨安全成长？",
+    "options": [
+      {
+        "text": "红树林浅滩",
+        "url": "/search?q=%E7%BA%A2%E6%A0%91%E6%9E%97%E6%B5%85%E6%BB%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260714_LemonShark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "海草床",
+        "url": "/search?q=%E7%BA%A2%E6%A0%91%E6%9E%97%E6%B5%85%E6%BB%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260714_LemonShark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "珊瑚礁",
+        "url": "/search?q=%E7%BA%A2%E6%A0%91%E6%9E%97%E6%B5%85%E6%BB%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260714_LemonShark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
