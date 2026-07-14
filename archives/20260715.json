@@ -1,0 +1,46 @@
+{
+  "caption": "玛丽湖，加利福尼亚州，美国",
+  "title": "玛丽湖，约翰·缪尔荒野（毕晓普附近），加利福尼亚州，美国",
+  "description": "如果山脉能够记录过去，那么位于加利福尼亚州毕晓普附近的约翰·缪尔荒野保护区将拥有丰富的历史资料可供分享。这里的山谷、湖泊和花岗岩地貌诉说着数百万年来的演变历程。这片广袤的保护区成立于1964年，横跨内华达山脉超过65万英亩的土地，并以博物学家约翰·缪尔的名字命名。如今，太平洋山脊步道和约翰·缪尔步道的部分路段穿过这里，吸引着徒步旅行者来到美国本土最大的高海拔荒野地区之一。",
+  "copyright": "© Steve Dunleavy/Getty Images",
+  "date": "2026 7月 15",
+  "clickUrl": "/search?q=%e7%ba%a6%e7%bf%b0%c2%b7%e7%bc%aa%e5%b0%94%e8%8d%92%e9%87%8e&form=hpcapt&filters=HpDate:\"20260714_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MarieLake_ZH-CN4927917413_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MarieLake_ZH-CN4927917413_UHD.jpg",
+      "wallpaper": "/th?id=OHR.MarieLake_ZH-CN4927917413_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MarieLake_ZH-CN4927917413_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MarieLake_ZH-CN4927917413_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.MarieLake_ZH-CN4927917413_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "玛丽湖距离毕夏普不远，海拔约10550英尺（3200米），是背包客穿越塞尔登山口的必经之地。清澈的湖水倒映着周围的花岗岩，使其成为这条徒步路线上最热门的摄影景点之一。生活在如此高海拔地区的生物适应了短暂的生长季。白皮松和扭叶松遍布大地，而土拨鼠、金鳟、克拉克星鸦、黑熊、鼠兔和加州大角羊等动物也依然是这片生态系统的重要组成部分。",
+  "descriptionPara3": "",
+  "isoDate": "20260715",
+  "headline": "攀登后的奖励",
+  "quickFact": "约翰·缪尔荒野包含阿拉斯加州以外美国本土的一些最高山峰，其中包括惠特尼峰，它是美国本土最高的山脉，海拔达14,505英尺（约 4,421 米）。",
+  "triviaId": "HPQuiz_20260715_MarieLake",
+  "triviaData": {
+    "question": "约翰·缪尔荒野位于哪座山脉？",
+    "options": [
+      {
+        "text": "落基山脉",
+        "url": "/search?q=%E5%86%85%E5%8D%8E%E8%BE%BE%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260715_MarieLake%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "内华达山脉",
+        "url": "/search?q=%E5%86%85%E5%8D%8E%E8%BE%BE%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260715_MarieLake%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "喀斯喀特山脉",
+        "url": "/search?q=%E5%86%85%E5%8D%8E%E8%BE%BE%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260715_MarieLake%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
