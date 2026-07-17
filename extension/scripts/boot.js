@@ -1,5 +1,10 @@
-(window.confReadyPromise || Promise.resolve())
-  .then(() => {
+let onlineAppStartPromise = null;
+
+function startOnlineApp() {
+  if (onlineAppStartPromise) return onlineAppStartPromise;
+
+  onlineAppStartPromise = (window.confReadyPromise || Promise.resolve())
+    .then(() => {
     try {
       const body = document.getElementById('main-body');
       const preloadDataUrl = typeof readConf === 'function'
@@ -41,8 +46,21 @@
       }));
     }, Promise.resolve());
 
-    return loadScriptSequentially(scriptsToLoad);
-  })
-  .catch((err) => {
-    console.error('Error loading dependent scripts after configuration ready:', err);
-  });
+      return loadScriptSequentially(scriptsToLoad);
+    })
+    .catch((err) => {
+      console.error('Error loading dependent scripts after configuration ready:', err);
+    });
+
+  return onlineAppStartPromise;
+}
+
+if (document.documentElement.dataset.networkStatus === 'online') {
+  startOnlineApp();
+}
+
+window.addEventListener('funbingbing:networkstatuschange', (event) => {
+  if (event.detail?.status === 'online') {
+    startOnlineApp();
+  }
+});

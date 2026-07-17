@@ -952,6 +952,12 @@ chrome.runtime.onMessage.addListener((message) => {
 // init wallpaper
 initWallpaper().catch((err) => console.error('initWallpaper() failed:', err));
 
+window.addEventListener('funbingbing:networkstatuschange', (event) => {
+	if (event.detail?.status === 'online' && event.detail?.previousStatus === 'offline') {
+		initWallpaper().catch((err) => console.error('Wallpaper refresh after reconnect failed:', err));
+	}
+});
+
 var left_nav_btn = document.getElementById('leftNav');
 left_nav_btn.onclick = switchPrevWallpaper;
 var right_nav_btn = document.getElementById('rightNav');
