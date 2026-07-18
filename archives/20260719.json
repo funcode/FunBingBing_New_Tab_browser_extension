@@ -1,0 +1,46 @@
+{
+  "caption": "不同亚种的家燕聚在一起休息",
+  "title": "不同亚种的家燕聚在一起休息",
+  "description": "一群家燕栖息在纤细的芦苇上，在片刻的宁静中聚集，与其往常疾速的身影形成了鲜明对比。这些鸟类以迅捷且极具灵动性的飞行能力及标志性的深叉状尾羽著称，其生理构造天生便高度适应不间断的飞行生活。它们能在半空中精准捕食昆虫，并在各大洲之间长途跋涉。羽色与斑纹的细微差异暗示此处可能聚集了多个亚种，这有力地证明了家燕广泛的全球分布范围。",
+  "copyright": "© Oscar Dominguez/Tandem Stills + Motion",
+  "date": "2026 7月 19",
+  "clickUrl": "/search?q=%e5%ae%b6%e7%87%95&form=hpcapt&filters=HpDate:\"20260718_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.HirundoRustica_ZH-CN2798518247_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.HirundoRustica_ZH-CN2798518247_UHD.jpg",
+      "wallpaper": "/th?id=OHR.HirundoRustica_ZH-CN2798518247_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.HirundoRustica_ZH-CN2798518247_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.HirundoRustica_ZH-CN2798518247_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.HirundoRustica_ZH-CN2798518247_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "从欧洲、亚洲到美洲，家燕习惯于在受人类活动影响的开阔景观中筑巢繁殖，随后在冬季向南迁徙至温暖地带。在迁徙旅程中，它们会形成松散的族群，并在水源、食物及栖息资源丰富的地点驻足。它们甚至展现出高超的飞行技巧，能在掠水飞行时用喙部直接饮水。在这短暂的聚会中，燕群看似静止，实则预示着一场更大规模的生命律动——这是一场跨越这片静谧芦苇丛、延伸至全球各地的共同迁徙。",
+  "descriptionPara3": "",
+  "isoDate": "20260719",
+  "headline": "敛羽栖时",
+  "quickFact": "家燕每年在繁殖地与越冬地之间往返迁徙，其行程可达数千英里。",
+  "triviaId": "HPQuiz_20260719_HirundoRustica",
+  "triviaData": {
+    "question": "家燕具备何种特征使其适合长途飞行？",
+    "options": [
+      {
+        "text": "钩状喙",
+        "url": "/search?q=%E6%B7%B1%E5%8F%89%E5%BD%A2%E5%B0%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260719_HirundoRustica%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "蹼足",
+        "url": "/search?q=%E6%B7%B1%E5%8F%89%E5%BD%A2%E5%B0%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260719_HirundoRustica%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "深叉形尾",
+        "url": "/search?q=%E6%B7%B1%E5%8F%89%E5%BD%A2%E5%B0%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260719_HirundoRustica%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
