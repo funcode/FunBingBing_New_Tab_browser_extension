@@ -1,0 +1,46 @@
+{
+  "caption": "国际月球日",
+  "title": "月球与地球由阿耳忒弥斯2号机组人员拍摄",
+  "description": "从月球那遍布环形山的表面望去，地球在无垠的黑暗中呈现为一抹微光闪烁的娥眉状——这一罕见的奇观与我们惯常的地面观测视角截然相反。这片由数十亿年撞击作用塑造的荒芜地貌，完整地保存了早期太阳系的演化记录。7月20日是国际月球日，旨在纪念1969年阿波罗11号任务中人类首次踏上月球表面的历史性时刻。该纪念日由联合国于2021年设立，不仅致敬过去的辉煌成就，更聚焦于当下持续不断的月球探测努力。",
+  "copyright": "© NASA",
+  "date": "2026 7月 20",
+  "clickUrl": "/search?q=%e5%9b%bd%e9%99%85%e6%9c%88%e7%90%83%e6%97%a5&form=hpcapt&filters=HpDate:\"20260719_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.Artemis_ZH-CN3540365575_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.Artemis_ZH-CN3540365575_UHD.jpg",
+      "wallpaper": "/th?id=OHR.Artemis_ZH-CN3540365575_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.Artemis_ZH-CN3540365575_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.Artemis_ZH-CN3540365575_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.Artemis_ZH-CN3540365575_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "月球作为地球唯一的天然卫星，在距离地球约23.9万英里的轨道上运行。由于几乎不存在大气层，月球经历着极端的温差跨度——受光面的酷热与阴影区的严寒形成了鲜明对比。然而，月球的影响力远超其表面：它的引力是驱动地球海洋潮汐的核心动力，将这个寂静且真空的世界与人类的日常生活紧密相连。月球不仅是太空探索的目的地，更是夜空中永恒的存在，连接着人类早期的天文观测与当代的深空探测。",
+  "descriptionPara3": "",
+  "isoDate": "20260720",
+  "headline": "月瞰寰宇",
+  "quickFact": "月球的自转速率与其绕地球公转的速率完全同步，由于这种“同步自转”特性，我们在地球上观测时始终只能看到月球的同一面。",
+  "triviaId": "HPQuiz_20260720_Artemis",
+  "triviaData": {
+    "question": "月球的哪种力量影响地球的海洋潮汐？",
+    "options": [
+      {
+        "text": "重力",
+        "url": "/search?q=%E9%87%8D%E5%8A%9B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260720_Artemis%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "磁学",
+        "url": "/search?q=%E9%87%8D%E5%8A%9B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260720_Artemis%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "辐射",
+        "url": "/search?q=%E9%87%8D%E5%8A%9B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260720_Artemis%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
