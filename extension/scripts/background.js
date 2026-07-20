@@ -22,8 +22,12 @@ chrome.runtime.onInstalled.addListener(function (object) {
 const DEFAULT_LOST_QUOTES_URL = null;
 const QUOTE_CACHE_SLOTS = 8;
 const LOST_QUOTES_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+const WALLPAPER_CACHE_NAME = 'funbingbing-wallpaper-cache-v1';
+const WALLPAPER_CACHE_MAX_ENTRIES = 32;
+const WALLPAPER_PREFETCH_CONCURRENCY = 2;
 
 let latestQuoteSyncRequestId = 0;
+const wallpaperPrefetchInFlight = new Map();
 
 let lostQuotesCache = null;
 let lostQuotesFetchedAt = 0;
@@ -150,7 +154,90 @@ function computeMissingDates(imageDates, allQuotes) {
   return Array.from(missing);
 }
 
+async function pruneWallpaperCache(cache) {
+  const keys = await cache.keys();
+  if (keys.length <= WALLPAPER_CACHE_MAX_ENTRIES) return;
+  const staleKeys = keys.slice(0, keys.length - WALLPAPER_CACHE_MAX_ENTRIES);
+  await Promise.all(staleKeys.map((request) => cache.delete(request)));
+}
+
+function prefetchWallpaperUrl(cache, url) {
+  const existing = wallpaperPrefetchInFlight.get(url);
+  if (existing) return existing;
+
+  const task = (async () => {
+    const cached = await cache.match(url);
+    if (cached) return 'cached';
+
+    const response = await fetch(url, {
+      mode: 'cors',
+      cache: 'no-store'
+    });
+    if (!response.ok) {
+      throw new Error(`Wallpaper prefetch failed with status ${response.status}`);
+    }
+
+    await cache.put(url, response.clone());
+    return 'fetched';
+  })();
+
+  wallpaperPrefetchInFlight.set(url, task);
+  const clearInFlight = () => {
+    if (wallpaperPrefetchInFlight.get(url) === task) {
+      wallpaperPrefetchInFlight.delete(url);
+    }
+  };
+  task.then(clearInFlight, clearInFlight);
+  return task;
+}
+
+async function prefetchWallpapers(urls) {
+  const uniqueUrls = [...new Set(
+    (Array.isArray(urls) ? urls : [])
+      .filter((url) => typeof url === 'string' && /^https:\/\//i.test(url))
+  )];
+  const cache = await caches.open(WALLPAPER_CACHE_NAME);
+  let nextIndex = 0;
+  const results = { fetched: 0, cached: 0, failed: 0 };
+
+  const runWorker = async () => {
+    while (nextIndex < uniqueUrls.length) {
+      const url = uniqueUrls[nextIndex++];
+      try {
+        const result = await prefetchWallpaperUrl(cache, url);
+        results[result] += 1;
+      } catch (err) {
+        results.failed += 1;
+        console.warn('Wallpaper prefetch failed:', url, err);
+      }
+    }
+  };
+
+  await Promise.all(
+    Array.from(
+      { length: Math.min(WALLPAPER_PREFETCH_CONCURRENCY, uniqueUrls.length) },
+      runWorker
+    )
+  );
+
+  await pruneWallpaperCache(cache);
+  return { ...results, requested: uniqueUrls.length };
+}
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message && message.type === "prefetchWallpapers") {
+    (async () => {
+      try {
+        const result = await prefetchWallpapers(message.urls);
+        sendResponse({ ok: true, ...result });
+      } catch (error) {
+        console.error("Error prefetching wallpapers:", error);
+        sendResponse({ ok: false, error: error.message });
+      }
+    })();
+    return true;
+  }
+
   if (message && message.type === "syncQuotesForImages") {
     (async () => {
       try {

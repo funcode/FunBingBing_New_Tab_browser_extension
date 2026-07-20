@@ -1,5 +1,4 @@
 const WALLPAPER_CACHE_NAME = 'funbingbing-wallpaper-cache-v1';
-const WALLPAPER_CACHE_MAX_ENTRIES = 32;
 const WALLPAPER_FETCH_LOCK_KEY = 'wallpaper_fetch_lock';
 const WALLPAPER_FETCH_LOCK_TTL_MS = 30_000;
 let currentWallpaperObjectUrl = null;
@@ -45,13 +44,6 @@ async function cachePreloadWallpaper(blob) {
 	} catch (err) {
 		console.warn('Failed to cache preload wallpaper:', err);
 	}
-}
-
-async function pruneWallpaperCache(cache) {
-	const keys = await cache.keys();
-	if (keys.length <= WALLPAPER_CACHE_MAX_ENTRIES) return;
-	const staleKeys = keys.slice(0, keys.length - WALLPAPER_CACHE_MAX_ENTRIES);
-	await Promise.all(staleKeys.map((request) => cache.delete(request)));
 }
 
 async function fetchWallpaperBlob(url) {
@@ -105,12 +97,6 @@ async function fetchWallpaperBlob(url) {
 			console.warn('Unable to write wallpaper cache:', err);
 			return blobPromise;
 		}
-		//fire and forget the pruning of the wallpaper cache
-		//it may cause race with match if multiple pages are running simultaneously
-		//but it should be fine since we only prune old entries
-		pruneWallpaperCache(cache).catch((err) => {
-			console.warn('Failed to prune wallpaper cache:', err);
-		});
 		return blobPromise;
 	}
 	return response.blob();
@@ -261,6 +247,46 @@ async function updateWallpaper(idx) {
 	}
 }
 
+function buildWallpaperPrefetchUrls() {
+	const images = readConf('bing_images');
+	if (!Array.isArray(images)) return [];
+
+	const baseurl = 'https://ts1.tc.mm.bing.net';
+	const useUhd = readConf('enable_uhd_wallpaper') == 'yes';
+	const urls = [];
+	images.forEach((image) => {
+		const landscape = image?.imageUrls?.landscape;
+		const path = useUhd ? landscape?.ultraHighDef : landscape?.highDef;
+		if (path) urls.push(baseurl + path);
+		// Match the 640x360 preview changeWallpaper() also awaits, so switching
+		// never blocks on the preview fetch.
+		const previewPath = useUhd
+			? landscape?.ultraHighDef?.replace('UHD', '640x360')
+			: landscape?.highDef?.replace('1920x1080', '640x360');
+		if (previewPath) urls.push(baseurl + previewPath);
+	});
+	return [...new Set(urls)];
+}
+
+function requestWallpaperPrefetch() {
+	const urls = buildWallpaperPrefetchUrls();
+	if (urls.length === 0) return;
+
+	try {
+		chrome.runtime.sendMessage({ type: 'prefetchWallpapers', urls }, (response) => {
+			if (chrome.runtime.lastError) {
+				console.debug('Wallpaper prefetch unavailable:', chrome.runtime.lastError.message);
+				return;
+			}
+			if (response && !response.ok) {
+				console.debug('Wallpaper prefetch failed:', response.error || 'unknown error');
+			}
+		});
+	} catch (err) {
+		console.debug('Failed to request wallpaper prefetch:', err);
+	}
+}
+
 async function refreshConfCacheIfAvailable() {
 		await initConfCache();
 }
@@ -325,6 +351,7 @@ async function runWallpaperFetchRefresh() {
 	if (!updated) return false;
 
 	await writeConf('wallpaper_date', todayDate);
+	requestWallpaperPrefetch();
 	return true;
 }
 
@@ -336,16 +363,21 @@ async function initWallpaper() {
 		const cache_idx = readConf("wallpaper_idx");
 		if (cache_idx !== undefined && cache_idx !== null) {
 			await changeWallpaper(Number.parseInt(cache_idx, 10));
+			requestWallpaperPrefetch();
 		} else {
 			setFooterText(i18n('updating_wallpaper'));
 			await showDefaultWallpaper();
 			await updateWallpaper(0);
+			requestWallpaperPrefetch();
 		}
 	} else {
 		try {
 			if (await isTodayWallpaperReady()) {
 				await refreshConfCacheIfAvailable();
-				if (await changeWallpaper(0)) return;
+				if (await changeWallpaper(0)) {
+					requestWallpaperPrefetch();
+					return;
+				}
 			}
 
 			const lockValue = await readStorageKey(WALLPAPER_FETCH_LOCK_KEY);
@@ -355,7 +387,10 @@ async function initWallpaper() {
 				const ready = await waitForTodayWallpaperReady();
 				if (ready || await isTodayWallpaperReady()) {
 					await refreshConfCacheIfAvailable();
-					if (await changeWallpaper(0)) return;
+					if (await changeWallpaper(0)) {
+						requestWallpaperPrefetch();
+						return;
+					}
 					console.warn('Today wallpaper became ready, but display failed; refreshing.');
 				}
 			}
