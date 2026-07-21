@@ -1,0 +1,46 @@
+{
+  "caption": "珊瑚礁意识周",
+  "title": "珊瑚礁与海滩在拉贾安帕特，印度尼西亚",
+  "description": "想象一座由动物建造的城市，在阳光下熠熠生辉，并在海浪之下涌动着生命。这就是珊瑚礁。在珊瑚礁意识周（Coral Reef Awareness Week）期间，我们赞美这些非凡的生态系统，以及依赖其生存的无数物种",
+  "copyright": "© SergeUWPhoto/Shutterstock",
+  "date": "2026 7月 22",
+  "clickUrl": "/search?q=%e7%8f%8a%e7%91%9a%e7%a4%81%e6%84%8f%e8%af%86%e5%91%a8&form=hpcapt&filters=HpDate:\"20260721_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.CoralAwareness_ZH-CN1621627126_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.CoralAwareness_ZH-CN1621627126_UHD.jpg",
+      "wallpaper": "/th?id=OHR.CoralAwareness_ZH-CN1621627126_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.CoralAwareness_ZH-CN1621627126_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.CoralAwareness_ZH-CN1621627126_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.CoralAwareness_ZH-CN1621627126_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "珊瑚礁仅覆盖了全球不足1%的海床面积，却支撑着约25%的海洋生命。这些看似彩色岩石的物体，实际上是被称为珊瑚虫（Coral polyps）的微小动物集群。它们共同构建了宏大的石灰岩结构，且能延续数千年之久。大堡礁是地球上最大的生物结构，沿着澳大利亚海岸延伸超过1,400英里。",
+  "descriptionPara3": "珊瑚礁充满了惊喜。部分珊瑚因含有能起到天然防晒作用的荧光蛋白而发光；而鹦嘴鱼则通过将珊瑚转化为细砂，协助形成了沙滩。若想一窥珊瑚礁生命最丰富的一面，请看向图中所示的印度尼西亚拉贾安帕特（Raja Ampat），那里生长着超过75%的已知珊瑚物种。它们虽栖息于水下，但其影响力远播至海岸线之外。",
+  "isoDate": "20260722",
+  "headline": "细微之举，影响深远",
+  "quickFact": "珊瑚礁作为“21世纪的药库”在拉贾安帕特，印度尼西亚及全球海洋中展现出巨大的生物医学价值，其产生的独特化合物正被用于开发治疗癌症及心脏病的新型药物。",
+  "triviaId": "HPQuiz_20260722_CoralAwareness",
+  "triviaData": {
+    "question": "哪种鱼通过磨碎珊瑚为沙滩形成作出贡献？",
+    "options": [
+      {
+        "text": "鳞鲀",
+        "url": "/search?q=%E9%B9%A6%E9%B9%89%E9%B1%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260722_CoralAwareness%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "鹦鹉鱼",
+        "url": "/search?q=%E9%B9%A6%E9%B9%89%E9%B1%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260722_CoralAwareness%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "小丑鱼",
+        "url": "/search?q=%E9%B9%A6%E9%B9%89%E9%B1%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260722_CoralAwareness%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
