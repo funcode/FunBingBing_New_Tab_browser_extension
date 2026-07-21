@@ -247,14 +247,41 @@ async function updateWallpaper(idx) {
 	}
 }
 
+function buildModelPreloadWallpaperUrls(preloadMediaContents) {
+	const urls = [];
+	const sourceSuffix = /_\d+x\d+\.(?:webp|jpg)$/i;
+
+	(Array.isArray(preloadMediaContents) ? preloadMediaContents : []).forEach((item) => {
+		const sourceUrl = item?.ImageContent?.Image?.Url;
+		if (typeof sourceUrl !== 'string') return;
+
+		try {
+			const parsedUrl = new URL(sourceUrl);
+			if (parsedUrl.protocol !== 'https:') return;
+			const imageId = parsedUrl.searchParams.get('id');
+			if (!imageId || !sourceSuffix.test(imageId)) return;
+
+			const baseImageId = imageId.replace(sourceSuffix, '');
+			['_UHD.jpg', '_640x360.jpg'].forEach((suffix) => {
+				const derivedUrl = new URL(parsedUrl.toString());
+				derivedUrl.searchParams.set('id', baseImageId + suffix);
+				urls.push(derivedUrl.toString());
+			});
+		} catch (err) {
+			// Ignore malformed model preload URLs without failing wallpaper refresh.
+		}
+	});
+
+	return [...new Set(urls)];
+}
+
 function buildWallpaperPrefetchUrls() {
 	const images = readConf('bing_images');
-	if (!Array.isArray(images)) return [];
 
 	const baseurl = 'https://ts1.tc.mm.bing.net';
 	const useUhd = readConf('enable_uhd_wallpaper') == 'yes';
 	const urls = [];
-	images.forEach((image) => {
+	(Array.isArray(images) ? images : []).forEach((image) => {
 		const landscape = image?.imageUrls?.landscape;
 		const path = useUhd ? landscape?.ultraHighDef : landscape?.highDef;
 		if (path) urls.push(baseurl + path);
@@ -264,6 +291,17 @@ function buildWallpaperPrefetchUrls() {
 			? landscape?.ultraHighDef?.replace('UHD', '640x360')
 			: landscape?.highDef?.replace('1920x1080', '640x360');
 		if (previewPath) urls.push(baseurl + previewPath);
+	});
+
+	const modelPreloadUrls = readConf('bing_model_preload_wallpaper_urls');
+	(Array.isArray(modelPreloadUrls) ? modelPreloadUrls : []).forEach((url) => {
+		if (typeof url !== 'string') return;
+		try {
+			const parsedUrl = new URL(url);
+			if (parsedUrl.protocol === 'https:') urls.push(parsedUrl.toString());
+		} catch (err) {
+			// Ignore invalid persisted URLs.
+		}
 	});
 	return [...new Set(urls)];
 }
@@ -411,14 +449,21 @@ async function initWallpaper() {
 
 // --- Collect Bing Data (with fetch) ---
 async function collectBingDataInParallel() {
-	const results = { imageArchive: null, imageOfTheDay: null, model: null, quoteOfTheDay: null, errors: [] };
+	const results = {
+		imageArchive: null,
+		imageOfTheDay: null,
+		model: null,
+		modelPreloadWallpaperUrls: null,
+		quoteOfTheDay: null,
+		errors: []
+	};
 
 	try {
 		// Kick off all 4 requests in parallel
 		const [archiveRes, dayRes, modelRes, quoteRes] = await Promise.allSettled([
 			fetch("https://www.bing.com/HPImageArchive.aspx?format=js&n=1&mkt=zh-CN&idx=7"),
 			fetch("https://www.bing.com/hp/api/v1/imageoftheday?format=json&mkt=zh-CN"),
-			fetch("https://www.bing.com/hp/api/model?mkt=zh-CN"),
+			fetch("https://cn.bing.com/hp/api/model?mkt=zh-CN"),
 			fetch("https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN&form=QBRE", {
 				body: null,
 				method: "GET",
@@ -445,6 +490,7 @@ async function collectBingDataInParallel() {
 		// Parse model + trivia expansion
 		if (modelRes.status === "fulfilled" && modelRes.value.ok) {
 			const mediaObj = await modelRes.value.json();
+			results.modelPreloadWallpaperUrls = buildModelPreloadWallpaperUrls(mediaObj?.PreloadMediaContents);
 			const { quickFactsBySsd, triviaPromises } = (mediaObj?.MediaContents || []).reduce((acc, item) => {
 				const mc = {
 					headline: item.ImageContent?.Headline,
@@ -631,6 +677,9 @@ async function handleBingDataResults(results) {
 
 	// --- Save image metadata; quotes are persisted only in cache_quote_state ---
 	await writeConf("bing_images", images);
+	if (Array.isArray(results.modelPreloadWallpaperUrls)) {
+		await writeConf("bing_model_preload_wallpaper_urls", results.modelPreloadWallpaperUrls);
+	}
 	console.log("Saved bing_images with merged contents.");
 
 	if (quoteSyncPayload) {

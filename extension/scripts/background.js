@@ -23,7 +23,7 @@ const DEFAULT_LOST_QUOTES_URL = null;
 const QUOTE_CACHE_SLOTS = 8;
 const LOST_QUOTES_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 const WALLPAPER_CACHE_NAME = 'funbingbing-wallpaper-cache-v1';
-const WALLPAPER_CACHE_MAX_ENTRIES = 32;
+const WALLPAPER_CACHE_MAX_ENTRIES = 48;
 const WALLPAPER_PREFETCH_CONCURRENCY = 2;
 
 let latestQuoteSyncRequestId = 0;
