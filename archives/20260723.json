@@ -1,0 +1,46 @@
+{
+  "caption": "粉红色大丽花",
+  "title": "粉红色大丽花",
+  "description": "有些花卉静谧地装点着花园，而大丽花（Dahlias）的登场则宛如领衔主演。这些原产于墨西哥的菊科（Asteraceae）成员拥有超过5.7万个培育品种，这在很大程度上归功于其独特的遗传特征。大丽花是典型的八倍体（Octoploids），意味着它们拥有八组染色体，这种多倍体特征使其花朵形态极具多样性，既有如纽扣般娇小的品种，也有直径达14英寸的巨型花冠。",
+  "copyright": "© Harald Biebel/Getty Images",
+  "date": "2026 7月 23",
+  "clickUrl": "/search?q=%e5%a4%a7%e4%b8%bd%e8%8a%b1%e5%b1%9e%e6%a4%8d%e7%89%a9&form=hpcapt&filters=HpDate:\"20260722_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.PinkDahlia_ZH-CN2259107800_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.PinkDahlia_ZH-CN2259107800_UHD.jpg",
+      "wallpaper": "/th?id=OHR.PinkDahlia_ZH-CN2259107800_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.PinkDahlia_ZH-CN2259107800_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.PinkDahlia_ZH-CN2259107800_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.PinkDahlia_ZH-CN2259107800_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "它们的历史与其花瓣一样多姿多彩。阿兹特克人曾种植大丽花以食用其块茎并发挥药用价值，而其特有的中空茎部则被用作天然的水管。当大丽花在 18 世纪传入欧洲时，最初是作为一种粮食作物被引进的。但园艺家们很快便达成共识：相比于出现在餐桌上，这种花卉在园林景观中显然更具魅力。",
+  "descriptionPara3": "除了真正的蓝色，大丽花几乎涵盖了自然界的所有色彩。即使是所谓的“黑色”品种，其实际颜色也是极深的酒红色。大丽花于 1963 年被正式定为墨西哥的国花，它有力地证明了某些植物天生便能在群芳中脱颖而出。",
+  "isoDate": "20260723",
+  "headline": "瓣叠交响",
+  "quickFact": "大丽花的一个阿兹特克语名称常被译为“水管花”，这源于该植物细长且中空的茎部特征，这种中空茎在古代曾被用作输送水分的管道。",
+  "triviaId": "HPQuiz_20260723_PinkDahlia",
+  "triviaData": {
+    "question": "哪一古代文明最早种植大丽花？",
+    "options": [
+      {
+        "text": "阿兹特克人",
+        "url": "/search?q=%E9%98%BF%E5%85%B9%E7%89%B9%E5%85%8B%E4%BA%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260723_PinkDahlia%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "玛雅人",
+        "url": "/search?q=%E9%98%BF%E5%85%B9%E7%89%B9%E5%85%8B%E4%BA%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260723_PinkDahlia%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "印加人",
+        "url": "/search?q=%E9%98%BF%E5%85%B9%E7%89%B9%E5%85%8B%E4%BA%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260723_PinkDahlia%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
