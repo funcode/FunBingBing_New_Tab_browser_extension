@@ -1,0 +1,46 @@
+{
+  "caption": "大教堂海滩，加利西亚，西班牙",
+  "title": "大教堂海滩，加利西亚，西班牙",
+  "description": "在西班牙遥远的西北部，加利西亚与大西洋交汇。漫长的海岸线在海浪的强力冲刷下，形成了由悬崖、内湾和海蚀平台交织而成的地貌。雨水充沛的山丘与密林向海绵延，这种景观带有鲜明的大西洋气候基调，使其在感官上更接近于爱尔兰，而非人们惯常印象中的西班牙南部。",
+  "copyright": "© Tui De Roy/Amazing Aerial Agency/Abobe Stock",
+  "date": "2026 7月 25",
+  "clickUrl": "/search?q=%e8%a5%bf%e7%8f%ad%e7%89%99%e5%8a%a0%e5%88%a9%e8%a5%bf%e4%ba%9a&form=hpcapt&filters=HpDate:\"20260724_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.GaliciaBeach_ZH-CN1246611659_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.GaliciaBeach_ZH-CN1246611659_UHD.jpg",
+      "wallpaper": "/th?id=OHR.GaliciaBeach_ZH-CN1246611659_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.GaliciaBeach_ZH-CN1246611659_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.GaliciaBeach_ZH-CN1246611659_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.GaliciaBeach_ZH-CN1246611659_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在该地区的北缘，里瓦德奥小镇毗邻阿斯图里亚斯自治区，坐落于比斯开湾的河口与外海交汇处。这里的海岸线从崎岖嶙峋转为超现实的奇观，悬崖之后隐匿着复杂的岩石构造和幽静的海湾。大教堂海滩得名于经年累月的海蚀作用所雕琢出的巨型拱门，其宏伟的轮廓酷似哥特式石质大教堂的高耸建筑风格。",
+  "descriptionPara3": "潮落之时是最佳的到访时刻。在有限的时间窗内，裸露的海床会化为一座可供步行的“石头迷宫”——这一瞬息万变的地形会随着潮水的再度涌入而消失，海洋迅速收复沙滩并重塑海岸线的形态",
+  "isoDate": "20260725",
+  "headline": "加境幽廊",
+  "quickFact": "除了因酷似教堂的拱门而闻名外，该地标的官方定名为“圣水海滩”，在大教堂海滩，加利西亚，西班牙。",
+  "triviaId": "HPQuiz_20260725_GaliciaBeach",
+  "triviaData": {
+    "question": "大教堂海滩因什么而得名?",
+    "options": [
+      {
+        "text": "古老灯塔",
+        "url": "/search?q=%E5%B7%A8%E5%9E%8B%E5%B2%A9%E7%9F%B3%E6%8B%B1%E9%97%A8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260725_GaliciaBeach%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "巨型岩石拱门",
+        "url": "/search?q=%E5%B7%A8%E5%9E%8B%E5%B2%A9%E7%9F%B3%E6%8B%B1%E9%97%A8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260725_GaliciaBeach%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "沙丘群",
+        "url": "/search?q=%E5%B7%A8%E5%9E%8B%E5%B2%A9%E7%9F%B3%E6%8B%B1%E9%97%A8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260725_GaliciaBeach%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
