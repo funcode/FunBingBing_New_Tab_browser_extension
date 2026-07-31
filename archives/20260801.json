@@ -1,0 +1,46 @@
+{
+  "caption": "大岛上的熔岩流涌入海洋, 夏威夷",
+  "title": "大批熔岩流涌入大洋，大岛，夏威夷州，美国",
+  "description": "大多数地貌的演变历时数千年，而火山却能在短短数小时内重塑地貌——在夏威夷大岛，这一过程至今仍在持续。为了保护这一不断变化的环境及其所蕴含的科学与自然价值，夏威夷火山国家公园于1916年8月1日正式成立。一个多世纪以来，该公园一直致力于保护这片占地超过35万英亩的区域，其中包括火山地貌、原生森林以及各类珍稀野生动植物。",
+  "copyright": "© Ken McCurdy/Getty Images",
+  "date": "2026 8月 1",
+  "clickUrl": "/search?q=%e5%a4%8f%e5%a8%81%e5%a4%b7%e7%81%ab%e5%b1%b1%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260731_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.HawaiiLava_ZH-CN3257621771_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.HawaiiLava_ZH-CN3257621771_UHD.jpg",
+      "wallpaper": "/th?id=OHR.HawaiiLava_ZH-CN3257621771_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.HawaiiLava_ZH-CN3257621771_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.HawaiiLava_ZH-CN3257621771_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.HawaiiLava_ZH-CN3257621771_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这座国家公园以其境内的两座火山——基拉韦厄和冒纳罗亚——命名。基拉韦厄是世界上最活跃的火山之一；在某些喷发期间，熔岩会顺坡而下流入太平洋，冷却后形成新的岩石。冒纳罗亚则是按体积计算全球最大的活火山，自1843年有明确记录的首次喷发以来，已喷发过34次。该公园也是多种珍稀生物的家园，其中包括夏威夷的州鸟——夏威夷雁，以及濒临灭绝的夏威夷圆尾鹱。值此周年纪念之际，这座公园继续守护着这片不断演变的动态景观。",
+  "descriptionPara3": "",
+  "isoDate": "20260801",
+  "headline": "基拉韦厄火山的威力",
+  "quickFact": "当温度高达约1093摄氏度的熔岩与冰冷的太平洋海水相遇时，会产生被称为“熔岩雾霭”的剧烈化学反应，形成包含盐酸烟雾和微小火山玻璃颗粒的有害气云。",
+  "triviaId": "HPQuiz_20260801_HawaiiLava",
+  "triviaData": {
+    "question": "哪座夏威夷火山体积最大？",
+    "options": [
+      {
+        "text": "基拉韦厄",
+        "url": "/search?q=%E5%86%92%E7%BA%B3%E7%BD%97%E4%BA%9A%E7%81%AB%E5%B1%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260801_HawaiiLava%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "冒纳罗亚火山",
+        "url": "/search?q=%E5%86%92%E7%BA%B3%E7%BD%97%E4%BA%9A%E7%81%AB%E5%B1%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260801_HawaiiLava%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "莫纳凯亚山",
+        "url": "/search?q=%E5%86%92%E7%BA%B3%E7%BD%97%E4%BA%9A%E7%81%AB%E5%B1%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260801_HawaiiLava%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
