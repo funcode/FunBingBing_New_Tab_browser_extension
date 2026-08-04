@@ -26,13 +26,3 @@ In addition, it shows some widgets on the image:
 # Engineering Considerations
 - Performance matters, the new tab page should be opened instantly, and avoid getting users notice the page loading delay
 - Carefully control the local storage, including the cache. Avoid local storage bloat.
-
-## Agent skills
-
-### Issue tracker
-
-Issues live in [GitHub Issues](https://github.com/funcode/FunBingBing_New_Tab_browser_extension). See `docs/agents/issue-tracker.md`.
-
-### Domain docs
-
-Single-context layout: `CONTEXT.md` at the repo root. See `docs/agents/domain.md`.
