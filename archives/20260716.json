@@ -1,0 +1,46 @@
+{
+  "caption": "海军码头，芝加哥，伊利诺伊州",
+  "title": "海军码头，芝加哥，伊利诺伊州，美国",
+  "description": "有些地方的建造目的单一，而有些地方则不断推陈出新。位于伊利诺伊州芝加哥的海军码头就属于后者。这座码头向湖中延伸超过3000英尺，是爱德华·H·贝内特和丹尼尔·伯纳姆于1909年制定的芝加哥规划的一部分。码头于1916年开放，最初是为了服务于密歇根湖上的航运、休闲娱乐和客运而建。为了纪念第一次世界大战的海军老兵，码头被更名为海军码头。",
+  "copyright": "© Christopher.F Photography/Getty Images",
+  "date": "2026 7月 16",
+  "clickUrl": "/search?q=%e8%8a%9d%e5%8a%a0%e5%93%a5%e6%b5%b7%e5%86%9b%e7%a0%81%e5%a4%b4&form=hpcapt&filters=HpDate:\"20260715_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.NavyPier_ZH-CN4649271588_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.NavyPier_ZH-CN4649271588_UHD.jpg",
+      "wallpaper": "/th?id=OHR.NavyPier_ZH-CN4649271588_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.NavyPier_ZH-CN4649271588_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.NavyPier_ZH-CN4649271588_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.NavyPier_ZH-CN4649271588_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "今天走出户外，你会发现周围的景象截然不同。天际线占据了视野，密歇根湖则远眺码头之外。晴朗的日子里，玻璃幕墙高楼与开阔湖面的鲜明对比令人过目难忘。",
+  "descriptionPara3": "如今，这座码头集公园、表演场地、餐厅、家庭娱乐设施、博物馆和各种滨水活动于一体。许多游客都知道百年摩天轮，但鲜为人知的是，二战后这里曾是大学生的上课场所。一座建筑，承载着多种人生。对于芝加哥的地标建筑而言，这的确是一份不同寻常的履历。",
+  "isoDate": "20260716",
+  "headline": "滨水变色龙",
+  "quickFact": "海军码头最初被命名为“市立码头”，但在 1927 年被正式更名为“海军码头”，以纪念在第一次世界大战期间服役的海军官兵。",
+  "triviaId": "HPQuiz_20260716_NavyPier",
+  "triviaData": {
+    "question": "芝加哥海军码头延伸到哪座湖泊？",
+    "options": [
+      {
+        "text": "伊利湖",
+        "url": "/search?q=%E5%AF%86%E6%AD%87%E6%A0%B9%E6%B9%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260716_NavyPier%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "密歇根湖",
+        "url": "/search?q=%E5%AF%86%E6%AD%87%E6%A0%B9%E6%B9%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260716_NavyPier%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "苏必利尔湖",
+        "url": "/search?q=%E5%AF%86%E6%AD%87%E6%A0%B9%E6%B9%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260716_NavyPier%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
