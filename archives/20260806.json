@@ -1,0 +1,46 @@
+{
+  "caption": "马赛马拉迁徙的角马群横渡马拉河, 肯尼亚",
+  "title": "马赛马拉迁徙的角马群横渡马拉河, 肯尼亚",
+  "description": "在肯尼亚的马赛马拉，大地仿佛在移动。成群结队的角马——这种拥有极强耐力的蹄类食草动物——在季节性降雨滋润出的鲜嫩青草与水源的吸引下，浩浩荡荡地迁徙着。",
+  "copyright": "© Manoj Shah/Getty Images",
+  "date": "2026 8月 6",
+  "clickUrl": "/search?q=%e8%a7%92%e9%a9%ac&form=hpcapt&filters=HpDate:\"20260805_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MaraCrossing_ZH-CN8816902094_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MaraCrossing_ZH-CN8816902094_UHD.jpg",
+      "wallpaper": "/th?id=OHR.MaraCrossing_ZH-CN8816902094_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MaraCrossing_ZH-CN8816902094_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MaraCrossing_ZH-CN8816902094_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.MaraCrossing_ZH-CN8816902094_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这张照片定格了这场迁徙中最扣人心弦的时刻之一：成千上万的动物在马拉河畔聚集，准备跃入水中。空气中弥漫着短暂的迟疑——随后，它们突然纵身一跃。兽群冲入湍急的漩涡，角尖前倾，躯体相互碰撞，激起阵阵水花。",
+  "descriptionPara3": "这段迁徙路程既至关重要，又充满凶险。水下潜伏着鳄鱼，岸边游荡着捕食者，湍急的水流更会将弱者卷走。然而，迁徙的本能驱使它们不断前行；作为地球上规模最大的陆地迁徙壮举，超过百万只动物正沿着这条古老的路线行进。这不仅仅是一场视觉盛宴，更塑造着整个生态系统——它们修剪草木、滋养土壤，维系着大草原上的勃勃生机。",
+  "isoDate": "20260806",
+  "headline": "生死渡口，勇者的史诗",
+  "quickFact": "成年角马体重可达600磅，属于体型较大的食草性羚羊。",
+  "triviaId": "HPQuiz_20260806_MaraCrossing",
+  "triviaData": {
+    "question": "角马大迁徙时会渡过哪条河流？",
+    "options": [
+      {
+        "text": "马拉河",
+        "url": "/search?q=%E9%A9%AC%E6%8B%89%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260806_MaraCrossing%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "赞比西河",
+        "url": "/search?q=%E9%A9%AC%E6%8B%89%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260806_MaraCrossing%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "林波波河",
+        "url": "/search?q=%E9%A9%AC%E6%8B%89%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260806_MaraCrossing%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
