@@ -1,0 +1,46 @@
+{
+  "caption": "国际无限日",
+  "title": "蒂斯河畔斯托克顿无限桥，英格兰",
+  "description": "8月8日，国际无限日让好奇心成为主角。这项庆祝活动的灵感来自横置的数字8——象征永无止境的无限符号。纽约哲学家让-皮埃尔·阿迪·费尼奥于1987年创立这一节日，邀请每个人通过科学、艺术和想象力探索宏大理念。它不只关乎数学，也关乎从浩瀚宇宙到人类创造力边界的种种可能。",
+  "copyright": "© Bahadir Yeniceri/Shutterstock",
+  "date": "2026 8月 8",
+  "clickUrl": "/search?q=%e5%9b%bd%e9%99%85%e6%97%a0%e9%99%90%e6%97%a5&form=hpcapt&filters=HpDate:\"20260807_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.StocktonInfinity_ZH-CN5941379745_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.StocktonInfinity_ZH-CN5941379745_UHD.jpg",
+      "wallpaper": "/th?id=OHR.StocktonInfinity_ZH-CN5941379745_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.StocktonInfinity_ZH-CN5941379745_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.StocktonInfinity_ZH-CN5941379745_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.StocktonInfinity_ZH-CN5941379745_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "英格兰蒂斯河畔斯托克顿的无限桥，将这种无边的惊奇化为现实。这座线条流畅的人行桥以两道醒目的钢拱横跨蒂斯河；拱形倒映水中时，便组成一个闪耀的无限环。夜幕降临，LED灯光沿步道流动，随着行人经过而变换色彩，增添灵动而近乎未来主义的氛围。",
+  "descriptionPara3": "这座桥与国际无限日呼应着同一理念：有些事物没有终点，只有一条不断向前、邀你继续探索的道路。",
+  "isoDate": "20260808",
+  "headline": "迈向无限",
+  "quickFact": "由于无法设置中央桥墩，无限桥采用不等高系杆拱和倒置鞍形结构，为180米长的桥身增强刚度。",
+  "triviaId": "HPQuiz_20260808_StocktonInfinity",
+  "triviaData": {
+    "question": "英格兰的无限桥跨越哪条河流？",
+    "options": [
+      {
+        "text": "泰恩河",
+        "url": "/search?q=%E8%92%82%E6%96%AF%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260808_StocktonInfinity%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "蒂斯河",
+        "url": "/search?q=%E8%92%82%E6%96%AF%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260808_StocktonInfinity%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "特伦特河",
+        "url": "/search?q=%E8%92%82%E6%96%AF%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260808_StocktonInfinity%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
