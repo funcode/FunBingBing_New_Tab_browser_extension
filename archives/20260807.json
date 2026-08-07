@@ -1,0 +1,46 @@
+{
+  "caption": "全国灯塔日",
+  "title": "圣胡安岛石灰窑灯塔，华盛顿州，美国",
+  "description": "每年的8月7日是“全国灯塔日”，这一节日旨在颂扬那些数百年来指引船只安全航行于美国沿海的灯塔。这一日期是为了纪念乔治·华盛顿总统签署生效的《1789年灯塔法案》。",
+  "copyright": "© Edmund Lowe Photography/Shutterstock",
+  "date": "2026 8月 7",
+  "clickUrl": "/search?q=%e7%9f%b3%e7%81%b0%e7%aa%91%e7%81%af%e5%a1%94&form=hpcapt&filters=HpDate:\"20260806_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.LimeKiln_ZH-CN5664152522_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.LimeKiln_ZH-CN5664152522_UHD.jpg",
+      "wallpaper": "/th?id=OHR.LimeKiln_ZH-CN5664152522_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.LimeKiln_ZH-CN5664152522_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.LimeKiln_ZH-CN5664152522_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.LimeKiln_ZH-CN5664152522_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在华盛顿州的圣胡安岛（San Juan Island），石灰窑灯塔（Lime Kiln Lighthouse）生动地展现了那段历史。这座灯塔建于1919年，矗立在俯瞰哈罗海峡（Haro Strait）的岩石峭壁之上，其发出的白色闪光至今仍指引着船只安全航行。附近的石灰窑点州立公园（Lime Kiln Point State Park）则因更令人兴奋的景象而闻名——那就是虎鲸。游客常在岸边眺望海面，有时能看到这些强壮的鲸鱼从离岸不远处游过。",
+  "descriptionPara3": "从灯塔看守人在漫长风暴之夜坚守岗位，到如今自动化系统的广泛应用，灯塔在不断演变的同时，始终保持着其核心作用。尽管许多灯塔已成为历史地标与观景胜地，但在导航技术高度发达的今天，它们依然是安全、坚韧与探险精神的永恒象征。",
+  "isoDate": "20260807",
+  "headline": "指引船只穿越历史",
+  "quickFact": "石灰窑点州立公园被认为是全球最佳的陆基观鲸地点之一，因为这里的海岸水深急剧下降，使得虎鲸群能够游至非常靠近岩石绝壁的海域。",
+  "triviaId": "HPQuiz_20260807_LimeKiln",
+  "triviaData": {
+    "question": "莱姆窑灯塔俯瞰的是哪一海峡？",
+    "options": [
+      {
+        "text": "哈罗海峡",
+        "url": "/search?q=%E5%93%88%E7%BD%97%E6%B5%B7%E5%B3%A1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260807_LimeKiln%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "普吉特湾",
+        "url": "/search?q=%E5%93%88%E7%BD%97%E6%B5%B7%E5%B3%A1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260807_LimeKiln%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "胡安·德富卡",
+        "url": "/search?q=%E5%93%88%E7%BD%97%E6%B5%B7%E5%B3%A1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260807_LimeKiln%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
