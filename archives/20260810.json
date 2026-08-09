@@ -1,0 +1,46 @@
+{
+  "caption": "加利福尼亚州约书亚树国家公园",
+  "title": "约书亚树国家公园，加利福尼亚州，美国",
+  "description": "两片大沙漠交汇之处，约书亚树国家公园展现出由风、时间和极端环境塑造的冷峻迷人景观。在南加利福尼亚州，海拔较高的莫哈韦沙漠与更炎热、地势更低的科罗拉多沙漠相融，形成独特的生态系统组合与非凡的生物多样性。",
+  "copyright": "© JJ Landscapes/Getty Images",
+  "date": "2026 8月 10",
+  "clickUrl": "/search?q=%e7%ba%a6%e4%b9%a6%e4%ba%9a%e6%a0%91%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260809_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SandPath_ZH-CN7820825668_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SandPath_ZH-CN7820825668_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SandPath_ZH-CN7820825668_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SandPath_ZH-CN7820825668_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SandPath_ZH-CN7820825668_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SandPath_ZH-CN7820825668_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在近80万英亩的土地上，满身尖刺的约书亚树——其实是一种丝兰——从沙质平原拔地而起，扭曲的轮廓点缀着遍布风化花岗岩巨石的旷野。巨大的岩层在数百万年间开裂、受蚀成形，吸引攀岩者和徒步者在崎岖地形中寻找路线。",
+  "descriptionPara3": "生命以非凡方式在这里延续。沙漠大角羊、爬行动物和数百种鸟类在水源稀少、烈日炙烤的环境中繁衍。春天可能带来野花盛放，澄澈夜空则展现出全美最幽暗的星空之一，是观星佳地。1936年的今天，这片广袤景观被指定为国家纪念地，1994年成为国家公园。它邀人探索，令人难忘地领略美国沙漠原始的美与坚韧。",
+  "isoDate": "20260810",
+  "headline": "两片沙漠交汇之地",
+  "quickFact": "约书亚树地区的二长花岗岩最初是熔融岩体，在一亿多年前于地下冷却形成。",
+  "triviaId": "HPQuiz_20260810_SandPath",
+  "triviaData": {
+    "question": "约书亚树国家公园交汇的两大沙漠是？",
+    "options": [
+      {
+        "text": "索诺兰沙漠与奇瓦瓦沙漠",
+        "url": "/search?q=%E8%8E%AB%E5%93%88%E9%9F%A6%E6%B2%99%E6%BC%A0%E4%B8%8E%E7%A7%91%E7%BD%97%E6%8B%89%E5%A4%9A%E6%B2%99%E6%BC%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260810_SandPath%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "莫哈韦沙漠与科罗拉多沙漠",
+        "url": "/search?q=%E8%8E%AB%E5%93%88%E9%9F%A6%E6%B2%99%E6%BC%A0%E4%B8%8E%E7%A7%91%E7%BD%97%E6%8B%89%E5%A4%9A%E6%B2%99%E6%BC%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260810_SandPath%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "戈壁沙漠与大盆地沙漠",
+        "url": "/search?q=%E8%8E%AB%E5%93%88%E9%9F%A6%E6%B2%99%E6%BC%A0%E4%B8%8E%E7%A7%91%E7%BD%97%E6%8B%89%E5%A4%9A%E6%B2%99%E6%BC%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260810_SandPath%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
