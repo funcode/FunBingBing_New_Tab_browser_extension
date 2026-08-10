@@ -1,0 +1,46 @@
+{
+  "caption": "丹麦哥本哈根新港运河",
+  "title": "哥本哈根新港运河沿岸的彩色房屋，首都大区，丹麦",
+  "description": "哥本哈根新港运河是一条标志性水道，鲜艳色彩与深厚历史在此交融。它于17世纪70年代在克里斯蒂安五世统治时期挖建，曾是重要门户，货船可由此将货物直接卸入城市中心。远在成为今天明信片般完美的地标之前，这座港口曾以粗犷闻名：水手云集、酒馆喧闹，与色彩明快的山墙联排屋并立。",
+  "copyright": "© emicristea/Getty Images",
+  "date": "2026 8月 11",
+  "clickUrl": "/search?q=%e5%93%a5%e6%9c%ac%e5%93%88%e6%a0%b9%e6%96%b0%e6%b8%af%e8%bf%90%e6%b2%b3&form=hpcapt&filters=HpDate:\"20260810_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ColorfulCop_ZH-CN8015611442_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ColorfulCop_ZH-CN8015611442_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ColorfulCop_ZH-CN8015611442_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ColorfulCop_ZH-CN8015611442_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ColorfulCop_ZH-CN8015611442_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ColorfulCop_ZH-CN8015611442_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "如今，运河滨水区已变成活力十足的步行中心。传统历史建筑内开设了热闹的咖啡馆和餐厅，谈笑声、音乐声与丹麦经典美食的香气弥漫码头。游客可以欣赏永久停泊在岸边的历史木船，也可以登上游船，从最佳视角观赏城市如画的滨水风光。",
+  "descriptionPara3": "除了美景，新港还承载着丰厚的文化遗产。汉斯·克里斯蒂安·安徒生曾居住于此，并从这座不断变化的港口汲取童话灵感。运河虽仅约1,500英尺长，却给人开阔之感。历史、色彩与港口生活在这里汇聚成充满活力的空间，自然而然地邀人驻足流连。",
+  "isoDate": "20260811",
+  "headline": "绚丽多彩的哥本哈根",
+  "quickFact": "汉斯·克里斯蒂安·安徒生一生中曾在新港的18号、20号和67号三个不同地址居住。",
+  "triviaId": "HPQuiz_20260811_ColorfulCop",
+  "triviaData": {
+    "question": "是哪位君主下令开挖新港运河？",
+    "options": [
+      {
+        "text": "查理十一世",
+        "url": "/search?q=%E5%85%8B%E9%87%8C%E6%96%AF%E8%92%82%E5%AE%89%E4%BA%94%E4%B8%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260811_ColorfulCop%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "腓特烈六世",
+        "url": "/search?q=%E5%85%8B%E9%87%8C%E6%96%AF%E8%92%82%E5%AE%89%E4%BA%94%E4%B8%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260811_ColorfulCop%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "克里斯蒂安五世",
+        "url": "/search?q=%E5%85%8B%E9%87%8C%E6%96%AF%E8%92%82%E5%AE%89%E4%BA%94%E4%B8%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260811_ColorfulCop%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
