@@ -77,7 +77,9 @@ function normalizeQuotePayload(rawQuote) {
     return null;
   }
 
-  const text = rawQuote.text || "";
+  const text = typeof rawQuote.text === "string"
+    ? rawQuote.text.trim().replace(/^[\"'“”‘’]+/, '').replace(/[\"'“”‘’]+$/, '').trim()
+    : "";
   if (!text) {
     return null;
   }

@@ -6,6 +6,11 @@ let currentImageDate = null;
 let currentTransientQuoteDate = null;
 let currentTransientQuote = null;
 
+function normalizeQuoteText(text) {
+	if (typeof text !== 'string') return '';
+	return text.trim().replace(/^[\"'“”‘’]+/, '').replace(/[\"'“”‘’]+$/, '').trim();
+}
+
 function revokeCurrentWallpaperObjectUrl() {
 	if (currentWallpaperObjectUrl) {
 		URL.revokeObjectURL(currentWallpaperObjectUrl);
@@ -564,7 +569,7 @@ async function handleBingDataResults(results) {
 				'.qotd_quote'
 			]);
 			const text = textElement
-				? (textElement.getAttribute('data-quote-text') || textElement.textContent).trim()
+				? normalizeQuoteText(textElement.getAttribute('data-quote-text') || textElement.textContent)
 				: null;
 
 			const authorElement = selectFirst(doc, [
@@ -755,10 +760,7 @@ function renderQuoteSection(quoteData) {
 	const hasQuoteText = typeof quoteData?.text === 'string' && quoteData.text.trim().length > 0;
 
 	if (hasQuoteText) {
-		let raw = quoteData.text.trim();
-		if (/^["'“”‘’].+["'“”‘’]$/.test(raw)) {
-			raw = raw.substring(1, raw.length - 1).trim();
-		}
+		let raw = normalizeQuoteText(quoteData.text);
 		const wrapped = `“${raw}”`;
 		if (qt) qt.textContent = wrapped;
 		if (qf) qf.textContent = wrapped;
@@ -802,7 +804,7 @@ function renderQuoteSection(quoteData) {
 
 function normalizeQuoteForRender(rawQuote) {
 	if (!rawQuote || typeof rawQuote !== 'object') return null;
-	const text = typeof rawQuote.text === 'string' ? rawQuote.text.trim() : '';
+	const text = normalizeQuoteText(rawQuote.text);
 	if (!text) return null;
 	return {
 		text,
