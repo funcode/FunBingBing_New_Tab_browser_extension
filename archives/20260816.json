@@ -1,0 +1,46 @@
+{
+  "caption": "罗斯·埃里利修道院遗址，戈尔韦郡，爱尔兰",
+  "title": "戈尔韦郡罗斯埃里利方济各会修道院遗址，康诺特省，爱尔兰",
+  "description": "天鹅、秘密藏身处和中世纪养鱼池有什么共同之处？它们都是罗斯埃里利方济各会修道院遗址故事的一部分。这座保存完好的爱尔兰方济各会修道院建于约1351年，常被称为罗斯修道院（俗称）；不过它从未设过院长，因为它本就不是隐修院。",
+  "copyright": "© Maria Janus/Shutterstock",
+  "date": "2026 8月 16",
+  "clickUrl": "/search?q=%e7%88%b1%e5%b0%94%e5%85%b0%e7%bd%97%e6%96%af%c2%b7%e5%9f%83%e9%87%8c%e5%88%a9%e4%bf%ae%e9%81%93%e9%99%a2&form=hpcapt&filters=HpDate:\"20260815_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.RossErrillyRuins_ZH-CN9986322001_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.RossErrillyRuins_ZH-CN9986322001_UHD.jpg",
+      "wallpaper": ""
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.RossErrillyRuins_ZH-CN9986322001_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.RossErrillyRuins_ZH-CN9986322001_1080x1920.jpg",
+      "wallpaper": ""
+    }
+  },
+  "descriptionPara2": "当地传说称，一位主教跟随三只嘴衔亚麻籽的天鹅来到这里，随后选定了院址。修道院日渐兴盛，最终增建了少见的第二座回廊，以容纳不断壮大的社群。中世纪厨房里甚至设有巧妙的活水石池，可让刚捕获的鱼一直存活到用餐时。",
+  "descriptionPara3": "罗斯埃里利也熬过了数百年的宗教迫害。修士们在修道院屡次关闭后仍不断返回；克伦威尔时期，这里后来还庇护过天主教神职人员。修道院废弃后，墓葬活动仍持续很久，如今有些墓碑已成为步道的一部分。这里证明，历史确实会留下长久的足迹——有时还是字面意义上的足迹。",
+  "isoDate": "20260816",
+  "headline": "天鹅开启传奇之处",
+  "quickFact": "罗斯埃里利修道院在建立后的一个世纪间逐步扩建，现存塔楼建于1498年。",
+  "triviaId": "HPQuiz_20260816_RossErrillyRuins",
+  "triviaData": {
+    "question": "哪项罕见设施是为不断增加的修士而建？",
+    "options": [
+      {
+        "text": "石堡",
+        "url": "/search?q=%E7%AC%AC%E4%BA%8C%E5%9B%9E%E5%BB%8A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260816_RossErrillyRuins%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "第二回廊",
+        "url": "/search?q=%E7%AC%AC%E4%BA%8C%E5%9B%9E%E5%BB%8A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260816_RossErrillyRuins%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "瞭望塔",
+        "url": "/search?q=%E7%AC%AC%E4%BA%8C%E5%9B%9E%E5%BB%8A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260816_RossErrillyRuins%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
