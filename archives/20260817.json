@@ -1,0 +1,46 @@
+{
+  "caption": "卡比劳岛近海的眼斑双锯鱼，薄荷省，菲律宾",
+  "title": "海葵中的三条眼斑双锯鱼，卡比劳岛，薄荷省，菲律宾",
+  "description": "地点很重要。看看图片中菲律宾卡比劳岛附近卡比劳附近的灯塔礁的眼斑双锯鱼就知道了。在这片充满饥饿捕食者和激烈竞争的热带水域，它们占据了一块黄金地段：一只拥有数千个微小刺细胞的海葵。",
+  "copyright": "© Franco Banfi/Nature Picture Library",
+  "date": "2026 8月 17",
+  "clickUrl": "/search?q=%e7%9c%bc%e6%96%91%e5%8f%8c%e9%94%af%e9%b1%bc&form=hpcapt&filters=HpDate:\"20260816_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.CabilaoClowns_ZH-CN0147033898_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.CabilaoClowns_ZH-CN0147033898_UHD.jpg",
+      "wallpaper": "/th?id=OHR.CabilaoClowns_ZH-CN0147033898_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.CabilaoClowns_ZH-CN0147033898_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.CabilaoClowns_ZH-CN0147033898_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.CabilaoClowns_ZH-CN0147033898_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "眼斑双锯鱼的英文俗名虽有“假”字，它们却毫不虚假。这个称呼只是为了与近亲“真”小丑鱼区分，后者的斑纹更粗、更深。与所有小丑鱼一样，每条鱼出生时都是雄性。如果占优势的雌鱼消失，等级最高的雄鱼就会转变为雌鱼取而代之，在不搬家的情况下重组社会秩序。",
+  "descriptionPara3": "对大多数鱼而言，海葵是一片活生生的雷区；对小丑鱼而言，它却是堡垒、育儿所和终生住所。特殊的黏液涂层让它们可以安全穿梭于触手之间，获得保护，同时用营养物质、清洁服务和抵御入侵者来回报宿主。科学家称之为互利共生。在这里，它更像是海洋中最成功的室友协议。",
+  "isoDate": "20260817",
+  "headline": "珊瑚礁上的黄金地段",
+  "quickFact": "眼斑双锯鱼（俗称“公子小丑鱼”）的学名为 Amphiprion ocellaris；根据世界鱼类数据库（FishBase）的记录，该物种具有 11 根背鳍鳍棘。",
+  "triviaId": "HPQuiz_20260817_CabilaoClowns",
+  "triviaData": {
+    "question": "哪种海洋生物为眼斑小丑鱼提供栖身之所？",
+    "options": [
+      {
+        "text": "棘冠海星",
+        "url": "/search?q=%E6%B5%B7%E8%91%B5&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260817_CabilaoClowns%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "海葵",
+        "url": "/search?q=%E6%B5%B7%E8%91%B5&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260817_CabilaoClowns%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "巨蛤",
+        "url": "/search?q=%E6%B5%B7%E8%91%B5&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260817_CabilaoClowns%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
