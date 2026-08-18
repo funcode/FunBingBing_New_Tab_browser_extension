@@ -1,0 +1,46 @@
+{
+  "caption": "怀特克利夫公园，西温哥华，加拿大",
+  "title": "怀特克利夫公园，西温哥华，加拿大",
+  "description": "通往此处的最佳路径并非由混凝土铺就。每当退潮时，一条岩石小径便会显露出来，连接着加拿大西温哥华的怀特克利夫公园（Whytecliff Park）与怀特小岛（Whyte Islet）。数小时后，海水会悄然漫过这条通道，将“把握时机”也变成了体验的一部分。这片海岸线吸引着一代又一代的游客：潮汐开辟了道路，而湿滑的岩石则让人心存敬畏；作为回报，你将收获回望海滩与格伦伊格尔斯（Gleneagles）山坡民居时的壮丽景致。",
+  "copyright": "© Aolin Chen/Getty Images",
+  "date": "2026 8月 19",
+  "clickUrl": "/search?q=%e6%80%80%e7%89%b9%e5%85%8b%e5%88%a9%e5%a4%ab%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260818_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.WhyteCliffP_ZH-CN0573407830_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.WhyteCliffP_ZH-CN0573407830_UHD.jpg",
+      "wallpaper": "/th?id=OHR.WhyteCliffP_ZH-CN0573407830_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.WhyteCliffP_ZH-CN0573407830_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.WhyteCliffP_ZH-CN0573407830_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.WhyteCliffP_ZH-CN0573407830_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "怀特克利夫公园（Whytecliff Park）得名于曾矗立在这段海岸线上的浅色悬崖；1993年，其周边海域成为加拿大首个咸水海洋保护区，从而在历史上留下了浓墨重彩的一笔。如今，这片海域栖息着200多种海洋生物，使该公园成为水肺潜水爱好者和野生动物观察者的热门去处。人们常能看到港海豹在近岸处出没，甚至还有虎鲸曾在此海域现身。游览完公园后，游客还可以前往灯塔公园（Lighthouse Park）探索一番，或是徒步前往赛普拉斯瀑布公园（Cypress Falls Park）欣赏瀑布美景，为一天的行程画上圆满句号。",
+  "descriptionPara3": "",
+  "isoDate": "20260819",
+  "headline": "浪潮间的通道",
+  "quickFact": "怀特克利夫公园于1993年成为加拿大首个咸水海洋保护区，为近岸栖息地提供保护。",
+  "triviaId": "HPQuiz_20260819_WhyteCliffP",
+  "triviaData": {
+    "question": "哪座岛在退潮时与怀特崖公园相连？",
+    "options": [
+      {
+        "text": "怀特小岛",
+        "url": "/search?q=%E6%80%80%E7%89%B9%E5%B0%8F%E5%B2%9B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260819_WhyteCliffP%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "格兰维尔岛",
+        "url": "/search?q=%E6%80%80%E7%89%B9%E5%B0%8F%E5%B2%9B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260819_WhyteCliffP%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "霍恩比岛",
+        "url": "/search?q=%E6%80%80%E7%89%B9%E5%B0%8F%E5%B2%9B&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260819_WhyteCliffP%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
