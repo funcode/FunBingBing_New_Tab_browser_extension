@@ -1,0 +1,46 @@
+{
+  "caption": "奇尔卡特山脉附近的虎鲸，林恩运河，阿拉斯加州",
+  "title": "林恩运河中浮出水面的虎鲸，奇尔卡特山脉附近，阿拉斯加州，美国",
+  "description": "在阿拉斯加东南部白雪覆盖的奇尔卡特山脉映衬下，一头虎鲸浮出林恩运河水面。虎鲸是海豚科体型最大的成员，也是海洋中最具辨识度的捕食者之一。阿拉斯加内湾航道寒冷且营养丰富的水域提供了充足的觅食地，既维系鲑鱼洄游，也滋养种类繁多的海洋生物，为这些非凡动物提供支持。",
+  "copyright": "© John Hyde/Alamy",
+  "date": "2026 8月 20",
+  "clickUrl": "/search?q=%e8%99%8e%e9%b2%b8&form=hpcapt&filters=HpDate:\"20260819_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.LynnCanalOrca_ZH-CN0719217908_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.LynnCanalOrca_ZH-CN0719217908_UHD.jpg",
+      "wallpaper": "/th?id=OHR.LynnCanalOrca_ZH-CN0719217908_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.LynnCanalOrca_ZH-CN0719217908_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.LynnCanalOrca_ZH-CN0719217908_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.LynnCanalOrca_ZH-CN0719217908_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "科学家确认了数个不同的虎鲸种群，各自拥有独特的食谱、狩猎策略和社会传统。有些专门捕鱼，有些则捕食海豹、海狮及其他海洋哺乳动物。虎鲸生活在由经验丰富的年长雌鲸带领、关系紧密的家族群体中，并通过每个鲸群特有的叫声交流——这种声音传统代代相传。林恩运河及其周边水道为这些高度聪明的海洋哺乳动物提供了重要栖息地，也是野外观察它们的壮丽场所。",
+  "descriptionPara3": "",
+  "isoDate": "20260820",
+  "headline": "鲸群之声",
+  "quickFact": "成年雄性虎鲸的背鳍可高达约6英尺，明显高于成年雌性虎鲸的背鳍。",
+  "triviaId": "HPQuiz_20260820_LynnCanalOrca",
+  "triviaData": {
+    "question": "虎鲸属于哪类海洋生物？",
+    "options": [
+      {
+        "text": "鲨鱼",
+        "url": "/search?q=%E6%B5%B7%E8%B1%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260820_LynnCanalOrca%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "海豹",
+        "url": "/search?q=%E6%B5%B7%E8%B1%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260820_LynnCanalOrca%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "海豚",
+        "url": "/search?q=%E6%B5%B7%E8%B1%9A&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260820_LynnCanalOrca%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
