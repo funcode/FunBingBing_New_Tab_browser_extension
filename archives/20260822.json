@@ -1,0 +1,46 @@
+{
+  "caption": "普通蓝灰蝶",
+  "title": "普通蓝灰蝶，德文郡，英格兰",
+  "description": "田野中那一抹迅速掠过的蓝色背后，有一个开始得早得多的故事，故事的主角是一只小小的毛毛虫和一种令人惊讶的生存妙招。普通蓝灰蝶分布于欧洲、北非和亚洲部分地区，成虫以花蜜为食。它的生命始于一枚小小的卵，雌蝶通常会将卵产在百脉根等寄主植物上。真正令人惊讶的是它的毛毛虫阶段，此时蚂蚁会在其生存过程中扮演一个出人意料的角色。孵化后，毛毛虫会啃食叶片，然后进入蜕变的下一个阶段。在这一过程中，它会分泌一种名为蜜露的含糖物质，供蚂蚁取食。作为回报，蚂蚁可能会保护结茧的毛毛虫免受捕食者侵害。",
+  "copyright": "© Ross Hoddinott/Nature Picture Library",
+  "date": "2026 8月 22",
+  "clickUrl": "/search?q=%e6%99%ae%e9%80%9a%e8%93%9d%e7%81%b0%e8%9d%b6&form=hpcapt&filters=HpDate:\"20260821_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.CommonBlue_ZH-CN8521430009_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.CommonBlue_ZH-CN8521430009_UHD.jpg",
+      "wallpaper": "/th?id=OHR.CommonBlue_ZH-CN8521430009_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.CommonBlue_ZH-CN8521430009_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.CommonBlue_ZH-CN8521430009_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.CommonBlue_ZH-CN8521430009_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "成蝶羽化后，雄蝶会展露出赋予这一物种名称的蓝色翅膀。翅膀上的微观结构通过反射光线形成这种颜色。雌蝶的翅膀通常呈棕色，边缘带有橙色斑点。普通蓝灰蝶的生命历程表明，大自然中最小的生灵也有着出人意料的复杂生活。",
+  "descriptionPara3": "",
+  "isoDate": "20260822",
+  "headline": "天蓝色的翅膀",
+  "quickFact": "尽管外表纤弱，雄性普通蓝灰蝶仍会主动将竞争的雄蝶——有时甚至是体型更大的昆虫——逐出花朵繁茂的有利地盘。",
+  "triviaId": "HPQuiz_20260822_CommonBlue",
+  "triviaData": {
+    "question": "普通蓝蝶常用哪种植物产卵？",
+    "options": [
+      {
+        "text": "百脉根",
+        "url": "/search?q=%E7%99%BE%E8%84%89%E6%A0%B9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260822_CommonBlue%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "狗蔷薇",
+        "url": "/search?q=%E7%99%BE%E8%84%89%E6%A0%B9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260822_CommonBlue%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "红三叶草",
+        "url": "/search?q=%E7%99%BE%E8%84%89%E6%A0%B9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260822_CommonBlue%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
