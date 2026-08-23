@@ -1,0 +1,46 @@
+{
+  "caption": "布鲁克林大桥，纽约市",
+  "title": "布鲁克林大桥，纽约市，美国",
+  "description": "布鲁克林大桥连接的不只是曼哈顿和布鲁克林——它还连接着历史、工程学以及几个令人惊讶的故事。大桥历经14年建造，于1883年开放，成为世界上第一座钢丝悬索桥，永久改变了纽约人跨越东河的方式。",
+  "copyright": "© shayes17/Getty Images",
+  "date": "2026 8月 24",
+  "clickUrl": "/search?q=%e5%b8%83%e9%b2%81%e5%85%8b%e6%9e%97%e5%a4%a7%e6%a1%a5&form=hpcapt&filters=HpDate:\"20260823_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BKBridge_ZH-CN3870511222_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BKBridge_ZH-CN3870511222_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BKBridge_ZH-CN3870511222_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BKBridge_ZH-CN3870511222_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BKBridge_ZH-CN3870511222_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BKBridge_ZH-CN3870511222_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这项工程真正称得上是一项全家共同参与的事业。设计师约翰·A·罗布林去世，而他的儿子华盛顿又因病重而无法监督施工后，华盛顿的妻子艾米莉学习了工程学和高等数学，以监督项目的完工。",
+  "descriptionPara3": "并非所有人都信任这座新建筑。1884年，演出商P.T.巴纳姆带领21头大象和17峰骆驼走过大桥，以证明它足够坚固。桥内隐藏的拱顶后来曾用于储存葡萄酒和香槟，之后又被用作冷战时期的放射性尘埃避难所；2006年，人们在那里重新发现了被遗忘的应急物资。如今，游隼在大桥的石塔顶部筑巢，证明这座标志性地标仍有许多翱翔高空的居民。有些桥梁就是永不过时。",
+  "isoDate": "20260824",
+  "headline": "跨越历史",
+  "quickFact": "2024年，布鲁克林大桥日均承载103,051辆机动车、28,845名行人和5,504名骑行者。",
+  "triviaId": "HPQuiz_20260824_BKBridge",
+  "triviaData": {
+    "question": "华盛顿生病后，谁完成了桥梁建设？",
+    "options": [
+      {
+        "text": "克拉拉·巴顿",
+        "url": "/search?q=%E8%89%BE%E7%B1%B3%E4%B8%BD%C2%B7%E7%BD%97%E5%B8%83%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260824_BKBridge%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "艾米丽·罗布林",
+        "url": "/search?q=%E8%89%BE%E7%B1%B3%E4%B8%BD%C2%B7%E7%BD%97%E5%B8%83%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260824_BKBridge%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "阿梅莉娅·埃尔哈特",
+        "url": "/search?q=%E8%89%BE%E7%B1%B3%E4%B8%BD%C2%B7%E7%BD%97%E5%B8%83%E6%9E%97&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260824_BKBridge%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
