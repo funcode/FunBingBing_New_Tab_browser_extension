@@ -1,0 +1,46 @@
+{
+  "caption": "基尔丘山上空的极光，冰岛",
+  "title": "基尔丘山上空的极光，冰岛",
+  "description": "随着冰岛的夜晚再次变长，游客很快又会仰望天空，期待一睹北极光。北极光是一种发光现象，当来自太阳的粒子与地球高层大气中的气体相互作用时，便会形成闪烁的绿色、粉色、紫色，有时甚至是红色光带。冰岛地处北方，秋冬季夜晚日益漫长而黑暗，因此成为全球首屈一指的极光观赏地之一。",
+  "copyright": "© Cavan Images/Alamy",
+  "date": "2026 8月 26",
+  "clickUrl": "/search?q=%e5%8c%97%e6%9e%81%e5%85%89&form=hpcapt&filters=HpDate:\"20260825_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AurorasIceland_ZH-CN9781322454_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AurorasIceland_ZH-CN9781322454_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AurorasIceland_ZH-CN9781322454_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AurorasIceland_ZH-CN9781322454_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AurorasIceland_ZH-CN9781322454_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AurorasIceland_ZH-CN9781322454_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在这片不断变化的光幕之下，矗立着冰岛最常被拍摄的山峰之一——基尔丘山。它的冰岛语名称意为“教堂山”，源于其酷似教堂的外形。基尔丘山耸立在斯奈山半岛之上，醒目的轮廓和附近的基尔丘瀑布使这里深受摄影师和极光追寻者喜爱。在晴朗的夜晚，山峰、瀑布与天空交相辉映，构成一幅近乎不真实的画面；这一非凡组合已成为冰岛最具标志性的景观之一。",
+  "descriptionPara3": "",
+  "isoDate": "20260826",
+  "headline": "流光溢彩的天空",
+  "quickFact": "极光有时还可能伴随微弱声响，不过相关报告较少，其形成机制仍在研究中。",
+  "triviaId": "HPQuiz_20260826_AurorasIceland",
+  "triviaData": {
+    "question": "北极光中绚丽色彩的成因是什么？",
+    "options": [
+      {
+        "text": "月之倒影",
+        "url": "/search?q=%E5%A4%AA%E9%98%B3%E7%B2%92%E5%AD%90&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260826_AurorasIceland%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "太阳粒子",
+        "url": "/search?q=%E5%A4%AA%E9%98%B3%E7%B2%92%E5%AD%90&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260826_AurorasIceland%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "火山气体",
+        "url": "/search?q=%E5%A4%AA%E9%98%B3%E7%B2%92%E5%AD%90&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260826_AurorasIceland%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
