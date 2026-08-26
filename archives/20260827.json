@@ -1,0 +1,46 @@
+{
+  "caption": "世界湖泊日",
+  "title": "日出时的小红鹳群，马加迪湖，肯尼亚",
+  "description": "想象一个没有这些自然奇观的世界——它们容纳着地球约90%的地表淡水。湖泊是地球上最宝贵的资源之一。它们提供清洁水源、支持野生动物、帮助调节气候，并维系全球各地的社区。为肯定湖泊的重要作用，联合国将8月27日定为世界湖泊日，并于2025年首次纪念。采取行动的必要性比以往任何时候都更为迫切。全球超过1.17亿个湖泊覆盖了近4%的陆地表面，但许多湖泊正面临污染、过度利用和气候变化带来的日益严峻的压力。",
+  "copyright": "© Denis-Huot/Nature Picture Library",
+  "date": "2026 8月 27",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e6%b9%96%e6%b3%8a%e6%97%a5&form=hpcapt&filters=HpDate:\"20260826_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.LakeMagadi_ZH-CN0601527009_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.LakeMagadi_ZH-CN0601527009_UHD.jpg",
+      "wallpaper": "/th?id=OHR.LakeMagadi_ZH-CN0601527009_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.LakeMagadi_ZH-CN0601527009_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.LakeMagadi_ZH-CN0601527009_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.LakeMagadi_ZH-CN0601527009_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "图片展示的是肯尼亚大裂谷中的马加迪湖，这是一座浅水碱性湖。富含矿物质的湖水滋养着大量藻类，吸引成群的小红鹳前来觅食。鸟群的粉红色羽毛常把湖岸化作令人惊叹的奇景。在世界湖泊日，这样的画面提醒我们：健康的湖泊不仅孕育非凡的野生动物，也维系着远超湖岸范围的生命。",
+  "descriptionPara3": "",
+  "isoDate": "20260827",
+  "headline": "湖水、野生动物与奇景",
+  "quickFact": "马加迪湖位于火山盆地中，温泉为富含碳酸钠的高碱性湖水提供补给。",
+  "triviaId": "HPQuiz_20260827_LakeMagadi",
+  "triviaData": {
+    "question": "肯尼亚的马加迪湖属于哪种水体？",
+    "options": [
+      {
+        "text": "咸水湖",
+        "url": "/search?q=%E7%A2%B1%E6%80%A7%E6%B9%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260827_LakeMagadi%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "碱性湖",
+        "url": "/search?q=%E7%A2%B1%E6%80%A7%E6%B9%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260827_LakeMagadi%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "冰川湖",
+        "url": "/search?q=%E7%A2%B1%E6%80%A7%E6%B9%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260827_LakeMagadi%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
