@@ -89,6 +89,9 @@ function normalizeQuotePayload(rawQuote) {
   if (!link && source) {
     link = `https://cn.bing.com/search?q=${encodeURIComponent(source)}&form=BTQUOT`;
   }
+  if (typeof link === "string" && link.startsWith("/search")) {
+    link = `https://cn.bing.com${link}`;
+  }
 
   return {
     text,
