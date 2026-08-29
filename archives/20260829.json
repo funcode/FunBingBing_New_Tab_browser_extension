@@ -1,0 +1,46 @@
+{
+  "caption": "冲浪者航拍图，圣卡塔琳娜州，巴西",
+  "title": "冲浪者航拍图，圣卡塔琳娜州，巴西",
+  "description": "在巴西南部圣卡塔琳娜州近海，图片捕捉到一种熟悉的仪式：冲浪者在碎浪之外等待，冲浪板随着大西洋的波涛起伏。从空中看，几乎什么都没有发生，但真正的功课正是在此时开始。",
+  "copyright": "© Wonderful Nature/Shutterstock",
+  "date": "2026 8月 29",
+  "clickUrl": "/search?q=%e5%b7%b4%e8%a5%bf%e5%9c%a3%e5%8d%a1%e5%a1%94%e7%90%b3%e5%a8%9c%e5%b7%9e&form=hpcapt&filters=HpDate:\"20260828_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SantaCatarina_ZH-CN4170292043_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SantaCatarina_ZH-CN4170292043_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SantaCatarina_ZH-CN4170292043_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SantaCatarina_ZH-CN4170292043_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SantaCatarina_ZH-CN4170292043_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SantaCatarina_ZH-CN4170292043_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "每一道海浪都携带着风所产生的能量，而那阵风可能来自数百甚至数千英里之外。挑战在于恰好在正确的时刻迎上这股远道而来的脉动。风、潮汐、洋流和海床形态共同决定每一道涌浪如何破碎；一个细微变化，就可能让完美的滑行变成翻滚的白浪。",
+  "descriptionPara3": "很少有海岸线能比圣卡塔琳娜州更充分地展现这种多样性。这里拥有200多座海滩，从适合初学者的柔和浪点到世界级的管浪一应俱全。看似是一项运动，实则是在学习一种完全由流动海水诉说的语言。最优秀的冲浪者并不只是更强壮或更迅速，而是最懂得倾听的人。",
+  "isoDate": "20260829",
+  "headline": "读懂浪涛之间的讯息",
+  "quickFact": "圣卡塔琳娜州海岸的若阿基纳海滩曾承办多项重要国际冲浪赛事。",
+  "triviaId": "HPQuiz_20260829_SantaCatarina",
+  "triviaData": {
+    "question": "哪片海洋的波浪塑造了圣卡塔琳娜的冲浪？",
+    "options": [
+      {
+        "text": "印度洋",
+        "url": "/search?q=%E5%9C%A3%E5%8D%A1%E5%A1%94%E7%90%B3%E5%A8%9C%E5%86%B2%E6%B5%AA%E5%A4%A7%E8%A5%BF%E6%B4%8B%E6%B5%AA%E6%BD%AE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260829_SantaCatarina%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "太平洋",
+        "url": "/search?q=%E5%9C%A3%E5%8D%A1%E5%A1%94%E7%90%B3%E5%A8%9C%E5%86%B2%E6%B5%AA%E5%A4%A7%E8%A5%BF%E6%B4%8B%E6%B5%AA%E6%BD%AE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260829_SantaCatarina%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "大西洋",
+        "url": "/search?q=%E5%9C%A3%E5%8D%A1%E5%A1%94%E7%90%B3%E5%A8%9C%E5%86%B2%E6%B5%AA%E5%A4%A7%E8%A5%BF%E6%B4%8B%E6%B5%AA%E6%BD%AE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260829_SantaCatarina%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
