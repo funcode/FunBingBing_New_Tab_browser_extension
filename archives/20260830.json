@@ -1,0 +1,46 @@
+{
+  "caption": "国际鲸鲨日",
+  "title": "鲸鲨与黄金鲹，极乐鸟湾，西巴布亚，印度尼西亚",
+  "description": "今天，国际鲸鲨日将目光投向世界上最大的鱼类。鲸鲨虽然名字中带有“鲸”，却不是鲸类，而是鱼类；体长可达60英尺，体重约20吨。它们分布在温暖的热带海域，张着嘴在水中缓缓游动，滤食浮游生物、鱼卵和其他微小猎物。每条鲸鲨身上独特的白色斑点图案都各不相同，就像人类的指纹。",
+  "copyright": "© Pete Oxford/Nature Picture Library",
+  "date": "2026 8月 30",
+  "clickUrl": "/search?q=%e9%b2%b8%e9%b2%a8&form=hpcapt&filters=HpDate:\"20260829_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.YellowShark_ZH-CN1570569826_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.YellowShark_ZH-CN1570569826_UHD.jpg",
+      "wallpaper": "/th?id=OHR.YellowShark_ZH-CN1570569826_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.YellowShark_ZH-CN1570569826_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.YellowShark_ZH-CN1570569826_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.YellowShark_ZH-CN1570569826_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "图片捕捉到印度尼西亚西巴布亚极乐鸟湾中的一条鲸鲨，身旁伴随着一群黄金鲹。这些色彩明亮的鱼常与鲸鲨同游，借机获取食物残渣，并利用这位庞大伙伴提供的保护。",
+  "descriptionPara3": "国际鲸鲨日旨在关注这一濒危物种面临的挑战，包括兼捕、船只撞击、栖息地退化和气候变化。通过提高公众意识，这一纪念日鼓励人们采取行动，世代守护这些温和的海洋使者。",
+  "isoDate": "20260830",
+  "headline": "名为鲨鱼的巨型鱼类",
+  "quickFact": "鲸鲨的寿命可能达到或超过一个世纪，这使世界上最大的鱼拥有令人意外的漫长生命。",
+  "triviaId": "HPQuiz_20260830_YellowShark",
+  "triviaData": {
+    "question": "温顺的鲸鲨偏爱哪种栖息地？",
+    "options": [
+      {
+        "text": "热带海洋",
+        "url": "/search?q=%E9%B2%B8%E9%B2%A8%E7%9A%84%E7%83%AD%E5%B8%A6%E6%B5%B7%E6%B4%8B%E6%A0%96%E6%81%AF%E5%9C%B0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260830_YellowShark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "极地海域",
+        "url": "/search?q=%E9%B2%B8%E9%B2%A8%E7%9A%84%E7%83%AD%E5%B8%A6%E6%B5%B7%E6%B4%8B%E6%A0%96%E6%81%AF%E5%9C%B0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260830_YellowShark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "温带海域",
+        "url": "/search?q=%E9%B2%B8%E9%B2%A8%E7%9A%84%E7%83%AD%E5%B8%A6%E6%B5%B7%E6%B4%8B%E6%A0%96%E6%81%AF%E5%9C%B0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260830_YellowShark%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
