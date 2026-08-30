@@ -99,6 +99,7 @@
     line-height: 1.3;
     white-space: normal;
     word-break: break-word;
+    text-wrap: balance;
     font-style: italic;
     font-size: var(--panel-font-size);
 }
