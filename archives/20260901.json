@@ -1,0 +1,46 @@
+{
+  "caption": "马鬃小皮伞",
+  "title": "马鬃小皮伞，白俄罗斯",
+  "description": "九月的全国蘑菇月旨在赞颂一个常常不为人注意的世界。在森林地表、草坪和落叶下方，真菌网络循环利用养分，帮助生态系统蓬勃发展。我们看到的蘑菇只是这些隐秘生物的子实体，它们短暂现身释放孢子，随后又从视野中消失。它们并非植物；真菌自成一界，并在大自然的循环中发挥着至关重要的作用。",
+  "copyright": "© Máté/Nature Picture Library",
+  "date": "2026 9月 1",
+  "clickUrl": "/search?q=%e9%a9%ac%e9%ac%83%e5%b0%8f%e7%9a%ae%e4%bc%9e&form=hpcapt&filters=HpDate:\"20260831_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.HorseHairShroom_ZH-CN2241458451_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.HorseHairShroom_ZH-CN2241458451_UHD.jpg",
+      "wallpaper": "/th?id=OHR.HorseHairShroom_ZH-CN2241458451_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.HorseHairShroom_ZH-CN2241458451_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.HorseHairShroom_ZH-CN2241458451_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.HorseHairShroom_ZH-CN2241458451_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "今日图片展现的是马鬃小皮伞，这种真菌值得走近细看。这些微小的蘑菇生长在掉落的松针和林地碎屑上，纤巧的菌盖由深色、坚韧如丝的菌柄托起；菌柄纤细得如同一缕缕马毛。乍看之下，它们很容易被忽略，却揭示了隐藏在森林地表的惊人多样性。",
+  "descriptionPara3": "仔细观察，你便会发现，全国蘑菇月提醒着我们：大自然中一些最重要的工作发生在视线之外。从维系林地生态系统到丰富我们的餐盘，真菌证明，即使是最微小的结构也能产生巨大的影响。",
+  "isoDate": "20260901",
+  "headline": "脚下的世界",
+  "quickFact": "宾夕法尼亚州东南部的肯尼特广场享誉全球，被誉为“世界蘑菇之都”。",
+  "triviaId": "HPQuiz_20260901_HorseHairShroom",
+  "triviaData": {
+    "question": "马鬃蘑菇通常生长在何种表面？",
+    "options": [
+      {
+        "text": "倒下的松树",
+        "url": "/search?q=%E5%80%92%E4%B8%8B%E7%9A%84%E6%9D%BE%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260901_HorseHairShroom%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "海岸沙",
+        "url": "/search?q=%E5%80%92%E4%B8%8B%E7%9A%84%E6%9D%BE%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260901_HorseHairShroom%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "冰川冰",
+        "url": "/search?q=%E5%80%92%E4%B8%8B%E7%9A%84%E6%9D%BE%E6%A0%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260901_HorseHairShroom%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
