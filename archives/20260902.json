@@ -1,0 +1,46 @@
+{
+  "caption": "海滩小屋，萨福克遗产海岸，英格兰",
+  "title": "传统海滩小屋，索思沃尔德，萨福克遗产海岸，英格兰",
+  "description": "在英格兰东海岸，萨福克遗产海岸融合了风吹不息的石南荒原、湿地、砾石海滩和开阔的北海景观。索思沃尔德是这里最著名的城镇之一，水域与历史在此密不可分。小镇几乎被大海、布莱斯河和周围的湿地环绕，坐落在一片狭长的半岛上；数百年来的渔业、贸易和临水生活共同塑造了这里。",
+  "copyright": "© stevendocwra/Getty Images",
+  "date": "2026 9月 2",
+  "clickUrl": "/search?q=%e8%90%a8%e7%a6%8f%e5%85%8b%e9%83%a1%e7%b4%a2%e6%96%af%e6%b2%83%e5%b0%94%e5%be%b7&form=hpcapt&filters=HpDate:\"20260901_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SuffolkHuts_ZH-CN2463818981_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SuffolkHuts_ZH-CN2463818981_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SuffolkHuts_ZH-CN2463818981_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SuffolkHuts_ZH-CN2463818981_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SuffolkHuts_ZH-CN2463818981_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SuffolkHuts_ZH-CN2463818981_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "色彩缤纷的木制海滩小屋是索思沃尔德最具辨识度的地标之一。它们最初是作为简易的沐浴和捕鱼棚屋而建，如今已有数百座沿海岸排列，在沙滩与天空之间增添了一道道鲜亮的色彩。有些小屋仍是备受珍爱的家庭财产，代代相传。",
+  "descriptionPara3": "除了这些小屋，游客还会看到一座仍在运行的灯塔、一座伸入北海的栈桥，并可轻松前往沿海步道，欣赏英格兰一些最负盛名的风景。这是一片值得漫步探索的海岸——每一个转弯处似乎都会展开另一段关于大海的故事。",
+  "isoDate": "20260902",
+  "headline": "海岸边的缤纷色彩",
+  "quickFact": "索思沃尔德灯塔于1890年9月3日投入使用，如今其灯光射程可达24海里。",
+  "triviaId": "HPQuiz_20260902_SuffolkHuts",
+  "triviaData": {
+    "question": "萨福克哪座城镇以色彩斑斓的海滩小屋闻名？",
+    "options": [
+      {
+        "text": "洛斯托夫特",
+        "url": "/search?q=%E5%8D%97%E6%B2%83%E5%B0%94%E5%BE%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260902_SuffolkHuts%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "奥尔德伯勒",
+        "url": "/search?q=%E5%8D%97%E6%B2%83%E5%B0%94%E5%BE%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260902_SuffolkHuts%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "南沃尔德",
+        "url": "/search?q=%E5%8D%97%E6%B2%83%E5%B0%94%E5%BE%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260902_SuffolkHuts%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
