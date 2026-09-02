@@ -246,7 +246,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message && message.type === "syncQuotesForImages") {
     (async () => {
       try {
-        const { requestId, todayDate, todayQuote, imageDates } = message;
+        const {
+          requestId,
+          todayDate,
+          todayQuote,
+          imageDates
+        } = message;
         if (!Number.isFinite(requestId)) {
           sendResponse({ ok: false, error: "invalid requestId" });
           return;
@@ -266,7 +271,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         const quoteMapForPatch = {};
 
-        if (todayDate) {
+        const shouldFetchTodayFallback = Boolean(
+          todayDate
+            && todayQuote
+            && (typeof todayQuote.caption !== "string" || !todayQuote.caption.trim())
+        );
+
+        if (todayDate && !shouldFetchTodayFallback) {
           const todayCandidate = insertQuoteIntoCache(todayDate, todayQuote, quoteState);
           if (todayCandidate) {
             quoteMapForPatch[todayDate] = todayCandidate;
@@ -275,12 +286,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         const dates = Array.isArray(imageDates) ? imageDates.filter(d => typeof d === "string" && d.trim()) : [];
         const missingDates = computeMissingDates(dates, allQuotes);
+        const datesToFetch = Array.from(new Set([
+          ...missingDates,
+          ...(shouldFetchTodayFallback ? [todayDate] : [])
+        ]));
 
-        if (missingDates.length > 0) {
+        if (datesToFetch.length > 0) {
           try {
-            console.log(`[${new Date().toISOString()}] Fetching lost quotes for missing dates: ${missingDates.join(", ")}`);
-            const remote = await fetchLostQuotes();
-            missingDates.forEach((date) => {
+            console.log(`[${new Date().toISOString()}] Fetching lost quotes for dates: ${datesToFetch.join(", ")}`);
+            const remote = await fetchLostQuotes(shouldFetchTodayFallback);
+            datesToFetch.forEach((date) => {
               const candidate = insertQuoteIntoCache(date, remote[date], quoteState);
               if (candidate) {
                 quoteMapForPatch[date] = candidate;
@@ -288,6 +303,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             });
           } catch (err) {
             console.error("Failed to fetch lost quotes:", err);
+          }
+        }
+
+        // Keep today's Bing quote if the configured fallback has no usable entry.
+        const cachedTodayQuote = todayDate ? normalizeQuotePayload(allQuotes[todayDate]) : null;
+        if (shouldFetchTodayFallback && todayDate && !quoteMapForPatch[todayDate] && !cachedTodayQuote) {
+          const todayCandidate = insertQuoteIntoCache(todayDate, todayQuote, quoteState);
+          if (todayCandidate) {
+            quoteMapForPatch[todayDate] = todayCandidate;
           }
         }
 
