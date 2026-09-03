@@ -384,7 +384,7 @@ async function runWallpaperFetchRefresh() {
 	await showDefaultWallpaper({ preserveUpdatingHeadline: true });
 
 	const results = await collectBingDataInParallel();
-	const todayDate = await handleBingDataResults(results);
+	const { todayDate, quoteSyncPayload } = await handleBingDataResults(results);
 	if (!todayDate) {
 		await showDefaultWallpaper();
 		return false;
@@ -392,6 +392,9 @@ async function runWallpaperFetchRefresh() {
 
 	const updated = await updateWallpaper(0);
 	if (!updated) return false;
+	if (quoteSyncPayload) {
+		fireQuoteSync(quoteSyncPayload);
+	}
 
 	await writeConf('wallpaper_date', todayDate);
 	requestWallpaperPrefetch();
@@ -687,17 +690,16 @@ async function handleBingDataResults(results) {
 	}
 	console.log("Saved bing_images with merged contents.");
 
-	if (quoteSyncPayload) {
-		fireQuoteSync(quoteSyncPayload);
-	}
-
 	// --- Log errors ---
 	if (results.errors?.length > 0) {
 		console.error("Errors during parallel data collection:", results.errors);
 		writeConf("bing_data_errors", results.errors);
 	}
 
-	return images[0].isoDate || null;
+	return {
+		todayDate: images[0].isoDate || null,
+		quoteSyncPayload
+	};
 }
 
 
