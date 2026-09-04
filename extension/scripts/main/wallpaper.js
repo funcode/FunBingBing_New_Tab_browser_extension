@@ -423,6 +423,7 @@ async function initWallpaper() {
 			if (await isTodayWallpaperReady()) {
 				await refreshConfCacheIfAvailable();
 				if (await changeWallpaper(0)) {
+					await requestQuoteSyncForCachedCatalog();
 					requestWallpaperPrefetch();
 					return;
 				}
@@ -436,6 +437,7 @@ async function initWallpaper() {
 				if (ready || await isTodayWallpaperReady()) {
 					await refreshConfCacheIfAvailable();
 					if (await changeWallpaper(0)) {
+						await requestQuoteSyncForCachedCatalog();
 						requestWallpaperPrefetch();
 						return;
 					}
