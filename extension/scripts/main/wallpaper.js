@@ -715,7 +715,11 @@ async function switchWallpaper(offset) {
 	}
 	cache_idx = parseInt(cache_idx,10);
 	cache_idx = (cache_idx + offset + MAX_OLD_DAYS) % MAX_OLD_DAYS;
-	await updateWallpaper(cache_idx);
+	const images = readConf('bing_images');
+	const targetDate = Array.isArray(images) ? images[cache_idx]?.isoDate : null;
+	if (await updateWallpaper(cache_idx)) {
+		await requestQuoteSyncForCachedCatalog(targetDate);
+	}
 }
 
 // if user want to show old wallpapers.
@@ -859,7 +863,7 @@ function getQuoteForImage(image, quoteCache = getCachedQuotesFromState()) {
 	return normalizeQuoteForRender(quoteCache?.[image.isoDate]);
 }
 
-function buildQuoteSyncPayload(images, todayQuote) {
+function buildQuoteSyncPayload(images, todayQuote, targetDate = null) {
 	if (!Array.isArray(images) || images.length === 0) return null;
 	const imageDates = images
 		.map((img) => (img && typeof img.isoDate === 'string' ? img.isoDate : null))
@@ -868,13 +872,13 @@ function buildQuoteSyncPayload(images, todayQuote) {
 	return {
 		type: 'syncQuotesForImages',
 		requestId: Date.now(),
-		todayDate: images[0]?.isoDate,
+		todayDate: targetDate || images[0]?.isoDate,
 		todayQuote,
 		imageDates
 	};
 }
 
-async function requestQuoteSyncForCachedCatalog() {
+async function requestQuoteSyncForCachedCatalog(targetDate = null) {
 	const [images, quoteState] = await Promise.all([
 		readStorageKey('bing_images'),
 		readStorageKey('cache_quote_state')
@@ -882,9 +886,9 @@ async function requestQuoteSyncForCachedCatalog() {
 	if (!Array.isArray(images) || images.length === 0) return;
 
 	const quoteCache = getCachedQuotesFromState(quoteState);
-	const todayDate = images[0]?.isoDate;
-	const todayQuote = todayDate ? quoteCache[todayDate] || null : null;
-	const payload = buildQuoteSyncPayload(images, todayQuote);
+	const syncDate = targetDate || images[0]?.isoDate;
+	const todayQuote = syncDate ? quoteCache[syncDate] || null : null;
+	const payload = buildQuoteSyncPayload(images, todayQuote, syncDate);
 	if (payload) {
 		fireQuoteSync(payload);
 	}

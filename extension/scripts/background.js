@@ -286,15 +286,22 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         const dates = Array.isArray(imageDates) ? imageDates.filter(d => typeof d === "string" && d.trim()) : [];
         const missingDates = computeMissingDates(dates, allQuotes);
+        const blankCaptionDates = dates.filter((date) => {
+          const cachedQuote = normalizeQuotePayload(allQuotes[date]);
+          return cachedQuote && (typeof cachedQuote.caption !== "string" || !cachedQuote.caption.trim());
+        });
         const datesToFetch = Array.from(new Set([
           ...missingDates,
+          ...blankCaptionDates,
           ...(shouldFetchTodayFallback ? [todayDate] : [])
         ]));
 
         if (datesToFetch.length > 0) {
           try {
             console.log(`[${new Date().toISOString()}] Fetching lost quotes for dates: ${datesToFetch.join(", ")}`);
-            const remote = await fetchLostQuotes(shouldFetchTodayFallback);
+            const remote = await fetchLostQuotes(
+              shouldFetchTodayFallback || blankCaptionDates.length > 0
+            );
             datesToFetch.forEach((date) => {
               const candidate = insertQuoteIntoCache(date, remote[date], quoteState);
               if (candidate) {

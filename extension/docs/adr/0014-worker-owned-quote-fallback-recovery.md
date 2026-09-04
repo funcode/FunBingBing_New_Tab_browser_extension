@@ -3,9 +3,10 @@
 ## Context
 
 Bing can return a quote with usable text and source metadata but an empty author
-caption. The page may display and cache that quote as today's quote. A cached
-wallpaper startup, including a tab waiting for another tab's refresh, previously
-had no quote-sync event, so the configured `qotd_url` fallback was not consulted.
+caption. The page may display and cache that quote as today's or a historical
+quote. Cached wallpaper startup, including a tab waiting for another tab's
+refresh, previously had no quote-sync event, so the configured `qotd_url`
+fallback was not consulted.
 
 The page's in-memory configuration can also lag behind values committed by
 another tab. Quote recovery therefore needs to use the committed catalog and
@@ -15,10 +16,11 @@ quote cache as its input.
 
 - The page owns a standalone `requestQuoteSyncForCachedCatalog()` coordinator.
   It fresh-reads `bing_images` and `cache_quote_state` with
-  `readStorageKey()`, derives the current date from the committed catalog, and
-  passes that date's cached quote through unchanged to the pure
-  `buildQuoteSyncPayload()` helper. An absent quote is represented by `null`; a
-  blank-caption quote is not filtered on the page.
+  `readStorageKey()`, derives the synchronization date from the committed
+  catalog (the selected navigation date when supplied, otherwise the first
+  catalog date), and passes that date's cached quote through unchanged to the
+  pure `buildQuoteSyncPayload()` helper. An absent quote is represented by
+  `null`; a blank-caption quote is not filtered on the page.
 - Cached startup paths dispatch the resulting `syncQuotesForImages` message
   after their cached-display attempt. The cross-tab waiting path performs this
   dispatch only after `changeWallpaper(0)` succeeds, before prefetching and
@@ -27,19 +29,21 @@ quote cache as its input.
 - The existing full refresh path keeps its own quote synchronization. The
   cached-catalog coordinator is not called from Bing caption extraction, quote
   parsing, catalog result handling, or the full refresh coordinator.
-- The background worker owns quote validity and fallback policy. It treats a
-  missing or blank-caption today's quote as a forced fallback lookup through the
-  configured `qotd_url`, validates the response, preserves an already-valid
-  cached quote when the fallback is unusable, and notifies pages only after a
-  cache update.
+- The background worker owns quote validity and fallback policy. It treats
+  missing dates and blank-caption entries among the requested catalog dates as
+  fallback candidates, forcing a fresh lookup through the configured `qotd_url`
+  when a blank caption is present. It validates the response, preserves an
+  already-valid cached quote when the fallback is unusable, and notifies pages
+  only after a cache update.
 - Quote synchronization is fire-and-forget from the page so wallpaper display
   is not blocked by remote quote latency. Request IDs and the active display date
   prevent stale responses from repainting the wrong wallpaper.
 
 ## Consequences
 
-- A blank Bing caption can be repaired automatically on the next cached startup
-  or cross-tab waiting startup when the fallback endpoint has a usable quote.
+- A blank Bing caption can be repaired automatically on the next cached startup,
+  cross-tab waiting startup, or successful navigation to a historical wallpaper
+  when the fallback endpoint has a usable quote.
 - A temporary fallback failure no longer replaces a valid cached quote with the
   blank Bing value. If no valid quote exists, the blank value remains the
   best-effort fallback until a later sync event.
