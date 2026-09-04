@@ -1,0 +1,46 @@
+{
+  "caption": "全国蜂鸟日",
+  "title": "龙虾爪花上取食的绿顶辉蜂鸟，哥斯达黎加",
+  "description": "全国蜂鸟日旨在赞颂自然界中最非凡的空中飞行专家。蜂鸟仅分布于美洲，这些小鸟能够原地悬停、向后飞行，翅膀每秒可拍动数十次。它们为寻找花蜜而造访花朵时，也充当重要的传粉者，帮助维系从高山草甸到热带雨林的各种生态系统。闪耀的羽毛、非凡的敏捷性和高能耗的生活方式，使它们成为世界上最迷人的鸟类之一。",
+  "copyright": "© Paul Hobson/Nature Picture Library",
+  "date": "2026 9月 5",
+  "clickUrl": "/search?q=%e5%85%a8%e5%9b%bd%e8%9c%82%e9%b8%9f%e6%97%a5&form=hpcapt&filters=HpDate:\"20260904_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.GreenCrowned_ZH-CN0697075036_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.GreenCrowned_ZH-CN0697075036_UHD.jpg",
+      "wallpaper": "/th?id=OHR.GreenCrowned_ZH-CN0697075036_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.GreenCrowned_ZH-CN0697075036_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.GreenCrowned_ZH-CN0697075036_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.GreenCrowned_ZH-CN0697075036_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "今天的画面展示了哥斯达黎加正在龙虾爪花上取食的绿顶辉蜂鸟。它们是中美洲体形较大的蜂鸟之一，以虹彩般的祖母绿色羽毛和细长、略微弯曲的喙闻名，这样的喙非常适合深入管状花朵取食。它们栖息于从低地到山坡的湿润森林中，开花植物全年为其提供可靠的花蜜来源。这种取食行为凸显了雨林植物与传粉者之间的紧密关系，也让人得以一窥热带雨林相互联结的生命网络。",
+  "descriptionPara3": "",
+  "isoDate": "20260905",
+  "headline": "小小鸟儿，巨大影响",
+  "quickFact": "蜂鸟的新陈代谢率在所有脊椎动物中最高，可能每10分钟就要进食一次。",
+  "triviaId": "HPQuiz_20260905_GreenCrowned",
+  "triviaData": {
+    "question": "哪个地区是所有蜂鸟物种的栖息地？",
+    "options": [
+      {
+        "text": "非洲",
+        "url": "/search?q=%E7%BE%8E%E6%B4%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260905_GreenCrowned%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "美洲",
+        "url": "/search?q=%E7%BE%8E%E6%B4%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260905_GreenCrowned%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "亚洲",
+        "url": "/search?q=%E7%BE%8E%E6%B4%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260905_GreenCrowned%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
