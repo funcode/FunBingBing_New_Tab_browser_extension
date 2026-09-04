@@ -3,7 +3,8 @@
 Domain knowledge lives in a single context at the repo root:
 
 - **`CONTEXT.md`** — overview of the project, architecture, engineering constraints.
-- **ADRs** — no dedicated ADR directory yet; add one when you have architectural decisions to record.
+- **[ADRs](../adr/)** — architectural decisions for cross-cutting runtime and
+  storage behavior.
 
 ## How skills use this
 
@@ -15,7 +16,8 @@ Domain knowledge lives in a single context at the repo root:
 
 - Keep `CONTEXT.md` as the single source of truth for project overview and constraints.
 - Link from `CONTEXT.md` to any detailed subsystem docs you maintain elsewhere.
-- If you later add an ADR directory (e.g., `docs/adr/`), update this file to point to it.
+- Keep new architectural decisions in `docs/adr/` and link them from this index
+  when they affect cross-cutting behavior.
 
 ## Multi-context (not used here)
 
