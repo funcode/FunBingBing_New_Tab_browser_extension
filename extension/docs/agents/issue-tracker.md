@@ -1,6 +1,6 @@
 # Issue tracker
 
-Issues live in GitHub Issues on [funcode/FunBingBing_New_Tab_browser_extension](https://github.com/funcode/FunBingBing_New_Tab_browser_extension).
+Issues live in GitHub Issues on [funcode/FunBingBing](https://github.com/funcode/FunBingBing).
 
 ## How skills use this
 
@@ -8,6 +8,11 @@ Issues live in GitHub Issues on [funcode/FunBingBing_New_Tab_browser_extension](
 - `triage` reads issues to apply labels and transitions.
 - `qa` reads issues to track acceptance criteria.
 - `to-spec` writes issue bodies and links back.
+
+## Default labels and metadata
+
+- New tickets get `agent-ready` and `enhancement` labels
+- GitHub Project status set to "Todo"
 
 ## For you
 

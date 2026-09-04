@@ -26,6 +26,7 @@ In addition, it shows some widgets on the image:
 # Engineering Considerations
 - Performance matters, the new tab page should be opened instantly, and avoid getting users notice the page loading delay
 - Carefully control the local storage, including the cache. Avoid local storage bloat.
+  - Exception: best-effort future prefetch depth up to 7 days takes precedence for users who opt into UHD wallpapers, whose image cache reaches roughly 36 MB in steady state. See [ADR-0002](./docs/adr/0002-offline-guarantee-over-cache-restraint.md) and [ADR-0005](./docs/adr/0005-future-prefetch-is-best-effort.md).
 
 ## Agent skills
 
@@ -36,3 +37,10 @@ Issues live in [GitHub Issues](https://github.com/funcode/FunBingBing_New_Tab_br
 ### Domain docs
 
 Single-context layout: `CONTEXT.md` at the repo root. See `docs/agents/domain.md`.
+
+## Windows shell
+- Windows 命令执行必须使用 Git Bash
+- 每次 `exec_command` 必须指定：
+- `"shell": "C:\\Program Files\\Git\\usr\\bin\\bash.exe"`
+- `"login": true`
+- 在 Git Bash 环境下检索文件时，优先使用 find / grep
