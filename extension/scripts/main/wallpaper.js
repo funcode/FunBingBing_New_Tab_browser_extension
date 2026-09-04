@@ -409,11 +409,13 @@ async function initWallpaper() {
 		const cache_idx = readConf("wallpaper_idx");
 		if (cache_idx !== undefined && cache_idx !== null) {
 			await changeWallpaper(Number.parseInt(cache_idx, 10));
+			await requestQuoteSyncForCachedCatalog();
 			requestWallpaperPrefetch();
 		} else {
 			setFooterText(i18n('updating_wallpaper'));
 			await showDefaultWallpaper();
 			await updateWallpaper(0);
+			await requestQuoteSyncForCachedCatalog();
 			requestWallpaperPrefetch();
 		}
 	} else {
@@ -868,6 +870,22 @@ function buildQuoteSyncPayload(images, todayQuote) {
 		todayQuote,
 		imageDates
 	};
+}
+
+async function requestQuoteSyncForCachedCatalog() {
+	const [images, quoteState] = await Promise.all([
+		readStorageKey('bing_images'),
+		readStorageKey('cache_quote_state')
+	]);
+	if (!Array.isArray(images) || images.length === 0) return;
+
+	const quoteCache = getCachedQuotesFromState(quoteState);
+	const todayDate = images[0]?.isoDate;
+	const todayQuote = todayDate ? quoteCache[todayDate] || null : null;
+	const payload = buildQuoteSyncPayload(images, todayQuote);
+	if (payload) {
+		fireQuoteSync(payload);
+	}
 }
 
 let latestForegroundQuoteRequestId = 0;
