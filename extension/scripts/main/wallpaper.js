@@ -408,14 +408,18 @@ async function initWallpaper() {
 		// Cached wallpaper for today
 		const cache_idx = readConf("wallpaper_idx");
 		if (cache_idx !== undefined && cache_idx !== null) {
-			await changeWallpaper(Number.parseInt(cache_idx, 10));
-			await requestQuoteSyncForCachedCatalog();
+			const changed = await changeWallpaper(Number.parseInt(cache_idx, 10));
+			const todayDate = readConf('bing_images')?.[0]?.isoDate;
+			if (changed && currentImageDate === todayDate) {
+				await requestQuoteSyncForCachedCatalog();
+			}
 			requestWallpaperPrefetch();
 		} else {
 			setFooterText(i18n('updating_wallpaper'));
 			await showDefaultWallpaper();
-			await updateWallpaper(0);
-			await requestQuoteSyncForCachedCatalog();
+			if (await updateWallpaper(0)) {
+				await requestQuoteSyncForCachedCatalog();
+			}
 			requestWallpaperPrefetch();
 		}
 	} else {
@@ -717,8 +721,9 @@ async function switchWallpaper(offset) {
 	cache_idx = (cache_idx + offset + MAX_OLD_DAYS) % MAX_OLD_DAYS;
 	const images = readConf('bing_images');
 	const targetDate = Array.isArray(images) ? images[cache_idx]?.isoDate : null;
-	if (await updateWallpaper(cache_idx)) {
-		await requestQuoteSyncForCachedCatalog(targetDate);
+	const todayDate = Array.isArray(images) ? images[0]?.isoDate : null;
+	if (await updateWallpaper(cache_idx) && targetDate === todayDate) {
+		await requestQuoteSyncForCachedCatalog();
 	}
 }
 
@@ -863,7 +868,7 @@ function getQuoteForImage(image, quoteCache = getCachedQuotesFromState()) {
 	return normalizeQuoteForRender(quoteCache?.[image.isoDate]);
 }
 
-function buildQuoteSyncPayload(images, todayQuote, targetDate = null) {
+function buildQuoteSyncPayload(images, todayQuote) {
 	if (!Array.isArray(images) || images.length === 0) return null;
 	const imageDates = images
 		.map((img) => (img && typeof img.isoDate === 'string' ? img.isoDate : null))
@@ -872,13 +877,13 @@ function buildQuoteSyncPayload(images, todayQuote, targetDate = null) {
 	return {
 		type: 'syncQuotesForImages',
 		requestId: Date.now(),
-		todayDate: targetDate || images[0]?.isoDate,
+		todayDate: images[0]?.isoDate,
 		todayQuote,
 		imageDates
 	};
 }
 
-async function requestQuoteSyncForCachedCatalog(targetDate = null) {
+async function requestQuoteSyncForCachedCatalog() {
 	const [images, quoteState] = await Promise.all([
 		readStorageKey('bing_images'),
 		readStorageKey('cache_quote_state')
@@ -886,9 +891,9 @@ async function requestQuoteSyncForCachedCatalog(targetDate = null) {
 	if (!Array.isArray(images) || images.length === 0) return;
 
 	const quoteCache = getCachedQuotesFromState(quoteState);
-	const syncDate = targetDate || images[0]?.isoDate;
-	const todayQuote = syncDate ? quoteCache[syncDate] || null : null;
-	const payload = buildQuoteSyncPayload(images, todayQuote, syncDate);
+	const todayDate = images[0]?.isoDate;
+	const todayQuote = todayDate ? quoteCache[todayDate] || null : null;
+	const payload = buildQuoteSyncPayload(images, todayQuote);
 	if (payload) {
 		fireQuoteSync(payload);
 	}
