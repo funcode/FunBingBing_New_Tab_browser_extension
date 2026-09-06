@@ -21,15 +21,16 @@ quote cache as its input.
   `buildQuoteSyncPayload()` helper. An absent quote is represented by `null`; a
   blank-caption quote is not filtered on the page.
 - Cached startup paths dispatch the resulting `syncQuotesForImages` message
-  after their cached-display attempt. The cross-tab waiting path performs this
-  dispatch only after `changeWallpaper(0)` succeeds, before prefetching and
-  returning. A failed waiting-tab display falls through to the normal full
-  refresh instead.
-- The existing full refresh path keeps its own quote synchronization. The
-  cached-catalog coordinator is called when today's wallpaper is displayed,
-  including when navigation returns to today, but not when navigating between
-  historical dates. It is not called from Bing caption extraction, quote
-  parsing, catalog result handling, or the full refresh coordinator.
+  after their cached-display attempt when the selected catalog entry is today,
+  regardless of display success. The cross-tab waiting path passes a
+  `quoteSyncAlreadyRequested` handoff to a subsequent full refresh so it does
+  not dispatch a duplicate request.
+- The existing full refresh path keeps its own quote synchronization, dispatching
+  after its wallpaper update attempt unless a cached-startup handoff already
+  sent a request. The cached-catalog coordinator is called after an attempt to
+  display today's wallpaper, including when navigation returns to today, but
+  not when navigating between historical dates. It is not called from Bing
+  caption extraction, quote parsing, or catalog result handling.
 - The background worker owns quote validity and fallback policy. It treats
   missing dates and blank-caption entries among the requested catalog dates as
   fallback candidates, forcing a fresh lookup through the configured `qotd_url`
@@ -42,9 +43,10 @@ quote cache as its input.
 
 ## Consequences
 
-- A blank Bing caption can be repaired when today's wallpaper is displayed on
-  cached startup, after cross-tab waiting, or after navigation returns to today.
-  Navigating between historical wallpapers does not initiate another quote sync.
+- A blank Bing caption can be repaired after an attempt to display today's
+  wallpaper on cached startup, after cross-tab waiting, or after navigation
+  returns to today, even if image application fails. Navigating between
+  historical wallpapers does not initiate another quote sync.
 - A temporary fallback failure no longer replaces a valid cached quote with the
   blank Bing value. If no valid quote exists, the blank value remains the
   best-effort fallback until a later sync event.

@@ -379,7 +379,7 @@ async function waitForTodayWallpaperReady(timeoutMs = WALLPAPER_FETCH_LOCK_TTL_M
 	});
 }
 
-async function runWallpaperFetchRefresh() {
+async function runWallpaperFetchRefresh({ quoteSyncAlreadyRequested = false } = {}) {
 	setFooterText(i18n('updating_wallpaper'));
 	await showDefaultWallpaper({ preserveUpdatingHeadline: true });
 
@@ -391,10 +391,10 @@ async function runWallpaperFetchRefresh() {
 	}
 
 	const updated = await updateWallpaper(0);
-	if (!updated) return false;
-	if (quoteSyncPayload) {
+	if (quoteSyncPayload && !quoteSyncAlreadyRequested) {
 		fireQuoteSync(quoteSyncPayload);
 	}
+	if (!updated) return false;
 
 	await writeConf('wallpaper_date', todayDate);
 	requestWallpaperPrefetch();
@@ -408,26 +408,27 @@ async function initWallpaper() {
 		// Cached wallpaper for today
 		const cache_idx = readConf("wallpaper_idx");
 		if (cache_idx !== undefined && cache_idx !== null) {
-			const changed = await changeWallpaper(Number.parseInt(cache_idx, 10));
+			await changeWallpaper(Number.parseInt(cache_idx, 10));
 			const todayDate = readConf('bing_images')?.[0]?.isoDate;
-			if (changed && currentImageDate === todayDate) {
+			if (currentImageDate === todayDate) {
 				await requestQuoteSyncForCachedCatalog();
 			}
 			requestWallpaperPrefetch();
 		} else {
 			setFooterText(i18n('updating_wallpaper'));
 			await showDefaultWallpaper();
-			if (await updateWallpaper(0)) {
-				await requestQuoteSyncForCachedCatalog();
-			}
+			await updateWallpaper(0);
+			await requestQuoteSyncForCachedCatalog();
 			requestWallpaperPrefetch();
 		}
 	} else {
 		try {
+			let quoteSyncAlreadyRequested = false;
 			if (await isTodayWallpaperReady()) {
 				await refreshConfCacheIfAvailable();
-				if (await changeWallpaper(0)) {
-					await requestQuoteSyncForCachedCatalog();
+				const changed = await changeWallpaper(0);
+				quoteSyncAlreadyRequested = await requestQuoteSyncForCachedCatalog();
+				if (changed) {
 					requestWallpaperPrefetch();
 					return;
 				}
@@ -440,8 +441,11 @@ async function initWallpaper() {
 				const ready = await waitForTodayWallpaperReady();
 				if (ready || await isTodayWallpaperReady()) {
 					await refreshConfCacheIfAvailable();
-					if (await changeWallpaper(0)) {
-						await requestQuoteSyncForCachedCatalog();
+					const changed = await changeWallpaper(0);
+					if (!quoteSyncAlreadyRequested) {
+						quoteSyncAlreadyRequested = await requestQuoteSyncForCachedCatalog();
+					}
+					if (changed) {
 						requestWallpaperPrefetch();
 						return;
 					}
@@ -452,7 +456,7 @@ async function initWallpaper() {
 			// Best-effort cross-tab throttle; storage get/set is not atomic.
 			await writeConf(WALLPAPER_FETCH_LOCK_KEY, Date.now());
 			try {
-				await runWallpaperFetchRefresh();
+				await runWallpaperFetchRefresh({ quoteSyncAlreadyRequested });
 			} finally {
 				await writeConf(WALLPAPER_FETCH_LOCK_KEY, 0);
 			}
@@ -722,7 +726,8 @@ async function switchWallpaper(offset) {
 	const images = readConf('bing_images');
 	const targetDate = Array.isArray(images) ? images[cache_idx]?.isoDate : null;
 	const todayDate = Array.isArray(images) ? images[0]?.isoDate : null;
-	if (await updateWallpaper(cache_idx) && targetDate === todayDate) {
+	await updateWallpaper(cache_idx);
+	if (targetDate === todayDate) {
 		await requestQuoteSyncForCachedCatalog();
 	}
 }
@@ -888,15 +893,15 @@ async function requestQuoteSyncForCachedCatalog() {
 		readStorageKey('bing_images'),
 		readStorageKey('cache_quote_state')
 	]);
-	if (!Array.isArray(images) || images.length === 0) return;
+	if (!Array.isArray(images) || images.length === 0) return false;
 
 	const quoteCache = getCachedQuotesFromState(quoteState);
 	const todayDate = images[0]?.isoDate;
 	const todayQuote = todayDate ? quoteCache[todayDate] || null : null;
 	const payload = buildQuoteSyncPayload(images, todayQuote);
-	if (payload) {
-		fireQuoteSync(payload);
-	}
+	if (!payload) return false;
+	fireQuoteSync(payload);
+	return true;
 }
 
 let latestForegroundQuoteRequestId = 0;

@@ -50,9 +50,10 @@ an update.
 - The coordinator passes the cached value for the current date through unchanged: an explicit null for an absent quote, or the stored quote object whether its caption is blank or complete.
 - If the catalog has no usable current date or eligible dates, the coordinator returns without dispatching a message.
 - In the cached-today startup branch, call the coordinator after the wallpaper display attempt completes, regardless of whether that attempt succeeds. This branch does not automatically enter the full refresh path.
-- In the branch that observes today's wallpaper already ready, call the coordinator after `changeWallpaper(0)` succeeds and before returning.
-- In the cross-tab waiting branch, call the coordinator only after the waiting tab successfully applies `changeWallpaper(0)`. If that display fails, continue into the normal full refresh path and do not issue the cached-catalog request from the waiting branch.
-- Do not call the coordinator from Bing caption extraction, quote parsing, catalog result handling, or the full refresh coordinator. The full refresh path retains its existing payload construction and dispatch.
+- Synchronization is eligible only when the selected catalog entry is today's entry. In the branch that observes today's wallpaper already ready, call the coordinator after `changeWallpaper(0)` completes, regardless of its result, and before returning on success.
+- In the cross-tab waiting branch, call the coordinator after the waiting tab's `changeWallpaper(0)` attempt completes, regardless of its result. If display succeeds, prefetch and return; if it fails, continue into the normal full refresh path while passing a `quoteSyncAlreadyRequested` handoff so the refresh path does not dispatch a duplicate request.
+- When navigation returns to the catalog's first (today) entry, call the coordinator after the wallpaper update attempt, regardless of its result. Navigation between historical entries does not initiate quote synchronization.
+- Do not call the coordinator from Bing caption extraction, quote parsing, or catalog result handling. The full refresh coordinator retains its existing payload construction and dispatch unless a cached-startup handoff has already dispatched a request.
 - Dispatch remains fire-and-forget. Quote synchronization must not become part of the wallpaper display critical path.
 - The worker continues to decide whether a fetch is needed, including blank-caption detection, missing-date detection, forced refresh for blank captions, fallback response validation, cache preservation, and update notification.
 - The page must establish the active display date before a worker update notification can be used to repaint the quote.
@@ -72,7 +73,8 @@ an update.
 
 ## Out of Scope
 
-- Reworking the existing full wallpaper refresh quote synchronization path.
+- Changing the full refresh quote payload or worker policy. The refresh path's
+  dispatch timing and cached-startup deduplication handoff are in scope.
 - Moving `qotd_url` between `chrome.storage.local` and `chrome.storage.sync`, or changing its migration precedence.
 - Changing the remote JSON schema, quote normalization rules, quote-cache retention policy, or worker retry policy.
 - Guaranteeing that a remote quote is available while offline.
