@@ -1,0 +1,46 @@
+{
+  "caption": "汉普郡谷物田中的山毛榉树，英格兰",
+  "title": "东米恩南唐斯国家公园谷物田中的山毛榉树，汉普郡，英格兰",
+  "description": "在汉普郡东米恩附近的金色田野中，一棵山毛榉独自挺立，成为英格兰南唐斯国家公园起伏景观中的醒目焦点。数百年来，农业塑造着这些白垩丘陵；时至今日，耕作仍是该地区的重要组成部分。当地排水良好的白垩土壤支撑着大规模旱作农业，其中小麦和大麦是最常见的作物。整个夏季，作物在田间逐渐成熟，随后收获季将乡野变成金色田块与麦茬交织的拼图。",
+  "copyright": "© Guy Edwardes/Minden Pictures",
+  "date": "2026 9月 8",
+  "clickUrl": "/search?q=%e8%8b%b1%e6%a0%bc%e5%85%b0%e6%b1%89%e6%99%ae%e9%83%a1&form=hpcapt&filters=HpDate:\"20260907_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BeechEngland_ZH-CN1807343872_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BeechEngland_ZH-CN1807343872_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BeechEngland_ZH-CN1807343872_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BeechEngland_ZH-CN1807343872_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BeechEngland_ZH-CN1807343872_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BeechEngland_ZH-CN1807343872_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "9月初正值主要收获季，乡村社区开始庆祝一年的丰收。在东米恩等村庄，收获传统仍是当地生活中经久不衰的一部分，反映出土地与耕作者之间的深厚联系。以开阔天空和连绵农田为背景，这棵孤树象征着南唐斯悠久的农业遗产。",
+  "descriptionPara3": "",
+  "isoDate": "20260908",
+  "headline": "金色田野",
+  "quickFact": "米恩河发源于东米恩村中心以南约一英里处，向前流淌约21英里后汇入索伦特海峡。",
+  "triviaId": "HPQuiz_20260908_BeechEngland",
+  "triviaData": {
+    "question": "南唐斯地区最广泛种植的作物有哪些？",
+    "options": [
+      {
+        "text": "小麦与大麦",
+        "url": "/search?q=%E5%B0%8F%E9%BA%A6%E4%B8%8E%E5%A4%A7%E9%BA%A6&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260908_BeechEngland%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "黑麦与燕麦",
+        "url": "/search?q=%E5%B0%8F%E9%BA%A6%E4%B8%8E%E5%A4%A7%E9%BA%A6&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260908_BeechEngland%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "玉米与大豆",
+        "url": "/search?q=%E5%B0%8F%E9%BA%A6%E4%B8%8E%E5%A4%A7%E9%BA%A6&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260908_BeechEngland%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
