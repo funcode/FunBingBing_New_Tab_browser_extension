@@ -1,0 +1,1638 @@
+============================================================================
+Request URL: https://www.bing.com/HPImageArchive.aspx?format=js&n=1&mkt=zh-CN&idx=7
+Response:
+{
+    "images": [
+        {
+            "startdate": "20260720",
+            "fullstartdate": "202607201600",
+            "enddate": "20260721",
+            "url": "/th?id=OHR.SantaCatalina_ZH-CN6223370790_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+            "urlbase": "/th?id=OHR.SantaCatalina_ZH-CN6223370790",
+            "copyright": "圣卡塔琳娜拱门，安提瓜，危地马拉 (© Filippo Maria Bianchi/Getty Images)",
+            "copyrightlink": "https://www.bing.com/search?q=%E5%8D%B1%E5%9C%B0%E9%A9%AC%E6%8B%89%E5%9C%A3%E5%8D%A1%E5%A1%94%E7%90%B3%E5%A8%9C%E6%8B%B1%E9%97%A8&form=hpcapt&mkt=zh-cn",
+            "title": "拱影寻踪",
+            "quiz": "/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20260720_SantaCatalina%22&FORM=HPQUIZ",
+            "wp": true,
+            "hsh": "b9b7a1c3213a57697445d9dfff794c91",
+            "drk": 1,
+            "top": 1,
+            "bot": 1,
+            "hs": []
+        }
+    ],
+    "tooltips": {
+        "loading": "正在加载...",
+        "previous": "上一个图像",
+        "next": "下一个图像",
+        "walle": "此图片不能下载用作壁纸。",
+        "walls": "下载今日美图。仅限用作桌面壁纸。"
+    }
+}
+============================================================================
+Request URL: https://www.bing.com/HPImageArchive.aspx?format=js&n=8&mkt=zh-CN&idx=7
+Response:
+{
+    "images": [
+        {
+            "startdate": "20260720",
+            "fullstartdate": "202607201600",
+            "enddate": "20260721",
+            "url": "/th?id=OHR.SantaCatalina_ZH-CN6223370790_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+            "urlbase": "/th?id=OHR.SantaCatalina_ZH-CN6223370790",
+            "copyright": "圣卡塔琳娜拱门，安提瓜，危地马拉 (© Filippo Maria Bianchi/Getty Images)",
+            "copyrightlink": "https://www.bing.com/search?q=%E5%8D%B1%E5%9C%B0%E9%A9%AC%E6%8B%89%E5%9C%A3%E5%8D%A1%E5%A1%94%E7%90%B3%E5%A8%9C%E6%8B%B1%E9%97%A8&form=hpcapt&mkt=zh-cn",
+            "title": "拱影寻踪",
+            "quiz": "/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20260720_SantaCatalina%22&FORM=HPQUIZ",
+            "wp": true,
+            "hsh": "b9b7a1c3213a57697445d9dfff794c91",
+            "drk": 1,
+            "top": 1,
+            "bot": 1,
+            "hs": []
+        },
+        {
+            "startdate": "20260719",
+            "fullstartdate": "202607191600",
+            "enddate": "20260720",
+            "url": "/th?id=OHR.Artemis_ZH-CN3540365575_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+            "urlbase": "/th?id=OHR.Artemis_ZH-CN3540365575",
+            "copyright": "月球与地球由阿耳忒弥斯2号机组人员拍摄 (© NASA)",
+            "copyrightlink": "https://www.bing.com/search?q=%E5%9B%BD%E9%99%85%E6%9C%88%E7%90%83%E6%97%A5&form=hpcapt&mkt=zh-cn",
+            "title": "月瞰寰宇",
+            "quiz": "/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20260719_Artemis%22&FORM=HPQUIZ",
+            "wp": true,
+            "hsh": "99467e76fdcc8fbfdf57933d3ffdacb6",
+            "drk": 1,
+            "top": 1,
+            "bot": 1,
+            "hs": []
+        },
+        {
+            "startdate": "20260718",
+            "fullstartdate": "202607181600",
+            "enddate": "20260719",
+            "url": "/th?id=OHR.HirundoRustica_ZH-CN2798518247_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+            "urlbase": "/th?id=OHR.HirundoRustica_ZH-CN2798518247",
+            "copyright": "不同亚种的家燕聚在一起休息 (© Oscar Dominguez/Tandem Stills + Motion)",
+            "copyrightlink": "https://www.bing.com/search?q=%E5%AE%B6%E7%87%95&form=hpcapt&mkt=zh-cn",
+            "title": "敛羽栖时",
+            "quiz": "/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20260718_HirundoRustica%22&FORM=HPQUIZ",
+            "wp": true,
+            "hsh": "ef758ac23a9da9f9c491b1830a271c16",
+            "drk": 1,
+            "top": 1,
+            "bot": 1,
+            "hs": []
+        },
+        {
+            "startdate": "20260717",
+            "fullstartdate": "202607171600",
+            "enddate": "20260718",
+            "url": "/th?id=OHR.DevilsBridge_ZH-CN2164982440_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+            "urlbase": "/th?id=OHR.DevilsBridge_ZH-CN2164982440",
+            "copyright": "恶魔桥在克罗姆劳杜鹃花公园，萨克森州，德国 (© Mike Mareen/Getty Images)",
+            "copyrightlink": "https://www.bing.com/search?q=%E6%81%B6%E9%AD%94%E6%A1%A5%E5%9C%A8%E5%85%8B%E7%BD%97%E5%A7%86%E5%8A%B3%E6%9D%9C%E9%B9%83%E8%8A%B1%E5%85%AC%E5%9B%AD&form=hpcapt&mkt=zh-cn",
+            "title": "环影圆成",
+            "quiz": "/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20260717_DevilsBridge%22&FORM=HPQUIZ",
+            "wp": true,
+            "hsh": "e004da2b73f50c47e95e449fa9d765c0",
+            "drk": 1,
+            "top": 1,
+            "bot": 1,
+            "hs": []
+        },
+        {
+            "startdate": "20260716",
+            "fullstartdate": "202607161600",
+            "enddate": "20260717",
+            "url": "/th?id=OHR.VaiUmbrellas_ZH-CN1271422272_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+            "urlbase": "/th?id=OHR.VaiUmbrellas_ZH-CN1271422272",
+            "copyright": "瓦伊海滩上的日光浴躺椅，克里特岛，希腊 (© borchee/Getty Images)",
+            "copyrightlink": "https://www.bing.com/search?q=%E5%B8%8C%E8%85%8A%E5%85%8B%E9%87%8C%E7%89%B9%E5%B2%9B&form=hpcapt&mkt=zh-cn",
+            "title": "希腊式的逃离",
+            "quiz": "/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20260716_VaiUmbrellas%22&FORM=HPQUIZ",
+            "wp": true,
+            "hsh": "ce5a5296567bdacfd05fd90a9f431038",
+            "drk": 1,
+            "top": 1,
+            "bot": 1,
+            "hs": []
+        },
+        {
+            "startdate": "20260715",
+            "fullstartdate": "202607151600",
+            "enddate": "20260716",
+            "url": "/th?id=OHR.NavyPier_ZH-CN4649271588_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+            "urlbase": "/th?id=OHR.NavyPier_ZH-CN4649271588",
+            "copyright": "海军码头，芝加哥，伊利诺伊州，美国 (© Christopher.F Photography/Getty Images)",
+            "copyrightlink": "https://www.bing.com/search?q=%E8%8A%9D%E5%8A%A0%E5%93%A5%E6%B5%B7%E5%86%9B%E7%A0%81%E5%A4%B4&form=hpcapt&mkt=zh-cn",
+            "title": "滨水变色龙",
+            "quiz": "/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20260715_NavyPier%22&FORM=HPQUIZ",
+            "wp": true,
+            "hsh": "8d375d366c3d1e97bda4d6a1711fba19",
+            "drk": 1,
+            "top": 1,
+            "bot": 1,
+            "hs": []
+        },
+        {
+            "startdate": "20260714",
+            "fullstartdate": "202607141600",
+            "enddate": "20260715",
+            "url": "/th?id=OHR.MarieLake_ZH-CN4927917413_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+            "urlbase": "/th?id=OHR.MarieLake_ZH-CN4927917413",
+            "copyright": "玛丽湖，约翰·缪尔荒野（毕晓普附近），加利福尼亚州，美国 (© Steve Dunleavy/Getty Images)",
+            "copyrightlink": "https://www.bing.com/search?q=%E7%BA%A6%E7%BF%B0%C2%B7%E7%BC%AA%E5%B0%94%E8%8D%92%E9%87%8E&form=hpcapt&mkt=zh-cn",
+            "title": "攀登后的奖励",
+            "quiz": "/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20260714_MarieLake%22&FORM=HPQUIZ",
+            "wp": true,
+            "hsh": "6dc9c4d1df78726fc0b019f514401938",
+            "drk": 1,
+            "top": 1,
+            "bot": 1,
+            "hs": []
+        },
+        {
+            "startdate": "20260713",
+            "fullstartdate": "202607131600",
+            "enddate": "20260714",
+            "url": "/th?id=OHR.LemonShark_ZH-CN4650331008_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+            "urlbase": "/th?id=OHR.LemonShark_ZH-CN4650331008",
+            "copyright": "柠檬鲨幼崽在红树林中，伊柳塞拉岛，巴哈马 (© Shane Gross/Nature Picture Library)",
+            "copyrightlink": "https://www.bing.com/search?q=%E6%9F%A0%E6%AA%AC%E9%B2%A8&form=hpcapt&mkt=zh-cn",
+            "title": "奇妙的真相",
+            "quiz": "/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20260713_LemonShark%22&FORM=HPQUIZ",
+            "wp": true,
+            "hsh": "7c83e710ee6d1646d4975b9b5e37ead3",
+            "drk": 1,
+            "top": 1,
+            "bot": 1,
+            "hs": []
+        }
+    ],
+    "tooltips": {
+        "loading": "正在加载...",
+        "previous": "上一个图像",
+        "next": "下一个图像",
+        "walle": "此图片不能下载用作壁纸。",
+        "walls": "下载今日美图。仅限用作桌面壁纸。"
+    }
+}
+============================================================================
+Request URL: https://www.bing.com/hp/api/v1/imageoftheday?format=json&mkt=zh-CN
+Response:
+{
+    "title": "近期的主页图片",
+    "data": {
+        "images": [
+            {
+                "caption": "世界自然保护日",
+                "title": "一片海藻林在安纳卡帕岛附近，海峡群岛国家公园，加利福尼亚州，美国",
+                "description": "在美国加利福尼亚州，海峡群岛国家公园，安纳卡帕岛附近，海洋孕育着属于自己的森林。在被称为“北美洲加拉帕戈斯”的海峡群岛国家公园内，巨藻的长度可超过 100 英尺，它们通过充满空气的气囊在水中形成具有浮力的丝带，并由底部的根状固着器锚定在海床之上。",
+                "copyright": "© Ian Shive/Tandem Stills + Motion",
+                "date": "2026 7月 28",
+                "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e8%87%aa%e7%84%b6%e4%bf%9d%e6%8a%a4%e6%97%a5&form=hpcapt&filters=HpDate:\"20260727_1600\"",
+                "imageUrls": {
+                    "landscape": {
+                        "highDef": "/th?id=OHR.ChannelKelp_ZH-CN8732903732_1920x1080.jpg",
+                        "ultraHighDef": "/th?id=OHR.ChannelKelp_ZH-CN8732903732_UHD.jpg",
+                        "wallpaper": "/th?id=OHR.ChannelKelp_ZH-CN8732903732_1920x1200.jpg"
+                    },
+                    "portrait": {
+                        "highDef": "/th?id=OHR.ChannelKelp_ZH-CN8732903732_768x1366.jpg",
+                        "ultraHighDef": "/th?id=OHR.ChannelKelp_ZH-CN8732903732_1080x1920.jpg",
+                        "wallpaper": "/th?id=OHR.ChannelKelp_ZH-CN8732903732_1080x1920_logo.jpg"
+                    }
+                },
+                "descriptionPara2": "在这个由海藻构建的垂直世界里，万物皆在律动：阳光穿透林冠层，叶状体随涌浪摇曳，鱼群宛如流动的洋流在茎干间穿梭。海狮在缝隙中盘旋，海胆在底层觅食，每一层生境都充满了生命的气息。然而，即便这种每天能生长2英尺的极速生长型海藻，也会迅速消亡。热浪、海洋酸化以及洋流的变化，可能会在短短几年内抹去数十年的生长痕迹，让曾经生机勃勃的生物群落沦为一片荒芜的开放水域。",
+                "descriptionPara3": "每年的7月28日是世界自然保护日，在这一地标，保护的意义变得触手可及。海藻不仅是生命的宿主，它们更从底层构建并维系着整个生态系统——过滤水质、储存碳，并在静默中稳定着整条海岸线。",
+                "isoDate": "20260728"
+            },
+            {
+                "caption": "蒂芙尼穹顶在芝加哥文化中心，美国",
+                "title": "蒂芙尼穹顶，芝加哥文化中心，伊利诺伊州，美国",
+                "description": "步入位于美国，伊利诺伊州，芝加哥文化中心的建筑内部，目光瞬间会被上方绚丽夺目的彩色顶棚——蒂芙尼穹顶所吸引。这座艺术杰作悬挂在普雷斯顿·布拉德利大厅上方，直径约38英尺，由约30,000片法夫里尔玻璃组成，每片玻璃都呈鱼鳞状。阳光透过其半透明的表面，在错综复杂的图案中映射出变幻莫测的蓝色与金色。",
+                "copyright": "© Felix Lipov/Shutterstock",
+                "date": "2026 7月 27",
+                "clickUrl": "/search?q=%e8%8a%9d%e5%8a%a0%e5%93%a5%e6%96%87%e5%8c%96%e4%b8%ad%e5%bf%83%e8%92%82%e8%8a%99%e5%b0%bc%e7%a9%b9%e9%a1%b6&form=hpcapt&filters=HpDate:\"20260726_1600\"",
+                "imageUrls": {
+                    "landscape": {
+                        "highDef": "/th?id=OHR.ChicagoTiffany_ZH-CN9860688834_1920x1080.jpg",
+                        "ultraHighDef": "/th?id=OHR.ChicagoTiffany_ZH-CN9860688834_UHD.jpg",
+                        "wallpaper": ""
+                    },
+                    "portrait": {
+                        "highDef": "/th?id=OHR.ChicagoTiffany_ZH-CN9860688834_768x1366.jpg",
+                        "ultraHighDef": "/th?id=OHR.ChicagoTiffany_ZH-CN9860688834_1080x1920.jpg",
+                        "wallpaper": ""
+                    }
+                },
+                "descriptionPara2": "该建筑于1897年作为芝加哥首座中央公共图书馆正式开放，旨在展示卓越的工艺水准与公民自豪感。如今，它已转型为一个免费的文化枢纽，承载着各类展览、演出及公共项目。",
+                "descriptionPara3": "该穹顶曾长期隐藏在保护性外层之下，于2008年完成全面修复，让自然光重新照进这一历史空间。在光影映衬下，建筑结构与艺术美学有机融合，将曾经的阅读室转变为这座城市最震撼的室内景观之一。",
+                "isoDate": "20260727"
+            },
+            {
+                "caption": "保护红树林生态系统国际日",
+                "title": "红树上的日出在小猪群岛，洪都拉斯",
+                "description": "在洪都拉斯小猪群岛的日出时分——那是掩映在红树林湿地中低矮的沿海小岛——一株红树将其交错的根系挺立于如镜的水面之上。这幅动人的画面精准捕捉了7月26日所庆祝的主题：保护红树林生态系统国际日，该节日的设立旨在呼吁全球关注这些至关重要的海岸森林。",
+                "copyright": "© Mac Stone/Tandem Stills + Motion",
+                "date": "2026 7月 26",
+                "clickUrl": "/search?q=%e4%bf%9d%e6%8a%a4%e7%ba%a2%e6%a0%91%e6%9e%97%e7%94%9f%e6%80%81%e7%b3%bb%e7%bb%9f%e5%9b%bd%e9%99%85%e6%97%a5&form=hpcapt&filters=HpDate:\"20260725_1600\"",
+                "imageUrls": {
+                    "landscape": {
+                        "highDef": "/th?id=OHR.RedMangroveSunrise_ZH-CN7940335392_1920x1080.jpg",
+                        "ultraHighDef": "/th?id=OHR.RedMangroveSunrise_ZH-CN7940335392_UHD.jpg",
+                        "wallpaper": "/th?id=OHR.RedMangroveSunrise_ZH-CN7940335392_1920x1200.jpg"
+                    },
+                    "portrait": {
+                        "highDef": "/th?id=OHR.RedMangroveSunrise_ZH-CN7940335392_768x1366.jpg",
+                        "ultraHighDef": "/th?id=OHR.RedMangroveSunrise_ZH-CN7940335392_1080x1920.jpg",
+                        "wallpaper": "/th?id=OHR.RedMangroveSunrise_ZH-CN7940335392_1080x1920_logo.jpg"
+                    }
+                },
+                "descriptionPara2": "红树林在咸水与陆地的交汇处生机盎然，利用特化的根系在柔软且贫氧（Oxygen-poor）的泥层中固着,它们密集的根系网络能够减缓波浪冲击、减轻侵蚀，并保护沿海社区免受风暴侵袭。在水面之下，这些根系为幼鱼、螃蟹和虾类提供了庇护所，使这些湿地成为海洋中最具生产力的育幼场之一。",
+                "descriptionPara3": "在像洪都拉斯这样的地区，红树林资源丰富的沿海湿地还储存着大量的碳，并维持着当地的生计。然而，这些生态系统正在迅速消失，使得生态保育变得迫在眉睫。注视着日出穿透那些拱形枝干的光芒——你正在见证地球上最强大的天然防御屏障之一正在发挥作用",
+                "isoDate": "20260726"
+            },
+            {
+                "caption": "大教堂海滩，加利西亚，西班牙",
+                "title": "大教堂海滩，加利西亚，西班牙",
+                "description": "在西班牙遥远的西北部，加利西亚与大西洋交汇。漫长的海岸线在海浪的强力冲刷下，形成了由悬崖、内湾和海蚀平台交织而成的地貌。雨水充沛的山丘与密林向海绵延，这种景观带有鲜明的大西洋气候基调，使其在感官上更接近于爱尔兰，而非人们惯常印象中的西班牙南部。",
+                "copyright": "© Tui De Roy/Amazing Aerial Agency/Abobe Stock",
+                "date": "2026 7月 25",
+                "clickUrl": "/search?q=%e8%a5%bf%e7%8f%ad%e7%89%99%e5%8a%a0%e5%88%a9%e8%a5%bf%e4%ba%9a&form=hpcapt&filters=HpDate:\"20260724_1600\"",
+                "imageUrls": {
+                    "landscape": {
+                        "highDef": "/th?id=OHR.GaliciaBeach_ZH-CN1246611659_1920x1080.jpg",
+                        "ultraHighDef": "/th?id=OHR.GaliciaBeach_ZH-CN1246611659_UHD.jpg",
+                        "wallpaper": "/th?id=OHR.GaliciaBeach_ZH-CN1246611659_1920x1200.jpg"
+                    },
+                    "portrait": {
+                        "highDef": "/th?id=OHR.GaliciaBeach_ZH-CN1246611659_768x1366.jpg",
+                        "ultraHighDef": "/th?id=OHR.GaliciaBeach_ZH-CN1246611659_1080x1920.jpg",
+                        "wallpaper": "/th?id=OHR.GaliciaBeach_ZH-CN1246611659_1080x1920_logo.jpg"
+                    }
+                },
+                "descriptionPara2": "在该地区的北缘，里瓦德奥小镇毗邻阿斯图里亚斯自治区，坐落于比斯开湾的河口与外海交汇处。这里的海岸线从崎岖嶙峋转为超现实的奇观，悬崖之后隐匿着复杂的岩石构造和幽静的海湾。大教堂海滩得名于经年累月的海蚀作用所雕琢出的巨型拱门，其宏伟的轮廓酷似哥特式石质大教堂的高耸建筑风格。",
+                "descriptionPara3": "潮落之时是最佳的到访时刻。在有限的时间窗内，裸露的海床会化为一座可供步行的“石头迷宫”——这一瞬息万变的地形会随着潮水的再度涌入而消失，海洋迅速收复沙滩并重塑海岸线的形态",
+                "isoDate": "20260725"
+            },
+            {
+                "caption": "美洲红鹳",
+                "title": "美洲红鹳群在伊莎贝拉岛，加拉帕戈斯群岛，厄瓜多尔",
+                "description": "除了引人注目的体色，栖息在伊莎贝拉岛，加拉帕戈斯群岛，厄瓜多尔的美洲红鹳还以其高度同步的求偶仪式而闻名。数百只红鹳会参与一场极具仪式感的“集体舞”，它们整齐划一地行进，并有节奏地左右摆动头部以吸引配偶。这种集体行为确保了整个集群能在同一时间进行繁殖，从而在群岛严酷的火山地貌中最大限度地提高雏鸟的存活率。",
+                "copyright": "© Tui De Roy/Nature Picture Library",
+                "date": "2026 7月 24",
+                "clickUrl": "/search?q=%e7%be%8e%e6%b4%b2%e7%ba%a2%e9%b9%b3&form=hpcapt&filters=HpDate:\"20260723_1600\"",
+                "imageUrls": {
+                    "landscape": {
+                        "highDef": "/th?id=OHR.GalapagosFlamingos_ZH-CN1152519387_1920x1080.jpg",
+                        "ultraHighDef": "/th?id=OHR.GalapagosFlamingos_ZH-CN1152519387_UHD.jpg",
+                        "wallpaper": "/th?id=OHR.GalapagosFlamingos_ZH-CN1152519387_1920x1200.jpg"
+                    },
+                    "portrait": {
+                        "highDef": "/th?id=OHR.GalapagosFlamingos_ZH-CN1152519387_768x1366.jpg",
+                        "ultraHighDef": "/th?id=OHR.GalapagosFlamingos_ZH-CN1152519387_1080x1920.jpg",
+                        "wallpaper": "/th?id=OHR.GalapagosFlamingos_ZH-CN1152519387_1080x1920_logo.jpg"
+                    }
+                },
+                "descriptionPara2": "它们生存的奥秘在于特化的捕食技术。作为滤食性动物，美洲红鹳利用其独特的下弯状喙部在水中倒置，过滤富含营养的泥浆以获取藻类和卤虫。这种高效的生理适应性使其能在极少数动物可以生存的高盐湖泊中繁衍生息。与其社交舞蹈一样，它们的摄食习性体现了一个完美适应极端环境的物种特征，这与它们在浅水区并肩而立的视觉景观共同构成了该物种独特的生态画像",
+                "descriptionPara3": "",
+                "isoDate": "20260724"
+            },
+            {
+                "caption": "粉红色大丽花",
+                "title": "粉红色大丽花",
+                "description": "有些花卉静谧地装点着花园，而大丽花（Dahlias）的登场则宛如领衔主演。这些原产于墨西哥的菊科（Asteraceae）成员拥有超过5.7万个培育品种，这在很大程度上归功于其独特的遗传特征。大丽花是典型的八倍体（Octoploids），意味着它们拥有八组染色体，这种多倍体特征使其花朵形态极具多样性，既有如纽扣般娇小的品种，也有直径达14英寸的巨型花冠。",
+                "copyright": "© Harald Biebel/Getty Images",
+                "date": "2026 7月 23",
+                "clickUrl": "/search?q=%e5%a4%a7%e4%b8%bd%e8%8a%b1%e5%b1%9e%e6%a4%8d%e7%89%a9&form=hpcapt&filters=HpDate:\"20260722_1600\"",
+                "imageUrls": {
+                    "landscape": {
+                        "highDef": "/th?id=OHR.PinkDahlia_ZH-CN2259107800_1920x1080.jpg",
+                        "ultraHighDef": "/th?id=OHR.PinkDahlia_ZH-CN2259107800_UHD.jpg",
+                        "wallpaper": "/th?id=OHR.PinkDahlia_ZH-CN2259107800_1920x1200.jpg"
+                    },
+                    "portrait": {
+                        "highDef": "/th?id=OHR.PinkDahlia_ZH-CN2259107800_768x1366.jpg",
+                        "ultraHighDef": "/th?id=OHR.PinkDahlia_ZH-CN2259107800_1080x1920.jpg",
+                        "wallpaper": "/th?id=OHR.PinkDahlia_ZH-CN2259107800_1080x1920_logo.jpg"
+                    }
+                },
+                "descriptionPara2": "它们的历史与其花瓣一样多姿多彩。阿兹特克人曾种植大丽花以食用其块茎并发挥药用价值，而其特有的中空茎部则被用作天然的水管。当大丽花在 18 世纪传入欧洲时，最初是作为一种粮食作物被引进的。但园艺家们很快便达成共识：相比于出现在餐桌上，这种花卉在园林景观中显然更具魅力。",
+                "descriptionPara3": "除了真正的蓝色，大丽花几乎涵盖了自然界的所有色彩。即使是所谓的“黑色”品种，其实际颜色也是极深的酒红色。大丽花于 1963 年被正式定为墨西哥的国花，它有力地证明了某些植物天生便能在群芳中脱颖而出。",
+                "isoDate": "20260723"
+            },
+            {
+                "caption": "珊瑚礁意识周",
+                "title": "珊瑚礁与海滩在拉贾安帕特，印度尼西亚",
+                "description": "想象一座由动物建造的城市，在阳光下熠熠生辉，并在海浪之下涌动着生命。这就是珊瑚礁。在珊瑚礁意识周（Coral Reef Awareness Week）期间，我们赞美这些非凡的生态系统，以及依赖其生存的无数物种",
+                "copyright": "© SergeUWPhoto/Shutterstock",
+                "date": "2026 7月 22",
+                "clickUrl": "/search?q=%e7%8f%8a%e7%91%9a%e7%a4%81%e6%84%8f%e8%af%86%e5%91%a8&form=hpcapt&filters=HpDate:\"20260721_1600\"",
+                "imageUrls": {
+                    "landscape": {
+                        "highDef": "/th?id=OHR.CoralAwareness_ZH-CN1621627126_1920x1080.jpg",
+                        "ultraHighDef": "/th?id=OHR.CoralAwareness_ZH-CN1621627126_UHD.jpg",
+                        "wallpaper": "/th?id=OHR.CoralAwareness_ZH-CN1621627126_1920x1200.jpg"
+                    },
+                    "portrait": {
+                        "highDef": "/th?id=OHR.CoralAwareness_ZH-CN1621627126_768x1366.jpg",
+                        "ultraHighDef": "/th?id=OHR.CoralAwareness_ZH-CN1621627126_1080x1920.jpg",
+                        "wallpaper": "/th?id=OHR.CoralAwareness_ZH-CN1621627126_1080x1920_logo.jpg"
+                    }
+                },
+                "descriptionPara2": "珊瑚礁仅覆盖了全球不足1%的海床面积，却支撑着约25%的海洋生命。这些看似彩色岩石的物体，实际上是被称为珊瑚虫（Coral polyps）的微小动物集群。它们共同构建了宏大的石灰岩结构，且能延续数千年之久。大堡礁是地球上最大的生物结构，沿着澳大利亚海岸延伸超过1,400英里。",
+                "descriptionPara3": "珊瑚礁充满了惊喜。部分珊瑚因含有能起到天然防晒作用的荧光蛋白而发光；而鹦嘴鱼则通过将珊瑚转化为细砂，协助形成了沙滩。若想一窥珊瑚礁生命最丰富的一面，请看向图中所示的印度尼西亚拉贾安帕特（Raja Ampat），那里生长着超过75%的已知珊瑚物种。它们虽栖息于水下，但其影响力远播至海岸线之外。",
+                "isoDate": "20260722"
+            },
+            {
+                "caption": "圣卡塔琳娜拱门，安提瓜，危地马拉",
+                "title": "圣卡塔琳娜拱门，安提瓜，危地马拉",
+                "description": "有些建筑的初衷并非为了引人注目，但时间却另有安排。清晨时分，圣卡塔琳娜拱门在危地马拉安提瓜的街道上熠熠生辉，其鲜艳的黄色外墙精准地捕捉着晨光，石板路向前延伸，远方的水火山拔地而起。这座拱门建于17世纪，旨在解决一个实际问题：幽居修女需要在修道院建筑之间穿行，以符合宗教誓约中不被街道行人直视的要求。正是这种对隐私的克制，而非对景观的追求，造就了如今中美洲出镜率最高的地标之一。讽刺的是，这种反差随时间的沉淀而愈发迷人。",
+                "copyright": "© Filippo Maria Bianchi/Getty Images",
+                "date": "2026 7月 21",
+                "clickUrl": "/search?q=%e5%8d%b1%e5%9c%b0%e9%a9%ac%e6%8b%89%e5%9c%a3%e5%8d%a1%e5%a1%94%e7%90%b3%e5%a8%9c%e6%8b%b1%e9%97%a8&form=hpcapt&filters=HpDate:\"20260720_1600\"",
+                "imageUrls": {
+                    "landscape": {
+                        "highDef": "/th?id=OHR.SantaCatalina_ZH-CN6223370790_1920x1080.jpg",
+                        "ultraHighDef": "/th?id=OHR.SantaCatalina_ZH-CN6223370790_UHD.jpg",
+                        "wallpaper": "/th?id=OHR.SantaCatalina_ZH-CN6223370790_1920x1200.jpg"
+                    },
+                    "portrait": {
+                        "highDef": "/th?id=OHR.SantaCatalina_ZH-CN6223370790_768x1366.jpg",
+                        "ultraHighDef": "/th?id=OHR.SantaCatalina_ZH-CN6223370790_1080x1920.jpg",
+                        "wallpaper": "/th?id=OHR.SantaCatalina_ZH-CN6223370790_1080x1920_logo.jpg"
+                    }
+                },
+                "descriptionPara2": "安提瓜市本身就体现了这种矛盾性。该市于1979年被列入联合国教科文组织世界遗产名录，在保留其殖民时期方格网街道布局的同时，也承载着多次重塑其地貌的地震印记。从街头望去，这座曾为了“遮掩”而建的建筑，如今却成为了框定整座城市美景的构图框架。火山在后方屹立不动，而拱门依然在履行它始终如一的职责——无论有意与否，静静地连接着历史与现在。",
+                "descriptionPara3": "",
+                "isoDate": "20260721"
+            }
+        ]
+    },
+    "statusCode": 200,
+    "statusMessage": ""
+}
+============================================================================
+Request URL: https://cn.bing.com/hp/api/model?mkt=zh-CN
+Response:
+{
+    "IsEnSearch": false,
+    "EnableEnSearchSwitchTab": true,
+    "Scripts": [
+        {
+            "Path": "/rp/LQE07Tud4TLHIP5pe1MrTCMv-f4.br.js",
+            "Postloaded": true
+        },
+        {
+            "Path": "/rp/jYi0zjkb-vXq9sww13ujPTnNdmk.br.js",
+            "Postloaded": true
+        },
+        {
+            "Path": "/rp/LQE07Tud4TLHIP5pe1MrTCMv-f4.br.js",
+            "Postloaded": true
+        },
+        {
+            "Path": "/rp/LQE07Tud4TLHIP5pe1MrTCMv-f4.br.js",
+            "Postloaded": true
+        }
+    ],
+    "Styles": [
+        {
+            "Path": "https://r.bing.com/rb/2D/cir3,cc,nc/FdTjd9eExYTvz47diQIP6aPvs2A.css?bu=CPQB9wGYAqcCmwKbApsC4wI&or=n",
+            "Postloaded": false
+        },
+        {
+            "Path": "https://r.bing.com/rs/2D/7p/cir3,cc,nc/CUCSI1SFeWrmYnIaftq0iQdznqQ.css?or=n",
+            "Postloaded": true
+        },
+        {
+            "Path": "https://r.bing.com/rb/2D/cir3,cc,nc/_S_hO16T1q81cdlQu_gFOlk1pfg.css?bu=CJMDmwKbAt0CtwKbApsCmwI&or=n",
+            "Postloaded": true
+        },
+        {
+            "Path": "https://r.bing.com/rs/2D/62/cc,nc/pZ5R_tJWe7QpulmAzB8Jp71qd-o.css?or=n",
+            "Postloaded": true
+        },
+        {
+            "Path": "https://r.bing.com/rb/2D/cir3,cc,nc/zmTB4hEk3xeY-WDa-Zn8LizFCcg.css?bu=AvAC_gI&or=n",
+            "Postloaded": false
+        },
+        {
+            "Path": "https://r.bing.com/rs/2D/62/cc,nc/pZ5R_tJWe7QpulmAzB8Jp71qd-o.css?or=n",
+            "Postloaded": false
+        }
+    ],
+    "EnableTrendingOnBingBelowSearchbox": true,
+    "HasTrendingOnBingClose": false,
+    "EnableTrendingOnbingCNRefresh": true,
+    "EnableHPSBHover2": true,
+    "EnableNTPLikeBorder": false,
+    "EnableNTPLikeShadow": false,
+    "EnableASSearchButton": false,
+    "HPSearchButtonNewStr": false,
+    "EnableInlineSB": false,
+    "EnableExpandedSB": true,
+    "EnableEntireClick": true,
+    "GLikeSB": false,
+    "EnableHPPinSB": false,
+    "EnableInPrivateInlineSB": false,
+    "EnableLargerSB": true,
+    "EnableHPV2": false,
+    "EnableHPV2Search": false,
+    "EnableHPV2Portal": false,
+    "EnableHPV2PortalFullScreen": false,
+    "EnableHPV2NoCopilot": false,
+    "EnableRubyFeed": false,
+    "EnableInfiniteNav": false,
+    "CustomFields": null,
+    "ClientSettings": {
+        "Pn": {
+            "Cn": 117,
+            "St": 3,
+            "Qs": 0,
+            "Prod": "P"
+        },
+        "Sc": {
+            "Cn": 117,
+            "St": 0,
+            "Qs": 0,
+            "Prod": "H"
+        },
+        "Qz": {
+            "Cn": 117,
+            "St": 0,
+            "Qs": 0,
+            "Prod": "T"
+        },
+        "Ap": true,
+        "Mute": true,
+        "Lad": "2026-07-28T00:00:00Z",
+        "Iotd": 0,
+        "Gwb": 0,
+        "Tns": 0,
+        "Dft": null,
+        "Mvs": 0,
+        "Flt": 0,
+        "Imp": 388,
+        "Tobn": 0
+    },
+    "MediaContents": [
+        {
+            "ImageContent": {
+                "Description": "在美国加利福尼亚州，海峡群岛国家公园，安纳卡帕岛附近，海洋孕育着属于自己的森林。在被称为“北美洲加拉帕戈斯”的海峡群岛国家公园内，巨藻的长度可超过 100 英尺，它们通过充满空气的气囊在水中形成具有浮力的丝带，并由底部的根状固着器锚定在海床之上。",
+                "Image": {
+                    "Url": "https://ts1.tc.mm.bing.net/th?id=OHR.ChannelKelp_ZH-CN8732903732_1920x1080.webp",
+                    "Wallpaper": "/th?id=OHR.ChannelKelp_ZH-CN8732903732_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+                    "Downloadable": true
+                },
+                "Headline": "生机律动，恒久之衡",
+                "Title": "一片海藻林在安纳卡帕岛附近，海峡群岛国家公园，加利福尼亚州，美国",
+                "Copyright": "© Ian Shive/Tandem Stills + Motion",
+                "SocialGood": null,
+                "MapLink": {
+                    "Url": "",
+                    "Link": ""
+                },
+                "QuickFact": {
+                    "MainText": "海獭是此处的关键种；通过捕食海胆，它们能防止海藻林被过度啃食，在安纳卡帕岛附近，海峡群岛国家公园，美国。",
+                    "LinkUrl": "",
+                    "LinkText": ""
+                },
+                "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260728_ChannelKelp\"&FORM=HPQUIZ",
+                "BackstageUrl": "/search?q=%e4%b8%96%e7%95%8c%e8%87%aa%e7%84%b6%e4%bf%9d%e6%8a%a4%e6%97%a5&form=hpcapt&filters=HpDate:\"20260727_1600\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+                "TriviaId": "HPQuiz_20260728_ChannelKelp"
+            },
+            "Ssd": "20260728",
+            "Name": "ChannelKelp",
+            "Market": "ZH-CN",
+            "Hash": "8732903732",
+            "FullDateString": "2026 7月 28"
+        },
+        {
+            "ImageContent": {
+                "Description": "步入位于美国，伊利诺伊州，芝加哥文化中心的建筑内部，目光瞬间会被上方绚丽夺目的彩色顶棚——蒂芙尼穹顶所吸引。这座艺术杰作悬挂在普雷斯顿·布拉德利大厅上方，直径约38英尺，由约30,000片法夫里尔玻璃组成，每片玻璃都呈鱼鳞状。阳光透过其半透明的表面，在错综复杂的图案中映射出变幻莫测的蓝色与金色。",
+                "Image": {
+                    "Url": "https://ts1.tc.mm.bing.net/th?id=OHR.ChicagoTiffany_ZH-CN9860688834_1920x1080.webp",
+                    "Wallpaper": "/th?id=OHR.ChicagoTiffany_ZH-CN9860688834_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+                    "Downloadable": false
+                },
+                "Headline": "仰望芝城，流光溢彩",
+                "Title": "蒂芙尼穹顶，芝加哥文化中心，伊利诺伊州，美国",
+                "Copyright": "© Felix Lipov/Shutterstock",
+                "SocialGood": null,
+                "MapLink": {
+                    "Url": "",
+                    "Link": ""
+                },
+                "QuickFact": {
+                    "MainText": "穹顶基座饰有十二星座图案，其玻璃工艺旨在模仿波光粼粼且具有虹彩质感的海面，在美国伊利诺伊州芝加哥文化中心。",
+                    "LinkUrl": "",
+                    "LinkText": ""
+                },
+                "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260727_ChicagoTiffany\"&FORM=HPQUIZ",
+                "BackstageUrl": "/search?q=%e8%8a%9d%e5%8a%a0%e5%93%a5%e6%96%87%e5%8c%96%e4%b8%ad%e5%bf%83%e8%92%82%e8%8a%99%e5%b0%bc%e7%a9%b9%e9%a1%b6&form=hpcapt&filters=HpDate:\"20260726_1600\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+                "TriviaId": "HPQuiz_20260727_ChicagoTiffany"
+            },
+            "Ssd": "20260727",
+            "Name": "ChicagoTiffany",
+            "Market": "ZH-CN",
+            "Hash": "9860688834",
+            "FullDateString": "2026 7月 27"
+        },
+        {
+            "ImageContent": {
+                "Description": "在洪都拉斯小猪群岛的日出时分——那是掩映在红树林湿地中低矮的沿海小岛——一株红树将其交错的根系挺立于如镜的水面之上。这幅动人的画面精准捕捉了7月26日所庆祝的主题：保护红树林生态系统国际日，该节日的设立旨在呼吁全球关注这些至关重要的海岸森林。",
+                "Image": {
+                    "Url": "https://ts1.tc.mm.bing.net/th?id=OHR.RedMangroveSunrise_ZH-CN7940335392_1920x1080.webp",
+                    "Wallpaper": "/th?id=OHR.RedMangroveSunrise_ZH-CN7940335392_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+                    "Downloadable": true
+                },
+                "Headline": "海陆际会，生机肇始",
+                "Title": "红树上的日出在小猪群岛，洪都拉斯",
+                "Copyright": "© Mac Stone/Tandem Stills + Motion",
+                "SocialGood": null,
+                "MapLink": {
+                    "Url": "",
+                    "Link": ""
+                },
+                "QuickFact": {
+                    "MainText": "红树具有特殊的“胎生”特性，其种子在脱离母树掉入潮汐前就已在枝头萌发，在小猪群岛，洪都拉斯。",
+                    "LinkUrl": "",
+                    "LinkText": ""
+                },
+                "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260726_RedMangroveSunrise\"&FORM=HPQUIZ",
+                "BackstageUrl": "/search?q=%e4%bf%9d%e6%8a%a4%e7%ba%a2%e6%a0%91%e6%9e%97%e7%94%9f%e6%80%81%e7%b3%bb%e7%bb%9f%e5%9b%bd%e9%99%85%e6%97%a5&form=hpcapt&filters=HpDate:\"20260725_1600\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+                "TriviaId": "HPQuiz_20260726_RedMangroveSunrise"
+            },
+            "Ssd": "20260726",
+            "Name": "RedMangroveSunrise",
+            "Market": "ZH-CN",
+            "Hash": "7940335392",
+            "FullDateString": "2026 7月 26"
+        },
+        {
+            "ImageContent": {
+                "Description": "在西班牙遥远的西北部，加利西亚与大西洋交汇。漫长的海岸线在海浪的强力冲刷下，形成了由悬崖、内湾和海蚀平台交织而成的地貌。雨水充沛的山丘与密林向海绵延，这种景观带有鲜明的大西洋气候基调，使其在感官上更接近于爱尔兰，而非人们惯常印象中的西班牙南部。",
+                "Image": {
+                    "Url": "https://ts1.tc.mm.bing.net/th?id=OHR.GaliciaBeach_ZH-CN1246611659_1920x1080.webp",
+                    "Wallpaper": "/th?id=OHR.GaliciaBeach_ZH-CN1246611659_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+                    "Downloadable": true
+                },
+                "Headline": "加境幽廊",
+                "Title": "大教堂海滩，加利西亚，西班牙",
+                "Copyright": "© Tui De Roy/Amazing Aerial Agency/Abobe Stock",
+                "SocialGood": null,
+                "MapLink": {
+                    "Url": "",
+                    "Link": ""
+                },
+                "QuickFact": {
+                    "MainText": "除了因酷似教堂的拱门而闻名外，该地标的官方定名为“圣水海滩”，在大教堂海滩，加利西亚，西班牙。",
+                    "LinkUrl": "",
+                    "LinkText": ""
+                },
+                "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260725_GaliciaBeach\"&FORM=HPQUIZ",
+                "BackstageUrl": "/search?q=%e8%a5%bf%e7%8f%ad%e7%89%99%e5%8a%a0%e5%88%a9%e8%a5%bf%e4%ba%9a&form=hpcapt&filters=HpDate:\"20260724_1600\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+                "TriviaId": "HPQuiz_20260725_GaliciaBeach"
+            },
+            "Ssd": "20260725",
+            "Name": "GaliciaBeach",
+            "Market": "ZH-CN",
+            "Hash": "1246611659",
+            "FullDateString": "2026 7月 25"
+        },
+        {
+            "ImageContent": {
+                "Description": "除了引人注目的体色，栖息在伊莎贝拉岛，加拉帕戈斯群岛，厄瓜多尔的美洲红鹳还以其高度同步的求偶仪式而闻名。数百只红鹳会参与一场极具仪式感的“集体舞”，它们整齐划一地行进，并有节奏地左右摆动头部以吸引配偶。这种集体行为确保了整个集群能在同一时间进行繁殖，从而在群岛严酷的火山地貌中最大限度地提高雏鸟的存活率。",
+                "Image": {
+                    "Url": "https://ts1.tc.mm.bing.net/th?id=OHR.GalapagosFlamingos_ZH-CN1152519387_1920x1080.webp",
+                    "Wallpaper": "/th?id=OHR.GalapagosFlamingos_ZH-CN1152519387_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+                    "Downloadable": true
+                },
+                "Headline": "缤纷多彩的一家人",
+                "Title": "美洲红鹳群在伊莎贝拉岛，加拉帕戈斯群岛，厄瓜多尔",
+                "Copyright": "© Tui De Roy/Nature Picture Library",
+                "SocialGood": null,
+                "MapLink": {
+                    "Url": "",
+                    "Link": ""
+                },
+                "QuickFact": {
+                    "MainText": "红鹳双亲均能分泌“嗉囊乳”来哺育雏鸟，这种营养丰富的物质类似于哺乳动物的乳汁，在伊莎贝拉岛，加拉帕戈斯群岛，厄瓜多尔。",
+                    "LinkUrl": "",
+                    "LinkText": ""
+                },
+                "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260724_GalapagosFlamingos\"&FORM=HPQUIZ",
+                "BackstageUrl": "/search?q=%e7%be%8e%e6%b4%b2%e7%ba%a2%e9%b9%b3&form=hpcapt&filters=HpDate:\"20260723_1600\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+                "TriviaId": "HPQuiz_20260724_GalapagosFlamingos"
+            },
+            "Ssd": "20260724",
+            "Name": "GalapagosFlamingos",
+            "Market": "ZH-CN",
+            "Hash": "1152519387",
+            "FullDateString": "2026 7月 24"
+        },
+        {
+            "ImageContent": {
+                "Description": "有些花卉静谧地装点着花园，而大丽花（Dahlias）的登场则宛如领衔主演。这些原产于墨西哥的菊科（Asteraceae）成员拥有超过5.7万个培育品种，这在很大程度上归功于其独特的遗传特征。大丽花是典型的八倍体（Octoploids），意味着它们拥有八组染色体，这种多倍体特征使其花朵形态极具多样性，既有如纽扣般娇小的品种，也有直径达14英寸的巨型花冠。",
+                "Image": {
+                    "Url": "https://ts1.tc.mm.bing.net/th?id=OHR.PinkDahlia_ZH-CN2259107800_1920x1080.webp",
+                    "Wallpaper": "/th?id=OHR.PinkDahlia_ZH-CN2259107800_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+                    "Downloadable": true
+                },
+                "Headline": "瓣叠交响",
+                "Title": "粉红色大丽花",
+                "Copyright": "© Harald Biebel/Getty Images",
+                "SocialGood": null,
+                "MapLink": {
+                    "Url": "",
+                    "Link": ""
+                },
+                "QuickFact": {
+                    "MainText": "大丽花的一个阿兹特克语名称常被译为“水管花”，这源于该植物细长且中空的茎部特征，这种中空茎在古代曾被用作输送水分的管道。",
+                    "LinkUrl": "",
+                    "LinkText": ""
+                },
+                "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260723_PinkDahlia\"&FORM=HPQUIZ",
+                "BackstageUrl": "/search?q=%e5%a4%a7%e4%b8%bd%e8%8a%b1%e5%b1%9e%e6%a4%8d%e7%89%a9&form=hpcapt&filters=HpDate:\"20260722_1600\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+                "TriviaId": "HPQuiz_20260723_PinkDahlia"
+            },
+            "Ssd": "20260723",
+            "Name": "PinkDahlia",
+            "Market": "ZH-CN",
+            "Hash": "2259107800",
+            "FullDateString": "2026 7月 23"
+        },
+        {
+            "ImageContent": {
+                "Description": "想象一座由动物建造的城市，在阳光下熠熠生辉，并在海浪之下涌动着生命。这就是珊瑚礁。在珊瑚礁意识周（Coral Reef Awareness Week）期间，我们赞美这些非凡的生态系统，以及依赖其生存的无数物种",
+                "Image": {
+                    "Url": "https://ts1.tc.mm.bing.net/th?id=OHR.CoralAwareness_ZH-CN1621627126_1920x1080.webp",
+                    "Wallpaper": "/th?id=OHR.CoralAwareness_ZH-CN1621627126_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+                    "Downloadable": true
+                },
+                "Headline": "细微之举，影响深远",
+                "Title": "珊瑚礁与海滩在拉贾安帕特，印度尼西亚",
+                "Copyright": "© SergeUWPhoto/Shutterstock",
+                "SocialGood": null,
+                "MapLink": {
+                    "Url": "",
+                    "Link": ""
+                },
+                "QuickFact": {
+                    "MainText": "珊瑚礁作为“21世纪的药库”在拉贾安帕特，印度尼西亚及全球海洋中展现出巨大的生物医学价值，其产生的独特化合物正被用于开发治疗癌症及心脏病的新型药物。",
+                    "LinkUrl": "",
+                    "LinkText": ""
+                },
+                "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260722_CoralAwareness\"&FORM=HPQUIZ",
+                "BackstageUrl": "/search?q=%e7%8f%8a%e7%91%9a%e7%a4%81%e6%84%8f%e8%af%86%e5%91%a8&form=hpcapt&filters=HpDate:\"20260721_1600\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+                "TriviaId": "HPQuiz_20260722_CoralAwareness"
+            },
+            "Ssd": "20260722",
+            "Name": "CoralAwareness",
+            "Market": "ZH-CN",
+            "Hash": "1621627126",
+            "FullDateString": "2026 7月 22"
+        }
+    ],
+    "PreloadMediaContents": [
+        {
+            "ImageContent": {
+                "Description": "除了南极洲，猫头鹰的足迹遍及各大洲；它们以朝向正前方的双眼、能汇聚声波的扁平脸盘以及敏锐独特的听觉而著称。许多猫头鹰拥有边缘柔软的羽毛，这使它们能够近乎无声地进行捕猎。由于眼球在眼窝内无法转动，它们依靠灵活的颈部来观察周围环境。从森林到沙漠，猫头鹰栖息于多种多样的环境中，在维持生态系统平衡方面发挥着重要作用。",
+                "Image": {
+                    "Url": "https://ts1.tc.mm.bing.net/th?id=OHR.AdorableOwlet_ZH-CN6929234033_1920x1080.webp",
+                    "Wallpaper": "/th?id=OHR.AdorableOwlet_ZH-CN6929234033_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+                    "Downloadable": true
+                },
+                "Headline": "呼呼，太棒了！",
+                "Title": "佛罗里达穴鸮幼鸟，开普科拉尔，佛罗里达州，美国",
+                "Copyright": "© mlorenzphotography/Getty Images",
+                "SocialGood": null,
+                "MapLink": {
+                    "Url": "",
+                    "Link": ""
+                },
+                "QuickFact": {
+                    "MainText": "猫头鹰能将头部旋转多达270度，以弥补其眼睛在眼窝中无法转动的缺陷。",
+                    "LinkUrl": "",
+                    "LinkText": ""
+                },
+                "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260804_AdorableOwlet\"&FORM=HPQUIZ",
+                "BackstageUrl": "/search?q=%e7%8c%ab%e5%a4%b4%e9%b9%b0&form=hpcapt&filters=HpDate:\"20260803_1600\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+                "TriviaId": "HPQuiz_20260804_AdorableOwlet"
+            },
+            "Ssd": "20260804",
+            "Name": "AdorableOwlet",
+            "Market": "ZH-CN",
+            "Hash": "6929234033",
+            "FullDateString": "2026 8月 4"
+        },
+        {
+            "ImageContent": {
+                "Description": "色彩斑斓的“卢祖”（luzzu）——即马耳他的传统渔船——停满了马萨什洛克（Marsaxlokk）那避风港湾的水面；这座村庄坐落于马耳他东南沿海，距离首都瓦莱塔仅需短途车程。作为该国主要的渔业中心之一，这里的生活节奏始终与大海的律动保持着和谐的步调。村庄约有4000名居民，并以其充满活力的滨海区域而闻名——尤其是广受欢迎的周日鱼市，以及每天清晨满载新鲜渔获归来的船只。",
+                "Image": {
+                    "Url": "https://ts1.tc.mm.bing.net/th?id=OHR.BoatsMalta_ZH-CN4708255775_1920x1080.webp",
+                    "Wallpaper": "/th?id=OHR.BoatsMalta_ZH-CN4708255775_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+                    "Downloadable": true
+                },
+                "Headline": "色彩鲜艳的船只，历久弥新的传统",
+                "Title": "马尔萨什洛克港口五彩斑斓的渔船，马耳他",
+                "Copyright": "© Klubovy/Getty Images",
+                "SocialGood": null,
+                "MapLink": {
+                    "Url": "",
+                    "Link": ""
+                },
+                "QuickFact": {
+                    "MainText": "鲁佐（Luzzu）渔船船头绘制的双眼被称为“荷鲁斯之眼”或“奥西里斯之眼”，这一传统源自古腓尼基和古埃及，代代相传，旨在驱散恶灵并为渔民带来好运。",
+                    "LinkUrl": "",
+                    "LinkText": ""
+                },
+                "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260803_BoatsMalta\"&FORM=HPQUIZ",
+                "BackstageUrl": "/search?q=%e9%a9%ac%e8%80%b3%e4%bb%96%e9%a9%ac%e5%b0%94%e8%90%a8%e4%bb%80%e6%b4%9b%e5%85%8b&form=hpcapt&filters=HpDate:\"20260802_1600\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+                "TriviaId": "HPQuiz_20260803_BoatsMalta"
+            },
+            "Ssd": "20260803",
+            "Name": "BoatsMalta",
+            "Market": "ZH-CN",
+            "Hash": "4708255775",
+            "FullDateString": "2026 8月 3"
+        },
+        {
+            "ImageContent": {
+                "Description": "色彩斑斓的“卢祖”（luzzu）——即马耳他的传统渔船——停满了马萨什洛克（Marsaxlokk）那避风港湾的水面；这座村庄坐落于马耳他东南沿海，距离首都瓦莱塔仅需短途车程。作为该国主要的渔业中心之一，这里的生活节奏始终与大海的律动保持着和谐的步调。村庄约有4000名居民，并以其充满活力的滨海区域而闻名——尤其是广受欢迎的周日鱼市，以及每天清晨满载新鲜渔获归来的船只。",
+                "Image": {
+                    "Url": "https://ts1.tc.mm.bing.net/th?id=OHR.HelsinkiBlue_ZH-CN3961551568_1920x1080.webp",
+                    "Wallpaper": "/th?id=OHR.HelsinkiBlue_ZH-CN3961551568_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+                    "Downloadable": true
+                },
+                "Headline": "色彩鲜艳的船只，历久弥新的传统",
+                "Title": "马尔萨什洛克港口五彩斑斓的渔船，马耳他",
+                "Copyright": "© Klubovy/Getty Images",
+                "SocialGood": null,
+                "MapLink": {
+                    "Url": "",
+                    "Link": ""
+                },
+                "QuickFact": {
+                    "MainText": "鲁佐（Luzzu）渔船船头绘制的双眼被称为“荷鲁斯之眼”或“奥西里斯之眼”，这一传统源自古腓尼基和古埃及，代代相传，旨在驱散恶灵并为渔民带来好运。",
+                    "LinkUrl": "",
+                    "LinkText": ""
+                },
+                "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260802_HelsinkiBlue\"&FORM=HPQUIZ",
+                "BackstageUrl": "/search?q=%e9%a9%ac%e8%80%b3%e4%bb%96%e9%a9%ac%e5%b0%94%e8%90%a8%e4%bb%80%e6%b4%9b%e5%85%8b&form=hpcapt&filters=HpDate:\"20260801_1600\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+                "TriviaId": "HPQuiz_20260802_HelsinkiBlue"
+            },
+            "Ssd": "20260802",
+            "Name": "HelsinkiBlue",
+            "Market": "ZH-CN",
+            "Hash": "3961551568",
+            "FullDateString": "2026 8月 2"
+        },
+        {
+            "ImageContent": {
+                "Description": "大多数地貌的演变历时数千年，而火山却能在短短数小时内重塑地貌——在夏威夷大岛，这一过程至今仍在持续。为了保护这一不断变化的环境及其所蕴含的科学与自然价值，夏威夷火山国家公园于1916年8月1日正式成立。一个多世纪以来，该公园一直致力于保护这片占地超过35万英亩的区域，其中包括火山地貌、原生森林以及各类珍稀野生动植物。",
+                "Image": {
+                    "Url": "https://ts1.tc.mm.bing.net/th?id=OHR.HawaiiLava_ZH-CN3257621771_1920x1080.webp",
+                    "Wallpaper": "/th?id=OHR.HawaiiLava_ZH-CN3257621771_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+                    "Downloadable": true
+                },
+                "Headline": "基拉韦厄火山的威力",
+                "Title": "大批熔岩流涌入大洋，大岛，夏威夷州，美国",
+                "Copyright": "© Ken McCurdy/Getty Images",
+                "SocialGood": null,
+                "MapLink": {
+                    "Url": "",
+                    "Link": ""
+                },
+                "QuickFact": {
+                    "MainText": "当温度高达约1093摄氏度的熔岩与冰冷的太平洋海水相遇时，会产生被称为“熔岩雾霭”的剧烈化学反应，形成包含盐酸烟雾和微小火山玻璃颗粒的有害气云。",
+                    "LinkUrl": "",
+                    "LinkText": ""
+                },
+                "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260801_HawaiiLava\"&FORM=HPQUIZ",
+                "BackstageUrl": "/search?q=%e5%a4%8f%e5%a8%81%e5%a4%b7%e7%81%ab%e5%b1%b1%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260731_1600\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+                "TriviaId": "HPQuiz_20260801_HawaiiLava"
+            },
+            "Ssd": "20260801",
+            "Name": "HawaiiLava",
+            "Market": "ZH-CN",
+            "Hash": "3257621771",
+            "FullDateString": "2026 8月 1"
+        },
+        {
+            "ImageContent": {
+                "Description": "有些铁路会退出历史舞台，而“弗吉尼亚爬山虎步道”则实现了华丽转身。这条步道全长34.3英里，横贯弗吉尼亚州西南部，沿用了一条昔日的铁路线——该线路曾用于在阿巴拉契亚山脉间运输木材和铁矿石。步道那独特的名字，源自20世纪初那些在陡峭坡道上艰难爬行的蒸汽机车。",
+                "Image": {
+                    "Url": "https://ts1.tc.mm.bing.net/th?id=OHR.VirginiaTrail_ZH-CN2299501599_1920x1080.webp",
+                    "Wallpaper": "/th?id=OHR.VirginiaTrail_ZH-CN2299501599_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+                    "Downloadable": true
+                },
+                "Headline": "穿越时光的足迹",
+                "Title": "鸟瞰弗吉尼亚爬山虎步道，达马斯克斯，弗吉尼亚州，美国",
+                "Copyright": "© Eifel Kreutz/Getty Images",
+                "SocialGood": null,
+                "MapLink": {
+                    "Url": "",
+                    "Link": ""
+                },
+                "QuickFact": {
+                    "MainText": "这条步道的英文名字“Virginia creeper”（弗吉尼亚爬山虎）具有双重寓意：一是指沿铁轨茂盛生长的当地原生五叶爬山虎植物，二是指20世纪初蒸汽机车在攀爬陡峭山坡时如蜗牛爬行般缓慢的行驶速度。",
+                    "LinkUrl": "",
+                    "LinkText": ""
+                },
+                "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260731_VirginiaTrail\"&FORM=HPQUIZ",
+                "BackstageUrl": "/search?q=%e5%bc%97%e5%90%89%e5%b0%bc%e4%ba%9a%e7%88%ac%e5%b1%b1%e8%99%8e%e6%ad%a5%e9%81%93&form=hpcapt&filters=HpDate:\"20260730_1600\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+                "TriviaId": "HPQuiz_20260731_VirginiaTrail"
+            },
+            "Ssd": "20260731",
+            "Name": "VirginiaTrail",
+            "Market": "ZH-CN",
+            "Hash": "2299501599",
+            "FullDateString": "2026 7月 31"
+        },
+        {
+            "ImageContent": {
+                "Description": "在纳瓦霍族保留地，亚利桑那州与犹他州交界处，美国，有些景观举世闻名，而纪念碑谷则堪称传奇。这一沙漠奇观横跨州界，其地貌由高耸的砂岩孤峰塑造而成，这些孤峰从谷底拔地而起，高度可达1000英尺。在纳瓦霍语中，该地区被称为 Tsé Bii' Ndzisgaii（意为“岩石之谷”），它将壮丽的地质构造与鲜活的民族文化完美融合。",
+                "Image": {
+                    "Url": "https://ts1.tc.mm.bing.net/th?id=OHR.NavajoNation_ZH-CN9274387505_1920x1080.webp",
+                    "Wallpaper": "/th?id=OHR.NavajoNation_ZH-CN9274387505_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+                    "Downloadable": true
+                },
+                "Headline": "旷野无声，活态传承之境",
+                "Title": "在纳瓦霍族保留地的纪念碑谷，亚利桑那州，美国",
+                "Copyright": "© Westend61/Adobe Stock",
+                "SocialGood": null,
+                "MapLink": {
+                    "Url": "",
+                    "Link": ""
+                },
+                "QuickFact": {
+                    "MainText": "阿甘结束其跨国长跑的著名地点位于163号美国国道，这里拥有俯瞰山谷的最具标志性视野，在纪念碑谷，纳瓦霍族保留地，美国。",
+                    "LinkUrl": "",
+                    "LinkText": ""
+                },
+                "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260730_NavajoNation\"&FORM=HPQUIZ",
+                "BackstageUrl": "/search?q=%e7%ba%aa%e5%bf%b5%e7%a2%91%e8%b0%b7&form=hpcapt&filters=HpDate:\"20260729_1600\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+                "TriviaId": "HPQuiz_20260730_NavajoNation"
+            },
+            "Ssd": "20260730",
+            "Name": "NavajoNation",
+            "Market": "ZH-CN",
+            "Hash": "9274387505",
+            "FullDateString": "2026 7月 30"
+        },
+        {
+            "ImageContent": {
+                "Description": "在全球老虎日这一天，这群孟加拉虎迈着自信的步伐走过印度，拉贾斯坦邦，兰坦博尔国家公园，展现出顶级掠食者对自身在食物链中地位的精准认知。孟加拉虎兼具隐蔽性与力量：成年个体的体长从鼻尖到尾端可超过10英尺，体重约500磅，行走时却能悄无声息。在视觉可见度是一把“双刃剑”的自然生境中，它们的斑纹发挥了关键作用，通过复杂的图案模式在环境中进行伪装，使猎物难以辨识其身形。",
+                "Image": {
+                    "Url": "https://ts1.tc.mm.bing.net/th?id=OHR.TigerFamily_ZH-CN9064744163_1920x1080.webp",
+                    "Wallpaper": "/th?id=OHR.TigerFamily_ZH-CN9064744163_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+                    "Downloadable": true
+                },
+                "Headline": "虎啸归来，锐爪重临",
+                "Title": "孟加拉虎一家在兰坦博尔国家公园，拉贾斯坦邦，印度",
+                "Copyright": "© Archna Singh/Shutterstock",
+                "SocialGood": null,
+                "MapLink": {
+                    "Url": "",
+                    "Link": ""
+                },
+                "QuickFact": {
+                    "MainText": "老虎是卓越的游泳者，经常通过泡水来降温，这在大多数猫科动物中极为罕见，在兰坦博尔国家公园，拉贾斯坦邦，印度。",
+                    "LinkUrl": "",
+                    "LinkText": ""
+                },
+                "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260729_TigerFamily\"&FORM=HPQUIZ",
+                "BackstageUrl": "/search?q=%e5%85%a8%e7%90%83%e8%80%81%e8%99%8e%e6%97%a5&form=hpcapt&filters=HpDate:\"20260728_1600\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+                "TriviaId": "HPQuiz_20260729_TigerFamily"
+            },
+            "Ssd": "20260729",
+            "Name": "TigerFamily",
+            "Market": "ZH-CN",
+            "Hash": "9064744163",
+            "FullDateString": "2026 7月 29"
+        }
+    ],
+    "LocStrings": {
+        "LOC_HOMEPAGE_VERTICAL_SCROLL_IOTD": "每日一图",
+        "LOC_HOMEPAGE_VERTICAL_SCROLL_IOTD_LEARN_MORE": "了解更多",
+        "LOC_HOMEPAGE_VERTICAL_SCROLL_DONATE_NOW": "立即捐赠",
+        "LOC_HOMEPAGE_VERTICAL_SCROLL_FACT": "速览:",
+        "LOC_HOMEPAGE_GALLERY_CARD_TITLE": "近期的主页图片",
+        "LOC_HOMEPAGE_VERTICAL_SCROLL_GALLERY_IMAGE_ARIALABEL": "{0} 的主页图像",
+        "LOC_HOMEPAGE_ON_THIS_DAY_TITLE": "历史上的今天",
+        "LOC_HOMEPAGE_ON_THIS_DAY_IMAGE_ARIALABEL": "在这一天，在 {0}中，{1}",
+        "LOC_HOMEPAGE_SHARE_TOOLTIP": "共享今日必应主页",
+        "LOC_HOMEPAGE_WALLPAPERDOWNLOAD_TOOLTIP": "下载今日美图。仅限用作桌面壁纸。",
+        "LOC_MUSCARD_DOWNLOAD_LINK": "下载此图像",
+        "LOC_HOMEPAGE_WALLPAPERNOTAVAILABLE": "此图片不能下载用作壁纸。",
+        "LOC_HOMEPAGE_INFO_TEXT": "信息",
+        "LOC_BING_WP_APP_LINK": "https://go.microsoft.com/fwlink/?linkid=2127455",
+        "LOC_BING_WP_APP_LINK_TEXT": "获取新版必应壁纸应用",
+        "LOC_BING_APP_TEXT": "在设备上获取必应壁纸",
+        "LOC_BING_APP_LINK_PC": "https://bing.microsoftapp.net/bing/?adjust=nk9xri2_dzfz5n2",
+        "LOC_BING_APP_LINK_MOBILE": "https://app.adjust.com/d93ddtl_a75k0gg?deeplink=sapphire%3A%2F%2Fwallpaper",
+        "LOC_BING_APP_DOWNLOAD_TEXT": "移动应用",
+        "LOC_BING_WP_APP_DOWNLOAD_TEXT": "桌面应用",
+        "LOC_BING_APP_TEXT_MOBILE": "使用必应应用获取每日照片",
+        "LOC_BING_APP_DOWNLOAD_TEXT_MOBILE": "获取",
+        "LOC_HOMEPAGE_VERTICAL_SCROLL_TOB": "必应热门资讯",
+        "LOC_HOMEPAGE_BELOW_SEARCHBOX_TOB": "必应上的热点",
+        "LOC_HOMEPAGE_BELOW_SEARCHBOX_TOB_NEXT": "换一批",
+        "LOC_HOMEPAGE_BELOW_SEARCHBOX_TOB_Close": "隐藏必应上的热点",
+        "LOC_HOMEPAGE_TOB_TAG_NEW": "新建",
+        "LOC_HOMEPAGE_TOB_TAG_HOT": "热",
+        "LOC_HOMEPAGE_ANSWER_FINANCE_TITLE": "我的关注列表",
+        "LOC_HOMEPAGE_ANSWER_FINANCE_INCREASE_ARIALABEL": "增加",
+        "LOC_HOMEPAGE_ANSWER_FINANCE_DECREASE_ARIALABEL": "减少",
+        "LOC_HOMEPAGE_FEED_HEADER": "为你推荐的项目",
+        "LOC_HOMEPAGE_FEED_HEADER_NEW": "发现",
+        "LOC_HOMEPAGE_FEED_DISCOVER": "发现",
+        "LOC_MODULES_PRISMPLUS_TITLE": "发现",
+        "LOC_HOMEPAGE_QUICK_SCROLL": "浏览故事和其他内容",
+        "LOC_MODULES_MYBING_TITLE": "我的必应",
+        "LOC_HOMEPAGE_TRENDING_NOW": "必应上的热点",
+        "LOC_SEARCH_USING_AN_IMAGE": "使用图像搜索",
+        "LOC_SEARCH_THE_WEB": "搜索网页",
+        "LOC_KEYBOARD_ICON_TOOLTIP": "使用屏幕键盘进行搜索",
+        "LOC_HOMEPAGE_SETDEFAULTHPLINK": "将必应设为你的主页",
+        "LOC_HOMEPAGE_SETDEFAULTHPLINK_DESC_TITLE": "每天变美一点点",
+        "LOC_HOMEPAGE_SETDEFAULTHPLINK_DESC_TEXT": "不错过任何瞬间，指尖一点，即可搜索。只需执行几个简单步骤，将必应设置为浏览器主页即可!",
+        "LOC_HOMEPAGE_FEEDBACK_LINK": "反馈",
+        "LOC_HOMEPAGE_QS_TITLE": "自定义主页",
+        "LOC_HOMEPAGE_PYF_TITLE": "个性化资讯源",
+        "LOC_HOMEPAGE_QS_TOGGLENAV": "显示菜单栏",
+        "LOC_HOMEPAGE_QS_TOGGLECAROUSEL": "显示新闻和关注",
+        "LOC_HOMEPAGE_QS_TOGGLEIOTD": "显示主页图片",
+        "LOC_HOMEPAGE_QS_TOGGLEGWB": "显示 Give with Bing",
+        "LOC_HOMEPAGE_QS_TOGGLETNS": "显示建议",
+        "LOC_HOMEPAGE_QS_TOGGLEMVS": "显示访问次数最多的网站",
+        "LOC_HOMEPAGE_QS_TOGGLETOBBELOWSEARCHBOX": "显示必应上的热点",
+        "LOC_HOMEPAGE_TRIVIA_ANSWER_ARIALABEL": "答案: {0}，{1}",
+        "LOC_HOMEPAGE_TRIVIA_TITLE": "必应主页测验",
+        "LOC_HOMEPAGE_LANGUAGESWITCH_TITLETEXT": "语言:",
+        "InPrivate": "InPrivate",
+        "LOC_HOMEPAGE_VERTICAL_SCROLL_GET_INVOLVED": "参与:",
+        "LOC_MODULES_AD_NEWS_TITLE": "广告",
+        "LOC_MODULES_BREAKING_NEWS_TITLE": "突发事件",
+        "LOC_MODULES_PROACTIVE_EDIT_TOOLTIP": "管理兴趣",
+        "LOC_MSB_OPTIN_TITLE": "{0} 的必应主页",
+        "LOC_MSB_OPTIN_MESSAGE": "现已使用所需的 {0} 信息增强 - 包括文件、会议等",
+        "LOC_MSB_OPTIN_ACCEPT": "立即试用",
+        "LOC_MSB_OPTIN_REJECT": "跳过",
+        "LOC_HOMEPAGE_WEATHER_TITLE": "天气",
+        "LOC_HOMEPAGE_ARCHIVE_NEXT": "下一个图像",
+        "LOC_HOMEPAGE_ARCHIVE_PREV": "上一个图像",
+        "LOC_HOMEPAGE_IMAGE_CHANGE": "背景图像已更改为 {0}",
+        "LOC_HOMEPAGE_ARCHIVE_TOP_REACHED": "“下一张图像”按钮不可用，已达到最后一张图像",
+        "LOC_HOMEPAGE_ARCHIVE_BOTTOM_REACHED": "“上一张图像”按钮不可用，已达到第一张图像",
+        "LOC_HOMEPAGE_CAROUSEL_SWITCHER_INTERESTS": "我的兴趣",
+        "LOC_HOMEPAGE_CAROUSEL_PREV": "以前的资讯",
+        "LOC_HOMEPAGE_CAROUSEL_MORE": "更多资讯",
+        "LOC_HOMEPAGE_CAROUSEL_UPDATED": "已更新新闻旋转木马，目前显示: {0}",
+        "LOC_ZINC_SCOPES_TITLE": "搜索",
+        "LOC_HOMEPAGE_OPALUPSELL_INSTALLCARD_TIP": "更加快速、美观的搜索",
+        "LOC_HOMEPAGE_VERTICAL_SCROLL_OPAL_UPSELL_TITLE": "必应应用: 快速、美观、友好",
+        "LOC_HOMEPAGE_FOLLOW_US": "关注我们",
+        "LOC_MSB_OPTIN_TOGGLE_TITLE": "显示来自 {0} 的信息",
+        "LOC_HOMEPAGE_COPYRIGHT_FORMAT": "© {0} Microsoft",
+        "LOC_SEARCH_SWITCHTAB_DESKTOP_CN": "国内版",
+        "LOC_SEARCH_SWITCHTAB_DESKTOP_EN": "国际版",
+        "LOC_SEARCH_SWITCHTAB_MOBILE_EN": "切换至国内版",
+        "LOC_SEARCH_SWITCHTAB_MOBILE_CN": "切换至国际版",
+        "LOC_SEARCH_SWITCHTAB_MOBILE_CN_TIP": "直搜全球英文信息",
+        "LOC_MODULES_BINGATWORK_SCHOOL_TITLE": "学校",
+        "LOC_MODULES_BINGATWORK_TITLE": "工作",
+        "LOC_OVERFLOWMENU_MORE_ARIALABEL": "更多",
+        "Speech_LearnMore_Tooltip": "使用语音搜索。",
+        "Speech_LearnMore_Tooltip_Link": "了解操作方法",
+        "Speech_LearnMore_Title": "使用语音搜索！",
+        "Speech_LearnMore_ExpQuery": "“我怎么用中文打招呼”",
+        "Speech_LearnMore_Instruction2": "尝试说，",
+        "LOC_HOMEPAGE_TRAVEL_GUIDE_TITLE": "有关 {0}，请参阅必应旅行指南",
+        "LOC_MICROPHONE_TOOLTIP": "语音搜索",
+        "LOC_HOMEPAGE_VERTICAL_SCROLL_MAP": "在地图上查看",
+        "LOC_SEARCHBOX_TITLE": "输入搜索词",
+        "LOC_HOMEPAGE_SEARCH_FOR_TYPE": "搜索 {0}",
+        "LOC_HOMEPAGE_VERTICAL_SCROLL_IOTD_ARIA": "每日一图: {0}",
+        "LOC_SEARCHBOX_CLEAR": "清除",
+        "LOC_SEARCHBOX_INSTRUCTION": "回车直接搜索",
+        "LOC_SEARCHBOX_TOOLTIP": "点击回车键直接搜索",
+        "LOC_CODEX_NUDGE_SB_PLACEHOLDER": "请向我提问...",
+        "LOC_CODEX_NUDGE_CTA_TEXT": "试试吧",
+        "LOC_CODEX_NUDGE_CTA_TEXT_NEW": "询问 Bing Chat",
+        "LOC_CODEX_NUDGE_CTA_COPILOT_TEXT": "询问 Copilot",
+        "LOC_CODEX_LEARN_MORE_TEXT": "了解详细信息",
+        "LOC_HOMEPAGE_SITE_NAME_META_TAG": "必应",
+        "LOC_HOMEPAGE_SITE_NAME_4": "必应搜索",
+        "LOC_SEARCHBUTTON_TITLE": "搜索",
+        "LOC_CODEX_NUDGE_PREVIOUS": "上一条建议",
+        "LOC_CODEX_NUDGE_NEXT": "下一条建议",
+        "LOC_CODEX_NUDGE_TAB_INDEX": "{0}/{1}",
+        "LOC_CODEX_NUDGE_AUTOPLAY_START": "播放",
+        "LOC_CODEX_NUDGE_AUTOPLAY_END": "暂停",
+        "CODEX_OPTOUT_TEXT": "想要查看必应每日图像?",
+        "LOC_CODEX_NUDGE_INTRO_HEADER": "Copilot 简介",
+        "LOC_CODEX_NUDGE_INTRO_TEXT": "提出实际问题。获取完整的答案。",
+        "LOC_CODEX_NUDGE_CLOSE": "关闭",
+        "LOC_CODEX_SBOX_SG_AVAILABLE": "可用建议",
+        "LOC_CODEX_HEADER_BUTTON_JOIN_TEXT": "试用新必应",
+        "LOC_CODEX_HEADER_BUTTON_WAITLIST_TEXT": "你已加入候补名单",
+        "LOC_CODEX_INPUT_CHAR_LIMIT": "{1}/{0} 个字符",
+        "LOC_CODEX_TEXTBOX_LABEL": "在此处输入你的搜索 — 输入时会显示搜索建议",
+        "LOC_CODEX_GHOSTING_SUGGESTION": "按 Tab 以接受建议",
+        "LOC_HOMEPAGE_LOGOHELPTEXT": "必应",
+        "LOC_TOB_MSNICON": "阅读 MSN.com 上的文章",
+        "LOC_TOB_READARTICLE": "阅读文章",
+        "LOC_CN_TOP_NAV_SITE_TITLE": "猜你想搜",
+        "LOC_CN_TOP_NAV_SITE_PANE_CLOSE": "关闭",
+        "LOC_HOMEPAGE_AD": "广告",
+        "LOC_COPILOT": "打开 Copilot",
+        "LOC_HOMEPAGE_FAVORITES_LOGINUPSELL_LINK": "登录",
+        "LOC_CHROME_NEWTAB_UNDO_REMOVE": "撤消",
+        "LOC_CHROME_NEWTAB_REMOVE": "移除",
+        "LOC_CHROME_NEWTAB_REMOVED": "已移除",
+        "LOC_CHROME_NEWTAB_TILE": "磁贴",
+        "LOC_CHROME_NEWTAB_TILE_REMOVED": "已删除磁贴。",
+        "LOC_COPILOTSEARCH_BUTTON": "打开 Copilot 搜索",
+        "C_NTP_BingWallpaperUpsell_Default_Text": "“必应壁纸”应用",
+        "C_NTP_BingWallpaperUpsell_Hover_Text": " 下载“必应壁纸”应用",
+        "C_NTP_BingWallpaperUpsell_Text": "使用必应壁纸，让你的桌面每天都有新鲜感。",
+        "LOC_CREATEWITH": "创建方式",
+        "LOC_AITOOLS": "AI 工具",
+        "LOC_AIIMAGE": "AI 图像",
+        "LOC_CREATEWALLPAPER": "创建壁纸",
+        "LOC_AIVIDEO": "AI 视频",
+        "LOC_IMAGECREATOR": "图像创建器",
+        "LOC_VIDEOCREATOR": "视频创建器",
+        "LOC_BINGVIDEOCREATOR": "Bing Video Creator",
+        "LOC_TEXTCREATOR": "文本创建器",
+        "LOC_BINGAIWRITING": "Bing AI 写作",
+        "LOC_COPILOTICONTEXT_CHAT": "聊天",
+        "LOC_COPILOTICONTEXT_COPILOT": "Copilot",
+        "LOC_COPILOTICONTEXT_ASKCOPILOT": "询问 Copilot",
+        "LOC_COPILOTICONTEXT_LETSTALK": "我们谈谈吧",
+        "LOC_NTPC_BWAUPSELL_V2_DESCRIPTION_TEXT_FORMAT": "在桌面上使用 {0} 每天发现新鲜的图像",
+        "LOC_NTPC_BWAUPSELL_V2_APP_NAME": "“必应壁纸”应用",
+        "LOC_NTPC_BWAUPSELL_V2_DOWNLOAD_BTN_TEXT": "下载壁纸应用"
+    },
+    "HasCarousel": false,
+    "CarouselTooltipEnabled": false,
+    "TOBHasMsnIcon": false,
+    "OpenTrendingTileNewTab": true,
+    "SerpTrendingOnBingLink": "",
+    "CarouselApiUrl": "/hp/api/v1/carousel?",
+    "MaxTilesInFirstRequest": 20,
+    "DisableSecondCarouselRequest": false,
+    "HasVerticalScroll": true,
+    "IsWidgetCompatible": true,
+    "EnableCodexSB": false,
+    "EnableCodexMic": true,
+    "EnableCodexSBTall": false,
+    "EnableSearchBoxExpansionForAS": true,
+    "EnableTabPrompt": false,
+    "EnableSapphireSearchTrigger": false,
+    "EnableAsContainerTab": false,
+    "BoldGhostTextType": "",
+    "LogSearchBoxPerfMarkers": true,
+    "EnableCodexIntro": false,
+    "EnableSTWString": false,
+    "DisableDynamicNudgeQuery": false,
+    "EnableXOutBehavior": false,
+    "IsEUCookieConsentEnabled": false,
+    "EuCookieName": "MSCC",
+    "EnableManagedCookiePreference": false,
+    "CurrentIndex": 0,
+    "IsMobile": false,
+    "BgQuality": 50,
+    "ImageCropSize": "1920x1080",
+    "IsChromeNewTab": false,
+    "ForceWidescreen": false,
+    "IsChromeExtensionUser": false,
+    "FormCode": "QBLH",
+    "IsBingWpAppEnabled": true,
+    "HasTriviaQuiz": true,
+    "RewardsMobileHeaderEnabled": false,
+    "EnableWebp": true,
+    "EnableTOBAds": false,
+    "Enablecarperf": false,
+    "UserEmail": "fu.ning@126.com",
+    "EnableHeaderContrast": true,
+    "HPHideAITool": true,
+    "SearchboxTextMax": 1000,
+    "ShellStyles": [
+        {
+            "Path": "https://r.bing.com/rb/2D/cir3,cc,nc/mNINK6OslgJ8ST3wCMhNBZ0WbMk.css?bu=BPQB9wHTA-MC&or=n",
+            "Postloaded": false
+        }
+    ],
+    "SkipCoreRegionWrap": false,
+    "Scopes": [
+        {
+            "Text": "图片",
+            "SubScopes": [],
+            "BaseUrl": "/images?FORM=Z9LH",
+            "Id": "images",
+            "Overflow": false,
+            "ExposeIfPossible": false,
+            "IsDivider": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": ""
+        },
+        {
+            "Text": "视频",
+            "SubScopes": [],
+            "BaseUrl": "/videos?FORM=Z9LH1",
+            "Id": "video",
+            "Overflow": true,
+            "ExposeIfPossible": true,
+            "IsDivider": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": ""
+        },
+        {
+            "Text": "翻译",
+            "SubScopes": [],
+            "BaseUrl": "/search?q=%E5%BF%85%E5%BA%94%E7%BF%BB%E8%AF%91&FORM=TTAHP1",
+            "Id": "translate",
+            "Overflow": true,
+            "ExposeIfPossible": true,
+            "IsDivider": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": ""
+        },
+        {
+            "Text": "地图",
+            "SubScopes": [],
+            "BaseUrl": "/maps?FORM=Z9LH2",
+            "Id": "local",
+            "Overflow": true,
+            "ExposeIfPossible": true,
+            "IsDivider": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": ""
+        },
+        {
+            "Text": "学术",
+            "SubScopes": [],
+            "BaseUrl": "/academic?FORM=Z9LHS3",
+            "Id": "academic",
+            "Overflow": true,
+            "ExposeIfPossible": true,
+            "IsDivider": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": ""
+        },
+        {
+            "Text": "词典",
+            "SubScopes": [],
+            "BaseUrl": "/dict?FORM=Z9LHS4",
+            "Id": "dictionary",
+            "Overflow": true,
+            "ExposeIfPossible": false,
+            "IsDivider": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": ""
+        },
+        {
+            "Text": "MSN",
+            "SubScopes": [],
+            "BaseUrl": "//www.msn.com/?ocid=BHEA000",
+            "Id": "msn",
+            "Overflow": true,
+            "ExposeIfPossible": false,
+            "IsDivider": true,
+            "EnableIcon": false,
+            "ImageSourceUrl": ""
+        },
+        {
+            "Text": "小游戏",
+            "SubScopes": [],
+            "BaseUrl": "https://www.msn.cn/zh-cn/play/arcade?ocid=cgbinghp",
+            "Id": "games",
+            "Overflow": true,
+            "ExposeIfPossible": false,
+            "IsDivider": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": ""
+        },
+        {
+            "Text": "Microsoft 365",
+            "SubScopes": [
+                {
+                    "Text": "Outlook",
+                    "SubScopes": [],
+                    "BaseUrl": "//outlook.com/?WT.mc_id=O16_BingHP",
+                    "Id": "outlook",
+                    "Overflow": false,
+                    "ExposeIfPossible": false,
+                    "IsDivider": false,
+                    "EnableIcon": false,
+                    "ImageSourceUrl": ""
+                },
+                {
+                    "Text": "Word",
+                    "SubScopes": [],
+                    "BaseUrl": "//microsoft365.com/start/Word.aspx?WT.mc_id=O16_BingHP",
+                    "Id": "word",
+                    "Overflow": false,
+                    "ExposeIfPossible": false,
+                    "IsDivider": false,
+                    "EnableIcon": false,
+                    "ImageSourceUrl": ""
+                },
+                {
+                    "Text": "Excel",
+                    "SubScopes": [],
+                    "BaseUrl": "//microsoft365.com/start/Excel.aspx?WT.mc_id=O16_BingHP",
+                    "Id": "excel",
+                    "Overflow": false,
+                    "ExposeIfPossible": false,
+                    "IsDivider": false,
+                    "EnableIcon": false,
+                    "ImageSourceUrl": ""
+                },
+                {
+                    "Text": "PowerPoint",
+                    "SubScopes": [],
+                    "BaseUrl": "//microsoft365.com/start/PowerPoint.aspx?WT.mc_id=O16_BingHP",
+                    "Id": "powerpoint",
+                    "Overflow": false,
+                    "ExposeIfPossible": false,
+                    "IsDivider": false,
+                    "EnableIcon": false,
+                    "ImageSourceUrl": ""
+                },
+                {
+                    "Text": "OneNote",
+                    "SubScopes": [],
+                    "BaseUrl": "//www.onenote.com/notebooks?WT.mc_id=O16_BingHP",
+                    "Id": "onenote",
+                    "Overflow": false,
+                    "ExposeIfPossible": false,
+                    "IsDivider": false,
+                    "EnableIcon": false,
+                    "ImageSourceUrl": ""
+                },
+                {
+                    "Text": "Sway",
+                    "SubScopes": [],
+                    "BaseUrl": "//sway.office.com?WT.mc_id=O16_BingHP&utm_source=O16Bing&utm_medium=Nav&utm_campaign=HP",
+                    "Id": "sway",
+                    "Overflow": false,
+                    "ExposeIfPossible": false,
+                    "IsDivider": false,
+                    "EnableIcon": false,
+                    "ImageSourceUrl": ""
+                },
+                {
+                    "Text": "OneDrive",
+                    "SubScopes": [],
+                    "BaseUrl": "//onedrive.live.com/?gologin=1&WT.mc_id=O16_BingHP",
+                    "Id": "onedrive",
+                    "Overflow": false,
+                    "ExposeIfPossible": false,
+                    "IsDivider": false,
+                    "EnableIcon": false,
+                    "ImageSourceUrl": ""
+                },
+                {
+                    "Text": "日历",
+                    "SubScopes": [],
+                    "BaseUrl": "//calendar.live.com/?WT.mc_id=O16_BingHP",
+                    "Id": "calendar",
+                    "Overflow": false,
+                    "ExposeIfPossible": false,
+                    "IsDivider": false,
+                    "EnableIcon": false,
+                    "ImageSourceUrl": ""
+                },
+                {
+                    "Text": "人脉",
+                    "SubScopes": [],
+                    "BaseUrl": "//outlook.live.com/owa/?path=/people&WT.mc_id=O16_BingHP",
+                    "Id": "people",
+                    "Overflow": false,
+                    "ExposeIfPossible": false,
+                    "IsDivider": false,
+                    "EnableIcon": false,
+                    "ImageSourceUrl": ""
+                }
+            ],
+            "BaseUrl": "",
+            "Id": "office",
+            "Overflow": true,
+            "ExposeIfPossible": false,
+            "IsDivider": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": ""
+        },
+        {
+            "Text": "了解必应",
+            "SubScopes": [],
+            "BaseUrl": "https://www.microsoft.com/bing?form=MA13SW",
+            "Id": "cle",
+            "Overflow": true,
+            "ExposeIfPossible": false,
+            "IsDivider": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": ""
+        }
+    ],
+    "Footer": [
+        {
+            "Text": "增值电信业务经营许可证：合字B2-20090007",
+            "BaseUrl": "https://dxzhgl.miit.gov.cn/dxxzsp/xkz/xkzgl/resource/qiyereport.jsp?num=caf04fa4-bd8a-4d9e-80b6-2aa1b86c1509&type=yreport",
+            "Id": "ICPLicense",
+            "Overflow": false,
+            "ExposeIfPossible": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": "",
+            "Icon": ""
+        },
+        {
+            "Text": "京ICP备10036305号-7",
+            "BaseUrl": "https://beian.miit.gov.cn",
+            "Id": "ICPFiling",
+            "Overflow": false,
+            "ExposeIfPossible": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": "",
+            "Icon": ""
+        },
+        {
+            "Text": "京公网安备11010802047360号",
+            "BaseUrl": "https://beian.mps.gov.cn/#/query/webSearch?code=11010802047360",
+            "Id": "MMAIS",
+            "Overflow": false,
+            "ExposeIfPossible": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": "",
+            "Icon": ""
+        },
+        {
+            "Text": "隐私与 Cookie",
+            "BaseUrl": "//go.microsoft.com/fwlink/?LinkId=521839",
+            "Id": "privacy",
+            "Overflow": false,
+            "ExposeIfPossible": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": "",
+            "Icon": ""
+        },
+        {
+            "Text": "法律声明",
+            "BaseUrl": "//go.microsoft.com/fwlink/?LinkID=246338",
+            "Id": "legal",
+            "Overflow": false,
+            "ExposeIfPossible": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": "",
+            "Icon": ""
+        },
+        {
+            "Text": "广告",
+            "BaseUrl": "//go.microsoft.com/fwlink/?linkid=868923",
+            "Id": "",
+            "Overflow": false,
+            "ExposeIfPossible": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": "",
+            "Icon": ""
+        },
+        {
+            "Text": "关于我们的广告",
+            "BaseUrl": "//go.microsoft.com/fwlink/?LinkID=286759",
+            "Id": "",
+            "Overflow": false,
+            "ExposeIfPossible": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": "",
+            "Icon": ""
+        },
+        {
+            "Text": "帮助",
+            "BaseUrl": "//support.microsoft.com/topic/82d20721-2d6f-4012-a13d-d1910ccf203f",
+            "Id": "help",
+            "Overflow": false,
+            "ExposeIfPossible": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": "",
+            "Icon": ""
+        },
+        {
+            "Text": "反馈",
+            "BaseUrl": "#",
+            "Id": "sb_feedback",
+            "Overflow": false,
+            "ExposeIfPossible": false,
+            "EnableIcon": false,
+            "ImageSourceUrl": "",
+            "Icon": ""
+        }
+    ],
+    "RtlLang": false,
+    "Market": "zh-CN",
+    "TrueMarket": "zh-CN",
+    "Region": "CN",
+    "Language": "zh-Hans",
+    "SupportedLanguages": [],
+    "SymbolOfSolidarity": null,
+    "UserType": "msa",
+    "MultiLangKeyboardEnabled": false,
+    "Features": {
+        "MicEnabled": "true",
+        "IdentityHeaderVNext": "false"
+    },
+    "InPrivate": false,
+    "IsSuperApp": false,
+    "SearchBoxPlaceHolder": null,
+    "LargeTargNoTT": false,
+    "IconsMaxTarg": false,
+    "SkipMsalOnBbtn": false,
+    "SearchBoxIconColor": "#007DAA",
+    "SearchBoxLeftIconStatus": "",
+    "IsCntShareEnabled": false,
+    "IsCnMarket": true,
+    "DsbClickThru": false,
+    "EnablePreloadMic": true,
+    "EnableShowMicOnSBClick": false,
+    "EnableSkipVoiceReco": false,
+    "EnableCodexNudge": false,
+    "EnableTrendingOnBingInCNWW": false,
+    "HPSBSearchStr": false,
+    "EnableNewHPPin": false,
+    "GLikeSquare": false,
+    "EnablePriLargeSB": true,
+    "EnableNTPISB": false,
+    "HPPrivateImprove": true,
+    "HPNewBlueBorder": false,
+    "HPPrivNormalAlign": false,
+    "HideHPFeed": false,
+    "HideHPFeedT3": false,
+    "EnableSwitchTabClick": false,
+    "ChangeSearchIconColor": false,
+    "EnableUnifySBoxLen": false,
+    "HPBlueSB": false,
+    "EnableSBAds": true,
+    "AIToolsConfig": {
+        "Enabled": false,
+        "SectionTitleKey": "",
+        "EnableButtonStyle": true,
+        "Tools": [
+            {
+                "Id": "bic",
+                "TargetUrl": "/search?q={0}&filters=aimode%3A%2235%22&FORM=bichpw",
+                "TitleKey": "LOC_CREATEWALLPAPER",
+                "DefaultQueryKey": "LOC_CREATEWALLPAPER",
+                "EnableRedirectLink": false
+            },
+            {
+                "Id": "bvc",
+                "TargetUrl": "/images/create/ai-video-generator?bicsource=hp&FORM=bvcbhp",
+                "TitleKey": "LOC_VIDEOCREATOR",
+                "DefaultQueryKey": "LOC_VIDEOCREATOR",
+                "EnableRedirectLink": false
+            },
+            {
+                "Id": "btc",
+                "TargetUrl": "/search?q={0}&FORM=btcbhp",
+                "TitleKey": "LOC_TEXTCREATOR",
+                "DefaultQueryKey": "LOC_BINGAIWRITING",
+                "EnableRedirectLink": false
+            }
+        ]
+    },
+    "EnableTrendingOnBingSettingsWW": false,
+    "MoveTrendingOnBingSettingsAbove": true,
+    "EnableCodexConversation": false,
+    "CodexWaitlistStatus": "notjoined",
+    "EnableCodexHeaderButton": false,
+    "NudgesAutoplayDuration": 5000,
+    "EnableNudgesAnimation": true,
+    "EnableBingChatStandalonePage": true,
+    "SearchByImageEnabled": true,
+    "SearchByImageInPrivateEnabled": false,
+    "EnableASMouseDown": false,
+    "EnableHpFocusOverlay": false,
+    "HideLogoText": false,
+    "LogoTextClass": "",
+    "EnablePreloadSbiComp": true,
+    "EnableDesktopDarkTheme": false,
+    "IOTDPreload": 7,
+    "IOTDAlwaysCache": true,
+    "DeferIOTDUHD": true,
+    "ForceIOTDUHD": false,
+    "ForceNoIOTD": false,
+    "EnableDevLog": false,
+    "CacheIOTDForDev": 0,
+    "RowupClass": "show_all_onerowup",
+    "SharedPreact": false,
+    "IOTDData": false,
+    "EnableHPMobileSignin": false,
+    "PeregrineWidgetsURL": "https://assets.msn.cn/bundles/v1/bingHomepage/latest/widget-initializer.js",
+    "FeedColumnStyle": "five_col",
+    "EnableScopeIcons": false,
+    "EnablePersonalizedFeedMenu": true,
+    "OpalUpsellEnabled": false,
+    "EnabledFlights": "hpnoads",
+    "OpenInNewTab": "_blank",
+    "EnableNewTabInSearchBox": false,
+    "EnableScByDefault": false,
+    "EnablePnByDefault": false,
+    "DisableScByDefault": false,
+    "DisablePnByDefault": false,
+    "EnableHpQuickSearch": false,
+    "ShowCarouselTitleOnlyByDefault": false,
+    "HideCarouselByDefault": false,
+    "EnforceChildContentFiltering": false,
+    "EnableSkeletonSNR": true,
+    "EnableSkeletonSNRDebug": false,
+    "EnablePWFlightsFromBingHP": false,
+    "FlightsFromBingHP": "",
+    "Enable1SFlightsFromBingHP": false,
+    "OneSFlightsFromBingHP": "",
+    "EnableCopilotIcon": true,
+    "EnableScopesOverflow": true,
+    "EnableServerRenderedHeader": false,
+    "EnableServerRenderedSearchBox": false,
+    "EnableServerRenderedSearchBoxAdopt": false,
+    "EnableServerRenderedCopilotLogo": false,
+    "EnableServerRenderedSboxCopilot": false,
+    "EnableSearchBoxPastePin": false,
+    "DisableCopilotIconInScopes": false,
+    "DisplayCopilotItemInScopesDotsMenu": false,
+    "DisableCopilotIconInSearchBox": false,
+    "EnableCopilotSearchIconInSearchBox": false,
+    "HideCopilotIconWhileSearchingHP": false,
+    "EnableSearchBoxSVG": false,
+    "EnableSearchBoxASPlaceholder": true,
+    "EnableSBPlaceholderRotate": false,
+    "EnableOnceASQuery": false,
+    "EnableSearchBoxTooltipSpecific": false,
+    "EnableSLSBoxLongAlways": false,
+    "CdxConvButtonLink": "",
+    "EnableCommercialCopilotIcon": false,
+    "CopilotIconTextVariant": 0,
+    "CommercialCopilotButtonLink": "https://m365.cloud.microsoft/chat/?fromcode=cmm758mqxqe&redirectid=5F925610EF954BE78E38FBEFDD8ED867&auth=2",
+    "EnableCommercialCopilotLinkForHpScopebar": false,
+    "EnableCommercialCopilotCarrySearchTermFromHomeScope": true,
+    "TurboEndpointForCarrySearchTerm": "https://turbo.microsoft.com/api/artifacts/encodeArtifact",
+    "CommercialCopilotLinkForHpScopebar": "https://m365.cloud.microsoft/chat/?fromcode=cmmgkb4nolw&redirectid=5F925610EF954BE78E38FBEFDD8ED867&auth=2",
+    "EnableLargeBorderSB": false,
+    "EnableHpLightBox": false,
+    "EnableFeedEarlyCRSCall": true,
+    "TrendingOnBingItemCount": 24,
+    "TrendingOnBingPageSize": 6,
+    "EnableMiddleSearchBox": false,
+    "EnableFeedsAboveWithTob": false,
+    "EnableTrendingOnBingQueryText": false,
+    "EnableTrendingOnBingImage": false,
+    "bingLogoHtml": null,
+    "identityHtml": null,
+    "EnableEagerLoading": false,
+    "EnableHomepageShellSSR": false,
+    "EnableHomepageChunk1Ssr": false,
+    "EnableHomepageCoreSSR": true,
+    "EnableHomepageCoreSSR1": false,
+    "EnableServiceWorker": false,
+    "EnableFullScreenAS": false,
+    "EnableTrendingOnBingTitleClickable": true,
+    "IsFireFoxBrowser": false,
+    "EnableSearchFabHP": false,
+    "EnforceNotSignedIn": false,
+    "DisableDimmer": false,
+    "BingWallpaperUpsellCTALink": "https://go.microsoft.com/fwlink/?linkid=2127820&pc=W291",
+    "EnableBingWallpaperUpsell": false,
+    "PartnerCodeRewardsExtension": ",U526,U536,U683,U699,U776,U778,U779,U780,U781,U782,U783,U784,U785,U786,U787,U788,U791,U792,U794,U798,U799,U800,U804,U807",
+    "EnableLazyFeed": false,
+    "DelayMilliseconds": 0,
+    "EnableIdleFeedLoad": false,
+    "IdleFeedTimeoutMs": 3000,
+    "DeferFeedOnSearchboxFocus": false,
+    "EnableSBAdsSharedCarousel": true,
+    "EnableHPTypingT1": false,
+    "EnableHPTypingT2": false,
+    "EnableSearchBoxFadeInPH": true,
+    "EnableSearchBoxFadeInPH2": false,
+    "ForceClientSideRender": false,
+    "ssrComponents": null,
+    "ssrStyles": null,
+    "clientScriptUrls": null,
+    "feedbackScriptUrls": null,
+    "autoSuggestScriptUrls": null,
+    "speechScriptUrls": null,
+    "speechStylesUrls": null,
+    "micLoadScriptUrls": null,
+    "sbiFragmentUrl": null,
+    "sbiScriptUrls": null,
+    "sbiStyleUrls": null,
+    "sbiDataAttrs": null,
+    "enableSbi": false,
+    "autoSuggestConfig": null,
+    "autoSuggestLocStrings": null
+}
