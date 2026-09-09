@@ -1,0 +1,46 @@
+{
+  "caption": "奥尔韦拉航拍图，安达卢西亚，西班牙",
+  "title": "奥尔韦拉航拍图，安达卢西亚，西班牙",
+  "description": "你是否想过，安达卢西亚为何是西班牙最著名的地区之一？弗拉门戈、塔帕斯、摩尔式建筑和广阔的橄榄林都功不可没。在那些名城之外，还有奥尔韦拉这样的历史古镇。这座村庄被200多万棵橄榄树环绕，作为战略边境聚落发展而来，并在数百年的变迁中成形。奥尔韦拉城堡依然俯瞰着全镇，下方的化身圣母教堂则主导着天际线。前往拉西利亚文化中心，可以了解奥尔韦拉的中世纪历史与传统。",
+  "copyright": "© Marco Bottigelli/Getty Images",
+  "date": "2026 9月 10",
+  "clickUrl": "/search?q=%e8%a5%bf%e7%8f%ad%e7%89%99%e5%ae%89%e8%be%be%e5%8d%a2%e8%a5%bf%e4%ba%9a%e5%a4%a7%e5%8c%ba%e5%a5%a5%e5%b0%94%e9%9f%a6%e6%8b%89&form=hpcapt&filters=HpDate:\"20260909_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.Olvera_ZH-CN2727093856_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.Olvera_ZH-CN2727093856_UHD.jpg",
+      "wallpaper": "/th?id=OHR.Olvera_ZH-CN2727093856_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.Olvera_ZH-CN2727093856_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.Olvera_ZH-CN2727093856_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.Olvera_ZH-CN2727093856_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "饿了吗？可以尝尝“gazpacho”冷番茄汤、西班牙著名的“jamón ibérico”伊比利亚火腿，或酥脆的“torta de aceite”橄榄油薄饼。若想散步或骑行欣赏风景，可前往塞拉山绿色之路——一条由旧铁路线改造而成的热门步道。在陡峭的鹅卵石街道上要留心脚下：相机也许端得稳，脚步可未必！正如俗语所说，“poco a poco”——慢慢来。放慢脚步，随意漫步，让奥尔韦拉一点点展现自己。",
+  "descriptionPara3": "",
+  "isoDate": "20260910",
+  "headline": "俯瞰大地拼图",
+  "quickFact": "奥尔韦拉的摩尔式城堡建于12世纪末，坐落在海拔约623米的高处。",
+  "triviaId": "HPQuiz_20260910_Olvera",
+  "triviaData": {
+    "question": "哪种建筑风格与安达卢西亚的声誉相关？",
+    "options": [
+      {
+        "text": "哥特",
+        "url": "/search?q=%E6%91%A9%E5%B0%94%E4%BA%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260910_Olvera%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "巴洛克",
+        "url": "/search?q=%E6%91%A9%E5%B0%94%E4%BA%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260910_Olvera%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "摩尔人",
+        "url": "/search?q=%E6%91%A9%E5%B0%94%E4%BA%BA&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260910_Olvera%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
