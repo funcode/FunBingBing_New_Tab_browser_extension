@@ -1,0 +1,46 @@
+{
+  "caption": "滨海自由城，法国里维埃拉",
+  "title": "滨海自由城，法国里维埃拉，法国",
+  "description": "九月，法国里维埃拉沐浴在更柔和的光线中，地中海植被也逐渐恢复生机。山丘间弥漫着阿勒颇松、迷迭香和野百里香的芳香。内陆地区，百年橄榄树和山顶村庄讲述着一个由希腊、罗马和普罗旺斯影响共同塑造的故事。",
+  "copyright": "© StockByM/Getty Images",
+  "date": "2026 9月 11",
+  "clickUrl": "/search?q=%e6%bb%a8%e6%b5%b7%e8%87%aa%e7%94%b1%e5%9f%8e&form=hpcapt&filters=HpDate:\"20260910_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.FrenchRivieraVillage_ZH-CN2888811422_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.FrenchRivieraVillage_ZH-CN2888811422_UHD.jpg",
+      "wallpaper": "/th?id=OHR.FrenchRivieraVillage_ZH-CN2888811422_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.FrenchRivieraVillage_ZH-CN2888811422_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.FrenchRivieraVillage_ZH-CN2888811422_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.FrenchRivieraVillage_ZH-CN2888811422_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "沿着海岸步道，冬青栎和草莓树经受住夏季干旱，无花果树则仍结满成熟果实。在滨海自由城等海滨城镇的海湾中，帆船和游艇优雅地滑行于海天之间；埃斯泰雷勒山地的红色岩石，与深绿色的地中海灌木丛形成鲜明对比。",
+  "descriptionPara3": "在一处幽静海湾周围，蝉鸣渐渐淡去，气氛也愈发宁静。法国里维埃拉远不只是一幅明信片般完美的风景：这里是自然、遗产与生活艺术的和谐交融，地中海在此占据绝对主导。",
+  "isoDate": "20260911",
+  "headline": "地中海风情尽显",
+  "quickFact": "滨海自由城的圣埃尔姆城堡奉萨伏依公爵埃马努埃莱·菲利贝托之命，于1557年建成，用于加强海岸防御。",
+  "triviaId": "HPQuiz_20260911_FrenchRivieraVillage",
+  "triviaData": {
+    "question": "哪种树种在法国里维埃拉海岸生长良好？",
+    "options": [
+      {
+        "text": "阿勒颇松",
+        "url": "/search?q=%E9%98%BF%E5%8B%92%E9%A2%87%E6%9D%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260911_FrenchRivieraVillage%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "无花果树",
+        "url": "/search?q=%E9%98%BF%E5%8B%92%E9%A2%87%E6%9D%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260911_FrenchRivieraVillage%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "枫树",
+        "url": "/search?q=%E9%98%BF%E5%8B%92%E9%A2%87%E6%9D%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260911_FrenchRivieraVillage%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
