@@ -1,0 +1,46 @@
+{
+  "caption": "墨西哥近海的加州海狮，太平洋",
+  "title": "墨西哥近海围猎沙丁鱼饵球的加州海狮，太平洋",
+  "description": "加州海狮在场时，海滩上的一天很少会安静。洪亮的吠叫、顽皮的个性，再加上抢尽风头的本领，让这些海洋哺乳动物深谙如何上演一场好戏。",
+  "copyright": "© Henley Spiers/Nature Picture Library",
+  "date": "2026 9月 12",
+  "clickUrl": "/search?q=%e5%8a%a0%e5%b7%9e%e6%b5%b7%e7%8b%ae&form=hpcapt&filters=HpDate:\"20260911_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SardineBait_ZH-CN3256234033_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SardineBait_ZH-CN3256234033_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SardineBait_ZH-CN3256234033_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SardineBait_ZH-CN3256234033_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SardineBait_ZH-CN3256234033_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SardineBait_ZH-CN3256234033_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "加州海狮分布于从不列颠哥伦比亚省到墨西哥的太平洋沿岸，是少数在陆地和水中都显得同样自在的动物之一。成年雄性前额有明显的隆起，即矢状嵴，因此很容易辨认。与真正的海豹不同，它们能将后鳍向前转动，从而可以用四肢“行走”，甚至奔跑。在海洋中，它们依靠硕大的前鳍推动身体前进，速度最高可达每小时25英里。它们还以“jugging”行为闻名：身体直立漂浮，将鳍举出水面，以帮助调节体温。",
+  "descriptionPara3": "无论是在岸边休憩，还是在海浪中滑行，加州海狮都是太平洋沿岸最具魅力的动物之一。",
+  "isoDate": "20260912",
+  "headline": "海浪与海岸的高手",
+  "quickFact": "它们能潜至1,000英尺深处，并可屏息长达10分钟。",
+  "triviaId": "HPQuiz_20260912_SardineBait",
+  "triviaData": {
+    "question": "成年雄性加州海狮有何特征使其易于辨认？",
+    "options": [
+      {
+        "text": "矢状嵴",
+        "url": "/search?q=%E7%9F%A2%E7%8A%B6%E5%B5%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260912_SardineBait%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "背鳍",
+        "url": "/search?q=%E7%9F%A2%E7%8A%B6%E5%B5%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260912_SardineBait%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "白色口鼻",
+        "url": "/search?q=%E7%9F%A2%E7%8A%B6%E5%B5%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260912_SardineBait%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
