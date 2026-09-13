@@ -1,0 +1,46 @@
+{
+  "caption": "地肤田，中国",
+  "title": "地肤田，中国",
+  "description": "在今天的画面中，中国大地上铺展着绿色与深红色的地肤。地肤原产于欧亚大陆部分地区，19世纪末作为观赏植物和制作扫帚的材料来源被引入美国。它耐旱、耐热、耐盐碱土壤和少雨环境的能力，帮助其扩散至美国大平原及美国西部大部分地区。",
+  "copyright": "© lingqi xie/Getty Images",
+  "date": "2026 9月 14",
+  "clickUrl": "/search?q=%e5%9c%b0%e8%82%a4&form=hpcapt&filters=HpDate:\"20260913_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.KochiaChina_ZH-CN4719995421_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.KochiaChina_ZH-CN4719995421_UHD.jpg",
+      "wallpaper": "/th?id=OHR.KochiaChina_ZH-CN4719995421_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.KochiaChina_ZH-CN4719995421_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.KochiaChina_ZH-CN4719995421_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.KochiaChina_ZH-CN4719995421_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "地肤由种子迅速生长，单株在一个生长季内便可长到数英尺高，并产生数千粒种子。幼株可用作牲畜饲料，尤其是在其他植被稀少的干旱地区。地肤因醒目的色彩和顽强的生命力而受人欣赏，但农民也将它视为一种难以治理的耐性杂草。从美国大草原到画面中中国色彩绚丽的田野，它始终是自然适应能力的非凡例证。",
+  "descriptionPara3": "",
+  "isoDate": "20260914",
+  "headline": "坚韧在此扎根",
+  "quickFact": "地肤属于苋科，与甜菜、菠菜和藜麦有植物学上的亲缘关系。",
+  "triviaId": "HPQuiz_20260914_KochiaChina",
+  "triviaData": {
+    "question": "藜科植物原产于哪个大洲？",
+    "options": [
+      {
+        "text": "非洲",
+        "url": "/search?q=%E6%AC%A7%E4%BA%9A%E5%A4%A7%E9%99%86&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260914_KochiaChina%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "南美洲大陆",
+        "url": "/search?q=%E6%AC%A7%E4%BA%9A%E5%A4%A7%E9%99%86&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260914_KochiaChina%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "欧亚大陆",
+        "url": "/search?q=%E6%AC%A7%E4%BA%9A%E5%A4%A7%E9%99%86&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260914_KochiaChina%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
