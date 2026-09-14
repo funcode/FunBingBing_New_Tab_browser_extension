@@ -59,3 +59,7 @@ the migration is intended to remove.
 - Cross-tab display coordination is intentionally neither lock-based nor a live
   synchronization mechanism. Last-write-wins chooses the persisted starting
   point for later new tabs; it does not force already-open tabs to converge.
+- A page that navigates away may reject a late preview-repair notification using
+  its local generation token. This protects that page's new selection and does
+  not make an empty preview permanent: a later initialization retries from
+  Cache Storage while the same display snapshot remains globally current.

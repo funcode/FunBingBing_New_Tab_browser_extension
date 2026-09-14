@@ -30,8 +30,14 @@ is the deliberate choice.
 
 ## Consequences
 
-- The migration marker describes regular-context migration only. There is no
-  cross-context coordination to implement.
+- The migration marker is named `wallpaper_migration_v2_state_regular` and describes
+  regular-context migration only. There is no cross-context coordination to
+  implement. Incognito initialization must not read, interpret, wait for, or mutate
+  this marker (or any v1 migration key); it uses an explicit allowlist of its own
+  context-suffixed v2 keys and shared sync settings.
+- The context gate is applied before storage access. Incognito must not use a
+  full-storage scan such as `chrome.storage.local.get(null)` to discover migration
+  state, and must self-seed independently while the regular marker is in any phase.
 - Context-suffixed key names are the logical ownership boundary in shared extension
   storage and must be retained.
 - An incognito session pays a cold start — its first new tab fetches metadata and

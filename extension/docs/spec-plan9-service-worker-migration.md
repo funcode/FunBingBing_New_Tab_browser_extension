@@ -93,8 +93,13 @@ v1-to-v2 migration; incognito initializes independently.
 - Pages read the catalog and Cache Storage. They do not fetch wallpaper images directly and do not write image responses.
 - Pages may fetch and parse quote HTML only after obtaining a worker lease; the worker validates and persists the result.
 - Pages exclusively write the context's display state. The worker may read it for identity and retention decisions but never writes it.
-- Regular and incognito contexts use distinct logical keys and cache names even when Chrome's underlying partition behavior would already separate them.
+- Regular and incognito contexts use distinct logical keys and cache names even when Chrome's underlying partition behavior would already separate them. The regular-only migration marker is `wallpaper_migration_v2_state_regular`; it is not part of the incognito read/write surface.
 - Shared product settings use Chrome sync storage. Context-local wallpaper, quote, display, migration, and cache state stay in local storage or Cache Storage.
+
+### Terminology
+
+- “Context” means the Chrome browsing context, either `regular` or `incognito`. Use “refresh generation” for the persisted catalog date-rollover generation.
+- `refreshState.generation`, `imagePrefetchGeneration`, and the page-local generation token have separate scopes: catalog admission, runtime image scheduling, and callbacks in the page that created the token. They are not interchangeable.
 
 ### Catalog and identity
 
@@ -102,6 +107,8 @@ v1-to-v2 migration; incognito initializes independently.
 - Each entry includes a full image identity, canonical preview/HD/UHD URLs, staged metadata, trivia state, and timestamps.
 - Metadata stages are monotonic for the same date and identity: legacy, Archive, PreloadMediaContents, MediaContents, then ImageOfTheDay.
 - Different sources merge only when both date and full image identity match. A higher metadata stage cannot justify merging fields from a different photograph.
+- Archive trivia IDs use the validated `HPQuiz_<YYYYMMDD>_<slug>` form. Only its unique date segment is rewritten to the matched IOTD `isoDate`; arbitrary digit strings are never guessed or replaced. Missing, null, non-string, or empty values become `triviaId: ""` with `triviaState: "missing"`. A non-empty malformed value is cleared, diagnosed, and is not eligible for Trivia work.
+- Catalog-root and entry `updatedAt` values are numeric diagnostic timestamps for the latest corresponding commit. Display-state `updatedAt` is the numeric timestamp of the successful final-image application represented by that snapshot. These timestamps do not order cross-tab writes or admit stale work.
 - Canonical URLs use the Bing image identity with one of three supported suffixes: preview, HD, or UHD. Equivalent hosts, formats, and unrelated query parameters do not create additional cache keys.
 - The Bing CDN host permission is declared explicitly so worker image retrieval does not depend on incidental CORS behavior.
 
@@ -114,6 +121,7 @@ v1-to-v2 migration; incognito initializes independently.
 - Consecutive failures use a bounded escalating schedule of 1, 3, and 5 minutes; the third and later failures remain at 5 minutes. Transport/parsing failure and valid responses missing required coverage both advance the level.
 - Success resets the corresponding retry level and timestamp. A new target date or changed/removed image, trivia, or quote identity resets the affected retry sequence.
 - Backoff expiry does not wake the worker by itself. Network reconnection may bypass one active window per retry object, but does not reset its level; a failed bypass advances the sequence.
+- Reconnection means a browser `online` event or the existing 15-second actual-connection check. Both feed the same per-object bypass guard; repeated events cannot bypass the same window more than once. Retry expiry only makes work eligible and neither interrupts an active fetch nor guarantees worker execution.
 - Persisted refresh generation protects date rollover. Stale work may fill missing fields for the same date and identity or add safe non-display history; it may not replace an existing identity, modify new refresh state, or change the displayed date. Before a catalog commit, if a stale candidate's `date` equals the current display state's `date` but its `imageId` differs from the display state's `imageId`, the worker drops that entire candidate and merges none of its fields. Other independently valid candidates in the batch may still commit; the worker neither aborts the entire catalog write nor introduces a cross-storage transaction.
 
 ### Image scheduler and cache policy
@@ -122,9 +130,10 @@ v1-to-v2 migration; incognito initializes independently.
 - Baseline priority is target preview, target final resolution, historical previews, historical final resolutions, future previews, then future final resolutions.
 - Historical and future phases run nearest date first. History is derived from catalog and cache state without waiting for Model; Model only contributes future work.
 - Explicit current-display or navigation requests are urgent. They promote an existing pending canonical task or insert one at the front, but never interrupt the active fetch or start a second fetch.
-- Every task performs an exact cache match before network access. One canonical URL has at most one pending or active task, and callers share its result.
+- Every task performs an exact cache match before network access. One canonical URL has at most one pending or active task, and callers share its result. The task-map entry remains until cache success or failure bookkeeping completes; dispatch re-checks both the map and `cache.match()`, so a stale-generation response cached before a queue rebuild cannot cause a second network request.
 - A historical item whose retry window is still active is skipped for that event and does not permanently block later history or future work.
 - Image task generation is in memory. Catalog identity or resolution changes stop old pending dispatch. An active response is cached only when its canonical URL still belongs to the latest retention set.
+- A resolution change does not cancel an active old-resolution fetch. If its response no longer belongs to the latest retention set, it is discarded before cache success bookkeeping; transient overlap during the transition is allowed, and the 32/20 key limits apply after the documented cleanup point before a new future batch.
 - Worker restart reconstructs work from the catalog and Cache Storage instead of restoring an in-memory cursor.
 - The base retention set is context-specific: target plus seven historical dates and up to seven future dates for regular context, or up to one future date for incognito. Each retained date has preview and configured final resolution. A page-owned display outside that set can protect up to two additional responses. The hard maximum is 32 keys for regular and 20 for incognito.
 - Future prefetch is best-effort. Regular context may reach seven dates; incognito is limited to the next date. Both depend on Model coverage, network success, browser activity, service-worker lifetime, and browser cache retention.
@@ -142,7 +151,7 @@ v1-to-v2 migration; incognito initializes independently.
 - A page-local generation token rejects stale callbacks only within the page that created them.
 - The boot path reads the context's v2 display snapshot and may paint its preview before the main wallpaper logic runs. It does not infer identity from data-URL bytes.
 - Every new-tab initialization independently checks Cache Storage for the committed `date + imageId`, including when its preview data URL is empty. A cached final image is applied immediately without waiting for preview repair. When a matching preview is cached, the page reconstructs its data URL and persists it only after a fresh read confirms the global `date + imageId + final URL` are unchanged.
-- Preview repair is opportunistic and does not rely solely on the original cache-completion notification. No persisted `previewPending` state is added.
+- Preview repair is opportunistic and does not rely solely on the original cache-completion notification. If a page rejects a notification after navigating away, that protects the page's current selection and does not mean the cached preview was lost; a later new-tab initialization retries repair from Cache Storage. No persisted `previewPending` state is added.
 - The legacy untagged preview key is migration input only and is not copied into v2.
 - When image identity changes and no matching preview is available, the page clears the old preview rather than pairing it with the new image.
 - The extension document uses one fixed dark Gradient and no light-scheme override or inline black fallback. Chromium's pre-document white or black frame is outside extension control and is evaluated separately.
@@ -155,8 +164,10 @@ v1-to-v2 migration; incognito initializes independently.
 - A trivia request captures the catalog date only as an entry locator. Both success and failure commits run through the serialized catalog-write queue, fresh-read the entry, and apply only if its current `triviaId` still matches. A missing entry or changed `triviaId` discards the entire result without modifying payload or retry state. An unchanged `triviaId` remains admissible across refresh-generation rollover.
 - Trivia in-flight state is not persisted. Failure keeps the entry retryable with its own persisted bounded backoff level.
 - Quote scraping uses a 60-second lease with a worker-generated random token. Expired or replaced tokens cannot submit.
+- UUID generation belongs to the Worker/runtime adapter, which calls `globalThis.crypto.randomUUID()` only for an actual grant. Pure lease logic accepts an opaque token or injected `generateToken`; shared browser-targeted modules do not require `node:crypto`.
 - A successful quote sync or remote fallback clears the lease immediately. Quote work never blocks wallpaper display.
 - The quote fallback URL is a shared sync setting; quote caches and leases remain context-local.
+- `qotd_url` is valid only as an absolute HTTPS URL under the same setting-validation rule used during migration. Worker fallback requests use `credentials: "omit"`, `cache: "no-store"`, and `redirect: "error"`; the response body is limited to 64 KiB and must be structured JSON containing a quote text string plus optional source and caption strings, rendered as text rather than HTML. Invalid URL, redirect, size, or payload validation preserves an existing valid Quote and records failure.
 - Quote dates are derived from the committed catalog, and pages select quotes by the committed display-state date. Rejected metadata candidates therefore cannot schedule quote work or change which quote a page displays.
 
 ### Shared settings
@@ -167,14 +178,15 @@ v1-to-v2 migration; incognito initializes independently.
 
 ### Migration
 
-- Only the regular context runs v1-to-v2 migration. Incognito self-seeds and never waits for the regular migration marker.
+- Only the regular context runs v1-to-v2 migration. Its marker is `wallpaper_migration_v2_state_regular`. Initialization branches on `contextId` before storage access: incognito uses an explicit allowlist of its context-suffixed v2 keys and shared sync settings, and must not read, interpret, wait for, or mutate the regular marker, any v1 migration key, or regular v2 keys. Incognito self-seeds regardless of whether the regular marker is `writing`, `verified`, or `complete`.
 - The worker imports up to eight valid legacy wallpaper dates and the regular quote cache, canonicalizes identities, and preserves valid trivia completion.
 - Shared settings migrate with this precedence: valid existing sync value, valid local value, then existing default.
 - Sync values are fresh-read and verified before migrated local setting keys are deleted. Failure leaves local values intact and migration retryable.
 - The worker writes and verifies the regular catalog and quote state but does not write display state.
 - The first regular page consumes verified catalog plus retained legacy display inputs, writes a valid or explicit empty v2 display snapshot, and acknowledges the handoff.
-- The worker verifies the page-owned display snapshot before marking migration complete and deleting obsolete display inputs.
+- The worker verifies the page-owned display snapshot before marking migration complete and deleting obsolete display inputs. The first valid acknowledgement while the marker is `verified` completes the handoff; duplicate or late acknowledgements after `complete` are no-ops.
 - Valid v2 state always has read priority over residual v1 state. Interrupted phases resume or rebuild idempotently.
+- If a partial v2 catalog exists after interruption, migration fresh-reads and validates it, preserves every valid existing entry and field, and merges only missing legacy dates or fields using the existing identity and source-priority rules. It never replaces valid v2 data with a fresh legacy import; invalid or conflicting entries follow the normal validation rules.
 - Visible legacy cache responses may be copied into the regular v2 cache by canonical URL before the old cache is removed.
 
 ## Testing Decisions
@@ -189,18 +201,25 @@ documented ordering and cooldown boundaries.
 - Test target-date calculation under multiple process timezones.
 - Test full image identity extraction, canonical URL rebuilding, known suffix validation, and rejection of malformed inputs.
 - Test deterministic metadata merge priority and rejection of cross-identity merges under every response order.
+- Use a table-driven response-order matrix for IOTD, MediaContents, PreloadMediaContents, and Archive; assert field-level winners, whole-record replacement on identity change, and Archive-success invalidation after an IOTD identity change.
+- Test Archive trivia-ID normalization for missing/null/non-string/empty, valid format, malformed format, multiple date-like segments, and invalid dates; malformed values are cleared, diagnosed, and never scheduled.
 - Test source coverage rules and the difference between failed, missing, and successful responses.
 - Test the complete 1, 3, 5, 5 minute sequence, saturation at level 3, independent retry objects, all reset conditions, restart continuity, and one reconnect bypass per active window.
+- Test reconnect through both the browser `online` event and the 15-second actual-connection check: one retry object gets at most one bypass per active window, expiry alone does not wake the worker, and no active fetch is interrupted.
 - Test stale-generation admission rules for current, historical, and displayed identities, including whole-candidate rejection on a displayed-identity conflict while independently valid candidates in the same batch still commit.
 - Test trivia result admission independently of refresh generation: `triviaId` is the sole work identity, date only locates the latest entry, and an unchanged `triviaId` remains admissible after generation rollover.
 - Test context-specific retention-set derivation, display protection, 32-key regular maximum, 20-key incognito maximum, and removal of unreferenced failure records.
 - Test scheduler derivation in the exact baseline order: target, history, future. Confirm history is derived without Model and backoff-skipped history does not block future work.
-- Test canonical URL deduplication, urgent promotion, active-task sharing, and generation-based write admission.
+- Test canonical URL deduplication, urgent promotion, active-task sharing, and generation-based write admission. Include an active stale-generation fetch that remains retained, then rebuild the queue after its successful `cache.put()` and assert the rebuilt task is skipped without another network request.
+- Test rapid HD/UHD changes with an active obsolete fetch: the fetch is not canceled, an obsolete response is not recorded as success, transient old keys are cleaned before the next future batch, and the post-cleanup retention bound is restored.
 - Test `cachedFutureDepth` across complete days, gaps, preview-only hits, resolution changes, stale diagnostic state, and the `0..1` incognito cap.
 - Test navigation over zero through eight entries and display-date lookup without a persisted index.
-- Test preview repair from an atomic display snapshot with an explicit empty preview: startup applies the cached final immediately, reconstructs a cached matching preview without an earlier notification, rejects the repair after display identity changes, and retries after a simulated crash before repair.
+- Test preview repair from an atomic display snapshot with an explicit empty preview: startup applies the cached final immediately, reconstructs a cached matching preview without an earlier notification, rejects the repair after display identity changes, and retries after a simulated crash before repair. Include the cross-tab sequence where Tab2 navigates away before B's notification: its B callback is rejected, a later tab repairs B if B remains globally current, and B's preview is never written into a subsequently committed C snapshot.
 - Test quote lease expiry, replacement, success clearing, and token rejection.
-- Test setting migration precedence and migration state transitions through verification and page acknowledgement.
+- Load pure lease logic under Node with an injected deterministic token generator; denied grants do not call it, and the browser adapter remains the only `globalThis.crypto.randomUUID()` caller.
+- Test display, catalog-root, and entry `updatedAt` assignment on successful commits, preservation on failure/rejection, and independence from last-write-wins, retry, cache, and stale-result decisions.
+- Test setting migration precedence and migration state transitions through verification and page acknowledgement. Leave `wallpaper_migration_v2_state_regular` in each phase and start an incognito worker; assert that it reads only its allowlisted keys, self-seeds without waiting, and leaves the marker and regular keys unchanged.
+- Test duplicate and late `migrationDisplayStateReady` acknowledgements as one completion/cleanup effect, and restart with a valid partial v2 catalog to assert existing fields are preserved while only missing legacy data is merged.
 
 ### Service-worker message seam
 
@@ -209,6 +228,7 @@ documented ordering and cooldown boundaries.
 - Test that rejected or uncommitted metadata candidates never schedule trivia. Delay trivia success and failure results across entry replacement; both must be discarded when the latest entry's `triviaId` differs, without changing its payload or retry state.
 - Test image-cache requests reject arbitrary dates, resolutions, or URLs and accept only canonical URLs derived from the context catalog.
 - Test image request ordering and cache effects across target, history, future, urgent navigation, escalating backoff, reconnect bypass, and resolution changes.
+- Test worker termination during an unresolved target, historical, and future image fetch: no interrupted attempt becomes a cache success, the next event retries the missing URL, and no same-URL requests overlap across the termination boundary.
 - Test that the worker never writes display state and that page acknowledgement is required for migration completion.
 - Test quote lease grant, quote submission, remote fallback, and update notifications through message contracts.
 - Test broadcasts with no listening pages and confirm there are no unhandled message failures.
@@ -230,9 +250,9 @@ documented ordering and cooldown boundaries.
 - Stale responses: delay old-date source responses and verify they cannot replace current or historical identities or corrupt refresh state.
 - Stale trivia: delay a trivia response, replace the catalog entry's `triviaId`, and verify the late success or failure cannot mutate the replacement entry. Repeat with generation rollover but an unchanged `triviaId` and verify the result remains admissible.
 - Concurrency: observe at most one active wallpaper image fetch per context, including navigation during background work.
-- Multiple regular tabs: while Tab1 is still loading navigation from A to B, Tab2 may initialize from committed state A and need not follow Tab1's later commit. A tab opened after B commits initializes from B's exact date, identity, and final URL, allowing only B's matching startup preview. Concurrent commits remain atomic, and last-write-wins affects future readers rather than forcing live convergence.
+- Multiple regular tabs: while Tab1 is still loading navigation from A to B, Tab2 may initialize from committed state A and need not follow Tab1's later commit. A tab opened after B commits initializes from B's exact date, identity, and final URL, allowing only B's matching startup preview. If an existing tab navigates away before B preview repair, its stale B callback is rejected; a later tab repairs B from Cache Storage only if B is still the global snapshot, and never applies B's preview to a subsequently committed C snapshot. Concurrent commits remain atomic, and last-write-wins affects future readers rather than forcing live convergence.
 - Regular plus incognito: verify separate catalogs, caches, quotes, and display states, while both contexts observe the same sync-backed settings; verify that incognito retains at most one future date and two future responses.
-- Migration: cover existing sync wins, local fallback, default fallback, sync write failure, page-owned display acknowledgement, restart at every phase, and final legacy cleanup.
+- Migration: cover existing sync wins, local fallback, default fallback, sync write failure, page-owned display acknowledgement, restart at every phase, and final legacy cleanup. With the regular marker separately left in `writing`, `verified`, and `complete`, start incognito and verify no marker read/wait/mutation, no v1 or regular-v2 access, and successful self-seeding from its allowlist.
 - Cache eviction simulation: remove retained responses and verify the next event repairs actual misses rather than trusting catalog entries or diagnostic depth.
 - Measure HD and UHD retained response bytes for both context policies without a pass/fail byte threshold.
 
@@ -267,5 +287,5 @@ cannot expose the required behavior directly.
 ---
 
 **Document status**: Ready for implementation  
-**Revision**: 11  
-**Date**: 2026-08-21
+**Revision**: 14  
+**Date**: 2026-09-12
