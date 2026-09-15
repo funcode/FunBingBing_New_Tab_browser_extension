@@ -1,0 +1,46 @@
+{
+  "caption": "斯瓦尔巴群岛玩耍的北极熊幼崽，挪威",
+  "title": "斯瓦尔巴群岛玩耍的北极熊幼崽，挪威",
+  "description": "两只北极熊幼崽小心翼翼地穿行在斯瓦尔巴群岛的雪地上；这片偏远的挪威群岛深入北冰洋腹地，由冰川、山脉和冰封峡湾构成。这片荒野属于巴伦支海地区，生活着全球最大的北极熊种群之一，约有2,600只。",
+  "copyright": "© Danny Green/Nature Picture Library",
+  "date": "2026 9月 16",
+  "clickUrl": "/search?q=%e5%8c%97%e6%9e%81%e7%86%8a&form=hpcapt&filters=HpDate:\"20260915_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.IcyCubs_ZH-CN5287408951_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.IcyCubs_ZH-CN5287408951_UHD.jpg",
+      "wallpaper": "/th?id=OHR.IcyCubs_ZH-CN5287408951_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.IcyCubs_ZH-CN5287408951_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.IcyCubs_ZH-CN5287408951_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.IcyCubs_ZH-CN5287408951_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "对这些小家伙来说，每次外出都是一场冒险。它们探索的世界由漂移的海冰、高耸的冰川前缘，以及数月黑暗之后接踵而至的无尽夏日阳光塑造。嬉戏摔跤和模拟追逐看似游戏，却能帮助幼崽为在地球上最严酷的环境之一生活做好准备。",
+  "descriptionPara3": "斯瓦尔巴群岛是世界上观赏北极熊的最佳地点之一，但也是地球上升温最快的地区之一。随着海冰状况变化，当地北极熊展现出非凡的适应能力，但它们的未来仍与塑造高北极地区的冰封景观紧密相连。",
+  "isoDate": "20260916",
+  "headline": "北极的新晋探索者",
+  "quickFact": "在经历了约一个世纪的大规模捕猎后，斯瓦尔巴群岛的北极熊自1973年起受到保护。",
+  "triviaId": "HPQuiz_20260916_IcyCubs",
+  "triviaData": {
+    "question": "哪个海域包含斯瓦尔巴群岛？",
+    "options": [
+      {
+        "text": "挪威海",
+        "url": "/search?q=%E5%B7%B4%E4%BC%A6%E6%94%AF%E6%B5%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260916_IcyCubs%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "格陵兰海",
+        "url": "/search?q=%E5%B7%B4%E4%BC%A6%E6%94%AF%E6%B5%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260916_IcyCubs%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "巴伦支海",
+        "url": "/search?q=%E5%B7%B4%E4%BC%A6%E6%94%AF%E6%B5%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260916_IcyCubs%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
