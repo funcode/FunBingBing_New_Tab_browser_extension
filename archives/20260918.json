@@ -1,0 +1,46 @@
+{
+  "caption": "英格兰峰区国家公园温纳茨山口",
+  "title": "温纳茨山口，峰区国家公园，英格兰",
+  "description": "在英格兰峰区，一条蜿蜒的长路从已有3亿多年历史的岩石间穿过。如此漫长的地质时间尺度本就令人惊叹，而这条路还穿越了温纳茨山口：这是一道狭窄的石灰岩峡谷，高耸的峭壁展现出远古海洋曾经覆盖英国这一地区的痕迹。",
+  "copyright": "© Daniel_Kay/Getty Images",
+  "date": "2026 9月 18",
+  "clickUrl": "/search?q=%e5%b3%b0%e5%8c%ba%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260917_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.WinnatsPassPeak_ZH-CN4443458412_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.WinnatsPassPeak_ZH-CN4443458412_UHD.jpg",
+      "wallpaper": "/th?id=OHR.WinnatsPassPeak_ZH-CN4443458412_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.WinnatsPassPeak_ZH-CN4443458412_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.WinnatsPassPeak_ZH-CN4443458412_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.WinnatsPassPeak_ZH-CN4443458412_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "然而，温纳茨山口只是英国首座国家公园——峰区国家公园的亮点之一。在这里，葱郁的石灰岩谷地逐渐过渡为一望无际的砂岩荒原，山丘下还隐匿着洞穴系统。游客可以沿壮观的山脊徒步，探索曾由铅矿工开采的地下洞窟，也可以漫步于卡斯尔顿和贝克韦尔等风景如画的社区。英格兰很少有地方能在一片景观中汇聚如此丰富的地质多样性和户外探险体验。无论从狂风劲吹的山顶远眺，还是身处洞窟深处，峰区都是一个每次转弯都会展现新景象的地方。",
+  "descriptionPara3": "",
+  "isoDate": "20260918",
+  "headline": "穿越山口腹地",
+  "quickFact": "温纳茨山口是峰区国家公园内一处壮观的石灰岩峡谷，位于卡斯尔顿附近，两侧峭壁陡峻嶙峋。",
+  "triviaId": "HPQuiz_20260918_WinnatsPassPeak",
+  "triviaData": {
+    "question": "温纳茨山口的悬崖由哪种岩石构成？",
+    "options": [
+      {
+        "text": "砂岩",
+        "url": "/search?q=%E7%9F%B3%E7%81%B0%E5%B2%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260918_WinnatsPassPeak%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "花岗岩",
+        "url": "/search?q=%E7%9F%B3%E7%81%B0%E5%B2%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260918_WinnatsPassPeak%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "石灰岩",
+        "url": "/search?q=%E7%9F%B3%E7%81%B0%E5%B2%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260918_WinnatsPassPeak%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
