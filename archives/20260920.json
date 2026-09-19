@@ -1,0 +1,46 @@
+{
+  "caption": "法国巴黎日落时分的埃菲尔铁塔",
+  "title": "日落时分的埃菲尔铁塔，巴黎，法国",
+  "description": "几乎没有哪座城市像巴黎这样被赋予如此多的浪漫想象。然而，这座法国首都的历史并非始终像埃菲尔铁塔背后的落日霞光一样绚丽。铁塔为1889年世界博览会而建；这届世博会纪念法国大革命爆发一百周年，而铁塔最初计划作为博览会入口处的核心建筑。由工程师古斯塔夫·埃菲尔及其团队设计的这座钢铁地标，从战神广场拔地而起，高度接近1,000英尺，并成为当时世界上最高的建筑。",
+  "copyright": "© Alexander Spatari/Getty Images",
+  "date": "2026 9月 20",
+  "clickUrl": "/search?q=%e5%b7%b4%e9%bb%8e&form=hpcapt&filters=HpDate:\"20260919_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ParisSunset_ZH-CN6050686638_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ParisSunset_ZH-CN6050686638_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ParisSunset_ZH-CN6050686638_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ParisSunset_ZH-CN6050686638_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ParisSunset_ZH-CN6050686638_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ParisSunset_ZH-CN6050686638_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "许多当地人曾批评这一大胆设计，但它很快便激发了公众的想象力。世博会期间，数百万人前来参观这座纪念建筑，并欣赏他们此前从未体验过的全景视野。",
+  "descriptionPara3": "如今，游客可以沿塞纳河漫步，探访这座不断重塑自我的城市中的古老街区和各类博物馆。夜幕降临，埃菲尔铁塔在夜空下熠熠生辉，依然是法国创造力、雄心与韧性的有力象征。",
+  "isoDate": "20260920",
+  "headline": "终获巴黎青睐的铁塔",
+  "quickFact": "如今埃菲尔铁塔高330米；2022年安装一根新的数字广播天线后，塔身增高了6米。",
+  "triviaId": "HPQuiz_20260920_ParisSunset",
+  "triviaData": {
+    "question": "哪座巴黎地标是为世界博览会而建？",
+    "options": [
+      {
+        "text": "埃菲尔铁塔",
+        "url": "/search?q=%E5%9F%83%E8%8F%B2%E5%B0%94%E9%93%81%E5%A1%94&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260920_ParisSunset%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "凯旋门",
+        "url": "/search?q=%E5%9F%83%E8%8F%B2%E5%B0%94%E9%93%81%E5%A1%94&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260920_ParisSunset%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "卢浮宫博物馆",
+        "url": "/search?q=%E5%9F%83%E8%8F%B2%E5%B0%94%E9%93%81%E5%A1%94&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260920_ParisSunset%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
