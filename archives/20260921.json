@@ -1,0 +1,46 @@
+{
+  "caption": "海獭认知周",
+  "title": "正在梳理皮毛的海獭，蒙特雷湾，加利福尼亚州，美国",
+  "description": "很少有动物既能称得上梳理皮毛的高手，又是水下森林的守护者。正因如此，每年9月最后一个完整周举行的海獭认知周鼓励人们进一步了解这些非凡的海洋哺乳动物，以及它们面临的种种挑战。",
+  "copyright": "© Suzi Eszterhas/Minden Pictures",
+  "date": "2026 9月 21",
+  "clickUrl": "/search?q=%e6%b5%b7%e7%8d%ad%e8%ae%a4%e7%9f%a5%e5%91%a8&form=hpcapt&filters=HpDate:\"20260920_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.GroomingOtter_ZH-CN6969472572_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.GroomingOtter_ZH-CN6969472572_UHD.jpg",
+      "wallpaper": "/th?id=OHR.GroomingOtter_ZH-CN6969472572_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.GroomingOtter_ZH-CN6969472572_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.GroomingOtter_ZH-CN6969472572_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.GroomingOtter_ZH-CN6969472572_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "在今天的图片中，一只海獭正在美国加利福尼亚州蒙特雷湾梳理皮毛。这种行为绝不只是一项日常习惯。与海豹和鲸不同，海獭几乎没有用于保温的脂肪层，因此要依靠所有动物中最浓密的皮毛。细致清洁能让空气留存在毛层中，形成防水层，帮助它们在寒冷的太平洋中保持温暖。海獭也被视为关键种。它们以海胆和其他无脊椎动物为食，在保护海带森林方面发挥着至关重要的作用；海带森林则为不计其数的海洋生物提供栖息地。这些魅力十足的哺乳动物一度因毛皮贸易而濒临灭绝，如今依然是坚韧生命力与海岸保护的象征。",
+  "descriptionPara3": "",
+  "isoDate": "20260921",
+  "headline": "皮毛与海洋之间的生命",
+  "quickFact": "海獭每平方英寸可长有多达100万根毛，因此拥有所有哺乳动物中最浓密的皮毛。",
+  "triviaId": "HPQuiz_20260921_GroomingOtter",
+  "triviaData": {
+    "question": "哪种特征帮助海獭在寒冷海洋中保持温暖？",
+    "options": [
+      {
+        "text": "鲸脂",
+        "url": "/search?q=%E6%B5%93%E5%AF%86%E7%9A%84%E6%AF%9B%E5%8F%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260921_GroomingOtter%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "浓密的毛发",
+        "url": "/search?q=%E6%B5%93%E5%AF%86%E7%9A%84%E6%AF%9B%E5%8F%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260921_GroomingOtter%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "鳞片",
+        "url": "/search?q=%E6%B5%93%E5%AF%86%E7%9A%84%E6%AF%9B%E5%8F%91&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260921_GroomingOtter%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
