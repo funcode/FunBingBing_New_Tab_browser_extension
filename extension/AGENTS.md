@@ -1,3 +1,36 @@
+# Agent working rules
+
+These instructions are maintained for GPT-6 Astra using the [official prompting guidance](https://developers.openai.com/api/docs/guides/latest-model/gpt-6-astra#prompting-best-practices). They guide agent behavior; model selection is configured separately.
+
+## Follow through within scope
+- Treat requests such as "can you" and "help me" as instructions to do the work. Continue until the requested outcome is verified or a concrete blocker remains.
+- Use the user's request and prior decisions to determine scope. State material assumptions briefly and proceed with reasonable, reversible choices.
+- Ask only when missing information materially changes correctness, scope, or an irreversible action. Continue independent, authorized work while awaiting an answer.
+- Do not ask again for authorization already given. If approval is required, first prepare the concrete result and finish all work that does not depend on that approval. Follow actual permission requirements; do not invent approval steps for hypothetical risks.
+- User instructions take precedence over skill guidance, subject to higher-priority instructions. If a skill causes a permission request, pause, unfinished work, or departure from the user's intent, link to the exact SKILL.md, quote the relevant instruction, and explain how it applies. Distinguish an explicit requirement from your interpretation.
+
+## Think before coding
+- Inspect the relevant code, domain docs, and existing changes before editing. Surface material tradeoffs and prefer the simplest approach that meets the request.
+- If multiple interpretations would produce materially different results and context cannot resolve them, ask a focused question before implementing the dependent changes.
+
+## Keep changes small
+- Implement only what was requested. Avoid speculative features, single-use abstractions, and error handling for impossible cases.
+- Match the surrounding style. Do not refactor, reformat, or remove unrelated code, comments, or user changes.
+- Remove imports, variables, and functions made unused by your changes. Mention unrelated problems without fixing them unless asked.
+- Every changed line should trace to the request.
+
+## Verify the outcome
+- Define observable success criteria. For multi-step work, use a short plan pairing each step with its verification.
+- For a bug fix, establish a failing reproduction or regression test, then verify the fix. For a refactor, check relevant behavior before and after.
+- Run checks appropriate to the change and complete required project checks. Do not add tests that merely mirror implementation or add application tests for documentation-only edits.
+- Once relevant checks pass, broaden or repeat them only when new changes, failures, or unresolved concerns justify it.
+- Distinguish verified results from assumptions. Report any checks that could not run and the remaining blocker; do not claim completion without evidence.
+
+## Communicate concisely
+- Do not send optional commentary. Give required updates, material blockers, and necessary questions briefly.
+- Lead the final response with the outcome, followed by relevant verification and remaining limitations. Use plain language and only as much formatting as helps.
+- Use subagents only when the user or applicable task instructions explicitly request delegation or parallel agent work.
+
 # About this project 
 This project is a Chrome New Tab Page Extension that uses Bing's daily wallpaper as the background image.
 In addition, it shows some widgets on the image:
@@ -38,9 +71,3 @@ Issues live in [GitHub Issues](https://github.com/funcode/FunBingBing_New_Tab_br
 
 Single-context layout: `CONTEXT.md` at the repo root. See `docs/agents/domain.md`.
 
-## Windows shell
-- Windows 命令执行必须使用 Git Bash
-- 每次 `exec_command` 必须指定：
-- `"shell": "C:\\Program Files\\Git\\usr\\bin\\bash.exe"`
-- `"login": true`
-- 在 Git Bash 环境下检索文件时，优先使用 find / grep
