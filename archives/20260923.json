@@ -1,0 +1,46 @@
+{
+  "caption": "地坛公园银杏大道，北京，中国",
+  "title": "地坛公园秋日美景，北京，中国",
+  "description": "金色地毯通常只出现在童话世界里，但在金秋时节的北京，它们却铺展在你的脚下。地坛公园（方泽坛）著名的银杏大道汇聚了200多株历史悠久的银杏树。每当秋风掠过，数以万计的扇形金叶翩翩飘落，将这座古老的皇家坛庙铺垫成一片如梦似幻的金黄海洋。",
+  "copyright": "© by Wei/Adobestock",
+  "date": "2026 9月 23",
+  "clickUrl": "/search?q=%e7%a7%8b%e5%88%86&form=hpcapt&filters=HpDate:\"20260922_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AutumnEquinoxY26_ZH-CN7957453091_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AutumnEquinoxY26_ZH-CN7957453091_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AutumnEquinoxY26_ZH-CN7957453091_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AutumnEquinoxY26_ZH-CN7957453091_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AutumnEquinoxY26_ZH-CN7957453091_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AutumnEquinoxY26_ZH-CN7957453091_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "地坛始建于明代嘉靖九年（1530年），曾是明清两代帝王在秋分时节祭祀“皇地祗”神明的地方。如今，当太阳直射赤道、昼夜再次平分，这座庄严的皇家坛庙不再只有岁月的肃穆，而是在光影与斑斓色彩中蜕变为自然与历史交融的避风港，静静诉说着古都数百年的时空变迁。",
+  "descriptionPara3": "在清晨和煦的秋阳下，朱红的宫墙、古朴的黛瓦与熠熠生辉的金叶交相辉映，勾勒出绝美的高古意境。正如文学大师史铁生在《我与地坛》中所描绘的那样，地坛始终守护着这份宁静与包容，倾听着风吹落叶的沙沙响声，邀请每一位游人在喧嚣的现代都市深处放慢脚步，体味岁月留下的温润与悠长。",
+  "isoDate": "20260923",
+  "headline": "金秋平分，地坛染黄",
+  "quickFact": "秋分标志着昼夜平分，也预示着老北京最美丽的仲秋金色画卷正式展开。",
+  "triviaId": "HPQuiz_20260923_AutumnEquinoxY26",
+  "triviaData": {
+    "question": "地坛公园著名的金色林荫道由哪些树木组成？",
+    "options": [
+      {
+        "text": "橡树",
+        "url": "/search?q=%E9%93%B6%E6%9D%8F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260923_AutumnEquinoxY26%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "银杏",
+        "url": "/search?q=%E9%93%B6%E6%9D%8F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260923_AutumnEquinoxY26%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "枫树",
+        "url": "/search?q=%E9%93%B6%E6%9D%8F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260923_AutumnEquinoxY26%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
