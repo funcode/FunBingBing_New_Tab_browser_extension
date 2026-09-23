@@ -23,6 +23,12 @@ function setNetworkStatus(nextStatus) {
     chrome.storage.local.set({ 'wallpaper_date': '20000101' });
   }
 
+  if (nextStatus === 'online') {
+    chrome.runtime.sendMessage({ type: 'refreshWallpaperCatalog', reason: 'reconnect' }).catch(error => {
+      console.debug('Catalog refresh after reconnect unavailable:', error);
+    });
+  }
+
   window.dispatchEvent(new CustomEvent(NETWORK_STATUS_EVENT, {
     detail: { status: nextStatus, previousStatus }
   }));

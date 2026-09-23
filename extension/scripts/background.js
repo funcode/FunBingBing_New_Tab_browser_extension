@@ -1,5 +1,41 @@
 
-importScripts('base.js');
+importScripts('plan9/pure.js', 'plan9/catalog.js');
+
+const catalogWorker = PLAN9Catalog.createCatalogWorker({ chrome, fetch: (...args) => fetch(...args) });
+catalogWorker.install(globalThis);
+
+// The legacy page still uses its regular quote key until the page/migration tickets land.
+// Incognito never reads legacy regular state, including base.js's unbounded config cache.
+const workerQuoteKey = catalogWorker.contextId === 'incognito' ? catalogWorker.keys.quotes : 'cache_quote_state';
+const workerConf = {};
+let legacyQuoteUrl;
+let syncQuoteUrl;
+function updateWorkerQuoteUrl() {
+  workerConf.qotd_url = typeof syncQuoteUrl === 'string' ? syncQuoteUrl : legacyQuoteUrl;
+}
+const confReadyPromise = Promise.all([
+  chrome.storage.local.get(catalogWorker.contextId === 'regular' ? [workerQuoteKey, 'qotd_url'] : workerQuoteKey),
+  chrome.storage.sync.get('qotd_url')
+]).then(([local, sync]) => {
+  workerConf.cache_quote_state = local[workerQuoteKey];
+  legacyQuoteUrl = local.qotd_url;
+  syncQuoteUrl = sync.qotd_url;
+  updateWorkerQuoteUrl();
+});
+function readConf(key) { return workerConf[key]; }
+async function writeConf(key, value, epoch = catalogWorker.epoch) {
+  if (key === 'lost_quotes' && catalogWorker.contextId === 'incognito') return;
+  return catalogWorker.runContextWrite(epoch, async () => {
+    await chrome.storage.local.set({ [key === 'cache_quote_state' ? workerQuoteKey : key]: value });
+    workerConf[key] = value;
+  });
+}
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === 'sync' && changes.qotd_url) { syncQuoteUrl = changes.qotd_url.newValue; updateWorkerQuoteUrl(); }
+  if (area === 'local' && changes.qotd_url && catalogWorker.contextId === 'regular') { legacyQuoteUrl = changes.qotd_url.newValue; updateWorkerQuoteUrl(); }
+  if (area === 'local' && changes[workerQuoteKey]) workerConf.cache_quote_state = changes[workerQuoteKey].newValue;
+});
+
 
 // on install
 chrome.runtime.onInstalled.addListener(function (object) {
@@ -22,7 +58,7 @@ chrome.runtime.onInstalled.addListener(function (object) {
 const DEFAULT_LOST_QUOTES_URL = null;
 const QUOTE_CACHE_SLOTS = 8;
 const LOST_QUOTES_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
-const WALLPAPER_CACHE_NAME = 'funbingbing-wallpaper-cache-v1';
+const WALLPAPER_CACHE_NAME = catalogWorker.contextId === 'incognito' ? catalogWorker.keys.cache : 'funbingbing-wallpaper-cache-v1';
 const WALLPAPER_CACHE_MAX_ENTRIES = 48;
 const WALLPAPER_PREFETCH_CONCURRENCY = 2;
 
@@ -166,13 +202,14 @@ async function pruneWallpaperCache(cache) {
   await Promise.all(staleKeys.map((request) => cache.delete(request)));
 }
 
-function prefetchWallpaperUrl(cache, url) {
-  const existing = wallpaperPrefetchInFlight.get(url);
+function prefetchWallpaperUrl(cache, url, epoch) {
+  const taskKey = epoch + ":" + url;
+  const existing = wallpaperPrefetchInFlight.get(taskKey);
   if (existing) return existing;
-
   const task = (async () => {
     const cached = await cache.match(url);
     if (cached) return 'cached';
+    if (await catalogWorker.runContextWrite(epoch, () => true) === false) return 'failed';
 
     const response = await fetch(url, {
       mode: 'cors',
@@ -182,34 +219,37 @@ function prefetchWallpaperUrl(cache, url) {
       throw new Error(`Wallpaper prefetch failed with status ${response.status}`);
     }
 
-    await cache.put(url, response.clone());
+    const admitted = await catalogWorker.runContextWrite(epoch, () => cache.put(url, response.clone()));
+    if (admitted === false) return 'failed';
     return 'fetched';
   })();
 
-  wallpaperPrefetchInFlight.set(url, task);
+  wallpaperPrefetchInFlight.set(taskKey, task);
   const clearInFlight = () => {
-    if (wallpaperPrefetchInFlight.get(url) === task) {
-      wallpaperPrefetchInFlight.delete(url);
+    if (wallpaperPrefetchInFlight.get(taskKey) === task) {
+      wallpaperPrefetchInFlight.delete(taskKey);
     }
   };
   task.then(clearInFlight, clearInFlight);
   return task;
 }
 
-async function prefetchWallpapers(urls) {
+async function prefetchWallpapers(urls, epoch = catalogWorker.epoch) {
   const uniqueUrls = [...new Set(
     (Array.isArray(urls) ? urls : [])
       .filter((url) => typeof url === 'string' && /^https:\/\//i.test(url))
   )];
-  const cache = await caches.open(WALLPAPER_CACHE_NAME);
-  let nextIndex = 0;
   const results = { fetched: 0, cached: 0, failed: 0 };
+  const cache = await catalogWorker.runContextWrite(epoch, () => caches.open(WALLPAPER_CACHE_NAME));
+  if (cache === false) return { ...results, requested: uniqueUrls.length };
+  let nextIndex = 0;
 
   const runWorker = async () => {
     while (nextIndex < uniqueUrls.length) {
+      if (await catalogWorker.runContextWrite(epoch, () => true) === false) break;
       const url = uniqueUrls[nextIndex++];
       try {
-        const result = await prefetchWallpaperUrl(cache, url);
+        const result = await prefetchWallpaperUrl(cache, url, epoch);
         results[result] += 1;
       } catch (err) {
         results.failed += 1;
@@ -225,7 +265,7 @@ async function prefetchWallpapers(urls) {
     )
   );
 
-  await pruneWallpaperCache(cache);
+  await catalogWorker.runContextWrite(epoch, () => pruneWallpaperCache(cache));
   return { ...results, requested: uniqueUrls.length };
 }
 
@@ -244,6 +284,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message && message.type === "syncQuotesForImages") {
+    const epoch = catalogWorker.epoch;
     (async () => {
       try {
         const {
@@ -338,11 +379,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           return;
         }
 
-        await writeConf("cache_quote_state", quoteState);
+        if (await writeConf("cache_quote_state", quoteState, epoch) === false) {
+          sendResponse({ ok: false, stale: true });
+          return;
+        }
 
         //It is useless now. Kept for debugging purposes. May drop it in future.
         const unresolved = computeMissingDates(dates, allQuotes);
-        writeConf("lost_quotes", unresolved);
+        await writeConf("lost_quotes", unresolved, epoch);
 
         const updatedDates = Object.keys(quoteMapForPatch);
         if (updatedDates.length > 0) {
