@@ -1,0 +1,46 @@
+{
+  "caption": "黑色熔岩海滩， 加那利群岛，西班牙",
+  "title": "黑色熔岩海滩鸟瞰图，埃尔戈尔福，兰萨罗特岛，加那利群岛，西班牙",
+  "description": "在西班牙加那利群岛的兰萨罗特岛，大自然的地质创造力尽情挥洒。赭黄与铁锈色条纹交错的悬崖之下，深色沙滩与大西洋相接，这是延续数百万年的火山活动留下的杰作。这段地质故事中有一章发生在距今并不久远的年代：1730年至1736年间，兰萨罗特岛各处出现了众多火山喷口，熔岩覆盖数十平方英里的土地，掩埋了道路、村庄和农田。",
+  "copyright": "© Westend61/Adobe Stock",
+  "date": "2026 9月 24",
+  "clickUrl": "/search?q=%e8%a5%bf%e7%8f%ad%e7%89%99%e5%85%b0%e8%90%a8%e7%bd%97%e7%89%b9%e5%b2%9b&form=hpcapt&filters=HpDate:\"20260923_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ElGolfo_ZH-CN8329995759_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ElGolfo_ZH-CN8329995759_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ElGolfo_ZH-CN8329995759_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ElGolfo_ZH-CN8329995759_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ElGolfo_ZH-CN8329995759_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ElGolfo_ZH-CN8329995759_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "图中的海滩坐落在埃尔戈尔福旁边，这是岛屿西岸的一个小渔村。村庄毗邻洛斯火山自然公园，而船只、海鲜餐厅和拍岸浪涛一如往常，仿佛眼前的景色再平常不过。附近著名的绿色潟湖查尔科德洛斯克利科斯位于一座部分坍塌的火山口内，并通过地下裂隙与大海相连。湖水那令人难以置信的翡翠色部分源于藻类，让碧绿湖水、黑色沙滩与蓝色大海同框，构成一幅色彩鲜明夺目的画面。无需滤镜。埃尔戈尔福自带专属调色盘。",
+  "descriptionPara3": "",
+  "isoDate": "20260924",
+  "headline": "火山灰与浪花相遇",
+  "quickFact": "兰萨罗特岛与奇尼霍群岛共同构成一座联合国教科文组织世界地质公园，范围涵盖陆地及周边海域。",
+  "triviaId": "HPQuiz_20260924_ElGolfo",
+  "triviaData": {
+    "question": "哪个自然公园与埃尔戈尔福村毗邻？",
+    "options": [
+      {
+        "text": "蒂曼法亚",
+        "url": "/search?q=%E6%B4%9B%E6%96%AF%E6%B2%83%E5%B0%94%E5%8D%A1%E5%86%85%E6%96%AF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260924_ElGolfo%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "特伊德",
+        "url": "/search?q=%E6%B4%9B%E6%96%AF%E6%B2%83%E5%B0%94%E5%8D%A1%E5%86%85%E6%96%AF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260924_ElGolfo%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "洛斯沃尔卡内斯",
+        "url": "/search?q=%E6%B4%9B%E6%96%AF%E6%B2%83%E5%B0%94%E5%8D%A1%E5%86%85%E6%96%AF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260924_ElGolfo%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
