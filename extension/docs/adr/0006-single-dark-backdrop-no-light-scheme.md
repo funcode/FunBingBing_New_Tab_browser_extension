@@ -10,7 +10,7 @@ or near-white text accordingly.
 grey. That produced three problems inside the extension document:
 
 1. **An extension-controlled pure-black first paint** for dark-scheme users and
-   users with no preference, which PLAN9 line 51 forbids.
+   users with no preference, which PLAN9's "总体目标与日期定义" section forbids.
 2. **A grey-to-black flash** for light-scheme users, because
    `activateFallbackPlaceholder()` in `scripts/main/wallpaper.js` set
    `body.style.backgroundColor = '#000'` inline and unconditionally, and inline
@@ -27,7 +27,7 @@ is not needed.
 
 ## Browser-rendering boundary
 
-Chromium can paint a browser-controlled background before `index.html` has been
+Chromium can paint a browser-controlled background before `newtab.html` has been
 loaded. The extension cannot set or remove that pre-document frame. In current
 Chromium behavior, dark mode commonly uses a black initial frame; light mode can
 show a white initial frame before the extension document begins rendering. The
@@ -50,11 +50,11 @@ the extension-controlled first paint.
   any inline `background-color` there defeats the gradient.
 - **Do not claim that the extension can eliminate Chromium's pre-document white or
   black frame.** Test that frame separately from the extension's first paint.
-- The offline path is unaffected: `#offline-view` is opaque, `z-index: 2000`,
-  `position: fixed; inset: 0`, and `scripts/offline-detection.js` sets
-  `documentElement.dataset.networkStatus` synchronously from `<head>` before first
-  paint. An offline start never reveals the body backdrop, so this decision governs
-  the online path only.
+- The legacy offline overlay can obscure the wallpaper. That is implementation
+  context, not an exception to PLAN9's offline cached-display requirement. When
+  adapting offline detection for PLAN9, cached wallpaper must remain visible;
+  where no usable image exists and the backdrop is visible, the same gradient
+  applies. Verify both cached and empty offline startup.
 - The `data-wallpaper-fallback` attribute and `.wallpaper-fallback-active` class
   written by `wallpaper.js` are currently inert — no stylesheet targets either.
   They are retained as hooks for a future fallback treatment, not relied upon.

@@ -6,7 +6,9 @@ not take the `alarms` permission — PLAN9 states that retry times are "earliest
 permitted times, not guaranteed wakeups."
 
 Those two facts are incompatible with advertising a 7-day offline window as a
-guarantee. The batch only advances while the user is opening new tabs. A user who
+guarantee. The batch advances while the worker remains active and can resume on
+qualifying events such as new-tab requests, browser startup, network reconnect,
+or relevant setting changes. A user who
 installs the extension, browses briefly, and then goes offline keeps whatever
 portion of the 14 responses happened to complete — and has no way to tell how deep
 their cache actually is.
@@ -26,17 +28,20 @@ the number of future dates actually cached so the depth is observable, tests ass
 real behaviour rather than an aspiration, and degradation is visible instead of
 silent.
 
-Rejected: adding `alarms` (would make the guarantee real, and prompts no user
-consent, but adds a permission and background wakeups for a non-essential feature);
+Rejected: adding `alarms` (adds scheduled opportunities for work, a permission,
+and background wakeups, but still cannot guarantee completed downloads or cache
+retention; Chrome [may delay alarms and does not wake a sleeping device](https://developer.chrome.com/docs/extensions/reference/api/alarms));
 shortening the regular-context window to 2-3 dates (honest, but gives up depth for
 users who do browse enough to earn it); preview-only prefetch with lazy final
 resolution. The separate incognito policy is defined by ADR-0011.
 
 ## Consequences
 
-- No acceptance criterion may assert that 7 future dates are cached. Tests assert
-  that *whatever* is cached displays offline, and that a partially filled window
-  resumes correctly on the next event.
+- Real-session acceptance must not require seven future dates to be cached. A
+  controlled fixture with seven valid future dates, successful responses, and
+  enough worker lifetime may assert that the full batch completes. Tests also
+  assert that whatever is actually cached displays offline and that a partially
+  filled window resumes correctly on the next qualifying event.
 - The baseline image priority is target preview, target final resolution,
   historical backfill, future previews, then future final resolutions. Future
   prefetch does not start while a missing navigable historical image still awaits

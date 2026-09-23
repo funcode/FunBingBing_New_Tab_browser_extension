@@ -1,5 +1,8 @@
 # Offline guarantee outranks cache restraint for UHD users
 
+Current status: the storage-budget decision remains accepted; the original offline
+guarantee was superseded by ADR-0005. The rationale below records that history.
+
 Measured sizes for a representative daily image (2026-08-04,
 `OHR.AdorableOwlet_ZH-CN6929234033`):
 
@@ -12,7 +15,9 @@ Measured sizes for a representative daily image (2026-08-04,
 PLAN9's regular-context retention set holds 15 dates (8 current/past + 7 future)
 at two resolutions each, giving a steady state of roughly **5.4 MB** for HD
 users and **36.5 MB** for UHD users. Incognito uses the smaller future window
-defined by [ADR-0011](./0011-incognito-one-day-future-prefetch.md).
+defined by [ADR-0011](./0011-incognito-one-day-future-prefetch.md). These totals
+extrapolate one historical sample; they are not measured bounds across wallpapers
+and exclude up to two additional display-protection responses.
 
 This conflicts with the standing constraint in `AGENTS.md`: *"Carefully control
 the local storage, including the cache. Avoid local storage bloat."* We resolve
@@ -48,8 +53,3 @@ who open the most new tabs, so the cache depth accrues precisely to the users wh
 get the most value from it. Trimming future depth to 2 dates (~24.4 MB) or making
 depth follow the resolution setting were both considered and rejected on those
 grounds. The cost is unchanged and the `AGENTS.md` exception stands.
-- **Revisited after ADR-0005** downgraded the 7-day offline window from a
-  guarantee to a best-effort depth that grows with browser usage. The budget is
-  deliberately reaffirmed: users who browse enough to fill the window are exactly
-  the users who benefit from it, and trimming the window for users who don't
-  browse enough would only penalize the users who do.

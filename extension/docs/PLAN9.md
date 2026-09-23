@@ -1,4 +1,4 @@
-已参考 [api.txt](C:\Users\openpie\git\Ataraxia_New_Tab_browser_extension\extension\api.txt)、Chrome 官方的 [Incognito manifest 文档](https://developer.chrome.com/docs/extensions/reference/manifest/incognito)和[扩展存储文档](https://developer.chrome.com/docs/extensions/develop/concepts/storage-and-cookies)。字段映射、日期范围、Archive `enddate`匹配、trivia ID 改写和 Preload 元数据可信度判断以`api.txt`为依据；普通/隐身上下文的设计以 Chrome 官方文档为依据。
+已参考 [api.txt](./api.txt)、Chrome 官方的 [Incognito manifest 文档](https://developer.chrome.com/docs/extensions/reference/manifest/incognito)和[扩展存储文档](https://developer.chrome.com/docs/extensions/develop/concepts/storage-and-cookies)。字段映射、日期范围、Archive `enddate`匹配、trivia ID 改写和 Preload 元数据可信度判断以`api.txt`为依据；普通/隐身上下文的设计以 Chrome 官方文档为依据。
 
 <proposed_plan>
 # PLAN9：由 Service Worker 管理的壁纸缓存流水线
@@ -39,7 +39,7 @@ ADR-0012 记录了"preview 与最终分辨率并行下载"的受控并发方案�
 - `qotd_url`只配置缺失 Quote 的回退数据源，不改变 Bing 壁纸市场。未来支持其他市场属于独立功能，届时必须同时定义市场时区、滚动边界、存储迁移和测试；本计划不为未请求的市场配置预留抽象。
 - 接受 Archive 成功条件需要精确到完整连续八日 IOTD 窗口；不足八日或身份不匹配时保持`missing`。
 - 接受 Quote 租约必须固定上限，采用60秒并由 Worker 使用`crypto.randomUUID()`生成 token；成功同步或 Quote 已由其他流程补齐时立即清除租约。
-- 每个上下文的基础保留集合改为30个缓存键，显示状态额外保护最多2键，因此硬上限改为32键；这个键数与后文取消的32 MiB字节阈值无关。
+- 普通上下文的基础保留集合为30个缓存键，隐身上下文为18个；显示状态额外保护最多2键，因此清理后的稳定上限分别为32键和20键；这个键数与后文取消的32 MiB字节阈值无关。
 - 图片失败记录在 URL 不再受目录或显示状态引用时立即删除。该删除有意使未来重新出现的 URL 作为新任务尝试，不额外保留24小时旧失败状态。
 - 接受迁移必须可重复完成、v2 读取优先级必须绝对高于残留 v1 键，以及旧日期异步结果不得回写新日期刷新状态。
 - Trivia 重试明确为事件驱动、依赖用户活动的最终一致行为；不增加`chrome.alarms`权限或后台定时唤醒。
@@ -354,7 +354,7 @@ Quote 抓取租约使用最小持久化结构：
 - Cache Storage 是可被浏览器配额和设备存储压力清理的尽力缓存，且没有逐响应 pin 能力；离线可用深度以对应 preview 或最终响应仍命中为前提。普通上下文最多7日，隐身上下文最多1日。
 - 每次启动仍执行`cache.match()`，缺失时按正常目标优先级恢复，不能仅凭目录条目假定图片一定存在。反复配额清理会把有效离线窗口缩短为 Chrome 实际保留的子集；本计划接受该限制，不新增`unlimitedStorage`权限。
 - 目录根和条目的`updatedAt`也使用数值时间戳，分别表示最近一次目录提交和该条目最近一次成功提交；它们与显示状态的`updatedAt`都只是诊断/来源时间，不参与 last-write-wins、刷新或图片/Trivia 结果准入。显示状态只有在最终图片成功应用时，才将新的`updatedAt`与 date、imageId、url 和 preloadDataUrl 原子写入；失败、身份不匹配或过期回调被拒绝时保留旧快照及其时间戳。
-- 内置回退图片不进入 Cache Storage，也不计入上述32键。
+- 内置渐变回退背景不进入 Cache Storage，也不计入上述普通32键、隐身20键上限。
 
 ## Worker 通知
 
@@ -473,7 +473,7 @@ Node 测试覆盖：
 - 目标日期最终图片下载失败只推进自身退避级别，不阻止历史补齐；历史或未来单项失败也不阻止同阶段后续任务及最终的未来队列。
 - 模拟稳定窗口向前滚动一天时6个日期的12个键命中，只有新第7日的 preview 和最终分辨率需要网络；图片身份改变或 HD/UHD 设置变化时只返回真正失效的键。
 - image generation 变化时旧队列不再派发；活动响应返回后，URL 仍属于最新目录/显示保留集合时可以写入，不再需要时必须丢弃。持久化 refresh generation 在 Worker 重启后保持，内存 image generation 则重新建立。
-- 基础保留集合产生30键，额外显示保护后最多32键；HD/UHD fixture 字节数只记录，不设置32 MiB断言，并明确区分32个键与32 MiB。
+- 普通上下文基础保留集合最多30键，额外显示保护后最多32键；隐身上下文对应为18键和20键；HD/UHD fixture 字节数只记录，不设置32 MiB断言，并明确区分32个键与32 MiB。
 - `cachedFutureDepth`只计算从目标日期开始连续且 preview 与当前最终分辨率都命中的未来日期；不连续命中、preview-only 命中和过期诊断值都不能作为跳过预取的依据。
 - Quote 租约固定60秒并由`crypto.randomUUID()`生成 token；成功同步立即清除，过期或被替换的 token 不能提交或延长新租约。
 - Quote 纯逻辑测试注入确定性的`generateToken`；拒绝授予租约时不得调用生成器，浏览器实现由 Worker/runtime adapter 调用`globalThis.crypto.randomUUID()`，共享模块不得强制导入`node:crypto`。
@@ -491,7 +491,7 @@ Node 测试覆盖：
 
 ## Chrome 与 Playwright 验收
 
-- 当天完整缓存时，重复打开新标签页的 Bing 元数据请求数为0。
+- 在同一`targetDate`且三个元数据来源均已满足各自覆盖条件并记录为`success`时，重复打开新标签页的 Bing 元数据请求数为0；仅图片缓存命中不抑制尚未成功来源的正常重试。
 - 返回200但缺少目标日期的 IOTD/Model 响应不会锁死；目标日期稍后出现后自动更新。
 - Archive 仅在完整连续8条 IOTD 窗口下使用`enddate`补足第8天，并正确改写 SantaCatalina trivia ID；部分窗口不会误记成功。
 - 某一来源晚失败不会延长其他来源的重试时间；网络每15秒抖动不会造成绕过风暴。

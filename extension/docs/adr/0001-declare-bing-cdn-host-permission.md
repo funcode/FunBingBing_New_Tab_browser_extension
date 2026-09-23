@@ -8,8 +8,9 @@ permissive CORS headers, and the new tab page could retry a failed fetch itself.
 PLAN9 makes the service worker the sole fetcher of wallpaper images and reduces
 the page to a `cache.match()`-only consumer with no fetch fallback. Under that
 design a CORS policy change on Bing's CDN would leave the worker unable to
-populate the cache and the page with no recourse, permanently pinning every user
-to the built-in fallback wallpaper.
+populate missing cache responses. Pages could retain available cached images,
+but a cold start without usable cached content would remain on the gradient
+fallback until worker retrieval recovered.
 
 We therefore add `https://*.bing.net/` to `host_permissions`. Declared host
 permissions exempt extension fetches from CORS enforcement, so image caching no

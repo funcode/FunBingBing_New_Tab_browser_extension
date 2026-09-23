@@ -18,15 +18,13 @@ process's runtime state and would allow migration bookkeeping to blur the privac
 boundary, even though the underlying extension storage API is shared.
 
 We therefore scope migration to the regular context only. The incognito worker
-builds its v2 state from the normal refresh path on first use in each incognito
-session. This is sound because split-mode incognito storage starts empty and is
-discarded when the last incognito window closes — there is no durable browsing state
-there that should be imported.
-
-Rejected: switching to `"incognito": "spanning"` would make the single-write
-migration correct, but would persist incognito wallpaper history, quotes, and
-display state into the regular profile. That is a privacy regression and split mode
-is the deliberate choice.
+builds missing v2 state from its own normal refresh path, never from regular v1
+state. Split mode does not make `chrome.storage.local` session-only: Chrome
+[documents that local and sync storage are shared](https://developer.chrome.com/docs/extensions/reference/manifest/incognito).
+Context suffixes prevent accidental mixing but do not automatically erase records
+when the last incognito window closes. That persistence is acceptable here because
+the records contain wallpaper views, quote data, retry state, and previews rather
+than browsing history, credentials, or private page content.
 
 ## Consequences
 
@@ -40,8 +38,39 @@ is the deliberate choice.
   state, and must self-seed independently while the regular marker is in any phase.
 - Context-suffixed key names are the logical ownership boundary in shared extension
   storage and must be retained.
-- An incognito session pays a cold start — its first new tab fetches metadata and
-  images rather than inheriting the regular context's cache. It only best-effort
+- When its own catalog or image responses are absent, incognito fetches missing
+  metadata and images rather than importing regular state. Surviving local
+  records alone do not establish an image cache hit. It only best-effort
   prefetches the next future date, per ADR-0011.
-- The v1 Cache Storage copy step is likewise per-context and already hedged
-  correctly in PLAN9; no claim is made about whether Cache Storage is shared.
+- Only the regular migration copies visible v1 Cache Storage responses into its
+  v2 cache. Incognito does not inspect or import v1 cache data; no claim is made
+  about whether the browser physically shares Cache Storage.
+
+## Persistence and verification
+
+Incognito wallpaper state remains in context-suffixed `chrome.storage.local`
+keys during the active session. The design promises logical isolation and correct
+recovery. When the last incognito window is removed, the incognito worker performs
+best-effort cleanup of its catalog, quote, lease, retry, display, and Cache Storage
+state. A later incognito session therefore normally starts empty, but cleanup is not
+a prerequisite for correctness: if the worker is terminated or the browser exits
+before cleanup completes, the next session may encounter retained records. Missing
+image responses are still detected through exact `cache.match()` checks and repaired
+by the normal worker flow.
+
+Do not move these records to IndexedDB or `chrome.storage.session` solely to obtain
+session cleanup. The `windows.onRemoved` cleanup path keeps the existing storage
+model and is sufficient for this low-sensitivity wallpaper state, while preserving
+worker-restart recovery when a session remains active.
+
+Tests must verify that regular and incognito workers read and write only their own
+logical keys, that one context cannot replace the other's catalog or display state,
+and that worker restart preserves recoverable state. The incognito worker listens
+for `chrome.windows.onRemoved`, queries remaining incognito windows, and clears its
+context-specific records and Cache Storage only after the last incognito window is
+gone. Cleanup must be idempotent and serialized with initialization: closing one
+of several incognito windows preserves state; a new incognito window during cleanup
+causes initialization to win or safely rebuilds from empty state. Tests must also
+cover worker termination and browser exit before cleanup, where the next session
+may find stale records but must validate actual cache responses before displaying
+them. Regular windows and regular state remain unaffected.

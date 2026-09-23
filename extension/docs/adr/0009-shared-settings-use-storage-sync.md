@@ -34,7 +34,8 @@ state, and Cache Storage remain context-local and are not moved to sync.
 
 - Regular and incognito contexts observe the same settings without cross-context
   runtime messaging.
-- Settings also follow the user's Chrome sync profile across devices; this is the
-  accepted tradeoff for reliable sharing between split contexts.
+- When Chrome sync is enabled, settings can also follow the user's sync profile
+  across devices; this is the accepted tradeoff for sharing between split
+  contexts. Cross-device sync is not a prerequisite for sharing within a profile.
 - No new manifest permission is required because the extension already declares
   the `storage` permission.

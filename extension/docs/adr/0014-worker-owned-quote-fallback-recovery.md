@@ -12,6 +12,15 @@ The page's in-memory configuration can also lag behind values committed by
 another tab. Quote recovery therefore needs to use the committed catalog and
 quote cache as its input.
 
+## Scope
+
+The concrete keys and helpers below describe quote recovery in the legacy
+implementation. They are not additional runtime write paths for PLAN9. During
+v2 migration, preserve the recovery behavior using context-specific catalog and
+quote state, the worker's retry policy, and the quote lease contract. Legacy keys
+remain migration inputs only; blank-caption recovery must not bypass admission
+or restore a second source of runtime state.
+
 ## Decision
 
 - The page owns a standalone `requestQuoteSyncForCachedCatalog()` coordinator.

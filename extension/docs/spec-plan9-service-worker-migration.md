@@ -83,7 +83,7 @@ v1-to-v2 migration; incognito initializes independently.
 
 ### Authority and market date
 
-- Active ADRs are authoritative when PLAN9 and an ADR disagree. The active set is ADR-0001 through ADR-0006 and ADR-0008 through ADR-0010. ADR numbering is not compacted after removal of the superseded ADR-0007.
+- Active ADRs are authoritative when PLAN9 and an ADR disagree. The active set is ADR-0001 through ADR-0006 and ADR-0008 through ADR-0014. ADR-0012 records a deferred concurrency option, not permission to replace the serial scheduler. ADR-0014 describes quote recovery in the legacy implementation; its ownership and recovery behavior must be preserved using the v2 state and lease contracts rather than retaining legacy storage keys after migration. ADR numbering is not compacted after removal of the superseded ADR-0007.
 - The wallpaper market remains fixed to `zh-CN`, and the target date is calculated at the Asia/Shanghai market boundary.
 - A wallpaper date is a Bing publication identity, not the user's local calendar date. Display formatting does not perform timezone conversion.
 
@@ -229,15 +229,17 @@ documented ordering and cooldown boundaries.
 - Test image-cache requests reject arbitrary dates, resolutions, or URLs and accept only canonical URLs derived from the context catalog.
 - Test image request ordering and cache effects across target, history, future, urgent navigation, escalating backoff, reconnect bypass, and resolution changes.
 - Test worker termination during an unresolved target, historical, and future image fetch: no interrupted attempt becomes a cache success, the next event retries the missing URL, and no same-URL requests overlap across the termination boundary.
-- Test that the worker never writes display state and that page acknowledgement is required for migration completion.
+- Test that the worker never writes display state during normal operation and that page acknowledgement is required for migration completion. Lifecycle cleanup may remove the incognito display-state key only after the last incognito window is gone.
 - Test quote lease grant, quote submission, remote fallback, and update notifications through message contracts.
 - Test broadcasts with no listening pages and confirm there are no unhandled message failures.
 - Test regular and incognito worker instances against separate logical state while reading the same sync settings; incognito must not enqueue future dates beyond `targetDate + 1`.
+- Test `windows.onRemoved` cleanup with two incognito windows: removing one preserves state, removing the last clears only incognito catalog, quote, lease, retry, display, and Cache Storage state, and regular state remains unchanged.
+- Test cleanup idempotence and serialization with initialization: a new incognito window opened during cleanup either cancels deletion before it begins or safely rebuilds from empty state; no regular key or cache is removed.
 
 ### Chrome and Playwright seam
 
 - Load the actual Manifest V3 extension rather than a page-only test harness.
-- Warm cache: opening a new tab shows the current wallpaper without Bing metadata requests.
+- Warm cache: opening a new tab shows the selected cached wallpaper without waiting for the network. Assert zero Bing metadata requests only when all three source coverage checks have succeeded for the same target date; cached image responses alone must not suppress eligible retries of missing or failed metadata sources.
 - Empty boot preview with cached final and preview: the main initialization applies the final immediately and repairs the matching preview data URL without depending on an earlier cache notification; a later new tab can use the repaired boot preview.
 - Cold online start: the extension-controlled Gradient appears, followed by one guarded image transition.
 - Record dark-mode and light-mode new-tab startup from before document rendering; classify Chromium's pre-document frame separately from extension-controlled rendering.
@@ -251,8 +253,8 @@ documented ordering and cooldown boundaries.
 - Stale trivia: delay a trivia response, replace the catalog entry's `triviaId`, and verify the late success or failure cannot mutate the replacement entry. Repeat with generation rollover but an unchanged `triviaId` and verify the result remains admissible.
 - Concurrency: observe at most one active wallpaper image fetch per context, including navigation during background work.
 - Multiple regular tabs: while Tab1 is still loading navigation from A to B, Tab2 may initialize from committed state A and need not follow Tab1's later commit. A tab opened after B commits initializes from B's exact date, identity, and final URL, allowing only B's matching startup preview. If an existing tab navigates away before B preview repair, its stale B callback is rejected; a later tab repairs B from Cache Storage only if B is still the global snapshot, and never applies B's preview to a subsequently committed C snapshot. Concurrent commits remain atomic, and last-write-wins affects future readers rather than forcing live convergence.
-- Regular plus incognito: verify separate catalogs, caches, quotes, and display states, while both contexts observe the same sync-backed settings; verify that incognito retains at most one future date and two future responses.
-- Migration: cover existing sync wins, local fallback, default fallback, sync write failure, page-owned display acknowledgement, restart at every phase, and final legacy cleanup. With the regular marker separately left in `writing`, `verified`, and `complete`, start incognito and verify no marker read/wait/mutation, no v1 or regular-v2 access, and successful self-seeding from its allowlist.
+- Regular plus incognito: verify separate catalogs, caches, quotes, and display states, while both contexts observe the same sync-backed settings; verify that incognito retains at most one future date and two future responses. Close one of two incognito windows and confirm state remains; close the last and confirm best-effort cleanup removes only incognito state.
+- Migration: cover existing sync wins, local fallback, default fallback, sync write failure, page-owned display acknowledgement, restart at every phase, and final legacy cleanup. Cleanup tests must also cover worker termination or browser exit before `windows.onRemoved` cleanup and prove that the next session validates actual Cache Storage before display. With the regular marker separately left in `writing`, `verified`, and `complete`, start incognito and verify no marker read/wait/mutation, no v1 or regular-v2 access, and successful self-seeding from its allowlist.
 - Cache eviction simulation: remove retained responses and verify the next event repairs actual misses rather than trusting catalog entries or diagnostic depth.
 - Measure HD and UHD retained response bytes for both context policies without a pass/fail byte threshold.
 
@@ -287,5 +289,5 @@ cannot expose the required behavior directly.
 ---
 
 **Document status**: Ready for implementation  
-**Revision**: 14  
-**Date**: 2026-09-12
+**Revision**: 15  
+**Date**: 2026-09-22

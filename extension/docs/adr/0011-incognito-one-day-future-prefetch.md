@@ -1,9 +1,11 @@
 # Incognito future prefetch is limited to one day
 
-Incognito sessions are temporary. Multiple incognito tabs and windows can share
-the active session's temporary cache, but that state disappears when the last
-incognito window closes. Rebuilding a full seven-day future image window on every
-short-lived incognito session spends bandwidth on content the user may never see.
+Incognito sessions are often short-lived. Multiple incognito tabs and windows
+can use the context's image cache, but PLAN9 does not rely on a particular Cache
+Storage partition lifetime. The context-suffixed `chrome.storage.local` records
+are not automatically session-only; see ADR-0004's unresolved lifecycle requirement.
+Prefetching a full seven-day future window for a short-lived session spends
+bandwidth on content the user may never see.
 
 ## Decision
 
@@ -23,7 +25,9 @@ short-lived incognito session spends bandwidth on content the user may never see
 - The base image retention set is context-specific: regular uses 30 base keys
   (target + seven past + seven future, two responses each), while incognito uses
   18 base keys (target + seven past + one future, two responses each). Display
-  protection may add up to two keys, making hard maxima 32 and 20 respectively.
+  protection may add up to two keys, making stable maxima 32 and 20 respectively
+  after cleanup before a new future batch. Resolution changes may briefly overlap
+  old responses with the new set, as specified in PLAN9.
 
 ## Consequences
 
@@ -34,5 +38,6 @@ short-lived incognito session spends bandwidth on content the user may never see
   and storage cost.
 - Tests must assert the per-context future limit and must not treat an incognito
   depth of seven as a requirement.
-- A user who keeps an incognito session open can still complete its one-date
-  future batch, but closing the last incognito window discards that progress.
+- A user who keeps an incognito session open may complete its one-date future
+  batch. On a later startup, actual Cache Storage matches determine available
+  responses; retained local diagnostics must not be treated as cached images.

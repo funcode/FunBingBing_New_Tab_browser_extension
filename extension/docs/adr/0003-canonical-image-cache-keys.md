@@ -22,6 +22,9 @@ The cache is bounded by key count, not byte size. The regular PLAN9 retention
 policy has a 30-key base (15 dates × 2 resolutions) plus at most 2
 display-transition keys, so its hard limit is **32 keys**. Incognito has the
 20-key hard limit defined by [ADR-0011](./0011-incognito-one-day-future-prefetch.md).
+These are stable bounds after cleanup before a new future batch. Resolution
+changes may temporarily overlap old responses with the new retention set;
+unreferenced keys must be removed at that cleanup point.
 
 Verified against the live CDN (2026-08-04): `id` alone, `id&pid=hp`, and
 `id&rf=…&pid=hp` all return HTTP 200 `image/jpeg` with a byte-identical 338135-byte
@@ -40,5 +43,8 @@ nothing and buys cross-source key convergence.
   `/OHR\.[^_]+/` pattern truncates them and must not be used.
 - Model's `.webp` suffix is used for identity extraction only and never becomes a
   cache key, or the same image would miss the next day when IOTD spells it `.jpg`.
-- The CDN sends `Cache-Control: public, max-age=691200` (8 days), which exceeds the
-  7-day retention window, so HTTP freshness does not conflict with our retention.
+- The historical CDN sample returned `Cache-Control: public, max-age=691200`
+  (8 days). That observation does not define the application retention policy: a
+  prefetched response can remain referenced after its date becomes historical.
+  Retention and cleanup follow the latest catalog and display-protection set,
+  not an assumed seven-day lifetime for each response.
