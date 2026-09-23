@@ -1,5 +1,5 @@
 (function (root, factory) {
-  const api = factory(typeof module === 'object' && module.exports ? require('./pure.js') : root.PLAN9Pure);
+  const api = factory(typeof module === 'object' && module.exports ? require('./helpers.js') : root.PLAN9Pure);
   if (typeof module === 'object' && module.exports) module.exports = api;
   else root.PLAN9Catalog = api;
 })(globalThis, function (P) {

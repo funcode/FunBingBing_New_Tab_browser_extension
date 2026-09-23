@@ -1,7 +1,7 @@
 'use strict';
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const P = require('../scripts/plan9/pure.js');
+const P = require('../scripts/plan9/helpers.js');
 const id = 'OHR.Multi_part_Name_ZH-CN1234567890';
 const entry = (date, imageId = id) => ({ date, imageId });
 

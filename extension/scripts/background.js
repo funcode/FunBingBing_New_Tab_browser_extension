@@ -1,5 +1,5 @@
 
-importScripts('plan9/pure.js', 'plan9/catalog.js');
+importScripts('plan9/helpers.js', 'plan9/catalog.js');
 
 const catalogWorker = PLAN9Catalog.createCatalogWorker({ chrome, fetch: (...args) => fetch(...args) });
 catalogWorker.install(globalThis);

@@ -2,7 +2,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createCatalogWorker } = require('../scripts/plan9/catalog.js');
-const P = require('../scripts/plan9/pure.js');
+const P = require('../scripts/plan9/helpers.js');
 const target = '20260923';
 const imageId = (date) => 'OHR.Image_' + date;
 const iotd = (date) => ({ isoDate: date, title: 'IOTD ' + date, imageUrls: { landscape: { highDef: '/th?id=' + imageId(date) + '_1920x1080.jpg' } } });
