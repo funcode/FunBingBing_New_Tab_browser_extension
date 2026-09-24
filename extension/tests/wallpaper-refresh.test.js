@@ -166,21 +166,18 @@ test('Archive validates against all eight committed IOTD dates and invalidates a
 
 
 
-test('startup migrates suffixed v2 state into unsuffixed names and preserves current data', async () => {
-  const oldCatalog = { version: 2, updatedAt: 1, refreshState: { date: target, generation: 1, cachedFutureDepth: 0, sources: {}, imageFailures: {} }, entries: { [target]: { date: target, imageId: imageId(target), metadataStage: 'iotd' } } };
+test('startup imports production v1 state into unsuffixed names and preserves legacy inputs', async () => {
   const f = fixture(undefined, {
-    bing_wallpaper_catalog_v2_regular: oldCatalog,
-    wallpaper_display_state_v2_regular: { date: target, imageId: imageId(target), url: P.canonicalImageUrl(imageId(target), '_1920x1080.jpg'), preloadDataUrl: '', updatedAt: 1 },
-    cache_quote_state_v2_regular: { quotes: { [target]: { text: 'Old quote' } } },
-    wallpaper_migration_v2_state_regular: { phase: 'complete' }
+    bing_images: [{ isoDate: target, urlbase: imageId(target), title: 'Legacy title' }],
+    cache_quote_state: { quotes: { [target]: { text: 'Old quote' } } },
+    wallpaper_date: target, wallpaper_url: P.canonicalImageUrl(imageId(target), '_1920x1080.jpg')
   });
   await f.worker.refresh();
   assert.equal(f.state.bing_wallpaper_catalog_v2.version, 2);
   assert.equal(f.state.bing_wallpaper_catalog_v2.entries[target].imageId, imageId(target));
-  assert.equal(f.state.wallpaper_display_state_v2.imageId, imageId(target));
   assert.equal(f.state.cache_quote_state_v2.quotes[target].text, 'Old quote');
-  assert.equal(f.state.bing_wallpaper_catalog_v2_regular, undefined);
-  assert.equal(f.state.wallpaper_migration_v2_state_regular, undefined);
+  assert.ok(f.state.bing_images);
+  assert.ok(f.state.cache_quote_state);
 });
 
 test('metadata refresh completes without waiting for trivia and stale trivia results cannot mutate a replaced entry', async () => {

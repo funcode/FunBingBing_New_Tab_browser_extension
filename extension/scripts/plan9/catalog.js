@@ -25,12 +25,16 @@
     cache: 'funbingbing-wallpaper-cache-v2'
   };
   const legacyKeys = {
-    catalog: 'bing_wallpaper_catalog_v2_regular',
-    display: 'wallpaper_display_state_v2_regular',
-    quotes: 'cache_quote_state_v2_regular',
-    quoteLease: 'quote_scrape_state_v2_regular',
-    migration: 'wallpaper_migration_v2_state_regular',
-    cache: 'funbingbing-wallpaper-cache-v2-regular'
+    catalog: 'bing_images',
+    quotes: 'cache_quote_state',
+    date: 'wallpaper_date',
+    index: 'wallpaper_idx',
+    url: 'wallpaper_url',
+    preload: 'wallpaper_preload_data_url',
+    modelPreload: 'bing_model_preload_wallpaper_urls',
+    quickFacts: 'cache_quick_facts',
+    fetchLock: 'wallpaper_fetch_lock',
+    cache: 'funbingbing-wallpaper-cache-v1'
   };
 
   function makeEntry(date, image, metadataStage, fields) {
@@ -94,16 +98,30 @@
       return result;
     };
     const readCatalog = async () => (await chrome.storage.local.get(keys.catalog))[keys.catalog];
+    function legacyCatalog(images) {
+      const entries = {};
+      for (const image of Array.isArray(images) ? images.slice(0, 8) : []) {
+        const date = image?.isoDate || image?.date;
+        const entry = makeEntry(date, image?.urlbase || image?.url || image?.imageId, 'legacy', {
+          title: image?.title, headline: image?.headline, description: image?.description,
+          descriptionPara2: image?.descriptionPara2, descriptionPara3: image?.descriptionPara3,
+          copyright: image?.copyright, clickUrl: image?.clickUrl, backstageUrl: image?.backstageUrl,
+          quickFact: image?.quickFact, triviaId: P.normalizeTriviaId(image?.triviaId || image?.quiz, date)
+        });
+        if (entry) entries[entry.date] = entry;
+      }
+      return { version: 2, updatedAt: 0, refreshState: { date: '', generation: 0, cachedFutureDepth: 0, sources: sourceStates(), imageFailures: {} }, entries };
+    }
     async function migrateLegacyState() {
       if (migrationTask) return migrationTask;
       migrationTask = serialized(async () => {
         const names = [keys.catalog, keys.display, keys.quotes, keys.quoteLease, keys.migration,
-          legacyKeys.catalog, legacyKeys.display, legacyKeys.quotes, legacyKeys.quoteLease, legacyKeys.migration];
+          legacyKeys.catalog, legacyKeys.quotes, legacyKeys.date, legacyKeys.index, legacyKeys.url, legacyKeys.preload,
+          legacyKeys.modelPreload, legacyKeys.quickFacts, legacyKeys.fetchLock];
         const state = await chrome.storage.local.get(names);
         const updates = {};
         const currentCatalog = state[keys.catalog];
-        if ((!currentCatalog || currentCatalog.version !== 2) && state[legacyKeys.catalog]?.version === 2) updates[keys.catalog] = state[legacyKeys.catalog];
-        if (!state[keys.display] && state[legacyKeys.display]) updates[keys.display] = state[legacyKeys.display];
+        if ((!currentCatalog || currentCatalog.version !== 2) && Array.isArray(state[legacyKeys.catalog])) updates[keys.catalog] = legacyCatalog(state[legacyKeys.catalog]);
         const currentQuotes = state[keys.quotes];
         const oldQuotes = state[legacyKeys.quotes];
         if (oldQuotes && typeof oldQuotes === 'object') {
@@ -111,8 +129,6 @@
           if (!currentQuotes || JSON.stringify(merged) !== JSON.stringify(currentQuotes)) updates[keys.quotes] = merged;
         }
         if (Object.keys(updates).length) await chrome.storage.local.set(updates);
-        const remove = [legacyKeys.catalog, legacyKeys.display, legacyKeys.quotes, legacyKeys.quoteLease, legacyKeys.migration].filter(name => state[name] !== undefined);
-        if (remove.length && chrome.storage.local.remove) await chrome.storage.local.remove(remove);
         if (caches?.open) {
           const oldCache = await caches.open(legacyKeys.cache);
           const newCache = await caches.open(keys.cache);
@@ -121,7 +137,6 @@
             const response = await oldCache.match(request);
             if (response) await newCache.put(request, response);
           }
-          if (caches.delete) await caches.delete(legacyKeys.cache);
         }
         return true;
       });
