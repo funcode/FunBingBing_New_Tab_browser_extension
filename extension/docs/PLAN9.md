@@ -9,7 +9,7 @@ ADR-0012 记录了"preview 与最终分辨率并行下载"的受控并发方案�
 
 ## 产品范围（2026-09-24）
 
-按 [ADR-0015](./adr/0015-regular-only-new-tab.md)，Ataraxia 只支持普通浏览 New Tab。取消隐身运行时、独立预取策略和最后窗口清理要求；不为此引入 IndexedDB 或 session 存储。保留普通数据名称和 sync 设置。此处是目标设计；当前代码移除工作由 #116、#117、#122 跟进，#123 验证。历史评审中的隐身要求已被该决策替代。
+按 [ADR-0015](./adr/0015-regular-only-new-tab.md)，Ataraxia 只支持普通浏览 New Tab。取消隐身运行时、独立预取策略和最后窗口清理要求；不为此引入 IndexedDB 或 session 存储。将普通运行时名称改为无上下文后缀；保留有效旧数据并继续使用 sync 设置。此处是目标设计；当前代码移除工作由 #116、#117、#122 跟进，#123 验证。历史评审中的隐身要求已被该决策替代。
 
 ## 术语约定
 
@@ -26,7 +26,7 @@ ADR-0012 记录了"preview 与最终分辨率并行下载"的受控并发方案�
 - `refreshWallpaperCatalog`的元数据刷新 Promise 不包含 trivia 或图片补齐；新日期刷新不需要等待最多14张未来图片，也不等待历史回填完成。
 - 接受 HD/UHD 快速切换可能重排待处理任务。相同规范 URL 的活动或排队任务只保留一个；旧队列停止继续派发，但已返回响应是否可写入由“该 URL 是否仍属于最新保留集合”决定，不能只因 generation 改变就无条件丢弃。
 - 不接受“旧 generation 的有效响应会导致新队列重复下载同一规范 URL”为实际竞态：同一任务在`cache.put()`或失败状态写入完成前持续占用任务 Map，新队列不能创建重复活动/待办；随后派发又会重新执行`cache.match()`。接受原评审指出的文档与测试缺口，明确任务 Map 生命周期及派发前双重检查，并增加旧 generation 响应成功写入后的单次网络请求回归测试。
-- 迁移标记保留`wallpaper_migration_v2_state_regular`；按 ADR-0015 取消隐身初始化、自我播种和迁移隔离要求。
+- 迁移标记使用`wallpaper_migration_v2_state`；有效旧普通数据按 ADR-0015 幂等搬迁，取消隐身初始化、自我播种和迁移隔离要求。
 - 不接受“页面本地 generation token 无法跨标签页协调，因此会永久丢失 preview”作为关键正确性问题。跨标签页不要求实时收敛；被导航后的页面拒绝旧通知是为了保护本页当前选择，不代表 Cache Storage 中的 preview 丢失。空`preloadDataUrl`仍是可恢复快照，后续新标签页初始化会独立执行匹配 preview 的修复。增加该跨标签页时序的回归测试，明确通知只是修复机会而非唯一来源。
 - 接受配额压力会缩短实际离线窗口，但纠正“其他扩展共享同一 origin 配额”的表述：不同扩展具有不同 origin；仍可能受本扩展自身用量和浏览器/设备整体存储压力影响。Cache API 没有逐响应 pin，本计划不新增`unlimitedStorage`权限；普通上下文保留最多7日的 best-effort 未来深度。
 - 不采用未经测量的20/35 MiB软告警阈值。实施验收先分别记录固定 fixture 与实机样本的 HD/UHD 字节数；阈值若有必要，应基于测量分布另行决定，不能在计划中猜测。
@@ -71,23 +71,23 @@ ADR-0012 记录了"preview 与最终分辨率并行下载"的受控并发方案�
 
 ## 上下文、存储键与所有权
 
-仅支持`regular`。Manifest 应设置`"incognito": "not_allowed"`，不再根据`chrome.extension.inIncognitoContext`建立第二套运行时。现有`_regular`键和`-regular`缓存名保持兼容。
+仅支持`regular`。Manifest 应设置`"incognito": "not_allowed"`，不再根据`chrome.extension.inIncognitoContext`建立第二套运行时。普通运行时使用无上下文后缀的物理名称。
 
 逻辑状态使用以下物理名称：
 
-- 目录：`bing_wallpaper_catalog_v2_regular`。
-- 显示状态：`wallpaper_display_state_v2_regular`。
-- Quote 缓存：`cache_quote_state_v2_regular`。
-- Quote 抓取租约：`quote_scrape_state_v2_regular`。
-- Cache Storage：`funbingbing-wallpaper-cache-v2-regular`。
-- 迁移标记：`wallpaper_migration_v2_state_regular`，只记录迁移版本、阶段和时间，不承载运行时目录数据。
+- 目录：`bing_wallpaper_catalog_v2`。
+- 显示状态：`wallpaper_display_state_v2`。
+- Quote 缓存：`cache_quote_state_v2`。
+- Quote 抓取租约：`quote_scrape_state_v2`。
+- Cache Storage：`funbingbing-wallpaper-cache-v2`。
+- 迁移标记：`wallpaper_migration_v2_state`，只记录迁移版本、阶段和时间，不承载运行时目录数据。
 
-保留既有普通上下文物理名称以避免无必要的重命名或数据迁移；不再派生隐身键和缓存名。
+旧普通上下文带后缀的 v2 数据与缓存是迁移输入；验证新名称下的数据后再清理旧名称。不再派生隐身键和缓存名。
 
 所有权规则：
 
 - 普通上下文的 Service Worker 独占写入该上下文的目录、图片 Cache Storage、Quote 缓存和 Quote 抓取租约。
-- 页面只写当前上下文的`wallpaper_display_state_v2_regular`。
+- 页面只写当前上下文的`wallpaper_display_state_v2`。
 - 页面读取图片时只允许`cache.match()`；缓存未命中时不得调用`fetch()`或`cache.put()`。
 - 页面可以抓取和解析 quote HTML，但只能把解析结果发送给 Worker，由 Worker 持久化 Quote 缓存。
 - `enable_uhd_wallpaper`、`qotd_url`和其他用户设置继续存放在`chrome.storage.sync`，供普通页面和 Worker 读取；运行时壁纸、显示、Quote 和缓存数据不进入 sync。
@@ -181,7 +181,7 @@ ADR-0012 记录了"preview 与最终分辨率并行下载"的受控并发方案�
 }
 ```
 
-- `wallpaper_display_state_v2_regular`是普通上下文全局的“最后一次成功应用的最终壁纸”快照，不是待处理导航状态，也不是要求所有已打开标签页实时同步的状态。新标签页以读取时最新已提交的快照作为初始选择。
+- `wallpaper_display_state_v2`是普通上下文全局的“最后一次成功应用的最终壁纸”快照，不是待处理导航状态，也不是要求所有已打开标签页实时同步的状态。新标签页以读取时最新已提交的快照作为初始选择。
 - 多个标签页都可以在成功应用最终图片后原子写入该对象；跨标签页采用 last-write-wins 语义决定后续读取者的起点，不增加协调锁或强制现有标签页跟随其他标签页的后续写入。每个标签页的 generation token 只负责拒绝本标签页内的过期回调。
 - `preloadDataUrl`属于显示状态，由页面从匹配的 Cache Storage preview 读取、生成并与`date`、`imageId`和最终 URL一起写入。明确写空是内部一致且可恢复的有效值；原子性要求非空 data URL 必须匹配同一快照身份，不要求每次提交都已有 preview。Worker 不写`wallpaper_preload_data_url`或 v2 显示状态。
 
@@ -404,20 +404,20 @@ Quote 抓取租约使用最小持久化结构：
 
 ## 迁移与清理
 
-升级时由普通 Worker 启动幂等迁移。迁移标记保留`wallpaper_migration_v2_state_regular`键和`writing | verified | complete`三个阶段，每次启动均验证实际 v2 数据，不能只信任阶段字符串。
+升级时由普通 Worker 启动幂等迁移。迁移标记使用`wallpaper_migration_v2_state`键和`writing | verified | complete`三个阶段，每次启动均验证实际 v2 数据，不能只信任阶段字符串。若存在旧普通上下文带后缀的 v2 状态或缓存，先搬迁有效数据：新键有效时优先使用新键，缺失字段按身份与来源优先级补入；页面负责把有效旧显示快照写入新显示键；Worker 不复制旧租约。新标记从`writing`开始，根据实际目录、Quote、图片响应与显示状态验证推进，不能直接沿用旧标记阶段。
 
 - 从旧`bing_images`导入最多8个日期和身份有效的条目，并标记为`legacy`。
 - 对旧相对图片 URL 固定使用`https://ts1.tc.mm.bing.net`补全，不因 Model 当前返回的 origin 不同而重写旧缓存键。
 - 旧条目存在有效`triviaData`时设为`complete`，否则设为`missing`。
 - 保留旧`wallpaper_url`的身份和`wallpaper_date`作为首个页面的迁移输入；页面通过规范化 URL 在导入目录中查找实际显示条目，只有 URL 无法匹配时才考虑日期，并再次验证身份。旧`wallpaper_preload_data_url`没有可独立验证的 imageId，迁移时不复制到 v2；页面初始设为空并从匹配的 v2 preview 缓存重新生成，期间由内置回退图承接。
 - 不迁移`wallpaper_idx`。
-- 普通 Worker 将旧`cache_quote_state`复制到普通 Quote 缓存，再独立裁剪和更新。
+- 普通 Worker 仅用旧`cache_quote_state`补齐新 Quote 缓存中缺失的有效数据，再独立裁剪和更新。
 - Worker 写入目录和 Quote 状态，随后 fresh-read 验证版本和身份；Worker 不写 v2 显示状态。
 - 普通 Worker 将 v1 `chrome.storage.local` 中的共享设置迁移到`chrome.storage.sync`：`search_engine_list`、`current_search_engine`、`display_search_box`、`show_top_sites`、`show_clock`、`show_quote`、`enable_uhd_wallpaper`和`qotd_url`。已有有效 sync 值优先保留；否则复制有效 local 值或对应默认值。只有目录、Quote 状态和 sync 设置都 fresh-read 验证成功后才推进到`verified`。sync 失败时保留 local 值并在下一次迁移尝试中重试；验证成功后才删除这些旧 local 设置。
 - 首个页面读取`verified`目录和仍保留的 legacy 显示输入，匹配有效的 date、imageId 和 URL 后原子写入普通上下文 v2 显示状态；无法匹配时写入空显示状态并使用渐变回退图。页面发送`migrationDisplayStateReady`后，普通 Worker fresh-read 显示状态，确认迁移输入已被页面消费，再推进到`complete`并删除 legacy 键；marker 为`verified`时首个有效确认完成交接，之后在`complete`阶段收到的重复或迟到确认都是 no-op。
 - 所有运行时读取遵守绝对优先级：只要当前上下文存在通过验证的 v2 目录和显示状态，就永远不回退读取 v1 键，即使 Worker 在删除旧键前被终止。
 - 每次普通 Worker 启动都执行轻量收尾：v2 有效但标记未完成时继续验证并推进；标记已完成但旧键仍存在时继续删除，直到 fresh-read 确认旧键消失；v2 部分写入或验证失败时从可用 legacy 数据幂等重建。若已存在部分 v2 目录，必须先 fresh-read 并验证，保留所有有效 v2 条目及字段，只把缺失的 legacy 日期或字段按既有身份与来源优先级合并进去，不得用新的 legacy 导入替换有效 v2 数据；仅无效或冲突的 v2 条目按既有校验规则处理。
-- 首次使用 v2 Cache Storage 时，普通 Worker 将可见的`funbingbing-wallpaper-cache-v1`响应按规范 URL 复制到`funbingbing-wallpaper-cache-v2-regular`；缺失响应走正常下载流程。
+- 首次使用 v2 Cache Storage 时，普通 Worker 将旧普通 v2 缓存中的有效保留响应、再将可见的`funbingbing-wallpaper-cache-v1`响应按规范 URL 复制到`funbingbing-wallpaper-cache-v2`；缺失响应走正常下载流程。旧 v2 缓存只有在新缓存响应完成验证后才能删除。
 - 普通上下文完成 v1 cache 复制后删除其可见的 v1 cache。
 - 新目录和显示状态验证成功后，运行时立即改用 v2 键。收尾阶段删除旧`bing_images`、`bing_model_preload_wallpaper_urls`、`cache_quick_facts`、`wallpaper_fetch_lock`、`wallpaper_idx`及其他旧壁纸显示键。
 - 如果迁移无法建立有效显示状态，保留内置回退图并由正常刷新获取首张壁纸。
@@ -427,7 +427,7 @@ Quote 抓取租约使用最小持久化结构：
 将纯逻辑放入不在模块加载阶段访问`chrome`、DOM 或 Cache Storage 的独立文件。至少包含：
 
 - `getZhCnTargetDate`
-- `getWallpaperContextId`和上下文键名生成
+- 无后缀的运行时键名选择
 - `normalizeImageId`及 URL 规范化
 - 来源覆盖范围验证和按来源重试判断
 - 刷新 generation 与过期任务提交判断
@@ -440,7 +440,7 @@ Quote 抓取租约使用最小持久化结构：
 - 同 identity/不同 identity 下显示状态的 data URL 保留规则
 - 根据显示 date 和实时条目数组推导导航索引
 - v2 迁移校验和幂等收尾判断
-- 迁移标记保留`wallpaper_migration_v2_state_regular`，验证`writing`、`verified`、`complete`各阶段的幂等恢复。
+- 迁移标记使用`wallpaper_migration_v2_state`，验证`writing`、`verified`、`complete`各阶段的幂等恢复，以及旧普通 v2 键和缓存名向无后缀名称搬迁时的中断恢复。
 - 跨标签页 preview 修复：Tab1 提交带空 preview 的 B，Tab2 在 B 修复通知前导航到 C 并拒绝 B 回调；验证该拒绝不写入 C，且在全局仍为 B 时后续新标签页可从 Cache Storage 修复 B；若 C 已提交，则不得把 B preview 写入 C
 
 使用 Node 内置`node:test`和`assert`，不增加测试依赖。测试文件直接运行，例如：
@@ -466,7 +466,7 @@ Node 测试覆盖：
 - Archive trivia ID 覆盖缺失、null、非字符串、空值、合法格式、错误格式、多个日期片段和无效日期；错误格式清空为 missing、记录诊断且不得启动 Trivia。
 - 迁移 URL 使用固定 origin，缓存键与旧 URL 完全一致。
 - Model 样本的`_1920x1080.webp`能结构化规范为`_1920x1080.jpg`，并与同一`imageId`次日 IOTD 生成的 HD 键完全一致；preview 和 UHD 后缀同样稳定。包含多个下划线的完整 identity 不能被截断，未知末尾尺寸必须拒绝而不是猜测替换。
-- 普通目录、显示、Quote、租约和缓存继续使用既有`_regular`/`-regular`名称；不再生成隐身运行时。
+- 普通目录、显示、Quote、租约、迁移标记和缓存使用无上下文后缀名称；旧普通 v2 数据只用于幂等搬迁，不再生成隐身运行时。
 - `ensureWallpaperCached`拒绝非法日期、分辨率和非目录 URL，并与预取共享去重和退避状态。活动任务不可抢断；紧急新 URL 插到待处理队首；同一 URL 已排队时只提升原任务；同一 URL 已活动时复用 Promise；全部场景中普通上下文的最大图片 fetch 并发仍为1。
 - 导航在0至8个条目及日期滚动后始终由 date 正确定位；0条时按钮禁用且命令 no-op。
 - Bing 内容日期只按字符串格式化为`YYYY/MM/DD`，在不同时区下结果不变；本地时钟行为不受影响。

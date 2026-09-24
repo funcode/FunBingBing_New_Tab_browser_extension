@@ -8,10 +8,10 @@ Chrome [does not allow extensions to override New Tab in incognito windows](http
 
 - Set the manifest to `"incognito": "not_allowed"`. Removing the property alone would not explicitly disallow incognito operation.
 - Remove incognito context routing, worker/catalog/quote/lease/display/cache initialization, the one-day future window, and last-window cleanup handlers and tests. Do not introduce IndexedDB or chrome.storage.session for the discontinued mode.
-- Keep all existing `_regular` keys and the `funbingbing-wallpaper-cache-v2-regular` cache name. This scope change does not require renaming regular state or resetting valid data.
+- Use unsuffixed v2 local keys (`bing_wallpaper_catalog_v2`, `wallpaper_display_state_v2`, `cache_quote_state_v2`, `quote_scrape_state_v2`, `wallpaper_migration_v2_state`) and the `funbingbing-wallpaper-cache-v2` Cache Storage name. The old `_regular` keys and `funbingbing-wallpaper-cache-v2-regular` cache are migration inputs, not active names.
 - Keep product settings in `chrome.storage.sync` (ADR-0009), with unchanged migration precedence and failure recovery. Regular pages and the worker still share settings.
 - Retain seven best-effort future dates, 30 base cache keys plus at most two display-protection keys (32 maximum), and diagnostic-only `cachedFutureDepth` in 0..7.
-- No new startup reads or imports of retired private state are required. Residual test/development private keys are not a runtime input and must never be migrated into the regular catalog. A data-removal migration is not part of this decision.
+- Migrate valid suffixed regular v2 state to the unsuffixed names idempotently before deleting old names; valid unsuffixed state takes precedence, and interrupted copies must resume without discarding valid catalog entries, display state, quote state, or retained image responses. Do not carry an old quote lease into the new name; a fresh grant is required. Preserve sync settings and the v1-to-v2 recovery rules. Retired private state is never an input to the regular catalog.
 - Test actual regular New Tab behavior and verify an incognito New Tab remains Chrome's page with no Ataraxia incognito worker or jobs. Opening an extension URL manually is not an incognito New Tab acceptance test.
 
 ## Supersession and implementation

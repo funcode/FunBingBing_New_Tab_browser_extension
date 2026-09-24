@@ -41,7 +41,8 @@ Chrome sync storage for regular pages and the worker.
 [does not allow New Tab overrides in incognito windows](https://developer.chrome.com/docs/extensions/develop/ui/override-chrome-pages#incognito).
 The target manifest is `"incognito": "not_allowed"`. Remove incognito runtime routing,
 state/queue creation, one-day prefetch, and last-window cleanup. Do not add IndexedDB
-or session storage to maintain a discontinued mode. Existing `_regular` keys and sync
+or session storage to maintain a discontinued mode. Runtime v2 local keys and
+Cache Storage use unsuffixed names; valid existing regular v2 data is migrated. Sync
 settings remain unchanged. #116, #117 and #122 track the remaining code changes;
 #123 verifies the supported mode and negative incognito behavior. This specification
 is a scope update, not a claim that current runtime code has already been changed.
@@ -100,7 +101,7 @@ is a scope update, not a claim that current runtime code has already been change
 - Pages read the catalog and Cache Storage. They do not fetch wallpaper images directly and do not write image responses.
 - Pages may fetch and parse quote HTML only after obtaining a worker lease; the worker validates and persists the result.
 - Pages exclusively write the context's display state. The worker may read it for identity and retention decisions but never writes it.
-- The only supported runtime context is regular. Keep existing `_regular` local keys and the `funbingbing-wallpaper-cache-v2-regular` cache name; retain `wallpaper_migration_v2_state_regular`. Do not rename regular data as part of dropping incognito support.
+- The only supported runtime context is regular. Use `bing_wallpaper_catalog_v2`, `wallpaper_display_state_v2`, `cache_quote_state_v2`, `quote_scrape_state_v2`, and `wallpaper_migration_v2_state` in local storage, plus `funbingbing-wallpaper-cache-v2` in Cache Storage. Valid suffixed regular v2 data and responses are migration inputs, never active names.
 - Shared product settings use Chrome sync storage. Context-local wallpaper, quote, display, migration, and cache state stay in local storage or Cache Storage.
 
 ### Terminology
@@ -185,8 +186,8 @@ is a scope update, not a claim that current runtime code has already been change
 
 ### Migration
 
-- The regular worker runs v1-to-v2 migration using `wallpaper_migration_v2_state_regular`; no incognito migration or self-seeding path exists. Keep valid existing regular v2 state and sync settings intact.
-- The worker imports up to eight valid legacy wallpaper dates and the regular quote cache, canonicalizes identities, and preserves valid trivia completion.
+- The regular worker runs v1-to-v2 migration using `wallpaper_migration_v2_state`; no incognito migration or self-seeding path exists. It first moves valid suffixed regular v2 catalog and quote data into unsuffixed keys, preferring valid unsuffixed state and merging missing valid fields by identity. The first page transfers a valid suffixed display snapshot to the page-owned unsuffixed key if needed. A new marker starts at `writing` and advances only after verifying actual state, not by copying the old marker phase. An old quote lease is not carried over. Sync settings remain intact.
+- The worker imports up to eight valid legacy wallpaper dates and fills only missing quote data from the legacy regular cache, canonicalizes identities, and preserves valid trivia completion.
 - Shared settings migrate with this precedence: valid existing sync value, valid local value, then existing default.
 - Sync values are fresh-read and verified before migrated local setting keys are deleted. Failure leaves local values intact and migration retryable.
 - The worker writes and verifies the regular catalog and quote state but does not write display state.
@@ -194,7 +195,7 @@ is a scope update, not a claim that current runtime code has already been change
 - The worker verifies the page-owned display snapshot before marking migration complete and deleting obsolete display inputs. The first valid acknowledgement while the marker is `verified` completes the handoff; duplicate or late acknowledgements after `complete` are no-ops.
 - Valid v2 state always has read priority over residual v1 state. Interrupted phases resume or rebuild idempotently.
 - If a partial v2 catalog exists after interruption, migration fresh-reads and validates it, preserves every valid existing entry and field, and merges only missing legacy dates or fields using the existing identity and source-priority rules. It never replaces valid v2 data with a fresh legacy import; invalid or conflicting entries follow the normal validation rules.
-- Visible legacy cache responses may be copied into the regular v2 cache by canonical URL before the old cache is removed.
+- Retained valid responses from the suffixed regular v2 cache, then visible legacy cache responses missing from the unsuffixed v2 cache, are copied by canonical URL. Old names are deleted only after the new state and responses are verified; interrupted transfer is retryable.
 
 ## Testing Decisions
 
@@ -260,7 +261,7 @@ documented ordering and cooldown boundaries.
 - Concurrency: observe at most one active wallpaper image fetch in the regular worker, including navigation during background work.
 - Multiple regular tabs: while Tab1 is still loading navigation from A to B, Tab2 may initialize from committed state A and need not follow Tab1's later commit. A tab opened after B commits initializes from B's exact date, identity, and final URL, allowing only B's matching startup preview. If an existing tab navigates away before B preview repair, its stale B callback is rejected; a later tab repairs B from Cache Storage only if B is still the global snapshot, and never applies B's preview to a subsequently committed C snapshot. Concurrent commits remain atomic, and last-write-wins affects future readers rather than forcing live convergence.
 - Unsupported mode: normal New Tab loads Ataraxia; incognito New Tab stays the Chrome-provided page and does not run this extension in incognito. Manually navigating to an extension options/newtab URL is not evidence of incognito New Tab support.
-- Migration: cover sync-wins/local-fallback/default-fallback, failed-write retention, page acknowledgement, restart at every phase and eventual v1 cleanup. Worker termination or browser restart must still validate actual Cache Storage before display; no private-session lifecycle tests are required.
+- Migration: cover sync-wins/local-fallback/default-fallback, failed-write retention, page acknowledgement, restart at every phase, interrupted suffixed-v2 transfer, valid unsuffixed precedence, and eventual old-name/v1 cleanup. Worker termination or browser restart must still validate actual Cache Storage before display; no private-session lifecycle tests are required.
 - Cache eviction simulation: remove retained responses and verify the next event repairs actual misses rather than trusting catalog entries or diagnostic depth.
 - Measure HD and UHD retained response bytes for the regular 32-key retention policy without a pass/fail byte threshold.
 
@@ -295,5 +296,5 @@ cannot expose the required behavior directly.
 ---
 
 **Document status**: Ready for implementation  
-**Revision**: 16
+**Revision**: 17
 **Date**: 2026-09-24
