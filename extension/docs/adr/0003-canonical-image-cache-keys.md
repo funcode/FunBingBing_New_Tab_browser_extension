@@ -20,8 +20,8 @@ and `_UHD.jpg`.
 
 The cache is bounded by key count, not byte size. The regular PLAN9 retention
 policy has a 30-key base (15 dates × 2 resolutions) plus at most 2
-display-transition keys, so its hard limit is **32 keys**. Incognito has the
-20-key hard limit defined by [ADR-0011](./0011-incognito-one-day-future-prefetch.md).
+display-transition keys, so its hard limit is **32 keys**. Only regular browsing
+is supported (ADR-0015).
 These are stable bounds after cleanup before a new future batch. Resolution
 changes may temporarily overlap old responses with the new retention set;
 unreferenced keys must be removed at that cleanup point.

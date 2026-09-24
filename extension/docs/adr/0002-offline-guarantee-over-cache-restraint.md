@@ -14,8 +14,7 @@ Measured sizes for a representative daily image (2026-08-04,
 
 PLAN9's regular-context retention set holds 15 dates (8 current/past + 7 future)
 at two resolutions each, giving a steady state of roughly **5.4 MB** for HD
-users and **36.5 MB** for UHD users. Incognito uses the smaller future window
-defined by [ADR-0011](./0011-incognito-one-day-future-prefetch.md). These totals
+users and **36.5 MB** for UHD users. These totals
 extrapolate one historical sample; they are not measured bounds across wallpapers
 and exclude up to two additional display-protection responses.
 
@@ -36,7 +35,7 @@ property the cache exists to provide.
   UHD images alone account for ~16.9 MB. HD users are unaffected at ~5.4 MB.
 - The 32 MiB figure discussed during review was not merely unmeasured, it was too
   low. No byte ceiling is enforced; the regular cache is bounded by key count
-  (32), while incognito is bounded by the 20-key policy in ADR-0011.
+  (32). Only regular browsing is supported (ADR-0015).
 - Cache Storage remains best-effort. Chrome may evict under quota or disk
   pressure, shortening the effective offline window. We do not request
   `unlimitedStorage` to defend against this.

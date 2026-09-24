@@ -10,9 +10,8 @@ is ready.
 
 The extension needs one coherent wallpaper pipeline that displays cached content
 immediately, preserves navigable history, makes useful offline progress, survives
-Manifest V3 service-worker suspension, and keeps regular and incognito browsing
-state isolated. Shared product settings must nevertheless remain consistent
-between those contexts.
+Manifest V3 service-worker suspension. Product settings remain consistent across
+regular pages and the worker through sync storage.
 
 The design must also be honest about browser-controlled behavior. Future
 prefetch is event-driven and cannot guarantee seven cached days, and Chromium can
@@ -28,15 +27,24 @@ records the atomic display snapshot that it actually applied.
 
 Use canonical image identities and cache keys so ImageOfTheDay, Model, Archive,
 and migrated data converge on the same responses. Maintain one serial image
-consumer per context. After the target wallpaper, prioritize navigable historical
+consumer for regular browsing. After the target wallpaper, prioritize navigable historical
 images before invisible future prefetch. Regular future depth remains best-effort
-up to seven dates; incognito future prefetch is limited to the next date by
-ADR-0011.
+up to seven dates.
 
-Regular and split-incognito contexts keep separate catalogs, image caches, quote
-state, and display state. Product settings live in Chrome sync storage so both
-contexts see the same configuration. The regular context performs a retryable
-v1-to-v2 migration; incognito initializes independently.
+Only regular browsing is supported. Keep the existing regular catalog, cache, quote
+and display names and retryable v1-to-v2 migration. Product settings remain in
+Chrome sync storage for regular pages and the worker.
+
+## Product scope — September 24, 2026
+
+[ADR-0015](./adr/0015-regular-only-new-tab.md) drops incognito support because Chrome
+[does not allow New Tab overrides in incognito windows](https://developer.chrome.com/docs/extensions/develop/ui/override-chrome-pages#incognito).
+The target manifest is `"incognito": "not_allowed"`. Remove incognito runtime routing,
+state/queue creation, one-day prefetch, and last-window cleanup. Do not add IndexedDB
+or session storage to maintain a discontinued mode. Existing `_regular` keys and sync
+settings remain unchanged. #116, #117 and #122 track the remaining code changes;
+#123 verifies the supported mode and negative incognito behavior. This specification
+is a scope update, not a claim that current runtime code has already been changed.
 
 ## User Stories
 
@@ -56,7 +64,6 @@ v1-to-v2 migration; incognito initializes independently.
 14. As a user, I want background downloads to remain serial within my context, so that prefetch does not compete aggressively with foreground activity.
 15. As a user, I want future wallpapers cached when browser activity permits, so that some future dates may remain available offline.
 16. As a regular-context user, I do not want the extension to claim that seven future days are guaranteed, so that the documented offline behavior matches Manifest V3 execution limits.
-17. As an incognito user, I want at most the next future date prefetched, so that a short-lived private session does not spend bandwidth building a seven-day window.
 18. As a user who enables UHD, I want the current UHD wallpaper first, then historical UHD images, then future UHD images allowed for my context, so that visible content is upgraded before speculative content.
 19. As a user who changes resolution repeatedly, I want duplicate canonical requests avoided and obsolete work discarded safely, so that toggling does not waste bandwidth.
 19. As a user, I want the page to avoid repeated Bing metadata requests when the current source data is already complete, so that opening tabs does not create redundant traffic.
@@ -66,8 +73,8 @@ v1-to-v2 migration; incognito initializes independently.
 23. As a user, I want stale asynchronous responses prevented from changing a newer wallpaper identity, so that date rollover and concurrent work cannot corrupt the catalog.
 24. As a user opening another regular tab, I want it to initialize from the latest completed context display state available when it reads, without forcing already-open tabs to follow later writes.
 25. As a user with multiple tabs, I want an old callback in one tab prevented from overriding a newer action in that same tab, so that local races do not undo navigation.
-26. As an incognito user, I want wallpaper history, quotes, display state, and cached images isolated from regular browsing, so that private activity is not persisted into the regular context.
-27. As a user, I want product settings shared between regular and incognito windows, so that UHD, quote fallback, search, and widget preferences do not diverge.
+26. As a user, I expect incognito New Tab to remain the Chrome-provided page, because Ataraxia supports regular browsing only.
+27. As a user, I want all regular pages and the worker to observe the same sync-backed product settings.
 28. As a signed-in Chrome user, I accept that shared settings may follow my sync profile to other devices, so that split-context consistency does not require custom messaging.
 29. As an upgrading user, I want current wallpaper identity, up to eight historical dates, and the regular quote cache preserved, so that migration does not discard useful state.
 30. As an upgrading user, I want existing valid sync settings preserved over old local settings, so that migration does not overwrite newer preferences.
@@ -93,12 +100,12 @@ v1-to-v2 migration; incognito initializes independently.
 - Pages read the catalog and Cache Storage. They do not fetch wallpaper images directly and do not write image responses.
 - Pages may fetch and parse quote HTML only after obtaining a worker lease; the worker validates and persists the result.
 - Pages exclusively write the context's display state. The worker may read it for identity and retention decisions but never writes it.
-- Regular and incognito contexts use distinct logical keys and cache names even when Chrome's underlying partition behavior would already separate them. The regular-only migration marker is `wallpaper_migration_v2_state_regular`; it is not part of the incognito read/write surface.
+- The only supported runtime context is regular. Keep existing `_regular` local keys and the `funbingbing-wallpaper-cache-v2-regular` cache name; retain `wallpaper_migration_v2_state_regular`. Do not rename regular data as part of dropping incognito support.
 - Shared product settings use Chrome sync storage. Context-local wallpaper, quote, display, migration, and cache state stay in local storage or Cache Storage.
 
 ### Terminology
 
-- “Context” means the Chrome browsing context, either `regular` or `incognito`. Use “refresh generation” for the persisted catalog date-rollover generation.
+- “Context” refers to the supported regular browsing context. Use “refresh generation” for persisted catalog date rollover.
 - `refreshState.generation`, `imagePrefetchGeneration`, and the page-local generation token have separate scopes: catalog admission, runtime image scheduling, and callbacks in the page that created the token. They are not interchangeable.
 
 ### Catalog and identity
@@ -126,19 +133,19 @@ v1-to-v2 migration; incognito initializes independently.
 
 ### Image scheduler and cache policy
 
-- Each context has one image consumer and at most one active wallpaper image fetch. Regular and incognito contexts may progress independently.
+- The regular worker has one image consumer and at most one active wallpaper image fetch.
 - Baseline priority is target preview, target final resolution, historical previews, historical final resolutions, future previews, then future final resolutions.
 - Historical and future phases run nearest date first. History is derived from catalog and cache state without waiting for Model; Model only contributes future work.
 - Explicit current-display or navigation requests are urgent. They promote an existing pending canonical task or insert one at the front, but never interrupt the active fetch or start a second fetch.
 - Every task performs an exact cache match before network access. One canonical URL has at most one pending or active task, and callers share its result. The task-map entry remains until cache success or failure bookkeeping completes; dispatch re-checks both the map and `cache.match()`, so a stale-generation response cached before a queue rebuild cannot cause a second network request.
 - A historical item whose retry window is still active is skipped for that event and does not permanently block later history or future work.
 - Image task generation is in memory. Catalog identity or resolution changes stop old pending dispatch. An active response is cached only when its canonical URL still belongs to the latest retention set.
-- A resolution change does not cancel an active old-resolution fetch. If its response no longer belongs to the latest retention set, it is discarded before cache success bookkeeping; transient overlap during the transition is allowed, and the 32/20 key limits apply after the documented cleanup point before a new future batch.
+- A resolution change does not cancel an active old-resolution fetch. If its response no longer belongs to the latest retention set, it is discarded before cache success bookkeeping; transient overlap during the transition is allowed, and the 32-key limit apply after the documented cleanup point before a new future batch.
 - Worker restart reconstructs work from the catalog and Cache Storage instead of restoring an in-memory cursor.
-- The base retention set is context-specific: target plus seven historical dates and up to seven future dates for regular context, or up to one future date for incognito. Each retained date has preview and configured final resolution. A page-owned display outside that set can protect up to two additional responses. The hard maximum is 32 keys for regular and 20 for incognito.
-- Future prefetch is best-effort. Regular context may reach seven dates; incognito is limited to the next date. Both depend on Model coverage, network success, browser activity, service-worker lifetime, and browser cache retention.
-- `cachedFutureDepth` is diagnostic only: it reports consecutive future dates with both preview and configured final resolution at the most recent scan, with a `0..7` regular limit and `0..1` incognito limit. It never suppresses cache checks, retry, repair, or prefetch.
-- No byte ceiling is enforced. HD and UHD steady-state bytes are measured separately; the accepted roughly 36 MB UHD budget applies to a complete regular retention set, while incognito has the smaller context-specific set.
+- Retain the target, seven historical dates and up to seven future dates: 30 base keys at preview plus configured final resolution, with at most two extra page-display protection responses. The hard maximum after cleanup is 32 keys.
+- Future prefetch may reach seven dates but remains best-effort, depending on Model coverage, network success, browser activity, worker lifetime and cache retention.
+- `cachedFutureDepth` is diagnostic only, ranging 0..7 for consecutive future dates with both preview and configured final resolution cached. It never suppresses cache checks, retry, repair or prefetch.
+- No byte ceiling is enforced. Measure HD and UHD steady-state bytes separately; the accepted roughly 36 MB UHD budget applies to the complete regular retention set.
 
 ### Display state and first paint
 
@@ -178,7 +185,7 @@ v1-to-v2 migration; incognito initializes independently.
 
 ### Migration
 
-- Only the regular context runs v1-to-v2 migration. Its marker is `wallpaper_migration_v2_state_regular`. Initialization branches on `contextId` before storage access: incognito uses an explicit allowlist of its context-suffixed v2 keys and shared sync settings, and must not read, interpret, wait for, or mutate the regular marker, any v1 migration key, or regular v2 keys. Incognito self-seeds regardless of whether the regular marker is `writing`, `verified`, or `complete`.
+- The regular worker runs v1-to-v2 migration using `wallpaper_migration_v2_state_regular`; no incognito migration or self-seeding path exists. Keep valid existing regular v2 state and sync settings intact.
 - The worker imports up to eight valid legacy wallpaper dates and the regular quote cache, canonicalizes identities, and preserves valid trivia completion.
 - Shared settings migrate with this precedence: valid existing sync value, valid local value, then existing default.
 - Sync values are fresh-read and verified before migrated local setting keys are deleted. Failure leaves local values intact and migration retryable.
@@ -208,17 +215,17 @@ documented ordering and cooldown boundaries.
 - Test reconnect through both the browser `online` event and the 15-second actual-connection check: one retry object gets at most one bypass per active window, expiry alone does not wake the worker, and no active fetch is interrupted.
 - Test stale-generation admission rules for current, historical, and displayed identities, including whole-candidate rejection on a displayed-identity conflict while independently valid candidates in the same batch still commit.
 - Test trivia result admission independently of refresh generation: `triviaId` is the sole work identity, date only locates the latest entry, and an unchanged `triviaId` remains admissible after generation rollover.
-- Test context-specific retention-set derivation, display protection, 32-key regular maximum, 20-key incognito maximum, and removal of unreferenced failure records.
+- Test retention-set derivation, display protection, the 30-key base/32-key hard maximum, and removal of unreferenced failure records.
 - Test scheduler derivation in the exact baseline order: target, history, future. Confirm history is derived without Model and backoff-skipped history does not block future work.
 - Test canonical URL deduplication, urgent promotion, active-task sharing, and generation-based write admission. Include an active stale-generation fetch that remains retained, then rebuild the queue after its successful `cache.put()` and assert the rebuilt task is skipped without another network request.
 - Test rapid HD/UHD changes with an active obsolete fetch: the fetch is not canceled, an obsolete response is not recorded as success, transient old keys are cleaned before the next future batch, and the post-cleanup retention bound is restored.
-- Test `cachedFutureDepth` across complete days, gaps, preview-only hits, resolution changes, stale diagnostic state, and the `0..1` incognito cap.
+- Test `cachedFutureDepth` across complete days, gaps, preview-only hits, resolution changes and stale diagnostic state; the range is 0..7.
 - Test navigation over zero through eight entries and display-date lookup without a persisted index.
 - Test preview repair from an atomic display snapshot with an explicit empty preview: startup applies the cached final immediately, reconstructs a cached matching preview without an earlier notification, rejects the repair after display identity changes, and retries after a simulated crash before repair. Include the cross-tab sequence where Tab2 navigates away before B's notification: its B callback is rejected, a later tab repairs B if B remains globally current, and B's preview is never written into a subsequently committed C snapshot.
 - Test quote lease expiry, replacement, success clearing, and token rejection.
 - Load pure lease logic under Node with an injected deterministic token generator; denied grants do not call it, and the browser adapter remains the only `globalThis.crypto.randomUUID()` caller.
 - Test display, catalog-root, and entry `updatedAt` assignment on successful commits, preservation on failure/rejection, and independence from last-write-wins, retry, cache, and stale-result decisions.
-- Test setting migration precedence and migration state transitions through verification and page acknowledgement. Leave `wallpaper_migration_v2_state_regular` in each phase and start an incognito worker; assert that it reads only its allowlisted keys, self-seeds without waiting, and leaves the marker and regular keys unchanged.
+- Test setting migration precedence and all migration phases through verification and page acknowledgement, including idempotent restart in each phase.
 - Test duplicate and late `migrationDisplayStateReady` acknowledgements as one completion/cleanup effect, and restart with a valid partial v2 catalog to assert existing fields are preserved while only missing legacy data is merged.
 
 ### Service-worker message seam
@@ -229,12 +236,11 @@ documented ordering and cooldown boundaries.
 - Test image-cache requests reject arbitrary dates, resolutions, or URLs and accept only canonical URLs derived from the context catalog.
 - Test image request ordering and cache effects across target, history, future, urgent navigation, escalating backoff, reconnect bypass, and resolution changes.
 - Test worker termination during an unresolved target, historical, and future image fetch: no interrupted attempt becomes a cache success, the next event retries the missing URL, and no same-URL requests overlap across the termination boundary.
-- Test that the worker never writes display state during normal operation and that page acknowledgement is required for migration completion. Lifecycle cleanup may remove the incognito display-state key only after the last incognito window is gone.
+- Test that the worker never writes display state and page acknowledgement is required for migration completion.
 - Test quote lease grant, quote submission, remote fallback, and update notifications through message contracts.
 - Test broadcasts with no listening pages and confirm there are no unhandled message failures.
-- Test regular and incognito worker instances against separate logical state while reading the same sync settings; incognito must not enqueue future dates beyond `targetDate + 1`.
-- Test `windows.onRemoved` cleanup with two incognito windows: removing one preserves state, removing the last clears only incognito catalog, quote, lease, retry, display, and Cache Storage state, and regular state remains unchanged.
-- Test cleanup idempotence and serialization with initialization: a new incognito window opened during cleanup either cancels deletion before it begins or safely rebuilds from empty state; no regular key or cache is removed.
+- Test regular multi-tab behavior and sync setting propagation without creating a second runtime context.
+- Test the manifest declares `"incognito": "not_allowed"`; no incognito catalog, queue, lease or lifecycle cleanup is initialized.
 
 ### Chrome and Playwright seam
 
@@ -246,17 +252,17 @@ documented ordering and cooldown boundaries.
 - New-tab slow connection: the selected image's matching preview appears without waiting for final resolution, followed by one final-image swap.
 - Offline startup: display whatever applicable content is actually cached; do not require a guaranteed seven-day future depth.
 - Navigation: zero entries disable controls, three entries wrap correctly, and an uncached selection retains the current final image with `Wallpaper is updating...`; its preview is never rendered and display state changes only after the final image is applied.
-- Priority: with target, historical, and future misses present, observe target requests first, all permitted historical work next, and future work last. Explicit navigation promotes its task after the active request. Regular may enqueue up to seven future dates; incognito may enqueue only `targetDate + 1`.
+- Priority: observe target requests first, permitted historical work next and up to seven future dates last. Explicit navigation promotes its task after the active request.
 - Resolution change: fetch current resolution first, then historical, then future; previews and metadata are not re-downloaded.
 - Worker termination: stop the worker during metadata, history, future prefetch, trivia, and migration phases; the next qualifying event resumes only missing work.
 - Stale responses: delay old-date source responses and verify they cannot replace current or historical identities or corrupt refresh state.
 - Stale trivia: delay a trivia response, replace the catalog entry's `triviaId`, and verify the late success or failure cannot mutate the replacement entry. Repeat with generation rollover but an unchanged `triviaId` and verify the result remains admissible.
-- Concurrency: observe at most one active wallpaper image fetch per context, including navigation during background work.
+- Concurrency: observe at most one active wallpaper image fetch in the regular worker, including navigation during background work.
 - Multiple regular tabs: while Tab1 is still loading navigation from A to B, Tab2 may initialize from committed state A and need not follow Tab1's later commit. A tab opened after B commits initializes from B's exact date, identity, and final URL, allowing only B's matching startup preview. If an existing tab navigates away before B preview repair, its stale B callback is rejected; a later tab repairs B from Cache Storage only if B is still the global snapshot, and never applies B's preview to a subsequently committed C snapshot. Concurrent commits remain atomic, and last-write-wins affects future readers rather than forcing live convergence.
-- Regular plus incognito: verify separate catalogs, caches, quotes, and display states, while both contexts observe the same sync-backed settings; verify that incognito retains at most one future date and two future responses. Close one of two incognito windows and confirm state remains; close the last and confirm best-effort cleanup removes only incognito state.
-- Migration: cover existing sync wins, local fallback, default fallback, sync write failure, page-owned display acknowledgement, restart at every phase, and final legacy cleanup. Cleanup tests must also cover worker termination or browser exit before `windows.onRemoved` cleanup and prove that the next session validates actual Cache Storage before display. With the regular marker separately left in `writing`, `verified`, and `complete`, start incognito and verify no marker read/wait/mutation, no v1 or regular-v2 access, and successful self-seeding from its allowlist.
+- Unsupported mode: normal New Tab loads Ataraxia; incognito New Tab stays the Chrome-provided page and does not run this extension in incognito. Manually navigating to an extension options/newtab URL is not evidence of incognito New Tab support.
+- Migration: cover sync-wins/local-fallback/default-fallback, failed-write retention, page acknowledgement, restart at every phase and eventual v1 cleanup. Worker termination or browser restart must still validate actual Cache Storage before display; no private-session lifecycle tests are required.
 - Cache eviction simulation: remove retained responses and verify the next event repairs actual misses rather than trusting catalog entries or diagnostic depth.
-- Measure HD and UHD retained response bytes for both context policies without a pass/fail byte threshold.
+- Measure HD and UHD retained response bytes for the regular 32-key retention policy without a pass/fail byte threshold.
 
 Prior art includes the existing Node test style for isolated pure helpers and the
 project's Playwright approach for loading and observing the real extension. New
@@ -267,10 +273,10 @@ cannot expose the required behavior directly.
 
 - Supporting Bing markets other than `zh-CN` or selecting a market dynamically.
 - Adding alarms or another guaranteed background wakeup mechanism.
-- Guaranteeing seven future cached days in regular context, guaranteeing even one future cached day in incognito, or preventing Chrome from evicting Cache Storage.
+- Guaranteeing seven future cached days or preventing Chrome from evicting Cache Storage.
 - Adding `unlimitedStorage` or enforcing a guessed byte ceiling.
 - Parallel wallpaper image downloads within one context.
-- Coordinating regular and incognito runtime wallpaper state.
+- Incognito support, private-session storage backends, last-private-window cleanup, or a workaround for Chrome’s incognito New Tab override restriction.
 - Cross-tab locks or live synchronization of already-open tabs; atomic last-write-wins defines the persisted starting point for future readers.
 - A light-specific extension fallback, a bundled fallback photograph, or control over Chromium's pre-document frame.
 - Persisting in-flight trivia, image queue cursors, or image scheduler generation.
@@ -281,7 +287,7 @@ cannot expose the required behavior directly.
 
 - ADRs are the final authority over this spec and PLAN9 when wording conflicts.
 - The active ADR set intentionally skips ADR-0007 because its untagged, worker-owned preview design was superseded by the page-owned atomic display-state decision in ADR-0008.
-- ADR-0002 remains active despite ADR-0005 changing the regular seven-day benefit from guaranteed to best-effort; it records the still-accepted regular-context UHD storage budget. ADR-0011 defines the smaller incognito policy.
+- ADR-0002 remains active after ADR-0005 made future depth best-effort; the regular UHD budget is unchanged. ADR-0015 supersedes ADR-0011 and the incognito portions of earlier decisions.
 - `cachedFutureDepth` is observability, not truth about current Cache Storage after browser eviction.
 - A 1, 3, or 5-minute retry timestamp is the earliest permitted retry, not a timer or guaranteed execution time.
 - The user-visible priority principle is current content first, navigable history second, invisible future content last.
@@ -289,5 +295,5 @@ cannot expose the required behavior directly.
 ---
 
 **Document status**: Ready for implementation  
-**Revision**: 15  
-**Date**: 2026-09-22
+**Revision**: 16
+**Date**: 2026-09-24

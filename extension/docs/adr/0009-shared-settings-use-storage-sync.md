@@ -1,11 +1,9 @@
 # Shared settings use `chrome.storage.sync`
 
-ADR-0004 keeps runtime state logically isolated between regular and split incognito
-contexts with explicit context keys. The extension nevertheless needs product
-settings to remain consistent in both contexts. Keeping those values in
-context-specific keys would
-make an UHD toggle or quote fallback URL differ depending on which context was
-opened first.
+Product settings remain in sync storage after the regular-only scope decision in
+[ADR-0015](./0015-regular-only-new-tab.md). They are shared by regular pages and the
+worker and may follow the user’s Chrome sync profile across devices. Removing
+incognito support does not reverse the accepted settings migration.
 
 ## Decision
 
@@ -32,10 +30,8 @@ state, and Cache Storage remain context-local and are not moved to sync.
 
 ## Consequences
 
-- Regular and incognito contexts observe the same settings without cross-context
-  runtime messaging.
-- When Chrome sync is enabled, settings can also follow the user's sync profile
-  across devices; this is the accepted tradeoff for sharing between split
-  contexts. Cross-device sync is not a prerequisite for sharing within a profile.
+- Regular pages and the worker observe the same settings through storage change events.
+- When Chrome sync is enabled, settings can follow the user’s sync profile across
+  devices. Cross-device sync is not a prerequisite for consistency within a profile.
 - No new manifest permission is required because the extension already declares
   the `storage` permission.

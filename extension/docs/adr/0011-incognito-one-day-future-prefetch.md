@@ -1,5 +1,7 @@
 # Incognito future prefetch is limited to one day
 
+> **Superseded in full on September 24, 2026 by [ADR-0015](./0015-regular-only-new-tab.md).** Incognito support has been dropped. The text below is historical; its one-day window, 18/20-key bounds and private-session tests are no longer requirements.
+
 Incognito sessions are often short-lived. Multiple incognito tabs and windows
 can use the context's image cache, but PLAN9 does not rely on a particular Cache
 Storage partition lifetime. The context-suffixed `chrome.storage.local` records

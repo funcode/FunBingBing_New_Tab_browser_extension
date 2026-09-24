@@ -1,4 +1,6 @@
 # Grilling Report: PLAN9 Service Worker Migration
+
+> Historical review: incognito-specific findings and recommendations were superseded on September 24, 2026 by [ADR-0015](./adr/0015-regular-only-new-tab.md). Consult current PLAN9/spec/ADRs for active acceptance criteria. Unrelated findings retain their recorded review dispositions.
 **Date**: 2026-08-21  
 **Reviewer**: Matt Pocock Grilling Session  
 **Scope**: PLAN9.md, spec-plan9-service-worker-migration.md, ADRs 0001-0013 (excluding 0007), GitHub issues

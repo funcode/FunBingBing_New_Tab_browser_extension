@@ -1,4 +1,4 @@
-已参考 [api.txt](./api.txt)、Chrome 官方的 [Incognito manifest 文档](https://developer.chrome.com/docs/extensions/reference/manifest/incognito)和[扩展存储文档](https://developer.chrome.com/docs/extensions/develop/concepts/storage-and-cookies)。字段映射、日期范围、Archive `enddate`匹配、trivia ID 改写和 Preload 元数据可信度判断以`api.txt`为依据；普通/隐身上下文的设计以 Chrome 官方文档为依据。
+已参考 [api.txt](./api.txt)、Chrome 官方的 [New Tab 隐身窗口限制](https://developer.chrome.com/docs/extensions/develop/ui/override-chrome-pages#incognito)和[扩展存储文档](https://developer.chrome.com/docs/extensions/develop/concepts/storage-and-cookies)。字段映射、日期范围、Archive `enddate`匹配、trivia ID 改写和 Preload 元数据可信度判断以`api.txt`为依据。
 
 <proposed_plan>
 # PLAN9：由 Service Worker 管理的壁纸缓存流水线
@@ -7,9 +7,13 @@
 
 ADR-0012 记录了"preview 与最终分辨率并行下载"的受控并发方案作为未来性能优化选项，当前 PLAN9 实施仍保持严格串行。
 
+## 产品范围（2026-09-24）
+
+按 [ADR-0015](./adr/0015-regular-only-new-tab.md)，Ataraxia 只支持普通浏览 New Tab。取消隐身运行时、独立预取策略和最后窗口清理要求；不为此引入 IndexedDB 或 session 存储。保留普通数据名称和 sync 设置。此处是目标设计；当前代码移除工作由 #116、#117、#122 跟进，#123 验证。历史评审中的隐身要求已被该决策替代。
+
 ## 术语约定
 
-- “上下文”单独使用时指 Chrome browsing context：`regular`或`incognito`；“刷新 generation”指持久化的目录日期滚动代数。
+- “上下文”仅指本产品支持的普通浏览上下文`regular`；“刷新 generation”指持久化的目录日期滚动代数。
 - `refreshState.generation`、`imagePrefetchGeneration`和页面本地 generation token 是三个互不替代的作用域：前者保护目录刷新提交，第二个控制运行时图片队列，第三个只保护创建它的页面回调。
 - “代数变化”必须明确写出上述三个名称之一；不得把 browsing context、刷新 generation、图片队列 generation 或页面本地 token 简称为同一个“context”。
 
@@ -19,31 +23,31 @@ ADR-0012 记录了"preview 与最终分辨率并行下载"的受控并发方案�
 - 不接受“被拒绝的过期候选仍会通过 Quote/Trivia 改坏显示状态”的原始场景：用户导航不递增 Worker 的 refresh generation，Quote 日期来自已提交目录且页面按显示状态 date 读取，Quote/Trivia 也不写显示状态。但接受其中暴露的较窄 Trivia 完成竞态：Trivia 只能从已提交目录派生；`triviaId`是 Trivia 工作的唯一身份，date 只用于定位目录条目；成功或失败结果提交前必须重新读取目录并确认`triviaId`仍匹配。
 - 接受“旧 preview data URL 与新最终图片可能产生跨图切换”这一 UX 问题，但不采纳移除`imageId`校验的建议。正确做法是：身份相同时才保留旧 data URL；身份变化且新 preview 缺失时清空 data URL，让内置回退图接管。后续更新继续同时校验 generation、date 和 imageId。
 - 接受串行批次的抢占规则需要明确。所有图片下载共用单消费者调度器；当前/用户导航请求提升到待处理队首，但不取消正在执行的 fetch，也不启动第二个并发请求。继续保持用户指定的逐张后台预取，不采用并发2方案。
-- 明确`refreshWallpaperCatalog`的元数据刷新 Promise 不包含 trivia 或图片补齐；新日期刷新不需要等待普通上下文最多14张或隐身上下文最多2张未来图片，也不需要等待历史回填完成（ADR-0011）。
+- `refreshWallpaperCatalog`的元数据刷新 Promise 不包含 trivia 或图片补齐；新日期刷新不需要等待最多14张未来图片，也不等待历史回填完成。
 - 接受 HD/UHD 快速切换可能重排待处理任务。相同规范 URL 的活动或排队任务只保留一个；旧队列停止继续派发，但已返回响应是否可写入由“该 URL 是否仍属于最新保留集合”决定，不能只因 generation 改变就无条件丢弃。
 - 不接受“旧 generation 的有效响应会导致新队列重复下载同一规范 URL”为实际竞态：同一任务在`cache.put()`或失败状态写入完成前持续占用任务 Map，新队列不能创建重复活动/待办；随后派发又会重新执行`cache.match()`。接受原评审指出的文档与测试缺口，明确任务 Map 生命周期及派发前双重检查，并增加旧 generation 响应成功写入后的单次网络请求回归测试。
-- 接受“隐身 Worker 可能误读普通迁移标记”作为真实的设计加固问题。迁移键改为`wallpaper_migration_v2_state_regular`；初始化先按`contextId`分支，隐身只用自身 v2 键和共享 sync 设置的显式 allowlist，禁止全量扫描、读取、等待或修改普通迁移/v1 键，并增加普通标记各阶段下的隐身启动测试。
+- 迁移标记保留`wallpaper_migration_v2_state_regular`；按 ADR-0015 取消隐身初始化、自我播种和迁移隔离要求。
 - 不接受“页面本地 generation token 无法跨标签页协调，因此会永久丢失 preview”作为关键正确性问题。跨标签页不要求实时收敛；被导航后的页面拒绝旧通知是为了保护本页当前选择，不代表 Cache Storage 中的 preview 丢失。空`preloadDataUrl`仍是可恢复快照，后续新标签页初始化会独立执行匹配 preview 的修复。增加该跨标签页时序的回归测试，明确通知只是修复机会而非唯一来源。
-- 接受配额压力会缩短实际离线窗口，但纠正“其他扩展共享同一 origin 配额”的表述：不同扩展具有不同 origin；仍可能受本扩展自身用量和浏览器/设备整体存储压力影响。Cache API 没有逐响应 pin，本计划不新增`unlimitedStorage`权限；普通上下文保留最多7日的 best-effort 未来深度，隐身上下文按 ADR-0011 只保留未来1日。
+- 接受配额压力会缩短实际离线窗口，但纠正“其他扩展共享同一 origin 配额”的表述：不同扩展具有不同 origin；仍可能受本扩展自身用量和浏览器/设备整体存储压力影响。Cache API 没有逐响应 pin，本计划不新增`unlimitedStorage`权限；普通上下文保留最多7日的 best-effort 未来深度。
 - 不采用未经测量的20/35 MiB软告警阈值。实施验收先分别记录固定 fixture 与实机样本的 HD/UHD 字节数；阈值若有必要，应基于测量分布另行决定，不能在计划中猜测。
 - 评审所称“Worker 重启会重置 refresh generation”不成立：持久化的`refreshState.generation`继续保留；只有运行时`imagePrefetchGeneration`和图片任务 Map 丢失，下一次事件从目录与 Cache Storage 重建。
 - ADR-0006确定使用单一深色渐变作为回退背景；不新增默认壁纸资源。
 
-- 采纳新的未来图片策略：普通上下文把一次 Model 响应中每个有效`PreloadMediaContents`未来日期最多排入7日后台预取批次；隐身上下文只排入`targetDate + 1`，不再排入更远日期；两者都在当前/历史图片补齐之后执行。
-- “一次预取全部”表示一次性排入允许范围内的完整批次，而不是并行下载。未来图片按日期从近到远严格串行；缓存命中直接跳过，任一时刻每个上下文最多只有1个未来图片网络请求。
-- 每个允许的未来日期同时预取 preview 和用户当前配置的最终分辨率，即 `_640x360.jpg`加 HD 或 UHD，共2个精确响应。普通上下文7个未来日期完整批次最多14个下载任务；隐身上下文最多2个下载任务。
+- 普通上下文把一次 Model 响应中每个有效`PreloadMediaContents`未来日期最多排入7日后台预取批次，在当前/历史图片补齐之后执行。
+- “一次预取全部”表示一次性排入允许范围内的完整批次，而不是并行下载。未来图片按日期从近到远严格串行；缓存命中直接跳过，任一时刻普通上下文最多只有1个未来图片网络请求。
+- 每个允许的未来日期同时预取 preview 和用户配置的最终分辨率，即 `_640x360.jpg`加 HD 或 UHD，共2个精确响应；7个未来日期完整批次最多14个下载任务。
 - 历史补齐和未来批次全程共用同一个串行消费者。目标日期完成后，先按日期从近到远补齐历史 preview，再按同样顺序补齐历史配置最终分辨率；历史补齐结束后，未来批次再先补未来 preview、后补未来配置最终分辨率。这样 Worker 即使中途被挂起，也优先完成用户已经能够导航查看的内容。
-- 在 Model 窗口和图片身份稳定、分辨率设置未变化时，普通上下文每日滚动后旧未来日期应命中缓存，只为新加入的最远日期下载 preview 和最终分辨率，共2个响应；隐身上下文只维持下一未来日期的同样2个响应。Bing 改换已发布的未来图片身份或用户切换 HD/UHD 时，可以有更多未命中。
-- 接受首次安装或离线超过对应未来窗口后可能串行下载最多14个（普通）或2个（隐身）未来响应。该批次只能在目标日期最终图片以及当前缺失的历史图片完成缓存检查、本轮允许的下载尝试，或因退避窗口尚未到期而明确跳过后开始；单个目标或历史图片失败只记录独立退避状态，不能永久阻塞后续历史任务或未来批次。所有后台补齐都不能阻塞当前壁纸显示、元数据提交或页面交互。
+- 在 Model 窗口和图片身份稳定、分辨率设置未变化时，普通上下文每日滚动后旧未来日期应命中缓存，只为新加入的最远日期下载 preview 和最终分辨率，共2个响应。Bing 改换已发布的未来图片身份或用户切换 HD/UHD 时，可以有更多未命中。
+- 接受首次安装或离线超过对应未来窗口后可能串行下载最多14个未来响应。该批次只能在目标日期最终图片以及当前缺失的历史图片完成缓存检查、本轮允许的下载尝试，或因退避窗口尚未到期而明确跳过后开始；单个目标或历史图片失败只记录独立退避状态，不能永久阻塞后续历史任务或未来批次。所有后台补齐都不能阻塞当前壁纸显示、元数据提交或页面交互。
 - 不采纳“仅以最新 IOTD `isoDate`作为目标日期”的建议。当前所有壁纸、Model、Archive 和 trivia API 都固定使用`mkt=zh-CN`；如果只依赖上次响应中的最新日期，已成功状态本身无法决定何时再次探测下一次滚动。PLAN9 保留`Asia/Shanghai`市场日期作为探测边界，并把固定市场声明为当前产品不变量。
 - `qotd_url`只配置缺失 Quote 的回退数据源，不改变 Bing 壁纸市场。未来支持其他市场属于独立功能，届时必须同时定义市场时区、滚动边界、存储迁移和测试；本计划不为未请求的市场配置预留抽象。
 - 接受 Archive 成功条件需要精确到完整连续八日 IOTD 窗口；不足八日或身份不匹配时保持`missing`。
 - 接受 Quote 租约必须固定上限，采用60秒并由 Worker 使用`crypto.randomUUID()`生成 token；成功同步或 Quote 已由其他流程补齐时立即清除租约。
-- 普通上下文的基础保留集合为30个缓存键，隐身上下文为18个；显示状态额外保护最多2键，因此清理后的稳定上限分别为32键和20键；这个键数与后文取消的32 MiB字节阈值无关。
+- 普通上下文基础保留集合为30个缓存键，显示状态额外保护最多2键，因此清理后稳定上限为32键；该键数与32 MiB字节阈值无关。
 - 图片失败记录在 URL 不再受目录或显示状态引用时立即删除。该删除有意使未来重新出现的 URL 作为新任务尝试，不额外保留24小时旧失败状态。
 - 接受迁移必须可重复完成、v2 读取优先级必须绝对高于残留 v1 键，以及旧日期异步结果不得回写新日期刷新状态。
 - Trivia 重试明确为事件驱动、依赖用户活动的最终一致行为；不增加`chrome.alarms`权限或后台定时唤醒。
-- 继续保留 PLAN8 的页面侧 Quote 解析、上下文隔离、最终分辨率单次切换、内置回退图、分来源提交和无永久抑制状态原则。
+- 继续保留 PLAN8 的页面侧 Quote 解析、页面/Worker 所有权、最终分辨率单次切换、内置回退图、分来源提交和无永久抑制状态原则。
 
 ## 总体目标与日期定义
 
@@ -61,37 +65,37 @@ ADR-0012 记录了"preview 与最终分辨率并行下载"的受控并发方案�
 - 当天各元数据来源已完整刷新时，重复打开新标签页不重复请求这些来源。
 - Bing 在日期切换后暂未提供目标日期时，短暂保留上一张壁纸并按递增退避规则自愈，不会把旧响应永久锁定为成功。
 - Quote 功能完整保留，但其网络和解析工作不阻塞壁纸显示。
-- 页面与 Service Worker 不会同时写壁纸目录或图片缓存；普通与隐身上下文也不会互相覆盖逻辑状态，且隐身未来预取上限为1日。
+- 页面与 Service Worker 不会同时写壁纸目录或图片缓存；只支持普通窗口的新标签页。
 - 壁纸首屏不出现纯黑或默认背景闪烁。仅在打开新标签页的初始化流程中，页面可以短暂显示所选`date + imageId`的匹配 preview，直至同一图片的最终分辨率就绪；手动日期导航不显示目标 preview。
 - 所有能够抑制后续工作的状态都有明确的到期时间、重置条件或权威完成条件。
 
 ## 上下文、存储键与所有权
 
-使用`chrome.extension.inIncognitoContext`得到`contextId`：普通窗口为`regular`，隐身窗口为`incognito`。
+仅支持`regular`。Manifest 应设置`"incognito": "not_allowed"`，不再根据`chrome.extension.inIncognitoContext`建立第二套运行时。现有`_regular`键和`-regular`缓存名保持兼容。
 
 逻辑状态使用以下物理名称：
 
-- 目录：`bing_wallpaper_catalog_v2_regular`或`bing_wallpaper_catalog_v2_incognito`。
-- 显示状态：`wallpaper_display_state_v2_regular`或`wallpaper_display_state_v2_incognito`。
-- Quote 缓存：`cache_quote_state_v2_regular`或`cache_quote_state_v2_incognito`。
-- Quote 抓取租约：`quote_scrape_state_v2_regular`或`quote_scrape_state_v2_incognito`。
-- Cache Storage：`funbingbing-wallpaper-cache-v2-regular`或`funbingbing-wallpaper-cache-v2-incognito`。
-- 普通上下文迁移标记：`wallpaper_migration_v2_state_regular`，只记录普通上下文的迁移版本、阶段和时间，不承载运行时目录数据；隐身上下文不读取、解释、等待或修改该标记及任何其他迁移键。
+- 目录：`bing_wallpaper_catalog_v2_regular`。
+- 显示状态：`wallpaper_display_state_v2_regular`。
+- Quote 缓存：`cache_quote_state_v2_regular`。
+- Quote 抓取租约：`quote_scrape_state_v2_regular`。
+- Cache Storage：`funbingbing-wallpaper-cache-v2-regular`。
+- 迁移标记：`wallpaper_migration_v2_state_regular`，只记录迁移版本、阶段和时间，不承载运行时目录数据。
 
-上下文后缀是正确性边界，不是对 Chrome 底层 Cache Storage 分区方式的推断。即使两个上下文实际共享同一扩展源的 Cache Storage，不同缓存名也不会互相产生错误的命中或清理。
+保留既有普通上下文物理名称以避免无必要的重命名或数据迁移；不再派生隐身键和缓存名。
 
 所有权规则：
 
-- 每个上下文的 Service Worker 独占写入该上下文的目录、图片 Cache Storage、Quote 缓存和 Quote 抓取租约。
-- 页面只写当前上下文的`wallpaper_display_state_v2_*`。
+- 普通上下文的 Service Worker 独占写入该上下文的目录、图片 Cache Storage、Quote 缓存和 Quote 抓取租约。
+- 页面只写当前上下文的`wallpaper_display_state_v2_regular`。
 - 页面读取图片时只允许`cache.match()`；缓存未命中时不得调用`fetch()`或`cache.put()`。
 - 页面可以抓取和解析 quote HTML，但只能把解析结果发送给 Worker，由 Worker 持久化 Quote 缓存。
-- `enable_uhd_wallpaper`、`qotd_url`和其他用户设置存放在`chrome.storage.sync`，因此普通与隐身窗口读取同一份配置；壁纸目录、显示状态、Quote 状态和 Cache Storage 仍按上下文隔离。
+- `enable_uhd_wallpaper`、`qotd_url`和其他用户设置继续存放在`chrome.storage.sync`，供普通页面和 Worker 读取；运行时壁纸、显示、Quote 和缓存数据不进入 sync。
 - 旧`wallpaper_date`、`wallpaper_idx`、`wallpaper_url`和`wallpaper_preload_data_url`只作为迁移输入，v2 运行时不再写入。
 
 ## 目录与显示状态
 
-每个上下文使用以下目录结构：
+普通上下文使用以下目录结构：
 
 ```js
 {
@@ -100,7 +104,7 @@ ADR-0012 记录了"preview 与最终分辨率并行下载"的受控并发方案�
   refreshState: {
     date: "YYYYMMDD",
     generation: 0,
-    cachedFutureDepth: 0, // regular: 0..7; incognito: 0..1
+    cachedFutureDepth: 0, // regular: 0..7
     sources: {
       imageOfTheDay: {
         status: "success" | "failed" | "missing",
@@ -177,7 +181,7 @@ ADR-0012 记录了"preview 与最终分辨率并行下载"的受控并发方案�
 }
 ```
 
-- `wallpaper_display_state_v2_*`是每个上下文全局的“最后一次成功应用的最终壁纸”快照，不是待处理导航状态，也不是要求所有已打开标签页实时同步的状态。新标签页以读取时最新已提交的快照作为初始选择。
+- `wallpaper_display_state_v2_regular`是普通上下文全局的“最后一次成功应用的最终壁纸”快照，不是待处理导航状态，也不是要求所有已打开标签页实时同步的状态。新标签页以读取时最新已提交的快照作为初始选择。
 - 多个标签页都可以在成功应用最终图片后原子写入该对象；跨标签页采用 last-write-wins 语义决定后续读取者的起点，不增加协调锁或强制现有标签页跟随其他标签页的后续写入。每个标签页的 generation token 只负责拒绝本标签页内的过期回调。
 - `preloadDataUrl`属于显示状态，由页面从匹配的 Cache Storage preview 读取、生成并与`date`、`imageId`和最终 URL一起写入。明确写空是内部一致且可恢复的有效值；原子性要求非空 data URL 必须匹配同一快照身份，不要求每次提交都已有 preview。Worker 不写`wallpaper_preload_data_url`或 v2 显示状态。
 
@@ -238,11 +242,11 @@ Worker 每次刷新先计算`targetDate`。如果`refreshState.date`不同，则
 - ImageOfTheDay、Model 和 Archive 中需要重试的来源并行启动。
 - IOTD 成功后立即提交并优先缓存目标日期图片，不等待其他来源。
 - Model 和 Archive 各自成功后分别提交，避免慢来源延迟已完成结果。
-- 每个上下文使用一个串行目录写队列；每次提交前重新读取该上下文的最新目录再合并。
+- 普通上下文使用一个串行目录写队列；每次提交前重新读取该上下文的最新目录再合并。
 - 旧`date + generation`任务晚到时，只能给目录中已存在且`date + imageId`完全一致的历史条目补充缺失字段，或新增一个此前不存在且不是当前显示日期的有效历史条目；绝不能替换任何已有日期的`imageId`。目录写队列在提交前重新读取显示状态；当过期候选的`date`等于显示状态的`date`，但候选`imageId`与显示状态的`imageId`不同时，从本次目录提交中丢弃整个候选条目，不合并其任何字段。同一批次中其他相互独立且有效的候选仍可提交；不得因此中止整个目录写入或引入跨存储事务。只有当前 refresh generation 的权威来源可以按正常合并规则替换身份。
 - 过期任务不得覆盖新的`refreshState.date`、`generation`或任何来源状态，不得删除目录条目，也不得启动旧日期的目标图片预取。
 - 旧轮次失败或缺少覆盖的结果只记录诊断日志，不得把新轮次来源重新标记为`failed`或`missing`。
-- 普通和隐身 Worker 写不同物理键，因此各自的队列构成完整的单写入者边界。
+- 普通 Worker 的串行目录写队列构成唯一的目录写入者边界。
 
 ## 元数据合并规则
 
@@ -330,12 +334,12 @@ Quote 抓取租约使用最小持久化结构：
 - 下载成功后删除该 URL 的失败记录并广播对应日期更新。
 - 图片重试与元数据来源退避彼此独立，修改 UHD 设置不会强制重新请求已成功的元数据。
 - 每次目录提交、配置分辨率变化或缓存恢复扫描都根据当前目录和 Cache Storage 派生目标与历史任务，不等待 Model 返回；Model 提交有效`PreloadMediaContents`后再追加未来任务。不持久化另一份 URL 列表或游标。目标任务完成后先排列“历史 preview、历史最终分辨率”，再排列“未来 preview、未来最终分辨率”，每一阶段都按日期从近到远。队列中的命中项同步跳过；未命中但仍在退避窗口中的项目本轮跳过，只有已到重试时间的项目才发起网络请求。派发前仍须重新检查任务 Map 和`cache.match()`；因此旧 generation 活动任务刚完成并写入的 URL 会被新队列视为已完成，不会再次联网。退避到期不会单独唤醒 Worker；只有后续合格事件才重新派生队列。
-- 每个上下文的目标、用户导航、未来和历史图片都进入同一个单消费者调度器，任一时刻最多1个图片 fetch。已开始的 fetch 不被中断；紧急请求只能重排尚未开始的任务，不能通过启动第二个请求来“抢占”。
+- 普通上下文的目标、用户导航、未来和历史图片都进入同一个单消费者调度器，任一时刻最多1个图片 fetch。已开始的 fetch 不被中断；紧急请求只能重排尚未开始的任务，不能通过启动第二个请求来“抢占”。
 - 调度优先级固定为：当前显示或用户导航的最终分辨率、同一日期 preview、历史 preview、历史最终分辨率、未来 preview、未来最终分辨率。紧急 URL 尚未排队时插入待处理队首；已在队列中时把同一任务提升到队首；已经活动时复用其 Promise。用户导航始终可以把对应历史日期提升到其他尚未开始的历史或未来任务之前。
 - 未来队列必须等目标日期最终图片以及当前缺失的历史图片完成缓存检查、本轮允许的下载尝试（成功或失败），或因退避窗口尚未到期而跳过后再运行；目标或历史下载失败时记录独立退避状态并继续后续任务，不能永久阻塞未来队列。后台补齐不被页面等待，也不延迟目录广播、Quote、trivia 或导航。导航最多等待当前活动 fetch 结束及自身下载，不等待其前方原有的历史或未来待办。
 - 历史和未来阶段都按日期从近到远处理。某项失败时记录其独立退避状态并继续同阶段后续任务，不能让单项失败阻塞剩余批次；下一次新标签页、启动、网络恢复或目录刷新重新派生队列并补齐已到重试时间的缺失项。
 - MV3 Worker 在批次中途终止时不需要恢复游标。下一次事件重新扫描所需键，已完成项由`cache.match()`跳过，只继续下载缺失项。
-- Worker 为每个上下文维护不持久化的`imagePrefetchGeneration`；目录所需键或配置分辨率变化时递增。generation 不一致会停止旧队列继续派发，但活动 fetch 返回后仍以最新目录、显示状态和配置重新判断该 URL：仍属于最新保留集合则允许`cache.put()`，否则丢弃。每次 fetch 前和写入前都重新确认日期、`imageId`、URL 和分辨率。Worker 重启后从目录和缓存重新派生即可，不恢复旧 image generation。
+- Worker 为普通上下文维护不持久化的`imagePrefetchGeneration`；目录所需键或配置分辨率变化时递增。generation 不一致会停止旧队列继续派发，但活动 fetch 返回后仍以最新目录、显示状态和配置重新判断该 URL：仍属于最新保留集合则允许`cache.put()`，否则丢弃。每次 fetch 前和写入前都重新确认日期、`imageId`、URL 和分辨率。Worker 重启后从目录和缓存重新派生即可，不恢复旧 image generation。
 - 正常每日滚动且上游身份不变时，未来批次中的6个旧日期共12个键命中，只下载新加入最远日期的 preview 和最终分辨率。新目标日期的两种分辨率已由前一日未来批次缓存，不需要再为同步首屏单独下载 preview。
 - Model 只返回少于7个有效未来条目时只预取可验证的条目；不得伪造缺失日期。Model 修改已知未来日期的`imageId`或 URL 时，新身份按未命中处理，旧身份在不再受引用后清理。
 - `enable_uhd_wallpaper`变化时优先确保当前显示/目标日期的新最终分辨率，然后递增`imagePrefetchGeneration`，先串行补齐历史日期的新配置分辨率，再补齐全部未来日期的新配置分辨率；preview 仍是同一规范键并应命中，不重新请求元数据或 preview。设置切换或随后导航可以提升相应当前/历史 URL；快速 HD→UHD→HD 会重排待办，但相同规范 URL 的活动/排队任务仍复用同一任务。活动旧分辨率 fetch 不被取消；其响应可能消耗带宽，但在写入前发现已不属于最新保留集合时必须丢弃，不计为新配置的缓存成功。旧最终分辨率在不再受目录显示状态保护时清理；清理在新的未来批次开始前执行，切换期间允许短暂存在未引用旧键。
@@ -344,17 +348,16 @@ Quote 抓取租约使用最小持久化结构：
 
 - 目标日期及过去7天：每个日期最多2个响应，共16个。
 - 普通上下文未来第1至第7天：每个日期保留 preview 和配置分辨率，共14个。
-- 隐身上下文未来第1天：保留 preview 和配置分辨率，共2个。
 - 显示状态引用的 preview 或最终 URL 不属于上述基础集合时，额外保护这些实际在用的键，最多2个；这包括窗口外显示以及设置或图片身份切换期间仍在显示旧 URL 的情况。
-- 普通上下文基础保留集合为16 + 14 = 30个精确 URL 键；隐身上下文为16 + 2 = 18个。显示状态最多额外保护2个，因此硬上限分别为32和20。开始新的未来批次前先清理已不受引用的旧窗口和旧分辨率键，避免长时间离线后同时保留两套未来窗口；32/20是清理完成后的稳定上限，分辨率切换期间允许活动响应与新集合短暂重叠，但未被引用的旧键必须在该清理点移除。
+- 基础保留集合为16 + 14 = 30个精确 URL 键；显示状态最多额外保护2个，硬上限为32键。开始新的未来批次前清理已不受引用的旧窗口和旧分辨率键；32键是清理后的稳定上限，分辨率切换期间允许短暂重叠，未引用旧键必须在该清理点移除。
 - 清理目录或缓存时同步删除不再被目录或显示状态引用的`imageFailures`记录。删除后旧失败不再抑制未来请求；同一 URL 日后重新进入目录时按新任务处理。
 - Preview URL 始终规范为同一个`_640x360.jpg`地址，不随 UHD 设置变化。
-- 普通上下文全部7个未来日期同时保存 preview 和 UHD 时，实际字节数会明显高于 PLAN7 的差异化预取策略；隐身上下文最多只保存下一未来日期。这是分别控制长期与临时会话成本的明确策略。运行时按上下文硬上限限制精确键，不为统计字节读取所有响应 body，也不以字节阈值清除仍属于保留集合的图片。
-- 32 MiB不再是通过/失败阈值。验收分别记录普通上下文 HD/UHD fixture 字节数，并记录隐身上下文较小保留集合的样本；如果以后需要硬字节上限，必须另行决定画质降级或缩短对应未来窗口。
-- Cache Storage 是可被浏览器配额和设备存储压力清理的尽力缓存，且没有逐响应 pin 能力；离线可用深度以对应 preview 或最终响应仍命中为前提。普通上下文最多7日，隐身上下文最多1日。
+- 全部7个未来日期同时保存 preview 和 UHD 时，字节数会明显高于 PLAN7 的差异化预取策略。运行时按32键硬上限限制精确键，不为统计字节读取所有响应 body，也不以字节阈值清除仍被引用的图片。
+- 32 MiB不作为通过/失败阈值。验收记录普通上下文 HD/UHD fixture 字节数；若以后需要硬字节上限，必须另行决定画质降级或缩短未来窗口。
+- Cache Storage 是受浏览器配额和设备存储压力影响的尽力缓存，且没有逐响应 pin 能力；离线可用深度以响应仍命中为前提，未来窗口最多7日。
 - 每次启动仍执行`cache.match()`，缺失时按正常目标优先级恢复，不能仅凭目录条目假定图片一定存在。反复配额清理会把有效离线窗口缩短为 Chrome 实际保留的子集；本计划接受该限制，不新增`unlimitedStorage`权限。
 - 目录根和条目的`updatedAt`也使用数值时间戳，分别表示最近一次目录提交和该条目最近一次成功提交；它们与显示状态的`updatedAt`都只是诊断/来源时间，不参与 last-write-wins、刷新或图片/Trivia 结果准入。显示状态只有在最终图片成功应用时，才将新的`updatedAt`与 date、imageId、url 和 preloadDataUrl 原子写入；失败、身份不匹配或过期回调被拒绝时保留旧快照及其时间戳。
-- 内置渐变回退背景不进入 Cache Storage，也不计入上述普通32键、隐身20键上限。
+- 内置渐变不进入 Cache Storage，也不计入32键上限。
 
 ## Worker 通知
 
@@ -401,22 +404,21 @@ Quote 抓取租约使用最小持久化结构：
 
 ## 迁移与清理
 
-升级时仅由普通上下文 Worker 启动幂等迁移。迁移标记使用`wallpaper_migration_v2_state_regular`键和`writing | verified | complete`三个阶段，但每次启动都以普通上下文的实际 v2 数据校验为准，不能只信任阶段字符串。初始化必须先按`contextId`分支：只有`regular`路径可以读取或写入该标记及 v1 迁移输入；`incognito`路径使用 v2 context-suffixed 键的显式 allowlist 自我播种，禁止读取、等待或修改普通迁移标记、v1 键或普通 v2 键。
+升级时由普通 Worker 启动幂等迁移。迁移标记保留`wallpaper_migration_v2_state_regular`键和`writing | verified | complete`三个阶段，每次启动均验证实际 v2 数据，不能只信任阶段字符串。
 
 - 从旧`bing_images`导入最多8个日期和身份有效的条目，并标记为`legacy`。
 - 对旧相对图片 URL 固定使用`https://ts1.tc.mm.bing.net`补全，不因 Model 当前返回的 origin 不同而重写旧缓存键。
 - 旧条目存在有效`triviaData`时设为`complete`，否则设为`missing`。
 - 保留旧`wallpaper_url`的身份和`wallpaper_date`作为首个页面的迁移输入；页面通过规范化 URL 在导入目录中查找实际显示条目，只有 URL 无法匹配时才考虑日期，并再次验证身份。旧`wallpaper_preload_data_url`没有可独立验证的 imageId，迁移时不复制到 v2；页面初始设为空并从匹配的 v2 preview 缓存重新生成，期间由内置回退图承接。
-- 不迁移`wallpaper_idx`。隐身上下文不继承普通上下文的显示状态；它在首次使用时自行建立自己的 v2 状态。
-- 普通 Worker 将旧`cache_quote_state`复制到普通上下文 Quote 缓存，再由普通 Worker 独立裁剪和更新；隐身上下文不继承该缓存。
-- 普通 Worker 写入普通上下文的新目录和 Quote 状态，随后 fresh-read 验证版本和条目身份；Worker 不写 v2 显示状态，也不得尝试从普通上下文写入隐身上下文的 v2 键。
+- 不迁移`wallpaper_idx`。
+- 普通 Worker 将旧`cache_quote_state`复制到普通 Quote 缓存，再独立裁剪和更新。
+- Worker 写入目录和 Quote 状态，随后 fresh-read 验证版本和身份；Worker 不写 v2 显示状态。
 - 普通 Worker 将 v1 `chrome.storage.local` 中的共享设置迁移到`chrome.storage.sync`：`search_engine_list`、`current_search_engine`、`display_search_box`、`show_top_sites`、`show_clock`、`show_quote`、`enable_uhd_wallpaper`和`qotd_url`。已有有效 sync 值优先保留；否则复制有效 local 值或对应默认值。只有目录、Quote 状态和 sync 设置都 fresh-read 验证成功后才推进到`verified`。sync 失败时保留 local 值并在下一次迁移尝试中重试；验证成功后才删除这些旧 local 设置。
 - 首个页面读取`verified`目录和仍保留的 legacy 显示输入，匹配有效的 date、imageId 和 URL 后原子写入普通上下文 v2 显示状态；无法匹配时写入空显示状态并使用渐变回退图。页面发送`migrationDisplayStateReady`后，普通 Worker fresh-read 显示状态，确认迁移输入已被页面消费，再推进到`complete`并删除 legacy 键；marker 为`verified`时首个有效确认完成交接，之后在`complete`阶段收到的重复或迟到确认都是 no-op。
 - 所有运行时读取遵守绝对优先级：只要当前上下文存在通过验证的 v2 目录和显示状态，就永远不回退读取 v1 键，即使 Worker 在删除旧键前被终止。
 - 每次普通 Worker 启动都执行轻量收尾：v2 有效但标记未完成时继续验证并推进；标记已完成但旧键仍存在时继续删除，直到 fresh-read 确认旧键消失；v2 部分写入或验证失败时从可用 legacy 数据幂等重建。若已存在部分 v2 目录，必须先 fresh-read 并验证，保留所有有效 v2 条目及字段，只把缺失的 legacy 日期或字段按既有身份与来源优先级合并进去，不得用新的 legacy 导入替换有效 v2 数据；仅无效或冲突的 v2 条目按既有校验规则处理。
-- 隐身 Worker 启动不得使用`chrome.storage.local.get(null)`或其他全量扫描来决定迁移状态；只能读取自身 context-suffixed v2 目录、Quote、显示状态和必要的共享 sync 设置。普通迁移标记即使处于`writing`、`verified`或`complete`阶段，也不会阻塞隐身自我播种。
-- 每个上下文首次使用 v2 Cache Storage 时，只扫描该上下文当时可见的`funbingbing-wallpaper-cache-v1`，按规范 URL 把命中响应复制到自己的 v2 缓存，再对缺失响应走正常 Worker 下载。此规则不声称 v1 Cache Storage 在普通/隐身上下文间共享。
-- 普通上下文完成自己的 v1 cache 复制后删除其可见的 v1 cache；如果 Chrome 的实际实现使该删除也影响隐身上下文，隐身上下文只失去迁移命中优化并按正常流程下载，不影响目录或显示正确性。
+- 首次使用 v2 Cache Storage 时，普通 Worker 将可见的`funbingbing-wallpaper-cache-v1`响应按规范 URL 复制到`funbingbing-wallpaper-cache-v2-regular`；缺失响应走正常下载流程。
+- 普通上下文完成 v1 cache 复制后删除其可见的 v1 cache。
 - 新目录和显示状态验证成功后，运行时立即改用 v2 键。收尾阶段删除旧`bing_images`、`bing_model_preload_wallpaper_urls`、`cache_quick_facts`、`wallpaper_fetch_lock`、`wallpaper_idx`及其他旧壁纸显示键。
 - 如果迁移无法建立有效显示状态，保留内置回退图并由正常刷新获取首张壁纸。
 
@@ -438,7 +440,7 @@ Quote 抓取租约使用最小持久化结构：
 - 同 identity/不同 identity 下显示状态的 data URL 保留规则
 - 根据显示 date 和实时条目数组推导导航索引
 - v2 迁移校验和幂等收尾判断
-- 迁移标记使用`wallpaper_migration_v2_state_regular`，并验证 incognito 在 regular 标记为`writing`、`verified`、`complete`时均按 allowlist 自我播种且不读取或修改该标记
+- 迁移标记保留`wallpaper_migration_v2_state_regular`，验证`writing`、`verified`、`complete`各阶段的幂等恢复。
 - 跨标签页 preview 修复：Tab1 提交带空 preview 的 B，Tab2 在 B 修复通知前导航到 C 并拒绝 B 回调；验证该拒绝不写入 C，且在全局仍为 B 时后续新标签页可从 Cache Storage 修复 B；若 C 已提交，则不得把 B preview 写入 C
 
 使用 Node 内置`node:test`和`assert`，不增加测试依赖。测试文件直接运行，例如：
@@ -464,16 +466,16 @@ Node 测试覆盖：
 - Archive trivia ID 覆盖缺失、null、非字符串、空值、合法格式、错误格式、多个日期片段和无效日期；错误格式清空为 missing、记录诊断且不得启动 Trivia。
 - 迁移 URL 使用固定 origin，缓存键与旧 URL 完全一致。
 - Model 样本的`_1920x1080.webp`能结构化规范为`_1920x1080.jpg`，并与同一`imageId`次日 IOTD 生成的 HD 键完全一致；preview 和 UHD 后缀同样稳定。包含多个下划线的完整 identity 不能被截断，未知末尾尺寸必须拒绝而不是猜测替换。
-- 普通/隐身上下文生成不同的目录、显示、Quote 和缓存名称。
-- `ensureWallpaperCached`拒绝非法日期、分辨率和非目录 URL，并与预取共享去重和退避状态。活动任务不可抢断；紧急新 URL 插到待处理队首；同一 URL 已排队时只提升原任务；同一 URL 已活动时复用 Promise；全部场景中每个上下文的最大图片 fetch 并发仍为1。
+- 普通目录、显示、Quote、租约和缓存继续使用既有`_regular`/`-regular`名称；不再生成隐身运行时。
+- `ensureWallpaperCached`拒绝非法日期、分辨率和非目录 URL，并与预取共享去重和退避状态。活动任务不可抢断；紧急新 URL 插到待处理队首；同一 URL 已排队时只提升原任务；同一 URL 已活动时复用 Promise；全部场景中普通上下文的最大图片 fetch 并发仍为1。
 - 导航在0至8个条目及日期滚动后始终由 date 正确定位；0条时按钮禁用且命令 no-op。
 - Bing 内容日期只按字符串格式化为`YYYY/MM/DD`，在不同时区下结果不变；本地时钟行为不受影响。
 - 目标任务之后先排列历史 preview 和历史最终分辨率，再排列未来 preview 和未来最终分辨率；每一阶段都按日期从近到远排序。少于7个有效历史或未来条目时相应阶段缩短。
-- 模拟历史与未来全冷缓存时，所有请求严格串行且每个上下文最大并发为1；任何未来请求都不得早于尚未完成缓存检查或下载尝试的历史补齐任务。单项失败后继续同阶段后续任务，模拟 Worker 中断后重新派生队列只返回缺失项。
+- 模拟历史与未来全冷缓存时，所有请求严格串行且普通上下文最大并发为1；任何未来请求都不得早于尚未完成缓存检查或下载尝试的历史补齐任务。单项失败后继续同阶段后续任务，模拟 Worker 中断后重新派生队列只返回缺失项。
 - 目标日期最终图片下载失败只推进自身退避级别，不阻止历史补齐；历史或未来单项失败也不阻止同阶段后续任务及最终的未来队列。
 - 模拟稳定窗口向前滚动一天时6个日期的12个键命中，只有新第7日的 preview 和最终分辨率需要网络；图片身份改变或 HD/UHD 设置变化时只返回真正失效的键。
 - image generation 变化时旧队列不再派发；活动响应返回后，URL 仍属于最新目录/显示保留集合时可以写入，不再需要时必须丢弃。持久化 refresh generation 在 Worker 重启后保持，内存 image generation 则重新建立。
-- 普通上下文基础保留集合最多30键，额外显示保护后最多32键；隐身上下文对应为18键和20键；HD/UHD fixture 字节数只记录，不设置32 MiB断言，并明确区分32个键与32 MiB。
+- 基础保留集合最多30键，额外显示保护后最多32键；HD/UHD字节数只记录，不设置32 MiB断言。
 - `cachedFutureDepth`只计算从目标日期开始连续且 preview 与当前最终分辨率都命中的未来日期；不连续命中、preview-only 命中和过期诊断值都不能作为跳过预取的依据。
 - Quote 租约固定60秒并由`crypto.randomUUID()`生成 token；成功同步立即清除，过期或被替换的 token 不能提交或延长新租约。
 - Quote 纯逻辑测试注入确定性的`generateToken`；拒绝授予租约时不得调用生成器，浏览器实现由 Worker/runtime adapter 调用`globalThis.crypto.randomUUID()`，共享模块不得强制导入`node:crypto`。
@@ -484,7 +486,7 @@ Node 测试覆盖：
 - 显示最终图片但 preview 缺失时，同 imageId 保留旧 data URL，不同 imageId 清空；后续只在 generation、date 和 imageId 一致时更新。迁移不复制无法验证身份的旧 data URL。
 - 显示状态带空`preloadDataUrl`且对应最终图片与 preview 已缓存时，新标签页必须立即显示缓存最终图片，并在不依赖旧缓存通知的情况下重建 preview data URL；模拟重建前页面崩溃或原页面 generation 改变，下一次新标签页仍会重试。修复写入前若全局`date + imageId + url`已变化则丢弃结果。
 - 网络恢复测试覆盖浏览器`online`事件与现有15秒实际连接检查，两者对同一 retry object 只允许一次 bypass；另验证三个元数据来源的并行启动上限和图片单消费者的串行上限。
-- HD/UHD 快速切换测试确认活动旧分辨率 fetch 不被取消，未被最新保留集合引用的响应不会计为成功；切换期间可短暂存在未引用旧键，但新未来批次开始前清理完成后恢复32/20键稳定上限。
+- HD/UHD 快速切换测试确认活动旧分辨率 fetch 不被取消，未被最新保留集合引用的响应不会计为成功；切换期间可短暂存在未引用旧键，但新未来批次开始前清理完成后恢复32键稳定上限。
 - `cachedFutureDepth`跨 Worker 重启保留最近观测值但不影响 cache.match、重试或预取；目录根、条目和显示状态的`updatedAt`分别验证成功更新、失败保持和不参与冲突裁决。
 - 重复及迟到的`migrationDisplayStateReady`确认只产生一次完成/清理效果；部分 v2 目录重启测试保留已有条目并只补缺失 legacy 数据。
 - Worker 在图片 fetch 未完成时终止的测试确认中断请求不产生 Cache Storage 成功，下一事件从缺失 URL 重试，且跨终止边界没有同 URL 并发请求。
@@ -500,10 +502,10 @@ Node 测试覆盖：
 - Worker 在某个 API 结果提交后或目录提交与图片缓存之间重启，已完成结果不丢失，只补齐缺失工作。
 - Worker 在目标、历史或未来图片 fetch 仍未完成时终止，下一次事件只补齐未缓存 URL；中断尝试不写入成功缓存，也不与重试重叠。
 - 日期变化期间旧 API 响应晚到时，只能补充相同身份；试图改变当前显示日期或已有历史日期身份的候选被跳过，不回写新日期来源状态或触发旧目标图片预取。
-- 首次获得未来条目时，当前图片完成后先补齐所有缺失的可导航历史图片；普通上下文再从最近未来日期开始逐张下载最多7个 preview 和最终分辨率，隐身上下文只下载第1个未来日期的这两个响应；网络面板中每个上下文的背景图片最大并发为1，页面可正常交互且不等待后台批次。
+- 首次获得未来条目时，当前图片完成后先补齐可导航历史图片，再逐张下载最多7个未来日期的 preview 和最终分辨率；背景图片最大并发为1，页面可正常交互且不等待批次。
 - 未来或历史下载活动期间导航到未缓存日期时，当前 fetch 正常结束，导航最终分辨率成为下一任务；其余未开始任务后移，整个过程没有第二个并发图片请求。若同 URL 已活动或排队，只附着或提升原任务。
-- 稳定窗口次日滚动时，普通上下文旧未来日期的 preview 和最终图片命中 Cache Storage，只请求新加入最远日期的2个响应；隐身上下文只维持下一未来日期并同样最多请求2个响应；若 Bing 修改已知未来身份，额外请求仅限发生变化的日期。
-- 关闭浏览器后在对应未来窗口内离线重开，日期等于`targetDate`的临时条目从缓存立即显示。超过普通7日或隐身1日窗口且目录/缓存没有当前 targetDate 时，继续显示并保护最后一次实际显示的壁纸，不把任意旧缓存冒充当前图片；当前 IOTD 最终图片完成后再切换，随后先补齐可导航历史缺失图片，再按上下文限制串行补齐未来图片。
+- 稳定窗口次日滚动时，普通上下文旧未来日期的 preview 和最终图片命中 Cache Storage，只请求新加入最远日期的2个响应；若 Bing 修改已知未来身份，额外请求仅限发生变化的日期。
+- 关闭浏览器后在对应未来窗口内离线重开，日期等于`targetDate`的临时条目从缓存立即显示。超过7日窗口且目录/缓存没有当前 targetDate 时，继续显示并保护最后一次实际显示的壁纸，不把任意旧缓存冒充当前图片；当前 IOTD 最终图片完成后再切换，随后先补齐可导航历史缺失图片，再按上下文限制串行补齐未来图片。
 - 在未来批次中途终止 Worker，下一次新标签页只补缺失图片；单张失败不会阻塞后续日期，退避到期后的下一次事件可以补齐。
 - 模拟浏览器清理某个未来 Cache Storage 响应后，目录存在不能被当作缓存命中；下一次事件只补该缺失键，离线时继续使用仍命中的 preview、当前壁纸或内置回退图。
 - 连续模拟配额清理多个 future 键时，有效离线窗口随实际命中缩短但目录不损坏；测试不宣称能在自动化中稳定触发 Chrome 的真实磁盘压力淘汰，也不把重新下载当作 pin 保证。
@@ -512,19 +514,19 @@ Node 测试覆盖：
 - Preview 被清理或缺失时，同一 imageId 可以保留旧 data URL；imageId 已变化时必须清空并显示内置回退图，不能先画旧图再切新图。补齐后只有 generation、date、imageId 全匹配才更新 data URL。
 - 首次安装在线时立即显示内置回退图直到最终图片完成；首次安装离线时仍显示内置回退图。
 - 手动导航期间的刷新不会切回目标日期；0条时导航禁用，少于8个条目和日期滚动不会产生索引错位。
-- 设置 UHD 后先请求当前缺失的最终分辨率，再串行补齐历史日期的 UHD，最后按上下文限制补齐未来日期的 UHD；普通上下文最多7日，隐身上下文最多1日。不重复下载 preview 或元数据，旧 HD 在失去引用后清理。快速切换并导航时允许任务重排，但相同 URL 不重复排队、每个上下文最大图片并发保持1，最终只保留最新配置和显示状态需要的键。切回 HD 时行为对称。
+- 设置 UHD 后先请求当前缺失的最终分辨率，再串行补齐历史日期的 UHD，最后按上下文限制补齐未来日期的 UHD；未来窗口最多7日。不重复下载 preview 或元数据，旧 HD 在失去引用后清理。快速切换并导航时允许任务重排，但相同 URL 不重复排队、普通上下文最大图片并发保持1，最终只保留最新配置和显示状态需要的键。切回 HD 时行为对称。
 - 没有页面监听时，目录和图片通知不会产生未处理 Promise rejection。
-- 在允许隐身运行的 Chrome 中同时打开普通和隐身新标签页，确认目录、显示状态、Quote 状态、缓存命中和清理互不覆盖。
-- 从 v1 local 设置升级后，确认有效值迁移到 sync、已有有效 sync 值不被覆盖、sync 写入失败时 local 值仍保留；普通窗口修改 UHD 或 Quote 设置后，隐身上下文读取同一 sync 值并触发相应配置更新。
+- 验证 Manifest 为`"incognito": "not_allowed"`，普通 New Tab 正常显示 Ataraxia；新建隐身 New Tab 保持 Chrome 默认页面，不启动 Ataraxia 的隐身 Worker、网络任务或存储写入。直接打开扩展 options/newtab URL 不算隐身 New Tab 产品验收。
+- 从 v1 local 设置升级后，确认有效值迁移到 sync、已有有效 sync 值不被覆盖、sync 写入失败时 local 值仍保留；普通窗口修改 UHD 或 Quote 设置后，其他普通页面和 Worker 响应相应 sync 更新。
 - Tab1 从 A 导航到 B 时，在 B 最终图片应用前打开 Tab2，确认 Tab2 可以从已提交状态初始化为 A 且不必随后自动切换；Tab1 提交 B 后再打开的新标签页以 B 的同一`date + imageId + url`初始化，并且只允许短暂显示 B 的匹配 preview。并发写入仍保持每个快照字段一致，last-write-wins 只决定后续读取者的起点，不要求已打开标签页实时收敛。
 - 从旧版本升级时，当前上下文能以相同 URL 命中其可见的旧缓存；迁移在新状态写入或旧键删除时中断，重启后仍使用 v2 并完成收尾。
-- 普通上下文最终目录最多15条（目标日期、过去7天、未来7天），隐身上下文最多9条（目标日期、过去7天、未来1天）；Cache Storage 最多分别为32和20个有效键；分别记录 HD 和 UHD 场景总字节数，但不以32 MiB作为通过条件。
+- 最终目录最多15条（目标日期、过去7天、未来7天），Cache Storage 最多32个有效键；记录 HD/UHD总字节数，不以32 MiB为通过条件。
 
 ## 实施顺序
 
 1. 新增纯日期、上下文、URL、合并、重试和保留集合 helper，并先让 Node 测试通过。
-2. 在 Worker 中实现上下文目录、分来源刷新、单消费者图片优先级调度器、trivia/图片重试、通知和迁移；用单元测试及 Worker 重启场景验证没有永久抑制状态，每个上下文的所有图片任务最大并发为1。
+2. 在 Worker 中实现上下文目录、分来源刷新、单消费者图片优先级调度器、trivia/图片重试、通知和迁移；用单元测试及 Worker 重启场景验证没有永久抑制状态，普通上下文的所有图片任务最大并发为1。
 3. 将页面改为目录和 Cache Storage 只读消费者，加入统一显示状态、实时日期导航和内置回退图；验证 warm/cold/offline 首屏。
 4. 拆出非阻塞 Quote 抓取与租约流程，并迁移 quick links、设置页、离线检测等调用方。
-5. 在安装后的 MV3 扩展中完成普通/隐身并发、网络时序、图片任务提升与串行性、配额清理模拟、缓存键数和 HD/UHD 字节用量记录。
+5. 在真实 MV3 扩展中完成普通多标签并发、网络时序、图片任务提升与串行性、配额清理模拟、缓存键数和 HD/UHD字节记录，并确认隐身 New Tab 不被接管。
 </proposed_plan>
