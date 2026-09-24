@@ -4,9 +4,8 @@ importScripts('plan9/helpers.js', 'plan9/catalog.js');
 const catalogWorker = PLAN9Catalog.createCatalogWorker({ chrome, fetch: (...args) => fetch(...args) });
 catalogWorker.install(globalThis);
 
-// The legacy page still uses its regular quote key until the page/migration tickets land.
-// Incognito never reads legacy regular state, including base.js's unbounded config cache.
-const workerQuoteKey = catalogWorker.contextId === 'incognito' ? catalogWorker.keys.quotes : 'cache_quote_state';
+// The legacy page still uses its v1 quote key until the page/migration tickets land.
+const workerQuoteKey = 'cache_quote_state';
 const workerConf = {};
 let legacyQuoteUrl;
 let syncQuoteUrl;
@@ -14,7 +13,7 @@ function updateWorkerQuoteUrl() {
   workerConf.qotd_url = typeof syncQuoteUrl === 'string' ? syncQuoteUrl : legacyQuoteUrl;
 }
 const confReadyPromise = Promise.all([
-  chrome.storage.local.get(catalogWorker.contextId === 'regular' ? [workerQuoteKey, 'qotd_url'] : workerQuoteKey),
+  chrome.storage.local.get([workerQuoteKey, 'qotd_url']),
   chrome.storage.sync.get('qotd_url')
 ]).then(([local, sync]) => {
   workerConf.cache_quote_state = local[workerQuoteKey];
@@ -24,7 +23,6 @@ const confReadyPromise = Promise.all([
 });
 function readConf(key) { return workerConf[key]; }
 async function writeConf(key, value, epoch = catalogWorker.epoch) {
-  if (key === 'lost_quotes' && catalogWorker.contextId === 'incognito') return;
   return catalogWorker.runContextWrite(epoch, async () => {
     await chrome.storage.local.set({ [key === 'cache_quote_state' ? workerQuoteKey : key]: value });
     workerConf[key] = value;
@@ -32,7 +30,7 @@ async function writeConf(key, value, epoch = catalogWorker.epoch) {
 }
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area === 'sync' && changes.qotd_url) { syncQuoteUrl = changes.qotd_url.newValue; updateWorkerQuoteUrl(); }
-  if (area === 'local' && changes.qotd_url && catalogWorker.contextId === 'regular') { legacyQuoteUrl = changes.qotd_url.newValue; updateWorkerQuoteUrl(); }
+  if (area === 'local' && changes.qotd_url) { legacyQuoteUrl = changes.qotd_url.newValue; updateWorkerQuoteUrl(); }
   if (area === 'local' && changes[workerQuoteKey]) workerConf.cache_quote_state = changes[workerQuoteKey].newValue;
 });
 
@@ -58,7 +56,7 @@ chrome.runtime.onInstalled.addListener(function (object) {
 const DEFAULT_LOST_QUOTES_URL = null;
 const QUOTE_CACHE_SLOTS = 8;
 const LOST_QUOTES_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
-const WALLPAPER_CACHE_NAME = catalogWorker.contextId === 'incognito' ? catalogWorker.keys.cache : 'funbingbing-wallpaper-cache-v1';
+const WALLPAPER_CACHE_NAME = catalogWorker.keys.cache;
 const WALLPAPER_CACHE_MAX_ENTRIES = 48;
 const WALLPAPER_PREFETCH_CONCURRENCY = 2;
 

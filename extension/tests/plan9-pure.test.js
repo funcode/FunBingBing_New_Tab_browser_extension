@@ -19,10 +19,12 @@ test('Shanghai target date is independent of process timezone', () => {
   }
 });
 
-test('context keys have explicit regular and incognito suffixes', () => {
-  assert.equal(P.getWallpaperContextId('catalog', 'regular'), 'catalog_regular');
-  assert.equal(P.getWallpaperContextId('catalog', 'incognito'), 'catalog_incognito');
-  assert.throws(() => P.getWallpaperContextId('catalog', 'private'), TypeError);
+test('retention uses the regular seven-day policy without context suffixes', () => {
+  const entries = {};
+  for (let n = -7; n <= 7; n++) { const date = P.addDays('20260923', n); entries[date] = entry(date, 'OHR.Wallpaper_' + date); }
+  assert.equal(P.getRetentionKeys('20260923', '_1920x1080.jpg', null, entries).length, 30);
+  assert.equal(P.getRetentionKeys('20260923', '_1920x1080.jpg', { date: '20260901', imageId: 'OHR.Old', url: P.canonicalImageUrl('OHR.Old', '_UHD.jpg'), preloadDataUrl: '', updatedAt: 10 }, entries).length, 32);
+  assert.equal(P.cachedFutureDepth('20260923', () => true), 7);
 });
 
 test('identity normalization preserves underscores and canonicalizes known suffixes', () => {
@@ -103,18 +105,6 @@ test('quote leases expire and replaced tokens are rejected', () => {
   assert.equal(P.acceptsQuoteLease({ token: 'token-b', leaseUntil: 70000 }, 'token-a', 200), false);
 });
 
-test('retention and future depth honor context caps and stop at gaps', () => {
-  const entries = {};
-  for (let n = -7; n <= 7; n++) { const date = P.addDays('20260923', n); entries[date] = entry(date, 'OHR.Wallpaper_' + date); }
-  assert.equal(P.getRetentionKeys('20260923', 'regular', '_1920x1080.jpg', null, entries).length, 30);
-  assert.equal(P.getRetentionKeys('20260923', 'incognito', '_1920x1080.jpg', null, entries).length, 18);
-  assert.equal(P.getRetentionKeys('20260923', 'regular', '_1920x1080.jpg', { date: '20260901', imageId: 'OHR.Old', url: P.canonicalImageUrl('OHR.Old', '_UHD.jpg'), preloadDataUrl: '', updatedAt: 10 }, entries).length, 32);
-  assert.equal(P.getRetentionKeys('20260923', 'incognito', '_1920x1080.jpg', { date: '20260901', imageId: 'OHR.Old', url: P.canonicalImageUrl('OHR.Old', '_UHD.jpg'), preloadDataUrl: '', updatedAt: 10 }, entries).length, 20);
-  const cached = (date, suffix) => date !== '20260925' && ['_640x360.jpg', '_1920x1080.jpg'].includes(suffix);
-  assert.equal(P.cachedFutureDepth('20260923', 'regular', cached), 1);
-  assert.equal(P.cachedFutureDepth('20260923', 'incognito', () => true), 1);
-});
-
 test('navigation index follows display date and not a fixed slot', () => {
   assert.equal(P.navigationIndex([entry('20260920'), entry('20260922'), entry('20260923')], '20260922'), 1);
   assert.equal(P.navigationIndex([entry('20260920')], '20260923'), -1);
@@ -136,7 +126,7 @@ test('shared setting precedence and migration completion gates', () => {
 
 test('image tasks are canonical, ordered, deduplicable, and urgent promotion preserves one copy', () => {
   const entries = [entry('20260923'), entry('20260922')];
-  let tasks = P.deriveImageTasks(entries, '20260923', 'regular', '_1920x1080.jpg');
+  let tasks = P.deriveImageTasks(entries, '20260923', '_1920x1080.jpg');
   assert.equal(tasks[0].date, '20260923');
   const url = tasks[2].url;
   tasks = P.promoteImageTask(tasks, url);
@@ -223,10 +213,10 @@ test('stale work adds only absent non-display history and supplements missing fi
 
 test('configured final resolution determines future depth, diagnostic values never gate scheduling', () => {
   const hasHD = (date, suffix) => suffix !== '_UHD.jpg';
-  assert.equal(P.cachedFutureDepth('20260923', 'regular', hasHD, '_1920x1080.jpg'), 7);
-  assert.equal(P.cachedFutureDepth('20260923', 'regular', hasHD, '_UHD.jpg'), 0);
+  assert.equal(P.cachedFutureDepth('20260923', hasHD, '_1920x1080.jpg'), 7);
+  assert.equal(P.cachedFutureDepth('20260923', hasHD, '_UHD.jpg'), 0);
   const records = [{ ...entry('20260924'), cachedFutureDepth: 7 }];
-  assert.equal(P.deriveImageTasks(records, '20260923', 'regular', '_UHD.jpg').length, 2);
+  assert.equal(P.deriveImageTasks(records, '20260923', '_UHD.jpg').length, 2);
 });
 
 test('retry sequence survives restart while independent identities remain unchanged', () => {

@@ -7,17 +7,18 @@ const target = '20260923';
 const imageId = (date) => 'OHR.Image_' + date;
 const iotd = (date) => ({ isoDate: date, title: 'IOTD ' + date, imageUrls: { landscape: { highDef: '/th?id=' + imageId(date) + '_1920x1080.jpg' } } });
 const media = (date) => ({ Ssd: date, ImageContent: { Image: { Url: 'https://ts1.tc.mm.bing.net/th?id=' + imageId(date) + '_1920x1080.webp' }, Headline: 'Headline ' + date, TriviaId: '' } });
-function fixture(contextId = 'regular', shared) {
+function fixture(_contextId, shared) {
   const state = shared || {};
   const reads = [], writes = [], requests = [], broadcasts = [];
   const listeners = {};
   const event = (name) => ({ addListener(fn) { listeners[name] = fn; } });
   let now = Date.parse('2026-09-23T04:00:00Z');
   const chrome = {
-    extension: { inIncognitoContext: contextId === 'incognito' },
+    extension: {},
     storage: { local: {
       async get(keys) { assert.notEqual(keys, null); reads.push(keys); return Object.fromEntries((Array.isArray(keys) ? keys : [keys]).map(k => [k, structuredClone(state[k])])); },
-      async set(values) { writes.push(structuredClone(values)); Object.assign(state, structuredClone(values)); }
+      async set(values) { writes.push(structuredClone(values)); Object.assign(state, structuredClone(values)); },
+      async remove(keys) { for (const key of keys) delete state[key]; }
     }, sync: { async get(keys) { return { enable_uhd_wallpaper: 'yes', qotd_url: '' }; } }, onChanged: event('changed') },
     runtime: { onInstalled: event('installed'), onStartup: event('startup'), onMessage: event('message'), async sendMessage(message) { broadcasts.push(message); } }
   };
@@ -35,7 +36,7 @@ function fixture(contextId = 'regular', shared) {
 test('refresh commits real Bing payloads, shared settings and context catalog without display writes', async () => {
   const f = fixture();
   await f.worker.refresh();
-  const c = f.state.bing_wallpaper_catalog_v2_regular;
+  const c = f.state.bing_wallpaper_catalog_v2;
   assert.equal(c.version, 2);
   assert.equal(c.refreshState.date, target);
   assert.equal(c.refreshState.generation, 1);
@@ -45,7 +46,7 @@ test('refresh commits real Bing payloads, shared settings and context catalog wi
   assert.equal(c.entries[target].headline, 'Headline ' + target);
   assert.equal(c.entries['20260924'].metadataStage, 'preload');
   assert.equal(typeof c.updatedAt, 'number');
-  assert.ok(f.writes.every(v => Object.keys(v).every(k => k === 'bing_wallpaper_catalog_v2_regular')));
+  assert.ok(f.writes.every(v => Object.keys(v).every(k => k === 'bing_wallpaper_catalog_v2')));
   assert.ok(f.broadcasts.some(m => m.type === 'wallpaperCatalogUpdated' && m.updatedDates.includes(target)));
   const count = f.requests.length;
   await f.worker.refresh();
@@ -77,7 +78,7 @@ test('source retries persist the 1, 3, 5, 5 minute sequence across restart and r
     f.setNow(instant);
     f.setHandler(() => { throw Error('offline'); });
     await f.worker.refresh();
-    const state = f.state.bing_wallpaper_catalog_v2_regular;
+    const state = f.state.bing_wallpaper_catalog_v2;
     assert.equal(state.refreshState.sources.imageOfTheDay.nextRetryAt, instant + delay);
     assert.equal(state.refreshState.sources.model.nextRetryAt, instant + delay);
     const count = f.requests.length;
@@ -89,7 +90,7 @@ test('source retries persist the 1, 3, 5, 5 minute sequence across restart and r
   f.setNow(Date.parse('2026-09-24T04:00:00Z'));
   f.setHandler(url => url.includes('imageoftheday') ? { data: { images: [iotd('20260924')] } } : {});
   await f.worker.refresh();
-  const next = f.state.bing_wallpaper_catalog_v2_regular;
+  const next = f.state.bing_wallpaper_catalog_v2;
   assert.equal(next.refreshState.generation, 2);
   assert.equal(next.refreshState.sources.imageOfTheDay.retryLevel, 0);
   assert.equal(next.refreshState.sources.model.retryLevel, 1);
@@ -104,13 +105,13 @@ test('reconnect bypass is persisted before requests and a failed bypass advances
   const bypass = f.worker.refresh({ reconnect: true });
   await until(() => pending.length === 3);
   assert.equal(f.worker.refresh({ reconnect: true }), bypass);
-  assert.ok(f.state.bing_wallpaper_catalog_v2_regular.refreshState.sources.model.lastReconnectBypassAt > 0);
+  assert.ok(f.state.bing_wallpaper_catalog_v2.refreshState.sources.model.lastReconnectBypassAt > 0);
   const restarted = fixture('regular', f.state);
   await restarted.worker.refresh({ reconnect: true });
   assert.equal(restarted.requests.length, 0);
   pending.forEach(task => task.reject(Error('still offline')));
   await bypass;
-  const source = f.state.bing_wallpaper_catalog_v2_regular.refreshState.sources.model;
+  const source = f.state.bing_wallpaper_catalog_v2.refreshState.sources.model;
   assert.equal(source.retryLevel, 2);
   assert.equal(source.nextRetryAt - source.attemptedAt, 180000);
 });
@@ -122,31 +123,31 @@ test('late generation drops a whole displayed-identity conflict while committing
   conflicting.ImageContent.TriviaId = 'HPQuiz_20260923_Rejected';
   const history = media('20260922');
   history.ImageContent.TriviaId = 'HPQuiz_20260922_Allowed';
-  f.state.wallpaper_display_state_v2_regular = { date: target, imageId: 'OHR.Displayed', url: P.canonicalImageUrl('OHR.Displayed', '_1920x1080.jpg'), preloadDataUrl: '', updatedAt: 1 };
+  f.state.wallpaper_display_state_v2 = { date: target, imageId: 'OHR.Displayed', url: P.canonicalImageUrl('OHR.Displayed', '_1920x1080.jpg'), preloadDataUrl: '', updatedAt: 1 };
   f.setHandler(url => url.includes('/model') ? oldModel.promise : {});
   const old = f.worker.refresh();
   await until(() => f.requests.length === 3);
   f.setNow(Date.parse('2026-09-24T04:00:00Z'));
   f.setHandler(url => url.includes('imageoftheday') ? { data: { images: [iotd('20260924')] } } : {});
   await f.worker.refresh();
-  const sourceBefore = structuredClone(f.state.bing_wallpaper_catalog_v2_regular.refreshState.sources);
+  const sourceBefore = structuredClone(f.state.bing_wallpaper_catalog_v2.refreshState.sources);
   oldModel.resolve({ MediaContents: [conflicting, history] });
   await old;
   await until(() => f.requests.some(url => url.includes('HPQuiz_20260922_Allowed')));
-  const c = f.state.bing_wallpaper_catalog_v2_regular;
+  const c = f.state.bing_wallpaper_catalog_v2;
   assert.equal(c.entries[target], undefined);
   assert.equal(c.entries['20260922'].headline, 'Headline 20260922');
   assert.equal(c.entries['20260924'].metadataStage, 'iotd');
   assert.equal(c.refreshState.generation, 2);
   assert.deepEqual(c.refreshState.sources, sourceBefore);
   assert.ok(!f.requests.some(url => url.includes('Rejected')));
-  assert.equal(f.state.wallpaper_display_state_v2_regular.imageId, 'OHR.Displayed');
+  assert.equal(f.state.wallpaper_display_state_v2.imageId, 'OHR.Displayed');
 });
 
 test('Archive validates against all eight committed IOTD dates and invalidates after identity correction', async () => {
   const f = fixture();
   await f.worker.refresh();
-  const c = f.state.bing_wallpaper_catalog_v2_regular;
+  const c = f.state.bing_wallpaper_catalog_v2;
   assert.equal(c.refreshState.sources.archive.status, 'success');
   assert.equal(c.entries['20260916'].headline, 'Archive headline');
   c.refreshState.sources.imageOfTheDay.status = 'missing';
@@ -157,23 +158,29 @@ test('Archive validates against all eight committed IOTD dates and invalidates a
     return { data: { images: [iotd(target), changed] } };
   });
   await f.worker.refresh();
-  const updated = f.state.bing_wallpaper_catalog_v2_regular;
+  const updated = f.state.bing_wallpaper_catalog_v2;
   assert.equal(updated.entries['20260916'].imageId, 'OHR.Corrected');
   assert.equal(updated.entries['20260916'].headline, '');
   assert.equal(updated.refreshState.sources.archive.status, 'missing');
 });
 
-test('regular and incognito workers share sync settings but never read or write the other catalog or migration keys', async () => {
-  const shared = { wallpaper_migration_v2_state_regular: { phase: 'writing' }, bing_images: ['legacy'], cache_quote_state: { quotes: {} } };
-  const regular = fixture('regular', shared);
-  const incognito = fixture('incognito', shared);
-  await Promise.all([regular.worker.refresh(), incognito.worker.refresh()]);
-  assert.ok(shared.bing_wallpaper_catalog_v2_regular);
-  assert.ok(shared.bing_wallpaper_catalog_v2_incognito);
-  assert.ok(incognito.reads.every(key => /_incognito$/.test(key)));
-  assert.ok(incognito.writes.every(values => Object.keys(values).every(key => /_incognito$/.test(key))));
-  assert.equal(incognito.worker.keys.migration, undefined);
-  assert.equal(shared.wallpaper_migration_v2_state_regular.phase, 'writing');
+
+
+test('startup migrates suffixed v2 state into unsuffixed names and preserves current data', async () => {
+  const oldCatalog = { version: 2, updatedAt: 1, refreshState: { date: target, generation: 1, cachedFutureDepth: 0, sources: {}, imageFailures: {} }, entries: { [target]: { date: target, imageId: imageId(target), metadataStage: 'iotd' } } };
+  const f = fixture(undefined, {
+    bing_wallpaper_catalog_v2_regular: oldCatalog,
+    wallpaper_display_state_v2_regular: { date: target, imageId: imageId(target), url: P.canonicalImageUrl(imageId(target), '_1920x1080.jpg'), preloadDataUrl: '', updatedAt: 1 },
+    cache_quote_state_v2_regular: { quotes: { [target]: { text: 'Old quote' } } },
+    wallpaper_migration_v2_state_regular: { phase: 'complete' }
+  });
+  await f.worker.refresh();
+  assert.equal(f.state.bing_wallpaper_catalog_v2.version, 2);
+  assert.equal(f.state.bing_wallpaper_catalog_v2.entries[target].imageId, imageId(target));
+  assert.equal(f.state.wallpaper_display_state_v2.imageId, imageId(target));
+  assert.equal(f.state.cache_quote_state_v2.quotes[target].text, 'Old quote');
+  assert.equal(f.state.bing_wallpaper_catalog_v2_regular, undefined);
+  assert.equal(f.state.wallpaper_migration_v2_state_regular, undefined);
 });
 
 test('metadata refresh completes without waiting for trivia and stale trivia results cannot mutate a replaced entry', async () => {
@@ -188,15 +195,15 @@ test('metadata refresh completes without waiting for trivia and stale trivia res
   });
   await f.worker.refresh();
   await until(() => f.requests.some(url => url.includes('/trivia')));
-  const c = f.state.bing_wallpaper_catalog_v2_regular;
+  const c = f.state.bing_wallpaper_catalog_v2;
   c.entries[target].triviaId = 'HPQuiz_20260923_Replacement';
   c.entries[target].triviaState = 'complete';
   c.entries[target].triviaData = { replacement: true };
   quiz.resolve({ old: true });
   await new Promise(resolve => setImmediate(resolve));
   await new Promise(resolve => setImmediate(resolve));
-  assert.deepEqual(f.state.bing_wallpaper_catalog_v2_regular.entries[target].triviaData, { replacement: true });
-  assert.equal(f.state.bing_wallpaper_catalog_v2_regular.entries[target].triviaRetryLevel, 0);
+  assert.deepEqual(f.state.bing_wallpaper_catalog_v2.entries[target].triviaData, { replacement: true });
+  assert.equal(f.state.bing_wallpaper_catalog_v2.entries[target].triviaRetryLevel, 0);
 });
 
 test('worker events, refresh messages and relevant sync changes trigger work; absent listeners are harmless', async () => {
@@ -227,7 +234,7 @@ test('Archive extracts the API quiz search URL and schedules only its validated 
   });
   await f.worker.refresh();
   await until(() => f.requests.some(url => url.includes('HPQuiz_20260916_Oldest')));
-  assert.equal(f.state.bing_wallpaper_catalog_v2_regular.entries['20260916'].triviaId, 'HPQuiz_20260916_Oldest');
+  assert.equal(f.state.bing_wallpaper_catalog_v2.entries['20260916'].triviaId, 'HPQuiz_20260916_Oldest');
   assert.ok(!f.requests.some(url => url.includes('Rejected')));
 });
 
@@ -236,7 +243,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 async function backgroundFixture(contextId, syncUrl) {
-  const f = fixture(contextId, { qotd_url: 'https://legacy.example/quotes.json', cache_quote_state: { quotes: {} }, wallpaper_migration_v2_state_regular: { phase: 'writing' } });
+  const f = fixture(undefined, { qotd_url: 'https://legacy.example/quotes.json', cache_quote_state: { quotes: {} }, wallpaper_migration_v2_state: { phase: 'writing' } });
   const messages = [], changes = [];
   f.chrome.runtime.onMessage = { addListener: fn => messages.push(fn) };
   f.chrome.storage.onChanged = { addListener: fn => changes.push(fn) };
@@ -267,85 +274,6 @@ test('background legacy quote endpoint preserves local fallback until migration 
   assert.deepEqual(synced.requests, ['https://sync.example/quotes.json']);
 });
 
-test('background incognito initialization and legacy message adapter use only isolated local quote state', async () => {
-  const f = await backgroundFixture('incognito', 'https://sync.example/quotes.json');
-  await f.sync(1);
-  assert.equal(f.state.cache_quote_state_v2_incognito.quotes[target].text, 'Saved quote');
-  assert.equal(f.state.cache_quote_state.quotes[target], undefined);
-  assert.ok(f.reads.every(key => typeof key === 'string' && key.endsWith('_incognito')));
-  assert.ok(f.writes.every(values => Object.keys(values).every(key => key.endsWith('_incognito'))));
-});
-
-function privateLifecycle(f) {
-  let windows = [{ id: 1, incognito: true }, { id: 2, incognito: true }];
-  const removals = [], cacheDeletes = [];
-  f.chrome.windows = { getAll: async () => structuredClone(windows), onRemoved: { addListener: fn => { f.listeners.windowRemoved = fn; } } };
-  f.chrome.storage.local.remove = async keys => { removals.push(keys); for (const key of keys) delete f.state[key]; };
-  const worker = createCatalogWorker({ chrome: f.chrome, fetch: async () => ({ ok: true, json: async () => ({}) }), caches: { async delete(name) { cacheDeletes.push(name); return true; } }, now: () => Date.parse('2026-09-23T04:00:00Z'), logger: { warn() {} } });
-  return { worker, removals, cacheDeletes, setWindows(value) { windows = value; } };
-}
-
-test('last incognito close removes only private runtime state and cache, repeated cleanup is safe', async () => {
-  const f = fixture('incognito', {
-    bing_wallpaper_catalog_v2_regular: { preserved: true }, cache_quote_state_v2_regular: { preserved: true },
-    wallpaper_migration_v2_state_regular: { phase: 'writing' }, bing_images: ['legacy'],
-    bing_wallpaper_catalog_v2_incognito: {}, cache_quote_state_v2_incognito: {}, quote_scrape_state_v2_incognito: {}, wallpaper_display_state_v2_incognito: {}
-  });
-  const life = privateLifecycle(f);
-  life.worker.install();
-  assert.equal(await life.worker.cleanupIncognito(), false);
-  assert.equal(life.removals.length, 0);
-  life.setWindows([]);
-  f.listeners.windowRemoved(2);
-  await life.worker.cleanupIncognito();
-  assert.ok(life.removals.flat().every(key => key.endsWith('_incognito')));
-  assert.deepEqual(life.cacheDeletes, ['funbingbing-wallpaper-cache-v2-incognito']);
-  assert.equal(f.state.bing_wallpaper_catalog_v2_incognito, undefined);
-  assert.equal(f.state.wallpaper_display_state_v2_incognito, undefined);
-  assert.equal(f.state.bing_wallpaper_catalog_v2_regular.preserved, true);
-  assert.equal(f.state.wallpaper_migration_v2_state_regular.phase, 'writing');
-  assert.deepEqual(f.state.bing_images, ['legacy']);
-  await life.worker.cleanupIncognito();
-  assert.equal(f.state.bing_wallpaper_catalog_v2_regular.preserved, true);
-  life.setWindows([{ id: 3, incognito: true }]);
-  await life.worker.refresh();
-  assert.equal(f.state.bing_wallpaper_catalog_v2_incognito.version, 2);
-});
-
-test('regular context cannot clear incognito state based on its own window list', async () => {
-  const f = fixture('regular', { bing_wallpaper_catalog_v2_incognito: { preserved: true } });
-  const life = privateLifecycle(f);
-  life.setWindows([]);
-  life.worker.install();
-  assert.equal(f.listeners.windowRemoved, undefined);
-  assert.equal(await life.worker.cleanupIncognito(), false);
-  assert.equal(f.state.bing_wallpaper_catalog_v2_incognito.preserved, true);
-});
-
-test('closed incognito metadata, trivia, and queued legacy writes cannot resurrect deleted state', async () => {
-  const f = fixture('incognito');
-  let windows = [{ incognito: true }];
-  const pending = [];
-  f.chrome.windows = { getAll: async () => windows, onRemoved: { addListener() {} } };
-  f.chrome.storage.local.remove = async keys => keys.forEach(key => delete f.state[key]);
-  const worker = createCatalogWorker({ chrome: f.chrome, caches: { async delete() {} }, now: () => Date.parse('2026-09-23T04:00:00Z'), logger: { warn() {} }, fetch: async () => {
-    const task = deferred(); pending.push(task); return { ok: true, json: () => task.promise };
-  } });
-  const epoch = worker.epoch;
-  const refresh = worker.refresh();
-  await until(() => pending.length === 3);
-  windows = [];
-  await worker.cleanupIncognito();
-  pending[0].resolve({ data: { images: [iotd(target)] } });
-  pending[1].resolve({ MediaContents: [media(target)] });
-  pending[2].resolve({});
-  await refresh;
-  let wrote = false;
-  assert.equal(await worker.runContextWrite(epoch, () => { wrote = true; }), false);
-  assert.equal(wrote, false);
-  assert.equal(f.state.bing_wallpaper_catalog_v2_incognito, undefined);
-});
-
 test('a metadata storage failure never schedules trivia from an uncommitted candidate', async () => {
   const f = fixture();
   const item = media(target);
@@ -353,90 +281,13 @@ test('a metadata storage failure never schedules trivia from an uncommitted cand
   f.setHandler(url => url.includes('/model') ? { MediaContents: [item] } : {});
   const set = f.chrome.storage.local.set;
   f.chrome.storage.local.set = async values => {
-    if (values.bing_wallpaper_catalog_v2_regular?.entries[target]) throw Error('storage unavailable');
+    if (values.bing_wallpaper_catalog_v2?.entries[target]) throw Error('storage unavailable');
     return set(values);
   };
   await assert.rejects(f.worker.refresh(), /storage unavailable/);
   await new Promise(resolve => setImmediate(resolve));
-  assert.equal(f.state.bing_wallpaper_catalog_v2_regular.entries[target], undefined);
+  assert.equal(f.state.bing_wallpaper_catalog_v2.entries[target], undefined);
   assert.ok(!f.requests.some(url => url.includes('/trivia')));
-});
-
-test('late trivia success and failure after private cleanup cannot recreate a catalog', async () => {
-  for (const success of [true, false]) {
-    const f = fixture('incognito');
-    let windows = [{ incognito: true }];
-    f.chrome.windows = { getAll: async () => windows, onRemoved: { addListener() {} } };
-    f.chrome.storage.local.remove = async keys => keys.forEach(key => delete f.state[key]);
-    const quiz = deferred();
-    let triviaStarted = false;
-    const item = media(target);
-    item.ImageContent.TriviaId = 'HPQuiz_20260923_Closed';
-    const worker = createCatalogWorker({ chrome: f.chrome, caches: { async delete() {} }, now: () => Date.parse('2026-09-23T04:00:00Z'), logger: { warn() {} }, fetch: async url => {
-      if (url.includes('/trivia')) { triviaStarted = true; return { ok: true, json: () => quiz.promise }; }
-      return { ok: true, json: async () => url.includes('/model') ? { MediaContents: [item] } : {} };
-    } });
-    await worker.refresh();
-    await until(() => triviaStarted);
-    windows = [];
-    await worker.cleanupIncognito();
-    if (success) quiz.resolve({ data: { question: 'Too late' } });
-    else quiz.reject(Error('failed after cleanup'));
-    await new Promise(resolve => setImmediate(resolve));
-    await new Promise(resolve => setImmediate(resolve));
-    assert.equal(f.state.bing_wallpaper_catalog_v2_incognito, undefined);
-  }
-});
-
-test('a private window opening while cleanup is pending waits and rebuilds its catalog', async () => {
-  const f = fixture('incognito');
-  let windows = [];
-  let removing = false;
-  const removed = deferred();
-  const cacheDeleted = deferred();
-  f.chrome.windows = { getAll: async () => structuredClone(windows), onRemoved: { addListener() {} } };
-  f.chrome.storage.local.remove = async keys => { removing = true; await removed.promise; keys.forEach(key => delete f.state[key]); };
-  const worker = createCatalogWorker({ chrome: f.chrome, fetch: async () => ({ ok: true, json: async () => ({}) }), caches: { delete: () => cacheDeleted.promise }, now: () => Date.parse('2026-09-23T04:00:00Z'), logger: { warn() {} } });
-  const cleanup = worker.cleanupIncognito();
-  const reopened = worker.refresh();
-  await until(() => removing);
-  windows = [{ id: 2, incognito: true }];
-  removed.resolve();
-  cacheDeleted.resolve(true);
-  await cleanup;
-  await reopened;
-  assert.equal(f.state.bing_wallpaper_catalog_v2_incognito?.version, 2);
-});
-
-test('reopened private context is not blocked by old trivia and old completion cannot remove new same-ID work', async () => {
-  const f = fixture('incognito');
-  let windows = [{ incognito: true }];
-  f.chrome.windows = { getAll: async () => windows, onRemoved: { addListener() {} } };
-  f.chrome.storage.local.remove = async keys => keys.forEach(key => delete f.state[key]);
-  const quizzes = [];
-  const items = [media(target), media('20260922')];
-  items.forEach(item => { item.ImageContent.TriviaId = 'HPQuiz_' + item.Ssd + '_Same'; });
-  const worker = createCatalogWorker({ chrome: f.chrome, caches: { async delete() {} }, now: () => Date.parse('2026-09-23T04:00:00Z'), logger: { warn() {} }, fetch: async url => {
-    if (url.includes('/trivia')) { const task = deferred(); quizzes.push(task); return { ok: true, json: () => task.promise }; }
-    return { ok: true, json: async () => url.includes('/model') ? { MediaContents: items } : {} };
-  } });
-  await worker.refresh();
-  await until(() => quizzes.length === 2);
-  windows = [];
-  await worker.cleanupIncognito();
-  windows = [{ id: 2, incognito: true }];
-  await worker.refresh();
-  await until(() => quizzes.length === 4);
-  quizzes[0].resolve({ data: { old: true } });
-  quizzes[1].resolve({ data: { old: true } });
-  await new Promise(resolve => setImmediate(resolve));
-  await worker.refresh();
-  await new Promise(resolve => setImmediate(resolve));
-  assert.equal(quizzes.length, 4);
-  quizzes[2].resolve({ data: { fresh: true } });
-  quizzes[3].resolve({ data: { fresh: true } });
-  await until(() => f.state.bing_wallpaper_catalog_v2_incognito.entries[target].triviaState === 'complete');
-  assert.deepEqual(f.state.bing_wallpaper_catalog_v2_incognito.entries[target].triviaData, { fresh: true });
 });
 
 test('trivia persistence failure waits for an explicit refresh instead of creating a retry storm', async () => {
@@ -444,7 +295,7 @@ test('trivia persistence failure waits for an explicit refresh instead of creati
   let failedCommits = 0;
   const set = f.chrome.storage.local.set;
   f.chrome.storage.local.set = async values => {
-    if (values.bing_wallpaper_catalog_v2_regular?.entries[target]?.triviaState === 'complete' && failedCommits < 3) {
+    if (values.bing_wallpaper_catalog_v2?.entries[target]?.triviaState === 'complete' && failedCommits < 3) {
       failedCommits++;
       throw Error('storage unavailable');
     }
@@ -459,7 +310,7 @@ test('trivia persistence failure waits for an explicit refresh instead of creati
   assert.equal(f.requests.filter(url => url.includes('/trivia')).length, 1);
   failedCommits = 3;
   await f.worker.refresh();
-  await until(() => f.state.bing_wallpaper_catalog_v2_regular.entries[target].triviaState === 'complete');
+  await until(() => f.state.bing_wallpaper_catalog_v2.entries[target].triviaState === 'complete');
   assert.equal(f.requests.filter(url => url.includes('/trivia')).length, 2);
 });
 
@@ -478,7 +329,7 @@ test('all six metadata resolution orders produce the same field winners and succ
     await until(() => f.requests.length === 3);
     for (const source of order) { tasks[source].resolve(response[source]); await new Promise(resolve => setImmediate(resolve)); }
     await running;
-    const c = f.state.bing_wallpaper_catalog_v2_regular;
+    const c = f.state.bing_wallpaper_catalog_v2;
     assert.equal(c.refreshState.sources.archive.status, 'success', order.join(','));
     assert.equal(c.entries['20260916'].headline, 'Archive headline', order.join(','));
     assert.equal(c.entries[target].title, 'IOTD ' + target);
@@ -491,7 +342,7 @@ test('reconnect during an active ordinary refresh coalesces one follow-up for so
   const f = fixture();
   f.setHandler(() => { throw Error('offline'); });
   await f.worker.refresh();
-  f.state.bing_wallpaper_catalog_v2_regular.refreshState.sources.imageOfTheDay.nextRetryAt = 0;
+  f.state.bing_wallpaper_catalog_v2.refreshState.sources.imageOfTheDay.nextRetryAt = 0;
   const iotdPending = deferred();
   f.setHandler(url => url.includes('imageoftheday') ? iotdPending.promise : {});
   const running = f.worker.refresh();
@@ -503,46 +354,7 @@ test('reconnect during an active ordinary refresh coalesces one follow-up for so
   await reconnect;
   assert.equal(f.requests.filter(url => url.includes('/model')).length, 2);
   assert.equal(f.requests.filter(url => url.includes('HPImageArchive')).length, 2);
-  assert.equal(f.state.bing_wallpaper_catalog_v2_regular.refreshState.sources.model.retryLevel, 2);
-});
-
-test('legacy private prefetch cannot dispatch or mutate cache after cleanup and reopening', async () => {
-  const f = fixture('incognito');
-  let windows = [{ incognito: true }];
-  const messages = [];
-  let closed;
-  f.chrome.windows = { getAll: async () => windows, onRemoved: { addListener(fn) { closed = fn; } } };
-  f.chrome.runtime.onMessage = { addListener: fn => messages.push(fn) };
-  f.chrome.storage.local.remove = async keys => keys.forEach(key => delete f.state[key]);
-  const imageRequests = [], puts = [], prunes = [], opened = [], deleted = [];
-  const cacheApi = {
-    async open(name) { opened.push(name); return { async match() {}, async put(url) { puts.push(url); }, async keys() { prunes.push(name); return []; } }; },
-    async delete(name) { deleted.push(name); }
-  };
-  const context = {
-    chrome: f.chrome, importScripts() {}, addEventListener() {}, console: { log() {}, warn() {}, error() {} }, caches: cacheApi,
-    PLAN9Catalog: { createCatalogWorker: options => createCatalogWorker({ ...options, caches: cacheApi, now: () => Date.parse('2026-09-23T04:00:00Z') }) },
-    fetch: async url => {
-      if (url.includes('images.example')) { const task = deferred(); imageRequests.push({ url, task }); return task.promise; }
-      return { ok: true, json: async () => ({}) };
-    }
-  };
-  vm.runInNewContext(fs.readFileSync(path.join(__dirname, '../scripts/background.js'), 'utf8'), context);
-  const send = message => new Promise(resolve => messages.some(fn => fn(message, {}, resolve) === true));
-  const batch = send({ type: 'prefetchWallpapers', urls: ['https://images.example/1', 'https://images.example/2', 'https://images.example/3'] });
-  await until(() => imageRequests.length === 2);
-  windows = [];
-  closed();
-  await until(() => deleted.length === 1);
-  windows = [{ id: 2, incognito: true }];
-  await send({ type: 'refreshWallpaperCatalog' });
-  imageRequests.forEach(({ task }) => task.resolve({ ok: true, clone() { return this; } }));
-  await batch;
-  assert.equal(imageRequests.length, 2);
-  assert.equal(opened.length, 1);
-  assert.deepEqual(puts, []);
-  assert.deepEqual(prunes, []);
-  assert.deepEqual(deleted, ['funbingbing-wallpaper-cache-v2-incognito']);
+  assert.equal(f.state.bing_wallpaper_catalog_v2.refreshState.sources.model.retryLevel, 2);
 });
 
 test('malformed replacement Archive quiz clears its previous same-source ID without scheduling it again', async () => {
@@ -555,13 +367,13 @@ test('malformed replacement Archive quiz clears its previous same-source ID with
     return {};
   });
   await f.worker.refresh();
-  await until(() => f.state.bing_wallpaper_catalog_v2_regular.entries['20260916'].triviaState === 'complete');
+  await until(() => f.state.bing_wallpaper_catalog_v2.entries['20260916'].triviaState === 'complete');
   const before = f.requests.filter(url => url.includes('/trivia')).length;
-  f.state.bing_wallpaper_catalog_v2_regular.refreshState.sources.archive.status = 'missing';
+  f.state.bing_wallpaper_catalog_v2.refreshState.sources.archive.status = 'missing';
   malformed = true;
   await f.worker.refresh();
   await new Promise(resolve => setImmediate(resolve));
-  const entry = f.state.bing_wallpaper_catalog_v2_regular.entries['20260916'];
+  const entry = f.state.bing_wallpaper_catalog_v2.entries['20260916'];
   assert.equal(entry.triviaId, '');
   assert.equal(entry.triviaState, 'missing');
   assert.equal(entry.triviaData, null);

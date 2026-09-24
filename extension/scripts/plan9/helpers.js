@@ -19,11 +19,6 @@
     return part('year') + part('month') + part('day');
   }
 
-  function getWallpaperContextId(key, context) {
-    if (context !== 'regular' && context !== 'incognito') throw new TypeError('Unknown wallpaper context');
-    return key + '_' + context;
-  }
-
   function normalizeImageId(value) {
     if (typeof value !== 'string' || !value.trim()) throw new TypeError('Image URL or identity is required');
     let id = value.trim();
@@ -200,9 +195,9 @@
     return date.getUTCFullYear() === y && date.getUTCMonth() === m - 1 && date.getUTCDate() === d;
   }
 
-  function getRetentionKeys(targetDate, context, finalSuffix, displayState, entries = {}) {
-    const futureDays = context === 'regular' ? 7 : context === 'incognito' ? 1 : null;
-    if (futureDays === null || !IMAGE_SUFFIXES.includes(finalSuffix)) throw new TypeError('Invalid retention options');
+  function getRetentionKeys(targetDate, finalSuffix, displayState, entries = {}) {
+    if (!IMAGE_SUFFIXES.includes(finalSuffix)) throw new TypeError('Invalid retention options');
+    const futureDays = 7;
     const keys = new Set();
     for (let offset = -7; offset <= futureDays; offset++) {
       const date = addDays(targetDate, offset);
@@ -219,8 +214,8 @@
     return [...keys];
   }
 
-  function cachedFutureDepth(targetDate, context, isCached, finalSuffix = '_1920x1080.jpg') {
-    const max = context === 'regular' ? 7 : context === 'incognito' ? 1 : 0;
+  function cachedFutureDepth(targetDate, isCached, finalSuffix = '_1920x1080.jpg') {
+    const max = 7;
     let depth = 0;
     while (depth < max) {
       const date = addDays(targetDate, depth + 1);
@@ -257,12 +252,11 @@
     return Boolean(isMigrationVerified(state) && state.displayAcknowledged);
   }
 
-  function deriveImageTasks(entries, targetDate, context, finalSuffix, displayState) {
+  function deriveImageTasks(entries, targetDate, finalSuffix, displayState) {
     const byDate = new Map((entries || []).map((entry) => [entry.date, entry]));
     const history = [], future = [];
     for (let n = 1; n <= 7; n++) { const entry = byDate.get(addDays(targetDate, -n)); if (entry) history.push(entry); }
-    const futureLimit = context === 'incognito' ? 1 : context === 'regular' ? 7 : 0;
-    for (let n = 1; n <= futureLimit; n++) { const entry = byDate.get(addDays(targetDate, n)); if (entry) future.push(entry); }
+    for (let n = 1; n <= 7; n++) { const entry = byDate.get(addDays(targetDate, n)); if (entry) future.push(entry); }
     const tasks = [];
     const append = (entry, suffix) => tasks.push({ url: canonicalImageUrl(entry.imageId, suffix), date: entry.date });
     const target = byDate.get(targetDate);
@@ -311,7 +305,7 @@
   return {
     addDays, admitStaleCandidate, admitTriviaResult, applyTriviaResult, acceptsQuoteLease, cachedFutureDepth,
     canonicalImageUrl, canonicalizeImageTaskUrl, canDispatchImageTask, canWriteImageResponse, canRetry, dedupeImageTasks, deriveImageTasks, getCanonicalImageUrls, markReconnectBypass,
-    getEntryIdentity, getRetentionKeys, getWallpaperContextId, getZhCnTargetDate,
+    getEntryIdentity, getRetentionKeys, getZhCnTargetDate,
     grantQuoteLease, isMigrationComplete, isMigrationVerified, mergeMetadata, mergeStaleMetadata,
     navigationIndex, nextRetry, normalizeImageId, normalizeTriviaId, promoteImageTask,
     resetRetry, selectSharedSetting, validateDisplayState, validateSourceCoverage

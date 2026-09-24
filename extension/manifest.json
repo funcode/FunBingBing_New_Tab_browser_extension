@@ -4,10 +4,10 @@
   "short_name": "Ataraxia",
   "default_locale": "en",
   "author": "Anthony",
-  "homepage_url"    : "https://idealland.app/ataraxia/",
+  "homepage_url": "https://idealland.app/ataraxia/",
   "description": "__MSG_extension_desc__",
   "version": "1.7",
-  "incognito": "split",
+  "incognito": "not_allowed",
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   },

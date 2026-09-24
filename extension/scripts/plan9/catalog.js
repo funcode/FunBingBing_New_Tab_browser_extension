@@ -16,15 +16,22 @@
   const canRetry = P.canRetry;
   const nextRetry = P.nextRetry;
 
-  function contextKeys(contextId) {
-    const key = name => P.getWallpaperContextId(name, contextId);
-    return {
-      catalog: key('bing_wallpaper_catalog_v2'), display: key('wallpaper_display_state_v2'),
-      quotes: key('cache_quote_state_v2'), quoteLease: key('quote_scrape_state_v2'),
-      cache: 'funbingbing-wallpaper-cache-v2-' + contextId,
-      ...(contextId === 'regular' ? { migration: key('wallpaper_migration_v2_state') } : {})
-    };
-  }
+  const keys = {
+    catalog: 'bing_wallpaper_catalog_v2',
+    display: 'wallpaper_display_state_v2',
+    quotes: 'cache_quote_state_v2',
+    quoteLease: 'quote_scrape_state_v2',
+    migration: 'wallpaper_migration_v2_state',
+    cache: 'funbingbing-wallpaper-cache-v2'
+  };
+  const legacyKeys = {
+    catalog: 'bing_wallpaper_catalog_v2_regular',
+    display: 'wallpaper_display_state_v2_regular',
+    quotes: 'cache_quote_state_v2_regular',
+    quoteLease: 'quote_scrape_state_v2_regular',
+    migration: 'wallpaper_migration_v2_state_regular',
+    cache: 'funbingbing-wallpaper-cache-v2-regular'
+  };
 
   function makeEntry(date, image, metadataStage, fields) {
     try {
@@ -71,12 +78,10 @@
   }
 
   function createCatalogWorker({ chrome, fetch, now = Date.now, logger = console, caches = globalThis.caches }) {
-    const contextId = chrome.extension?.inIncognitoContext ? 'incognito' : 'regular';
-    const keys = contextKeys(contextId);
     let writes = Promise.resolve();
     let contextEpoch = 0;
     let inactive = false;
-    let cleanupTask;
+    let migrationTask;
     const refreshes = new Map();
     const reconnectFollowups = new Map();
     const activeReconnects = new Set();
@@ -89,6 +94,40 @@
       return result;
     };
     const readCatalog = async () => (await chrome.storage.local.get(keys.catalog))[keys.catalog];
+    async function migrateLegacyState() {
+      if (migrationTask) return migrationTask;
+      migrationTask = serialized(async () => {
+        const names = [keys.catalog, keys.display, keys.quotes, keys.quoteLease, keys.migration,
+          legacyKeys.catalog, legacyKeys.display, legacyKeys.quotes, legacyKeys.quoteLease, legacyKeys.migration];
+        const state = await chrome.storage.local.get(names);
+        const updates = {};
+        const currentCatalog = state[keys.catalog];
+        if ((!currentCatalog || currentCatalog.version !== 2) && state[legacyKeys.catalog]?.version === 2) updates[keys.catalog] = state[legacyKeys.catalog];
+        if (!state[keys.display] && state[legacyKeys.display]) updates[keys.display] = state[legacyKeys.display];
+        const currentQuotes = state[keys.quotes];
+        const oldQuotes = state[legacyKeys.quotes];
+        if (oldQuotes && typeof oldQuotes === 'object') {
+          const merged = { ...(currentQuotes && typeof currentQuotes === 'object' ? currentQuotes : {}), quotes: { ...(oldQuotes.quotes || {}), ...((currentQuotes && currentQuotes.quotes) || {}) } };
+          if (!currentQuotes || JSON.stringify(merged) !== JSON.stringify(currentQuotes)) updates[keys.quotes] = merged;
+        }
+        if (Object.keys(updates).length) await chrome.storage.local.set(updates);
+        const remove = [legacyKeys.catalog, legacyKeys.display, legacyKeys.quotes, legacyKeys.quoteLease, legacyKeys.migration].filter(name => state[name] !== undefined);
+        if (remove.length && chrome.storage.local.remove) await chrome.storage.local.remove(remove);
+        if (caches?.open) {
+          const oldCache = await caches.open(legacyKeys.cache);
+          const newCache = await caches.open(keys.cache);
+          for (const request of await oldCache.keys()) {
+            if (await newCache.match(request)) continue;
+            const response = await oldCache.match(request);
+            if (response) await newCache.put(request, response);
+          }
+          if (caches.delete) await caches.delete(legacyKeys.cache);
+        }
+        return true;
+      });
+      migrationTask.then(() => { migrationTask = null; }, () => { migrationTask = null; });
+      return migrationTask;
+    }
     async function broadcast(updatedDates) {
       if (!updatedDates.length) return;
       try { await chrome.runtime.sendMessage({ type: 'wallpaperCatalogUpdated', updatedDates }); }
@@ -138,7 +177,7 @@
           catalog.refreshState.sources[source] = status === 'success'
             ? { ...emptySource(), status, attemptedAt: now() }
             : { ...nextRetry(prior, now()), status };
-          const archive = catalog.refreshState.sources.archive;
+          const archive = catalog.refreshState.sources.archive || emptySource();
           if (source !== 'archive' && archive.status === 'success' && beforeWindow !== windowIdentity(catalog)) {
             catalog.refreshState.sources.archive = { ...emptySource(), status: 'missing' };
           }
@@ -190,7 +229,6 @@
     }
 
     function refresh({ reconnect = false, followup = false } = {}) {
-      if (cleanupTask) return cleanupTask.then(() => refresh({ reconnect }));
       const date = P.getZhCnTargetDate(new Date(now()));
       if (reconnect && !followup && reconnectFollowups.has(date)) return reconnectFollowups.get(date);
       if (refreshes.has(date)) {
@@ -205,16 +243,14 @@
       }
       triviaCommitFailures.clear();
       const task = (async () => {
-        if (inactive) {
-          if (!(await chrome.windows.getAll()).some(window => window.incognito)) return { ok: true, inactive: true };
-          inactive = false;
-        }
+        await migrateLegacyState();
         const epoch = contextEpoch;
         await chrome.storage.sync.get(['enable_uhd_wallpaper', 'qotd_url']);
         const prepared = await serialized(async () => {
           if (inactive || epoch !== contextEpoch) return null;
           let catalog = await readCatalog();
           if (!catalog || catalog.version !== 2) catalog = { version: 2, updatedAt: 0, refreshState: { date: '', generation: 0, cachedFutureDepth: 0, sources: sourceStates(), imageFailures: {} }, entries: {} };
+          catalog.refreshState = { ...catalog.refreshState, sources: { ...sourceStates(), ...(catalog.refreshState.sources || {}) }, imageFailures: catalog.refreshState.imageFailures || {} };
           let dirty = false;
           if (catalog.refreshState.date !== date) {
             catalog.refreshState = { ...catalog.refreshState, date, generation: catalog.refreshState.generation + 1, cachedFutureDepth: 0, sources: sourceStates() };
@@ -222,8 +258,8 @@
           }
           const sources = Object.keys(SOURCE_URLS).filter(name => {
             const value = catalog.refreshState.sources[name];
-            if (value.status === 'success' || !canRetry(value, now(), reconnect)) return false;
-            if (now() < value.nextRetryAt) { value.lastReconnectBypassAt = now(); dirty = true; }
+            if (value?.status === 'success' || !canRetry(value || {}, now(), reconnect)) return false;
+            if (value && now() < value.nextRetryAt) { value.lastReconnectBypassAt = now(); dirty = true; }
             return true;
           });
           if (dirty) await save(catalog);
@@ -244,7 +280,7 @@
         })();
         await Promise.all(Object.values(sourceTasks));
         scheduleTrivia();
-        return { ok: true, contextId, date };
+        return { ok: true, date };
       })();
       refreshes.set(date, task);
       if (reconnect) activeReconnects.add(date);
@@ -253,35 +289,8 @@
       return task;
     }
 
-    function cleanupIncognito() {
-      if (contextId !== 'incognito') return Promise.resolve(false);
-      if (cleanupTask) return cleanupTask;
-      const task = serialized(async () => {
-        // Recheck inside the write queue: another private window may have opened.
-        if ((await chrome.windows.getAll()).some(window => window.incognito)) return false;
-        if (contextId === 'incognito') {
-          inactive = true;
-          contextEpoch++;
-          refreshes.clear();
-          reconnectFollowups.clear();
-          activeReconnects.clear();
-          triviaInFlight.clear();
-          triviaCommitFailures.clear();
-        }
-        const privateKeys = contextKeys('incognito');
-        await chrome.storage.local.remove([privateKeys.catalog, privateKeys.quotes, privateKeys.quoteLease, privateKeys.display]);
-        await caches.delete(privateKeys.cache);
-        return true;
-      });
-      cleanupTask = task;
-      const clear = () => { if (cleanupTask === task) cleanupTask = null; };
-      task.then(clear, clear);
-      return task;
-    }
-
     function install(eventTarget) {
       const trigger = options => { refresh(options).catch(error => logger.warn('Catalog refresh failed', error)); };
-      if (contextId === 'incognito') chrome.windows?.onRemoved.addListener(() => { cleanupIncognito().catch(error => logger.warn('Incognito cleanup failed', error)); });
       chrome.runtime.onInstalled.addListener(() => trigger());
       chrome.runtime.onStartup.addListener(() => trigger());
       chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
@@ -295,12 +304,12 @@
       eventTarget?.addEventListener('online', () => trigger({ reconnect: true }));
     }
     return {
-      refresh, install, cleanupIncognito, keys, contextId,
+      refresh, install, keys,
       get epoch() { return contextEpoch; },
       runContextWrite(epoch, work) {
         return serialized(() => inactive || epoch !== contextEpoch ? false : work());
       }
     };
   }
-  return { createCatalogWorker, contextKeys };
+  return { createCatalogWorker };
 });
