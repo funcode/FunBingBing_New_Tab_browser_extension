@@ -25,6 +25,10 @@ In addition, it shows some widgets on the image:
 
 ## Language
 
+**Supported New Tab**:
+The Ataraxia page shown when a user opens a new tab in a regular browsing window. Incognito New Tab remains Chrome’s page and is outside this product’s supported modes.
+
+
 **Preview** (预览图):
 The 640×360 resolution of a wallpaper, fetched first to minimise perceived latency. Roughly 21.6 KB.
 _Avoid_: thumbnail, low-res

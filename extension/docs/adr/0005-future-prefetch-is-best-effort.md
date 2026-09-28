@@ -33,7 +33,7 @@ and background wakeups, but still cannot guarantee completed downloads or cache
 retention; Chrome [may delay alarms and does not wake a sleeping device](https://developer.chrome.com/docs/extensions/reference/api/alarms));
 shortening the regular-context window to 2-3 dates (honest, but gives up depth for
 users who do browse enough to earn it); preview-only prefetch with lazy final
-resolution. The separate incognito policy is defined by ADR-0011.
+resolution. This regular-only policy follows ADR-0015.
 
 ## Consequences
 
