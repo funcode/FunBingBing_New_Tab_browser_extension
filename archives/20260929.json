@@ -1,0 +1,46 @@
+{
+  "caption": "阿拉斯加州卡西洛夫河由冰川补给的蓝色河水",
+  "title": "卡西洛夫河冰川融水滋养的湛蓝河水，阿拉斯加州，美国",
+  "description": "从空中俯瞰，卡西洛夫河宛如一条绿松石色的丝带，蜿蜒穿过阿拉斯加州的基奈半岛。鲜艳的蓝色河水源于从图斯图梅纳湖向下游输送的冰川粉砂；该湖是阿拉斯加州最大的淡水湖之一。河流全长约17英里，最终注入库克湾。它虽比著名的邻河基奈河短，却同样不同凡响。",
+  "copyright": "© jared lloyd/Getty Images",
+  "date": "2026 9月 29",
+  "clickUrl": "/search?q=%e7%be%8e%e5%9b%bd%e9%98%bf%e6%8b%89%e6%96%af%e5%8a%a0%e5%b7%9e%e5%8d%a1%e8%a5%bf%e6%b4%9b%e5%a4%ab%e6%b2%b3&form=hpcapt&filters=HpDate:\"20260928_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.KasilofRiver_ZH-CN2394091052_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.KasilofRiver_ZH-CN2394091052_UHD.jpg",
+      "wallpaper": "/th?id=OHR.KasilofRiver_ZH-CN2394091052_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.KasilofRiver_ZH-CN2394091052_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.KasilofRiver_ZH-CN2394091052_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.KasilofRiver_ZH-CN2394091052_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "卡西洛夫河发源于冰塑地貌，与当地的渔业文化始终密不可分。长期以来，这条河一直是德纳伊纳人的重要资源，后来又成为商业捕捞、生计捕捞和休闲垂钓的重地。如今，垂钓者为洄游的鲑鱼而来，游客则可探索附近的休闲场所、露营地和自然步道。卡西洛夫社区本身是半岛西海岸的一座小渔镇；这里的河流、森林和河口栖息地滋养着丰富的野生动物。无论从漂流艇上还是空中观赏，卡西洛夫河都能让人鲜明地窥见阿拉斯加的冰川起源，以及这片土地与水之间绵延不绝的联系。",
+  "descriptionPara3": "",
+  "isoDate": "20260929",
+  "headline": "冰川孕育之河",
+  "quickFact": "卡西洛夫河畔的克鲁克德溪州立休闲地在 5 月和 6 月最受欢迎，此时游客可从河岸垂钓帝王鲑。",
+  "triviaId": "HPQuiz_20260929_KasilofRiver",
+  "triviaData": {
+    "question": "卡西洛夫河的源头是哪座大型湖泊？",
+    "options": [
+      {
+        "text": "斯基拉克湖",
+        "url": "/search?q=%E5%A1%94%E6%96%AF%E5%9B%BE%E6%A2%85%E7%BA%B3%E6%B9%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260929_KasilofRiver%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "伊利亚姆纳湖",
+        "url": "/search?q=%E5%A1%94%E6%96%AF%E5%9B%BE%E6%A2%85%E7%BA%B3%E6%B9%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260929_KasilofRiver%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "塔斯图梅纳湖",
+        "url": "/search?q=%E5%A1%94%E6%96%AF%E5%9B%BE%E6%A2%85%E7%BA%B3%E6%B9%96&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20260929_KasilofRiver%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
