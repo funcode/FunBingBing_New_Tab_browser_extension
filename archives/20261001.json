@@ -1,0 +1,46 @@
+{
+  "caption": "优胜美地国家公园纪念日",
+  "title": "奥姆斯特德观景点的日落，优胜美地国家公园，加利福尼亚州，美国",
+  "description": "从这里望去，优胜美地一些最著名的地标也呈现出截然不同的一面。通常所见的半穹顶从优胜美地山谷上方拔地而起，而在这里，它露出陡峭的北壁，让这个熟悉的标志性景观看起来几乎令人感到陌生。远处还有特纳亚峡谷、云歇峰、特纳亚湖，以及记录着数百万年隆升、侵蚀与冰川作用的浅色岩石。奥姆斯特德观景点得名于景观设计师弗雷德里克·劳·奥姆斯特德及其子小弗雷德里克·劳·奥姆斯特德；父子二人的自然保护工作推动了美国国家公园运动的发展。这里提醒着人们：优胜美地不仅景色壮美，还是一片仍在以岩石讲述自身故事的土地。",
+  "copyright": "© Robb Hirsch/Tandem Stills + Motion",
+  "date": "2026 10月 1",
+  "clickUrl": "/search?q=%e4%bc%98%e8%83%9c%e7%be%8e%e5%9c%b0%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20260930_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.OlmstedPoint_ZH-CN4182671075_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.OlmstedPoint_ZH-CN4182671075_UHD.jpg",
+      "wallpaper": "/th?id=OHR.OlmstedPoint_ZH-CN4182671075_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.OlmstedPoint_ZH-CN4182671075_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.OlmstedPoint_ZH-CN4182671075_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.OlmstedPoint_ZH-CN4182671075_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261001",
+  "headline": "在花岗岩中读懂时间",
+  "quickFact": "优胜美地国家公园约95%的面积被指定为荒野。",
+  "triviaId": "HPQuiz_20261001_OlmstedPoint",
+  "triviaData": {
+    "question": "从奥姆斯特德观景点可见北坡陡峭的优胜美地山峰是哪座？",
+    "options": [
+      {
+        "text": "莱尔山",
+        "url": "/search?q=%E5%8D%8A%E5%9C%86%E9%A1%B6%E5%8C%97%E5%A3%81%E5%A5%A5%E5%A7%86%E6%96%AF%E7%89%B9%E5%BE%B7%E7%82%B9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261001_OlmstedPoint%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "埃尔卡皮坦",
+        "url": "/search?q=%E5%8D%8A%E5%9C%86%E9%A1%B6%E5%8C%97%E5%A3%81%E5%A5%A5%E5%A7%86%E6%96%AF%E7%89%B9%E5%BE%B7%E7%82%B9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261001_OlmstedPoint%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "半圆顶",
+        "url": "/search?q=%E5%8D%8A%E5%9C%86%E9%A1%B6%E5%8C%97%E5%A3%81%E5%A5%A5%E5%A7%86%E6%96%AF%E7%89%B9%E5%BE%B7%E7%82%B9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261001_OlmstedPoint%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
