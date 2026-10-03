@@ -1,0 +1,46 @@
+{
+  "caption": "世界空间周拉开帷幕",
+  "title": "阿尔忒弥斯1号月球火箭，39B发射台，肯尼迪航天中心，佛罗里达州，2022年6月15日",
+  "description": "首先，你要造一枚火箭。然后，你要让它离开地球，飞往月球，在旅途中安然无恙，并将其航天器带回家。很简单，对吧？嗯，并非如此。世界空间周于每年10月4日至10日举行，旨在庆祝让此类任务成为可能的科学。联合国于1999年设立这一纪念活动，以纪念1957年10月4日斯普特尼克1号发射升空，以及1967年10月10日《外层空间条约》生效。今年的主题是“火箭革命”，重点关注推动太空探索不断发展的技术。",
+  "copyright": "© EVA MARIE UZCATEGUI/Getty Images",
+  "date": "2026 10月 4",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e7%a9%ba%e9%97%b4%e5%91%a8&form=hpcapt&filters=HpDate:\"20261003_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ArtemisRocket_ZH-CN1768541365_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ArtemisRocket_ZH-CN1768541365_UHD.jpg",
+      "wallpaper": ""
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ArtemisRocket_ZH-CN1768541365_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ArtemisRocket_ZH-CN1768541365_1080x1920.jpg",
+      "wallpaper": ""
+    }
+  },
+  "descriptionPara2": "今天的图片展示了阿尔忒弥斯1号，它运用了大量此类技术。2022年11月16日，美国国家航空航天局从肯尼迪航天中心发射了搭载于太空发射系统之上的无人猎户座飞船。猎户座绕月飞行，在25.5天内飞行了约140万英里。这次没有宇航员登上飞船。这正是任务的目的所在。阿尔忒弥斯1号只有一项任务：在人类踏上下一次旅程之前，证明该系统能够完成这趟旅程。",
+  "descriptionPara3": "",
+  "isoDate": "20261004",
+  "headline": "宇宙在召唤",
+  "quickFact": "在阿尔忒弥斯1号任务中，猎户座飞船距地球最远达268,563英里，超过此前任何为人类设计的航天器。",
+  "triviaId": "HPQuiz_20261004_ArtemisRocket",
+  "triviaData": {
+    "question": "阿耳忒弥斯一号任务搭载了哪些航天器？",
+    "options": [
+      {
+        "text": "猎户座",
+        "url": "/search?q=%E7%8C%8E%E6%88%B7%E5%BA%A7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261004_ArtemisRocket%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "龙",
+        "url": "/search?q=%E7%8C%8E%E6%88%B7%E5%BA%A7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261004_ArtemisRocket%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "天鹅座",
+        "url": "/search?q=%E7%8C%8E%E6%88%B7%E5%BA%A7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261004_ArtemisRocket%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
