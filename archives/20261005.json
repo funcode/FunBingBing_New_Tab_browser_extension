@@ -1,0 +1,46 @@
+{
+  "caption": "世界教师日",
+  "title": "南极洲的阿德利企鹅",
+  "description": "一只身高28英寸的鸟能教给我们哪些人生道理？非常多。在世界教师日这一天，阿德利企鹅带来了一份充满足智多谋、坚韧不拔和些许顽皮的课程计划。这一物种分布于南极海岸，以法国探险家儒勒·迪蒙·迪维尔的妻子阿黛尔之名命名；在1840年的一次远征中，人们发现了这些企鹅。",
+  "copyright": "© Otto Plantema/Minden Pictures",
+  "date": "2026 10月 5",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e6%95%99%e5%b8%88%e6%97%a5&form=hpcapt&filters=HpDate:\"20261004_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AdelieTeacher_ZH-CN2201820679_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AdelieTeacher_ZH-CN2201820679_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AdelieTeacher_ZH-CN2201820679_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AdelieTeacher_ZH-CN2201820679_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AdelieTeacher_ZH-CN2201820679_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AdelieTeacher_ZH-CN2201820679_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "阿德利企鹅以用鹅卵石筑巢而闻名。雄企鹅收集石头来吸引配偶，但有些也会顺手拿走邻巢的鹅卵石。它们体型虽小，却出奇地好斗；受到挑战时，它们会用鳍肢保卫领地。穿越积雪地带时，它们还有另一个聪明的妙招：趴在腹部上滑过冰面，这种移动方式被称为“腹滑”。",
+  "descriptionPara3": "在水中，阿德利企鹅是动作敏捷的游泳健将；它们捕食或躲避豹海豹等捕食者时，速度可达每小时数英里。那么，今天的课程是什么？适应环境，保持坚定，并在必要时顺势滑行。",
+  "isoDate": "20261005",
+  "headline": "纵身一跃，一次一课",
+  "quickFact": "阿德利企鹅没有牙齿，但它们的舌头和上腭长有被称为乳突的尖锐倒刺。",
+  "triviaId": "HPQuiz_20261005_AdelieTeacher",
+  "triviaData": {
+    "question": "哪位探险家的妻子启发了阿德利企鹅的命名？",
+    "options": [
+      {
+        "text": "阿梅莉娅·埃尔哈特",
+        "url": "/search?q=%E9%98%BF%E9%BB%9B%E5%B0%94%C2%B7%E6%9D%9C%E8%92%99&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261005_AdelieTeacher%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "阿黛尔·杜蒙",
+        "url": "/search?q=%E9%98%BF%E9%BB%9B%E5%B0%94%C2%B7%E6%9D%9C%E8%92%99&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261005_AdelieTeacher%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "伊莎贝拉·伯德",
+        "url": "/search?q=%E9%98%BF%E9%BB%9B%E5%B0%94%C2%B7%E6%9D%9C%E8%92%99&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261005_AdelieTeacher%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
