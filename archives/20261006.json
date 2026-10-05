@@ -1,0 +1,46 @@
+{
+  "caption": "国际地质多样性日",
+  "title": "丹霞地貌，张掖国家地质公园，甘肃省，中国",
+  "description": "如果一座山能用一道道条纹向你展示它的地质历史，会是什么样？在中国的张掖国家地质公园，岩石正是如此。红色、橙色、黄色、棕色以及其他大地色调的条带在山脊间绵延起伏。这种壮丽景观被称为丹霞地貌，由地质年代中沉积形成的多层沉积岩塑造而成。后来，构造力使岩石抬升并发生褶皱，而风化和侵蚀则将它们雕琢成山脊、峭壁、沟壑和山峰。",
+  "copyright": "© Weiquan Lin/Getty Images",
+  "date": "2026 10月 6",
+  "clickUrl": "/search?q=%e5%9b%bd%e9%99%85%e5%9c%b0%e8%b4%a8%e5%a4%9a%e6%a0%b7%e6%80%a7%e6%97%a5&form=hpcapt&filters=HpDate:\"20261005_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.DanxiaLandform_ZH-CN2386060246_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.DanxiaLandform_ZH-CN2386060246_UHD.jpg",
+      "wallpaper": "/th?id=OHR.DanxiaLandform_ZH-CN2386060246_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.DanxiaLandform_ZH-CN2386060246_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.DanxiaLandform_ZH-CN2386060246_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.DanxiaLandform_ZH-CN2386060246_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "“丹霞”这个名称的字面意思是玫瑰色的云霞。这些颜色来自岩石本身，其中矿物质和化学过程造就了不同的色调。例如，氧化铁形成了其大部分标志性的红色，而矿物质和沉积物的差异则构成了更加丰富的色彩。",
+  "descriptionPara3": "张掖于2020年被指定为联合国教科文组织世界地质公园，坐落在甘肃，这一地区与古丝绸之路有着密切联系。值此国际地质多样性日，它以斑斓的色彩提醒我们：地球最杰出的艺术作品坚如磐石。",
+  "isoDate": "20261006",
+  "headline": "条纹中的地球故事",
+  "quickFact": "张掖地质公园拥有577处文化遗址，展现当地历史及包括裕固族在内的多个族群文化。",
+  "triviaId": "HPQuiz_20261006_DanxiaLandform",
+  "triviaData": {
+    "question": "张掖地质公园位于中国哪个省？",
+    "options": [
+      {
+        "text": "四川",
+        "url": "/search?q=%E7%94%98%E8%82%83&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261006_DanxiaLandform%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "甘肃",
+        "url": "/search?q=%E7%94%98%E8%82%83&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261006_DanxiaLandform%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "云南",
+        "url": "/search?q=%E7%94%98%E8%82%83&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261006_DanxiaLandform%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
