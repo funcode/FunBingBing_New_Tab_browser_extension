@@ -1,0 +1,46 @@
+{
+  "caption": "英国格洛斯特郡谜林，英格兰格洛斯特郡迪恩森林",
+  "title": "覆满苔藓的岩石，英国格洛斯特郡谜林，迪恩森林，格洛斯特郡，英格兰",
+  "description": "如果一片森林能让你每转一个弯都捉摸不透，会是什么样？英国格洛斯特郡谜林位于英格兰迪恩森林的科尔福德附近，蜿蜒的小径穿过扭曲的树木、覆满苔藓的岩石和幽深的石质沟壑。这里不同寻常的岩层被称为“斯科尔斯”，是一种天然地质特征，随着时间推移逐渐裸露并发生改变，后来在罗马时期、甚至可能在更早以前被人们开采铁矿石。1848年，一名工人在一个岩洞内的陶罐中发现了3,000多枚罗马时代的钱币，使这片林地变成了一场现实中的寻宝之旅。",
+  "copyright": "© Fulcanelli_AOS/Getty Images",
+  "date": "2026 10月 7",
+  "clickUrl": "/search?q=%e8%8b%b1%e5%9b%bd%e6%a0%bc%e6%b4%9b%e6%96%af%e7%89%b9%e9%83%a1%e8%b0%9c%e6%9e%97&form=hpcapt&filters=HpDate:\"20261006_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.ForestofDean_ZH-CN2654753621_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.ForestofDean_ZH-CN2654753621_UHD.jpg",
+      "wallpaper": "/th?id=OHR.ForestofDean_ZH-CN2654753621_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.ForestofDean_ZH-CN2654753621_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.ForestofDean_ZH-CN2654753621_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.ForestofDean_ZH-CN2654753621_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "约1.5英里长的小径、木桥和石砌步道引导游客穿行于崎岖的地貌之间。英国格洛斯特郡谜林也曾亮相荧屏，出现在《星球大战：原力觉醒》《神秘博士》《梅林传奇》和《天命之咒》中。当地传说认为，这里枝干扭曲的树木和神秘氛围与J.R.R.托尔金笔下中土世界的森林有关，不过并没有确凿证据。",
+  "descriptionPara3": "",
+  "isoDate": "20261007",
+  "headline": "迷惑不解？沿着小径走",
+  "quickFact": "英国格洛斯特郡谜林位于迪恩森林，是极为罕见的内陆温带雨林生态系统残片。",
+  "triviaId": "HPQuiz_20261007_ForestofDean",
+  "triviaData": {
+    "question": "拼图林位于哪个郡？",
+    "options": [
+      {
+        "text": "格洛斯特郡",
+        "url": "/search?q=%E6%A0%BC%E6%B4%9B%E6%96%AF%E7%89%B9%E9%83%A1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261007_ForestofDean%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "埃塞克斯",
+        "url": "/search?q=%E6%A0%BC%E6%B4%9B%E6%96%AF%E7%89%B9%E9%83%A1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261007_ForestofDean%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "肯特",
+        "url": "/search?q=%E6%A0%BC%E6%B4%9B%E6%96%AF%E7%89%B9%E9%83%A1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261007_ForestofDean%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
