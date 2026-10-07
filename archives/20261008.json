@@ -1,0 +1,46 @@
+{
+  "caption": "世界章鱼日",
+  "title": "印度洋马约特岛，一只呈防御姿态的章鱼",
+  "description": "显然有什么东西越界了。在印度洋马约特岛近海，这只章鱼摆出了一副防御姿态，仿佛在说：无论是什么正在靠近，都该重新考虑一下自己的生命选择。",
+  "copyright": "© Gabriel Barathieu/Minden Pictures",
+  "date": "2026 10月 8",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e7%ab%a0%e9%b1%bc%e6%97%a5&form=hpcapt&filters=HpDate:\"20261007_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MayotteOctopus_ZH-CN2837659998_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MayotteOctopus_ZH-CN2837659998_UHD.jpg",
+      "wallpaper": "/th?id=OHR.MayotteOctopus_ZH-CN2837659998_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MayotteOctopus_ZH-CN2837659998_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MayotteOctopus_ZH-CN2837659998_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.MayotteOctopus_ZH-CN2837659998_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这是章鱼能够以别具一格的方式发出的警告。它们不依赖盔甲，而是依靠变形。被称为乳突的微小肌肉结构与充满色素的色素胞共同作用，使它们能在数秒内改变颜色、图案，甚至皮肤纹理。于是，这种动物可以变得像岩石、珊瑚、藻类或阴影。它不只是融入周围环境，而是化身为环境本身。",
+  "descriptionPara3": "而伪装只是开场。章鱼可以消失在一团墨汁中，挤过仅比其喙大一点的缝隙，解开谜题，并用分布着大量神经元的腕足进行探索。从某种意义上说，每条腕足都有自己的思想。世界章鱼日赞颂海洋中演化形成的一种奇特生物：三颗心脏、八条腕足、蓝色血液。在这个生物身上，大自然真的完全不按剧本来。",
+  "isoDate": "20261008",
+  "headline": "现在你“海”能看见我……",
+  "quickFact": "章鱼的化学触觉受体由古老的神经递质受体演化而来，并能检测难溶性分子。",
+  "triviaId": "HPQuiz_20261008_MayotteOctopus",
+  "triviaData": {
+    "question": "哪些肌肉结构帮助章鱼改变皮肤质地？",
+    "options": [
+      {
+        "text": "肌节",
+        "url": "/search?q=%E4%B9%B3%E7%AA%81&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261008_MayotteOctopus%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "肌原纤维",
+        "url": "/search?q=%E4%B9%B3%E7%AA%81&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261008_MayotteOctopus%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "乳突",
+        "url": "/search?q=%E4%B9%B3%E7%AA%81&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261008_MayotteOctopus%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
