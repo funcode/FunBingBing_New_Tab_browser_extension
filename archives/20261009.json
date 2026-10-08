@@ -1,0 +1,46 @@
+{
+  "caption": "从法国科西嘉岛眺望桑吉奈尔群岛",
+  "title": "桑吉奈尔群岛景观，摄自科西嘉岛，法国",
+  "description": "桑吉奈尔群岛就在法国科西嘉岛近海，从地中海中拔地而起，是一个由四座崎岖岩石岛屿组成的小型群岛。从一座历史悠久的瞭望塔望去，它们坐落在阿雅克肖湾的入口处。陡峭的悬崖、历经数百年的地标和开阔的海景，世世代代吸引着游客来到这一地区。尽管最远的岛屿距离海岸仅约1.2英里，但这片群岛给人的感觉却出奇地偏远：它四周被开阔水域环绕，并受到风、海浪和盐雾的塑造。",
+  "copyright": "© Francesco Riccardo Iacomino/Getty Images",
+  "date": "2026 10月 9",
+  "clickUrl": "/search?q=%e7%a7%91%e8%a5%bf%e5%98%89%e5%b2%9b%e6%a1%91%e5%90%89%e5%a5%88%e5%b0%94%e7%be%a4%e5%b2%9b&form=hpcapt&filters=HpDate:\"20261008_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.IlesSanguinaires_ZH-CN3149346035_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.IlesSanguinaires_ZH-CN3149346035_UHD.jpg",
+      "wallpaper": "/th?id=OHR.IlesSanguinaires_ZH-CN3149346035_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.IlesSanguinaires_ZH-CN3149346035_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.IlesSanguinaires_ZH-CN3149346035_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.IlesSanguinaires_ZH-CN3149346035_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "游客可以搭乘获准运营的船只前往最大的岛屿梅祖马雷岛，并沿指定步道探索。其他地方的受保护栖息地则为筑巢的海鸟和适应干燥、多风环境的耐寒地中海植物提供庇护。梅祖马雷岛上的一座灯塔令人想起这片群岛悠久的航海历史，以及它位于海湾入口处的战略位置。如今，桑吉奈尔群岛拥有壮丽的景色、野生动物和丰富航海遗产的印记，共同构成了科西嘉岛最令人难忘的自然景观之一。",
+  "descriptionPara3": "",
+  "isoDate": "20261009",
+  "headline": "科西嘉岛的岩石前哨",
+  "quickFact": "建造桑吉奈尔灯塔时，石料必须用驳船运到岛上，再从岩石海岸吊运上去。",
+  "triviaId": "HPQuiz_20261009_IlesSanguinaires",
+  "triviaData": {
+    "question": "桑吉奈尔群岛守护着哪个海湾的入口？",
+    "options": [
+      {
+        "text": "比斯开湾",
+        "url": "/search?q=%E9%98%BF%E9%9B%85%E5%85%8B%E8%82%96%E6%B9%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261009_IlesSanguinaires%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "阿雅克肖湾",
+        "url": "/search?q=%E9%98%BF%E9%9B%85%E5%85%8B%E8%82%96%E6%B9%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261009_IlesSanguinaires%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "利昂湾",
+        "url": "/search?q=%E9%98%BF%E9%9B%85%E5%85%8B%E8%82%96%E6%B9%BE&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261009_IlesSanguinaires%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
