@@ -1,0 +1,46 @@
+{
+  "caption": "世界候鸟日",
+  "title": "蒙特雷湾上空的双冠鸬鹚，加利福尼亚州，美国",
+  "description": "世界候鸟日旨在庆祝大自然最壮观的旅程之一。这项全球性活动于每年5月和10月举行，反映世界各地的迁徙模式，并强调保护鸟类赖以生存的栖息地和迁飞路线的重要性。“每一只鸟都很重要——您的观察至关重要！”是2026年的主题，着重说明个人和社区的观察可以如何为鸟类研究、监测和保护贡献力量，帮助科学家更好地了解迁徙。",
+  "copyright": "© Hiroya Minakuchi/Minden Pictures",
+  "date": "2026 10月 10",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e5%80%99%e9%b8%9f%e6%97%a5&form=hpcapt&filters=HpDate:\"20261009_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.CormorantsFlight_ZH-CN0770863330_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.CormorantsFlight_ZH-CN0770863330_UHD.jpg",
+      "wallpaper": "/th?id=OHR.CormorantsFlight_ZH-CN0770863330_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.CormorantsFlight_ZH-CN0770863330_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.CormorantsFlight_ZH-CN0770863330_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.CormorantsFlight_ZH-CN0770863330_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "今天的图片捕捉到了双冠鸬鹚飞越加利福尼亚州蒙特雷湾海浪上空的景象。这些适应力强的海鸟广泛分布于北美洲，可能迁徙，也可能全年留在原地，具体取决于种群。沿着加利福尼亚州海岸，海湾、湿地和河口为沿太平洋迁飞路线飞行的鸟类提供了重要栖息地。对许多物种而言，这些生态系统为跨越漫长距离的旅程提供支持。每一次目击都有助于揭示这些迁徙，并提醒我们，即使只是一只鸟，也可能是一个宏大得多的故事的一部分。",
+  "descriptionPara3": "",
+  "isoDate": "20261010",
+  "headline": "迁飞路线上的生命",
+  "quickFact": "鸟类迁徙可以采取多种形式：有些鸟向北或向南迁徙，而另一些则迁往不同海拔或不同栖息地。",
+  "triviaId": "HPQuiz_20261010_CormorantsFlight",
+  "triviaData": {
+    "question": "哪条太平洋航线对迁徙海鸟至关重要？",
+    "options": [
+      {
+        "text": "太平洋候鸟迁徙路线",
+        "url": "/search?q=%E5%A4%AA%E5%B9%B3%E6%B4%8B%E5%80%99%E9%B8%9F%E8%BF%81%E5%BE%99%E8%B7%AF%E7%BA%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261010_CormorantsFlight%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "东非航线",
+        "url": "/search?q=%E5%A4%AA%E5%B9%B3%E6%B4%8B%E5%80%99%E9%B8%9F%E8%BF%81%E5%BE%99%E8%B7%AF%E7%BA%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261010_CormorantsFlight%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "白令航线",
+        "url": "/search?q=%E5%A4%AA%E5%B9%B3%E6%B4%8B%E5%80%99%E9%B8%9F%E8%BF%81%E5%BE%99%E8%B7%AF%E7%BA%BF&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261010_CormorantsFlight%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
