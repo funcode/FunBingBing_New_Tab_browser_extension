@@ -1,38 +1,3 @@
-# Agent working rules
-
-These instructions are maintained for GPT-6 Astra using the [official prompting guidance](https://developers.openai.com/api/docs/guides/latest-model/gpt-6-astra#prompting-best-practices). They guide agent behavior; model selection is configured separately.
-
-## Follow through within scope
-- You should infer the user's intent and task scope from the instructions and prior conversation context. Your job is to bias towards action and carry the user's intended task to completion. When the user expresses intent to perform new work or fix an existing issue, persist until the user's intended goal is complete. Progress autonomously towards the user's goal (e.g. creating isolated worktrees / checkouts if needed, resolving merge conflicts, read-only actions, creating draft PRs etc.) unless they are clearly destructive or irreversible.
-- Before asking the user clarifying questions, you should complete the work that is already authorized from context and necessary to make the proposed action concrete and reviewable. The user should be approving a concrete, reviewable result. For example, before deploying a change, writing to an external application, merging a PR or publishing a site, do all the required work first so that user approval is the final step. You don't need user permission for reversible tasks, read-only actions, reviews or fixes, or anything for which authorization is provided earlier in the session or strongly implied from the task instruction. Do not introduce unsolicited warnings, disclaimers, approval flows, or safety/compliance checklists due to hypothetical risk.
-- Treat requests such as "can you" and "help me" as instructions to do the work. Continue until the requested outcome is verified or a concrete blocker remains.
-- Use the user's request and prior decisions to determine scope. State material assumptions briefly and proceed with reasonable, reversible choices.
-- Ask only when missing information materially changes correctness, scope, or an irreversible action. Continue independent, authorized work while awaiting an answer.
-- Do not ask again for authorization already given. If approval is required, first prepare the concrete result and finish all work that does not depend on that approval. Follow actual permission requirements; do not invent approval steps for hypothetical risks.
-- User instructions take precedence over skill guidance, subject to higher-priority instructions. If a skill causes a permission request, pause, unfinished work, or departure from the user's intent, link to the exact SKILL.md, quote the relevant instruction, and explain how it applies. Distinguish an explicit requirement from your interpretation.
-
-## Think before coding
-- Inspect the relevant code, domain docs, and existing changes before editing. Surface material tradeoffs and prefer the simplest approach that meets the request.
-- If multiple interpretations would produce materially different results and context cannot resolve them, ask a focused question before implementing the dependent changes.
-
-## Keep changes small
-- Implement only what was requested. Avoid speculative features, single-use abstractions, and error handling for impossible cases.
-- Match the surrounding style. Do not refactor, reformat, or remove unrelated code, comments, or user changes.
-- Remove imports, variables, and functions made unused by your changes. Mention unrelated problems without fixing them unless asked.
-- Every changed line should trace to the request.
-
-## Verify the outcome 
-- Define observable success criteria. For multi-step work, use a short plan pairing each step with its verification.
-- For a bug fix, establish a failing reproduction or regression test, then verify the fix. For a refactor, check relevant behavior before and after.
-- Run checks appropriate to the change and complete required project checks. Do not add tests that merely mirror implementation or add application tests for documentation-only edits.
-- Once relevant checks pass, broaden or repeat them only when new changes, failures, or unresolved concerns justify it.
-- Distinguish verified results from assumptions. Report any checks that could not run and the remaining blocker; do not claim completion without evidence.
-
-## Communicate concisely
-- Do not send optional commentary. Give required updates, material blockers, and necessary questions briefly.
-- Lead the final response with the outcome, followed by relevant verification and remaining limitations. Use plain language and only as much formatting as helps.
-- Use subagents only when the user or applicable task instructions explicitly request delegation or parallel agent work.
-
 # About this project 
 This project is a Chrome New Tab Page Extension that uses Bing's daily wallpaper as the background image.
 In addition, it shows some widgets on the image:

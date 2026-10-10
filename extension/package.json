@@ -1,0 +1,12 @@
+{
+  "name": "ataraxia-new-tab",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Ataraxia New Tab browser extension - PLAN9 implementation",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  },
+  "keywords": ["browser-extension", "new-tab", "bing-wallpaper"],
+  "author": "Ning Fu",
+  "license": "MIT"
+}
