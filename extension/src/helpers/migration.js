@@ -38,6 +38,7 @@ export function validateBooleanSetting(value) {
 
 /**
  * Validate URL setting value.
+ * Only absolute HTTPS URLs are accepted as qotd_url.
  * @param {*} value - Value to validate
  * @returns {boolean}
  */
@@ -47,8 +48,8 @@ export function validateUrlSetting(value) {
   }
 
   try {
-    new URL(value);
-    return true;
+    const parsed = new URL(value);
+    return parsed.protocol === 'https:';
   } catch {
     return false;
   }

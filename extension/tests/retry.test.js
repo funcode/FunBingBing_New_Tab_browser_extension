@@ -103,15 +103,30 @@ describe('Retry helpers', () => {
       assert.strictEqual(canBypassWithReconnect(retry, 1000, 1500), true);
     });
 
-    it('returns false when reconnect event was already used', () => {
-      const retry = { ...createRetryObject(), nextRetryAt: 3000, lastReconnectBypassAt: 1500 };
-      assert.strictEqual(canBypassWithReconnect(retry, 2000, 1500), false);
-      assert.strictEqual(canBypassWithReconnect(retry, 2000, 1400), false);
+    it('blocks a second bypass within the same backoff window', () => {
+      // After failure at 100000 with 1-min window, bypass used at 110000
+      const retry = {
+        ...createRetryObject(),
+        retryLevel: 1,
+        attemptedAt: 100000,
+        nextRetryAt: 160000, // 100000 + 60s
+        lastReconnectBypassAt: 110000
+      };
+
+      // Another reconnect at 120000 — still within the same window
+      assert.strictEqual(canBypassWithReconnect(retry, 120000, 120000), false);
     });
 
-    it('returns true for a newer reconnect event', () => {
-      const retry = { ...createRetryObject(), nextRetryAt: 3000, lastReconnectBypassAt: 1500 };
-      assert.strictEqual(canBypassWithReconnect(retry, 2000, 2500), true);
+    it('returns true for a reconnect after a new failure window — previous bypass does not carry over', () => {
+      // Previous window had a bypass at 1500, then a new failure at 2000 starts a fresh window
+      const retry = {
+        ...createRetryObject(),
+        retryLevel: 1,
+        attemptedAt: 2000,
+        nextRetryAt: 3000,
+        lastReconnectBypassAt: 1500
+      };
+      assert.strictEqual(canBypassWithReconnect(retry, 2500, 2500), true);
     });
   });
 

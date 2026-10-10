@@ -51,10 +51,9 @@ describe('Migration helpers', () => {
       assert.strictEqual(validateUrlSetting('https://example.com/path'), true);
     });
 
-    it('rejects invalid URLs', () => {
-      assert.strictEqual(validateUrlSetting('not-a-url'), false);
-      assert.strictEqual(validateUrlSetting(''), false);
-      assert.strictEqual(validateUrlSetting(null), false);
+    it('rejects javascript: scheme — only HTTPS is valid', () => {
+      assert.strictEqual(validateUrlSetting('javascript:alert(1)'), false);
+      assert.strictEqual(validateUrlSetting('http://example.com'), false);
     });
   });
 

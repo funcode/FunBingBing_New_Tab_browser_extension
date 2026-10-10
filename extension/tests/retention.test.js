@@ -3,6 +3,7 @@ import assert from 'node:assert';
 import {
   calculateRetentionSet,
   calculateCachedFutureDepth,
+  getNavigableDates,
   getNavigationIndex,
   getDateAtNavigationIndex
 } from '../src/helpers/retention.js';
@@ -12,20 +13,8 @@ describe('Retention helpers', () => {
     it('retains preview + HD for each date when UHD disabled', () => {
       const catalog = {
         entries: {
-          '20260728': {
-            urls: {
-              preview: 'https://example.com/preview1.jpg',
-              highDef: 'https://example.com/hd1.jpg',
-              ultraHighDef: 'https://example.com/uhd1.jpg'
-            }
-          },
-          '20260727': {
-            urls: {
-              preview: 'https://example.com/preview2.jpg',
-              highDef: 'https://example.com/hd2.jpg',
-              ultraHighDef: 'https://example.com/uhd2.jpg'
-            }
-          }
+          '20260728': { urls: { preview: 'https://example.com/preview1.jpg', highDef: 'https://example.com/hd1.jpg', ultraHighDef: 'https://example.com/uhd1.jpg' } },
+          '20260727': { urls: { preview: 'https://example.com/preview2.jpg', highDef: 'https://example.com/hd2.jpg', ultraHighDef: 'https://example.com/uhd2.jpg' } }
         }
       };
 
@@ -41,13 +30,7 @@ describe('Retention helpers', () => {
     it('retains preview + UHD for each date when UHD enabled', () => {
       const catalog = {
         entries: {
-          '20260728': {
-            urls: {
-              preview: 'https://example.com/preview1.jpg',
-              highDef: 'https://example.com/hd1.jpg',
-              ultraHighDef: 'https://example.com/uhd1.jpg'
-            }
-          }
+          '20260728': { urls: { preview: 'https://example.com/preview1.jpg', highDef: 'https://example.com/hd1.jpg', ultraHighDef: 'https://example.com/uhd1.jpg' } }
         }
       };
 
@@ -62,43 +45,31 @@ describe('Retention helpers', () => {
       const entries = {};
       for (let i = 0; i < 20; i++) {
         const date = `202607${String(28 - i).padStart(2, '0')}`;
-        entries[date] = {
-          urls: {
-            preview: `https://example.com/preview${i}.jpg`,
-            highDef: `https://example.com/hd${i}.jpg`
-          }
-        };
+        entries[date] = { urls: { preview: `https://example.com/preview${i}.jpg`, highDef: `https://example.com/hd${i}.jpg` } };
       }
 
       const catalog = { entries };
       const retentionSet = calculateRetentionSet(catalog, null, false);
-
-      // 15 dates × 2 URLs = 30 keys
       assert.strictEqual(retentionSet.size, 30);
     });
 
-    it('adds display protection keys', () => {
+    it('adds display protection keys derived from the displayed imageId, not the catalog entry for that date', () => {
+      // Catalog entry for '20260728' has become OHR.B, but the page still displays OHR.A
       const catalog = {
         entries: {
-          '20260728': {
-            urls: {
-              preview: 'https://example.com/preview1.jpg',
-              highDef: 'https://example.com/hd1.jpg'
-            }
-          }
+          '20260728': { imageId: 'OHR.B', urls: { preview: 'https://cdn/OHR.B_640x360.jpg', highDef: 'https://cdn/OHR.B_1920x1080.jpg' } },
+          '20260727': { imageId: 'OHR.A', urls: { preview: 'https://cdn/OHR.A_640x360.jpg', highDef: 'https://cdn/OHR.A_1920x1080.jpg' } }
         }
       };
-
-      const displayState = {
-        date: '20260728',
-        url: 'https://example.com/hd1.jpg'
-      };
+      const displayState = { date: '20260728', imageId: 'OHR.A', url: 'https://cdn/OHR.A_1920x1080.jpg' };
 
       const retentionSet = calculateRetentionSet(catalog, displayState, false);
 
-      // Should include the display URL and its preview
-      assert.strictEqual(retentionSet.has('https://example.com/hd1.jpg'), true);
-      assert.strictEqual(retentionSet.has('https://example.com/preview1.jpg'), true);
+      // A's final URL must be protected (from displayState.url)
+      assert.strictEqual(retentionSet.has('https://cdn/OHR.A_1920x1080.jpg'), true);
+      // A's preview must be protected (found via imageId scan of catalog)
+      assert.strictEqual(retentionSet.has('https://cdn/OHR.A_640x360.jpg'), true);
+      // B's preview should NOT be the protected one — that was the old bug
     });
   });
 
@@ -115,7 +86,6 @@ describe('Retention helpers', () => {
 
       const cachedUrls = new Set(['p1', 'h1', 'p2', 'h2', 'p3', 'h3']);
       const depth = calculateCachedFutureDepth(catalog, '20260728', cachedUrls, false);
-
       assert.strictEqual(depth, 3);
     });
 
@@ -129,11 +99,9 @@ describe('Retention helpers', () => {
         }
       };
 
-      // Missing h2 creates a gap
-      const cachedUrls = new Set(['p1', 'h1', 'p2', 'p3', 'h3']);
+      const cachedUrls = new Set(['p1', 'h1', 'p2', 'p3', 'h3']); // h2 missing
       const depth = calculateCachedFutureDepth(catalog, '20260728', cachedUrls, false);
-
-      assert.strictEqual(depth, 1); // Stops after first day
+      assert.strictEqual(depth, 1);
     });
 
     it('caps at 7 days', () => {
@@ -152,17 +120,11 @@ describe('Retention helpers', () => {
           '20260725': { urls: { preview: 'p10', highDef: 'h10' } }
         }
       };
-
-      // All future dates cached (p1-p10, h1-h10)
       const cachedUrls = new Set();
-      for (let i = 1; i <= 10; i++) {
-        cachedUrls.add(`p${i}`);
-        cachedUrls.add(`h${i}`);
-      }
+      for (let i = 1; i <= 10; i++) { cachedUrls.add(`p${i}`); cachedUrls.add(`h${i}`); }
 
       const depth = calculateCachedFutureDepth(catalog, '20260715', cachedUrls, false);
-
-      assert.strictEqual(depth, 7); // Diagnostic max caps at 7
+      assert.strictEqual(depth, 7);
     });
 
     it('uses UHD when enabled', () => {
@@ -175,61 +137,76 @@ describe('Retention helpers', () => {
 
       const cachedUrls = new Set(['p1', 'u1']);
       const depth = calculateCachedFutureDepth(catalog, '20260728', cachedUrls, true);
-
       assert.strictEqual(depth, 1);
     });
   });
 
-  describe('getNavigationIndex', () => {
-    it('returns index for date in newest-to-oldest order', () => {
+  describe('getNavigableDates', () => {
+    it('excludes future entries from navigation', () => {
       const catalog = {
         entries: {
+          '20260730': {},  // future
+          '20260729': {},  // future
+          '20260728': {},  // target
+          '20260727': {},  // historical
+          '20260726': {}   // historical
+        }
+      };
+
+      const dates = getNavigableDates(catalog, '20260728');
+      assert.deepStrictEqual(dates, ['20260728', '20260727', '20260726']);
+    });
+
+    it('returns empty array when catalog is empty', () => {
+      assert.deepStrictEqual(getNavigableDates({ entries: {} }, '20260728'), []);
+    });
+  });
+
+  describe('getNavigationIndex', () => {
+    it('returns index for date in newest-to-oldest navigable order', () => {
+      const catalog = {
+        entries: {
+          '20260730': {},  // future — excluded
           '20260728': {},
           '20260727': {},
           '20260726': {}
         }
       };
 
-      assert.strictEqual(getNavigationIndex(catalog, '20260728'), 0);
-      assert.strictEqual(getNavigationIndex(catalog, '20260727'), 1);
-      assert.strictEqual(getNavigationIndex(catalog, '20260726'), 2);
+      assert.strictEqual(getNavigationIndex(catalog, '20260728', '20260728'), 0);
+      assert.strictEqual(getNavigationIndex(catalog, '20260727', '20260728'), 1);
+      assert.strictEqual(getNavigationIndex(catalog, '20260726', '20260728'), 2);
+      // Future date not navigable
+      assert.strictEqual(getNavigationIndex(catalog, '20260730', '20260728'), -1);
     });
 
     it('returns -1 for date not in catalog', () => {
-      const catalog = {
-        entries: {
-          '20260728': {}
-        }
-      };
-
-      assert.strictEqual(getNavigationIndex(catalog, '20260729'), -1);
+      const catalog = { entries: { '20260728': {} } };
+      assert.strictEqual(getNavigationIndex(catalog, '20260729', '20260728'), -1);
     });
   });
 
   describe('getDateAtNavigationIndex', () => {
-    it('returns date at index in newest-to-oldest order', () => {
+    it('returns date at index excluding future entries', () => {
       const catalog = {
         entries: {
+          '20260730': {},  // future
           '20260728': {},
           '20260727': {},
           '20260726': {}
         }
       };
 
-      assert.strictEqual(getDateAtNavigationIndex(catalog, 0), '20260728');
-      assert.strictEqual(getDateAtNavigationIndex(catalog, 1), '20260727');
-      assert.strictEqual(getDateAtNavigationIndex(catalog, 2), '20260726');
+      assert.strictEqual(getDateAtNavigationIndex(catalog, 0, '20260728'), '20260728');
+      assert.strictEqual(getDateAtNavigationIndex(catalog, 1, '20260728'), '20260727');
+      assert.strictEqual(getDateAtNavigationIndex(catalog, 2, '20260728'), '20260726');
     });
 
     it('returns null for invalid index', () => {
-      const catalog = {
-        entries: {
-          '20260728': {}
-        }
-      };
-
-      assert.strictEqual(getDateAtNavigationIndex(catalog, 5), null);
-      assert.strictEqual(getDateAtNavigationIndex(catalog, -1), null);
+      const catalog = { entries: { '20260728': {} } };
+      assert.strictEqual(getDateAtNavigationIndex(catalog, 5, '20260728'), null);
+      assert.strictEqual(getDateAtNavigationIndex(catalog, -1, '20260728'), null);
     });
   });
 });
+

@@ -52,110 +52,127 @@ describe('Metadata helpers', () => {
       assert.strictEqual(mergeMetadata(current, candidate), null);
     });
 
-    it('keeps current when candidate stage is not higher', () => {
-      const current = { date: '20260728', imageId: 'OHR.Test', metadataStage: 'iotd', title: 'Original' };
-      const candidate = { date: '20260728', imageId: 'OHR.Test', metadataStage: 'media', title: 'New' };
-      const result = mergeMetadata(current, candidate);
-      assert.strictEqual(result.title, 'Original');
+    it('higher stage fields win over lower stage fields', () => {
+      const archive = { date: '20260728', imageId: 'OHR.Test', metadataStage: 'archive', title: 'Archive Title', quickFact: 'ArchiveFact' };
+      const iotd    = { date: '20260728', imageId: 'OHR.Test', metadataStage: 'iotd',    title: 'IOTD Title'   };
+
+      const result = mergeMetadata(archive, iotd);
       assert.strictEqual(result.metadataStage, 'iotd');
+      assert.strictEqual(result.title, 'IOTD Title');
     });
 
-    it('merges with higher stage data taking precedence', () => {
-      const current = { date: '20260728', imageId: 'OHR.Test', metadataStage: 'archive', title: 'Old' };
-      const candidate = { date: '20260728', imageId: 'OHR.Test', metadataStage: 'iotd', title: 'New', copyright: 'Test' };
-      const result = mergeMetadata(current, candidate);
-      assert.strictEqual(result.title, 'New');
-      assert.strictEqual(result.copyright, 'Test');
-      assert.strictEqual(result.metadataStage, 'iotd');
+    it('preserves lower-stage source-specific fields regardless of merge order — quickFact from Archive survives IOTD merge', () => {
+      // IOTD arrives first, then Archive
+      const iotd    = { date: '20260728', imageId: 'OHR.Test', metadataStage: 'iotd', title: 'IOTD Title', quickFact: '' };
+      const archive = { date: '20260728', imageId: 'OHR.Test', metadataStage: 'archive', quickFact: 'ArchiveFact', triviaId: 'HPQuiz_20260728_Foo' };
+
+      // mergeMetadata(current=iotd, candidate=archive): archive is lower, but quickFact enriches
+      const result = mergeMetadata(iotd, archive);
+      assert.strictEqual(result.metadataStage, 'iotd');      // higher stage wins
+      assert.strictEqual(result.title, 'IOTD Title');         // higher stage title
+      assert.strictEqual(result.quickFact, 'ArchiveFact');    // lower-stage-specific field preserved
+      assert.strictEqual(result.triviaId, 'HPQuiz_20260728_Foo');
     });
 
-    it('preserves trivia state from current', () => {
+    it('is order-independent: Archive first, then IOTD gives same enrichment', () => {
+      const archive = { date: '20260728', imageId: 'OHR.Test', metadataStage: 'archive', quickFact: 'ArchiveFact', triviaId: 'HPQuiz_20260728_Foo', title: 'Archive Title' };
+      const iotd    = { date: '20260728', imageId: 'OHR.Test', metadataStage: 'iotd',    title: 'IOTD Title', quickFact: '', triviaId: '' };
+
+      const result = mergeMetadata(archive, iotd);
+      assert.strictEqual(result.metadataStage, 'iotd');
+      assert.strictEqual(result.title, 'IOTD Title');
+      assert.strictEqual(result.quickFact, 'ArchiveFact');
+      assert.strictEqual(result.triviaId, 'HPQuiz_20260728_Foo');
+    });
+
+    it('preserves trivia retry state from current', () => {
       const current = {
-        date: '20260728',
-        imageId: 'OHR.Test',
-        metadataStage: 'archive',
-        triviaId: 'HPQuiz_20260728_test',
-        triviaAttemptedAt: 1000,
-        triviaRetryLevel: 2
+        date: '20260728', imageId: 'OHR.Test', metadataStage: 'archive',
+        triviaId: 'HPQuiz_20260728_test', triviaAttemptedAt: 1000, triviaRetryLevel: 2,
+        triviaNextRetryAt: 5000
       };
-      const candidate = {
-        date: '20260728',
-        imageId: 'OHR.Test',
-        metadataStage: 'iotd'
-      };
+      const candidate = { date: '20260728', imageId: 'OHR.Test', metadataStage: 'iotd' };
       const result = mergeMetadata(current, candidate);
-      assert.strictEqual(result.triviaId, 'HPQuiz_20260728_test');
       assert.strictEqual(result.triviaAttemptedAt, 1000);
       assert.strictEqual(result.triviaRetryLevel, 2);
+      assert.strictEqual(result.triviaNextRetryAt, 5000);
     });
   });
 
   describe('validateSourceCoverage', () => {
-    it('validates IOTD coverage when isoDate matches targetDate', () => {
-      const response = {
-        images: [
-          { isoDate: '20260728' },
-          { isoDate: '20260727' }
-        ]
-      };
+    it('validates IOTD coverage when images[0].isoDate matches targetDate', () => {
+      // Actual IOTD fixture shape: response.images[]
+      const response = { images: [{ isoDate: '20260728' }, { isoDate: '20260727' }] };
       assert.strictEqual(validateSourceCoverage('imageOfTheDay', response, '20260728'), true);
-      assert.strictEqual(validateSourceCoverage('imageOfTheDay', response, '20260726'), false);
+      assert.strictEqual(validateSourceCoverage('imageOfTheDay', response, '20260727'), false); // second entry, not first
+    });
+
+    it('rejects IOTD with no images array', () => {
+      assert.strictEqual(validateSourceCoverage('imageOfTheDay', {}, '20260728'), false);
+      assert.strictEqual(validateSourceCoverage('imageOfTheDay', { images: [] }, '20260728'), false);
     });
 
     it('validates Model coverage when MediaContents.Ssd equals targetDate', () => {
-      const response = {
-        MediaContents: [
-          { Ssd: '20260728' },
-          { Ssd: '20260729' }
-        ]
-      };
+      const response = { MediaContents: [{ Ssd: '20260728' }, { Ssd: '20260729' }] };
       assert.strictEqual(validateSourceCoverage('model', response, '20260728'), true);
       assert.strictEqual(validateSourceCoverage('model', response, '20260727'), false);
     });
 
-    it('validates Archive with 8 consecutive entries and correct enddate', () => {
+    it('validates Archive with 8 consecutive entries, correct enddate, and imageIds present', () => {
       const response = {
         enddate: '20260721',
         images: [
-          { startdate: '20260728' },
-          { startdate: '20260727' },
-          { startdate: '20260726' },
-          { startdate: '20260725' },
-          { startdate: '20260724' },
-          { startdate: '20260723' },
-          { startdate: '20260722' },
-          { startdate: '20260721' }
+          { startdate: '20260728', imageId: 'OHR.A' },
+          { startdate: '20260727', imageId: 'OHR.B' },
+          { startdate: '20260726', imageId: 'OHR.C' },
+          { startdate: '20260725', imageId: 'OHR.D' },
+          { startdate: '20260724', imageId: 'OHR.E' },
+          { startdate: '20260723', imageId: 'OHR.F' },
+          { startdate: '20260722', imageId: 'OHR.G' },
+          { startdate: '20260721', imageId: 'OHR.H' }
         ]
       };
       assert.strictEqual(validateSourceCoverage('archive', response, '20260728'), true);
     });
 
-    it('rejects Archive with wrong enddate', () => {
+    it('rejects Archive when enddate does not match targetDate-7', () => {
       const response = {
-        enddate: '20260720', // Should be 20260721
-        images: [
-          { startdate: '20260728' },
-          { startdate: '20260727' },
-          { startdate: '20260726' },
-          { startdate: '20260725' },
-          { startdate: '20260724' },
-          { startdate: '20260723' },
-          { startdate: '20260722' },
-          { startdate: '20260721' }
-        ]
+        enddate: '20260720', // wrong: should be 20260721
+        images: Array.from({ length: 8 }, (_, i) => ({
+          startdate: `202607${String(28 - i).padStart(2, '0')}`,
+          imageId: `OHR.${i}`
+        }))
       };
       assert.strictEqual(validateSourceCoverage('archive', response, '20260728'), false);
     });
 
-    it('rejects Archive with wrong number of entries', () => {
+    it('rejects Archive when entry imageId is missing', () => {
+      const images = Array.from({ length: 8 }, (_, i) => ({
+        startdate: `202607${String(28 - i).padStart(2, '0')}`,
+        imageId: i === 0 ? undefined : `OHR.${i}` // missing on first entry
+      }));
+      const response = { enddate: '20260721', images };
+      assert.strictEqual(validateSourceCoverage('archive', response, '20260728'), false);
+    });
+
+    it('rejects Archive when imageId for targetDate does not match provided targetImageId', () => {
       const response = {
         enddate: '20260721',
         images: [
-          { startdate: '20260728' },
-          { startdate: '20260727' }
+          { startdate: '20260728', imageId: 'OHR.Different' },
+          ...Array.from({ length: 7 }, (_, i) => ({
+            startdate: `202607${String(27 - i).padStart(2, '0')}`,
+            imageId: `OHR.${i}`
+          }))
         ]
       };
-      assert.strictEqual(validateSourceCoverage('archive', response, '20260728'), false);
+      assert.strictEqual(validateSourceCoverage('archive', response, '20260728', 'OHR.Expected'), false);
+      assert.strictEqual(validateSourceCoverage('archive', response, '20260728', 'OHR.Different'), true);
+    });
+
+    it('returns false for unknown source', () => {
+      assert.strictEqual(validateSourceCoverage('unknown', {}, '20260728'), false);
     });
   });
 });
+

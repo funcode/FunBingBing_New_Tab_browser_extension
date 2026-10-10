@@ -6,79 +6,111 @@
 
 const BING_CDN_ORIGIN = "https://ts1.tc.mm.bing.net";
 
-// Supported resolution suffixes
+// Supported resolution suffixes (canonical)
 const SUFFIX_PREVIEW = "_640x360.jpg";
 const SUFFIX_HD = "_1920x1080.jpg";
 const SUFFIX_UHD = "_UHD.jpg";
 
-// Known suffixes that need normalization (webp -> jpg)
+// Known non-canonical suffix that normalizes to HD
 const WEBP_HD_SUFFIX = "_1920x1080.webp";
+
+// All known suffixes in order of length descending (so greedy strip works correctly)
+const KNOWN_SUFFIXES = [
+  SUFFIX_PREVIEW,
+  SUFFIX_HD,
+  SUFFIX_UHD,
+  WEBP_HD_SUFFIX,
+  // Without extension — urlbase form from Archive
+  "_640x360",
+  "_1920x1080",
+  "_UHD",
+];
 
 /**
  * Extract the OHR image identity from a URL or urlbase.
+ * Parses the `id` query parameter, percent-decodes it, strips any known
+ * resolution suffix, and returns the bare OHR identity.
+ * Unknown suffixes cause the identity to be rejected (return null) so that
+ * normalization never silently guesses a resolution.
+ *
  * @param {string} url - URL or urlbase containing an OHR identity
- * @returns {string|null} The OHR identity (e.g., "OHR.ImageName_ZH-CN1234567890") or null if invalid
+ * @returns {string|null} The OHR identity (e.g. "OHR.ImageName_ZH-CN1234567890") or null
  */
 export function extractImageId(url) {
   if (typeof url !== 'string') {
     return null;
   }
 
-  // Match the id parameter value
-  const idMatch = url.match(/[?&]?id=([^&]+)/);
-  if (idMatch) {
-    url = idMatch[1];
+  // Prefer the `id` query parameter; fall back to treating the whole string as the id value
+  let idValue = url;
+  const idParamMatch = url.match(/[?&]id=([^&]+)/);
+  if (idParamMatch) {
+    idValue = idParamMatch[1];
   }
 
-  // Match OHR.* pattern - capture everything after OHR. including multiple underscores
-  const ohrMatch = url.match(/OHR\.[A-Za-z0-9_-]+/);
-
-  if (!ohrMatch) {
+  // Percent-decode so that encoded underscores (%5F) are treated correctly
+  try {
+    idValue = decodeURIComponent(idValue);
+  } catch {
     return null;
   }
 
-  let identity = ohrMatch[0];
+  // Must start with OHR.
+  const ohrStart = idValue.indexOf('OHR.');
+  if (ohrStart === -1) {
+    return null;
+  }
+  idValue = idValue.slice(ohrStart);
 
-  // Remove known resolution suffixes and file extensions
-  // Handle cases like _1920x1080.jpg, _1920x1080.webp, _640x360.jpg, _UHD.jpg
-  identity = identity.replace(/_\d+x\d+\.(jpg|webp)$/, '');
-  identity = identity.replace(/_UHD\.jpg$/, '');
-  identity = identity.replace(/_\d+x\d+$/, '');
-  identity = identity.replace(/_UHD$/, '');
+  // Strip any known suffix (including file extension)
+  for (const suffix of KNOWN_SUFFIXES) {
+    if (idValue.endsWith(suffix)) {
+      idValue = idValue.slice(0, -suffix.length);
+      return idValue;
+    }
+  }
 
-  return identity;
+  // No known suffix found — the id value is either a bare identity (urlbase without suffix)
+  // or an unknown suffix.  Accept it only when it looks like a bare OHR identity
+  // (no trailing dot-extension that would indicate an unknown file type).
+  // Check for a dot AFTER the "OHR." prefix (position 4+), not the prefix's own dot.
+  const afterPrefix = idValue.slice(4); // everything after "OHR."
+  if (/\.\w+$/.test(afterPrefix)) {
+    // Has a file extension that wasn't in our known list — reject rather than guess
+    return null;
+  }
+
+  return idValue;
 }
 
 /**
  * Validate and normalize a resolution suffix.
  * Model uses _1920x1080.webp which normalizes to _1920x1080.jpg.
- * Unknown suffixes are rejected.
+ * Unknown suffixes are rejected (null) rather than guessed.
  *
- * @param {string} suffix - The suffix to validate (e.g., "_1920x1080.jpg", "_1920x1080.webp")
- * @returns {string|null} Canonical suffix or null if invalid/unknown
+ * @param {string} suffix - The suffix to validate
+ * @returns {string|null} Canonical suffix or null if unknown
  */
 export function validateAndNormalizeSuffix(suffix) {
   if (typeof suffix !== 'string') {
     return null;
   }
 
-  // Direct match for supported suffixes
   if (suffix === SUFFIX_PREVIEW || suffix === SUFFIX_HD || suffix === SUFFIX_UHD) {
     return suffix;
   }
 
-  // Normalize webp to jpg for HD
   if (suffix === WEBP_HD_SUFFIX) {
     return SUFFIX_HD;
   }
 
-  // Unknown suffix - reject rather than guess
   return null;
 }
 
 /**
  * Normalize an image URL to its canonical form.
- * Extracts the full OHR identity, validates the suffix, and rebuilds the canonical URL.
+ * Extracts and validates the OHR identity, then rebuilds the canonical URL
+ * for the requested resolution.
  *
  * @param {string} url - Image URL from any source (IOTD, Model, Archive, legacy)
  * @param {'preview'|'hd'|'uhd'} resolution - Target resolution
@@ -89,35 +121,25 @@ export function normalizeImageUrl(url, resolution) {
     return null;
   }
 
-  // Extract the image identity
   const imageId = extractImageId(url);
   if (!imageId) {
     return null;
   }
 
-  // Determine the canonical suffix
   let suffix;
   switch (resolution) {
-    case 'preview':
-      suffix = SUFFIX_PREVIEW;
-      break;
-    case 'hd':
-      suffix = SUFFIX_HD;
-      break;
-    case 'uhd':
-      suffix = SUFFIX_UHD;
-      break;
-    default:
-      return null;
+    case 'preview': suffix = SUFFIX_PREVIEW; break;
+    case 'hd':      suffix = SUFFIX_HD;      break;
+    case 'uhd':     suffix = SUFFIX_UHD;     break;
+    default: return null;
   }
 
-  // Build canonical URL: origin + /th?id= + identity + suffix
   return `${BING_CDN_ORIGIN}/th?id=${imageId}${suffix}`;
 }
 
 /**
- * Build all canonical URLs for an image identity.
- * @param {string} imageId - The OHR image identity
+ * Build all three canonical URLs for an OHR image identity.
+ * @param {string} imageId - The OHR image identity (must start with "OHR.")
  * @returns {{preview: string, highDef: string, ultraHighDef: string}}
  */
 export function buildCanonicalUrls(imageId) {
@@ -126,16 +148,16 @@ export function buildCanonicalUrls(imageId) {
   }
 
   return {
-    preview: `${BING_CDN_ORIGIN}/th?id=${imageId}${SUFFIX_PREVIEW}`,
-    highDef: `${BING_CDN_ORIGIN}/th?id=${imageId}${SUFFIX_HD}`,
+    preview:      `${BING_CDN_ORIGIN}/th?id=${imageId}${SUFFIX_PREVIEW}`,
+    highDef:      `${BING_CDN_ORIGIN}/th?id=${imageId}${SUFFIX_HD}`,
     ultraHighDef: `${BING_CDN_ORIGIN}/th?id=${imageId}${SUFFIX_UHD}`
   };
 }
 
 /**
  * Check if two image identities are the same.
- * @param {string} id1 - First image ID
- * @param {string} id2 - Second image ID
+ * @param {string} id1
+ * @param {string} id2
  * @returns {boolean}
  */
 export function isSameImage(id1, id2) {

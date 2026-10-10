@@ -40,6 +40,8 @@ All acceptance criteria from the issue have been implemented and tested:
 src/helpers/
 ├── date.js           # Date helpers (Asia/Shanghai timezone)
 ├── image.js          # Image URL normalization and identity extraction
+├── image-task.js     # Image-task deduplication and generation-based write admission
+├── display-state.js  # Atomic display-snapshot validation
 ├── retry.js          # Bounded escalating retry backoff
 ├── metadata.js       # Metadata stage comparison and merge
 ├── retention.js      # Cache retention and cleanup calculation
@@ -51,6 +53,8 @@ src/helpers/
 tests/
 ├── date.test.js
 ├── image.test.js
+├── image-task.test.js
+├── display-state.test.js
 ├── retry.test.js
 ├── metadata.test.js
 ├── retention.test.js
@@ -74,12 +78,12 @@ node --test tests/*.test.js
 
 ## Test Results
 
-All 118 tests pass:
+All 167 tests pass:
 
 ```
-# tests 118
-# suites 51
-# pass 118
+# tests 167
+# suites 65
+# pass 167
 # fail 0
 ```
 
