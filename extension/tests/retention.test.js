@@ -61,15 +61,39 @@ describe('Retention helpers', () => {
           '20260727': { imageId: 'OHR.A', urls: { preview: 'https://cdn/OHR.A_640x360.jpg', highDef: 'https://cdn/OHR.A_1920x1080.jpg' } }
         }
       };
-      const displayState = { date: '20260728', imageId: 'OHR.A', url: 'https://cdn/OHR.A_1920x1080.jpg' };
+      const displayState = { date: '20260728', imageId: 'OHR.A', url: 'https://ts1.tc.mm.bing.net/th?id=OHR.A_1920x1080.jpg' };
 
       const retentionSet = calculateRetentionSet(catalog, displayState, false);
 
       // A's final URL must be protected (from displayState.url)
-      assert.strictEqual(retentionSet.has('https://cdn/OHR.A_1920x1080.jpg'), true);
-      // A's preview must be protected (found via imageId scan of catalog)
-      assert.strictEqual(retentionSet.has('https://cdn/OHR.A_640x360.jpg'), true);
+      assert.strictEqual(retentionSet.has('https://ts1.tc.mm.bing.net/th?id=OHR.A_1920x1080.jpg'), true);
+      // A's preview must be protected from the displayed identity
+      assert.strictEqual(retentionSet.has('https://ts1.tc.mm.bing.net/th?id=OHR.A_640x360.jpg'), true);
       // B's preview should NOT be the protected one — that was the old bug
+    });
+
+    it('protects the displayed preview even when the old identity is absent from the catalog', () => {
+      const catalog = {
+        entries: {
+          '20260728': { imageId: 'OHR.B', urls: { preview: 'https://cdn/OHR.B_640x360.jpg', highDef: 'https://cdn/OHR.B_1920x1080.jpg' } }
+        }
+      };
+      const displayState = {
+        date: '20260728',
+        imageId: 'OHR.A_ZH-CN123',
+        url: 'https://ts1.tc.mm.bing.net/th?id=OHR.A_ZH-CN123_1920x1080.jpg'
+      };
+      const retentionSet = calculateRetentionSet(catalog, displayState, false);
+      assert.strictEqual(retentionSet.has('https://ts1.tc.mm.bing.net/th?id=OHR.A_ZH-CN123_640x360.jpg'), true);
+    });
+
+    it('ignores an invalid display URL but still protects a valid identity preview', () => {
+      const retentionSet = calculateRetentionSet({}, {
+        imageId: 'OHR.A_ZH-CN123',
+        url: 'https://evil.example/image.jpg'
+      }, false);
+      assert.strictEqual(retentionSet.has('https://evil.example/image.jpg'), false);
+      assert.strictEqual(retentionSet.has('https://ts1.tc.mm.bing.net/th?id=OHR.A_ZH-CN123_640x360.jpg'), true);
     });
   });
 

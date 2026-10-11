@@ -14,6 +14,14 @@ const SUFFIX_UHD = "_UHD.jpg";
 // Known non-canonical suffix that normalizes to HD
 const WEBP_HD_SUFFIX = "_1920x1080.webp";
 
+const ALLOWED_IMAGE_HOSTS = new Set([
+  "www.bing.com",
+  "cn.bing.com",
+  "ts1.tc.mm.bing.net"
+]);
+
+const IMAGE_ID_PATTERN = /^OHR\.[A-Za-z0-9-]+(?:_[A-Za-z0-9-]+)*$/;
+
 // All known suffixes in order of length descending (so greedy strip works correctly)
 const KNOWN_SUFFIXES = [
   SUFFIX_PREVIEW,
@@ -26,6 +34,39 @@ const KNOWN_SUFFIXES = [
   "_UHD",
 ];
 
+function parseImageUrl(url) {
+  if (typeof url !== 'string' || !url) {
+    return null;
+  }
+
+  let parsed;
+  try {
+    if (url.startsWith('/') && !url.startsWith('//')) {
+      parsed = new URL(url, 'https://www.bing.com');
+    } else {
+      parsed = new URL(url);
+      if (parsed.protocol !== 'https:' || !ALLOWED_IMAGE_HOSTS.has(parsed.hostname) ||
+          parsed.username || parsed.password || parsed.port) {
+        return null;
+      }
+    }
+  } catch {
+    return null;
+  }
+
+  if (parsed.pathname !== '/th') {
+    return null;
+  }
+
+  const idValue = parsed.searchParams.get('id');
+  return idValue ? idValue : null;
+}
+
+export function isValidImageIdentity(imageId) {
+  return typeof imageId === 'string' && IMAGE_ID_PATTERN.test(imageId) &&
+    !/_\d+x\d+$/.test(imageId) && !/_UHD$/.test(imageId);
+}
+
 /**
  * Extract the OHR image identity from a URL or urlbase.
  * Parses the `id` query parameter, percent-decodes it, strips any known
@@ -37,50 +78,21 @@ const KNOWN_SUFFIXES = [
  * @returns {string|null} The OHR identity (e.g. "OHR.ImageName_ZH-CN1234567890") or null
  */
 export function extractImageId(url) {
-  if (typeof url !== 'string') {
+  const idValue = parseImageUrl(url);
+  if (!idValue) {
     return null;
   }
-
-  // Prefer the `id` query parameter; fall back to treating the whole string as the id value
-  let idValue = url;
-  const idParamMatch = url.match(/[?&]id=([^&]+)/);
-  if (idParamMatch) {
-    idValue = idParamMatch[1];
-  }
-
-  // Percent-decode so that encoded underscores (%5F) are treated correctly
-  try {
-    idValue = decodeURIComponent(idValue);
-  } catch {
-    return null;
-  }
-
-  // Must start with OHR.
-  const ohrStart = idValue.indexOf('OHR.');
-  if (ohrStart === -1) {
-    return null;
-  }
-  idValue = idValue.slice(ohrStart);
 
   // Strip any known suffix (including file extension)
   for (const suffix of KNOWN_SUFFIXES) {
     if (idValue.endsWith(suffix)) {
-      idValue = idValue.slice(0, -suffix.length);
-      return idValue;
+      const imageId = idValue.slice(0, -suffix.length);
+      return isValidImageIdentity(imageId) ? imageId : null;
     }
   }
 
-  // No known suffix found — the id value is either a bare identity (urlbase without suffix)
-  // or an unknown suffix.  Accept it only when it looks like a bare OHR identity
-  // (no trailing dot-extension that would indicate an unknown file type).
-  // Check for a dot AFTER the "OHR." prefix (position 4+), not the prefix's own dot.
-  const afterPrefix = idValue.slice(4); // everything after "OHR."
-  if (/\.\w+$/.test(afterPrefix)) {
-    // Has a file extension that wasn't in our known list — reject rather than guess
-    return null;
-  }
-
-  return idValue;
+  // isValidImageIdentity also rejects unknown resolution suffixes.
+  return isValidImageIdentity(idValue) ? idValue : null;
 }
 
 /**
@@ -117,10 +129,6 @@ export function validateAndNormalizeSuffix(suffix) {
  * @returns {string|null} Canonical URL or null if the URL is invalid
  */
 export function normalizeImageUrl(url, resolution) {
-  if (typeof url !== 'string' || !url) {
-    return null;
-  }
-
   const imageId = extractImageId(url);
   if (!imageId) {
     return null;
@@ -143,7 +151,7 @@ export function normalizeImageUrl(url, resolution) {
  * @returns {{preview: string, highDef: string, ultraHighDef: string}}
  */
 export function buildCanonicalUrls(imageId) {
-  if (typeof imageId !== 'string' || !imageId.startsWith('OHR.')) {
+  if (!isValidImageIdentity(imageId)) {
     throw new Error('Invalid image identity');
   }
 

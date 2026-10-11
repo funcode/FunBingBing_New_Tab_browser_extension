@@ -1,4 +1,5 @@
 import { addDays } from './date.js';
+import { buildCanonicalUrls, isValidImageIdentity } from './image.js';
 
 /**
  * Cache retention and cleanup helpers for PLAN9.
@@ -18,6 +19,17 @@ import { addDays } from './date.js';
  */
 export function calculateRetentionSet(catalog, displayState, enableUhd) {
   const retentionUrls = new Set();
+
+  // Display protection: protect the two responses for the *displayed* identity.
+  // Derive both keys from displayState.imageId, not from the catalog entry for that date,
+  // so A's preview is protected even if the catalog entry for that date has become B.
+  if (displayState && isValidImageIdentity(displayState.imageId)) {
+    const urls = buildCanonicalUrls(displayState.imageId);
+    retentionUrls.add(urls.preview);
+    if (displayState.url === urls.highDef || displayState.url === urls.ultraHighDef) {
+      retentionUrls.add(displayState.url);
+    }
+  }
 
   if (!catalog || !catalog.entries) {
     return retentionUrls;
@@ -41,25 +53,6 @@ export function calculateRetentionSet(catalog, displayState, enableUhd) {
       retentionUrls.add(entry.urls.ultraHighDef);
     } else if (entry.urls.highDef) {
       retentionUrls.add(entry.urls.highDef);
-    }
-  }
-
-  // Display protection: protect the two responses for the *displayed* identity.
-  // Derive both keys from displayState.imageId, not from the catalog entry for that date,
-  // so A's preview is protected even if the catalog entry for that date has become B.
-  if (displayState && displayState.url) {
-    retentionUrls.add(displayState.url);
-
-    // Protect the preview for the displayed imageId by finding any catalog entry that
-    // carries it, or by using the preloadDataUrl indirectly via the display snapshot.
-    // The most reliable approach: scan catalog for an entry matching the displayed imageId.
-    if (displayState.imageId) {
-      for (const entry of Object.values(catalog.entries)) {
-        if (entry.imageId === displayState.imageId && entry.urls && entry.urls.preview) {
-          retentionUrls.add(entry.urls.preview);
-          break;
-        }
-      }
     }
   }
 

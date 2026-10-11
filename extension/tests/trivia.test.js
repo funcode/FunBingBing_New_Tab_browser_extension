@@ -23,6 +23,9 @@ describe('Trivia helpers', () => {
     it('returns null for malformed trivia IDs', () => {
       assert.strictEqual(normalizeTriviaId('InvalidFormat', '20260728'), null);
       assert.strictEqual(normalizeTriviaId('HPQuiz_notadate_test', '20260728'), null);
+      assert.strictEqual(normalizeTriviaId('HPQuiz_20260720_Foo_20260810', '20260728'), null);
+      assert.strictEqual(normalizeTriviaId('HPQuiz_20260720_Foo/../x', '20260728'), null);
+      assert.strictEqual(normalizeTriviaId('HPQuiz_20260720_Foo%22', '20260728'), null);
       assert.strictEqual(normalizeTriviaId('', '20260728'), null);
     });
 

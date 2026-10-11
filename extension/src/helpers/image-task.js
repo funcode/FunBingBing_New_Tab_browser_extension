@@ -19,21 +19,51 @@ export const TASK_PRIORITY = {
  * @param {Map<string, {priority: number, active: boolean}>} taskMap - Current task map
  * @param {string} canonicalUrl - Canonical image URL
  * @param {boolean} urgent - Whether this is an urgent request
- * @returns {'noop'|'create'|'promote'} What to do
+ * @param {number} imagePrefetchGeneration - Current queue generation
+ * @returns {'noop'|'create'|'promote'|'stale'} What to do
  */
-export function resolveImageTaskAction(taskMap, canonicalUrl, urgent) {
+export function resolveImageTaskAction(taskMap, canonicalUrl, urgent, imagePrefetchGeneration) {
   const existing = taskMap.get(canonicalUrl);
 
   if (!existing) {
     return 'create';
   }
 
-  // Task already exists — promote if urgent and not already urgent
-  if (urgent && existing.priority !== TASK_PRIORITY.URGENT) {
+  // An active fetch is allowed to finish across a generation change. Pending
+  // work from an older generation must not be dispatched.
+  if (!existing.active && !isImageTaskGenerationCurrent(existing, imagePrefetchGeneration)) {
+    return 'stale';
+  }
+
+  // Only pending work can be promoted. An urgent request reuses an active task.
+  if (urgent && !existing.active && existing.priority !== TASK_PRIORITY.URGENT) {
     return 'promote';
   }
 
   return 'noop';
+}
+
+/**
+ * Check whether a pending task belongs to the current image queue generation.
+ * @param {{generation: number, active: boolean}} task
+ * @param {number} imagePrefetchGeneration
+ * @returns {boolean}
+ */
+export function isImageTaskGenerationCurrent(task, imagePrefetchGeneration) {
+  return Boolean(task) && Number.isInteger(task.generation) &&
+    task.generation === imagePrefetchGeneration;
+}
+
+/**
+ * Check whether a task is admitted to the dispatcher. Active tasks are never
+ * dispatched a second time; pending tasks must carry the current generation.
+ * @param {{generation: number, active: boolean}} task
+ * @param {number} imagePrefetchGeneration
+ * @returns {boolean}
+ */
+export function canDispatchImageTask(task, imagePrefetchGeneration) {
+  return Boolean(task) && !task.active &&
+    isImageTaskGenerationCurrent(task, imagePrefetchGeneration);
 }
 
 /**

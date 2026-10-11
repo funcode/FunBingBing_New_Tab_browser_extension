@@ -3,27 +3,7 @@
  * Trivia ID is the sole work identity; date only locates the catalog entry.
  */
 
-/**
- * Validate that a YYYYMMDD string is a real calendar date.
- * @param {string} dateStr
- * @returns {boolean}
- */
-function isValidCalendarDate(dateStr) {
-  if (typeof dateStr !== 'string' || dateStr.length !== 8 || !/^\d{8}$/.test(dateStr)) {
-    return false;
-  }
-  const year  = parseInt(dateStr.slice(0, 4), 10);
-  const month = parseInt(dateStr.slice(4, 6), 10);
-  const day   = parseInt(dateStr.slice(6, 8), 10);
-  if (month < 1 || month > 12 || day < 1 || day > 31) return false;
-  // Use UTC construction to avoid DST surprises
-  const d = new Date(Date.UTC(year, month - 1, day));
-  return (
-    d.getUTCFullYear() === year &&
-    d.getUTCMonth() + 1 === month &&
-    d.getUTCDate() === day
-  );
-}
+import { isValidCalendarDate } from './date.js';
 
 /**
  * Validate and normalize a trivia ID from Archive.
@@ -41,14 +21,18 @@ export function normalizeTriviaId(triviaId, targetIsoDate) {
     return null;
   }
 
-  // Must be exactly HPQuiz_<8digits>_<non-empty slug> with no extra digit groups
-  // that could make the date segment ambiguous.
-  const match = triviaId.match(/^HPQuiz_(\d{8})_([^_].*)$/);
+  // Must be exactly HPQuiz_<8digits>_<non-empty slug>. A second date-like
+  // segment makes the identity ambiguous and is rejected.
+  const match = triviaId.match(/^HPQuiz_(\d{8})_([A-Za-z][A-Za-z0-9-]*)$/);
   if (!match) {
     return null;
   }
 
   const [, originalDate, slug] = match;
+
+  if (/\d{8}/.test(slug)) {
+    return null;
+  }
 
   // Reject invalid calendar dates in the original ID
   if (!isValidCalendarDate(originalDate)) {

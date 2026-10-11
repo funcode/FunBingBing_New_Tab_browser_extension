@@ -3,7 +3,8 @@
  * Metadata stages are monotonic: iotd > media > preload > archive > legacy
  */
 
-import { addDays } from './date.js';
+import { addDays, isValidCalendarDate } from './date.js';
+import { extractImageId, isValidImageIdentity } from './image.js';
 
 const METADATA_STAGES = {
   legacy: 0,
@@ -65,102 +66,119 @@ export function mergeMetadata(current, candidate) {
     ? [candidate, current]
     : [current, candidate];
 
-  return {
-    // Lower-stage fields first (as baseline), then higher-stage fields overwrite
+  const merged = {
     ...lower,
     ...higher,
-    metadataStage: candidateIsHigher ? candidateStage : currentStage,
-    // Source-specific enrichment fields: keep any non-empty value from either source
-    quickFact: higher.quickFact || lower.quickFact || '',
-    triviaId: higher.triviaId || lower.triviaId || '',
-    backstageUrl: higher.backstageUrl || lower.backstageUrl || '',
+    metadataStage: candidateIsHigher ? candidateStage : currentStage
+  };
+
+  // A higher-stage response can contain an empty field while a lower-stage
+  // response still has the useful value needed for display.
+  for (const [key, value] of Object.entries(lower)) {
+    if ((merged[key] === undefined || merged[key] === null || merged[key] === '') &&
+        value !== undefined && value !== null && value !== '') {
+      merged[key] = value;
+    }
+  }
+
+  const previousTriviaId = current.triviaId || '';
+  const nextTriviaId = merged.triviaId || '';
+  if (previousTriviaId !== nextTriviaId) {
+    return {
+      ...merged,
+      triviaData: null,
+      triviaState: 'missing',
+      triviaAttemptedAt: 0,
+      triviaNextRetryAt: 0,
+      triviaRetryLevel: 0
+    };
+  }
+
+  return {
+    ...merged,
     // Trivia retry state is always taken from current (the persisted side)
-    triviaData: current.triviaData !== undefined ? current.triviaData : candidate.triviaData,
+    triviaData: current.triviaData !== undefined ? current.triviaData : (candidate.triviaData ?? null),
     triviaState: current.triviaState || candidate.triviaState || 'missing',
-    triviaAttemptedAt: current.triviaAttemptedAt,
-    triviaNextRetryAt: current.triviaNextRetryAt,
-    triviaRetryLevel: current.triviaRetryLevel
+    triviaAttemptedAt: current.triviaAttemptedAt ?? 0,
+    triviaNextRetryAt: current.triviaNextRetryAt ?? 0,
+    triviaRetryLevel: current.triviaRetryLevel ?? 0
   };
 }
 
 /**
  * Validate source coverage.
- * - IOTD: response.images[0].isoDate must equal targetDate (uses actual IOTD fixture shape)
- * - Model: MediaContents entry with Ssd equal to targetDate must exist
- * - Archive: exactly 8 consecutive entries from targetDate through targetDate-7;
- *   enddate equals targetDate-7; each entry's imageId must be non-empty;
- *   matching uses date and imageId, never array position
+ * - IOTD: response.data.images contains a valid entry for targetDate
+ * - Model: MediaContents contains a valid entry with Ssd equal to targetDate
+ * - Archive: the catalog contains the complete consecutive IOTD window and
+ *   the response contains the oldest day's entry matching that catalog identity
  *
  * @param {string} source - Source name ('imageOfTheDay', 'model', 'archive')
  * @param {Object} response - Source response data
  * @param {string} targetDate - Expected target date in YYYYMMDD format
- * @param {string} [targetImageId] - Required for archive: the IOTD imageId for targetDate
+ * @param {Object} [catalog] - IOTD catalog, required for archive
  * @returns {boolean}
  */
-export function validateSourceCoverage(source, response, targetDate, targetImageId) {
-  if (!response || !targetDate) {
+export function validateSourceCoverage(source, response, targetDate, catalog) {
+  if (!response || !isValidCalendarDate(targetDate)) {
     return false;
   }
 
   switch (source) {
     case 'imageOfTheDay': {
-      // IOTD fixture uses response.images[]; the first entry's isoDate must equal targetDate
-      if (!response.images || !Array.isArray(response.images) || response.images.length === 0) {
+      const images = response.data && response.data.images;
+      if (!Array.isArray(images) || images.length === 0) {
         return false;
       }
-      return response.images[0].isoDate === targetDate;
+      return images.some(image => {
+        if (!image || image.isoDate !== targetDate) {
+          return false;
+        }
+        const landscapeUrls = image.imageUrls?.landscape;
+        return extractImageId(landscapeUrls?.highDef || landscapeUrls?.ultraHighDef) !== null;
+      });
     }
 
     case 'model': {
-      // Model MediaContents.Ssd must equal targetDate
       if (!response.MediaContents || !Array.isArray(response.MediaContents)) {
         return false;
       }
-      return response.MediaContents.some(mc => mc.Ssd === targetDate);
+      return response.MediaContents.some(media => {
+        if (!media || media.Ssd !== targetDate) {
+          return false;
+        }
+        return extractImageId(media.ImageContent?.Image?.Url) !== null;
+      });
     }
 
     case 'archive': {
-      // Archive must have exactly 8 entries
-      if (!response.images || !Array.isArray(response.images) || response.images.length !== 8) {
+      if (!response.images || !Array.isArray(response.images) || response.images.length === 0) {
+        return false;
+      }
+      const entries = catalog && catalog.entries;
+      if (!entries || typeof entries !== 'object') {
         return false;
       }
 
-      // enddate must equal targetDate - 7 days (oldest entry date)
-      const oldestDate = addDays(targetDate, -7);
-      if (response.enddate !== oldestDate) {
-        return false;
-      }
-
-      // Build expected date set; matching uses date, not array position
-      const expectedDates = new Set();
+      const expectedDates = [];
       for (let i = 0; i < 8; i++) {
-        expectedDates.add(addDays(targetDate, -i));
+        expectedDates.push(addDays(targetDate, -i));
       }
 
-      // Build a map of date -> imageId from the response
-      const dateToImageId = new Map();
-      for (const img of response.images) {
-        if (!img.startdate || !img.imageId) {
-          return false; // Each entry must have a date and identity
-        }
-        dateToImageId.set(img.startdate, img.imageId);
-      }
-
-      // All 8 expected dates must be present
-      for (const expected of expectedDates) {
-        if (!dateToImageId.has(expected)) {
+      for (const date of expectedDates) {
+        const entry = entries[date];
+        if (!entry || entry.metadataStage !== 'iotd' || !isValidImageIdentity(entry.imageId)) {
           return false;
         }
       }
 
-      // If a target imageId is provided, it must match the archive entry for targetDate
-      if (targetImageId !== undefined) {
-        if (dateToImageId.get(targetDate) !== targetImageId) {
-          return false;
-        }
+      const oldestDate = expectedDates[expectedDates.length - 1];
+      const oldestImage = response.images.find(image => image?.enddate === oldestDate);
+      if (!oldestImage) {
+        return false;
       }
 
-      return true;
+      // Catalog identities were validated above, so a null extraction never matches.
+      return extractImageId(oldestImage.urlbase || oldestImage.url) === entries[oldestDate].imageId;
     }
 
     default:

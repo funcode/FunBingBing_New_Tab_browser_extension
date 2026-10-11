@@ -31,6 +31,24 @@ export function getZhCnTargetDate() {
 }
 
 /**
+ * Validate that a YYYYMMDD string is a real calendar date.
+ * @param {string} dateStr
+ * @returns {boolean}
+ */
+export function isValidCalendarDate(dateStr) {
+  if (typeof dateStr !== 'string' || !/^\d{8}$/.test(dateStr)) {
+    return false;
+  }
+  const year = Number(dateStr.slice(0, 4));
+  const month = Number(dateStr.slice(4, 6));
+  const day = Number(dateStr.slice(6, 8));
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return date.getUTCFullYear() === year &&
+    date.getUTCMonth() === month - 1 &&
+    date.getUTCDate() === day;
+}
+
+/**
  * Format a YYYYMMDD date string for display as YYYY/MM/DD.
  * Does not construct a Date object or perform timezone conversion.
  * @param {string} dateStr - Date in YYYYMMDD format

@@ -3,6 +3,8 @@ import assert from 'node:assert';
 import {
   TASK_PRIORITY,
   resolveImageTaskAction,
+  canDispatchImageTask,
+  isImageTaskGenerationCurrent,
   shouldCacheFetchResponse
 } from '../src/helpers/image-task.js';
 
@@ -19,18 +21,45 @@ describe('Image task helpers', () => {
     });
 
     it('returns noop when task already exists and is already at the requested priority', () => {
-      const taskMap = new Map([['https://example.com/img.jpg', { priority: TASK_PRIORITY.NORMAL, active: false }]]);
-      assert.strictEqual(resolveImageTaskAction(taskMap, 'https://example.com/img.jpg', false), 'noop');
+      const taskMap = new Map([['https://example.com/img.jpg', { priority: TASK_PRIORITY.NORMAL, active: false, generation: 1 }]]);
+      assert.strictEqual(resolveImageTaskAction(taskMap, 'https://example.com/img.jpg', false, 1), 'noop');
     });
 
     it('returns promote when urgent request finds an existing normal-priority task', () => {
-      const taskMap = new Map([['https://example.com/img.jpg', { priority: TASK_PRIORITY.NORMAL, active: false }]]);
-      assert.strictEqual(resolveImageTaskAction(taskMap, 'https://example.com/img.jpg', true), 'promote');
+      const taskMap = new Map([['https://example.com/img.jpg', { priority: TASK_PRIORITY.NORMAL, active: false, generation: 1 }]]);
+      assert.strictEqual(resolveImageTaskAction(taskMap, 'https://example.com/img.jpg', true, 1), 'promote');
     });
 
     it('returns noop when urgent task already exists and is urgent — no double-promote', () => {
-      const taskMap = new Map([['https://example.com/img.jpg', { priority: TASK_PRIORITY.URGENT, active: true }]]);
-      assert.strictEqual(resolveImageTaskAction(taskMap, 'https://example.com/img.jpg', true), 'noop');
+      const taskMap = new Map([['https://example.com/img.jpg', { priority: TASK_PRIORITY.URGENT, active: true, generation: 1 }]]);
+      assert.strictEqual(resolveImageTaskAction(taskMap, 'https://example.com/img.jpg', true, 2), 'noop');
+    });
+
+    it('does not promote an active normal task for urgent navigation', () => {
+      const taskMap = new Map([['https://example.com/img.jpg', { priority: TASK_PRIORITY.NORMAL, active: true, generation: 1 }]]);
+      assert.strictEqual(resolveImageTaskAction(taskMap, 'https://example.com/img.jpg', true, 2), 'noop');
+    });
+
+    it('rejects pending work from an older image queue generation', () => {
+      const taskMap = new Map([['https://example.com/img.jpg', { priority: TASK_PRIORITY.NORMAL, active: false, generation: 1 }]]);
+      assert.strictEqual(resolveImageTaskAction(taskMap, 'https://example.com/img.jpg', false, 2), 'stale');
+      assert.strictEqual(isImageTaskGenerationCurrent(taskMap.get('https://example.com/img.jpg'), 2), false);
+      assert.strictEqual(canDispatchImageTask(taskMap.get('https://example.com/img.jpg'), 2), false);
+      assert.strictEqual(resolveImageTaskAction(taskMap, 'https://example.com/img.jpg', true), 'stale');
+    });
+
+    it('treats a pending task without an integer generation as stale', () => {
+      const taskMap = new Map([['https://example.com/img.jpg', { priority: TASK_PRIORITY.NORMAL, active: false }]]);
+      assert.strictEqual(resolveImageTaskAction(taskMap, 'https://example.com/img.jpg', true), 'stale');
+      assert.strictEqual(canDispatchImageTask(taskMap.get('https://example.com/img.jpg'), undefined), false);
+    });
+
+    it('admits only pending tasks from the current generation', () => {
+      const task = { priority: TASK_PRIORITY.NORMAL, active: false, generation: 2 };
+      assert.strictEqual(isImageTaskGenerationCurrent(task, 2), true);
+      assert.strictEqual(canDispatchImageTask(task, 2), true);
+      assert.strictEqual(canDispatchImageTask({ ...task, active: true }, 2), false);
+      assert.strictEqual(canDispatchImageTask(task, 1), false);
     });
   });
 

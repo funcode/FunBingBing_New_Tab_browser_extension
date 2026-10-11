@@ -4,10 +4,27 @@
  * ADR-0008: Page-owned display state and preview data URL.
  */
 
+import { isValidCalendarDate } from './date.js';
+import { buildCanonicalUrls, isValidImageIdentity } from './image.js';
+
+// Callers must validate imageId first; buildCanonicalUrls throws on invalid identities.
+function isValidFinalUrl(url, imageId) {
+  const canonical = buildCanonicalUrls(imageId);
+  return url === canonical.highDef || url === canonical.ultraHighDef;
+}
+
+function isValidPreviewDataUrl(value) {
+  return value === '' || (
+    typeof value === 'string' &&
+    /^data:image\/[a-z0-9.+-]+(?:;[^,]*)?,/i.test(value)
+  );
+}
+
 /**
  * Validate that a display-state snapshot is internally consistent.
- * All four identity fields (date, imageId, url, preloadDataUrl) must be
- * consistent — an explicitly empty preloadDataUrl is valid.
+ * The identity fields (date, imageId, url, preloadDataUrl) and numeric
+ * application timestamp must form one snapshot; an explicitly empty
+ * preloadDataUrl is valid.
  *
  * @param {Object} snapshot - Candidate display state snapshot
  * @returns {boolean} True if the snapshot is a valid atomic unit
@@ -17,25 +34,25 @@ export function isValidDisplaySnapshot(snapshot) {
     return false;
   }
 
-  const { date, imageId, url } = snapshot;
+  const { date, imageId, url, preloadDataUrl, updatedAt } = snapshot;
 
-  // date must be a YYYYMMDD string
-  if (typeof date !== 'string' || !/^\d{8}$/.test(date)) {
+  if (!isValidCalendarDate(date)) {
     return false;
   }
 
-  // imageId must be a non-empty OHR identity
-  if (typeof imageId !== 'string' || !imageId.startsWith('OHR.')) {
+  if (!isValidImageIdentity(imageId)) {
     return false;
   }
 
-  // url must be a non-empty string (canonical or legacy — caller owns canonicality)
-  if (typeof url !== 'string' || !url) {
+  if (!isValidFinalUrl(url, imageId)) {
     return false;
   }
 
-  // preloadDataUrl must be present as a key (may be empty string — that is valid)
-  if (!('preloadDataUrl' in snapshot)) {
+  if (!isValidPreviewDataUrl(preloadDataUrl)) {
+    return false;
+  }
+
+  if (typeof updatedAt !== 'number' || !Number.isFinite(updatedAt) || updatedAt < 0) {
     return false;
   }
 
@@ -75,6 +92,10 @@ export function isPreloadDataUrlConsistent(snapshot, previewImageId) {
   // Empty string is always valid — the page explicitly cleared it
   if (snapshot.preloadDataUrl === '') {
     return true;
+  }
+
+  if (!isValidPreviewDataUrl(snapshot.preloadDataUrl)) {
+    return false;
   }
 
   // Non-empty data URL must match the snapshot's own imageId

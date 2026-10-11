@@ -6,92 +6,58 @@ import {
   isPreloadDataUrlConsistent
 } from '../src/helpers/display-state.js';
 
+const imageId = 'OHR.Test_ZH-CN123';
+const finalUrl = `https://ts1.tc.mm.bing.net/th?id=${imageId}_1920x1080.jpg`;
+
 describe('Display state helpers', () => {
   describe('isValidDisplaySnapshot', () => {
     it('accepts a fully populated valid snapshot', () => {
-      const snapshot = {
-        date: '20260728',
-        imageId: 'OHR.Test_ZH-CN123',
-        url: 'https://ts1.tc.mm.bing.net/th?id=OHR.Test_ZH-CN123_1920x1080.jpg',
-        preloadDataUrl: 'data:image/jpeg;base64,abc'
-      };
-      assert.strictEqual(isValidDisplaySnapshot(snapshot), true);
+      assert.strictEqual(isValidDisplaySnapshot({
+        date: '20260728', imageId, url: finalUrl,
+        preloadDataUrl: 'data:image/jpeg;base64,abc', updatedAt: 123
+      }), true);
     });
 
-    it('accepts a snapshot with empty preloadDataUrl — explicitly cleared is valid', () => {
-      const snapshot = {
-        date: '20260728',
-        imageId: 'OHR.Test_ZH-CN123',
-        url: 'https://example.com/img.jpg',
-        preloadDataUrl: ''
-      };
-      assert.strictEqual(isValidDisplaySnapshot(snapshot), true);
+    it('accepts an explicitly empty preview', () => {
+      assert.strictEqual(isValidDisplaySnapshot({
+        date: '20260728', imageId, url: finalUrl,
+        preloadDataUrl: '', updatedAt: 123
+      }), true);
     });
 
-    it('rejects snapshot missing preloadDataUrl key entirely', () => {
-      const snapshot = { date: '20260728', imageId: 'OHR.Test', url: 'https://example.com' };
-      assert.strictEqual(isValidDisplaySnapshot(snapshot), false);
+    it('rejects impossible dates, mismatched identities, invalid preview values, and missing timestamps', () => {
+      const base = { date: '20260728', imageId, url: finalUrl, preloadDataUrl: '', updatedAt: 123 };
+      assert.strictEqual(isValidDisplaySnapshot({ ...base, date: '20260229' }), false);
+      assert.strictEqual(isValidDisplaySnapshot({ ...base, url: finalUrl.replace(imageId, 'OHR.Other_ZH-CN456') }), false);
+      assert.strictEqual(isValidDisplaySnapshot({ ...base, preloadDataUrl: 42 }), false);
+      assert.strictEqual(isValidDisplaySnapshot({ ...base, updatedAt: undefined }), false);
+      assert.strictEqual(isValidDisplaySnapshot({ ...base, updatedAt: '123' }), false);
     });
 
-    it('rejects snapshot with invalid date format', () => {
-      const snapshot = { date: '2026-07-28', imageId: 'OHR.Test', url: 'https://x.com', preloadDataUrl: '' };
-      assert.strictEqual(isValidDisplaySnapshot(snapshot), false);
-    });
-
-    it('rejects snapshot with imageId that does not start with OHR.', () => {
-      const snapshot = { date: '20260728', imageId: 'invalid', url: 'https://x.com', preloadDataUrl: '' };
-      assert.strictEqual(isValidDisplaySnapshot(snapshot), false);
-    });
-
-    it('rejects snapshot with empty url', () => {
-      const snapshot = { date: '20260728', imageId: 'OHR.Test', url: '', preloadDataUrl: '' };
-      assert.strictEqual(isValidDisplaySnapshot(snapshot), false);
-    });
-
-    it('rejects null', () => {
+    it('rejects non-canonical or incomplete snapshots', () => {
+      assert.strictEqual(isValidDisplaySnapshot({ date: '20260728', imageId, url: '', preloadDataUrl: '', updatedAt: 1 }), false);
+      assert.strictEqual(isValidDisplaySnapshot({ date: '20260728', imageId: 'invalid', url: finalUrl, preloadDataUrl: '', updatedAt: 1 }), false);
       assert.strictEqual(isValidDisplaySnapshot(null), false);
+      assert.strictEqual(isValidDisplaySnapshot({ date: '20260728', imageId, url: `${finalUrl}&rf=x`, preloadDataUrl: '', updatedAt: 1 }), false);
     });
   });
 
   describe('snapshotMatchesIdentity', () => {
-    it('returns true when both date and imageId match', () => {
-      const snapshot = { date: '20260728', imageId: 'OHR.Test' };
-      assert.strictEqual(snapshotMatchesIdentity(snapshot, '20260728', 'OHR.Test'), true);
-    });
-
-    it('returns false when date differs', () => {
-      const snapshot = { date: '20260728', imageId: 'OHR.Test' };
-      assert.strictEqual(snapshotMatchesIdentity(snapshot, '20260729', 'OHR.Test'), false);
-    });
-
-    it('returns false when imageId differs', () => {
-      const snapshot = { date: '20260728', imageId: 'OHR.Test' };
-      assert.strictEqual(snapshotMatchesIdentity(snapshot, '20260728', 'OHR.Other'), false);
-    });
-
-    it('returns false for missing data', () => {
-      assert.strictEqual(snapshotMatchesIdentity(null, '20260728', 'OHR.Test'), false);
+    it('matches both date and imageId', () => {
+      assert.strictEqual(snapshotMatchesIdentity({ date: '20260728', imageId }, '20260728', imageId), true);
+      assert.strictEqual(snapshotMatchesIdentity({ date: '20260728', imageId }, '20260729', imageId), false);
+      assert.strictEqual(snapshotMatchesIdentity({ date: '20260728', imageId }, '20260728', 'OHR.Other'), false);
+      assert.strictEqual(snapshotMatchesIdentity(null, '20260728', imageId), false);
     });
   });
 
   describe('isPreloadDataUrlConsistent', () => {
-    it('accepts empty preloadDataUrl regardless of imageId', () => {
-      const snapshot = { imageId: 'OHR.Test', preloadDataUrl: '' };
-      assert.strictEqual(isPreloadDataUrlConsistent(snapshot, 'OHR.Other'), true);
-    });
-
-    it('accepts non-empty preloadDataUrl when imageIds match', () => {
-      const snapshot = { imageId: 'OHR.Test', preloadDataUrl: 'data:image/jpeg;base64,abc' };
-      assert.strictEqual(isPreloadDataUrlConsistent(snapshot, 'OHR.Test'), true);
-    });
-
-    it('rejects non-empty preloadDataUrl when imageId has changed', () => {
-      const snapshot = { imageId: 'OHR.New', preloadDataUrl: 'data:image/jpeg;base64,abc' };
-      assert.strictEqual(isPreloadDataUrlConsistent(snapshot, 'OHR.Old'), false);
-    });
-
-    it('returns false for null snapshot', () => {
-      assert.strictEqual(isPreloadDataUrlConsistent(null, 'OHR.Test'), false);
+    it('accepts empty or matching previews and rejects mismatches/non-data values', () => {
+      assert.strictEqual(isPreloadDataUrlConsistent({ imageId, preloadDataUrl: '' }, 'OHR.Other'), true);
+      assert.strictEqual(isPreloadDataUrlConsistent({ imageId, preloadDataUrl: 'data:image/jpeg;base64,abc' }, imageId), true);
+      assert.strictEqual(isPreloadDataUrlConsistent({ imageId: 'OHR.New', preloadDataUrl: 'data:image/jpeg;base64,abc' }, 'OHR.Old'), false);
+      assert.strictEqual(isPreloadDataUrlConsistent({ imageId, preloadDataUrl: 42 }, imageId), false);
+      assert.strictEqual(isPreloadDataUrlConsistent(null, imageId), false);
     });
   });
 });
