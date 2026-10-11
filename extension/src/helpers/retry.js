@@ -77,8 +77,8 @@ export function isRetryEligible(retryObj, now) {
  * Check if reconnect bypass is available for this retry object.
  * ADR-0010: one bypass per active backoff window per retry object.
  * A "window" begins at attemptedAt and ends at nextRetryAt.
- * The bypass is consumed when lastReconnectBypassAt was recorded after
- * the most recent failure (i.e. lastReconnectBypassAt > attemptedAt).
+ * The bypass is consumed when lastReconnectBypassAt was recorded at or after
+ * the most recent failure; reconnect events preceding that failure are rejected.
  *
  * @param {Object} retryObj - Retry object
  * @param {number} now - Current timestamp
@@ -94,14 +94,14 @@ export function canBypassWithReconnect(retryObj, now, reconnectTime) {
   const lastBypass = retryObj.lastReconnectBypassAt || 0;
   const windowStart = retryObj.attemptedAt || 0;
 
-  // Bypass already used in this window if it was recorded after the most recent failure
-  const bypassUsedInWindow = lastBypass > windowStart;
+  // Bypass already used in this window if it was recorded at or after the most recent failure
+  const bypassUsedInWindow = lastBypass >= windowStart;
   if (bypassUsedInWindow) {
     return false;
   }
 
-  // The reconnect event must be newer than any previous bypass
-  return reconnectTime > lastBypass;
+  // The reconnect event must belong to the current failure window
+  return reconnectTime >= windowStart;
 }
 
 /**

@@ -59,21 +59,6 @@ export function canAdmitStaleCandidate(candidate, currentEntry, displayState) {
 }
 
 /**
- * Check if an image URL is still in the latest retention set.
- * Used to determine if a stale fetch response should be cached.
- *
- * @param {string} url - Canonical image URL
- * @param {Set<string>} retentionSet - Latest retention set
- * @returns {boolean}
- */
-export function isInRetentionSet(url, retentionSet) {
-  if (!url || !retentionSet) {
-    return false;
-  }
-  return retentionSet.has(url);
-}
-
-/**
  * Validate that generation has not changed for a refresh operation.
  * @param {number} operationGeneration - Generation when operation started
  * @param {number} currentGeneration - Current refresh generation

@@ -81,6 +81,37 @@ describe('Metadata helpers', () => {
       assert.strictEqual(mergeMetadata(archive, iotd).quickFact, 'Fact');
     });
 
+    it('picks field-level winners by contributing stage in every response order', () => {
+      const base = { date: targetDate, imageId: targetId };
+      const responses = [
+        { ...base, metadataStage: 'iotd', title: 'I title', headline: 'I headline', quickFact: '', description: '' },
+        { ...base, metadataStage: 'media', title: 'M title', quickFact: 'M fact', description: '', copyright: 'M copyright' },
+        { ...base, metadataStage: 'preload', title: 'P title', description: 'P description', copyright: 'P copyright' },
+        { ...base, metadataStage: 'archive', title: 'A title', quickFact: 'A fact', description: 'A description', copyright: 'A copyright', triviaId: 'HPQuiz_20260728_Foo' }
+      ];
+      const expectedWinners = [
+        ['metadataStage', 'iotd'],
+        ['title', 'I title'],
+        ['headline', 'I headline'],
+        ['quickFact', 'M fact'],
+        ['description', 'P description'],
+        ['copyright', 'M copyright'],
+        ['triviaId', 'HPQuiz_20260728_Foo']
+      ];
+      const permutations = items => items.length <= 1 ? [items] :
+        items.flatMap((item, i) => permutations([...items.slice(0, i), ...items.slice(i + 1)]).map(rest => [item, ...rest]));
+
+      const orders = permutations(responses);
+      assert.strictEqual(orders.length, 24);
+      for (const order of orders) {
+        const result = order.reduce((current, candidate) => mergeMetadata(current, candidate));
+        const label = order.map(response => response.metadataStage).join('>');
+        for (const [field, expected] of expectedWinners) {
+          assert.strictEqual(result[field], expected, `${label}: ${field}`);
+        }
+      }
+    });
+
     it('resets trivia payload and retry state when triviaId changes', () => {
       const result = mergeMetadata(
         { date: targetDate, imageId: targetId, metadataStage: 'archive', triviaId: 'HPQuiz_20260728_Old', triviaData: { answer: 1 }, triviaState: 'complete', triviaAttemptedAt: 1000, triviaNextRetryAt: 5000, triviaRetryLevel: 2 },

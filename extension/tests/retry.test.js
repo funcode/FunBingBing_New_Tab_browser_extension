@@ -99,8 +99,19 @@ describe('Retry helpers', () => {
     });
 
     it('returns true when backoff is active and reconnect is new', () => {
-      const retry = { ...createRetryObject(), nextRetryAt: 2000, lastReconnectBypassAt: 0 };
+      const retry = { ...createRetryObject(), attemptedAt: 500, nextRetryAt: 2000, lastReconnectBypassAt: 0 };
       assert.strictEqual(canBypassWithReconnect(retry, 1000, 1500), true);
+    });
+
+    it('treats a bypass recorded in the same millisecond as the failure as consumed', () => {
+      const retry = { ...createRetryObject(), retryLevel: 1, attemptedAt: 1000, nextRetryAt: 61000, lastReconnectBypassAt: 1000 };
+      assert.strictEqual(canBypassWithReconnect(retry, 2000, 2000), false);
+    });
+
+    it('rejects a reconnect event that precedes the current failure', () => {
+      const retry = { ...createRetryObject(), retryLevel: 1, attemptedAt: 1000, nextRetryAt: 61000 };
+      assert.strictEqual(canBypassWithReconnect(retry, 2000, 999), false);
+      assert.strictEqual(canBypassWithReconnect(retry, 2000, 1000), true);
     });
 
     it('blocks a second bypass within the same backoff window', () => {

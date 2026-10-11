@@ -1,4 +1,4 @@
-import { addDays } from './date.js';
+import { addDays, isValidCalendarDate } from './date.js';
 import { buildCanonicalUrls, isValidImageIdentity } from './image.js';
 
 /**
@@ -15,9 +15,10 @@ import { buildCanonicalUrls, isValidImageIdentity } from './image.js';
  * @param {Object} catalog - Wallpaper catalog with entries
  * @param {Object} displayState - Current display state {date, imageId, url, preloadDataUrl}
  * @param {boolean} enableUhd - Whether UHD is enabled
+ * @param {string} targetDate - Current target date in YYYYMMDD
  * @returns {Set<string>} Set of canonical URLs to retain
  */
-export function calculateRetentionSet(catalog, displayState, enableUhd) {
+export function calculateRetentionSet(catalog, displayState, enableUhd, targetDate) {
   const retentionUrls = new Set();
 
   // Display protection: protect the two responses for the *displayed* identity.
@@ -31,14 +32,15 @@ export function calculateRetentionSet(catalog, displayState, enableUhd) {
     }
   }
 
-  if (!catalog || !catalog.entries) {
+  if (!catalog || !catalog.entries || !isValidCalendarDate(targetDate)) {
     return retentionUrls;
   }
 
-  // Navigation eligible: target + up to 7 historical. Future entries count toward base but
-  // are not navigation-eligible. All together cap at 15 dates.
-  const dates = Object.keys(catalog.entries).sort().reverse();
-  const retainedDates = dates.slice(0, 15);
+  // Base dates: the target, seven historical dates and up to seven future dates.
+  const oldestDate = addDays(targetDate, -7);
+  const newestDate = addDays(targetDate, 7);
+  const retainedDates = Object.keys(catalog.entries)
+    .filter(date => date >= oldestDate && date <= newestDate);
 
   // Add base keys: preview + configured final resolution for each date
   for (const date of retainedDates) {

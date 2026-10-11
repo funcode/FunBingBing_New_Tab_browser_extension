@@ -3,7 +3,6 @@ import assert from 'node:assert';
 import {
   conflictsWithDisplayedIdentity,
   canAdmitStaleCandidate,
-  isInRetentionSet,
   isGenerationValid
 } from '../src/helpers/stale-work.js';
 
@@ -58,23 +57,6 @@ describe('Stale work helpers', () => {
       const currentEntry = { date: '20260728', imageId: 'OHR.Test2' };
       const displayState = { date: '20260729', imageId: 'OHR.Display' };
       assert.strictEqual(canAdmitStaleCandidate(candidate, currentEntry, displayState), false);
-    });
-  });
-
-  describe('isInRetentionSet', () => {
-    it('returns true when URL is in retention set', () => {
-      const retentionSet = new Set(['https://example.com/image1.jpg', 'https://example.com/image2.jpg']);
-      assert.strictEqual(isInRetentionSet('https://example.com/image1.jpg', retentionSet), true);
-    });
-
-    it('returns false when URL is not in retention set', () => {
-      const retentionSet = new Set(['https://example.com/image1.jpg']);
-      assert.strictEqual(isInRetentionSet('https://example.com/image2.jpg', retentionSet), false);
-    });
-
-    it('handles missing data', () => {
-      assert.strictEqual(isInRetentionSet(null, new Set()), false);
-      assert.strictEqual(isInRetentionSet('test', null), false);
     });
   });
 

@@ -7,6 +7,7 @@ import {
   getNavigationIndex,
   getDateAtNavigationIndex
 } from '../src/helpers/retention.js';
+import { addDays } from '../src/helpers/date.js';
 
 describe('Retention helpers', () => {
   describe('calculateRetentionSet', () => {
@@ -18,7 +19,7 @@ describe('Retention helpers', () => {
         }
       };
 
-      const retentionSet = calculateRetentionSet(catalog, null, false);
+      const retentionSet = calculateRetentionSet(catalog, null, false, '20260728');
 
       assert.strictEqual(retentionSet.has('https://example.com/preview1.jpg'), true);
       assert.strictEqual(retentionSet.has('https://example.com/hd1.jpg'), true);
@@ -34,7 +35,7 @@ describe('Retention helpers', () => {
         }
       };
 
-      const retentionSet = calculateRetentionSet(catalog, null, true);
+      const retentionSet = calculateRetentionSet(catalog, null, true, '20260728');
 
       assert.strictEqual(retentionSet.has('https://example.com/preview1.jpg'), true);
       assert.strictEqual(retentionSet.has('https://example.com/uhd1.jpg'), true);
@@ -43,14 +44,34 @@ describe('Retention helpers', () => {
 
     it('limits to 15 dates maximum (30 base keys)', () => {
       const entries = {};
-      for (let i = 0; i < 20; i++) {
-        const date = `202607${String(28 - i).padStart(2, '0')}`;
-        entries[date] = { urls: { preview: `https://example.com/preview${i}.jpg`, highDef: `https://example.com/hd${i}.jpg` } };
+      for (let i = -10; i < 10; i++) {
+        const date = addDays('20260728', i);
+        entries[date] = { urls: { preview: `https://example.com/preview${date}.jpg`, highDef: `https://example.com/hd${date}.jpg` } };
       }
 
       const catalog = { entries };
-      const retentionSet = calculateRetentionSet(catalog, null, false);
+      const retentionSet = calculateRetentionSet(catalog, null, false, '20260728');
       assert.strictEqual(retentionSet.size, 30);
+    });
+
+    it('retains only dates within target minus seven through target plus seven', () => {
+      const makeEntries = offsets => Object.fromEntries(offsets.map(offset => {
+        const date = addDays('20260728', offset);
+        return [date, { urls: { preview: `https://example.com/preview${date}.jpg`, highDef: `https://example.com/hd${date}.jpg` } }];
+      }));
+
+      // Sparse future coverage: target-8 must not fill the unused future slots.
+      const sparse = calculateRetentionSet({ entries: makeEntries([-8, -7, 0, 1]) }, null, false, '20260728');
+      assert.strictEqual(sparse.has(`https://example.com/preview${addDays('20260728', -8)}.jpg`), false);
+      assert.strictEqual(sparse.has(`https://example.com/preview${addDays('20260728', -7)}.jpg`), true);
+      assert.strictEqual(sparse.size, 6);
+
+      // target-7 through target+8: target+8 is dropped, target-7 is kept.
+      const offsets = Array.from({ length: 16 }, (_, i) => i - 7);
+      const full = calculateRetentionSet({ entries: makeEntries(offsets) }, null, false, '20260728');
+      assert.strictEqual(full.has(`https://example.com/preview${addDays('20260728', 8)}.jpg`), false);
+      assert.strictEqual(full.has(`https://example.com/preview${addDays('20260728', -7)}.jpg`), true);
+      assert.strictEqual(full.size, 30);
     });
 
     it('adds display protection keys derived from the displayed imageId, not the catalog entry for that date', () => {
@@ -63,7 +84,7 @@ describe('Retention helpers', () => {
       };
       const displayState = { date: '20260728', imageId: 'OHR.A', url: 'https://ts1.tc.mm.bing.net/th?id=OHR.A_1920x1080.jpg' };
 
-      const retentionSet = calculateRetentionSet(catalog, displayState, false);
+      const retentionSet = calculateRetentionSet(catalog, displayState, false, '20260728');
 
       // A's final URL must be protected (from displayState.url)
       assert.strictEqual(retentionSet.has('https://ts1.tc.mm.bing.net/th?id=OHR.A_1920x1080.jpg'), true);
@@ -83,7 +104,7 @@ describe('Retention helpers', () => {
         imageId: 'OHR.A_ZH-CN123',
         url: 'https://ts1.tc.mm.bing.net/th?id=OHR.A_ZH-CN123_1920x1080.jpg'
       };
-      const retentionSet = calculateRetentionSet(catalog, displayState, false);
+      const retentionSet = calculateRetentionSet(catalog, displayState, false, '20260728');
       assert.strictEqual(retentionSet.has('https://ts1.tc.mm.bing.net/th?id=OHR.A_ZH-CN123_640x360.jpg'), true);
     });
 
@@ -91,7 +112,7 @@ describe('Retention helpers', () => {
       const retentionSet = calculateRetentionSet({}, {
         imageId: 'OHR.A_ZH-CN123',
         url: 'https://evil.example/image.jpg'
-      }, false);
+      }, false, '20260728');
       assert.strictEqual(retentionSet.has('https://evil.example/image.jpg'), false);
       assert.strictEqual(retentionSet.has('https://ts1.tc.mm.bing.net/th?id=OHR.A_ZH-CN123_640x360.jpg'), true);
     });

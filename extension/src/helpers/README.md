@@ -78,12 +78,12 @@ node --test tests/*.test.js
 
 ## Test Results
 
-All 140 tests pass:
+All 141 tests pass:
 
 ```
-# tests 140
-# suites 58
-# pass 140
+# tests 141
+# suites 57
+# pass 141
 # fail 0
 ```
 

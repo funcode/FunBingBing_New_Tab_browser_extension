@@ -41,10 +41,26 @@ export function canReplaceMetadataStage(newStage, currentStage) {
   return compareMetadataStages(newStage, currentStage) > 0;
 }
 
+// Fields owned by the persisted trivia state rather than by a metadata source.
+const TRIVIA_STATE_FIELDS = new Set([
+  'triviaData', 'triviaState', 'triviaAttemptedAt', 'triviaNextRetryAt', 'triviaRetryLevel'
+]);
+
+function hasValue(value) {
+  return value !== undefined && value !== null && value !== '';
+}
+
+// A field supplied by a lower stage keeps that stage in fieldStages; other fields
+// belong to the entry's metadataStage.
+function getFieldStage(entry, key) {
+  return (entry.fieldStages && entry.fieldStages[key]) || entry.metadataStage || 'legacy';
+}
+
 /**
  * Merge metadata from two sources if they have the same date and imageId.
- * Higher stage wins for conflicting fields; lower-stage source-specific fields
- * (e.g. quickFact, triviaId from Archive) are preserved regardless of order.
+ * Each field takes the non-empty value from the highest contributing stage, so
+ * the result does not depend on response order. Fields supplied by a stage other
+ * than the merged metadataStage are recorded in fieldStages.
  *
  * @param {Object} current - Current entry
  * @param {Object} candidate - Candidate entry from new source
@@ -60,25 +76,39 @@ export function mergeMetadata(current, candidate) {
   const candidateStage = candidate.metadataStage || 'legacy';
   const candidateIsHigher = compareMetadataStages(candidateStage, currentStage) > 0;
 
-  // Higher stage takes precedence for shared fields, but never discards
-  // source-specific fields contributed by lower stages.
   const [higher, lower] = candidateIsHigher
     ? [candidate, current]
     : [current, candidate];
+  const metadataStage = candidateIsHigher ? candidateStage : currentStage;
 
-  const merged = {
-    ...lower,
-    ...higher,
-    metadataStage: candidateIsHigher ? candidateStage : currentStage
-  };
+  const merged = { ...lower, ...higher, metadataStage };
+  delete merged.fieldStages;
 
-  // A higher-stage response can contain an empty field while a lower-stage
-  // response still has the useful value needed for display.
-  for (const [key, value] of Object.entries(lower)) {
-    if ((merged[key] === undefined || merged[key] === null || merged[key] === '') &&
-        value !== undefined && value !== null && value !== '') {
-      merged[key] = value;
+  const fieldStages = {};
+  for (const key of new Set([...Object.keys(lower), ...Object.keys(higher)])) {
+    if (key === 'metadataStage' || key === 'fieldStages' || TRIVIA_STATE_FIELDS.has(key)) {
+      continue;
     }
+    // A higher-stage response can contain an empty field while a lower-stage
+    // response still has the useful value needed for display.
+    let source;
+    if (hasValue(higher[key]) && hasValue(lower[key])) {
+      source = compareMetadataStages(getFieldStage(lower, key), getFieldStage(higher, key)) > 0 ? lower : higher;
+    } else if (hasValue(higher[key])) {
+      source = higher;
+    } else if (hasValue(lower[key])) {
+      source = lower;
+    } else {
+      continue;
+    }
+    merged[key] = source[key];
+    const fieldStage = getFieldStage(source, key);
+    if (fieldStage !== metadataStage) {
+      fieldStages[key] = fieldStage;
+    }
+  }
+  if (Object.keys(fieldStages).length > 0) {
+    merged.fieldStages = fieldStages;
   }
 
   const previousTriviaId = current.triviaId || '';
