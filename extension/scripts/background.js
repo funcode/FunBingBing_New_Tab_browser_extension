@@ -1,8 +1,74 @@
 
-importScripts('base.js');
+import { createCatalogService } from '../src/worker/catalog-service.js';
+
+// Module workers cannot importScripts('base.js'); keep the subset the quote handlers use.
+const confCache = {};
+const confReadyPromise = chrome.storage.local.get(null)
+	.then((items) => { Object.assign(confCache, items); })
+	.catch((err) => { console.error("Failed to load configuration:", err); });
+
+chrome.storage.onChanged.addListener((changes, area) => {
+	if (area !== "local") return;
+	for (const [key, { newValue }] of Object.entries(changes)) {
+		if (newValue === undefined) {
+			delete confCache[key];
+		} else {
+			confCache[key] = newValue;
+		}
+	}
+});
+
+function readConf(key) {
+	return confCache[key];
+}
+
+async function writeConf(key, value) {
+	confCache[key] = value;
+	await chrome.storage.local.set({ [key]: value });
+}
+
+async function fetchBingJson(url) {
+	const response = await fetch(url, { cache: 'no-store' });
+	if (!response.ok) {
+		throw new Error(`HTTP ${response.status}`);
+	}
+	return response.json();
+}
+
+// Having no listening page is expected; other delivery errors are logged.
+function broadcastToPages(message) {
+	chrome.runtime.sendMessage(message).catch((error) => {
+		if (!String(error?.message).includes('Receiving end does not exist')) {
+			console.warn(`Failed to broadcast ${message.type}:`, error);
+		}
+	});
+}
+
+const catalogService = createCatalogService({
+	storage: chrome.storage.local,
+	fetchJson: fetchBingJson,
+	broadcast: broadcastToPages
+});
+
+function refreshCatalogInBackground(options) {
+	catalogService.refresh(options).catch((error) => {
+		console.error("Wallpaper catalog refresh failed:", error);
+	});
+}
+
+chrome.runtime.onStartup.addListener(() => refreshCatalogInBackground());
+
+self.addEventListener('online', () => refreshCatalogInBackground({ reconnect: true }));
+
+chrome.storage.onChanged.addListener((changes, area) => {
+	if (area === "sync" && "enable_uhd_wallpaper" in changes) {
+		refreshCatalogInBackground();
+	}
+});
 
 // on install
 chrome.runtime.onInstalled.addListener(function (object) {
+	refreshCatalogInBackground();
 	// open manual link
 	if (chrome.runtime.OnInstalledReason.INSTALL === object.reason) {
 		chrome.tabs.create({ url: "https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN&form=QBRE" });
@@ -230,6 +296,18 @@ async function prefetchWallpapers(urls) {
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  // Pages send `reconnect: true` after the online event or the 15-second connection check.
+  if (message && message.type === "refreshWallpaperCatalog") {
+    catalogService.refresh({ reconnect: message.reconnect === true }).then(
+      () => sendResponse({ ok: true }),
+      (error) => {
+        console.error("Wallpaper catalog refresh failed:", error);
+        sendResponse({ ok: false, error: error.message });
+      }
+    );
+    return true;
+  }
+
   if (message && message.type === "prefetchWallpapers") {
     (async () => {
       try {
