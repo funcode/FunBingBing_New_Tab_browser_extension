@@ -21,11 +21,22 @@ function setNetworkStatus(nextStatus) {
 
   if (nextStatus === 'offline') {
     chrome.storage.local.set({ 'wallpaper_date': '20000101' });
+  } else if (previousStatus === 'offline') {
+    requestReconnectRefresh();
   }
 
   window.dispatchEvent(new CustomEvent(NETWORK_STATUS_EVENT, {
     detail: { status: nextStatus, previousStatus }
   }));
+}
+
+// Lets the worker bypass one active backoff window per metadata source.
+function requestReconnectRefresh() {
+  chrome.runtime.sendMessage({ type: 'refreshWallpaperCatalog', reconnect: true }, () => {
+    if (chrome.runtime.lastError) {
+      console.warn('Catalog refresh after reconnect failed:', chrome.runtime.lastError.message);
+    }
+  });
 }
 
 function delay(ms) {
