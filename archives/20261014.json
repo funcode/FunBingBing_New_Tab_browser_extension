@@ -1,0 +1,46 @@
+{
+  "caption": "国家化石日",
+  "title": "侏罗纪时期的菊石化石",
+  "description": "我们如何知道早在人类出现之前地球是什么样子？化石提供了许多线索。国家化石日旨在赞颂古生物学，以及那些帮助科学家重建过去环境、追溯生命演化并了解数百万年前消失生物的发现。从恐龙到微小的海洋生物，这些过去的遗存保存着早已不复存在的远古世界的一个个瞬间。",
+  "copyright": "© J Nemchinova/Getty Images",
+  "date": "2026 10月 14",
+  "clickUrl": "/search?q=%e5%9b%bd%e5%ae%b6%e5%8c%96%e7%9f%b3%e6%97%a5&form=hpcapt&filters=HpDate:\"20261013_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AmmoniteFossils_ZH-CN5825251327_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AmmoniteFossils_ZH-CN5825251327_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AmmoniteFossils_ZH-CN5825251327_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AmmoniteFossils_ZH-CN5825251327_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AmmoniteFossils_ZH-CN5825251327_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AmmoniteFossils_ZH-CN5825251327_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "今日图片中盘绕的外壳是侏罗纪时期菊石的遗骸；当时恐龙主宰陆地，远古海洋中充满了海洋生物。尽管菊石外形与现代鹦鹉螺相似，但它们与鱿鱼和章鱼的亲缘关系更近。它们分室的外壳形成了独特的螺旋，使其成为世界上最易辨认的化石之一。",
+  "descriptionPara3": "菊石约在6600万年前与非鸟类恐龙一同消失，但对科学家来说，它们仍具有不可估量的价值。菊石分布广泛，有助于研究人员确定古老岩石的年代并了解史前海洋。这些保存在岩石中的外壳，为我们打开了一扇通往消逝世界的窗口。",
+  "isoDate": "20261014",
+  "headline": "穿越时间的螺旋",
+  "quickFact": "化石不一定非得是骨骼。足迹、洞道、巢穴以及古代生命留下的其他痕迹也可以成为化石。",
+  "triviaId": "HPQuiz_20261014_AmmoniteFossils",
+  "triviaData": {
+    "question": "哪种现代生物与菊石的亲缘关系最近？",
+    "options": [
+      {
+        "text": "鹦鹉螺",
+        "url": "/search?q=%E9%B1%BF%E9%B1%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261014_AmmoniteFossils%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "海星",
+        "url": "/search?q=%E9%B1%BF%E9%B1%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261014_AmmoniteFossils%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "鱿鱼",
+        "url": "/search?q=%E9%B1%BF%E9%B1%BC&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261014_AmmoniteFossils%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
