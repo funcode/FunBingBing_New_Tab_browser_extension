@@ -351,6 +351,58 @@ describe('imagePrefetchGeneration and resolution changes', () => {
     ]);
   });
 
+  it("fetches the displayed wallpaper's new final resolution first when the resolution changes", async () => {
+    const offsets = [0, -1, -2, -3, -4, -5, 1];
+    const displayed = addDays(TARGET, -5);
+    const cached = offsets.flatMap(offset => {
+      const urls = urlsFor(addDays(TARGET, offset));
+      return [urls.preview, urls.highDef];
+    });
+    const harness = makeHarness({ catalog: catalogAt(offsets), displayState: displayStateFor(displayed), cached });
+    await harness.scheduler.reconcile();
+    assert.deepStrictEqual(harness.fetcher.calls, []);
+
+    harness.sync.data.enable_uhd_wallpaper = 'yes';
+    await harness.scheduler.reconcile({ resolutionChanged: true });
+
+    assert.deepStrictEqual(harness.fetcher.calls.map(short), [
+      '20260723_UHD.jpg',
+      '20260728_UHD.jpg',
+      '20260727_UHD.jpg',
+      '20260726_UHD.jpg',
+      '20260725_UHD.jpg',
+      '20260724_UHD.jpg',
+      '20260729_UHD.jpg'
+    ]);
+    assert.strictEqual(harness.fetcher.stats.maxActive, 1);
+  });
+
+  it('keeps the baseline order on a resolution change before any display snapshot exists', async () => {
+    const cached = [0, -1].map(offset => urlsFor(addDays(TARGET, offset)).preview);
+    const harness = makeHarness({ catalog: catalogAt([0, -1]), cached, uhd: 'yes' });
+    await harness.scheduler.reconcile({ resolutionChanged: true });
+
+    assert.deepStrictEqual(harness.fetcher.calls.map(short), ['20260728_UHD.jpg', '20260727_UHD.jpg']);
+  });
+
+  it('does not promote a displayed date whose catalog identity has changed', async () => {
+    const displayed = addDays(TARGET, -2);
+    const cached = [0, -1, -2].flatMap(offset => [urlsFor(addDays(TARGET, offset)).preview]);
+    const harness = makeHarness({
+      catalog: catalogAt([0, -1, -2]),
+      displayState: displayStateFor(displayed, { variant: 'B' }),
+      cached,
+      uhd: 'yes'
+    });
+    await harness.scheduler.reconcile({ resolutionChanged: true });
+
+    assert.deepStrictEqual(harness.fetcher.calls.map(short), [
+      '20260728_UHD.jpg',
+      '20260727_UHD.jpg',
+      '20260726_UHD.jpg'
+    ]);
+  });
+
   it('discards an obsolete active old-resolution response without recording success or failure', async () => {
     const harness = makeHarness({ catalog: catalogAt([0]), cached: [urlsFor(TARGET).preview] });
     const hd = harness.fetcher.hold(urlsFor(TARGET).highDef);

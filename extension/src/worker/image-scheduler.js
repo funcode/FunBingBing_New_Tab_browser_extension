@@ -63,7 +63,7 @@ export function createImageScheduler({
     const { catalog, displayState } = await catalogService.read();
     const stored = await syncStorage.get('enable_uhd_wallpaper');
     const enableUhd = isUhdEnabled(stored.enable_uhd_wallpaper);
-    return { catalog, enableUhd, retention: retentionOf(catalog, displayState, enableUhd) };
+    return { catalog, displayState, enableUhd, retention: retentionOf(catalog, displayState, enableUhd) };
   }
 
   function retentionOf(catalog, displayState, enableUhd) {
@@ -313,15 +313,47 @@ export function createImageScheduler({
     });
   }
 
+  // Skipped without a display snapshot. The catalog entry must still hold the
+  // displayed identity; otherwise the displayed image has no new final
+  // resolution in the retention set.
+  function promoteDisplayedFinal({ catalog, displayState, enableUhd, retention }) {
+    const entry = displayState ? catalog.entries[displayState.date] : null;
+    if (!entry || entry.imageId !== displayState.imageId) {
+      return;
+    }
+    const url = entry.urls?.[enableUhd ? 'ultraHighDef' : 'highDef'];
+    if (url && retention.has(url)) {
+      promote(url, displayState.date);
+    }
+  }
+
+  // Put the URL's task at the front of pending work as urgent, creating it if
+  // needed. An active task is shared, never interrupted.
+  function promote(url, date) {
+    let task = tasks.get(url);
+    if (resolveImageTaskAction(tasks, url, true, imagePrefetchGeneration) === 'create') {
+      task = createTask(url, date, TASK_PRIORITY.URGENT);
+      queue.unshift(task);
+    } else if (!task.active) {
+      // The latest request goes first, even if the task was already urgent.
+      queue = queue.filter(step => step !== task);
+      task.priority = TASK_PRIORITY.URGENT;
+      task.generation = imagePrefetchGeneration;
+      queue.unshift(task);
+    }
+    return task;
+  }
+
   /**
    * Rebuild image work from the catalog and Cache Storage. A change of the
    * derived keys or resolution increments imagePrefetchGeneration. Completed
-   * work is skipped again by cache.match().
+   * work is skipped again by cache.match(). After a resolution change the
+   * displayed wallpaper's new final resolution is urgent.
    *
-   * @param {{reconnect?: boolean}} [options]
+   * @param {{reconnect?: boolean, resolutionChanged?: boolean}} [options]
    * @returns {Promise<void>} Resolves when the consumer is idle
    */
-  function reconcile({ reconnect = false } = {}) {
+  function reconcile({ reconnect = false, resolutionChanged = false } = {}) {
     const step = reconcileChain.then(async () => {
       if (reconnect) {
         reconnectTime = now();
@@ -334,6 +366,9 @@ export function createImageScheduler({
         workSignature = signature;
       }
       rebuildQueue(work, state.retention);
+      if (resolutionChanged) {
+        promoteDisplayedFinal(state);
+      }
       return { drained: pump() };
     });
     reconcileChain = step.catch(() => {});
@@ -358,17 +393,7 @@ export function createImageScheduler({
       return { ok: false, error: 'not retained' };
     }
 
-    let task = tasks.get(url);
-    if (resolveImageTaskAction(tasks, url, true, imagePrefetchGeneration) === 'create') {
-      task = createTask(url, date, TASK_PRIORITY.URGENT);
-      queue.unshift(task);
-    } else if (!task.active) {
-      // The latest request goes first, even if the task was already urgent.
-      queue = queue.filter(step => step !== task);
-      task.priority = TASK_PRIORITY.URGENT;
-      task.generation = imagePrefetchGeneration;
-      queue.unshift(task);
-    }
+    const task = promote(url, date);
     pump();
     return { ok: true, status: await task.promise };
   }

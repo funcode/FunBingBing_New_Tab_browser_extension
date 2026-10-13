@@ -94,7 +94,7 @@ self.addEventListener('online', () => {
 chrome.storage.onChanged.addListener((changes, area) => {
 	if (area === "sync" && "enable_uhd_wallpaper" in changes) {
 		refreshCatalogInBackground();
-		reconcileImagesInBackground();
+		reconcileImagesInBackground({ resolutionChanged: true });
 	}
 });
 
