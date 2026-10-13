@@ -40,6 +40,7 @@ const SOURCE_URLS = Object.freeze({
  * @param {() => string} [deps.getTargetDate]
  * @param {(message: Object) => void} [deps.broadcast]
  * @param {(candidates: Array<{date: string, triviaId: string}>) => void} [deps.scheduleTrivia]
+ * @param {() => void} [deps.onCatalogChanged] - Called after a metadata commit changed the catalog
  * @param {{warn: Function}} [deps.log]
  */
 export function createCatalogService({
@@ -49,6 +50,7 @@ export function createCatalogService({
   getTargetDate = getZhCnTargetDate,
   broadcast = () => {},
   scheduleTrivia = () => {},
+  onCatalogChanged = () => {},
   log = console
 }) {
   let writeChain = Promise.resolve();
@@ -71,9 +73,8 @@ export function createCatalogService({
     return isValidDisplaySnapshot(snapshot) ? snapshot : null;
   }
 
-  // Fresh-read, mutate and persist through the serial queue. Trivia is derived
-  // from the catalog as committed, never from candidates.
-  function commit(mutate) {
+  // Fresh-read, mutate and persist through the serial queue.
+  function commitWith(mutate, afterCommit) {
     return enqueueWrite(async () => {
       const catalog = await readCatalog();
       const displayState = await readDisplayState();
@@ -85,9 +86,35 @@ export function createCatalogService({
       if (result.changedDates && result.changedDates.length > 0) {
         broadcast({ type: 'wallpaperCatalogUpdated', dates: result.changedDates });
       }
-      scheduleTrivia(deriveTriviaCandidates(catalog, now()));
+      afterCommit(catalog, result);
       return result;
     });
+  }
+
+  // Metadata commits. Trivia is derived from the catalog as committed, never
+  // from candidates.
+  function commit(mutate) {
+    return commitWith(mutate, (catalog, result) => {
+      scheduleTrivia(deriveTriviaCandidates(catalog, now()));
+      if (result.changed) {
+        onCatalogChanged();
+      }
+    });
+  }
+
+  /**
+   * Commit image bookkeeping (failure records, cachedFutureDepth) through the
+   * same serial queue. It neither schedules trivia nor reports a catalog change.
+   *
+   * @param {(catalog: Object, displayState: Object|null) => {changed: boolean, changedDates?: string[]}} mutate
+   */
+  function commitImageState(mutate) {
+    return commitWith(mutate, () => {});
+  }
+
+  /** @returns {Promise<{catalog: Object, displayState: Object|null}>} */
+  async function read() {
+    return { catalog: await readCatalog(), displayState: await readDisplayState() };
   }
 
   function beginRefresh(targetDate, reconnectTime) {
@@ -199,5 +226,5 @@ export function createCatalogService({
     return promise;
   }
 
-  return { refresh };
+  return { refresh, read, commitImageState };
 }

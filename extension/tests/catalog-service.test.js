@@ -593,3 +593,34 @@ describe('identity and stage rules', () => {
     });
   }
 });
+
+describe('catalog change notification', () => {
+  it('reports metadata commits that changed the catalog but not image bookkeeping commits', async () => {
+    const storage = makeStorage();
+    let changes = 0;
+    const fetcher = makeFetch({
+      imageOfTheDay: iotdResponse(),
+      model: modelResponse(),
+      archive: archiveResponse()
+    });
+    const service = createCatalogService({
+      storage,
+      fetchJson: fetcher.fetchJson,
+      now: () => 1_000_000,
+      getTargetDate: () => TARGET,
+      onCatalogChanged: () => { changes += 1; },
+      log: { warn() {} }
+    });
+    await service.refresh();
+    assert.ok(changes > 0);
+
+    const afterRefresh = changes;
+    await service.refresh();
+    await service.commitImageState((catalog) => {
+      catalog.refreshState.cachedFutureDepth = 3;
+      return { changed: true };
+    });
+    assert.strictEqual(changes, afterRefresh);
+    assert.strictEqual(storage.data[STORAGE_KEYS.catalog].refreshState.cachedFutureDepth, 3);
+  });
+});

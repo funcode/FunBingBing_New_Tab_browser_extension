@@ -1,5 +1,6 @@
 
 import { createCatalogService } from '../src/worker/catalog-service.js';
+import { createImageScheduler } from '../src/worker/image-scheduler.js';
 
 // Module workers cannot importScripts('base.js'); keep the subset the quote handlers use.
 const confCache = {};
@@ -44,10 +45,28 @@ function broadcastToPages(message) {
 	});
 }
 
+const WALLPAPER_IMAGE_CACHE_NAME = 'funbingbing-wallpaper-cache-v2';
+
+async function fetchWallpaperImage(url) {
+	const response = await fetch(url, { cache: 'no-store' });
+	if (!response.ok) {
+		throw new Error(`HTTP ${response.status}`);
+	}
+	return response;
+}
+
 const catalogService = createCatalogService({
 	storage: chrome.storage.local,
 	fetchJson: fetchBingJson,
-	broadcast: broadcastToPages
+	broadcast: broadcastToPages,
+	onCatalogChanged: () => reconcileImagesInBackground()
+});
+
+const imageScheduler = createImageScheduler({
+	catalogService,
+	syncStorage: chrome.storage.sync,
+	openCache: () => caches.open(WALLPAPER_IMAGE_CACHE_NAME),
+	fetchImage: fetchWallpaperImage
 });
 
 function refreshCatalogInBackground(options) {
@@ -56,19 +75,33 @@ function refreshCatalogInBackground(options) {
 	});
 }
 
-chrome.runtime.onStartup.addListener(() => refreshCatalogInBackground());
+function reconcileImagesInBackground(options) {
+	imageScheduler.reconcile(options).catch((error) => {
+		console.error("Wallpaper image prefetch failed:", error);
+	});
+}
 
-self.addEventListener('online', () => refreshCatalogInBackground({ reconnect: true }));
+chrome.runtime.onStartup.addListener(() => {
+	refreshCatalogInBackground();
+	reconcileImagesInBackground();
+});
+
+self.addEventListener('online', () => {
+	refreshCatalogInBackground({ reconnect: true });
+	reconcileImagesInBackground({ reconnect: true });
+});
 
 chrome.storage.onChanged.addListener((changes, area) => {
 	if (area === "sync" && "enable_uhd_wallpaper" in changes) {
 		refreshCatalogInBackground();
+		reconcileImagesInBackground();
 	}
 });
 
 // on install
 chrome.runtime.onInstalled.addListener(function (object) {
 	refreshCatalogInBackground();
+	reconcileImagesInBackground();
 	// open manual link
 	if (chrome.runtime.OnInstalledReason.INSTALL === object.reason) {
 		chrome.tabs.create({ url: "https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN&form=QBRE" });
@@ -298,6 +331,8 @@ async function prefetchWallpapers(urls) {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   // Pages send `reconnect: true` after the online event or the 15-second connection check.
   if (message && message.type === "refreshWallpaperCatalog") {
+    // Image work is derived from the committed catalog without waiting for this refresh.
+    reconcileImagesInBackground({ reconnect: message.reconnect === true });
     catalogService.refresh({ reconnect: message.reconnect === true }).then(
       () => sendResponse({ ok: true }),
       (error) => {
@@ -308,6 +343,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true;
   }
 
+  if (message && message.type === "ensureWallpaperCached") {
+    imageScheduler.ensureWallpaperCached({ date: message.date, resolution: message.resolution }).then(
+      sendResponse,
+      (error) => {
+        console.error("ensureWallpaperCached failed:", error);
+        sendResponse({ ok: false, error: error.message });
+      }
+    );
+    return true;
+  }
+
+  // Legacy v1 path for the current page; removed when the page becomes a
+  // read-only consumer (#119/#122).
   if (message && message.type === "prefetchWallpapers") {
     (async () => {
       try {
