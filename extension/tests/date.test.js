@@ -18,6 +18,12 @@ describe('Date helpers', () => {
       const date2 = getZhCnTargetDate();
       assert.strictEqual(date1, date2);
     });
+
+    it('returns the Asia/Shanghai date of a given moment', () => {
+      // 15:59:59 UTC is still Oct 13 in Shanghai (UTC+8); 16:00 UTC is Oct 14.
+      assert.strictEqual(getZhCnTargetDate(new Date(Date.UTC(2026, 9, 13, 15, 59, 59))), '20261013');
+      assert.strictEqual(getZhCnTargetDate(new Date(Date.UTC(2026, 9, 13, 16, 0, 0))), '20261014');
+    });
   });
 
   describe('formatDateForDisplay', () => {

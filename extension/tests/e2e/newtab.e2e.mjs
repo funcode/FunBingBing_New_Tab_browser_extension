@@ -58,27 +58,33 @@ async function worker() {
   return context.serviceWorkers()[0] || context.waitForEvent('serviceworker');
 }
 
-/** Replace the extension's state: local storage, and the listed cached images. */
-async function seed({ days = [], displayState, cached = [] }) {
-  const local = { [CATALOG_KEY]: catalogOf(days) };
-  if (displayState) {
-    local[DISPLAY_STATE_KEY] = displayState;
+// Runs in the service worker: cache one solid-color JPEG per image.
+async function cacheImages({ cacheName, images }) {
+  const cache = await caches.open(cacheName);
+  for (const { url, color, size } of images) {
+    const canvas = new OffscreenCanvas(size, size);
+    const context2d = canvas.getContext('2d');
+    context2d.fillStyle = color;
+    context2d.fillRect(0, 0, size, size);
+    const blob = await canvas.convertToBlob({ type: 'image/jpeg' });
+    await cache.put(url, new Response(blob, { headers: { 'Content-Type': 'image/jpeg' } }));
   }
-  await (await worker()).evaluate(async ({ local, cacheName, cached }) => {
+}
+
+/** Replace the extension's state: local storage, and the listed cached images. */
+async function seed({ days = [], displayState, cached = [], local = {} }) {
+  const items = { [CATALOG_KEY]: catalogOf(days), ...local };
+  if (displayState) {
+    items[DISPLAY_STATE_KEY] = displayState;
+  }
+  const serviceWorker = await worker();
+  await serviceWorker.evaluate(async ({ items, cacheName }) => {
     await chrome.storage.local.clear();
     await caches.delete(cacheName);
-    await chrome.storage.local.set(local);
+    await chrome.storage.local.set(items);
     await chrome.storage.sync.set({ enable_uhd_wallpaper: 'yes' });
-    const cache = await caches.open(cacheName);
-    for (const { url, color, size } of cached) {
-      const canvas = new OffscreenCanvas(size, size);
-      const context2d = canvas.getContext('2d');
-      context2d.fillStyle = color;
-      context2d.fillRect(0, 0, size, size);
-      const blob = await canvas.convertToBlob({ type: 'image/jpeg' });
-      await cache.put(url, new Response(blob, { headers: { 'Content-Type': 'image/jpeg' } }));
-    }
-  }, { local, cacheName: CACHE_NAME, cached });
+  }, { items, cacheName: CACHE_NAME });
+  await serviceWorker.evaluate(cacheImages, { cacheName: CACHE_NAME, images: cached });
 }
 
 const final = shown => ({ url: shown.urls.ultraHighDef, color: shown.color, size: 64 });
@@ -86,17 +92,21 @@ const preview = shown => ({ url: shown.urls.preview, color: shown.color, size: 1
 
 /** Cache images the way a finished worker fetch would, then notify pages. */
 async function workerCaches(images, dates) {
-  await (await worker()).evaluate(async ({ cacheName, images, dates }) => {
-    const cache = await caches.open(cacheName);
-    for (const { url, color, size } of images) {
-      const canvas = new OffscreenCanvas(size, size);
-      const context2d = canvas.getContext('2d');
-      context2d.fillStyle = color;
-      context2d.fillRect(0, 0, size, size);
-      await cache.put(url, new Response(await canvas.convertToBlob({ type: 'image/jpeg' })));
-    }
-    await chrome.runtime.sendMessage({ type: 'wallpaperCatalogUpdated', dates }).catch(() => {});
-  }, { cacheName: CACHE_NAME, images, dates });
+  const serviceWorker = await worker();
+  await serviceWorker.evaluate(cacheImages, { cacheName: CACHE_NAME, images });
+  await serviceWorker.evaluate(
+    notified => chrome.runtime.sendMessage({ type: 'wallpaperCatalogUpdated', dates: notified }).catch(() => {}),
+    dates
+  );
+}
+
+/** The data URL the page reconstructs from a cached preview. */
+async function cachedDataUrl(url) {
+  return (await worker()).evaluate(async ({ cacheName, url }) => {
+    const response = await (await caches.open(cacheName)).match(url);
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    return `data:image/jpeg;base64,${btoa(String.fromCharCode(...bytes))}`;
+  }, { cacheName: CACHE_NAME, url });
 }
 
 async function readDisplayState(page) {
@@ -113,8 +123,12 @@ async function displayStateWhen(page, predicate) {
   assert.fail('the display snapshot did not reach the expected state');
 }
 
-/** Open a new tab and collect what the page shows and requests. */
-async function openNewTab() {
+/**
+ * Open a new tab and collect what the page shows and requests. With
+ * `holdPreviewConversion`, preview data URL conversion waits for
+ * `window.__releaseConversion()`.
+ */
+async function openNewTab({ holdPreviewConversion = false } = {}) {
   const page = await context.newPage();
   page.errors = [];
   page.imageRequests = [];
@@ -122,21 +136,53 @@ async function openNewTab() {
   page.on('request', (request) => {
     if (request.url().includes('ts1.tc.mm.bing.net')) page.imageRequests.push(request.url());
   });
+  if (holdPreviewConversion) {
+    await page.addInitScript(() => {
+      const read = FileReader.prototype.readAsDataURL;
+      const released = new Promise((resolve) => { window.__releaseConversion = resolve; });
+      FileReader.prototype.readAsDataURL = function (blob) {
+        released.then(() => read.call(this, blob));
+      };
+    });
+  }
   await page.goto('chrome://newtab/');
   return page;
 }
 
+/** Make the page's next image decode wait for `window.__releaseDecode()`. */
+async function holdNextDecode(page) {
+  await page.evaluate(() => {
+    const decode = HTMLImageElement.prototype.decode;
+    let held = false;
+    HTMLImageElement.prototype.decode = function () {
+      if (held) return decode.call(this);
+      held = true;
+      return new Promise((resolve) => { window.__releaseDecode = resolve; }).then(() => decode.call(this));
+    };
+  });
+}
+const decodeIsHeld = page => page.waitForFunction(() => typeof window.__releaseDecode === 'function');
+const releaseDecode = page => page.evaluate(() => window.__releaseDecode());
+
 // Kinds of inline body backgrounds in the order they were set.
 const backgroundKinds = async page => (await page.evaluate(() => window.__backgrounds))
   .map(value => (value.startsWith('url("data:') ? 'data' : value.startsWith('url("blob:') ? 'blob' : 'none'));
+const backgroundCount = page => page.evaluate(() => window.__backgrounds.length);
 const inlineBackground = page => page.evaluate(() => document.getElementById('main-body').style.backgroundImage);
 const computedBackground = page => page.evaluate(() => getComputedStyle(document.getElementById('main-body')).backgroundImage);
 const headline = page => page.locator('#headline').textContent();
+const headlineIs = (page, text) => page.waitForFunction(expected => document.getElementById('headline').textContent === expected, text);
 const showsFinal = page => page.waitForFunction(() => document.getElementById('main-body').style.backgroundImage.startsWith('url("blob:'));
+// rightNav carries a static aria-disabled attribute, so its click is forced.
+const previous = page => page.click('#leftNav');
+const next = page => page.click('#rightNav', { force: true });
 
-const snapshotOf = (shown, preloadDataUrl = '') => ({
-  date: shown.date, imageId: shown.imageId, url: shown.urls.ultraHighDef, preloadDataUrl, updatedAt: 42
+// Committed now, so no day rollover applies unless a test sets updatedAt.
+const COMMITTED_AT = Date.now();
+const snapshotOf = (shown, preloadDataUrl = '', updatedAt = COMMITTED_AT) => ({
+  date: shown.date, imageId: shown.imageId, url: shown.urls.ultraHighDef, preloadDataUrl, updatedAt
 });
+const identityOf = snapshot => ({ date: snapshot.date, imageId: snapshot.imageId, url: snapshot.url });
 // A 1x1 GIF: only its presence at boot matters.
 const BOOT_PREVIEW = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
@@ -207,8 +253,7 @@ describe('new tab page in the loaded extension', () => {
     const page = await openNewTab();
 
     const repaired = await displayStateWhen(page, snapshot => snapshot?.preloadDataUrl);
-    assert.match(repaired.preloadDataUrl, /^data:image\/jpeg;base64,/);
-    assert.deepStrictEqual({ ...repaired, preloadDataUrl: '' }, snapshotOf(A));
+    assert.deepStrictEqual(repaired, snapshotOf(A, await cachedDataUrl(A.urls.preview)));
     await page.close();
   });
 
@@ -224,54 +269,163 @@ describe('new tab page in the loaded extension', () => {
     assert.deepStrictEqual(await backgroundKinds(page), ['blob', 'blob'], 'the preview, then one final image');
     assert.strictEqual(await headline(page), 'Target headline');
     assert.strictEqual(published.url, A.urls.ultraHighDef);
-    assert.match(published.preloadDataUrl, /^data:image\/jpeg;base64,/);
     await page.close();
   });
 
-  it('navigates over cached dates, wraps, and keeps the current image when a destination is unavailable', async () => {
-    await seed({ days: [A, B, C], displayState: snapshotOf(A, BOOT_PREVIEW), cached: [final(A), preview(A), final(B), preview(B)] });
+  it('navigates over cached dates, wraps, and never shows the preview of an unavailable destination', async () => {
+    await seed({
+      days: [A, B, C],
+      displayState: snapshotOf(A, BOOT_PREVIEW),
+      cached: [final(A), preview(A), final(B), preview(B), preview(C)]
+    });
     const page = await openNewTab();
     await showsFinal(page);
 
-    await page.click('#leftNav');
-    await page.waitForFunction(() => document.getElementById('headline').textContent === 'Older headline');
+    await previous(page);
+    await headlineIs(page, 'Older headline');
     assert.strictEqual((await readDisplayState(page)).date, B.date);
     const olderBackground = await inlineBackground(page);
-
-    // The oldest date is not cached and cannot be fetched.
+    const backgroundsBefore = await backgroundCount(page);
     const headlinesBefore = (await page.evaluate(() => window.__headlines)).length;
-    await page.click('#leftNav');
+
+    // The oldest date has a cached preview, but its final image cannot be fetched.
+    await previous(page);
     await page.waitForFunction(count => window.__headlines.length === count + 2, headlinesBefore);
     const [updating, restored] = (await page.evaluate(() => window.__headlines)).slice(-2);
     assert.notStrictEqual(updating, 'Older headline', 'the updating headline is shown while waiting');
     assert.notStrictEqual(updating, 'Oldest headline');
     assert.strictEqual(restored, 'Older headline');
+    assert.strictEqual(await backgroundCount(page), backgroundsBefore, 'the destination preview is never rendered');
     assert.strictEqual(await inlineBackground(page), olderBackground);
     assert.strictEqual((await readDisplayState(page)).date, B.date);
 
-    await page.click('#rightNav', { force: true });
-    await page.waitForFunction(() => document.getElementById('headline').textContent === 'Target headline');
+    await next(page);
+    await headlineIs(page, 'Target headline');
     assert.strictEqual((await readDisplayState(page)).date, A.date);
     assert.deepStrictEqual(page.errors, []);
     await page.close();
   });
 
-  it('a tab opened after another tab commits a navigation starts from that commit', async () => {
+  it('drops a delayed final image of an older click after a newer navigation', async () => {
+    await seed({ days: [A, B, C], displayState: snapshotOf(A, BOOT_PREVIEW), cached: [final(A), preview(A), final(B), final(C)] });
+    const page = await openNewTab();
+    await showsFinal(page);
+    const backgroundsBefore = await backgroundCount(page);
+
+    await holdNextDecode(page);
+    await previous(page);
+    await decodeIsHeld(page);
+    // The newer click wraps to the oldest date and completes first.
+    await next(page);
+    await headlineIs(page, 'Oldest headline');
+    await releaseDecode(page);
+    await displayStateWhen(page, snapshot => snapshot?.date === C.date);
+    await page.waitForTimeout(300);
+
+    assert.strictEqual(await headline(page), 'Oldest headline');
+    assert.strictEqual(await backgroundCount(page), backgroundsBefore + 1, 'only the newer image was applied');
+    assert.deepStrictEqual(identityOf(await readDisplayState(page)), identityOf(snapshotOf(C)));
+    await page.close();
+  });
+
+  it('a tab opened while another is still loading starts from the old commit; one opened after starts from the new', async () => {
     await seed({ days: [A, B], displayState: snapshotOf(A, BOOT_PREVIEW), cached: [final(A), preview(A), final(B), preview(B)] });
     const first = await openNewTab();
     await showsFinal(first);
-    const early = await openNewTab();
-    await showsFinal(early);
+    await holdNextDecode(first);
+    await previous(first);
+    await decodeIsHeld(first);
 
-    await first.click('#leftNav');
-    await first.waitForFunction(() => document.getElementById('headline').textContent === 'Older headline');
+    const during = await openNewTab();
+    await showsFinal(during);
+    assert.strictEqual(await headline(during), 'Target headline');
+    assert.strictEqual((await readDisplayState(during)).date, A.date, 'the pending destination is not published');
+
+    await releaseDecode(first);
+    await headlineIs(first, 'Older headline');
+    await displayStateWhen(first, snapshot => snapshot?.date === B.date);
+    const afterCommit = await openNewTab();
+    await showsFinal(afterCommit);
+
+    assert.strictEqual(await headline(afterCommit), 'Older headline');
+    assert.strictEqual(await headline(during), 'Target headline', 'an open tab does not follow the later commit');
+    await Promise.all([first.close(), during.close(), afterCommit.close()]);
+  });
+
+  it('concurrent commits from two tabs leave one whole snapshot', async () => {
+    await seed({
+      days: [A, B, C],
+      displayState: snapshotOf(A, BOOT_PREVIEW),
+      cached: [final(A), preview(A), final(B), preview(B), final(C), preview(C)]
+    });
+    const first = await openNewTab();
+    const second = await openNewTab();
+    await Promise.all([showsFinal(first), showsFinal(second)]);
+    await Promise.all([holdNextDecode(first), holdNextDecode(second)]);
+    await previous(first);
+    await next(second);
+    await Promise.all([decodeIsHeld(first), decodeIsHeld(second)]);
+
+    await Promise.all([releaseDecode(first), releaseDecode(second)]);
+    await Promise.all([headlineIs(first, 'Older headline'), headlineIs(second, 'Oldest headline')]);
+    await displayStateWhen(first, snapshot => snapshot?.date !== A.date && snapshot?.preloadDataUrl !== BOOT_PREVIEW);
+    await first.waitForTimeout(300);
+
+    const { updatedAt, ...stored } = await readDisplayState(first);
+    const whole = async shown => ({ ...identityOf(snapshotOf(shown)), preloadDataUrl: await cachedDataUrl(shown.urls.preview) });
+    const matches = [await whole(B), await whole(C)]
+      .filter(candidate => Object.keys(candidate).every(key => candidate[key] === stored[key]));
+    assert.strictEqual(Object.keys(stored).length, 4);
+    assert.strictEqual(matches.length, 1, 'date, identity, URL and preview all belong to one image');
+    assert.strictEqual(typeof updatedAt, 'number');
+    await Promise.all([first.close(), second.close()]);
+  });
+
+  it("never writes one image's preview repair into a later selection", async () => {
+    await seed({ days: [A, B, C], displayState: snapshotOf(B), cached: [final(B), preview(B), final(C)] });
+    const repairing = await openNewTab({ holdPreviewConversion: true });
+    await showsFinal(repairing);
+    const other = await openNewTab();
+    await showsFinal(other);
+
+    // Another tab commits the oldest date while the repair is still converting.
+    await previous(other);
+    await headlineIs(other, 'Oldest headline');
+    await displayStateWhen(other, snapshot => snapshot?.date === C.date);
+    await repairing.evaluate(() => window.__releaseConversion());
+    await repairing.waitForTimeout(500);
+
+    assert.deepStrictEqual({ ...(await readDisplayState(other)), updatedAt: 0 }, { ...snapshotOf(C), updatedAt: 0 });
+
+    // A later new tab repairs the selection that is now global, with its own preview.
+    await workerCaches([preview(C)], [C.date]);
     const later = await openNewTab();
-    await showsFinal(later);
+    const repaired = await displayStateWhen(later, snapshot => snapshot?.preloadDataUrl);
+    assert.strictEqual(repaired.date, C.date);
+    assert.strictEqual(repaired.preloadDataUrl, await cachedDataUrl(C.urls.preview));
+    await Promise.all([repairing.close(), other.close(), later.close()]);
+  });
 
-    assert.strictEqual(await headline(later), 'Older headline');
-    assert.strictEqual(await headline(early), 'Target headline', 'an open tab does not follow the later commit');
-    assert.strictEqual((await readDisplayState(later)).date, B.date);
-    await Promise.all([first.close(), early.close(), later.close()]);
+  it("first tab of a day keeps yesterday's wallpaper under the updating headline until today's is loaded", async () => {
+    const yesterday = COMMITTED_AT - 36 * 60 * 60 * 1000;
+    await seed({ days: [A, B], displayState: snapshotOf(B, BOOT_PREVIEW, yesterday), cached: [final(B), preview(A)] });
+    const page = await openNewTab();
+    await showsFinal(page);
+    const updatingText = await page.evaluate(() => chrome.i18n.getMessage('updating_wallpaper'));
+    await page.waitForFunction(text => window.__headlines.includes(text), updatingText);
+    const yesterdayBackground = await inlineBackground(page);
+    assert.strictEqual((await readDisplayState(page)).date, B.date);
+
+    await workerCaches([final(A)], [A.date]);
+    await headlineIs(page, 'Target headline');
+    await displayStateWhen(page, snapshot => snapshot?.date === A.date);
+
+    const backgrounds = await backgroundKinds(page);
+    assert.deepStrictEqual(backgrounds, ['data', 'blob', 'blob'], "boot preview, yesterday's final, today's final");
+    assert.notStrictEqual(await inlineBackground(page), yesterdayBackground);
+    const headlines = await page.evaluate(() => window.__headlines);
+    assert.ok(headlines.indexOf(updatingText) < headlines.indexOf('Target headline'));
+    await page.close();
   });
 
   it('keeps the cached wallpaper visible behind the offline page', async () => {

@@ -67,6 +67,8 @@ function makeHarness({ entries = [A, B, C], targetDate = TARGET, displayState = 
     updating: 0,
     fallbacks: 0,
     clock: 1000,
+    // The day the snapshots of these tests were committed (updatedAt 42).
+    today: '19700101',
     onRequest: null,
     beforeApplyFinal: null,
     beforeDataUrl: null,
@@ -98,6 +100,7 @@ function makeHarness({ entries = [A, B, C], targetDate = TARGET, displayState = 
     },
     readUhdSetting: async () => h.enableUhd,
     now: () => h.clock,
+    getTargetDate: () => h.today,
     view: {
       applyFinal: async ({ view, isCurrent }) => {
         await h.beforeApplyFinal?.(view);
@@ -262,6 +265,17 @@ describe('new tab initialization', () => {
     }, 'the same identity keeps its stored preview');
   });
 
+  it('repairs the empty committed preview while its final image is still unavailable', async () => {
+    const h = makeHarness({ displayState: snapshotOf(B), cached: [B.urls.preview] });
+
+    const result = await h.controller.initialize();
+    await settle();
+
+    assert.strictEqual(result.applied, false);
+    assert.deepStrictEqual(h.previews, [OLDER]);
+    assert.deepStrictEqual(h.displayState, snapshotOf(B, { preloadDataUrl: dataUrlOf(B.urls.preview) }));
+  });
+
   it('applies a cached final image without waiting for its preview conversion', async () => {
     const h = makeHarness({ displayState: snapshotOf(B), cached: [B.urls.ultraHighDef, B.urls.preview] });
     const converting = gate();
@@ -317,6 +331,33 @@ describe('new tab initialization', () => {
       assert.notStrictEqual(h.displayState.preloadDataUrl, committed.preloadDataUrl, "the committed image's preview is not kept");
     });
 
+    it('shows the committed preview and repairs it when only the preview is cached and the date left the catalog', async () => {
+      const h = makeHarness({ entries: [A], displayState: snapshotOf(B), cached: [B.urls.preview] });
+
+      const result = await h.controller.initialize();
+
+      assert.strictEqual(result.applied, false);
+      assert.deepStrictEqual(h.previews, [OLDER]);
+      assert.deepStrictEqual(h.finals, []);
+      assert.strictEqual(h.fallbacks, 0);
+      assert.deepStrictEqual(h.requests, [], 'the target date is not requested in its place');
+      assert.deepStrictEqual(h.displayState, snapshotOf(B, { preloadDataUrl: dataUrlOf(B.urls.preview) }));
+    });
+
+    it('shows the committed preview instead of the corrected image when only the preview is cached', async () => {
+      const h = makeHarness({
+        entries: [A, corrected],
+        displayState: snapshotOf(B),
+        cached: [B.urls.preview, corrected.urls.ultraHighDef]
+      });
+
+      await h.controller.initialize();
+
+      assert.deepStrictEqual(h.previews, [OLDER]);
+      assert.deepStrictEqual(h.finals, [], 'no other final image is applied or published');
+      assert.deepStrictEqual(h.displayState, snapshotOf(B, { preloadDataUrl: dataUrlOf(B.urls.preview) }));
+    });
+
     it('falls back to the target date when neither is available', async () => {
       const h = makeHarness({ entries: [A], displayState: committed, cached: [A.urls.ultraHighDef] });
 
@@ -347,6 +388,23 @@ describe('navigation', () => {
 
     assert.deepStrictEqual(h.finals, [TARGET, OLDER, OLDEST, TARGET, OLDEST]);
     assert.strictEqual(h.displayState.date, OLDEST);
+  });
+
+  it('does not cancel a startup that is still reading when a click has nowhere to go', async () => {
+    const h = makeHarness({ entries: [], displayState: snapshotOf(B), cached: [B.urls.ultraHighDef] });
+    const reading = gate();
+    h.beforeReadCatalog = () => reading.promise;
+    const initializing = h.controller.initialize();
+    await settle();
+    h.beforeReadCatalog = null;
+
+    const click = await h.controller.navigate(1);
+    reading.open();
+    const started = await initializing;
+
+    assert.deepStrictEqual(click, { applied: false, reason: 'not navigable' });
+    assert.strictEqual(started.applied, true);
+    assert.deepStrictEqual(h.finals, [OLDER]);
   });
 
   it('does nothing when there are no entries', async () => {
@@ -463,6 +521,25 @@ describe('navigation', () => {
     assert.deepStrictEqual(h.refreshed, [TARGET], 'the current headline is restored');
   });
 
+  it('rejects a click whose catalog read finishes after a newer startup', async () => {
+    const h = await initialized();
+    const reading = gate();
+    h.beforeReadCatalog = () => reading.promise;
+    const older = h.controller.navigate(1);
+    await settle();
+    h.beforeReadCatalog = null;
+    // Another tab commits the oldest date, and this page initializes again.
+    h.displayState = snapshotOf(C);
+    await h.controller.initialize();
+
+    reading.open();
+    const result = await older;
+
+    assert.deepStrictEqual(result, { applied: false, reason: 'superseded' });
+    assert.deepStrictEqual(h.finals, [TARGET, OLDEST]);
+    assert.strictEqual(h.displayState.date, OLDEST);
+  });
+
   it('does not let a superseded navigation apply or publish after a newer one', async () => {
     const h = await initialized({ cached: [A.urls.ultraHighDef, C.urls.ultraHighDef] });
     const fetchingOlder = gate();
@@ -553,5 +630,165 @@ describe('catalog update notifications', () => {
 
     assert.deepStrictEqual(h.finals, [TARGET, OLDER]);
     assert.strictEqual(h.displayState.date, OLDER);
+  });
+});
+
+describe('first new tab of a day', () => {
+  // Committed at noon in Shanghai on the target date.
+  const committedToday = Date.UTC(2026, 9, 13, 4);
+
+  function firstTabOfDay(options) {
+    const h = makeHarness({ displayState: snapshotOf(B), ...options });
+    h.today = TARGET;
+    return h;
+  }
+
+  it("shows the committed wallpaper under the updating headline, then today's once it is loaded", async () => {
+    const h = firstTabOfDay({ cached: [B.urls.ultraHighDef, B.urls.preview, A.urls.preview] });
+    h.onRequest = ({ date, resolution }) => {
+      assert.deepStrictEqual(h.finals, [OLDER], "the committed wallpaper stays while today's loads");
+      assert.ok(h.updating > 0);
+      h.cache.add(h.catalog.entries[date].urls[resolution]);
+    };
+
+    const result = await h.controller.initialize();
+
+    assert.strictEqual(result.applied, true);
+    assert.deepStrictEqual(h.requests, [{ date: TARGET, resolution: 'ultraHighDef' }]);
+    assert.deepStrictEqual(h.finals, [OLDER, TARGET]);
+    assert.deepStrictEqual(h.previews, [], "today's preview is not shown");
+    assert.strictEqual(h.displayState.date, TARGET);
+  });
+
+  it("waits for the catalog to provide today's wallpaper", async () => {
+    const h = firstTabOfDay({ entries: [B, C], cached: [B.urls.ultraHighDef, B.urls.preview] });
+    h.workerCachesRequests();
+
+    await h.controller.initialize();
+    assert.deepStrictEqual(h.finals, [OLDER]);
+    assert.strictEqual(h.updating, 1);
+    assert.deepStrictEqual(h.requests, []);
+
+    await h.controller.catalogUpdated([OLDER]);
+    assert.deepStrictEqual(h.finals, [OLDER], 'a notification for another date changes nothing');
+
+    h.catalog.entries[TARGET] = A;
+    await h.controller.catalogUpdated([TARGET]);
+
+    assert.deepStrictEqual(h.finals, [OLDER, TARGET]);
+    assert.strictEqual(h.displayState.date, TARGET);
+  });
+
+  it('keeps the committed wallpaper and restores its headline when today is not published', async () => {
+    const h = firstTabOfDay({ entries: [B, C], cached: [B.urls.ultraHighDef] });
+    await h.controller.initialize();
+    const published = h.displayState;
+
+    await h.controller.catalogRefreshed();
+    h.catalog.entries[TARGET] = A;
+    h.workerCachesRequests();
+    await h.controller.catalogUpdated([TARGET]);
+
+    assert.deepStrictEqual(h.refreshed, [OLDER], 'the updating headline is withdrawn');
+    assert.deepStrictEqual(h.finals, [OLDER], 'the page stopped waiting for today');
+    assert.deepStrictEqual(h.displayState, published);
+  });
+
+  it('keeps a selection that was committed today', async () => {
+    const h = firstTabOfDay({ displayState: snapshotOf(B, { updatedAt: committedToday }), cached: [B.urls.ultraHighDef, A.urls.ultraHighDef] });
+
+    await h.controller.initialize();
+    await h.controller.catalogRefreshed();
+
+    assert.deepStrictEqual(h.finals, [OLDER]);
+    assert.strictEqual(h.updating, 0);
+  });
+
+  it('still moves to today when a notification for the committed date arrives during its restoration', async () => {
+    const h = firstTabOfDay({ cached: [B.urls.ultraHighDef, B.urls.preview, A.urls.ultraHighDef, A.urls.preview] });
+    const converting = gate();
+    h.beforeDataUrl = () => converting.promise;
+
+    const initializing = h.controller.initialize();
+    await settle();
+    const notified = h.controller.catalogUpdated([OLDER]);
+    converting.open();
+    await Promise.all([initializing, notified]);
+
+    assert.deepStrictEqual(h.finals, [OLDER, TARGET]);
+    assert.strictEqual(h.displayState.date, TARGET);
+  });
+
+  it("does not wait for the committed date's missing final image before moving to a cached today", async () => {
+    const h = firstTabOfDay({ cached: [B.urls.preview, A.urls.ultraHighDef] });
+    const fetching = gate();
+    h.onRequest = () => fetching.promise;
+
+    const result = await h.controller.initialize();
+    fetching.open();
+
+    assert.strictEqual(result.applied, true);
+    assert.deepStrictEqual(h.previews, [OLDER]);
+    assert.deepStrictEqual(h.finals, [TARGET]);
+    assert.ok(!h.requests.some(request => request.date === OLDER && request.resolution === 'ultraHighDef'),
+      "the committed date's final image is not requested");
+    assert.strictEqual(h.displayState.date, TARGET);
+  });
+
+  it('lets a navigation click win over a notification that arrives while the click reads', async () => {
+    const h = firstTabOfDay({ entries: [B, C], cached: [B.urls.ultraHighDef, B.urls.preview, C.urls.ultraHighDef] });
+    await h.controller.initialize();
+    const reading = gate();
+    h.beforeReadCatalog = () => reading.promise;
+    const click = h.controller.navigate(1);
+    await settle();
+    h.beforeReadCatalog = null;
+
+    h.catalog.entries[TARGET] = A;
+    h.cache.add(A.urls.ultraHighDef);
+    await h.controller.catalogUpdated([TARGET]);
+    reading.open();
+    await click;
+
+    assert.deepStrictEqual(h.finals, [OLDER, OLDEST]);
+    assert.strictEqual(h.displayState.date, OLDEST);
+  });
+
+  it('does not make an already-open tab follow the day change when it reinitializes', async () => {
+    const h = makeHarness({ displayState: snapshotOf(B), cached: [B.urls.ultraHighDef, B.urls.preview, A.urls.ultraHighDef] });
+    h.today = OLDER;
+    await h.controller.initialize();
+
+    // Reconnecting after the day boundary reinitializes the open page.
+    h.today = TARGET;
+    await h.controller.initialize();
+
+    assert.deepStrictEqual(h.finals, [OLDER]);
+    assert.strictEqual(h.updating, 0);
+    assert.strictEqual(h.displayState.date, OLDER);
+  });
+
+  it("restores the committed preview's headline when today is not published", async () => {
+    const h = firstTabOfDay({ entries: [B, C], cached: [B.urls.preview] });
+    await h.controller.initialize();
+    assert.deepStrictEqual(h.previews, [OLDER]);
+    assert.ok(h.updating > 0);
+
+    await h.controller.catalogRefreshed();
+
+    assert.deepStrictEqual(h.refreshed, [OLDER]);
+  });
+
+  it("lets a navigation click replace the move to today's wallpaper", async () => {
+    const h = firstTabOfDay({ entries: [B, C], cached: [B.urls.ultraHighDef, C.urls.ultraHighDef] });
+    await h.controller.initialize();
+
+    await h.controller.navigate(1);
+    h.catalog.entries[TARGET] = A;
+    h.workerCachesRequests();
+    await h.controller.catalogUpdated([TARGET]);
+
+    assert.deepStrictEqual(h.finals, [OLDER, OLDEST]);
+    assert.strictEqual(h.displayState.date, OLDEST);
   });
 });

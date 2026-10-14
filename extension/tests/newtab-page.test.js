@@ -174,7 +174,7 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
 
 describe('new tab page scripts', () => {
   it('paints the committed preview at boot, then applies the cached final image without fetching it', async () => {
-    const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: 42 };
+    const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
     const page = await openNewTab({
       local: { [CATALOG_KEY]: catalog(), [DISPLAY_STATE_KEY]: snapshot },
       cached: [PREVIEW, UHD]
@@ -217,7 +217,7 @@ describe('new tab page scripts', () => {
   });
 
   it('displays the cached wallpaper when the tab opens offline', async () => {
-    const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: 42 };
+    const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
     const page = await openNewTab({
       local: { [CATALOG_KEY]: catalog(), [DISPLAY_STATE_KEY]: snapshot },
       cached: [PREVIEW, UHD],
@@ -230,7 +230,7 @@ describe('new tab page scripts', () => {
   });
 
   it('keeps the current wallpaper, headline and snapshot when the destination image cannot be decoded', async () => {
-    const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: 42 };
+    const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
     const page = await openNewTab({
       local: { [CATALOG_KEY]: catalog(), [DISPLAY_STATE_KEY]: snapshot },
       cached: [PREVIEW, UHD, OLDER_UHD],

@@ -7,12 +7,12 @@ const BING_MARKET = "zh-CN";
 const BING_MARKET_TIME_ZONE = "Asia/Shanghai";
 
 /**
- * Get the current target date for the zh-CN Bing market.
- * Returns the date in Asia/Shanghai timezone, regardless of process timezone.
+ * Get the target date for the zh-CN Bing market: the Asia/Shanghai date of a
+ * moment, regardless of process timezone.
+ * @param {Date} [now] - The moment; defaults to the current time
  * @returns {string} Date in YYYYMMDD format
  */
-export function getZhCnTargetDate() {
-  const now = new Date();
+export function getZhCnTargetDate(now = new Date()) {
 
   // Format date in Asia/Shanghai timezone
   const formatter = new Intl.DateTimeFormat('en-CA', {

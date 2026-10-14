@@ -131,13 +131,15 @@ const wallpaperControllerReady = import(chrome.runtime.getURL('src/page/wallpape
 
 // --- Main entry point ---
 async function initWallpaper() {
-	// Not awaited: the page starts from committed state while the worker refreshes.
-	chrome.runtime.sendMessage({ type: 'refreshWallpaperCatalog' }).catch((err) => {
+	// The page starts from committed state while the worker refreshes.
+	const refreshed = chrome.runtime.sendMessage({ type: 'refreshWallpaperCatalog' }).catch((err) => {
 		console.debug('Wallpaper catalog refresh unavailable:', err);
 	});
 	syncQuotes().catch((err) => console.error('Quote sync failed:', err));
 	const controller = await wallpaperControllerReady;
 	await controller.initialize();
+	await refreshed;
+	await controller.catalogRefreshed();
 }
 
 async function switchWallpaper(offset) {

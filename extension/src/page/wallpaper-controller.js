@@ -8,6 +8,7 @@
  * delegated through the view callbacks.
  */
 
+import { getZhCnTargetDate } from '../helpers/date.js';
 import { isUhdEnabled, isValidDisplaySnapshot, snapshotMatchesIdentity } from '../helpers/display-state.js';
 import { buildCanonicalUrls, isValidImageIdentity } from '../helpers/image.js';
 import { getNavigableDates } from '../helpers/retention.js';
@@ -56,6 +57,7 @@ function isSameFinal(a, b) {
  * @param {() => void} deps.view.showUpdating
  * @param {() => void} deps.view.showFallback
  * @param {() => number} [deps.now]
+ * @param {() => string} [deps.getTargetDate] - Today's market date
  * @param {{warn: Function}} [deps.log]
  */
 export function createWallpaperController({
@@ -68,6 +70,7 @@ export function createWallpaperController({
   readUhdSetting,
   view,
   now = Date.now,
+  getTargetDate = getZhCnTargetDate,
   log = console
 }) {
   // Page-local token, claimed when an action starts and before its first
@@ -75,18 +78,27 @@ export function createWallpaperController({
   // page. It guards nothing outside this page.
   let generation = 0;
   // The action in flight, so a catalog notification continues it instead of
-  // cancelling it. `date` is null while a navigation is choosing its date.
+  // cancelling it.
   let pending = null;
   // Date of the image on screen, including a temporary initialization preview.
   let displayDate = null;
-  // The final image this page has rendered, with its catalog entry if any.
+  // The final image this page has rendered.
   let onScreen = null;
-  let onScreenEntry;
+  // The image on screen, final or temporary preview, with its catalog entry if
+  // any, so its headline can replace a withdrawn updating headline.
+  let shown = null;
   // The snapshot this page restored or published. Showing it again is not a
   // new application and never replaces another tab's later commit.
   let committed = null;
   // Snapshot writes of this page, serialized in the order images were applied.
   let writes = Promise.resolve();
+  // Navigation clicks, so an older click cannot act after a newer one.
+  let navigations = 0;
+  // Today's date while the first new tab of the day still shows the previous
+  // day's committed wallpaper and waits for today's. Whether this page is such
+  // a tab is decided once, by its opening initialization.
+  let rollover = null;
+  let rolloverDecided = false;
 
   const superseded = { applied: false, reason: 'superseded' };
 
@@ -167,22 +179,56 @@ export function createWallpaperController({
       .catch(error => log.warn('[wallpaper] Preview repair failed', error));
   }
 
-  // Decode and apply first; the snapshot and its preview follow the image.
-  async function showFinal(target, entry, blob, token) {
+  function restoreHeadline() {
+    if (shown) {
+      view.refreshContents(shown);
+    }
+  }
+
+  // Show a cached preview as temporary state. It fills the empty preview of the
+  // snapshot when it is that snapshot's image.
+  function showPreview(target, entry, blob) {
+    displayDate = target.date;
+    shown = { view: target, entry };
+    view.applyPreview({ view: target, entry, blob });
+    if (isSameFinal(committed, target)) {
+      repairPreview(target).catch(error => log.warn('[wallpaper] Preview repair failed', error));
+    }
+  }
+
+  // Decode and apply a final image. Resolves `{ written }`, the queued snapshot
+  // write that records it, or null when nothing was applied. The write is
+  // wrapped so that awaiting this function does not wait for it.
+  async function present(target, entry, blob, token) {
     const applied = await view.applyFinal({ view: target, entry, blob, isCurrent: () => token === generation });
     if (!applied) {
-      return token === generation ? { applied: false, reason: 'decode failed' } : superseded;
+      return null;
     }
     const isNewApplication = !isSameFinal(committed, target);
     onScreen = target;
-    onScreenEntry = entry;
+    shown = { view: target, entry };
     displayDate = target.date;
     committed = target;
-    const preview = await (isNewApplication ? publish(target, now()) : repairPreview(target));
-    // Only catalog images can be requested from the worker.
-    if (!preview && entry && target.previewUrl && token === generation) {
-      requestPreviewRepair(target, token);
+    if (target.date === rollover) {
+      rollover = null;
     }
+    const written = isNewApplication ? publish(target, now()) : repairPreview(target);
+    written.then((preview) => {
+      // Only catalog images can be requested from the worker.
+      if (!preview && entry && target.previewUrl && token === generation) {
+        requestPreviewRepair(target, token);
+      }
+    }).catch(error => log.warn('[wallpaper] Display state write failed', error));
+    return { written };
+  }
+
+  // Decode and apply first; the snapshot and its preview follow the image.
+  async function showFinal(target, entry, blob, token) {
+    const presented = await present(target, entry, blob, token);
+    if (!presented) {
+      return token === generation ? { applied: false, reason: 'decode failed' } : superseded;
+    }
+    await presented.written;
     return { applied: true };
   }
 
@@ -199,8 +245,8 @@ export function createWallpaperController({
     }
 
     if (isSameFinal(onScreen, target)) {
-      onScreenEntry = entry;
-      view.refreshContents({ view: target, entry });
+      shown = { view: target, entry };
+      view.refreshContents(shown);
       await repairPreview(target);
       return { applied: true };
     }
@@ -220,8 +266,7 @@ export function createWallpaperController({
         return superseded;
       }
       if (cachedPreview) {
-        displayDate = target.date;
-        view.applyPreview({ view: target, entry, blob: cachedPreview });
+        showPreview(target, entry, cachedPreview);
         previewShown = true;
       }
     }
@@ -252,6 +297,10 @@ export function createWallpaperController({
    * preview renders meanwhile.
    */
   async function act(token, date, allowPreview) {
+    // A superseded caller must not overwrite the action in flight.
+    if (token !== generation) {
+      return superseded;
+    }
     pending = { date, allowPreview };
     let result;
     try {
@@ -263,32 +312,132 @@ export function createWallpaperController({
     }
     // A failed action leaves the image and the snapshot; only its pending
     // headline is withdrawn.
-    if (!result.applied && token === generation && onScreen) {
-      view.refreshContents({ view: onScreen, entry: onScreenEntry });
+    if (!result.applied && token === generation) {
+      restoreHeadline();
     }
     return result;
   }
 
   // The committed image stays protected in Cache Storage after the catalog
   // stops mapping its date to it, so it is matched by its own canonical URLs.
-  async function showCommitted(snapshot, token) {
-    const target = {
+  function committedTarget(snapshot) {
+    return {
       date: snapshot.date,
       imageId: snapshot.imageId,
       url: snapshot.url,
       previewUrl: buildCanonicalUrls(snapshot.imageId).preview
     };
+  }
+
+  async function showCommitted(snapshot, token) {
+    const target = committedTarget(snapshot);
     const blob = await match(target.url);
     if (token !== generation) {
       return superseded;
     }
-    return blob ? showFinal(target, undefined, blob, token) : { applied: false, reason: 'final unavailable' };
+    if (blob) {
+      return showFinal(target, undefined, blob, token);
+    }
+    // Without its final image, the matching cached preview is the temporary
+    // startup display and fills the snapshot's empty preview.
+    const preview = await match(target.previewUrl);
+    if (token !== generation) {
+      return superseded;
+    }
+    if (!preview) {
+      return { applied: false, reason: 'final unavailable' };
+    }
+    showPreview(target, undefined, preview);
+    await writes;
+    return { applied: false, reason: 'final unavailable', previewShown: true };
+  }
+
+  async function showTarget(token, catalog) {
+    const targetDate = catalog?.refreshState?.date;
+    const result = catalog?.entries?.[targetDate]
+      ? await act(token, targetDate, true)
+      : { applied: false, reason: 'target not published' };
+    if (!result.applied && !result.previewShown && result.reason !== 'superseded') {
+      view.showFallback();
+    }
+    return result;
+  }
+
+  // The committed snapshot is the starting selection whether or not the
+  // catalog still maps its date to its identity.
+  async function showSnapshot(token, catalog, snapshot) {
+    committed = { date: snapshot.date, imageId: snapshot.imageId, url: snapshot.url };
+    const entry = catalog?.entries?.[snapshot.date];
+    // On failure the boot-painted preview of this snapshot stays on screen.
+    if (entry?.imageId === snapshot.imageId) {
+      return act(token, snapshot.date, true);
+    }
+    const shown = await showCommitted(snapshot, token);
+    if (shown.applied || shown.previewShown || token !== generation) {
+      return shown;
+    }
+    return entry ? act(token, snapshot.date, true) : showTarget(token, catalog);
+  }
+
+  // Read the catalog and move to today's wallpaper once the catalog has it.
+  // Resolves null while it does not.
+  async function tryRollover() {
+    const base = generation;
+    const { catalog } = await readState();
+    if (base !== generation || !rollover || pending) {
+      return superseded;
+    }
+    return catalog?.entries?.[rollover] ? act(++generation, rollover, false) : null;
+  }
+
+  // First new tab of a day: whatever of the committed image is cached is shown
+  // without requesting the rest, so the move to today's wallpaper starts as
+  // soon as the committed wallpaper is visible.
+  async function showRollover(token, state, snapshot) {
+    const today = rollover;
+    committed = { date: snapshot.date, imageId: snapshot.imageId, url: snapshot.url };
+    const entry = state.catalog?.entries?.[snapshot.date];
+    const current = entry?.imageId === snapshot.imageId ? entry : undefined;
+    const target = deriveEntryView(current, state.enableUhd) || committedTarget(snapshot);
+    if (!isSameFinal(onScreen, target)) {
+      const blob = await match(target.url);
+      if (token !== generation) {
+        return superseded;
+      }
+      if (blob) {
+        await present(target, current, blob, token);
+      } else {
+        const preview = await match(target.previewUrl);
+        if (token !== generation) {
+          return superseded;
+        }
+        if (preview) {
+          showPreview(target, current, preview);
+        }
+      }
+    }
+    if (token !== generation) {
+      return superseded;
+    }
+    if (rollover !== today) {
+      // A navigation click cancelled the move while the image was restored.
+      return { applied: false, reason: 'rollover cancelled' };
+    }
+    view.showUpdating();
+    if (state.catalog?.entries?.[today]) {
+      return act(token, today, false);
+    }
+    await writes;
+    return { applied: false, reason: 'waiting for today' };
   }
 
   /**
    * Start from the committed display snapshot, otherwise from the target
-   * date. A background target-date refresh never moves the page off the
-   * committed selection.
+   * date. The first new tab of a day keeps the previous day's committed
+   * wallpaper under the updating headline and swaps to today's wallpaper once
+   * it is loaded; its preview is never shown. Only the page's opening
+   * initialization makes that decision; a reinitialization after reconnecting
+   * keeps the current selection.
    *
    * @returns {Promise<{applied: boolean, reason?: string, previewShown?: boolean}>}
    */
@@ -300,29 +449,20 @@ export function createWallpaperController({
       return superseded;
     }
     const snapshot = isValidDisplaySnapshot(stored) ? stored : null;
-    if (snapshot) {
-      committed = { date: snapshot.date, imageId: snapshot.imageId, url: snapshot.url };
-      const entry = state.catalog?.entries?.[snapshot.date];
-      // On failure the boot-painted preview of this snapshot stays on screen.
-      if (entry?.imageId === snapshot.imageId) {
-        return act(token, snapshot.date, true);
-      }
-      const shown = await showCommitted(snapshot, token);
-      if (shown.applied || token !== generation) {
-        return shown;
-      }
-      if (entry) {
-        return act(token, snapshot.date, true);
+    if (!rolloverDecided) {
+      rolloverDecided = true;
+      const today = getTargetDate();
+      if (snapshot && snapshot.date < today && getZhCnTargetDate(new Date(snapshot.updatedAt)) < today) {
+        rollover = today;
       }
     }
-    const targetDate = state.catalog?.refreshState?.date;
-    const result = state.catalog?.entries?.[targetDate]
-      ? await act(token, targetDate, true)
-      : { applied: false, reason: 'target not published' };
-    if (!result.applied && !result.previewShown && result.reason !== 'superseded') {
-      view.showFallback();
+    if (!snapshot) {
+      return showTarget(token, state.catalog);
     }
-    return result;
+    if (rollover && snapshot.date < rollover) {
+      return showRollover(token, state, snapshot);
+    }
+    return showSnapshot(token, state.catalog, snapshot);
   }
 
   /**
@@ -333,43 +473,79 @@ export function createWallpaperController({
    * @param {number} offset - 1 for the previous (older) date, -1 for the next
    */
   async function navigate(offset) {
-    const token = ++generation;
-    const interrupted = pending;
-    pending = { date: null };
+    // A click is superseded by a newer click, and by any page action that
+    // starts while it reads. It claims the page token only once it has a
+    // destination, so a click with nowhere to go changes nothing.
+    const click = ++navigations;
+    const base = generation;
+    // The user's choice replaces a pending move to today's wallpaper as soon
+    // as it is made, and this page no longer becomes a first tab of the day.
+    const cancelled = rollover;
+    rollover = null;
+    rolloverDecided = true;
     const { catalog } = await readState();
-    if (token !== generation) {
+    if (click !== navigations || base !== generation) {
       return superseded;
     }
     const dates = getNavigableDates(catalog, catalog?.refreshState?.date);
     const index = dates.indexOf(displayDate ?? catalog?.refreshState?.date);
-    if (index >= 0) {
-      return act(token, dates[(index + offset + dates.length) % dates.length], false);
+    if (index < 0) {
+      if (cancelled) {
+        // Stop a move already in flight; the image and snapshot stay.
+        if (pending?.date === cancelled) {
+          ++generation;
+          pending = null;
+        }
+        restoreHeadline();
+      }
+      return { applied: false, reason: 'not navigable' };
     }
-    // Nowhere to go: the action this click interrupted carries on.
-    pending = null;
-    return interrupted?.date
-      ? act(token, interrupted.date, interrupted.allowPreview)
-      : { applied: false, reason: 'not navigable' };
+    return act(++generation, dates[(index + offset + dates.length) % dates.length], false);
   }
 
   /**
    * Guarded reread after a wallpaperCatalogUpdated notification. It continues
-   * the action in flight, refreshes the displayed date, or initializes a page
-   * that has nothing to show yet.
+   * the action in flight, moves to today's wallpaper once the catalog has it,
+   * refreshes the displayed date, or initializes a page that has nothing to
+   * show yet.
    *
    * @param {string[]} [dates] - Catalog dates the notification reports as changed
    */
   async function catalogUpdated(dates) {
+    const reported = date => !Array.isArray(dates) || dates.includes(date);
+    if (rollover && !pending) {
+      // While the move to today's wallpaper waits, only today's entry matters.
+      return reported(rollover)
+        ? (await tryRollover()) ?? { applied: false, reason: 'not published' }
+        : { applied: false, reason: 'waiting for today' };
+    }
     const current = pending || (displayDate && { date: displayDate, allowPreview: false });
     if (!current) {
       return initialize();
     }
-    // A navigation that is still choosing its date rereads the catalog itself.
-    if (current.date === null || (Array.isArray(dates) && !dates.includes(current.date))) {
+    if (!reported(current.date)) {
       return { applied: false, reason: 'not displayed' };
     }
     return act(++generation, current.date, current.allowPreview);
   }
 
-  return { initialize, navigate, catalogUpdated };
+  /**
+   * Called when the catalog refresh this page requested has finished. If today
+   * is still not in the catalog, the page stops waiting for it and the
+   * committed wallpaper's headline returns.
+   */
+  async function catalogRefreshed() {
+    if (!rollover || pending) {
+      return { applied: false, reason: 'not waiting' };
+    }
+    const result = await tryRollover();
+    if (result) {
+      return result;
+    }
+    rollover = null;
+    restoreHeadline();
+    return { applied: false, reason: 'not published' };
+  }
+
+  return { initialize, navigate, catalogUpdated, catalogRefreshed };
 }
