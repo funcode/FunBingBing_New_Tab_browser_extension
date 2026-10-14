@@ -280,15 +280,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true;
   }
 
-  // The current page still requests legacy prefetch until it becomes a
-  // read-only consumer (#119/#122). Its URLs are not trusted: the request only
-  // triggers the single image consumer, which derives work from the catalog.
-  if (message && message.type === "prefetchWallpapers") {
-    reconcileImagesInBackground();
-    sendResponse({ ok: true });
-    return false;
-  }
-
   if (message && message.type === "syncQuotesForImages") {
     (async () => {
       try {

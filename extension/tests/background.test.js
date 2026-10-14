@@ -86,7 +86,7 @@ async function loadWorker() {
 }
 
 describe('worker message handlers', () => {
-  it('runs legacy prefetch requests through the single image consumer', async () => {
+  it('serves concurrent page image requests through the single image consumer', async () => {
     const worker = await loadWorker();
     let release;
     let started;
@@ -100,15 +100,12 @@ describe('worker message handlers', () => {
 
     const ensured = worker.send({ type: 'ensureWallpaperCached', date: TARGET, resolution: 'preview' });
     await startedPromise;
-    const legacy = worker.send({ type: 'prefetchWallpapers', urls: [PREVIEW, HD] });
+    const final = worker.send({ type: 'ensureWallpaperCached', date: TARGET, resolution: 'highDef' });
     await new Promise(resolve => setTimeout(resolve, 10));
     release();
 
     assert.deepStrictEqual(await ensured, { ok: true, status: 'fetched' });
-    assert.strictEqual((await legacy).ok, true);
-    while (!worker.caches.get('funbingbing-wallpaper-cache-v2')?.store.has(HD)) {
-      await new Promise(resolve => setTimeout(resolve, 0));
-    }
+    assert.deepStrictEqual(await final, { ok: true, status: 'fetched' });
 
     assert.strictEqual(worker.fetches.maxActive, 1);
     assert.deepStrictEqual(worker.fetches.calls, [PREVIEW, HD]);

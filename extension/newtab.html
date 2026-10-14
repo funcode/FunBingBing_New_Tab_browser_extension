@@ -4,18 +4,12 @@
 <head>
   <meta charset="utf-8" />
   <style>
+    /* One dark gradient for every color scheme (ADR-0006). */
     html,
     body {
       margin: 0;
       min-height: 100%;
-      background-color: #000;
-    }
-
-    @media (prefers-color-scheme: light) {
-      html,
-      body {
-        background-color: #b4abab7d;
-      }
+      background-image: linear-gradient(160deg, #1f2933, #3e4c59);
     }
 
     #online-view {
@@ -33,7 +27,6 @@
       box-sizing: border-box;
       padding: 24px;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f7f7f7;
     }
 
     html[data-network-status="offline"] #online-view {

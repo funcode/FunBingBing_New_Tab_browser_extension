@@ -101,3 +101,16 @@ export function isPreloadDataUrlConsistent(snapshot, previewImageId) {
   // Non-empty data URL must match the snapshot's own imageId
   return snapshot.imageId === previewImageId;
 }
+
+/**
+ * Read the UHD product setting. The sync value is the string "yes"/"no"; an
+ * absent value keeps the "yes" default, and anything else is treated as "no".
+ * Shared by the worker scheduler and the page so the rule has one definition.
+ *
+ * @param {*} value - Stored `enable_uhd_wallpaper` value
+ * @returns {boolean}
+ */
+export function isUhdEnabled(value) {
+  return value === undefined || value === 'yes';
+}
+

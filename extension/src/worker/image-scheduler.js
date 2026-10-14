@@ -8,6 +8,7 @@
  */
 
 import { isValidCalendarDate } from '../helpers/date.js';
+import { isUhdEnabled } from '../helpers/display-state.js';
 import {
   TASK_PRIORITY,
   canDispatchImageTask,
@@ -28,11 +29,6 @@ const RESOLUTIONS = Object.freeze(['preview', 'highDef', 'ultraHighDef']);
 
 // Queue marker: remove unreferenced keys before the future batch starts.
 const CLEANUP = Object.freeze({ cleanup: true });
-
-/** The sync setting stores "yes"/"no"; a missing value keeps the "yes" default. */
-function isUhdEnabled(value) {
-  return value === undefined || value === 'yes';
-}
 
 /**
  * @param {Object} deps

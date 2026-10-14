@@ -1,22 +1,29 @@
-let onlineAppStartPromise = null;
+// Page-owned display snapshot. wallpaper.js shares this global scope and uses
+// the same constant.
+const DISPLAY_STATE_KEY = 'wallpaper_display_state_v2';
 
-function startOnlineApp() {
-  if (onlineAppStartPromise) return onlineAppStartPromise;
-
-  onlineAppStartPromise = (window.confReadyPromise || Promise.resolve())
-    .then(() => {
-    try {
-      const body = document.getElementById('main-body');
-      const preloadDataUrl = typeof readConf === 'function'
-        ? readConf('wallpaper_preload_data_url')
-        : null;
-      if (body && preloadDataUrl) {
-        body.style.backgroundImage = `url('${preloadDataUrl}')`;
-        body.style.backgroundColor = '';
-      }
-    } catch (err) {
-      console.warn('Unable to paint cached wallpaper preload:', err);
+// Paint the committed display snapshot's preview before wallpaper.js loads.
+// The snapshot is trusted as an atomic unit; its identity is never inferred
+// from the data URL bytes.
+function paintCommittedPreview() {
+  try {
+    const body = document.getElementById('main-body');
+    if (!body || typeof readConf !== 'function') return;
+    const snapshot = readConf(DISPLAY_STATE_KEY);
+    const preloadDataUrl = snapshot?.preloadDataUrl;
+    if (typeof preloadDataUrl === 'string' && preloadDataUrl.startsWith('data:image/')) {
+      body.style.backgroundImage = `url('${preloadDataUrl}')`;
+      body.style.backgroundColor = '';
     }
+  } catch (err) {
+    console.warn('Unable to paint cached wallpaper preload:', err);
+  }
+}
+
+function startApp() {
+  (window.confReadyPromise || Promise.resolve())
+    .then(() => {
+    paintCommittedPreview();
 
     const scriptsToLoad = [
       "scripts/main/i18n.js",
@@ -51,16 +58,7 @@ function startOnlineApp() {
     .catch((err) => {
       console.error('Error loading dependent scripts after configuration ready:', err);
     });
-
-  return onlineAppStartPromise;
 }
 
-if (document.documentElement.dataset.networkStatus === 'online') {
-  startOnlineApp();
-}
-
-window.addEventListener('funbingbing:networkstatuschange', (event) => {
-  if (event.detail?.status === 'online') {
-    startOnlineApp();
-  }
-});
+// Started whatever the network status: cached wallpaper is displayed offline too.
+startApp();

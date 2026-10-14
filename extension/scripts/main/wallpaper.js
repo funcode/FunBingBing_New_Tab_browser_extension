@@ -1,6 +1,16 @@
-const WALLPAPER_CACHE_NAME = 'funbingbing-wallpaper-cache-v1';
-const WALLPAPER_FETCH_LOCK_KEY = 'wallpaper_fetch_lock';
-const WALLPAPER_FETCH_LOCK_TTL_MS = 30_000;
+/**
+ * New tab wallpaper: a read-only consumer of the service worker's catalog and
+ * Cache Storage. This page never fetches or caches wallpaper images. It is the
+ * only writer of the display snapshot, which records the final image it last
+ * applied. The rules live in src/page/wallpaper-controller.js; this script
+ * binds them to the DOM.
+ */
+
+// The worker writes this cache and the catalog; the page only reads them.
+const WALLPAPER_CACHE_NAME = 'funbingbing-wallpaper-cache-v2';
+const CATALOG_KEY = 'bing_wallpaper_catalog_v2';
+// DISPLAY_STATE_KEY is declared by boot.js, which shares this global scope.
+
 let currentWallpaperObjectUrl = null;
 let currentImageDate = null;
 let currentTransientQuoteDate = null;
@@ -41,136 +51,32 @@ async function blobToDataUrl(blob) {
 	});
 }
 
-async function cachePreloadWallpaper(blob) {
-	if (!blob) return;
-	try {
-		const dataUrl = await blobToDataUrl(blob);
-		chrome.storage.local.set({ 'wallpaper_preload_data_url': dataUrl });
-	} catch (err) {
-		console.warn('Failed to cache preload wallpaper:', err);
-	}
+async function matchWallpaperBlob(url) {
+	const cache = await caches.open(WALLPAPER_CACHE_NAME);
+	const response = await cache.match(url);
+	return response ? response.blob() : null;
 }
 
-async function fetchWallpaperBlob(url) {
-	if (!url) {
-		throw new Error('Invalid wallpaper url');
-	}
-
-	const fetchFromNetwork = async () => {
-		const response = await fetch(url, {
-			mode: 'cors',
-			cache: 'no-store'
-		});
-		if (!response.ok) {
-			throw new Error(`Wallpaper request failed with status ${response.status}`);
-		}
-		return response;
-	};
-	const fetchBlobFromNetwork = async () => {
-		const networkResponse = await fetchFromNetwork();
-		return networkResponse.blob();
-	};
-
-	if (!('caches' in window)) {
-		return fetchBlobFromNetwork();
-	}
-
-	let cache;
-	try {
-		cache = await caches.open(WALLPAPER_CACHE_NAME);
-	} catch (err) {
-		console.warn('Unable to open wallpaper cache, fetching from network:', err);
-		return fetchBlobFromNetwork();
-	}
-
-	let response;
-	try {
-		response = await cache.match(url);
-	} catch (err) {
-		console.warn('Unable to read wallpaper cache, fetching from network:', err);
-		return fetchBlobFromNetwork();
-	}
-
-	if (!response) {
-		response = await fetchFromNetwork();
-		const responseForCache = response.clone();
-		const blobPromise = response.blob();
-
-		try {
-			await cache.put(url, responseForCache);
-		} catch (err) {
-			console.warn('Unable to write wallpaper cache:', err);
-			return blobPromise;
-		}
-		return blobPromise;
-	}
-	return response.blob();
-}
-
-async function applyWallpaperFromBlob(blob, originalUrl, image, options = {}) {
+function showWallpaperObjectUrl(objectUrl) {
 	const body = document.getElementById('main-body');
-	if (!body) return;
-	const objectUrl = URL.createObjectURL(blob);
 	revokeCurrentWallpaperObjectUrl();
 	currentWallpaperObjectUrl = objectUrl;
-	try {
-		await preloadWallpaperObjectUrl(objectUrl);
-	} catch (preloadError) {
-		console.warn('Wallpaper preloading failed, applying immediately:', preloadError);
-	}
-	setContents(image, options);
 	body.style.backgroundImage = `url('${objectUrl}')`;
 	body.removeAttribute('data-wallpaper-fallback');
 	body.classList.remove('wallpaper-fallback-active');
 	body.style.backgroundColor = '';
-	writeConf('wallpaper_url', originalUrl);
 }
 
-// set wallpaper to default
-async function showDefaultWallpaper(options = {}) {
-	function activateFallbackPlaceholder() {
-		revokeCurrentWallpaperObjectUrl();
-		body.style.backgroundImage = '';
-		body.style.backgroundColor = '#000';
-		body.setAttribute('data-wallpaper-fallback', 'visible');
-		body.classList.add('wallpaper-fallback-active');
-	}
+// Expose the gradient behind the body; no inline color is set (ADR-0006).
+function activateFallbackPlaceholder() {
 	const body = document.getElementById('main-body');
-	if (!body) return;
-	const wallpaperUrl = readConf('wallpaper_url');
-	if (wallpaperUrl) {
-		let imageForContent;
-		const bingImages = readConf('bing_images');
-		let idx = readConf('wallpaper_idx');
-		idx = Number.parseInt(idx, 10);
-		if (!Number.isFinite(idx) || idx < 0) {
-			idx = 0;
-		}
-		if (Array.isArray(bingImages) && bingImages.length > 0) {
-			if (idx >= bingImages.length) {
-				idx = 0;
-			}
-			imageForContent = bingImages[idx];
-		}
-		try {
-			if ('caches' in window) {
-				const cache = await caches.open(WALLPAPER_CACHE_NAME);
-				const cachedResponse = await cache.match(wallpaperUrl);
-				if (!cachedResponse) {
-					activateFallbackPlaceholder();
-				}
-			}
-			const blob = await fetchWallpaperBlob(wallpaperUrl);
-			await applyWallpaperFromBlob(blob, wallpaperUrl, imageForContent, options);
-			return;
-		} catch (err) {
-			console.error('Failed to load cached wallpaper via Cache Storage:', err);
-		}
-	}
-	activateFallbackPlaceholder();
+	revokeCurrentWallpaperObjectUrl();
+	body.style.backgroundImage = '';
+	body.style.backgroundColor = '';
+	body.setAttribute('data-wallpaper-fallback', 'visible');
+	body.classList.add('wallpaper-fallback-active');
 }
 
-// set footer text
 function setFooterText(text) {
 	var headline_text = document.getElementById('headline');
 	headline_text.textContent = text ?? '';
@@ -178,561 +84,67 @@ function setFooterText(text) {
 
 // pre-load image from url
 // then change background image and footer text after loading is finished
-async function changeWallpaper(idx) {
-	setFooterText(i18n('updating_wallpaper'));
-	const images = readConf('bing_images');
-	if (!Array.isArray(images) || images.length === 0) {
-		await showDefaultWallpaper();
-		return false;
-	}
-	if (!Number.isFinite(idx) || idx < 0) {
-		idx = 0;
-	}
-	if (idx >= images.length) {
-		idx = 0;
-	}
-	const image = images[idx];
-	currentImageDate = image?.isoDate || null;
-	//TODO: scrape this baseurl from modelResult in collectBingDataInParallel
-	const baseurl = 'https://ts1.tc.mm.bing.net';
-	const landscape = image?.imageUrls?.landscape;
-	const path = readConf('enable_uhd_wallpaper') == 'yes'
-		? landscape?.ultraHighDef
-		: landscape?.highDef;
-	const imgurl = path ? baseurl + path : null;
-	const path_640x360 = readConf('enable_uhd_wallpaper') == 'yes'
-		? landscape?.ultraHighDef?.replace('UHD', '640x360')
-		: landscape?.highDef.replace('1920x1080', '640x360');
-	const img_640x360 = path_640x360 ? baseurl + path_640x360 : null;
-	if (!imgurl) {
-		console.warn('Unable to resolve wallpaper URL for index', idx);
-		await showDefaultWallpaper();
-		return false;
-	}
-	try {
-		const hdPromise = (async () => {
-			const hdBlob = await fetchWallpaperBlob(imgurl);
-			await applyWallpaperFromBlob(hdBlob, imgurl, image);
-		})();
-		const previewPromise = (async () => {
-			let previewBlob = null;
-			if (img_640x360) {
-				try {
-					previewBlob = await fetchWallpaperBlob(img_640x360);
-					// Reduce the flash when opening a new tab
-					cachePreloadWallpaper(previewBlob);
-					// No need to show the preview to avoid flicker
-					// await applyWallpaperFromBlob(previewBlob, img_640x360, image);
-				} catch (previewError) {
-					console.warn('Failed to load preview resolution wallpaper, skipping preload cache:', previewError);
-				}
-			}
-		})();
-		await Promise.all([hdPromise, previewPromise]);
-		return true;
-	} catch (error) {
-		console.error('Failed to load wallpaper image:', error);
-		await showDefaultWallpaper();
-		return false;
-	}
-}
 
-// get latest wallpaper url from bing.com 
-// then load and change wallpaper
-async function updateWallpaper(idx) {
-	try {
-		const changed = await changeWallpaper(idx);
-		if (!changed) return false;
-		await writeConf('wallpaper_idx', idx.toString());
-		return true;
-	} catch (e) {
-		console.error('Failed to update wallpaper:', e);
-		await showDefaultWallpaper();
-		return false;
-	}
-}
-
-function buildModelPreloadWallpaperUrls(preloadMediaContents) {
-	const urls = [];
-	const sourceSuffix = /_\d+x\d+\.(?:webp|jpg)$/i;
-
-	(Array.isArray(preloadMediaContents) ? preloadMediaContents : []).forEach((item) => {
-		const sourceUrl = item?.ImageContent?.Image?.Url;
-		if (typeof sourceUrl !== 'string') return;
-
-		try {
-			const parsedUrl = new URL(sourceUrl);
-			if (parsedUrl.protocol !== 'https:') return;
-			const imageId = parsedUrl.searchParams.get('id');
-			if (!imageId || !sourceSuffix.test(imageId)) return;
-
-			const baseImageId = imageId.replace(sourceSuffix, '');
-			['_UHD.jpg', '_640x360.jpg'].forEach((suffix) => {
-				const derivedUrl = new URL(parsedUrl.toString());
-				derivedUrl.searchParams.set('id', baseImageId + suffix);
-				urls.push(derivedUrl.toString());
-			});
-		} catch (err) {
-			// Ignore malformed model preload URLs without failing wallpaper refresh.
-		}
-	});
-
-	return [...new Set(urls)];
-}
-
-function buildWallpaperPrefetchUrls() {
-	const images = readConf('bing_images');
-
-	const baseurl = 'https://ts1.tc.mm.bing.net';
-	const useUhd = readConf('enable_uhd_wallpaper') == 'yes';
-	const urls = [];
-	(Array.isArray(images) ? images : []).forEach((image) => {
-		const landscape = image?.imageUrls?.landscape;
-		const path = useUhd ? landscape?.ultraHighDef : landscape?.highDef;
-		if (path) urls.push(baseurl + path);
-		// Match the 640x360 preview changeWallpaper() also awaits, so switching
-		// never blocks on the preview fetch.
-		const previewPath = useUhd
-			? landscape?.ultraHighDef?.replace('UHD', '640x360')
-			: landscape?.highDef?.replace('1920x1080', '640x360');
-		if (previewPath) urls.push(baseurl + previewPath);
-	});
-
-	const modelPreloadUrls = readConf('bing_model_preload_wallpaper_urls');
-	(Array.isArray(modelPreloadUrls) ? modelPreloadUrls : []).forEach((url) => {
-		if (typeof url !== 'string') return;
-		try {
-			const parsedUrl = new URL(url);
-			if (parsedUrl.protocol === 'https:') urls.push(parsedUrl.toString());
-		} catch (err) {
-			// Ignore invalid persisted URLs.
-		}
-	});
-	return [...new Set(urls)];
-}
-
-function requestWallpaperPrefetch() {
-	const urls = buildWallpaperPrefetchUrls();
-	if (urls.length === 0) return;
-
-	try {
-		chrome.runtime.sendMessage({ type: 'prefetchWallpapers', urls }, (response) => {
-			if (chrome.runtime.lastError) {
-				console.debug('Wallpaper prefetch unavailable:', chrome.runtime.lastError.message);
-				return;
-			}
-			if (response && !response.ok) {
-				console.debug('Wallpaper prefetch failed:', response.error || 'unknown error');
-			}
+const wallpaperView = {
+	async applyFinal({ view, entry, blob, isCurrent }) {
+		const objectUrl = URL.createObjectURL(blob);
+		// An image that fails to decode is not applied: the current background,
+		// contents and display snapshot stay.
+		const decoded = await preloadWallpaperObjectUrl(objectUrl).then(() => true, (decodeError) => {
+			console.warn('Wallpaper image failed to decode:', decodeError);
+			return false;
 		});
-	} catch (err) {
-		console.debug('Failed to request wallpaper prefetch:', err);
-	}
-}
+		if (!decoded || !isCurrent()) {
+			URL.revokeObjectURL(objectUrl);
+			return false;
+		}
+		currentImageDate = view.date;
+		setContents(entry);
+		showWallpaperObjectUrl(objectUrl);
+		return true;
+	},
+	applyPreview({ view, entry, blob }) {
+		currentImageDate = view.date;
+		setContents(entry);
+		showWallpaperObjectUrl(URL.createObjectURL(blob));
+	},
+	refreshContents({ entry }) {
+		setContents(entry);
+	},
+	showUpdating() {
+		setFooterText(i18n('updating_wallpaper'));
+	},
+	showFallback: activateFallbackPlaceholder
+};
 
-async function refreshConfCacheIfAvailable() {
-		await initConfCache();
-}
-
-async function isTodayWallpaperReady() {
-	return await readStorageKey('wallpaper_date') === getDateString();
-}
-
-function isFreshWallpaperFetchLock(lockValue) {
-	const lockTime = Number(lockValue);
-	return Number.isFinite(lockTime)
-		&& lockTime > 0
-		&& Date.now() - lockTime < WALLPAPER_FETCH_LOCK_TTL_MS;
-}
-
-async function waitForTodayWallpaperReady(timeoutMs = WALLPAPER_FETCH_LOCK_TTL_MS) {
-	return new Promise((resolve) => {
-		let settled = false;
-		let timeoutId;
-
-		const finish = (ready) => {
-			if (settled) return;
-			settled = true;
-			clearTimeout(timeoutId);
-			chrome.storage.onChanged.removeListener(onChanged);
-			resolve(Boolean(ready));
-		};
-
-		const onChanged = (changes, area) => {
-			if (area === 'local' && changes.wallpaper_date?.newValue === getDateString()) {
-				finish(true);
-			}
-		};
-
-		chrome.storage.onChanged.addListener(onChanged);
-		timeoutId = setTimeout(() => finish(false), timeoutMs);
-
-		readStorageKey('wallpaper_date')
-			.then((wallpaperDate) => {
-				if (wallpaperDate === getDateString()) {
-					finish(true);
-				}
-			})
-			.catch((err) => {
-				console.warn('Failed to check wallpaper_date while waiting:', err);
-			});
-	});
-}
-
-async function runWallpaperFetchRefresh({ quoteSyncAlreadyRequested = false } = {}) {
-	setFooterText(i18n('updating_wallpaper'));
-	await showDefaultWallpaper({ preserveUpdatingHeadline: true });
-
-	const results = await collectBingDataInParallel();
-	const { todayDate, quoteSyncPayload } = await handleBingDataResults(results);
-	if (!todayDate) {
-		await showDefaultWallpaper();
-		return false;
-	}
-
-	const updated = await updateWallpaper(0);
-	if (quoteSyncPayload && !quoteSyncAlreadyRequested) {
-		fireQuoteSync(quoteSyncPayload);
-	}
-	if (!updated) return false;
-
-	await writeConf('wallpaper_date', todayDate);
-	requestWallpaperPrefetch();
-	return true;
-}
+const wallpaperControllerReady = import(chrome.runtime.getURL('src/page/wallpaper-controller.js'))
+	.then(({ createWallpaperController }) => createWallpaperController({
+		readCatalog: () => readStorageKey(CATALOG_KEY),
+		readDisplayState: () => readStorageKey(DISPLAY_STATE_KEY),
+		writeDisplayState: (snapshot) => writeConf(DISPLAY_STATE_KEY, snapshot),
+		matchImage: matchWallpaperBlob,
+		toDataUrl: blobToDataUrl,
+		requestImage: ({ date, resolution }) => chrome.runtime.sendMessage({ type: 'ensureWallpaperCached', date, resolution }),
+		readUhdSetting: async () => (await chrome.storage.sync.get('enable_uhd_wallpaper')).enable_uhd_wallpaper,
+		view: wallpaperView
+	}));
 
 // --- Main entry point ---
 async function initWallpaper() {
-	const cache_date = readConf("wallpaper_date");
-	if (cache_date == getDateString()) {
-		// Cached wallpaper for today
-		const cache_idx = readConf("wallpaper_idx");
-		if (cache_idx !== undefined && cache_idx !== null) {
-			await changeWallpaper(Number.parseInt(cache_idx, 10));
-			const todayDate = readConf('bing_images')?.[0]?.isoDate;
-			if (currentImageDate === todayDate) {
-				await requestQuoteSyncForCachedCatalog();
-			}
-			requestWallpaperPrefetch();
-		} else {
-			setFooterText(i18n('updating_wallpaper'));
-			await showDefaultWallpaper();
-			await updateWallpaper(0);
-			await requestQuoteSyncForCachedCatalog();
-			requestWallpaperPrefetch();
-		}
-	} else {
-		try {
-			let quoteSyncAlreadyRequested = false;
-			if (await isTodayWallpaperReady()) {
-				await refreshConfCacheIfAvailable();
-				const changed = await changeWallpaper(0);
-				quoteSyncAlreadyRequested = await requestQuoteSyncForCachedCatalog();
-				if (changed) {
-					requestWallpaperPrefetch();
-					return;
-				}
-			}
-
-			const lockValue = await readStorageKey(WALLPAPER_FETCH_LOCK_KEY);
-			if (isFreshWallpaperFetchLock(lockValue)) {
-				setFooterText(i18n('updating_wallpaper'));
-				await showDefaultWallpaper({ preserveUpdatingHeadline: true });
-				const ready = await waitForTodayWallpaperReady();
-				if (ready || await isTodayWallpaperReady()) {
-					await refreshConfCacheIfAvailable();
-					const changed = await changeWallpaper(0);
-					if (!quoteSyncAlreadyRequested) {
-						quoteSyncAlreadyRequested = await requestQuoteSyncForCachedCatalog();
-					}
-					if (changed) {
-						requestWallpaperPrefetch();
-						return;
-					}
-					console.warn('Today wallpaper became ready, but display failed; refreshing.');
-				}
-			}
-
-			// Best-effort cross-tab throttle; storage get/set is not atomic.
-			await writeConf(WALLPAPER_FETCH_LOCK_KEY, Date.now());
-			try {
-				await runWallpaperFetchRefresh({ quoteSyncAlreadyRequested });
-			} finally {
-				await writeConf(WALLPAPER_FETCH_LOCK_KEY, 0);
-			}
-		} catch (err) {
-			console.error("Error initializing wallpaper:", err);
-			await showDefaultWallpaper();
-		}
-	}
-}
-
-// --- Collect Bing Data (with fetch) ---
-async function collectBingDataInParallel() {
-	const results = {
-		imageArchive: null,
-		imageOfTheDay: null,
-		model: null,
-		modelPreloadWallpaperUrls: null,
-		quoteOfTheDay: null,
-		errors: []
-	};
-
-	try {
-		// Kick off all 4 requests in parallel
-		const [archiveRes, dayRes, modelRes, quoteRes] = await Promise.allSettled([
-			fetch("https://www.bing.com/HPImageArchive.aspx?format=js&n=1&mkt=zh-CN&idx=7"),
-			fetch("https://www.bing.com/hp/api/v1/imageoftheday?format=json&mkt=zh-CN"),
-			fetch("https://cn.bing.com/hp/api/model?mkt=zh-CN"),
-			fetch("https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN&form=QBRE", {
-				body: null,
-				method: "GET",
-				mode: "cors",
-				cache: "no-store",
-				credentials: "include"
-			})
-		]);
-
-		// Parse archive
-		if (archiveRes.status === "fulfilled" && archiveRes.value.ok) {
-			results.imageArchive = await archiveRes.value.json();
-		} else {
-			results.errors.push("HPImageArchive request failed");
-		}
-
-		// Parse imageOfTheDay
-		if (dayRes.status === "fulfilled" && dayRes.value.ok) {
-			results.imageOfTheDay = await dayRes.value.json();
-		} else {
-			results.errors.push("ImageOfTheDay request failed");
-		}
-
-		// Parse model + trivia expansion
-		if (modelRes.status === "fulfilled" && modelRes.value.ok) {
-			const mediaObj = await modelRes.value.json();
-			results.modelPreloadWallpaperUrls = buildModelPreloadWallpaperUrls(mediaObj?.PreloadMediaContents);
-			const { quickFactsBySsd, triviaPromises } = (mediaObj?.MediaContents || []).reduce((acc, item) => {
-				const mc = {
-					headline: item.ImageContent?.Headline,
-					quickFact: item.ImageContent?.QuickFact?.MainText,
-					triviaId: item.ImageContent?.TriviaId,
-					ssd: item.Ssd
-				};
-
-				if (mc.ssd && mc.quickFact) acc.quickFactsBySsd[mc.ssd] = mc.quickFact;
-
-				acc.triviaPromises.push((async () => {
-					if (mc.triviaId) {
-						try {
-							const res = await fetch(`https://www.bing.com/hp/api/v1/trivia?format=json&id=${mc.triviaId}&mkt=zh-CN`);
-							if (res.ok) mc.triviaData = (await res.json()).data;
-						} catch (e) { console.error("Failed trivia fetch:", e); }
-					}
-					return mc;
-				})());
-
-				return acc;
-			}, { quickFactsBySsd: {}, triviaPromises: [] });
-
-			results.quickFactsBySsd = quickFactsBySsd;
-			results.processedMediaContents = await Promise.all(triviaPromises);
-		} else {
-			results.errors.push("Model request failed");
-		}
-
-		// Parse quote of the day
-		if (quoteRes.status === "fulfilled" && quoteRes.value.ok) {
-			results.quoteOfTheDay = await quoteRes.value.text();
-		} else {
-			results.errors.push("QuoteOfTheDay request failed");
-		}
-	} catch (err) {
-		results.errors.push("Error collecting Bing data: " + err.message);
-	}
-
-	return results;
-}
-
-// --- Process Bing Results ---
-async function handleBingDataResults(results) {
-	// --- Safely access images ---
-	const images = results.imageOfTheDay?.data?.images ?? [];
-	if (images.length === 0) {
-		console.error("No imageOfTheDay data found");
-		return null;
-	}
-
-	// --- Async task: Handle Quote of the Day ---
-	const quoteTask = async () => {
-		// --- Scrape Quote of the Day ---
-		// --- The 2 functions below are adapted from FunBingBing repo ---
-		const selectFirst = (doc, selectors) => {
-			for (const selector of selectors) {
-				const element = doc.querySelector(selector);
-				if (element) return element;
-			}
-			return null;
-		};
-		function extractQuote(doc) {
-			const textElement = selectFirst(doc, [
-				'#bt_qotdText .bt_quoteText',
-				'.bt_quoteText',
-				'.quoteText',
-				'.qotd_quote[data-quote-text]',
-				'.qotd_quote_clickable .qotd_quote',
-				'.qotd_quote_clickable',
-				'.qotd_quote'
-			]);
-			const text = textElement
-				? normalizeQuoteText(textElement.getAttribute('data-quote-text') || textElement.textContent)
-				: null;
-
-			const authorElement = selectFirst(doc, [
-				'#bt_qotdText .bt_author .b_mText a',
-				'.qotd_author a',
-				'.qotd_author',
-				'.qotd_footer a'
-			]);
-			const author = authorElement ? authorElement.textContent.trim() : null;
-			const authorLink = authorElement
-				? (authorElement.closest('a') || authorElement.querySelector('a'))
-				: null;
-			const authorHref = authorLink ? authorLink.getAttribute('href') || '' : '';
-
-			const captionElement = selectFirst(doc, [
-				'#bt_qotdText .bt_authorCaption',
-				'.qotd_desc',
-				'.qotd_footer .qotd_desc'
-			]);
-			const caption = captionElement ? captionElement.textContent.trim() : null;
-
-			return { text, author, authorHref, caption };
-		}
-		if (results.quoteOfTheDay) {
-			try {
-				const parser = new DOMParser();
-				const doc = parser.parseFromString(results.quoteOfTheDay, "text/html");
-				let { text: quoteText, author: authorText, authorHref, caption: authorCaption } = extractQuote(doc);
-				if (quoteText && authorText) {
-					return {
-						text: quoteText,
-						source: authorText,
-						link: authorHref,
-						caption: authorCaption
-					};
-				}
-			} catch (e) {
-				console.error("Error parsing quote of the day HTML:", e);
-			}
-		}
-		return null;
-
-	};
-
-	// --- Merge processedMediaContents ---
-	images.forEach((img, idx) => {
-		const mc = results.processedMediaContents?.[idx];
-		if (!mc) return;
-		if (mc.headline) img.headline = mc.headline;
-		if (mc.quickFact) img.quickFact = mc.quickFact;
-		if (mc.triviaId) img.triviaId = mc.triviaId;
-		if (mc.triviaData) img.triviaData = mc.triviaData;
+	// Not awaited: the page starts from committed state while the worker refreshes.
+	chrome.runtime.sendMessage({ type: 'refreshWallpaperCatalog' }).catch((err) => {
+		console.debug('Wallpaper catalog refresh unavailable:', err);
 	});
-
-	// --- Async task: trivia for 8th image ---
-	const triviaFetch = async () => {
-		const archiveImages = results.imageArchive?.images;
-		if (!archiveImages) return;
-
-		const idx = images.length - 1;
-		images[idx].headline = archiveImages[0].title;
-		images[idx].triviaId = archiveImages[0].quiz;
-
-		if (!images[idx].triviaId) return;
-
-		const match = images[idx].triviaId.match(/HPQuiz_\d{8}_([^%]+)/);
-		if (!match || !images[idx].isoDate) return;
-
-		const quizName = match[1];
-		images[idx].triviaId = `HPQuiz_${images[idx].isoDate}_${quizName}`;
-
-		try {
-			const res = await fetch(
-				`https://www.bing.com/hp/api/v1/trivia?format=json&id=${images[idx].triviaId}&mkt=zh-CN`
-			);
-			if (res.ok) {
-				images[idx].triviaData = (await res.json()).data;
-			}
-		} catch (err) {
-			console.error("Failed trivia fetch for archive image:", err);
-		}
-	};
-
-	// --- Async task: update quickFacts ---
-	const quickFactsUpdate = async () => {
-		const cachedQuickFacts = readConf("cache_quick_facts");
-		const lastImageDate = images.at(-1).isoDate;
-
-		if (cachedQuickFacts && lastImageDate && cachedQuickFacts[lastImageDate]) {
-			images.at(-1).quickFact = cachedQuickFacts[lastImageDate];
-			results.quickFactsBySsd[lastImageDate] = cachedQuickFacts[lastImageDate];
-		} else {
-			images.at(-1).quickFact = '';
-		}
-		// Always keep the 8 most recent quickFacts cached
-		writeConf("cache_quick_facts", results.quickFactsBySsd);
-	};
-
-	// --- Execute all async tasks in parallel ---
-	const [, , todayQuote] = await Promise.all([triviaFetch(), quickFactsUpdate(), quoteTask()]);
-
-	setTransientQuote(images[0].isoDate, todayQuote);
-	const quoteSyncPayload = buildQuoteSyncPayload(images, todayQuote);
-
-	images.forEach((img) => {
-		if (img && typeof img === 'object') {
-			delete img.quoteData;
-		}
-	});
-
-	// --- Save image metadata; quotes are persisted only in cache_quote_state ---
-	await writeConf("bing_images", images);
-	if (Array.isArray(results.modelPreloadWallpaperUrls)) {
-		await writeConf("bing_model_preload_wallpaper_urls", results.modelPreloadWallpaperUrls);
-	}
-	console.log("Saved bing_images with merged contents.");
-
-	// --- Log errors ---
-	if (results.errors?.length > 0) {
-		console.error("Errors during parallel data collection:", results.errors);
-		writeConf("bing_data_errors", results.errors);
-	}
-
-	return {
-		todayDate: images[0].isoDate || null,
-		quoteSyncPayload
-	};
+	syncQuotes().catch((err) => console.error('Quote sync failed:', err));
+	const controller = await wallpaperControllerReady;
+	await controller.initialize();
 }
-
 
 async function switchWallpaper(offset) {
-	var MAX_OLD_DAYS = 8;
-	var cache_idx = readConf("wallpaper_idx");
-	if (!cache_idx) {
-		cache_idx = 0;
-	}
-	cache_idx = parseInt(cache_idx,10);
-	cache_idx = (cache_idx + offset + MAX_OLD_DAYS) % MAX_OLD_DAYS;
-	const images = readConf('bing_images');
-	const targetDate = Array.isArray(images) ? images[cache_idx]?.isoDate : null;
-	const todayDate = Array.isArray(images) ? images[0]?.isoDate : null;
-	await updateWallpaper(cache_idx);
-	if (targetDate === todayDate) {
-		await requestQuoteSyncForCachedCatalog();
-	}
+	const controller = await wallpaperControllerReady;
+	await controller.navigate(offset);
 }
 
-// if user want to show old wallpapers.
 async function switchPrevWallpaper() {
 	await switchWallpaper(1);
 }
@@ -742,15 +154,10 @@ async function switchNextWallpaper() {
 }
 
 // set wallpaper download link
-function setDownloadLink() {
-	var downloadLink = document.getElementById('wallpaper-download-link');
-	downloadLink.href = document.getElementById('main-body').style.backgroundImage.replace('url("', '').replace('")', '');
-	downloadLink.download = 'bing-wallpaper-' + getDateString();
-}
 
 function handleQuoteLinkClick() {
-	// Force a data refresh the next time a tab opens when the quote is missing
-	writeConf('wallpaper_date', '20000101');
+	// A missing quote only retries the quote sync; no wallpaper state changes.
+	syncQuotes().catch((err) => console.error('Quote sync failed:', err));
 }
 
 function getDefaultQuotePlaceholderData() {
@@ -866,42 +273,101 @@ function clearTransientQuote(date) {
 
 function getQuoteForImage(image, quoteCache = getCachedQuotesFromState()) {
 	if (!image || typeof image !== 'object') return null;
-	if (image.isoDate && image.isoDate === currentTransientQuoteDate) {
+	if (image.date && image.date === currentTransientQuoteDate) {
 		const transientQuote = normalizeQuoteForRender(currentTransientQuote);
 		if (transientQuote) return transientQuote;
 	}
-	return normalizeQuoteForRender(quoteCache?.[image.isoDate]);
+	return normalizeQuoteForRender(quoteCache?.[image.date]);
 }
 
-function buildQuoteSyncPayload(images, todayQuote) {
-	if (!Array.isArray(images) || images.length === 0) return null;
-	const imageDates = images
-		.map((img) => (img && typeof img.isoDate === 'string' ? img.isoDate : null))
-		.filter((date) => typeof date === 'string' && date.trim());
-	if (imageDates.length === 0) return null;
-	return {
+// --- The 2 functions below are adapted from FunBingBing repo ---
+	const selectFirst = (doc, selectors) => {
+		for (const selector of selectors) {
+			const element = doc.querySelector(selector);
+			if (element) return element;
+		}
+		return null;
+	};
+	function extractQuote(doc) {
+		const textElement = selectFirst(doc, [
+			'#bt_qotdText .bt_quoteText',
+			'.bt_quoteText',
+			'.quoteText',
+			'.qotd_quote[data-quote-text]',
+			'.qotd_quote_clickable .qotd_quote',
+			'.qotd_quote_clickable',
+			'.qotd_quote'
+		]);
+		const text = textElement
+			? normalizeQuoteText(textElement.getAttribute('data-quote-text') || textElement.textContent)
+			: null;
+
+		const authorElement = selectFirst(doc, [
+			'#bt_qotdText .bt_author .b_mText a',
+			'.qotd_author a',
+			'.qotd_author',
+			'.qotd_footer a'
+		]);
+		const author = authorElement ? authorElement.textContent.trim() : null;
+		const authorLink = authorElement
+			? (authorElement.closest('a') || authorElement.querySelector('a'))
+			: null;
+		const authorHref = authorLink ? authorLink.getAttribute('href') || '' : '';
+
+		const captionElement = selectFirst(doc, [
+			'#bt_qotdText .bt_authorCaption',
+			'.qotd_desc',
+			'.qotd_footer .qotd_desc'
+		]);
+		const caption = captionElement ? captionElement.textContent.trim() : null;
+
+		return { text, author, authorHref, caption };
+	}
+
+async function scrapeQuoteOfTheDay() {
+	try {
+		const response = await fetch("https://cn.bing.com/search?q=quote%20of%20the%20day&mkt=zh-CN&form=QBRE", {
+			body: null,
+			method: "GET",
+			mode: "cors",
+			cache: "no-store",
+			credentials: "include"
+		});
+		if (!response.ok) return null;
+		const doc = new DOMParser().parseFromString(await response.text(), "text/html");
+		const { text, author, authorHref, caption } = extractQuote(doc);
+		return text && author ? { text, source: author, link: authorHref, caption } : null;
+	} catch (e) {
+		console.error("Failed to scrape quote of the day:", e);
+		return null;
+	}
+}
+
+// Legacy quote sync over the catalog's current and historical dates. The page
+// scrapes Bing only while the target date has no cached quote. The worker
+// lease and its backoff replace this in #120.
+async function syncQuotes() {
+	const catalog = await readStorageKey(CATALOG_KEY);
+	const todayDate = catalog?.refreshState?.date;
+	const imageDates = Object.keys(catalog?.entries || {}).filter((date) => date <= todayDate).sort().reverse();
+	if (imageDates.length === 0) return;
+
+	const quoteCache = getCachedQuotesFromState(await readStorageKey('cache_quote_state'));
+	let todayQuote = quoteCache[todayDate] || null;
+	if (!normalizeQuoteForRender(todayQuote)) {
+		todayQuote = await scrapeQuoteOfTheDay();
+		setTransientQuote(todayDate, todayQuote);
+		if (currentImageDate === todayDate) {
+			updateQuoteOnly({ date: todayDate });
+		}
+	}
+	fireQuoteSync({
 		type: 'syncQuotesForImages',
 		requestId: Date.now(),
-		todayDate: images[0]?.isoDate,
+		todayDate,
 		todayQuote,
 		imageDates
-	};
-}
-
-async function requestQuoteSyncForCachedCatalog() {
-	const [images, quoteState] = await Promise.all([
-		readStorageKey('bing_images'),
-		readStorageKey('cache_quote_state')
-	]);
-	if (!Array.isArray(images) || images.length === 0) return false;
-
-	const quoteCache = getCachedQuotesFromState(quoteState);
-	const todayDate = images[0]?.isoDate;
-	const todayQuote = todayDate ? quoteCache[todayDate] || null : null;
-	const payload = buildQuoteSyncPayload(images, todayQuote);
-	if (!payload) return false;
-	fireQuoteSync(payload);
-	return true;
+	});
 }
 
 let latestForegroundQuoteRequestId = 0;
@@ -924,10 +390,9 @@ function fireQuoteSync(payload) {
 	}
 }
 
-function setContents(image, options = {}) {
+function setContents(image) {
 	if (!image) return;
 	const quoteData = getQuoteForImage(image);
-	const preserveUpdatingHeadline = Boolean(options?.preserveUpdatingHeadline);
 
 	// --- Format date helper ---
 	const formatDate = (isoDate) => {
@@ -938,18 +403,16 @@ function setContents(image, options = {}) {
 	};
 
 	// --- Set footer and headline link ---
-	if (!preserveUpdatingHeadline) {
-		setFooterText(image.headline);
-	}
+	setFooterText(image.headline);
 	const headlineLink = document.getElementById('headline-link');
-	if (headlineLink) headlineLink.href = `https://cn.bing.com${image.clickUrl}`;
+	if (headlineLink && image.clickUrl) headlineLink.href = `https://cn.bing.com${image.clickUrl}`;
 
 	// --- Prepare content ---
 	const contents = {
 		text: image.headline || '',
 		title: image.title || '',
 		copyright: image.copyright || '',
-		isoDate: image.isoDate || '',
+		isoDate: image.date || '',
 		description: image.description || '',
 		descriptionPara2: image.descriptionPara2 || '',
 		descriptionPara3: image.descriptionPara3 || ''
@@ -988,17 +451,20 @@ function setContents(image, options = {}) {
 		}
 	}
 
+	// The quiz is cleared on every render and rebuilt only from a complete payload.
+	const trivia = image.triviaState === 'complete' ? image.triviaData : null;
+
 	// --- Set daily quiz question ---
 	const quizDiv = document.getElementById('daily-quiz-title');
-	if (quizDiv && image.triviaData?.question) {
-		quizDiv.textContent = image.triviaData.question;
+	if (quizDiv) {
+		quizDiv.textContent = trivia?.question || '';
 	}
 
 	// --- Render daily quiz options ---
 	const optionsUl = document.getElementById('daily-quiz-options');
-	if (optionsUl && Array.isArray(image.triviaData?.options)) {
+	if (optionsUl) {
 		optionsUl.innerHTML = ''; // clear previous
-		image.triviaData.options.forEach(option => {
+		(Array.isArray(trivia?.options) ? trivia.options : []).forEach(option => {
 			const li = document.createElement('li');
 			li.className = 'option';
 
@@ -1031,33 +497,21 @@ function updateQuoteOnly(image, quoteCache) {
 }
 
 async function refreshCurrentQuoteFromStorage() {
-	const images = readConf('bing_images');
-	if (!Array.isArray(images) || images.length === 0) return;
 	// quotesUpdated can arrive before this page's confCache sees storage.onChanged.
 	// Fresh-read the quote state written by background before repainting.
 	const quoteCache = getCachedQuotesFromState(await readStorageKey('cache_quote_state'));
-	let image = null;
-	if (currentImageDate) {
-		if (normalizeQuoteForRender(quoteCache[currentImageDate])) {
-			clearTransientQuote(currentImageDate);
-		}
-		image = images.find(img => img && img.isoDate === currentImageDate) || null;
+	if (normalizeQuoteForRender(quoteCache[currentImageDate])) {
+		clearTransientQuote(currentImageDate);
 	}
-	//TODO: Remove fallback to current index once we have a more robust way to correlate quote updates with the correct image
-	//Bug Fix: An old wallpaper is displayed with the latest quote, but the wallpaper is not changed， probably due to the image is not successfully loaded.
-	//TODO: Nicely handle the situation when loading the new wallpaper is interupted by opening a web page, the new image loading is aborted, and the wallpaper_idx is not changed
-	if (!image) {
-		let idx = readConf('wallpaper_idx');
-		idx = Number.parseInt(idx, 10);
-		if (!Number.isFinite(idx) || idx < 0 || idx >= images.length) {
-			idx = 0;
-		}
-		image = images[idx];
-	}
-	updateQuoteOnly(image, quoteCache);
+	updateQuoteOnly({ date: currentImageDate }, quoteCache);
 }
 
 chrome.runtime.onMessage.addListener((message) => {
+	if (message && message.type === 'wallpaperCatalogUpdated') {
+		wallpaperControllerReady
+			.then((controller) => controller.catalogUpdated(message.dates))
+			.catch((err) => console.error('Failed to apply catalog update:', err));
+	}
 	if (message && message.type === 'quotesUpdated') {
 		if (!Array.isArray(message.updatedDates) || message.updatedDates.length === 0) return;
 		const activeDate = currentImageDate;
