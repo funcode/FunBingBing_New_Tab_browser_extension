@@ -1,0 +1,9 @@
+#!/bin/sh
+# Run the extension's unit tests when a commit touches extension/.
+# Enable once per clone: git config core.hooksPath .githooks
+if git diff --cached --name-only | grep -q '^extension/'; then
+  cd extension && node --test tests/*.test.js || {
+    echo "pre-commit: extension unit tests failed" >&2
+    exit 1
+  }
+fi

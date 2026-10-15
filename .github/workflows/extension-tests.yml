@@ -1,0 +1,25 @@
+name: Extension tests
+
+on:
+  push:
+    paths: ['extension/**', '.github/workflows/extension-tests.yml']
+  pull_request:
+    paths: ['extension/**', '.github/workflows/extension-tests.yml']
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: extension
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - name: Unit tests
+        run: node --test tests/*.test.js
+      - run: npx playwright install --with-deps chromium
+      - name: Browser checks in the loaded extension
+        run: node --test tests/e2e/*.e2e.mjs

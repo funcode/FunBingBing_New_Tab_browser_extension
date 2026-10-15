@@ -1,0 +1,2 @@
+# Keep LF in the index and working tree; binaries are detected automatically.
+* text=auto eol=lf
