@@ -35,3 +35,5 @@ extension/output/*
 extension/.claude/*
 extension/grilling_reviews/*
 extension/.codex/*
+extension/to-developer/*
+extension/to-reviewer/*
