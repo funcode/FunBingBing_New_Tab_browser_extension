@@ -6,6 +6,14 @@
  * No DOM, chrome.* or Cache Storage access: cache reads, decoding, storage and
  * messaging are injected, so the behaviour runs under Node tests. Rendering is
  * delegated through the view callbacks.
+ *
+ * Actions overlap: startup, navigation clicks, catalog notifications and the
+ * end of a catalog refresh. Two invariants hold whatever their interleaving,
+ * and tests/wallpaper-controller-interleavings.test.js checks both:
+ * - the stored snapshot is the last final image this page applied;
+ * - an older action never applies an image after a newer one finished.
+ * So every await is followed by a page-token check before shared state
+ * changes, and snapshot writes go through one queue.
  */
 
 import { getZhCnTargetDate } from '../helpers/date.js';
@@ -444,7 +452,9 @@ export function createWallpaperController({
   async function initialize() {
     const token = ++generation;
     pending = null;
-    const [state, stored] = await Promise.all([readState(), readDisplayState()]);
+    // Read after this page's own queued snapshot writes, so a reinitialization
+    // never restores an image the page has already replaced.
+    const [state, stored] = await Promise.all([readState(), writes.then(() => readDisplayState())]);
     if (token !== generation) {
       return superseded;
     }
