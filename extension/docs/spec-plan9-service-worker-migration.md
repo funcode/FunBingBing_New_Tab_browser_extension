@@ -73,6 +73,7 @@ is a scope update, not a claim that current runtime code has already been change
 22. As a user, I want a suspended service worker to resume from persisted catalog and cache state, so that completed downloads are not repeated.
 23. As a user, I want stale asynchronous responses prevented from changing a newer wallpaper identity, so that date rollover and concurrent work cannot corrupt the catalog.
 24. As a user opening another regular tab, I want it to initialize from the latest completed context display state available when it reads, without forcing already-open tabs to follow later writes.
+24a. As a user opening my first new tab of a day, I want the wallpaper I last saw to stay visible under `Wallpaper is updating...` until the day's wallpaper is loaded, and then to see the day's wallpaper.
 25. As a user with multiple tabs, I want an old callback in one tab prevented from overriding a newer action in that same tab, so that local races do not undo navigation.
 26. As a user, I expect incognito New Tab to remain the Chrome-provided page, because Ataraxia supports regular browsing only.
 27. As a user, I want all regular pages and the worker to observe the same sync-backed product settings.
@@ -91,7 +92,7 @@ is a scope update, not a claim that current runtime code has already been change
 
 ### Authority and market date
 
-- Active ADRs are authoritative when PLAN9 and an ADR disagree. The active set is ADR-0001 through ADR-0006 and ADR-0008 through ADR-0014. ADR-0012 records a deferred concurrency option, not permission to replace the serial scheduler. ADR-0014 describes quote recovery in the legacy implementation; its ownership and recovery behavior must be preserved using the v2 state and lease contracts rather than retaining legacy storage keys after migration. ADR numbering is not compacted after removal of the superseded ADR-0007.
+- Active ADRs are authoritative when PLAN9 and an ADR disagree. The active set is ADR-0001 through ADR-0006, ADR-0008 through ADR-0010, and ADR-0012 through ADR-0016. ADR-0012 records a deferred concurrency option, not permission to replace the serial scheduler. ADR-0014 describes quote recovery in the legacy implementation; its ownership and recovery behavior must be preserved using the v2 state and lease contracts rather than retaining legacy storage keys after migration. ADR numbering is not compacted after removal of the superseded ADR-0007.
 - The wallpaper market remains fixed to `zh-CN`, and the target date is calculated at the Asia/Shanghai market boundary.
 - A wallpaper date is a Bing publication identity, not the user's local calendar date. Display formatting does not perform timezone conversion.
 
@@ -151,11 +152,12 @@ is a scope update, not a claim that current runtime code has already been change
 ### Display state and first paint
 
 - Display state is one atomic snapshot containing the displayed date, image identity, final URL, a matching preview data URL or explicit empty value, and update timestamp. An empty preview is valid and recoverable; atomicity requires identity consistency, not preview completeness.
-- It records the most recently completed final-image application and supplies the initial selection for new tabs in that context. A pending navigation remains page-local and does not publish its destination.
+- It records the most recently completed final-image application and supplies the initial selection for new tabs in that context, subject to the day rollover below. A pending navigation remains page-local and does not publish its destination.
 - During new-tab initialization, a matching preview may render as temporary page state before the selected final image. Manual navigation never renders the destination preview; it retains the current final image and shows `Wallpaper is updating...` until the destination final image is decoded and applied.
 - Only a successfully applied final image is committed as the new atomic display snapshot. Failure leaves the previous snapshot unchanged.
 - Concurrent page writes use atomic last-write-wins behavior for future readers without a cross-tab lock. Existing tabs are not required to follow later display-state writes from other tabs.
-- A tab that reads before another tab completes navigation may remain on the previously committed selection. Tabs opened after the successful commit initialize from the new selection; target-date refresh alone does not overwrite that committed display choice.
+- A tab that reads before another tab completes navigation may remain on the previously committed selection. Tabs opened after the successful commit initialize from the new selection. A target-date refresh during the day, or during a navigation, does not overwrite that committed display choice.
+- Day rollover (ADR-0016): the first new tab of a day — its committed snapshot shows a date before today's market date and was committed on an earlier market day — shows the committed wallpaper with `Wallpaper is updating...` in the title area, then moves to today's entry like a navigation: it requests today's final image, never renders today's preview, and publishes today's snapshot only after the final image is applied. Without today's entry it waits for the catalog notification; if today's entry is still missing when the page's catalog refresh finishes, the committed wallpaper and its headline remain. A selection committed today is kept, and a navigation click cancels the pending move. Already-open tabs do not follow the day change.
 - A page-local generation token rejects stale callbacks only within the page that created them.
 - The boot path reads the context's v2 display snapshot and may paint its preview before the main wallpaper logic runs. It does not infer identity from data-URL bytes.
 - Every new-tab initialization independently checks Cache Storage for the committed `date + imageId`, including when its preview data URL is empty. A cached final image is applied immediately without waiting for preview repair. When a matching preview is cached, the page reconstructs its data URL and persists it only after a fresh read confirms the global `date + imageId + final URL` are unchanged.
@@ -253,6 +255,7 @@ documented ordering and cooldown boundaries.
 - New-tab slow connection: the selected image's matching preview appears without waiting for final resolution, followed by one final-image swap.
 - Offline startup: display whatever applicable content is actually cached; do not require a guaranteed seven-day future depth.
 - Navigation: zero entries disable controls, three entries wrap correctly, and an uncached selection retains the current final image with `Wallpaper is updating...`; its preview is never rendered and display state changes only after the final image is applied.
+- Day rollover: with a snapshot committed on an earlier day, the first new tab shows that wallpaper under `Wallpaper is updating...`, swaps once to today's final image without rendering today's preview, and publishes today's snapshot; a snapshot committed today is kept; when Bing has not published today, the committed wallpaper and headline remain after the refresh finishes.
 - Priority: observe target requests first, permitted historical work next and up to seven future dates last. Explicit navigation promotes its task after the active request.
 - Resolution change: fetch current resolution first, then historical, then future; previews and metadata are not re-downloaded.
 - Worker termination: stop the worker during metadata, history, future prefetch, trivia, and migration phases; the next qualifying event resumes only missing work.
@@ -289,6 +292,7 @@ cannot expose the required behavior directly.
 - ADRs are the final authority over this spec and PLAN9 when wording conflicts.
 - The active ADR set intentionally skips ADR-0007 because its untagged, worker-owned preview design was superseded by the page-owned atomic display-state decision in ADR-0008.
 - ADR-0002 remains active after ADR-0005 made future depth best-effort; the regular UHD budget is unchanged. ADR-0015 supersedes ADR-0011 and the incognito portions of earlier decisions.
+- Revision 18 (ADR-0016) replaces revision 17's rule that a target-date refresh never overwrites the committed display choice: the first new tab of a day moves to that day's wallpaper once it is loaded.
 - `cachedFutureDepth` is observability, not truth about current Cache Storage after browser eviction.
 - A 1, 3, or 5-minute retry timestamp is the earliest permitted retry, not a timer or guaranteed execution time.
 - The user-visible priority principle is current content first, navigable history second, invisible future content last.
@@ -296,5 +300,5 @@ cannot expose the required behavior directly.
 ---
 
 **Document status**: Ready for implementation  
-**Revision**: 17
-**Date**: 2026-09-24
+**Revision**: 18
+**Date**: 2026-10-14

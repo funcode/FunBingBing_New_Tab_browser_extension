@@ -40,7 +40,8 @@ the migration is intended to remove.
   does not delay applying an already cached final image and needs no persisted
   `previewPending` flag.
 - The display state is global per context and supplies the initial selection for
-  new tabs. Concurrent page writes use atomic last-write-wins semantics for
+  new tabs (the first new tab of a day then moves to that day's wallpaper;
+  ADR-0016). Concurrent page writes use atomic last-write-wins semantics for
   future readers; page-local generation tokens reject stale callbacks within the
   page that created them. Existing tabs are not required to follow later writes
   from other tabs.
