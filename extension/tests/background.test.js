@@ -15,13 +15,16 @@ function storageArea(data) {
       const keys = Array.isArray(key) ? key : [key];
       return Object.fromEntries(keys.filter(k => k in data).map(k => [k, structuredClone(data[k])]));
     },
-    async set(items) { Object.assign(data, structuredClone(items)); }
+    async set(items) { Object.assign(data, structuredClone(items)); },
+    async remove(key) {
+      for (const k of Array.isArray(key) ? key : [key]) delete data[k];
+    }
   };
 }
 
 // Load the real worker module against mocked Chrome, Cache Storage and fetch.
-// `entry` adds fields to the catalog's target entry.
-async function loadWorker({ entry = {} } = {}) {
+// `entry` adds fields to the catalog's target entry; `local` adds local items.
+async function loadWorker({ entry = {}, local = {} } = {}) {
   const catalog = createEmptyCatalog();
   catalog.refreshState.date = TARGET;
   catalog.entries[TARGET] = {
@@ -32,9 +35,10 @@ async function loadWorker({ entry = {} } = {}) {
   };
   const messageListeners = [];
   const event = () => ({ addListener() {} });
+  const localData = { [STORAGE_KEYS.catalog]: catalog, ...structuredClone(local) };
   globalThis.chrome = {
     storage: {
-      local: storageArea({ [STORAGE_KEYS.catalog]: catalog }),
+      local: storageArea(localData),
       sync: storageArea({ enable_uhd_wallpaper: 'no' }),
       onChanged: event()
     },
@@ -62,7 +66,9 @@ async function loadWorker({ entry = {} } = {}) {
         });
       }
       return caches.get(name);
-    }
+    },
+    async has(name) { return caches.has(name); },
+    async delete(name) { return caches.delete(name); }
   };
 
   const fetches = { calls: [], active: 0, maxActive: 0, holds: new Map() };
@@ -84,7 +90,7 @@ async function loadWorker({ entry = {} } = {}) {
   const send = message => new Promise(resolve => {
     for (const listener of messageListeners) listener(message, {}, resolve);
   });
-  return { send, fetches, caches };
+  return { send, fetches, caches, local: localData };
 }
 
 describe('worker message handlers', () => {
@@ -130,6 +136,36 @@ describe('worker message handlers', () => {
       { ok: true, updatedDates: [TARGET] });
     assert.deepStrictEqual(await worker.send({ type: 'syncQuotesForImages', date: TARGET, token: lease.token, quote }),
       { ok: false, rejected: true }, 'a released lease cannot submit again');
+  });
+
+  it('migrates v1 state at worker start and completes only after the page acknowledges its display state', async () => {
+    const legacyId = 'OHR.Legacy_ZH-CN2';
+    const worker = await loadWorker({
+      local: {
+        bing_images: [{ isoDate: '20261012', imageUrls: { landscape: { highDef: `/th?id=${legacyId}_1920x1080.jpg` } } }],
+        wallpaper_url: `https://ts1.tc.mm.bing.net/th?id=${legacyId}_1920x1080.jpg`,
+        wallpaper_date: '20261012',
+        show_clock: 'no'
+      }
+    });
+
+    // Catalog work waits for the migration, which never writes display state.
+    await worker.send({ type: 'refreshWallpaperCatalog' });
+    assert.strictEqual(worker.local[STORAGE_KEYS.migration].phase, 'verified');
+    assert.strictEqual(worker.local[STORAGE_KEYS.catalog].entries['20261012'].imageId, legacyId);
+    assert.strictEqual(await chrome.storage.sync.get('show_clock').then(items => items.show_clock), 'no');
+    assert.ok(!(STORAGE_KEYS.displayState in worker.local));
+
+    assert.deepStrictEqual(await worker.send({ type: 'migrationDisplayStateReady' }), { ok: false });
+    assert.strictEqual(worker.local[STORAGE_KEYS.migration].phase, 'verified');
+
+    worker.local[STORAGE_KEYS.displayState] = {
+      date: '20261012', imageId: legacyId, url: `https://ts1.tc.mm.bing.net/th?id=${legacyId}_1920x1080.jpg`, preloadDataUrl: '', updatedAt: 0
+    };
+    assert.deepStrictEqual(await worker.send({ type: 'migrationDisplayStateReady' }), { ok: true });
+    assert.strictEqual(worker.local[STORAGE_KEYS.migration].phase, 'complete');
+    assert.ok(!('bing_images' in worker.local));
+    assert.ok(!('wallpaper_url' in worker.local));
   });
 
   it('requests missing trivia for a committed entry after a catalog refresh', async () => {

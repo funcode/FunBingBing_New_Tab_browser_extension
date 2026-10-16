@@ -60,6 +60,18 @@ export function isValidDisplaySnapshot(snapshot) {
 }
 
 /**
+ * The explicit empty display state a migrating page writes when no valid
+ * display identity can be built from the legacy inputs. It is not a valid
+ * snapshot, so readers start from the target date.
+ */
+export const EMPTY_DISPLAY_STATE = Object.freeze({ date: '', imageId: '', url: '', preloadDataUrl: '', updatedAt: 0 });
+
+export function isEmptyDisplayState(state) {
+  return Boolean(state) && Object.keys(EMPTY_DISPLAY_STATE).length === Object.keys(state).length &&
+    Object.entries(EMPTY_DISPLAY_STATE).every(([key, value]) => state[key] === value);
+}
+
+/**
  * Check whether a display snapshot matches a given identity.
  * Used by page callbacks to reject stale notifications.
  *

@@ -124,6 +124,17 @@ export function createCatalogService({
     return commitWith(catalog => applyTriviaResult(catalog, result, now()), () => {});
   }
 
+  /**
+   * Commit a migration import through the same serial queue. It neither
+   * schedules trivia nor starts image work: the gated refresh that follows
+   * migration does both.
+   *
+   * @param {(catalog: Object) => {changed: boolean}} mutate
+   */
+  function commitMigration(mutate) {
+    return commitWith(mutate, () => {});
+  }
+
   /** @returns {Promise<{catalog: Object, displayState: Object|null}>} */
   async function read() {
     return { catalog: await readCatalog(), displayState: await readDisplayState() };
@@ -243,5 +254,5 @@ export function createCatalogService({
     return promise;
   }
 
-  return { refresh, read, commitImageState, commitTriviaResult };
+  return { refresh, read, commitImageState, commitTriviaResult, commitMigration };
 }

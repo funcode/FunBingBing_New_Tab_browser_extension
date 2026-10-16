@@ -11,6 +11,8 @@ const WALLPAPER_CACHE_NAME = 'funbingbing-wallpaper-cache-v2';
 const CATALOG_KEY = 'bing_wallpaper_catalog_v2';
 // The worker is also the only writer of the quote cache.
 const QUOTE_STATE_KEY = 'cache_quote_state_v2';
+// The worker owns the migration marker; the page only reads it.
+const MIGRATION_STATE_KEY = 'wallpaper_migration_v2_state';
 // DISPLAY_STATE_KEY is declared by boot.js, which shares this global scope.
 
 let currentWallpaperObjectUrl = null;
@@ -131,6 +133,38 @@ const wallpaperControllerReady = import(chrome.runtime.getURL('src/page/wallpape
 		view: wallpaperView
 	}));
 
+// Upgrade from v1: once the worker has verified the migrated catalog, the
+// first page turns the retained legacy display inputs into the v2 display
+// state, unless a valid one already exists, and acknowledges it. The legacy
+// inputs are read only in that phase.
+async function handOffMigratedDisplayState() {
+	if (readConf(MIGRATION_STATE_KEY)?.phase !== 'verified') return;
+	if ((await readStorageKey(MIGRATION_STATE_KEY))?.phase !== 'verified') return;
+	const [{ isEmptyDisplayState, isUhdEnabled, isValidDisplaySnapshot }, { buildMigratedDisplayState }] = await Promise.all([
+		import(chrome.runtime.getURL('src/helpers/display-state.js')),
+		import(chrome.runtime.getURL('src/helpers/migration.js'))
+	]);
+	const current = await readStorageKey(DISPLAY_STATE_KEY);
+	if (!isValidDisplaySnapshot(current) && !isEmptyDisplayState(current)) {
+		const [catalog, wallpaperUrl, wallpaperDate, sync] = await Promise.all([
+			readStorageKey(CATALOG_KEY),
+			readStorageKey('wallpaper_url'),
+			readStorageKey('wallpaper_date'),
+			chrome.storage.sync.get('enable_uhd_wallpaper')
+		]);
+		const enableUhd = isUhdEnabled(sync.enable_uhd_wallpaper);
+		await writeConf(DISPLAY_STATE_KEY, buildMigratedDisplayState(catalog, { wallpaperUrl, wallpaperDate }, enableUhd));
+	}
+	chrome.runtime.sendMessage({ type: 'migrationDisplayStateReady' }).catch((err) => {
+		console.warn('Migration acknowledgement failed:', err);
+	});
+}
+
+// Once per page, before the controller first reads the display state.
+const migrationHandOff = handOffMigratedDisplayState().catch((err) => {
+	console.warn('Migration display state handoff failed:', err);
+});
+
 // --- Main entry point ---
 async function initWallpaper({ reconnect = false } = {}) {
 	// The page starts from committed state while the worker refreshes.
@@ -138,6 +172,7 @@ async function initWallpaper({ reconnect = false } = {}) {
 		console.debug('Wallpaper catalog refresh unavailable:', err);
 	});
 	syncQuotes({ reconnect }).catch((err) => console.error('Quote sync failed:', err));
+	await migrationHandOff;
 	const controller = await wallpaperControllerReady;
 	await controller.initialize();
 	await refreshed;

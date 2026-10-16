@@ -24,6 +24,7 @@ const CATALOG_KEY = 'bing_wallpaper_catalog_v2';
 const DISPLAY_STATE_KEY = 'wallpaper_display_state_v2';
 const CACHE_NAME = 'funbingbing-wallpaper-cache-v2';
 const QUOTE_STATE_KEY = 'cache_quote_state_v2';
+const MIGRATION_KEY = 'wallpaper_migration_v2_state';
 const BING_QUOTE_PAGE = 'https://cn.bing.com/search?q=quote%20of%20the%20day*';
 const GRADIENT = 'linear-gradient(160deg, rgb(31, 41, 51), rgb(62, 76, 89))';
 
@@ -73,9 +74,13 @@ async function cacheImages({ cacheName, images }) {
   }
 }
 
-/** Replace the extension's state: local and sync storage, and the listed cached images. */
+/**
+ * Replace the extension's state: local and sync storage, and the listed cached
+ * images. Migration is complete unless `local` says otherwise, so a worker
+ * restart during a test only repeats its cleanup.
+ */
 async function seed({ days = [], displayState, cached = [], local = {}, sync = {} }) {
-  const items = { [CATALOG_KEY]: catalogOf(days), ...local };
+  const items = { [CATALOG_KEY]: catalogOf(days), [MIGRATION_KEY]: { version: 2, phase: 'complete' }, ...local };
   if (displayState) {
     items[DISPLAY_STATE_KEY] = displayState;
   }
@@ -114,6 +119,17 @@ async function cachedDataUrl(url) {
 
 async function readDisplayState(page) {
   return page.evaluate(async key => (await chrome.storage.local.get(key))[key], DISPLAY_STATE_KEY);
+}
+
+/** Poll the worker's migration marker until it reaches the phase. */
+async function migrationPhase(phase) {
+  for (let attempt = 0; attempt < 150; attempt++) {
+    const marker = await (await worker()).evaluate(async key => (await chrome.storage.local.get(key))[key], MIGRATION_KEY)
+      .catch(() => null);
+    if (marker?.phase === phase) return;
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+  assert.fail(`migration did not reach the ${phase} phase`);
 }
 
 /** Poll the stored display snapshot until it satisfies the predicate. */
@@ -189,34 +205,40 @@ const identityOf = snapshot => ({ date: snapshot.date, imageId: snapshot.imageId
 // A 1x1 GIF: only its presence at boot matters.
 const BOOT_PREVIEW = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
+/** Start Chromium with the extension on the test profile, which persists across launches. */
+async function launch() {
+  context = await chromium.launchPersistentContext(profileDir, {
+    channel: 'chromium',
+    headless: true,
+    args: [
+      `--disable-extensions-except=${EXTENSION}`,
+      `--load-extension=${EXTENSION}`,
+      //Without the flag, Chromium follows this machine's system proxy and page requests fail with ERR_PROXY_CONNECTION_FAILED; with it, they fail at the blocked DNS lookup as the tests intend.
+      '--no-proxy-server',
+      '--host-resolver-rules=MAP * ~NOTFOUND'
+    ]
+  });
+  // Record every inline background and headline the page sets, from before
+  // boot.js runs, so short-lived states are not missed.
+  await context.addInitScript(() => {
+    window.__backgrounds = [];
+    window.__headlines = [];
+    const record = (list, value) => {
+      if (value !== undefined && value !== (list.at(-1) ?? '')) list.push(value);
+    };
+    new MutationObserver(() => {
+      record(window.__backgrounds, document.getElementById('main-body')?.style.backgroundImage);
+      record(window.__headlines, document.getElementById('headline')?.textContent);
+    }).observe(document, { attributes: true, attributeFilter: ['style'], childList: true, characterData: true, subtree: true });
+  });
+}
+
 describe('new tab page in the loaded extension', () => {
   before(async () => {
     profileDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ataraxia-e2e-'));
-    context = await chromium.launchPersistentContext(profileDir, {
-      channel: 'chromium',
-      headless: true,
-      args: [
-        `--disable-extensions-except=${EXTENSION}`,
-        `--load-extension=${EXTENSION}`,
-        //Without the flag, Chromium follows this machine's system proxy and page requests fail with ERR_PROXY_CONNECTION_FAILED; with it, they fail at the blocked DNS lookup as the tests intend.
-        '--no-proxy-server',
-        '--host-resolver-rules=MAP * ~NOTFOUND'
-      ]
-    });
-    // Record every inline background and headline the page sets, from before
-    // boot.js runs, so short-lived states are not missed.
-    await context.addInitScript(() => {
-      window.__backgrounds = [];
-      window.__headlines = [];
-      const record = (list, value) => {
-        if (value !== undefined && value !== (list.at(-1) ?? '')) list.push(value);
-      };
-      new MutationObserver(() => {
-        record(window.__backgrounds, document.getElementById('main-body')?.style.backgroundImage);
-        record(window.__headlines, document.getElementById('headline')?.textContent);
-      }).observe(document, { attributes: true, attributeFilter: ['style'], childList: true, characterData: true, subtree: true });
-    });
-    await worker();
+    await launch();
+    // Let the new install's migration finish before tests replace its state.
+    await migrationPhase('verified');
   });
 
   after(async () => {
@@ -500,5 +522,79 @@ describe('new tab page in the loaded extension', () => {
     } finally {
       await context.unrouteAll({ behavior: 'ignoreErrors' });
     }
+  });
+
+  // Restarts the browser, so it runs last.
+  it('upgrading a v1 install keeps its wallpapers, history, quotes and settings, then removes the v1 state', async () => {
+    const v1Image = shown => ({
+      isoDate: shown.date,
+      headline: shown.headline,
+      title: shown.headline,
+      imageUrls: { landscape: { highDef: `/th?id=${shown.imageId}_1920x1080.jpg`, ultraHighDef: `/th?id=${shown.imageId}_UHD.jpg` } }
+    });
+    const v1Key = url => url.replace('ts1.tc.mm.bing.net', 'cn.bing.com');
+    const V1_ENGINE = { name: 'DuckDuckGo', icon: 'icons/bing.png', action: 'https://duckduckgo.com/', param_name: 'q', css_style: '' };
+    // The v1 page last showed B, the day before the v1 refresh date.
+    await seed({
+      local: {
+        bing_images: [v1Image(A), v1Image(B)],
+        wallpaper_date: A.date,
+        wallpaper_idx: '1',
+        wallpaper_url: v1Key(B.urls.ultraHighDef),
+        wallpaper_preload_data_url: BOOT_PREVIEW,
+        cache_quote_state: { quotes: { [A.date]: { text: 'v1 quote', source: 'v1 author', caption: 'v1 caption', link: '' } } },
+        search_engine_list: [V1_ENGINE],
+        current_search_engine: V1_ENGINE.name,
+        show_clock: 'no',
+        enable_uhd_wallpaper: 'yes',
+        last_open_version: '1.7'
+      }
+    });
+    const v1Cache = 'funbingbing-wallpaper-cache-v1';
+    // A v1 install has no v2 state and nothing in sync storage.
+    await (await worker()).evaluate(async (keys) => {
+      await chrome.storage.local.remove(keys);
+      await chrome.storage.sync.clear();
+    }, [CATALOG_KEY, MIGRATION_KEY]);
+    await (await worker()).evaluate(cacheImages, {
+      cacheName: v1Cache,
+      images: [{ ...final(A), url: v1Key(A.urls.ultraHighDef) }, { ...final(B), url: v1Key(B.urls.ultraHighDef) }]
+    });
+
+    // The upgraded extension starts with the browser and migrates at worker start.
+    await context.close();
+    await launch();
+    await migrationPhase('verified');
+
+    // The first page writes the v1 display identity, which is from an earlier
+    // day, so it then moves to today's wallpaper, cached by the v1 page.
+    const page = await openNewTab();
+    await displayStateWhen(page, snapshot => snapshot?.date === A.date);
+    await migrationPhase('complete');
+
+    assert.deepStrictEqual(await backgroundKinds(page), ['blob', 'blob']);
+    assert.strictEqual(await headline(page), A.headline);
+    const local = await page.evaluate(() => chrome.storage.local.get(null));
+    for (const key of ['bing_images', 'wallpaper_date', 'wallpaper_idx', 'wallpaper_url', 'wallpaper_preload_data_url', 'cache_quote_state']) {
+      assert.ok(!(key in local), `${key} remains`);
+    }
+    assert.strictEqual(local[QUOTE_STATE_KEY].quotes[A.date].text, 'v1 quote');
+    assert.deepStrictEqual(Object.keys(local[CATALOG_KEY].entries).sort(), [B.date, A.date]);
+    // Pages and the worker share the migrated settings through sync; the local
+    // copies stay until pages read sync (#126).
+    const shared = ['search_engine_list', 'current_search_engine', 'show_clock', 'enable_uhd_wallpaper'];
+    assert.deepStrictEqual(await page.evaluate(keys => chrome.storage.sync.get(keys), shared), {
+      search_engine_list: [V1_ENGINE], current_search_engine: V1_ENGINE.name, show_clock: 'no', enable_uhd_wallpaper: 'yes'
+    });
+    assert.strictEqual(local.show_clock, 'no');
+    assert.strictEqual(await page.evaluate(name => caches.has(name), v1Cache), false);
+
+    // History survives: the previous date shows its wallpaper copied from the v1 cache.
+    await previous(page);
+    await headlineIs(page, B.headline);
+    await displayStateWhen(page, snapshot => snapshot?.imageId === B.imageId);
+    assert.deepStrictEqual(page.imageRequests, [], 'no image is downloaded again');
+    assert.deepStrictEqual(page.errors, []);
+    await page.close();
   });
 });

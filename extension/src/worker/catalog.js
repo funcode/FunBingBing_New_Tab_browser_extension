@@ -281,6 +281,84 @@ export function admitCandidates(catalog, candidates, { stale, displayState, now 
   return { changedDates };
 }
 
+const LEGACY_IMPORT_DATES = 8;
+
+function isTriviaPayload(data) {
+  return Boolean(data) && typeof data === 'object' && isFilled(data.question) && Array.isArray(data.options);
+}
+
+// A v1 `bing_images` item as a legacy entry, or null when its date or image
+// identity is invalid. A valid trivia payload keeps its completion.
+function legacyEntry(image) {
+  const landscape = image?.imageUrls?.landscape;
+  const candidate = buildCandidate(image?.isoDate, landscape?.highDef || landscape?.ultraHighDef, {
+    caption: image.caption,
+    title: image.title,
+    headline: image.headline,
+    description: image.description,
+    descriptionPara2: image.descriptionPara2,
+    descriptionPara3: image.descriptionPara3,
+    copyright: image.copyright,
+    clickUrl: image.clickUrl,
+    quickFact: image.quickFact
+  }, 'legacy');
+  if (!candidate) {
+    return null;
+  }
+  const complete = isTriviaPayload(image.triviaData);
+  return {
+    ...candidate,
+    triviaId: normalizeTriviaId(image.triviaId, candidate.date) || '',
+    ...createInitialTriviaState(),
+    triviaData: complete ? image.triviaData : null,
+    triviaState: complete ? 'complete' : 'missing'
+  };
+}
+
+/**
+ * Merge the newest eight valid dates of the v1 `bing_images` array into the
+ * catalog in place, as `legacy` entries. Valid v2 data is never replaced: a
+ * date with another identity keeps it, and the same identity only gains its
+ * empty metadata fields.
+ *
+ * @param {Object} catalog
+ * @param {*} images - Stored v1 `bing_images` value
+ * @param {number} now
+ * @returns {{dates: string[], changedDates: string[]}} The imported dates, and
+ *   those whose entry changed
+ */
+export function importLegacyImages(catalog, images, now) {
+  const byDate = new Map();
+  for (const entry of (Array.isArray(images) ? images : []).map(legacyEntry)) {
+    if (entry && !byDate.has(entry.date)) {
+      byDate.set(entry.date, entry);
+    }
+  }
+  const dates = [...byDate.keys()].sort().reverse().slice(0, LEGACY_IMPORT_DATES);
+  const changedDates = [];
+  for (const date of dates) {
+    const legacy = byDate.get(date);
+    const current = catalog.entries[date];
+    let next;
+    if (!current) {
+      next = legacy;
+    } else if (current.imageId === legacy.imageId) {
+      // Trivia state belongs to the existing entry.
+      const { triviaData, triviaState, triviaAttemptedAt, triviaNextRetryAt, triviaRetryLevel, ...metadata } = legacy;
+      next = fillMissingFields(current, metadata);
+    } else {
+      continue;
+    }
+    if (current && isEqualIgnoringUpdatedAt(current, next)) {
+      continue;
+    }
+    next.updatedAt = now;
+    catalog.entries[date] = next;
+    changedDates.push(date);
+  }
+  return { dates, changedDates };
+}
+
 // Target and historical entries with a trivia ID and a missing payload.
 function missingTriviaEntries(catalog) {
   const targetDate = catalog.refreshState.date;

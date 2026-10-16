@@ -61,12 +61,13 @@ function fakeElement() {
 /**
  * Run the real boot.js, and the wallpaper.js it loads, as classic scripts in
  * one global scope against mocked Chrome, Cache Storage and DOM. `worker`
- * answers ensureWallpaperCached requests and `quotes` the quote lease and
- * submission messages; `undecodable` lists cached image URLs whose decoding
+ * answers ensureWallpaperCached requests, `quotes` the quote lease and
+ * submission messages and `acknowledge` the migrationDisplayStateReady
+ * acknowledgement; `undecodable` lists cached image URLs whose decoding
  * fails. `quotePage` maps selectors to elements of Bing's parsed quote page;
  * without it the quote page cannot be fetched.
  */
-async function openNewTab({ local = {}, cached = [], undecodable = [], networkStatus = 'online', worker = () => ({ ok: false }), quotes = () => ({ ok: true }), quotePage } = {}) {
+async function openNewTab({ local = {}, cached = [], undecodable = [], networkStatus = 'online', worker = () => ({ ok: false }), quotes = () => ({ ok: true }), acknowledge = () => ({ ok: true }), quotePage } = {}) {
   const page = {
     local: structuredClone(local),
     cache: new Set(cached),
@@ -141,7 +142,8 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
           // Cloned into this realm so assertions can compare it structurally.
           page.messages.push(structuredClone(message));
           const answer = message.type === 'ensureWallpaperCached' ? worker(message, page)
-            : /quote/i.test(message.type) ? quotes(message, page) : { ok: true };
+            : /quote/i.test(message.type) ? quotes(message, page)
+              : message.type === 'migrationDisplayStateReady' ? acknowledge(message, page) : { ok: true };
           const response = Promise.resolve(answer);
           if (callback) {
             response.then(callback);
@@ -328,6 +330,71 @@ describe('new tab page scripts', () => {
 
     assert.deepStrictEqual(page.fetched, []);
     assert.ok(!page.messages.some(message => message.type === 'syncQuotesForImages'));
+  });
+
+  describe('migration display-state handoff', () => {
+    const MIGRATION_KEY = 'wallpaper_migration_v2_state';
+    const verified = { [MIGRATION_KEY]: { version: 2, phase: 'verified', startedAt: 1, verifiedAt: 1, completedAt: 0 } };
+    const LEGACY_INPUTS = { wallpaper_url: `https://cn.bing.com/th?id=${OLDER_ID}_UHD.jpg`, wallpaper_date: TARGET, wallpaper_idx: '1' };
+    // Records the display state the worker would fresh-read on acknowledgement.
+    const recordAcknowledged = (message, opened) => {
+      opened.acknowledged = structuredClone(opened.local[DISPLAY_STATE_KEY]);
+      return { ok: true };
+    };
+
+    it('the first page after verification writes the legacy display identity, then acknowledges it and shows it', async () => {
+      const page = await openNewTab({
+        local: { ...verified, ...LEGACY_INPUTS, [CATALOG_KEY]: catalog() },
+        cached: [OLDER_UHD],
+        acknowledge: recordAcknowledged
+      });
+
+      await page.settled(() => page.backgrounds.length === 1);
+
+      const migrated = { date: OLDER, imageId: OLDER_ID, url: OLDER_UHD, preloadDataUrl: '', updatedAt: 0 };
+      assert.deepStrictEqual(page.acknowledged, migrated);
+      assert.deepStrictEqual(page.backgrounds, [`url('blob:${OLDER_UHD}')`]);
+      assert.deepStrictEqual(page.local[DISPLAY_STATE_KEY], migrated);
+    });
+
+    it('writes the explicit empty display state when the legacy identity is not in the catalog', async () => {
+      const page = await openNewTab({
+        local: { ...verified, wallpaper_url: 'https://ts1.tc.mm.bing.net/th?id=OHR.Gone_ZH-CN9_UHD.jpg', wallpaper_date: TARGET, [CATALOG_KEY]: catalog() },
+        acknowledge: recordAcknowledged
+      });
+
+      await page.settled(() => page.messages.some(message => message.type === 'migrationDisplayStateReady'));
+
+      assert.deepStrictEqual(page.acknowledged, { date: '', imageId: '', url: '', preloadDataUrl: '', updatedAt: 0 });
+    });
+
+    it('keeps a valid v2 display state over the legacy inputs and still acknowledges', async () => {
+      const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
+      const page = await openNewTab({
+        local: { ...verified, ...LEGACY_INPUTS, [CATALOG_KEY]: catalog(), [DISPLAY_STATE_KEY]: snapshot },
+        cached: [PREVIEW, UHD, OLDER_UHD],
+        acknowledge: recordAcknowledged
+      });
+
+      await page.settled(() => page.backgrounds.length === 2 && page.acknowledged);
+
+      assert.deepStrictEqual(page.acknowledged, snapshot);
+      assert.strictEqual(page.backgrounds.at(-1), `url('blob:${UHD}')`);
+    });
+
+    it('neither reads the legacy inputs nor acknowledges before verification or after completion', async () => {
+      for (const phase of ['writing', 'complete']) {
+        const page = await openNewTab({
+          local: { [MIGRATION_KEY]: { version: 2, phase }, ...LEGACY_INPUTS, [CATALOG_KEY]: catalog() },
+          cached: [UHD]
+        });
+
+        await page.settled(() => page.backgrounds.length === 1);
+
+        assert.strictEqual(page.backgrounds[0], `url('blob:${UHD}')`, `${phase}: the page starts from the target date`);
+        assert.ok(!page.messages.some(message => message.type === 'migrationDisplayStateReady'), phase);
+      }
+    });
   });
 
   it('applies the wallpaper while quote work is still pending', async () => {

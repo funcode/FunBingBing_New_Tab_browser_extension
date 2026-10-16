@@ -12,7 +12,7 @@ import { grantQuoteLease, isValidQuoteSubmission, releaseQuoteLease } from '../h
 import { validateUrlSetting } from '../helpers/migration.js';
 import { STORAGE_KEYS } from './storage-keys.js';
 
-const QUOTE_SLOTS = 8;
+export const QUOTE_SLOTS = 8;
 const FALLBACK_MAX_BYTES = 64 * 1024;
 
 /**
@@ -42,7 +42,7 @@ function quoteLink(link, source) {
  *
  * @returns {{text: string, source: string, caption: string, link: string}|null}
  */
-function normalizeQuote(raw) {
+export function normalizeQuote(raw) {
   if (!raw || typeof raw !== 'object') {
     return null;
   }
@@ -73,7 +73,7 @@ function isSameQuote(a, b) {
     a.caption === b.caption && a.link === b.link;
 }
 
-function pruneQuotes(quotes) {
+export function pruneQuotes(quotes) {
   for (const date of Object.keys(quotes).sort().reverse().slice(QUOTE_SLOTS)) {
     delete quotes[date];
   }

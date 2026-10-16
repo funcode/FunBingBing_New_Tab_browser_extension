@@ -146,6 +146,21 @@ export function normalizeImageUrl(url, resolution) {
 }
 
 /**
+ * Rebuild the canonical URL of an image URL at its own resolution, or null
+ * when the identity or resolution suffix is not a supported one.
+ *
+ * @param {string} url - Image URL from any supported host
+ * @returns {string|null}
+ */
+export function canonicalizeImageUrl(url) {
+  const idValue = parseImageUrl(url);
+  const resolution = /_640x360(\.jpg)?$/.test(idValue) ? 'preview'
+    : /_1920x1080(\.jpg|\.webp)?$/.test(idValue) ? 'hd'
+      : /_UHD(\.jpg)?$/.test(idValue) ? 'uhd' : null;
+  return resolution ? normalizeImageUrl(url, resolution) : null;
+}
+
+/**
  * Build all three canonical URLs for an OHR image identity.
  * @param {string} imageId - The OHR image identity (must start with "OHR.")
  * @returns {{preview: string, highDef: string, ultraHighDef: string}}

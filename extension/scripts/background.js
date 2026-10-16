@@ -1,8 +1,10 @@
 
 import { createCatalogService } from '../src/worker/catalog-service.js';
 import { createImageScheduler } from '../src/worker/image-scheduler.js';
+import { createMigrationService } from '../src/worker/migration-service.js';
 import { createQuoteService } from '../src/worker/quote-service.js';
 import { createTriviaService } from '../src/worker/trivia-service.js';
+import { WALLPAPER_CACHE_NAME } from '../src/worker/storage-keys.js';
 
 async function fetchBingJson(url) {
 	const response = await fetch(url, { cache: 'no-store' });
@@ -20,8 +22,6 @@ function broadcastToPages(message) {
 		}
 	});
 }
-
-const WALLPAPER_IMAGE_CACHE_NAME = 'funbingbing-wallpaper-cache-v2';
 
 async function fetchWallpaperImage(url) {
 	const response = await fetch(url, { cache: 'no-store' });
@@ -58,24 +58,39 @@ const quoteService = createQuoteService({
 const imageScheduler = createImageScheduler({
 	catalogService,
 	syncStorage: chrome.storage.sync,
-	openCache: () => caches.open(WALLPAPER_IMAGE_CACHE_NAME),
+	openCache: () => caches.open(WALLPAPER_CACHE_NAME),
 	fetchImage: fetchWallpaperImage
 });
 
+const migrationService = createMigrationService({
+	catalogService,
+	storage: chrome.storage.local,
+	syncStorage: chrome.storage.sync,
+	caches
+});
+
+// Every worker start runs or resumes the v1-to-v2 migration. Catalog, image
+// and quote work wait for it so they start from the migrated state.
+const migrated = migrationService.run();
+
+function afterMigration(task) {
+	return migrated.then(task);
+}
+
 function refreshCatalogInBackground(options) {
-	catalogService.refresh(options).catch((error) => {
+	afterMigration(() => catalogService.refresh(options)).catch((error) => {
 		console.error("Wallpaper catalog refresh failed:", error);
 	});
 }
 
 function scheduleTriviaInBackground(candidates) {
-	triviaService.schedule(candidates).catch((error) => {
+	afterMigration(() => triviaService.schedule(candidates)).catch((error) => {
 		console.error("Trivia fetch failed:", error);
 	});
 }
 
 function reconcileImagesInBackground(options) {
-	imageScheduler.reconcile(options).catch((error) => {
+	afterMigration(() => imageScheduler.reconcile(options)).catch((error) => {
 		console.error("Wallpaper image prefetch failed:", error);
 	});
 }
@@ -122,7 +137,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message && message.type === "refreshWallpaperCatalog") {
     // Image work is derived from the committed catalog without waiting for this refresh.
     reconcileImagesInBackground({ reconnect: message.reconnect === true });
-    catalogService.refresh({ reconnect: message.reconnect === true }).then(
+    afterMigration(() => catalogService.refresh({ reconnect: message.reconnect === true })).then(
       () => sendResponse({ ok: true }),
       (error) => {
         console.error("Wallpaper catalog refresh failed:", error);
@@ -133,7 +148,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message && message.type === "ensureWallpaperCached") {
-    imageScheduler.ensureWallpaperCached({ date: message.date, resolution: message.resolution }).then(
+    afterMigration(() => imageScheduler.ensureWallpaperCached({ date: message.date, resolution: message.resolution })).then(
       sendResponse,
       (error) => {
         console.error("ensureWallpaperCached failed:", error);
@@ -145,7 +160,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   // Pages send `reconnect: true` when their network status returns online.
   if (message && message.type === "requestQuoteLease") {
-    quoteService.requestLease({ reconnect: message.reconnect === true }).then(sendResponse, (error) => {
+    afterMigration(() => quoteService.requestLease({ reconnect: message.reconnect === true })).then(sendResponse, (error) => {
       console.error("Quote lease request failed:", error);
       sendResponse({ granted: false, error: error.message });
     });
@@ -154,13 +169,22 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   // The lease holder submits its scraped quote, or null when scraping failed.
   if (message && message.type === "syncQuotesForImages") {
-    quoteService.submit({ date: message.date, token: message.token, quote: message.quote }).then(
+    afterMigration(() => quoteService.submit({ date: message.date, token: message.token, quote: message.quote })).then(
       sendResponse,
       (error) => {
         console.error("Quote submission failed:", error);
         sendResponse({ ok: false, error: error.message });
       }
     );
+    return true;
+  }
+
+  // The first page after verification wrote the v2 display state.
+  if (message && message.type === "migrationDisplayStateReady") {
+    afterMigration(() => migrationService.acknowledge()).then(sendResponse, (error) => {
+      console.error("Migration acknowledgement failed:", error);
+      sendResponse({ ok: false, error: error.message });
+    });
     return true;
   }
 
