@@ -195,6 +195,7 @@ describe('new tab page in the loaded extension', () => {
       args: [
         `--disable-extensions-except=${EXTENSION}`,
         `--load-extension=${EXTENSION}`,
+        //Without the flag, Chromium follows this machine's system proxy and page requests fail with ERR_PROXY_CONNECTION_FAILED; with it, they fail at the blocked DNS lookup as the tests intend.
         '--no-proxy-server',
         '--host-resolver-rules=MAP * ~NOTFOUND'
       ]
