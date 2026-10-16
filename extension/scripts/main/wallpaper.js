@@ -146,7 +146,14 @@ async function handOffMigratedDisplayState() {
 			chrome.storage.sync.get('enable_uhd_wallpaper')
 		]);
 		const enableUhd = isUhdEnabled(sync.enable_uhd_wallpaper);
-		await writeConf(DISPLAY_STATE_KEY, buildMigratedDisplayState(catalog, { displayState, wallpaperUrl, wallpaperDate }, enableUhd));
+		const migrated = buildMigratedDisplayState(catalog, { displayState, wallpaperUrl, wallpaperDate }, enableUhd);
+		// Another tab may have handed off, or completed migration, meanwhile:
+		// its v2 state takes priority over this tab's legacy inputs.
+		const [latest, marker] = await Promise.all([readStorageKey(DISPLAY_STATE_KEY), readStorageKey(MIGRATION_STATE_KEY)]);
+		if (marker?.phase === 'complete') return;
+		if (!isValidDisplaySnapshot(latest) && !isEmptyDisplayState(latest)) {
+			await writeConf(DISPLAY_STATE_KEY, migrated);
+		}
 	}
 	chrome.runtime.sendMessage({ type: 'migrationDisplayStateReady' }).catch((err) => {
 		console.warn('Migration acknowledgement failed:', err);

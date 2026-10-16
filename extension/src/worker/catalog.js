@@ -335,8 +335,10 @@ export function isValidCatalogEntry(entry, date) {
 }
 
 // Recover one entry into the catalog in place. A valid entry of another
-// identity is kept; the same identity only gains its empty metadata fields;
-// a missing or invalid entry is replaced. Returns whether the entry changed.
+// identity is kept; the same identity only gains its empty metadata fields,
+// and a missing trivia payload is completed only from a valid payload of the
+// same trivia ID; a missing or invalid entry is replaced. Returns whether the
+// entry changed.
 function recoverEntry(catalog, recovered, now) {
   const current = catalog.entries[recovered.date];
   const valid = isValidCatalogEntry(current, recovered.date);
@@ -351,6 +353,10 @@ function recoverEntry(catalog, recovered, now) {
       triviaLastReconnectBypassAt, fieldStages, updatedAt, ...metadata
     } = recovered;
     next = fillMissingFields(current, metadata);
+    if (next.triviaState === 'missing' && next.triviaId && next.triviaId === recovered.triviaId &&
+        triviaState === 'complete' && isTriviaPayload(triviaData)) {
+      next = { ...next, triviaData, triviaState: 'complete', triviaRetryLevel: 0, triviaNextRetryAt: 0 };
+    }
     if (isEqualIgnoringUpdatedAt(current, next)) {
       return false;
     }

@@ -467,6 +467,31 @@ describe('new tab page scripts', () => {
       assert.strictEqual(page.backgrounds.at(-1), `url('blob:${OLDER_UHD}')`);
     });
 
+    it('keeps the display state another tab handed off while this tab read the legacy inputs', async () => {
+      let release;
+      const page = await openNewTab({
+        local: { ...verified, ...LEGACY_INPUTS, [CATALOG_KEY]: catalog() },
+        cached: [UHD, OLDER_UHD],
+        heldReads: { wallpaper_url: new Promise((resolve) => { release = resolve; }) }
+      });
+      await page.settled(() => page.messages.some(message => message.type === 'migrationStatus'));
+      await new Promise(resolve => setTimeout(resolve, 20));
+
+      // Another tab writes its valid selection, and the worker completes
+      // migration and deletes the legacy inputs.
+      const other = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: '', updatedAt: Date.now() };
+      page.local[DISPLAY_STATE_KEY] = other;
+      page.local[MIGRATION_KEY] = { ...verified[MIGRATION_KEY], phase: 'complete' };
+      for (const key of Object.keys(LEGACY_INPUTS)) delete page.local[key];
+      release();
+
+      await page.settled(() => page.backgrounds.length === 1);
+
+      assert.deepStrictEqual(page.local[DISPLAY_STATE_KEY], other);
+      assert.strictEqual(page.backgrounds[0], `url('blob:${UHD}')`);
+      assert.ok(!page.messages.some(message => message.type === 'migrationDisplayStateReady'));
+    });
+
     it('transfers the suffixed display snapshot of an earlier v2 build', async () => {
       const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
       const page = await openNewTab({

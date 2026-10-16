@@ -494,6 +494,38 @@ describe('migration service: suffixed regular state of earlier v2 builds', () =>
     assert.strictEqual(markerOf(worker).phase, 'verified');
   });
 
+  it('recovers a completed trivia payload only for the same trivia ID, and keeps an existing completion', async () => {
+    const triviaId = 'HPQuiz_20261015_Day';
+    const missing = { triviaId, triviaData: null, triviaState: 'missing' };
+    const complete = { triviaId, triviaData: TRIVIA, triviaState: 'complete' };
+    const kept = { question: 'Kept?', options: [] };
+    const worker = makeWorker({
+      local: {
+        [STORAGE_KEYS.catalog]: v2Catalog([
+          v2EntryOf(TODAY, idOn(TODAY), { ...missing, triviaRetryLevel: 2, triviaNextRetryAt: 9 }),
+          v2EntryOf('20261014', idOn('20261014'), { ...missing, triviaId: 'HPQuiz_20261014_Other' }),
+          v2EntryOf('20261013', idOn('20261013'), { triviaId: 'HPQuiz_20261013_Day', triviaData: kept, triviaState: 'complete' })
+        ]),
+        [SUFFIXED.catalog]: v2Catalog([
+          v2EntryOf(TODAY, idOn(TODAY), complete),
+          v2EntryOf('20261014', idOn('20261014'), { ...complete, triviaId: 'HPQuiz_20261014_Day' }),
+          v2EntryOf('20261013', idOn('20261013'), { ...complete, triviaId: 'HPQuiz_20261013_Day' })
+        ])
+      }
+    });
+
+    await worker.migration.run();
+
+    const entries = catalogOf(worker).entries;
+    assert.deepStrictEqual(entries[TODAY].triviaData, TRIVIA);
+    assert.strictEqual(entries[TODAY].triviaState, 'complete');
+    assert.strictEqual(entries[TODAY].triviaRetryLevel, 0);
+    assert.strictEqual(entries[TODAY].triviaNextRetryAt, 0);
+    assert.strictEqual(entries['20261014'].triviaData, null, 'a payload of another trivia ID is not recovered');
+    assert.strictEqual(entries['20261014'].triviaState, 'missing');
+    assert.deepStrictEqual(entries['20261013'].triviaData, kept);
+  });
+
   it('copies the suffixed cache before v1 responses and deletes both old caches and the suffixed keys on completion', async () => {
     const id = idOn(TODAY);
     const worker = makeWorker({
