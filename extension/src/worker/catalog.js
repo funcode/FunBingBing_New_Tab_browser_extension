@@ -5,7 +5,7 @@
  */
 
 import { addDays, isValidCalendarDate } from '../helpers/date.js';
-import { buildCanonicalUrls, extractImageId } from '../helpers/image.js';
+import { buildCanonicalUrls, extractImageId, isValidImageIdentity } from '../helpers/image.js';
 import { compareMetadataStages, mergeMetadata } from '../helpers/metadata.js';
 import {
   canBypassWithReconnect,
@@ -15,7 +15,12 @@ import {
   recordFailure
 } from '../helpers/retry.js';
 import { conflictsWithDisplayedIdentity } from '../helpers/stale-work.js';
-import { canAdmitTriviaResult, createInitialTriviaState, normalizeTriviaId } from '../helpers/trivia.js';
+import {
+  canAdmitTriviaResult,
+  createInitialTriviaState,
+  isValidTriviaState,
+  normalizeTriviaId
+} from '../helpers/trivia.js';
 
 export const SOURCES = Object.freeze(['imageOfTheDay', 'model', 'archive']);
 
@@ -316,10 +321,70 @@ function legacyEntry(image) {
 }
 
 /**
+ * Whether a stored entry is usable under its date key: its date, image
+ * identity and canonical URLs agree, and its trivia state is a persisted one.
+ */
+export function isValidCatalogEntry(entry, date) {
+  if (!entry || typeof entry !== 'object' || entry.date !== date || !isValidCalendarDate(date) ||
+      !isValidImageIdentity(entry.imageId) || !isValidTriviaState(entry.triviaState)) {
+    return false;
+  }
+  const urls = buildCanonicalUrls(entry.imageId);
+  return entry.urls?.preview === urls.preview && entry.urls.highDef === urls.highDef &&
+    entry.urls.ultraHighDef === urls.ultraHighDef;
+}
+
+// Recover one entry into the catalog in place. A valid entry of another
+// identity is kept; the same identity only gains its empty metadata fields;
+// a missing or invalid entry is replaced. Returns whether the entry changed.
+function recoverEntry(catalog, recovered, now) {
+  const current = catalog.entries[recovered.date];
+  const valid = isValidCatalogEntry(current, recovered.date);
+  let next = recovered;
+  if (valid) {
+    if (current.imageId !== recovered.imageId) {
+      return false;
+    }
+    // Trivia state and stage bookkeeping belong to the existing entry.
+    const {
+      triviaData, triviaState, triviaAttemptedAt, triviaNextRetryAt, triviaRetryLevel,
+      triviaLastReconnectBypassAt, fieldStages, updatedAt, ...metadata
+    } = recovered;
+    next = fillMissingFields(current, metadata);
+    if (isEqualIgnoringUpdatedAt(current, next)) {
+      return false;
+    }
+  }
+  catalog.entries[recovered.date] = { ...next, updatedAt: now };
+  return true;
+}
+
+function recoverEntries(catalog, entries, now) {
+  const dates = entries.map(entry => entry.date);
+  const changedDates = entries.filter(entry => recoverEntry(catalog, entry, now)).map(entry => entry.date);
+  return { dates, changedDates };
+}
+
+/**
+ * Recover the valid entries of a catalog stored under the suffixed regular
+ * key of earlier v2 builds into the catalog in place (ADR-0004).
+ *
+ * @param {Object} catalog
+ * @param {*} stored - Stored suffixed catalog value
+ * @param {number} now
+ * @returns {{dates: string[], changedDates: string[]}} The recovered dates, and
+ *   those whose entry changed
+ */
+export function importSuffixedEntries(catalog, stored, now) {
+  const entries = stored?.entries && typeof stored.entries === 'object' ? stored.entries : {};
+  const valid = Object.entries(entries).filter(([date, entry]) => isValidCatalogEntry(entry, date));
+  return recoverEntries(catalog, valid.map(([, entry]) => structuredClone(entry)), now);
+}
+
+/**
  * Merge the newest eight valid dates of the v1 `bing_images` array into the
- * catalog in place, as `legacy` entries. Valid v2 data is never replaced: a
- * date with another identity keeps it, and the same identity only gains its
- * empty metadata fields.
+ * catalog in place, as `legacy` entries, with the same rules as suffixed
+ * recovery.
  *
  * @param {Object} catalog
  * @param {*} images - Stored v1 `bing_images` value
@@ -335,28 +400,7 @@ export function importLegacyImages(catalog, images, now) {
     }
   }
   const dates = [...byDate.keys()].sort().reverse().slice(0, LEGACY_IMPORT_DATES);
-  const changedDates = [];
-  for (const date of dates) {
-    const legacy = byDate.get(date);
-    const current = catalog.entries[date];
-    let next;
-    if (!current) {
-      next = legacy;
-    } else if (current.imageId === legacy.imageId) {
-      // Trivia state belongs to the existing entry.
-      const { triviaData, triviaState, triviaAttemptedAt, triviaNextRetryAt, triviaRetryLevel, ...metadata } = legacy;
-      next = fillMissingFields(current, metadata);
-    } else {
-      continue;
-    }
-    if (current && isEqualIgnoringUpdatedAt(current, next)) {
-      continue;
-    }
-    next.updatedAt = now;
-    catalog.entries[date] = next;
-    changedDates.push(date);
-  }
-  return { dates, changedDates };
+  return recoverEntries(catalog, dates.map(date => byDate.get(date)), now);
 }
 
 // Target and historical entries with a trivia ID and a missing payload.

@@ -62,12 +62,14 @@ function fakeElement() {
  * Run the real boot.js, and the wallpaper.js it loads, as classic scripts in
  * one global scope against mocked Chrome, Cache Storage and DOM. `worker`
  * answers ensureWallpaperCached requests, `quotes` the quote lease and
- * submission messages and `acknowledge` the migrationDisplayStateReady
+ * submission messages, `migration` the migrationStatus request (by default
+ * the stored marker phase) and `acknowledge` the migrationDisplayStateReady
  * acknowledgement; `undecodable` lists cached image URLs whose decoding
- * fails. `quotePage` maps selectors to elements of Bing's parsed quote page;
+ * fails. `heldReads` maps local keys to promises that their fresh reads wait
+ * for. `quotePage` maps selectors to elements of Bing's parsed quote page;
  * without it the quote page cannot be fetched.
  */
-async function openNewTab({ local = {}, cached = [], undecodable = [], networkStatus = 'online', worker = () => ({ ok: false }), quotes = () => ({ ok: true }), acknowledge = () => ({ ok: true }), quotePage } = {}) {
+async function openNewTab({ local = {}, cached = [], undecodable = [], networkStatus = 'online', worker = () => ({ ok: false }), quotes = () => ({ ok: true }), acknowledge = () => ({ ok: true }), migration = (message, opened) => ({ phase: opened.local.wallpaper_migration_v2_state?.phase ?? null }), heldReads = {}, quotePage } = {}) {
   const page = {
     local: structuredClone(local),
     cache: new Set(cached),
@@ -97,7 +99,10 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
     setTimeout,
     Buffer,
     readConf: key => page.local[key],
-    readStorageKey: async key => structuredClone(page.local[key]),
+    readStorageKey: async (key) => {
+      await heldReads[key];
+      return structuredClone(page.local[key]);
+    },
     writeConf: async (key, value) => { page.local[key] = structuredClone(value); },
     i18n: key => key,
     fetch: async (url) => {
@@ -143,7 +148,8 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
           page.messages.push(structuredClone(message));
           const answer = message.type === 'ensureWallpaperCached' ? worker(message, page)
             : /quote/i.test(message.type) ? quotes(message, page)
-              : message.type === 'migrationDisplayStateReady' ? acknowledge(message, page) : { ok: true };
+              : message.type === 'migrationDisplayStateReady' ? acknowledge(message, page)
+                : message.type === 'migrationStatus' ? migration(message, page) : { ok: true };
           const response = Promise.resolve(answer);
           if (callback) {
             response.then(callback);
@@ -382,7 +388,7 @@ describe('new tab page scripts', () => {
       assert.strictEqual(page.backgrounds.at(-1), `url('blob:${UHD}')`);
     });
 
-    it('neither reads the legacy inputs nor acknowledges before verification or after completion', async () => {
+    it('neither reads the legacy inputs nor acknowledges while the worker reports writing, or after completion', async () => {
       for (const phase of ['writing', 'complete']) {
         const page = await openNewTab({
           local: { [MIGRATION_KEY]: { version: 2, phase }, ...LEGACY_INPUTS, [CATALOG_KEY]: catalog() },
@@ -394,6 +400,84 @@ describe('new tab page scripts', () => {
         assert.strictEqual(page.backgrounds[0], `url('blob:${UHD}')`, `${phase}: the page starts from the target date`);
         assert.ok(!page.messages.some(message => message.type === 'migrationDisplayStateReady'), phase);
       }
+    });
+
+    it('a completed migration costs the page no worker round trip', async () => {
+      const page = await openNewTab({
+        local: { [MIGRATION_KEY]: { version: 2, phase: 'complete' }, [CATALOG_KEY]: catalog() },
+        cached: [UHD],
+        migration: () => new Promise(() => {})
+      });
+
+      await page.settled(() => page.backgrounds.length === 1);
+
+      assert.ok(!page.messages.some(message => message.type === 'migrationStatus'));
+    });
+
+    it('hands off once the worker verifies a migration that was still writing when the page opened', async () => {
+      const page = await openNewTab({
+        local: { [MIGRATION_KEY]: { version: 2, phase: 'writing' }, ...LEGACY_INPUTS, [CATALOG_KEY]: catalog() },
+        cached: [UHD, OLDER_UHD],
+        // The worker answers after its start-up run has verified the migration.
+        migration: (message, opened) => {
+          opened.local[MIGRATION_KEY] = { ...verified[MIGRATION_KEY] };
+          return { phase: 'verified' };
+        },
+        acknowledge: recordAcknowledged
+      });
+
+      await page.settled(() => page.backgrounds.length === 1 && page.acknowledged);
+
+      assert.deepStrictEqual(page.acknowledged, { date: OLDER, imageId: OLDER_ID, url: OLDER_UHD, preloadDataUrl: '', updatedAt: 0 });
+      assert.deepStrictEqual(page.backgrounds, [`url('blob:${OLDER_UHD}')`], 'the legacy selection is shown, not the target date');
+    });
+
+    it('starts at once from a valid v2 snapshot while the worker has not answered', async () => {
+      const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
+      const page = await openNewTab({
+        local: { [MIGRATION_KEY]: { version: 2, phase: 'writing' }, [CATALOG_KEY]: catalog(), [DISPLAY_STATE_KEY]: snapshot },
+        cached: [PREVIEW, UHD],
+        migration: () => new Promise(() => {})
+      });
+
+      await page.settled(() => page.backgrounds.length === 2);
+
+      assert.strictEqual(page.backgrounds.at(-1), `url('blob:${UHD}')`);
+    });
+
+    it('a catalog notification during the handoff waits for it, so the screen and snapshot agree', async () => {
+      let release;
+      const page = await openNewTab({
+        local: { ...verified, ...LEGACY_INPUTS, [CATALOG_KEY]: catalog() },
+        cached: [UHD, OLDER_UHD],
+        heldReads: { wallpaper_url: new Promise((resolve) => { release = resolve; }) }
+      });
+      await page.settled(() => page.listeners.length > 0);
+
+      for (const listener of page.listeners) listener({ type: 'wallpaperCatalogUpdated', dates: [TARGET] });
+      await new Promise(resolve => setTimeout(resolve, 20));
+      assert.deepStrictEqual(page.backgrounds, [], 'nothing is applied while the handoff reads');
+      assert.strictEqual(page.local[DISPLAY_STATE_KEY], undefined);
+      release();
+
+      await page.settled(() => page.backgrounds.length >= 1 && page.messages.some(message => message.type === 'migrationDisplayStateReady'));
+      await new Promise(resolve => setTimeout(resolve, 20));
+
+      assert.strictEqual(page.local[DISPLAY_STATE_KEY].imageId, OLDER_ID);
+      assert.strictEqual(page.backgrounds.at(-1), `url('blob:${OLDER_UHD}')`);
+    });
+
+    it('transfers the suffixed display snapshot of an earlier v2 build', async () => {
+      const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
+      const page = await openNewTab({
+        local: { ...verified, ...LEGACY_INPUTS, [CATALOG_KEY]: catalog(), wallpaper_display_state_v2_regular: snapshot },
+        cached: [PREVIEW, UHD],
+        acknowledge: recordAcknowledged
+      });
+
+      await page.settled(() => page.acknowledged && page.backgrounds.at(-1) === `url('blob:${UHD}')`);
+
+      assert.deepStrictEqual(page.acknowledged, snapshot);
     });
   });
 

@@ -156,6 +156,7 @@ describe('worker message handlers', () => {
     assert.strictEqual(await chrome.storage.sync.get('show_clock').then(items => items.show_clock), 'no');
     assert.ok(!(STORAGE_KEYS.displayState in worker.local));
 
+    assert.deepStrictEqual(await worker.send({ type: 'migrationStatus' }), { phase: 'verified' });
     assert.deepStrictEqual(await worker.send({ type: 'migrationDisplayStateReady' }), { ok: false });
     assert.strictEqual(worker.local[STORAGE_KEYS.migration].phase, 'verified');
 

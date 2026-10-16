@@ -564,10 +564,10 @@ describe('new tab page in the loaded extension', () => {
     // The upgraded extension starts with the browser and migrates at worker start.
     await context.close();
     await launch();
-    await migrationPhase('verified');
 
-    // The first page writes the v1 display identity, which is from an earlier
-    // day, so it then moves to today's wallpaper, cached by the v1 page.
+    // The first page opens while the worker migrates. Once the worker reports
+    // verified, the page writes the v1 display identity, which is from an
+    // earlier day, so it then moves to today's wallpaper, cached by the v1 page.
     const page = await openNewTab();
     await displayStateWhen(page, snapshot => snapshot?.date === A.date);
     await migrationPhase('complete');
@@ -590,6 +590,8 @@ describe('new tab page in the loaded extension', () => {
     assert.strictEqual(await page.evaluate(name => caches.has(name), v1Cache), false);
 
     // History survives: the previous date shows its wallpaper copied from the v1 cache.
+    // The relaunched browser may restore earlier tabs in front of this one.
+    await page.bringToFront();
     await previous(page);
     await headlineIs(page, B.headline);
     await displayStateWhen(page, snapshot => snapshot?.imageId === B.imageId);

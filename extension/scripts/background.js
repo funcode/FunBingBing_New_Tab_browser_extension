@@ -179,6 +179,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true;
   }
 
+  // A page asks, before its first selection, whether to hand off its display state.
+  if (message && message.type === "migrationStatus") {
+    afterMigration(() => migrationService.status()).then(sendResponse, (error) => {
+      console.error("Migration status failed:", error);
+      sendResponse({ phase: null, error: error.message });
+    });
+    return true;
+  }
+
   // The first page after verification wrote the v2 display state.
   if (message && message.type === "migrationDisplayStateReady") {
     afterMigration(() => migrationService.acknowledge()).then(sendResponse, (error) => {

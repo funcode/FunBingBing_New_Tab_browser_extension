@@ -4,7 +4,7 @@
  * Shared-setting migration precedence: valid sync > valid local > default
  */
 
-import { EMPTY_DISPLAY_STATE } from './display-state.js';
+import { EMPTY_DISPLAY_STATE, isValidDisplaySnapshot } from './display-state.js';
 import { buildCanonicalUrls, canonicalizeImageUrl, extractImageId, isValidImageIdentity } from './image.js';
 
 /**
@@ -104,7 +104,9 @@ export function resolveSharedSettings(syncItems, localItems) {
 
 /**
  * The v2 display state a migrating page builds from the verified catalog and
- * the retained legacy display inputs. The entry is found by the identity of
+ * the retained display inputs. A valid snapshot that an earlier v2 build kept
+ * under the suffixed regular key is transferred as it is (ADR-0004).
+ * Otherwise the v1 inputs are used: the entry is found by the identity of
  * the legacy `wallpaper_url`; the legacy `wallpaper_date` is used only when
  * that URL has no identity. Without a matching entry the state is the
  * explicit empty one. The preview is left empty for the page to reconstruct.
@@ -112,11 +114,15 @@ export function resolveSharedSettings(syncItems, localItems) {
  * moves on to the day's wallpaper like any first new tab of a day (ADR-0016).
  *
  * @param {Object} catalog - Verified v2 catalog
- * @param {{wallpaperUrl?: string, wallpaperDate?: string}} legacy
+ * @param {{displayState?: Object, wallpaperUrl?: string, wallpaperDate?: string}} inputs -
+ *   The suffixed display snapshot and the v1 display inputs
  * @param {boolean} enableUhd - Final resolution when the legacy URL has none
  * @returns {Object} Display state
  */
-export function buildMigratedDisplayState(catalog, { wallpaperUrl, wallpaperDate }, enableUhd) {
+export function buildMigratedDisplayState(catalog, { displayState, wallpaperUrl, wallpaperDate }, enableUhd) {
+  if (isValidDisplaySnapshot(displayState)) {
+    return displayState;
+  }
   const entries = catalog?.entries ?? {};
   const legacyId = extractImageId(wallpaperUrl);
   const entry = legacyId
