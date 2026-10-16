@@ -1,70 +1,79 @@
 /**
- * Quote lease helpers for PLAN9.
- * Quote leases last 60 seconds, use crypto.randomUUID(), and reject expired or replaced tokens.
+ * Quote scrape lease helpers for PLAN9.
+ *
+ * One persisted lease state per context: `{date, token, leaseUntil}` plus the
+ * retry object of `date` (`retryLevel`, `nextRetryAt`, `attemptedAt`,
+ * `lastReconnectBypassAt`); a new date starts a fresh sequence. Tokens are
+ * opaque: the worker's runtime adapter generates them, so this module needs no
+ * crypto access and runs under Node tests.
  */
 
-const LEASE_DURATION_MS = 60 * 1000; // 60 seconds
+import {
+  canBypassWithReconnect,
+  hasUnusedReconnectBypass,
+  isRetryEligible,
+  recordFailure,
+  recordReconnectBypass,
+  resetRetry
+} from './retry.js';
+
+export const QUOTE_SCRAPE_LEASE_MS = 60 * 1000;
+
+function createLeaseState(date) {
+  return { date, token: '', leaseUntil: 0, ...resetRetry() };
+}
+
+function hasActiveLease(state, now) {
+  return Boolean(state?.token) && now < state.leaseUntil;
+}
 
 /**
- * Create a new quote lease.
- * @param {Function} uuidGenerator - Function that generates UUIDs (e.g., crypto.randomUUID)
- * @param {number} now - Current timestamp
- * @returns {{token: string, expiresAt: number}}
+ * Grant a 60-second lease for `date` when no lease is active and the date's
+ * backoff window has expired. A reconnect may bypass one active window; the
+ * bypass keeps the retry level and stays usable until its attempt records a
+ * result. generateToken is called only for a grant.
+ *
+ * @param {Object|null} stored - Persisted lease state
+ * @param {string} date - Latest committed current/historical catalog date
+ * @param {number} now
+ * @param {() => string} generateToken
+ * @param {number} [reconnectTime] - Time of the reconnect event, or 0
+ * @returns {{granted: boolean, state: Object}}
  */
-export function createQuoteLease(uuidGenerator, now) {
-  if (typeof uuidGenerator !== 'function') {
-    throw new Error('uuidGenerator must be a function');
+export function grantQuoteLease(stored, date, now, generateToken, reconnectTime = 0) {
+  if (hasActiveLease(stored, now)) {
+    return { granted: false, state: stored };
   }
-
-  const token = uuidGenerator();
+  let state = stored?.date === date ? stored : createLeaseState(date);
+  if (!isRetryEligible(state, now) && !hasUnusedReconnectBypass(state)) {
+    if (!reconnectTime || !canBypassWithReconnect(state, now, reconnectTime)) {
+      return { granted: false, state };
+    }
+    state = recordReconnectBypass(state, reconnectTime);
+  }
   return {
-    token,
-    expiresAt: now + LEASE_DURATION_MS
+    granted: true,
+    state: { ...state, token: generateToken(), leaseUntil: now + QUOTE_SCRAPE_LEASE_MS }
   };
 }
 
 /**
- * Validate a quote lease token.
- * @param {Object} lease - Current lease state
- * @param {string} submittedToken - Token being submitted
- * @param {number} now - Current timestamp
- * @returns {boolean} True if the token is valid and not expired
+ * A submission is valid only for the stored date and exact token, before the
+ * stored leaseUntil. Expired or replaced tokens are rejected.
  */
-export function validateQuoteLease(lease, submittedToken, now) {
-  if (!lease || !lease.token || !submittedToken) {
-    return false;
-  }
-
-  // Token must match
-  if (lease.token !== submittedToken) {
-    return false;
-  }
-
-  // Lease must not be expired
-  if (now >= lease.expiresAt) {
-    return false;
-  }
-
-  return true;
+export function isValidQuoteSubmission(state, { date, token }, now) {
+  return hasActiveLease(state, now) && state.date === date && state.token === token;
 }
 
 /**
- * Clear a quote lease.
- * @returns {null}
+ * Clear the lease after a submission. Complete quotes reset the retry
+ * sequence; missing quotes advance it 1, 3, 5, 5 minutes.
+ *
+ * @param {Object} state - Persisted lease state
+ * @param {boolean} complete - Whether every quote date now has a quote
+ * @param {number} now
  */
-export function clearQuoteLease() {
-  return null;
-}
-
-/**
- * Check if a lease is expired.
- * @param {Object} lease - Lease to check
- * @param {number} now - Current timestamp
- * @returns {boolean}
- */
-export function isLeaseExpired(lease, now) {
-  if (!lease || !lease.expiresAt) {
-    return true;
-  }
-  return now >= lease.expiresAt;
+export function releaseQuoteLease(state, complete, now) {
+  const released = { ...state, token: '', leaseUntil: 0 };
+  return { ...released, ...(complete ? resetRetry() : recordFailure(state, now)) };
 }

@@ -7,9 +7,15 @@
 import { addDays, isValidCalendarDate } from '../helpers/date.js';
 import { buildCanonicalUrls, extractImageId } from '../helpers/image.js';
 import { compareMetadataStages, mergeMetadata } from '../helpers/metadata.js';
-import { createRetryObject } from '../helpers/retry.js';
+import {
+  canBypassWithReconnect,
+  createRetryObject,
+  hasUnusedReconnectBypass,
+  isRetryEligible,
+  recordFailure
+} from '../helpers/retry.js';
 import { conflictsWithDisplayedIdentity } from '../helpers/stale-work.js';
-import { createInitialTriviaState, normalizeTriviaId } from '../helpers/trivia.js';
+import { canAdmitTriviaResult, createInitialTriviaState, normalizeTriviaId } from '../helpers/trivia.js';
 
 export const SOURCES = Object.freeze(['imageOfTheDay', 'model', 'archive']);
 
@@ -275,21 +281,89 @@ export function admitCandidates(catalog, candidates, { stale, displayState, now 
   return { changedDates };
 }
 
-/**
- * Trivia work derived only from the committed catalog: target and historical
- * entries with a trivia ID, missing payload, and an expired retry window.
- *
- * @returns {Array<{date: string, triviaId: string}>} Newest first
- */
-export function deriveTriviaCandidates(catalog, now) {
+// Target and historical entries with a trivia ID and a missing payload.
+function missingTriviaEntries(catalog) {
   const targetDate = catalog.refreshState.date;
   if (!isValidCalendarDate(targetDate)) {
     return [];
   }
   const oldestDate = addDays(targetDate, -HISTORY_DAYS);
-  return Object.values(catalog.entries)
-    .filter(entry => entry.date >= oldestDate && entry.date <= targetDate &&
-      entry.triviaId && entry.triviaState === 'missing' && now >= (entry.triviaNextRetryAt || 0))
+  return Object.values(catalog.entries).filter(entry => entry.date >= oldestDate &&
+    entry.date <= targetDate && entry.triviaId && entry.triviaState === 'missing');
+}
+
+// An entry's trivia fields as a retry object.
+function triviaRetryOf(entry) {
+  return {
+    attemptedAt: entry.triviaAttemptedAt || 0,
+    nextRetryAt: entry.triviaNextRetryAt || 0,
+    retryLevel: entry.triviaRetryLevel || 0,
+    lastReconnectBypassAt: entry.triviaLastReconnectBypassAt || 0
+  };
+}
+
+/**
+ * Record a reconnect bypass, in place, for each missing trivia payload whose
+ * active backoff window has not been bypassed yet. The level is kept.
+ *
+ * @returns {boolean} True when a bypass was recorded
+ */
+export function recordTriviaReconnect(catalog, now, reconnectTime) {
+  let changed = false;
+  for (const entry of missingTriviaEntries(catalog)) {
+    if (canBypassWithReconnect(triviaRetryOf(entry), now, reconnectTime)) {
+      entry.triviaLastReconnectBypassAt = reconnectTime;
+      changed = true;
+    }
+  }
+  return changed;
+}
+
+/**
+ * Trivia work derived only from the committed catalog: target and historical
+ * entries with a trivia ID, missing payload, and an expired retry window or a
+ * reconnect bypass whose attempt has not recorded a result.
+ *
+ * @returns {Array<{date: string, triviaId: string}>} Newest first
+ */
+export function deriveTriviaCandidates(catalog, now) {
+  return missingTriviaEntries(catalog)
+    .filter((entry) => {
+      const retry = triviaRetryOf(entry);
+      return isRetryEligible(retry, now) || hasUnusedReconnectBypass(retry);
+    })
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .map(entry => ({ date: entry.date, triviaId: entry.triviaId }));
+}
+
+/**
+ * Apply one trivia result in place. The date only locates the latest entry;
+ * the result applies only while that entry still carries the same triviaId,
+ * whatever the refresh generation. Success stores the payload as complete and
+ * resets the retry sequence; failure keeps the entry missing and backs off.
+ *
+ * @param {Object} catalog
+ * @param {{date: string, triviaId: string, ok: boolean, data?: Object|null}} result
+ * @param {number} now
+ * @returns {{changed: boolean, changedDates?: string[]}}
+ */
+export function applyTriviaResult(catalog, { date, triviaId, ok, data }, now) {
+  const entry = catalog.entries[date];
+  if (!canAdmitTriviaResult(entry, triviaId)) {
+    return { changed: false };
+  }
+  if (ok) {
+    entry.triviaData = data ?? null;
+    entry.triviaState = 'complete';
+    entry.triviaRetryLevel = 0;
+    entry.triviaNextRetryAt = 0;
+  } else {
+    const retry = recordFailure(triviaRetryOf(entry), now);
+    entry.triviaRetryLevel = retry.retryLevel;
+    entry.triviaNextRetryAt = retry.nextRetryAt;
+  }
+  entry.triviaAttemptedAt = now;
+  entry.updatedAt = now;
+  // Only a new payload changes what pages render.
+  return { changed: true, changedDates: ok ? [date] : [] };
 }

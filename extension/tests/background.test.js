@@ -20,13 +20,15 @@ function storageArea(data) {
 }
 
 // Load the real worker module against mocked Chrome, Cache Storage and fetch.
-async function loadWorker() {
+// `entry` adds fields to the catalog's target entry.
+async function loadWorker({ entry = {} } = {}) {
   const catalog = createEmptyCatalog();
   catalog.refreshState.date = TARGET;
   catalog.entries[TARGET] = {
     date: TARGET,
     imageId: ID,
-    urls: { preview: PREVIEW, highDef: HD, ultraHighDef: `https://ts1.tc.mm.bing.net/th?id=${ID}_UHD.jpg` }
+    urls: { preview: PREVIEW, highDef: HD, ultraHighDef: `https://ts1.tc.mm.bing.net/th?id=${ID}_UHD.jpg` },
+    ...entry
   };
   const messageListeners = [];
   const event = () => ({ addListener() {} });
@@ -110,5 +112,36 @@ describe('worker message handlers', () => {
     assert.strictEqual(worker.fetches.maxActive, 1);
     assert.deepStrictEqual(worker.fetches.calls, [PREVIEW, HD]);
     assert.deepStrictEqual([...worker.caches.keys()], ['funbingbing-wallpaper-cache-v2']);
+  });
+
+  it("grants a quote lease with a runtime UUID token and accepts only its holder's submission once", async () => {
+    const worker = await loadWorker();
+
+    const lease = await worker.send({ type: 'requestQuoteLease' });
+    assert.strictEqual(lease.granted, true);
+    assert.strictEqual(lease.date, TARGET);
+    assert.match(lease.token, /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
+    assert.deepStrictEqual(await worker.send({ type: 'requestQuoteLease' }), { granted: false });
+
+    const quote = { text: 'Quote', source: 'Author', caption: 'Caption' };
+    assert.deepStrictEqual(await worker.send({ type: 'syncQuotesForImages', date: TARGET, token: 'forged', quote }),
+      { ok: false, rejected: true });
+    assert.deepStrictEqual(await worker.send({ type: 'syncQuotesForImages', date: TARGET, token: lease.token, quote }),
+      { ok: true, updatedDates: [TARGET] });
+    assert.deepStrictEqual(await worker.send({ type: 'syncQuotesForImages', date: TARGET, token: lease.token, quote }),
+      { ok: false, rejected: true }, 'a released lease cannot submit again');
+  });
+
+  it('requests missing trivia for a committed entry after a catalog refresh', async () => {
+    const triviaId = `HPQuiz_${TARGET}_Day`;
+    const worker = await loadWorker({ entry: { triviaId, triviaData: null, triviaState: 'missing' } });
+
+    await worker.send({ type: 'refreshWallpaperCatalog' });
+    const triviaUrl = `https://www.bing.com/hp/api/v1/trivia?format=json&id=${triviaId}&mkt=zh-CN`;
+    for (let i = 0; i < 100 && !worker.fetches.calls.includes(triviaUrl); i++) {
+      await new Promise(resolve => setImmediate(resolve));
+    }
+
+    assert.ok(worker.fetches.calls.includes(triviaUrl));
   });
 });

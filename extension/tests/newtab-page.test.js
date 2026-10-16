@@ -9,6 +9,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CATALOG_KEY = 'bing_wallpaper_catalog_v2';
 const DISPLAY_STATE_KEY = 'wallpaper_display_state_v2';
 const CACHE_NAME = 'funbingbing-wallpaper-cache-v2';
+const QUOTE_STATE_KEY = 'cache_quote_state_v2';
 
 const TARGET = '20261013';
 const ID = 'OHR.Target_ZH-CN1000000001';
@@ -60,10 +61,12 @@ function fakeElement() {
 /**
  * Run the real boot.js, and the wallpaper.js it loads, as classic scripts in
  * one global scope against mocked Chrome, Cache Storage and DOM. `worker`
- * answers ensureWallpaperCached requests; `undecodable` lists cached image
- * URLs whose decoding fails.
+ * answers ensureWallpaperCached requests and `quotes` the quote lease and
+ * submission messages; `undecodable` lists cached image URLs whose decoding
+ * fails. `quotePage` maps selectors to elements of Bing's parsed quote page;
+ * without it the quote page cannot be fetched.
  */
-async function openNewTab({ local = {}, cached = [], undecodable = [], networkStatus = 'online', worker = () => ({ ok: false }) } = {}) {
+async function openNewTab({ local = {}, cached = [], undecodable = [], networkStatus = 'online', worker = () => ({ ok: false }), quotes = () => ({ ok: true }), quotePage } = {}) {
   const page = {
     local: structuredClone(local),
     cache: new Set(cached),
@@ -98,7 +101,14 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
     i18n: key => key,
     fetch: async (url) => {
       page.fetched.push(String(url));
-      return { ok: false };
+      return quotePage && String(url).includes('quote%20of%20the%20day')
+        ? { ok: true, text: async () => '<html></html>' }
+        : { ok: false };
+    },
+    DOMParser: class {
+      parseFromString() {
+        return { querySelector: selector => quotePage?.[selector] ?? null };
+      }
     },
     caches: {
       async open(name) {
@@ -130,7 +140,9 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
         sendMessage(message, callback) {
           // Cloned into this realm so assertions can compare it structurally.
           page.messages.push(structuredClone(message));
-          const response = Promise.resolve(message.type === 'ensureWallpaperCached' ? worker(message, page) : { ok: true });
+          const answer = message.type === 'ensureWallpaperCached' ? worker(message, page)
+            : /quote/i.test(message.type) ? quotes(message, page) : { ok: true };
+          const response = Promise.resolve(answer);
           if (callback) {
             response.then(callback);
             return undefined;
@@ -253,5 +265,82 @@ describe('new tab page scripts', () => {
     assert.deepStrictEqual(page.backgrounds, ['']);
     assert.strictEqual(page.element('main-body').style.backgroundColor, '');
     assert.strictEqual(page.local[DISPLAY_STATE_KEY], undefined);
+  });
+
+  it("renders the displayed date's quote from the worker's v2 quote cache", async () => {
+    const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
+    const page = await openNewTab({
+      local: {
+        [CATALOG_KEY]: catalog(),
+        [DISPLAY_STATE_KEY]: snapshot,
+        [QUOTE_STATE_KEY]: { quotes: { [TARGET]: { text: 'Target quote', source: 'Author', caption: 'Caption', link: '' } } }
+      },
+      cached: [PREVIEW, UHD]
+    });
+
+    await page.settled(() => page.backgrounds.length === 2);
+
+    assert.strictEqual(page.element('quote-text').textContent, '“Target quote”');
+    assert.strictEqual(page.element('quote-caption').textContent, 'Caption');
+  });
+
+  it("scrapes Bing's quote only while holding the worker's lease and submits the result with its token", async () => {
+    const page = await openNewTab({
+      local: { [CATALOG_KEY]: catalog() },
+      quotes: message => (message.type === 'requestQuoteLease'
+        ? { granted: true, date: TARGET, token: 'lease-token', scrape: true }
+        : { ok: true, updatedDates: [] })
+    });
+
+    await page.settled(() => page.messages.some(message => message.type === 'syncQuotesForImages'));
+
+    assert.deepStrictEqual(page.fetched.filter(url => url.includes('quote%20of%20the%20day')).length, 1);
+    // The scrape fails in this harness, so the worker is left to its qotd_url fallback.
+    assert.deepStrictEqual(page.messages.find(message => message.type === 'syncQuotesForImages'),
+      { type: 'syncQuotesForImages', date: TARGET, token: 'lease-token', quote: null });
+  });
+
+  it("submits a scraped quote without a caption element with an empty caption", async () => {
+    const author = { textContent: 'Author', closest: () => ({ getAttribute: () => '/search?q=Author' }) };
+    const page = await openNewTab({
+      local: { [CATALOG_KEY]: catalog() },
+      quotes: message => (message.type === 'requestQuoteLease'
+        ? { granted: true, date: TARGET, token: 'lease-token', scrape: true }
+        : { ok: true, updatedDates: [] }),
+      // Bing's quote page with text and author but no caption element.
+      quotePage: {
+        '.bt_quoteText': { textContent: '“Usable Bing quote”', getAttribute: () => null },
+        '.qotd_author': author
+      }
+    });
+
+    await page.settled(() => page.messages.some(message => message.type === 'syncQuotesForImages'));
+
+    assert.deepStrictEqual(page.messages.find(message => message.type === 'syncQuotesForImages').quote,
+      { text: 'Usable Bing quote', source: 'Author', link: '/search?q=Author', caption: '' });
+  });
+
+  it("does not scrape Bing's quote without a lease", async () => {
+    const page = await openNewTab({ local: { [CATALOG_KEY]: catalog() }, quotes: () => ({ granted: false }) });
+
+    await page.settled(() => page.messages.some(message => message.type === 'requestQuoteLease'));
+    await new Promise(resolve => setTimeout(resolve, 20));
+
+    assert.deepStrictEqual(page.fetched, []);
+    assert.ok(!page.messages.some(message => message.type === 'syncQuotesForImages'));
+  });
+
+  it('applies the wallpaper while quote work is still pending', async () => {
+    const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
+    const page = await openNewTab({
+      local: { [CATALOG_KEY]: catalog(), [DISPLAY_STATE_KEY]: snapshot },
+      cached: [PREVIEW, UHD],
+      quotes: () => new Promise(() => {})
+    });
+
+    await page.settled(() => page.backgrounds.length === 2);
+
+    assert.strictEqual(page.backgrounds.at(-1), `url('blob:${UHD}')`);
+    assert.ok(page.messages.some(message => message.type === 'requestQuoteLease'));
   });
 });

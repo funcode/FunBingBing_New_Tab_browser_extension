@@ -19,9 +19,11 @@ import {
 import {
   SOURCES,
   admitCandidates,
+  applyTriviaResult,
   deriveTriviaCandidates,
   normalizeCatalog,
   parseSourceCandidates,
+  recordTriviaReconnect,
   rollToTargetDate
 } from './catalog.js';
 import { STORAGE_KEYS } from './storage-keys.js';
@@ -112,6 +114,16 @@ export function createCatalogService({
     return commitWith(mutate, () => {});
   }
 
+  /**
+   * Commit one trivia result through the same serial queue, against a fresh
+   * read of its entry. It neither schedules trivia nor starts image work.
+   *
+   * @param {{date: string, triviaId: string, ok: boolean, data?: Object|null}} result
+   */
+  function commitTriviaResult(result) {
+    return commitWith(catalog => applyTriviaResult(catalog, result, now()), () => {});
+  }
+
   /** @returns {Promise<{catalog: Object, displayState: Object|null}>} */
   async function read() {
     return { catalog: await readCatalog(), displayState: await readDisplayState() };
@@ -138,6 +150,11 @@ export function createCatalogService({
           changed = true;
           due.push(source);
         }
+      }
+      // Trivia retries are separate retry objects; the derivation after this
+      // commit includes each bypassed entry.
+      if (reconnectTime && recordTriviaReconnect(catalog, now(), reconnectTime)) {
+        changed = true;
       }
       return { changed, due, generation: refreshState.generation };
     });
@@ -226,5 +243,5 @@ export function createCatalogService({
     return promise;
   }
 
-  return { refresh, read, commitImageState };
+  return { refresh, read, commitImageState, commitTriviaResult };
 }

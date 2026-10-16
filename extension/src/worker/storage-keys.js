@@ -4,5 +4,7 @@
  */
 export const STORAGE_KEYS = Object.freeze({
   catalog: 'bing_wallpaper_catalog_v2',
-  displayState: 'wallpaper_display_state_v2'
+  displayState: 'wallpaper_display_state_v2',
+  quoteState: 'cache_quote_state_v2',
+  quoteLease: 'quote_scrape_state_v2'
 });

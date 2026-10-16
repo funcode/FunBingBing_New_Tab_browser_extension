@@ -9,6 +9,8 @@
 // The worker writes this cache and the catalog; the page only reads them.
 const WALLPAPER_CACHE_NAME = 'funbingbing-wallpaper-cache-v2';
 const CATALOG_KEY = 'bing_wallpaper_catalog_v2';
+// The worker is also the only writer of the quote cache.
+const QUOTE_STATE_KEY = 'cache_quote_state_v2';
 // DISPLAY_STATE_KEY is declared by boot.js, which shares this global scope.
 
 let currentWallpaperObjectUrl = null;
@@ -130,12 +132,12 @@ const wallpaperControllerReady = import(chrome.runtime.getURL('src/page/wallpape
 	}));
 
 // --- Main entry point ---
-async function initWallpaper() {
+async function initWallpaper({ reconnect = false } = {}) {
 	// The page starts from committed state while the worker refreshes.
 	const refreshed = chrome.runtime.sendMessage({ type: 'refreshWallpaperCatalog' }).catch((err) => {
 		console.debug('Wallpaper catalog refresh unavailable:', err);
 	});
-	syncQuotes().catch((err) => console.error('Quote sync failed:', err));
+	syncQuotes({ reconnect }).catch((err) => console.error('Quote sync failed:', err));
 	const controller = await wallpaperControllerReady;
 	await controller.initialize();
 	await refreshed;
@@ -247,7 +249,7 @@ function normalizeQuoteForRender(rawQuote) {
 	};
 }
 
-function getCachedQuotesFromState(state = readConf('cache_quote_state')) {
+function getCachedQuotesFromState(state = readConf(QUOTE_STATE_KEY)) {
 	return state && typeof state === 'object' && state.quotes && typeof state.quotes === 'object'
 		? state.quotes
 		: {};
@@ -338,58 +340,29 @@ async function scrapeQuoteOfTheDay() {
 		if (!response.ok) return null;
 		const doc = new DOMParser().parseFromString(await response.text(), "text/html");
 		const { text, author, authorHref, caption } = extractQuote(doc);
-		return text && author ? { text, source: author, link: authorHref, caption } : null;
+		// A missing caption element is an empty caption, which the worker keeps
+		// as a best-effort quote and still tries to recover.
+		return text && author ? { text, source: author, link: authorHref, caption: caption || '' } : null;
 	} catch (e) {
 		console.error("Failed to scrape quote of the day:", e);
 		return null;
 	}
 }
 
-// Legacy quote sync over the catalog's current and historical dates. The page
-// scrapes Bing only while the target date has no cached quote. The worker
-// lease and its backoff replace this in #120.
-async function syncQuotes() {
-	const catalog = await readStorageKey(CATALOG_KEY);
-	const todayDate = catalog?.refreshState?.date;
-	const imageDates = Object.keys(catalog?.entries || {}).filter((date) => date <= todayDate).sort().reverse();
-	if (imageDates.length === 0) return;
-
-	const quoteCache = getCachedQuotesFromState(await readStorageKey('cache_quote_state'));
-	let todayQuote = quoteCache[todayDate] || null;
-	if (!normalizeQuoteForRender(todayQuote)) {
-		todayQuote = await scrapeQuoteOfTheDay();
-		setTransientQuote(todayDate, todayQuote);
-		if (currentImageDate === todayDate) {
-			updateQuoteOnly({ date: todayDate });
-		}
+// Only the page holding the worker's quote lease scrapes Bing's quote. The
+// worker stores it, falls back to qotd_url for dates still missing, and
+// broadcasts quotesUpdated. Quote work never delays the wallpaper. After a
+// reconnect the worker may bypass one active backoff window.
+async function syncQuotes({ reconnect = false } = {}) {
+	const lease = await chrome.runtime.sendMessage({ type: 'requestQuoteLease', reconnect });
+	if (!lease?.granted) return;
+	const quote = lease.scrape ? await scrapeQuoteOfTheDay() : null;
+	setTransientQuote(lease.date, quote);
+	if (quote && currentImageDate === lease.date) {
+		updateQuoteOnly({ date: lease.date });
 	}
-	fireQuoteSync({
-		type: 'syncQuotesForImages',
-		requestId: Date.now(),
-		todayDate,
-		todayQuote,
-		imageDates
-	});
-}
-
-let latestForegroundQuoteRequestId = 0;
-
-function fireQuoteSync(payload) {
-	if (!payload) return;
-	latestForegroundQuoteRequestId = Math.max(latestForegroundQuoteRequestId, payload.requestId);
-	try {
-		chrome.runtime.sendMessage(payload, (response) => {
-			if (chrome.runtime.lastError) {
-				console.debug('syncQuotesForImages failed:', chrome.runtime.lastError.message);
-				return;
-			}
-			if (response && response.stale && payload.requestId === latestForegroundQuoteRequestId) {
-				console.debug('syncQuotesForImages skipped stale response');
-			}
-		});
-	} catch (err) {
-		console.error('Failed to send syncQuotesForImages:', err);
-	}
+	// An empty result still lets the worker try the qotd_url fallback.
+	await chrome.runtime.sendMessage({ type: 'syncQuotesForImages', date: lease.date, token: lease.token, quote });
 }
 
 function setContents(image) {
@@ -501,7 +474,7 @@ function updateQuoteOnly(image, quoteCache) {
 async function refreshCurrentQuoteFromStorage() {
 	// quotesUpdated can arrive before this page's confCache sees storage.onChanged.
 	// Fresh-read the quote state written by background before repainting.
-	const quoteCache = getCachedQuotesFromState(await readStorageKey('cache_quote_state'));
+	const quoteCache = getCachedQuotesFromState(await readStorageKey(QUOTE_STATE_KEY));
 	if (normalizeQuoteForRender(quoteCache[currentImageDate])) {
 		clearTransientQuote(currentImageDate);
 	}
@@ -532,7 +505,7 @@ initWallpaper().catch((err) => console.error('initWallpaper() failed:', err));
 
 window.addEventListener('funbingbing:networkstatuschange', (event) => {
 	if (event.detail?.status === 'online' && event.detail?.previousStatus === 'offline') {
-		initWallpaper().catch((err) => console.error('Wallpaper refresh after reconnect failed:', err));
+		initWallpaper({ reconnect: true }).catch((err) => console.error('Wallpaper refresh after reconnect failed:', err));
 	}
 });
 

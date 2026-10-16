@@ -7,6 +7,7 @@ import {
   isRetryEligible,
   canBypassWithReconnect,
   recordReconnectBypass,
+  hasUnusedReconnectBypass,
   getRetryDelay
 } from '../src/helpers/retry.js';
 
@@ -168,5 +169,18 @@ describe('Retry helpers', () => {
       assert.strictEqual(getRetryDelay(-1), 60 * 1000); // Clamped to level 0
       assert.strictEqual(getRetryDelay(10), 5 * 60 * 1000); // Clamped to level 3
     });
+  });
+});
+
+describe('hasUnusedReconnectBypass', () => {
+  it('is true from a recorded bypass until the next attempt records a failure', () => {
+    const failed = recordFailure(createRetryObject(), 1000);
+    assert.strictEqual(hasUnusedReconnectBypass(failed), false);
+
+    const bypassed = recordReconnectBypass(failed, 2000);
+    assert.strictEqual(hasUnusedReconnectBypass(bypassed), true);
+
+    assert.strictEqual(hasUnusedReconnectBypass(recordFailure(bypassed, 3000)), false);
+    assert.strictEqual(hasUnusedReconnectBypass(resetRetry()), false);
   });
 });

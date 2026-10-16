@@ -23,6 +23,8 @@ const EXTENSION = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..
 const CATALOG_KEY = 'bing_wallpaper_catalog_v2';
 const DISPLAY_STATE_KEY = 'wallpaper_display_state_v2';
 const CACHE_NAME = 'funbingbing-wallpaper-cache-v2';
+const QUOTE_STATE_KEY = 'cache_quote_state_v2';
+const BING_QUOTE_PAGE = 'https://cn.bing.com/search?q=quote%20of%20the%20day*';
 const GRADIENT = 'linear-gradient(160deg, rgb(31, 41, 51), rgb(62, 76, 89))';
 
 const TARGET = getZhCnTargetDate();
@@ -71,19 +73,20 @@ async function cacheImages({ cacheName, images }) {
   }
 }
 
-/** Replace the extension's state: local storage, and the listed cached images. */
-async function seed({ days = [], displayState, cached = [], local = {} }) {
+/** Replace the extension's state: local and sync storage, and the listed cached images. */
+async function seed({ days = [], displayState, cached = [], local = {}, sync = {} }) {
   const items = { [CATALOG_KEY]: catalogOf(days), ...local };
   if (displayState) {
     items[DISPLAY_STATE_KEY] = displayState;
   }
   const serviceWorker = await worker();
-  await serviceWorker.evaluate(async ({ items, cacheName }) => {
+  await serviceWorker.evaluate(async ({ items, cacheName, sync }) => {
     await chrome.storage.local.clear();
     await caches.delete(cacheName);
     await chrome.storage.local.set(items);
-    await chrome.storage.sync.set({ enable_uhd_wallpaper: 'yes' });
-  }, { items, cacheName: CACHE_NAME });
+    await chrome.storage.sync.clear();
+    await chrome.storage.sync.set({ enable_uhd_wallpaper: 'yes', ...sync });
+  }, { items, cacheName: CACHE_NAME, sync });
   await serviceWorker.evaluate(cacheImages, { cacheName: CACHE_NAME, images: cached });
 }
 
@@ -442,6 +445,60 @@ describe('new tab page in the loaded extension', () => {
       await page.close();
     } finally {
       await context.setOffline(false);
+    }
+  });
+
+  it("shows the wallpaper while the lease holder's quote scrape is still pending", async () => {
+    await seed({ days: [A], displayState: snapshotOf(A, BOOT_PREVIEW), cached: [final(A), preview(A)] });
+    let scrapeStarted;
+    const scraping = new Promise((resolve) => { scrapeStarted = resolve; });
+    // The scrape never answers while the test runs.
+    await context.route(BING_QUOTE_PAGE, () => scrapeStarted());
+    try {
+      const page = await openNewTab();
+      await scraping;
+      await showsFinal(page);
+
+      assert.strictEqual(await headline(page), 'Target headline');
+      const lease = await page.evaluate(async () => (await chrome.storage.local.get('quote_scrape_state_v2')).quote_scrape_state_v2);
+      assert.strictEqual(lease.date, A.date);
+      assert.ok(lease.token, 'the scraping page holds the worker lease');
+      assert.deepStrictEqual(page.errors, []);
+      await page.close();
+    } finally {
+      await context.unrouteAll({ behavior: 'ignoreErrors' });
+    }
+  });
+
+  it('the worker falls back to the qotd_url that pages share through sync storage', async () => {
+    const qotdUrl = 'https://quotes.example/qotd.json';
+    await seed({ days: [A], displayState: snapshotOf(A, BOOT_PREVIEW), cached: [final(A), preview(A)] });
+    const fallbackRequests = [];
+    await context.route(BING_QUOTE_PAGE, route => route.fulfill({ status: 503, body: '' }));
+    await context.route(qotdUrl, (route) => {
+      fallbackRequests.push(route.request().url());
+      return route.fulfill({
+        contentType: 'application/json',
+        body: JSON.stringify({ [A.date]: { text: 'Fallback quote', source: 'Fallback author', caption: 'Fallback caption' } })
+      });
+    });
+    try {
+      // A regular extension page writes the shared setting that the worker reads.
+      const writer = await context.newPage();
+      await writer.goto(`chrome-extension://${new URL((await worker()).url()).host}/options.html`);
+      await writer.evaluate(url => chrome.storage.sync.set({ qotd_url: url }), qotdUrl);
+      await writer.close();
+
+      const page = await openNewTab();
+      await page.waitForFunction(() => document.getElementById('quote-text').textContent === '“Fallback quote”');
+
+      assert.deepStrictEqual(fallbackRequests, [qotdUrl]);
+      const stored = await page.evaluate(key => chrome.storage.local.get(key), QUOTE_STATE_KEY);
+      assert.strictEqual(stored[QUOTE_STATE_KEY].quotes[A.date].text, 'Fallback quote');
+      assert.deepStrictEqual(page.errors, []);
+      await page.close();
+    } finally {
+      await context.unrouteAll({ behavior: 'ignoreErrors' });
     }
   });
 });

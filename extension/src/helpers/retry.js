@@ -105,6 +105,20 @@ export function canBypassWithReconnect(retryObj, now, reconnectTime) {
 }
 
 /**
+ * Whether a reconnect bypass was recorded in the current backoff window and
+ * the attempt it allows has not recorded a result yet. The bypass stays usable
+ * until then, so an attempt interrupted by worker termination is not lost.
+ * Each failure starts a new window after the bypass, which ends it.
+ *
+ * @param {Object} retryObj - Retry object
+ * @returns {boolean}
+ */
+export function hasUnusedReconnectBypass(retryObj) {
+  const lastBypass = retryObj?.lastReconnectBypassAt || 0;
+  return lastBypass > (retryObj?.attemptedAt || 0);
+}
+
+/**
  * Mark that a reconnect bypass was used.
  * @param {Object} retryObj - Retry object
  * @param {number} reconnectTime - Time of the reconnect event
