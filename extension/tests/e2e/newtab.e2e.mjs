@@ -1,250 +1,28 @@
 /**
  * Browser checks of the new tab page in the actual MV3 extension, loaded into
- * Chromium by Playwright. Run with `npm run test:e2e`.
- *
- * All DNS lookups fail, so no test reaches Bing: the catalog, display state
- * and Cache Storage are seeded through the service worker, and a worker image
- * fetch is stood in for by caching the image and sending the worker's
- * wallpaperCatalogUpdated notification.
+ * Chromium by Playwright. Run with `npm run test:e2e`; harness.mjs describes
+ * the setup.
  */
 
 import { after, before, describe, it } from 'node:test';
 import assert from 'node:assert';
-import fs from 'node:fs';
-import os from 'node:os';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { chromium } from 'playwright';
-import { addDays, getZhCnTargetDate } from '../../src/helpers/date.js';
-import { buildCanonicalUrls } from '../../src/helpers/image.js';
-import { createEmptyCatalog } from '../../src/worker/catalog.js';
+import {
+  ANY_METADATA_REQUEST, BING_QUOTE_PAGE, BOOT_PREVIEW, CATALOG_KEY, COMMITTED_AT, DAY, GRADIENT, MIGRATION_KEY,
+  QUOTE_STATE_KEY, backgroundCount, backgroundImages, backgroundKinds, browserTargets, cacheImages, cachedDataUrl,
+  cachedUrls, catalogOf, closeTarget, computedBackground, context, day, decodeIsHeld, displayStateWhen, finish, final,
+  headline, headlineIs, holdNextDecode, identityOf, inlineBackground, launch, migrationPhase, next, openIncognitoNewTab,
+  openNewTab, preview, previous, readDisplayState, readLocal, releaseDecode, seed, showsFinal, snapshotOf, start,
+  updatingText, worker, workerCaches
+} from './harness.mjs';
 
-const EXTENSION = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
-const CATALOG_KEY = 'bing_wallpaper_catalog_v2';
-const DISPLAY_STATE_KEY = 'wallpaper_display_state_v2';
-const CACHE_NAME = 'funbingbing-wallpaper-cache-v2';
-const QUOTE_STATE_KEY = 'cache_quote_state_v2';
-const MIGRATION_KEY = 'wallpaper_migration_v2_state';
-const BING_QUOTE_PAGE = 'https://cn.bing.com/search?q=quote%20of%20the%20day*';
-const GRADIENT = 'linear-gradient(160deg, rgb(31, 41, 51), rgb(62, 76, 89))';
-
-const TARGET = getZhCnTargetDate();
-const day = (offset, name, color) => {
-  const date = addDays(TARGET, offset);
-  const imageId = `OHR.${name}_ZH-CN100000000${-offset}`;
-  return { date, imageId, color, headline: `${name} headline`, urls: buildCanonicalUrls(imageId) };
-};
 const A = day(0, 'Target', '#a03020');
 const B = day(-1, 'Older', '#2060a0');
 const C = day(-2, 'Oldest', '#208040');
 
-function catalogOf(days) {
-  const catalog = createEmptyCatalog();
-  catalog.refreshState.date = TARGET;
-  catalog.refreshState.generation = 1;
-  for (const source of Object.values(catalog.refreshState.sources)) {
-    // Covered sources are not requested again for the same target date.
-    source.status = 'success';
-  }
-  for (const { date, imageId, headline, urls } of days) {
-    catalog.entries[date] = {
-      date, imageId, urls, headline, title: headline, metadataStage: 'iotd', triviaId: '', triviaData: null, triviaState: 'missing'
-    };
-  }
-  return catalog;
-}
-
-let context;
-let profileDir;
-
-async function worker() {
-  return context.serviceWorkers()[0] || context.waitForEvent('serviceworker');
-}
-
-// Runs in the service worker: cache one solid-color JPEG per image.
-async function cacheImages({ cacheName, images }) {
-  const cache = await caches.open(cacheName);
-  for (const { url, color, size } of images) {
-    const canvas = new OffscreenCanvas(size, size);
-    const context2d = canvas.getContext('2d');
-    context2d.fillStyle = color;
-    context2d.fillRect(0, 0, size, size);
-    const blob = await canvas.convertToBlob({ type: 'image/jpeg' });
-    await cache.put(url, new Response(blob, { headers: { 'Content-Type': 'image/jpeg' } }));
-  }
-}
-
-/**
- * Replace the extension's state: local and sync storage, and the listed cached
- * images. Migration is complete unless `local` says otherwise, so a worker
- * restart during a test only repeats its cleanup.
- */
-async function seed({ days = [], displayState, cached = [], local = {}, sync = {} }) {
-  const items = { [CATALOG_KEY]: catalogOf(days), [MIGRATION_KEY]: { version: 2, phase: 'complete' }, ...local };
-  if (displayState) {
-    items[DISPLAY_STATE_KEY] = displayState;
-  }
-  const serviceWorker = await worker();
-  await serviceWorker.evaluate(async ({ items, cacheName, sync }) => {
-    await chrome.storage.local.clear();
-    await caches.delete(cacheName);
-    await chrome.storage.local.set(items);
-    await chrome.storage.sync.clear();
-    await chrome.storage.sync.set({ enable_uhd_wallpaper: 'yes', ...sync });
-  }, { items, cacheName: CACHE_NAME, sync });
-  await serviceWorker.evaluate(cacheImages, { cacheName: CACHE_NAME, images: cached });
-}
-
-const final = shown => ({ url: shown.urls.ultraHighDef, color: shown.color, size: 64 });
-const preview = shown => ({ url: shown.urls.preview, color: shown.color, size: 16 });
-
-/** Cache images the way a finished worker fetch would, then notify pages. */
-async function workerCaches(images, dates) {
-  const serviceWorker = await worker();
-  await serviceWorker.evaluate(cacheImages, { cacheName: CACHE_NAME, images });
-  await serviceWorker.evaluate(
-    notified => chrome.runtime.sendMessage({ type: 'wallpaperCatalogUpdated', dates: notified }).catch(() => {}),
-    dates
-  );
-}
-
-/** The data URL the page reconstructs from a cached preview. */
-async function cachedDataUrl(url) {
-  return (await worker()).evaluate(async ({ cacheName, url }) => {
-    const response = await (await caches.open(cacheName)).match(url);
-    const bytes = new Uint8Array(await response.arrayBuffer());
-    return `data:image/jpeg;base64,${btoa(String.fromCharCode(...bytes))}`;
-  }, { cacheName: CACHE_NAME, url });
-}
-
-async function readDisplayState(page) {
-  return page.evaluate(async key => (await chrome.storage.local.get(key))[key], DISPLAY_STATE_KEY);
-}
-
-/** Poll the worker's migration marker until it reaches the phase. */
-async function migrationPhase(phase) {
-  for (let attempt = 0; attempt < 150; attempt++) {
-    const marker = await (await worker()).evaluate(async key => (await chrome.storage.local.get(key))[key], MIGRATION_KEY)
-      .catch(() => null);
-    if (marker?.phase === phase) return;
-    await new Promise(resolve => setTimeout(resolve, 100));
-  }
-  assert.fail(`migration did not reach the ${phase} phase`);
-}
-
-/** Poll the stored display snapshot until it satisfies the predicate. */
-async function displayStateWhen(page, predicate) {
-  for (let attempt = 0; attempt < 150; attempt++) {
-    const snapshot = await readDisplayState(page);
-    if (predicate(snapshot)) return snapshot;
-    await new Promise(resolve => setTimeout(resolve, 100));
-  }
-  assert.fail('the display snapshot did not reach the expected state');
-}
-
-/**
- * Open a new tab and collect what the page shows and requests. With
- * `holdPreviewConversion`, preview data URL conversion waits for
- * `window.__releaseConversion()`.
- */
-async function openNewTab({ holdPreviewConversion = false } = {}) {
-  const page = await context.newPage();
-  page.errors = [];
-  page.imageRequests = [];
-  page.on('pageerror', error => page.errors.push(error.message));
-  page.on('request', (request) => {
-    if (request.url().includes('ts1.tc.mm.bing.net')) page.imageRequests.push(request.url());
-  });
-  if (holdPreviewConversion) {
-    await page.addInitScript(() => {
-      const read = FileReader.prototype.readAsDataURL;
-      const released = new Promise((resolve) => { window.__releaseConversion = resolve; });
-      FileReader.prototype.readAsDataURL = function (blob) {
-        released.then(() => read.call(this, blob));
-      };
-    });
-  }
-  await page.goto('chrome://newtab/');
-  return page;
-}
-
-/** Make the page's next image decode wait for `window.__releaseDecode()`. */
-async function holdNextDecode(page) {
-  await page.evaluate(() => {
-    const decode = HTMLImageElement.prototype.decode;
-    let held = false;
-    HTMLImageElement.prototype.decode = function () {
-      if (held) return decode.call(this);
-      held = true;
-      return new Promise((resolve) => { window.__releaseDecode = resolve; }).then(() => decode.call(this));
-    };
-  });
-}
-const decodeIsHeld = page => page.waitForFunction(() => typeof window.__releaseDecode === 'function');
-const releaseDecode = page => page.evaluate(() => window.__releaseDecode());
-
-// Kinds of inline body backgrounds in the order they were set.
-const backgroundKinds = async page => (await page.evaluate(() => window.__backgrounds))
-  .map(value => (value.startsWith('url("data:') ? 'data' : value.startsWith('url("blob:') ? 'blob' : 'none'));
-const backgroundCount = page => page.evaluate(() => window.__backgrounds.length);
-const inlineBackground = page => page.evaluate(() => document.getElementById('main-body').style.backgroundImage);
-const computedBackground = page => page.evaluate(() => getComputedStyle(document.getElementById('main-body')).backgroundImage);
-const headline = page => page.locator('#headline').textContent();
-const headlineIs = (page, text) => page.waitForFunction(expected => document.getElementById('headline').textContent === expected, text);
-const showsFinal = page => page.waitForFunction(() => document.getElementById('main-body').style.backgroundImage.startsWith('url("blob:'));
-// rightNav carries a static aria-disabled attribute, so its click is forced.
-const previous = page => page.click('#leftNav');
-const next = page => page.click('#rightNav', { force: true });
-
-// Committed now, so no day rollover applies unless a test sets updatedAt.
-const COMMITTED_AT = Date.now();
-const snapshotOf = (shown, preloadDataUrl = '', updatedAt = COMMITTED_AT) => ({
-  date: shown.date, imageId: shown.imageId, url: shown.urls.ultraHighDef, preloadDataUrl, updatedAt
-});
-const identityOf = snapshot => ({ date: snapshot.date, imageId: snapshot.imageId, url: snapshot.url });
-// A 1x1 GIF: only its presence at boot matters.
-const BOOT_PREVIEW = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-
-/** Start Chromium with the extension on the test profile, which persists across launches. */
-async function launch() {
-  context = await chromium.launchPersistentContext(profileDir, {
-    channel: 'chromium',
-    headless: true,
-    args: [
-      `--disable-extensions-except=${EXTENSION}`,
-      `--load-extension=${EXTENSION}`,
-      //Without the flag, Chromium follows this machine's system proxy and page requests fail with ERR_PROXY_CONNECTION_FAILED; with it, they fail at the blocked DNS lookup as the tests intend.
-      '--no-proxy-server',
-      '--host-resolver-rules=MAP * ~NOTFOUND'
-    ]
-  });
-  // Record every inline background and headline the page sets, from before
-  // boot.js runs, so short-lived states are not missed.
-  await context.addInitScript(() => {
-    window.__backgrounds = [];
-    window.__headlines = [];
-    const record = (list, value) => {
-      if (value !== undefined && value !== (list.at(-1) ?? '')) list.push(value);
-    };
-    new MutationObserver(() => {
-      record(window.__backgrounds, document.getElementById('main-body')?.style.backgroundImage);
-      record(window.__headlines, document.getElementById('headline')?.textContent);
-    }).observe(document, { attributes: true, attributeFilter: ['style'], childList: true, characterData: true, subtree: true });
-  });
-}
-
 describe('new tab page in the loaded extension', () => {
-  before(async () => {
-    profileDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ataraxia-e2e-'));
-    await launch();
-    // Let the new install's migration finish before tests replace its state.
-    await migrationPhase('verified');
-  });
-
-  after(async () => {
-    await context?.close();
-    fs.rmSync(profileDir, { recursive: true, force: true });
-  });
+  // Let the new install's migration finish before tests replace its state.
+  before(start);
+  after(finish);
 
   it('cold start shows the gradient without an inline color and without errors', async () => {
     await seed({});
@@ -274,13 +52,26 @@ describe('new tab page in the loaded extension', () => {
     await page.close();
   });
 
-  it('repairs an empty committed preview from Cache Storage on the next new tab', async () => {
-    await seed({ days: [A], displayState: snapshotOf(A), cached: [final(A), preview(A)] });
+  it('with an empty committed preview, applies the cached final at once and repairs the preview; boot never paints the legacy preview', async () => {
+    await seed({
+      days: [A],
+      displayState: snapshotOf(A),
+      cached: [final(A), preview(A)],
+      // v1 migration input only.
+      local: { wallpaper_preload_data_url: BOOT_PREVIEW }
+    });
     const page = await openNewTab();
 
     const repaired = await displayStateWhen(page, snapshot => snapshot?.preloadDataUrl);
     assert.deepStrictEqual(repaired, snapshotOf(A, await cachedDataUrl(A.urls.preview)));
+    assert.deepStrictEqual(await backgroundImages(page), ['final']);
     await page.close();
+
+    // The next new tab boots from the repaired preview.
+    const later = await openNewTab();
+    await showsFinal(later);
+    assert.deepStrictEqual(await backgroundImages(later), ['data', 'final']);
+    await later.close();
   });
 
   it('shows the cached preview first and swaps once when the final image is cached', async () => {
@@ -524,12 +315,44 @@ describe('new tab page in the loaded extension', () => {
     }
   });
 
-  it('the loaded extension is not allowed in incognito', async () => {
+  it('an incognito New Tab stays the Chrome page, with no Ataraxia worker, requests or state', async () => {
     const mode = await (await worker()).evaluate(async () => ({
       incognito: chrome.runtime.getManifest().incognito,
       allowed: await chrome.extension.isAllowedIncognitoAccess()
     }));
     assert.deepStrictEqual(mode, { incognito: 'not_allowed', allowed: false });
+
+    // Nothing is left for the regular context to fetch: images and the quote are cached.
+    await seed({
+      days: [A],
+      displayState: snapshotOf(A, BOOT_PREVIEW),
+      cached: [final(A), preview(A)],
+      local: { [QUOTE_STATE_KEY]: { quotes: { [A.date]: { text: 'Quote', source: 'Author', caption: 'Caption', link: '' } } } }
+    });
+    const regular = await openNewTab();
+    await showsFinal(regular);
+    const ataraxiaTitle = await regular.title();
+    await regular.close();
+    await new Promise(resolve => setTimeout(resolve, 500));
+    const stateBefore = { local: await readLocal(null), cached: await cachedUrls() };
+    const bingRequests = [];
+    const onRequest = (request) => {
+      if (/bing\.(com|net)\//.test(request.url())) bingRequests.push(request.url());
+    };
+    context.on('request', onRequest);
+
+    const incognito = await openIncognitoNewTab();
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    const targets = await browserTargets();
+    context.off('request', onRequest);
+    await closeTarget(incognito.targetId);
+
+    assert.notStrictEqual(incognito.title, ataraxiaTitle, "Chrome's own incognito New Tab");
+    assert.deepStrictEqual(targets.filter(target => target.browserContextId === incognito.browserContextId &&
+      target.url.startsWith('chrome-extension://')), [], 'no Ataraxia page or worker in incognito');
+    assert.strictEqual(targets.filter(target => target.type === 'service_worker').length, 1, 'only the regular worker');
+    assert.deepStrictEqual(bingRequests, [], 'no metadata, image or quote requests');
+    assert.deepStrictEqual({ local: await readLocal(null), cached: await cachedUrls() }, stateBefore, 'no state was initialized');
   });
 
   it('turning UHD off on the options page writes sync, then fetches the displayed HD image first', async () => {
@@ -658,6 +481,180 @@ describe('new tab page in the loaded extension', () => {
     }
   });
 
+  it('cold start offline shows the gradient and the offline search page without errors', async () => {
+    await seed({});
+    await context.setOffline(true);
+    try {
+      const page = await openNewTab();
+      await page.waitForFunction(() => document.getElementById('main-body').dataset.wallpaperFallback === 'visible');
+
+      assert.strictEqual(await computedBackground(page), GRADIENT);
+      assert.strictEqual(await page.evaluate(() => document.documentElement.dataset.networkStatus), 'offline');
+      assert.ok(await page.locator('.offline-search-input').isVisible());
+      assert.deepStrictEqual(page.errors, []);
+      await page.close();
+    } finally {
+      await context.setOffline(false);
+    }
+  });
+
+  it('without a navigable entry both controls are disabled and clicks change nothing', async () => {
+    // A future entry is never navigable.
+    await seed({ days: [day(1, 'Future', '#606060')] });
+    const page = await openNewTab();
+    await page.waitForFunction(() => document.getElementById('main-body').dataset.wallpaperFallback === 'visible');
+    await page.waitForFunction(() => ['leftNav', 'rightNav']
+      .every(id => document.getElementById(id).getAttribute('aria-disabled') === 'true'));
+    const headlines = await page.evaluate(() => window.__headlines);
+
+    await page.click('#leftNav', { force: true });
+    await page.click('#rightNav', { force: true });
+    await page.waitForTimeout(300);
+
+    assert.deepStrictEqual(await backgroundKinds(page), []);
+    assert.deepStrictEqual(await page.evaluate(() => window.__headlines), headlines);
+    assert.strictEqual(await readDisplayState(page), undefined);
+    assert.deepStrictEqual(page.errors, []);
+    await page.close();
+  });
+
+  it('three entries wrap backward and forward', async () => {
+    await seed({
+      days: [A, B, C],
+      displayState: snapshotOf(A, BOOT_PREVIEW),
+      cached: [final(A), preview(A), final(B), preview(B), final(C), preview(C)]
+    });
+    const page = await openNewTab();
+    await showsFinal(page);
+
+    for (const [move, shown] of [[previous, B], [previous, C], [previous, A], [next, C], [next, B], [next, A]]) {
+      await move(page);
+      await headlineIs(page, shown.headline);
+      await displayStateWhen(page, snapshot => snapshot?.date === shown.date);
+    }
+    assert.deepStrictEqual(page.errors, []);
+    await page.close();
+  });
+
+  it('a snapshot committed today is kept on the next day-first check', async () => {
+    await seed({ days: [A, B], displayState: snapshotOf(B, BOOT_PREVIEW), cached: [final(B), preview(B), final(A), preview(A)] });
+    const page = await openNewTab();
+    await headlineIs(page, B.headline);
+    await page.waitForTimeout(500);
+
+    assert.strictEqual(await headline(page), B.headline);
+    assert.ok(!(await page.evaluate(() => window.__headlines)).includes(await updatingText(page)));
+    assert.deepStrictEqual(identityOf(await readDisplayState(page)), identityOf(snapshotOf(B)));
+    await page.close();
+  });
+
+  it("first tab of a day keeps the committed wallpaper and its headline when Bing has not published today", async () => {
+    const catalog = catalogOf([B]);
+    for (const source of Object.values(catalog.refreshState.sources)) {
+      source.status = 'missing';
+    }
+    const committed = snapshotOf(B, BOOT_PREVIEW, COMMITTED_AT - 36 * 60 * 60 * 1000);
+    await seed({ days: [B], displayState: committed, cached: [final(B), preview(B)], local: { [CATALOG_KEY]: catalog } });
+    const metadataRequests = [];
+    await context.route(ANY_METADATA_REQUEST, (route) => {
+      metadataRequests.push(route.request().url());
+      return route.fulfill({ status: 503, body: '' });
+    });
+    try {
+      const page = await openNewTab();
+      const updating = await updatingText(page);
+      await page.waitForFunction(text => window.__headlines.includes(text), updating);
+      await headlineIs(page, B.headline);
+
+      assert.strictEqual(metadataRequests.length, 3, 'the refresh asked every source');
+      assert.deepStrictEqual(await backgroundImages(page), ['data', 'final']);
+      assert.deepStrictEqual(await readDisplayState(page), committed);
+      await page.close();
+    } finally {
+      await context.unrouteAll({ behavior: 'ignoreErrors' });
+    }
+  });
+
+  // A fixture prepared `days` ago: its catalog targets that date and the
+  // snapshot was committed then, so for the page and worker the clock has
+  // advanced since.
+  const preparedDaysAgo = (days, futureDepth) => {
+    const prepared = day(-days, 'Prepared', '#504030');
+    const future = Array.from({ length: futureDepth }, (_, i) => day(-days + i + 1, `Future${i + 1}`, '#405060'));
+    return { prepared, future, committed: snapshotOf(prepared, BOOT_PREVIEW, COMMITTED_AT - days * DAY) };
+  };
+
+  it('offline after the clock advanced seven days, a fully cached future batch displays the target date', async () => {
+    const { prepared, future, committed } = preparedDaysAgo(7, 7);
+    const today = future.at(-1);
+    assert.strictEqual(today.date, A.date);
+    await seed({
+      days: [prepared, ...future],
+      targetDate: prepared.date,
+      displayState: committed,
+      cached: [prepared, ...future].flatMap(shown => [final(shown), preview(shown)])
+    });
+    await context.setOffline(true);
+    try {
+      const page = await openNewTab();
+      await headlineIs(page, today.headline);
+      const published = await displayStateWhen(page, snapshot => snapshot?.date === today.date);
+
+      assert.deepStrictEqual(identityOf(published), identityOf(snapshotOf(today)));
+      assert.deepStrictEqual(await backgroundImages(page), ['data', 'final', 'final'], "the prepared day's final, then today's");
+      assert.deepStrictEqual(page.imageRequests, []);
+      assert.deepStrictEqual(page.errors, []);
+      await page.close();
+    } finally {
+      await context.setOffline(false);
+    }
+  });
+
+  it('offline after the clock advanced, a partially cached future batch displays the dates that finished', async () => {
+    // The batch cached two of five future dates.
+    const seedPartialBatch = async (daysAgo) => {
+      const fixture = preparedDaysAgo(daysAgo, 5);
+      await seed({
+        days: [fixture.prepared, ...fixture.future],
+        targetDate: fixture.prepared.date,
+        displayState: fixture.committed,
+        cached: [fixture.prepared, ...fixture.future.slice(0, 2)].flatMap(shown => [final(shown), preview(shown)])
+      });
+      return fixture;
+    };
+
+    await context.setOffline(true);
+    try {
+      // Today is the second cached future date.
+      const reachedBatch = await seedPartialBatch(2);
+      const reached = await openNewTab();
+      await headlineIs(reached, reachedBatch.future[1].headline);
+      await displayStateWhen(reached, snapshot => snapshot?.date === reachedBatch.future[1].date);
+      await reached.close();
+
+      // Today is the first date the batch never finished: the committed wallpaper stays.
+      const { prepared, future: [first, second] } = await seedPartialBatch(3);
+      const page = await openNewTab();
+      const updating = await updatingText(page);
+      await page.waitForFunction(text => window.__headlines.includes(text), updating);
+      await headlineIs(page, prepared.headline);
+      assert.strictEqual((await readDisplayState(page)).date, prepared.date);
+
+      // Back online, the finished dates are history the user can show.
+      await context.setOffline(false);
+      await page.waitForFunction(() => document.documentElement.dataset.networkStatus === 'online');
+      for (const shown of [first, second]) {
+        await next(page);
+        await headlineIs(page, shown.headline);
+        await displayStateWhen(page, snapshot => snapshot?.date === shown.date);
+      }
+      assert.deepStrictEqual([...reached.errors, ...page.errors], []);
+      await page.close();
+    } finally {
+      await context.setOffline(false);
+    }
+  });
+
   // Restarts the browser, so it runs last.
   it('upgrading a v1 install keeps its wallpapers, history, quotes and settings, then removes the v1 state', async () => {
     const v1Image = shown => ({
@@ -690,10 +687,7 @@ describe('new tab page in the loaded extension', () => {
       await chrome.storage.local.remove(keys);
       await chrome.storage.sync.clear();
     }, [CATALOG_KEY, MIGRATION_KEY]);
-    await (await worker()).evaluate(cacheImages, {
-      cacheName: v1Cache,
-      images: [{ ...final(A), url: v1Key(A.urls.ultraHighDef) }, { ...final(B), url: v1Key(B.urls.ultraHighDef) }]
-    });
+    await cacheImages([{ ...final(A), url: v1Key(A.urls.ultraHighDef) }, { ...final(B), url: v1Key(B.urls.ultraHighDef) }], v1Cache);
 
     // The upgraded extension starts with the browser and migrates at worker start.
     await context.close();

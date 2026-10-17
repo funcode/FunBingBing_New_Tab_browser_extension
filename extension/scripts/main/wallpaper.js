@@ -539,3 +539,23 @@ var left_nav_btn = document.getElementById('leftNav');
 left_nav_btn.onclick = switchPrevWallpaper;
 var right_nav_btn = document.getElementById('rightNav');
 right_nav_btn.onclick = switchNextWallpaper;
+
+// The controls are disabled while the catalog has no current or historical
+// entry to navigate; their clicks then change nothing.
+const navigableDatesReady = import(chrome.runtime.getURL('src/helpers/retention.js'))
+	.then(({ getNavigableDates }) => getNavigableDates);
+
+function updateNavControls(catalog) {
+	navigableDatesReady.then((getNavigableDates) => {
+		const disabled = String(getNavigableDates(catalog, catalog?.refreshState?.date).length === 0);
+		left_nav_btn.setAttribute('aria-disabled', disabled);
+		right_nav_btn.setAttribute('aria-disabled', disabled);
+	}).catch((err) => console.error('Failed to update navigation controls:', err));
+}
+
+updateNavControls(readConf(CATALOG_KEY));
+chrome.storage.onChanged.addListener((changes, area) => {
+	if (area === 'local' && CATALOG_KEY in changes) {
+		updateNavControls(changes[CATALOG_KEY].newValue);
+	}
+});

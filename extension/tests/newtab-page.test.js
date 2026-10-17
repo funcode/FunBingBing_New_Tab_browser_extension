@@ -48,8 +48,9 @@ function fakeElement() {
     textContent: '',
     innerHTML: '',
     classList: { add() {}, remove() {} },
-    setAttribute() {},
-    removeAttribute() {},
+    attributes: {},
+    setAttribute(name, value) { this.attributes[name] = String(value); },
+    removeAttribute(name) { delete this.attributes[name]; },
     addEventListener() {},
     removeEventListener() {},
     querySelector: () => fakeElement(),
@@ -78,7 +79,8 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
     fetched: [],
     messages: [],
     backgrounds: [],
-    listeners: []
+    listeners: [],
+    storageListeners: []
   };
 
   const elements = new Map();
@@ -158,7 +160,10 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
           return response;
         }
       },
-      storage: { sync: { get: async () => ({}) } }
+      storage: {
+        sync: { get: async () => ({}) },
+        onChanged: { addListener: listener => page.storageListeners.push(listener) }
+      }
     }
   });
   context.window = context;
@@ -273,6 +278,19 @@ describe('new tab page scripts', () => {
     assert.deepStrictEqual(page.backgrounds, ['']);
     assert.strictEqual(page.element('main-body').style.backgroundColor, '');
     assert.strictEqual(page.local[DISPLAY_STATE_KEY], undefined);
+  });
+
+  it('disables both navigation controls while the catalog has no navigable entry', async () => {
+    const page = await openNewTab({ local: { [CATALOG_KEY]: { version: 2, refreshState: { date: TARGET }, entries: {} } } });
+    const disabled = () => [page.element('leftNav'), page.element('rightNav')].map(nav => nav.attributes['aria-disabled']);
+    await page.settled(() => disabled().every(value => value === 'true'));
+
+    // The worker commits the first entries.
+    for (const listener of page.storageListeners) {
+      listener({ [CATALOG_KEY]: { newValue: catalog() } }, 'local');
+    }
+
+    await page.settled(() => disabled().every(value => value === 'false'));
   });
 
   it("renders the displayed date's quote from the worker's v2 quote cache", async () => {
