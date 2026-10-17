@@ -105,8 +105,9 @@ export function calculateCachedFutureDepth(catalog, targetDate, cachedUrls, enab
 
 /**
  * Get the navigation-eligible dates from the catalog.
- * Navigation is restricted to real current and historical entries (targetDate and earlier).
- * Future preload entries are excluded from navigation.
+ * Navigation is restricted to real current and historical entries: targetDate
+ * and its seven historical dates. Future preload entries, and an older entry
+ * kept for a migration handoff, are excluded from navigation.
  *
  * @param {Object} catalog - Wallpaper catalog
  * @param {string} targetDate - Current target date in YYYYMMDD
@@ -117,8 +118,9 @@ export function getNavigableDates(catalog, targetDate) {
     return [];
   }
 
+  const oldestDate = isValidCalendarDate(targetDate) ? addDays(targetDate, -7) : '';
   return Object.keys(catalog.entries)
-    .filter(date => date <= targetDate)
+    .filter(date => date <= targetDate && date >= oldestDate)
     .sort()
     .reverse();
 }

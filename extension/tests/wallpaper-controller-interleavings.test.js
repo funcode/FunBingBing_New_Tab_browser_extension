@@ -39,7 +39,7 @@ const snapshotOf = (shown, updatedAt = Date.UTC(2026, 9, 13, 4)) => ({
 });
 const YESTERDAY = 42;
 
-const DEPENDENCIES = ['readCatalog', 'readDisplayState', 'matchImage', 'toDataUrl', 'requestImage', 'applyFinal', 'writeDisplayState'];
+const DEPENDENCIES = ['readCatalog', 'readUhdSetting', 'readDisplayState', 'matchImage', 'toDataUrl', 'requestImage', 'applyFinal', 'writeDisplayState'];
 const settle = async () => {
   for (let i = 0; i < 20; i++) await new Promise(resolve => setImmediate(resolve));
 };
@@ -81,7 +81,12 @@ function makePage({ entries = [A, B, C], displayState = null, cached, today = '1
       const url = page.catalog.entries[date]?.urls[resolution];
       if (url) page.cache.add(url);
     },
-    readUhdSetting: async () => page.enableUhd,
+    // A held read returns the setting as it was when the read was issued.
+    readUhdSetting: async () => {
+      const setting = page.enableUhd;
+      await step('readUhdSetting');
+      return setting;
+    },
     now: () => 1000,
     getTargetDate: () => today,
     view: {

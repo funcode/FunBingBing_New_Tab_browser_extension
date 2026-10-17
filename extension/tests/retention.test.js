@@ -205,6 +205,11 @@ describe('Retention helpers', () => {
     it('returns empty array when catalog is empty', () => {
       assert.deepStrictEqual(getNavigableDates({ entries: {} }, '20260728'), []);
     });
+
+    it('excludes entries older than the seven historical dates', () => {
+      const catalog = { entries: { '20260728': {}, '20260721': {}, '20260720': {} } };
+      assert.deepStrictEqual(getNavigableDates(catalog, '20260728'), ['20260728', '20260721']);
+    });
   });
 
   describe('getNavigationIndex', () => {

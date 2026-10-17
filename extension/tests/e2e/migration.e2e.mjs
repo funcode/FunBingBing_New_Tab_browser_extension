@@ -7,9 +7,9 @@
 import { after, before, describe, it } from 'node:test';
 import assert from 'node:assert';
 import {
-  BOOT_PREVIEW, CATALOG_KEY, DISPLAY_STATE_KEY, MIGRATION_KEY, QUOTE_STATE_KEY, backgroundKinds, cacheFiller, cachedBytes,
-  cachedUrls, day, eventually, finish, hasCache, identityOf, migrationPhase, openNewTab, readLocal, readSync, removeLocal,
-  restartWorker, seed, sendMessage, start, stopWorker, writeLocal
+  BOOT_PREVIEW, CATALOG_KEY, DISPLAY_STATE_KEY, MIGRATION_KEY, QUOTE_STATE_KEY, backgroundKinds, cacheFiller, cacheImages,
+  cachedBytes, cachedUrls, day, eventually, finish, final, hasCache, identityOf, migrationPhase, openNewTab, readLocal,
+  readSync, removeLocal, restartWorker, seed, sendMessage, showsFinal, start, stopWorker, writeLocal
 } from './harness.mjs';
 
 const v1Image = shown => ({
@@ -123,6 +123,32 @@ describe('v1 to v2 migration in the loaded extension', () => {
       assert.ok(!(key in complete), `${key} remains`);
     }
     assert.ok(!(await backgroundKinds(page)).includes('data'), 'the v1 preview is never painted');
+    assert.deepStrictEqual(page.errors, []);
+    await page.close();
+  });
+
+  it('a last-used v1 wallpaper older than seven days survives a refresh before the first page and is handed off', async () => {
+    const last = day(-9, 'LastUsed', '#806040');
+    const v1Url = last.urls.ultraHighDef.replace('ts1.tc.mm.bing.net', 'cn.bing.com');
+    await seed({ local: { bing_images: [v1Image(last)], wallpaper_date: last.date, wallpaper_idx: '0', wallpaper_url: v1Url } });
+    await removeLocal([CATALOG_KEY, MIGRATION_KEY]);
+    await cacheImages([{ ...final(last), url: v1Url }], V1_CACHE);
+    await restartWorker();
+    await migrationPhase('verified');
+
+    // A worker-start refresh rolls the catalog to today before any page opens.
+    await sendMessage({ type: 'refreshWallpaperCatalog' });
+    await pause(500);
+    assert.ok(last.date in (await readLocal(CATALOG_KEY)).entries, 'the entry awaiting the handoff is kept');
+    assert.ok((await cachedUrls()).includes(last.urls.ultraHighDef), 'its response is kept');
+
+    const page = await openNewTab();
+    await migrationPhase('complete');
+    await showsFinal(page);
+
+    assert.deepStrictEqual(identityOf(await readLocal(DISPLAY_STATE_KEY)), identityOf({ ...last, url: last.urls.ultraHighDef }));
+    assert.strictEqual(await page.evaluate(() => document.getElementById('leftNav').getAttribute('aria-disabled')), 'true',
+      'the expired date is not navigable');
     assert.deepStrictEqual(page.errors, []);
     await page.close();
   });

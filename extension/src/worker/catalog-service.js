@@ -3,11 +3,14 @@
  * refresh with bounded retry, and the serial catalog write queue.
  *
  * The worker is the sole catalog writer. The page-owned display state is read
- * only, to protect the displayed identity from stale results.
+ * only, to protect the displayed identity from stale results. Until migration
+ * completes, the legacy display identity the first page will hand off stands
+ * in for a missing display state.
  */
 
 import { getZhCnTargetDate } from '../helpers/date.js';
-import { isValidDisplaySnapshot } from '../helpers/display-state.js';
+import { isEmptyDisplayState, isValidDisplaySnapshot } from '../helpers/display-state.js';
+import { buildMigratedDisplayState } from '../helpers/migration.js';
 import { validateSourceCoverage } from '../helpers/metadata.js';
 import {
   canBypassWithReconnect,
@@ -69,17 +72,29 @@ export function createCatalogService({
     return normalizeCatalog(stored[STORAGE_KEYS.catalog]);
   }
 
-  async function readDisplayState() {
-    const stored = await storage.get(STORAGE_KEYS.displayState);
+  // The page-owned display state. While migration waits for the first page,
+  // the legacy display identity that page will hand off, flagged `handoff`,
+  // takes its place so its catalog entry and responses survive until then.
+  async function readDisplayState(catalog) {
+    const stored = await storage.get([STORAGE_KEYS.displayState, STORAGE_KEYS.migration, 'wallpaper_url', 'wallpaper_date']);
     const snapshot = stored[STORAGE_KEYS.displayState];
-    return isValidDisplaySnapshot(snapshot) ? snapshot : null;
+    if (isValidDisplaySnapshot(snapshot)) {
+      return snapshot;
+    }
+    if (stored[STORAGE_KEYS.migration]?.phase === 'complete' || isEmptyDisplayState(snapshot)) {
+      return null;
+    }
+    // The resolution only matters for a legacy URL without one.
+    const legacy = buildMigratedDisplayState(catalog,
+      { wallpaperUrl: stored.wallpaper_url, wallpaperDate: stored.wallpaper_date }, true);
+    return isValidDisplaySnapshot(legacy) ? { ...legacy, handoff: true } : null;
   }
 
   // Fresh-read, mutate and persist through the serial queue.
   function commitWith(mutate, afterCommit) {
     return enqueueWrite(async () => {
       const catalog = await readCatalog();
-      const displayState = await readDisplayState();
+      const displayState = await readDisplayState(catalog);
       const result = mutate(catalog, displayState);
       if (result.changed) {
         catalog.updatedAt = now();
@@ -137,12 +152,13 @@ export function createCatalogService({
 
   /** @returns {Promise<{catalog: Object, displayState: Object|null}>} */
   async function read() {
-    return { catalog: await readCatalog(), displayState: await readDisplayState() };
+    const catalog = await readCatalog();
+    return { catalog, displayState: await readDisplayState(catalog) };
   }
 
   function beginRefresh(targetDate, reconnectTime) {
-    return commit((catalog) => {
-      let changed = rollToTargetDate(catalog, targetDate);
+    return commit((catalog, displayState) => {
+      let changed = rollToTargetDate(catalog, targetDate, displayState?.handoff ? displayState : null);
       const refreshState = catalog.refreshState;
       if (refreshState.date !== targetDate) {
         // A newer target date has already been committed.

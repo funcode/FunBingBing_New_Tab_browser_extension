@@ -241,6 +241,64 @@ describe('refresh sharing and rollover', () => {
     assert.deepStrictEqual(Object.keys(catalogOf(storage).entries), [], 'every old date aged out');
   });
 
+  describe('a legacy display identity awaiting the migration handoff', () => {
+    const old = addDays(TARGET, -20);
+    const legacyId = idFor(old, 'Legacy');
+    const legacyEntry = {
+      date: old,
+      imageId: legacyId,
+      urls: {
+        preview: `https://ts1.tc.mm.bing.net/th?id=${legacyId}_640x360.jpg`,
+        highDef: `https://ts1.tc.mm.bing.net/th?id=${legacyId}_1920x1080.jpg`,
+        ultraHighDef: `https://ts1.tc.mm.bing.net/th?id=${legacyId}_UHD.jpg`
+      },
+      metadataStage: 'legacy',
+      triviaId: '',
+      triviaData: null,
+      triviaState: 'missing'
+    };
+    const imported = (phase) => {
+      const other = addDays(TARGET, -21);
+      return makeStorage({
+        [STORAGE_KEYS.catalog]: {
+          version: 2,
+          updatedAt: 1,
+          refreshState: { date: '', generation: 0, cachedFutureDepth: 0, sources: {}, imageFailures: {} },
+          entries: { [old]: legacyEntry, [other]: { ...legacyEntry, date: other, imageId: idFor(other) } }
+        },
+        [STORAGE_KEYS.migration]: { version: 2, phase },
+        wallpaper_url: `https://ts1.tc.mm.bing.net/th?id=${legacyId}_UHD.jpg`,
+        wallpaper_date: old
+      });
+    };
+
+    it('keeps its entry through a rollover and protects it as the displayed identity, but not as a navigable date', async () => {
+      const { service, storage } = makeHarness({ storage: imported('verified') });
+      await service.refresh();
+
+      const catalog = catalogOf(storage);
+      assert.deepStrictEqual(catalog.entries[old], legacyEntry, 'the entry the first page hands off is kept');
+      assert.ok(!(addDays(TARGET, -21) in catalog.entries), 'other expired legacy dates are dropped');
+      const { displayState } = await service.read();
+      assert.deepStrictEqual({ date: displayState.date, imageId: displayState.imageId, url: displayState.url },
+        { date: old, imageId: legacyId, url: legacyEntry.urls.ultraHighDef });
+      assert.ok(!(STORAGE_KEYS.displayState in storage.data), 'the worker never writes display state');
+    });
+
+    it('is dropped by the next rollover once migration is complete', async () => {
+      const { service, storage, clock } = makeHarness({ storage: imported('verified') });
+      await service.refresh();
+      storage.data[STORAGE_KEYS.migration].phase = 'complete';
+      assert.strictEqual((await service.read()).displayState, null);
+
+      clock.target = addDays(TARGET, 1);
+      clock.time += 60 * MINUTE;
+      await service.refresh();
+
+      assert.ok(!(old in catalogOf(storage).entries));
+    });
+  });
+
   it('keeps the persisted generation across a worker restart', async () => {
     const first = makeHarness();
     await first.service.refresh();

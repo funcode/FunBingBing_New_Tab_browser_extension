@@ -74,13 +74,17 @@ function isWithinWindow(date, targetDate) {
 /**
  * Advance the catalog to a newer target date: increment the refresh generation,
  * rebuild the three source states and drop the entries outside the new
- * target/history/future window, so at most 15 dates remain. Image failure
- * records are left to cache cleanup. Older or equal dates leave the catalog
- * unchanged.
+ * target/history/future window, so at most 15 dates remain. The entry of a
+ * legacy display identity still awaiting the first page's migration handoff
+ * is kept until then. Image failure records are left to cache cleanup. Older
+ * or equal dates leave the catalog unchanged.
  *
+ * @param {Object} catalog
+ * @param {string} targetDate
+ * @param {{date: string, imageId: string}|null} [handoff] - Identity to keep
  * @returns {boolean} True when the catalog was rolled
  */
-export function rollToTargetDate(catalog, targetDate) {
+export function rollToTargetDate(catalog, targetDate, handoff = null) {
   const refreshState = catalog.refreshState;
   if (!isValidCalendarDate(targetDate) || targetDate <= refreshState.date) {
     return false;
@@ -88,8 +92,8 @@ export function rollToTargetDate(catalog, targetDate) {
   refreshState.date = targetDate;
   refreshState.generation += 1;
   refreshState.sources = Object.fromEntries(SOURCES.map(source => [source, createSourceState()]));
-  for (const date of Object.keys(catalog.entries)) {
-    if (!isWithinWindow(date, targetDate)) {
+  for (const [date, entry] of Object.entries(catalog.entries)) {
+    if (!isWithinWindow(date, targetDate) && !(date === handoff?.date && entry.imageId === handoff.imageId)) {
       delete catalog.entries[date];
     }
   }

@@ -16,22 +16,18 @@ import {
   releaseQuoteLease
 } from '../helpers/quote-lease.js';
 import { validateUrlSetting } from '../helpers/migration.js';
+import { getNavigableDates } from '../helpers/retention.js';
 import { STORAGE_KEYS } from './storage-keys.js';
 
 export const QUOTE_SLOTS = 8;
 const FALLBACK_MAX_BYTES = 64 * 1024;
 
 /**
- * Up to eight committed current and historical dates, latest first.
- * Future entries never take part in quote synchronization.
+ * Up to eight committed current and historical dates, latest first: the
+ * navigable dates. Future entries never take part in quote synchronization.
  */
 function quoteDates(catalog) {
-  const targetDate = catalog.refreshState.date;
-  return Object.keys(catalog.entries)
-    .filter(date => date <= targetDate)
-    .sort()
-    .reverse()
-    .slice(0, QUOTE_SLOTS);
+  return getNavigableDates(catalog, catalog.refreshState.date).slice(0, QUOTE_SLOTS);
 }
 
 function quoteLink(link, source) {
