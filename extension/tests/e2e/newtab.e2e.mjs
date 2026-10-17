@@ -524,6 +524,126 @@ describe('new tab page in the loaded extension', () => {
     }
   });
 
+  it('the loaded extension is not allowed in incognito', async () => {
+    const mode = await (await worker()).evaluate(async () => ({
+      incognito: chrome.runtime.getManifest().incognito,
+      allowed: await chrome.extension.isAllowedIncognitoAccess()
+    }));
+    assert.deepStrictEqual(mode, { incognito: 'not_allowed', allowed: false });
+  });
+
+  it('turning UHD off on the options page writes sync, then fetches the displayed HD image first', async () => {
+    await seed({ days: [A, B], displayState: snapshotOf(A), cached: [final(A), preview(A), final(B), preview(B)] });
+    const imageRequests = [];
+    const metadataRequests = [];
+    await context.route(/\.bing\.net\//, (route) => {
+      imageRequests.push(route.request().url());
+      return route.fulfill({ contentType: 'image/jpeg', body: 'jpeg' });
+    });
+    await context.route(/bing\.com\/(hp\/api|HPImageArchive)/, (route) => {
+      metadataRequests.push(route.request().url());
+      return route.fulfill({ status: 503, body: '' });
+    });
+    try {
+      const options = await context.newPage();
+      options.on('dialog', dialog => dialog.accept());
+      await options.goto(`chrome-extension://${new URL((await worker()).url()).host}/options.html`);
+      await options.click('#nav-wallpaper');
+      await options.locator('#use-uhd-wallpaper-checkbox').uncheck();
+      await options.click('#save-wallpaper-conf-btn');
+      for (let attempt = 0; attempt < 100 && imageRequests.length < 2; attempt++) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+
+      assert.deepStrictEqual(imageRequests, [A.urls.highDef, B.urls.highDef], 'current resolution first, no previews');
+      assert.deepStrictEqual(metadataRequests, []);
+      assert.deepStrictEqual(await options.evaluate(() => chrome.storage.sync.get('enable_uhd_wallpaper')), { enable_uhd_wallpaper: 'no' });
+      const local = await options.evaluate(() => chrome.storage.local.get(null));
+      for (const key of ['enable_uhd_wallpaper', 'wallpaper_date']) {
+        assert.ok(!(key in local), `${key} is written locally`);
+      }
+      await options.close();
+    } finally {
+      await context.unrouteAll({ behavior: 'ignoreErrors' });
+    }
+  });
+
+  it('regular pages and the worker share settings through sync and follow its changes', async () => {
+    await seed({ days: [A], displayState: snapshotOf(A), cached: [final(A), preview(A)], sync: { display_search_box: 'yes' } });
+    const first = await openNewTab();
+    await showsFinal(first);
+    await first.click('#search-logo');
+    await first.waitForFunction(() => document.getElementById('search-form').action === 'https://google.com/search');
+
+    const second = await openNewTab();
+    await showsFinal(second);
+    assert.strictEqual(await second.evaluate(() => document.getElementById('search-form').action), 'https://google.com/search');
+    assert.deepStrictEqual(await (await worker()).evaluate(() => chrome.storage.sync.get('current_search_engine')), { current_search_engine: 'Google' });
+
+    // The first page's next switch starts from the second page's choice.
+    await second.click('#search-logo');
+    await first.waitForFunction(() => readConf('current_search_engine') === 'Bing');
+    const local = await first.evaluate(() => chrome.storage.local.get(null));
+    assert.ok(!('current_search_engine' in local));
+    assert.deepStrictEqual([...first.errors, ...second.errors], []);
+    await first.close();
+    await second.close();
+  });
+
+  it('quick links resolve the date of the displayed wallpaper', async () => {
+    await seed({ days: [A, B], displayState: snapshotOf(B), cached: [final(B), preview(B)] });
+    const page = await openNewTab();
+    await headlineIs(page, B.headline);
+
+    const opened = context.waitForEvent('request', request => request.url().includes('OnThisDay'));
+    // The quick links popup is hidden until hovered; its first custom link is "history today".
+    await page.locator('#top-sites-div a').first().dispatchEvent('click');
+    assert.ok((await opened).url().includes(`OsKey%3A%22OnThisDay${B.date.slice(4)}%22`));
+    for (const popup of context.pages().filter(other => other !== page && other.url().includes('bing.com'))) {
+      await popup.close();
+    }
+    await page.close();
+  });
+
+  it('reconnecting refreshes the catalog without writing legacy wallpaper keys', async () => {
+    const catalog = catalogOf([A]);
+    const failedAt = Date.now() - 1000;
+    // In backoff, so only a reconnect bypass requests it again.
+    catalog.refreshState.sources.imageOfTheDay = {
+      status: 'failed', attemptedAt: failedAt, nextRetryAt: failedAt + 3 * 60 * 1000, retryLevel: 1, lastReconnectBypassAt: 0
+    };
+    await seed({ days: [A], displayState: snapshotOf(A), cached: [final(A), preview(A)], local: { [CATALOG_KEY]: catalog } });
+    const metadataRequests = [];
+    await context.route(/bing\.com\/hp\/api\/v1\/imageoftheday/, (route) => {
+      metadataRequests.push(route.request().url());
+      return route.fulfill({ status: 503, body: '' });
+    });
+    try {
+      const page = await openNewTab();
+      await showsFinal(page);
+      await new Promise(resolve => setTimeout(resolve, 500));
+      assert.deepStrictEqual(metadataRequests, [], 'the source is still in backoff');
+
+      await context.setOffline(true);
+      await page.waitForFunction(() => document.documentElement.dataset.networkStatus === 'offline');
+      await context.setOffline(false);
+      for (let attempt = 0; attempt < 50 && metadataRequests.length === 0; attempt++) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+
+      assert.strictEqual(metadataRequests.length, 1, 'one reconnect bypass');
+      const local = await page.evaluate(() => chrome.storage.local.get(null));
+      for (const key of ['wallpaper_date', 'wallpaper_idx', 'wallpaper_url', 'wallpaper_preload_data_url']) {
+        assert.ok(!(key in local), `${key} is written`);
+      }
+      assert.deepStrictEqual(page.errors, []);
+      await page.close();
+    } finally {
+      await context.setOffline(false);
+      await context.unrouteAll({ behavior: 'ignoreErrors' });
+    }
+  });
+
   // Restarts the browser, so it runs last.
   it('upgrading a v1 install keeps its wallpapers, history, quotes and settings, then removes the v1 state', async () => {
     const v1Image = shown => ({
@@ -581,7 +701,7 @@ describe('new tab page in the loaded extension', () => {
     assert.strictEqual(local[QUOTE_STATE_KEY].quotes[A.date].text, 'v1 quote');
     assert.deepStrictEqual(Object.keys(local[CATALOG_KEY].entries).sort(), [B.date, A.date]);
     // Pages and the worker share the migrated settings through sync; the local
-    // copies stay until pages read sync (#126).
+    // copies stay until the migration deletes them (#126).
     const shared = ['search_engine_list', 'current_search_engine', 'show_clock', 'enable_uhd_wallpaper'];
     assert.deepStrictEqual(await page.evaluate(keys => chrome.storage.sync.get(keys), shared), {
       search_engine_list: [V1_ENGINE], current_search_engine: V1_ENGINE.name, show_clock: 'no', enable_uhd_wallpaper: 'yes'

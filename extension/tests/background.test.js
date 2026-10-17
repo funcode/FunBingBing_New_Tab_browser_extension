@@ -34,13 +34,14 @@ async function loadWorker({ entry = {}, local = {} } = {}) {
     ...entry
   };
   const messageListeners = [];
+  const changeListeners = [];
   const event = () => ({ addListener() {} });
   const localData = { [STORAGE_KEYS.catalog]: catalog, ...structuredClone(local) };
   globalThis.chrome = {
     storage: {
       local: storageArea(localData),
       sync: storageArea({ enable_uhd_wallpaper: 'no' }),
-      onChanged: event()
+      onChanged: { addListener: listener => changeListeners.push(listener) }
     },
     runtime: {
       onStartup: event(),
@@ -90,7 +91,8 @@ async function loadWorker({ entry = {}, local = {} } = {}) {
   const send = message => new Promise(resolve => {
     for (const listener of messageListeners) listener(message, {}, resolve);
   });
-  return { send, fetches, caches, local: localData };
+  const change = (changes, area) => changeListeners.forEach(listener => listener(changes, area));
+  return { send, change, fetches, caches, local: localData };
 }
 
 describe('worker message handlers', () => {
@@ -167,6 +169,28 @@ describe('worker message handlers', () => {
     assert.strictEqual(worker.local[STORAGE_KEYS.migration].phase, 'complete');
     assert.ok(!('bing_images' in worker.local));
     assert.ok(!('wallpaper_url' in worker.local));
+  });
+
+  it('fetches only the displayed final image in the new resolution when UHD changes in sync', async () => {
+    const UHD = `https://ts1.tc.mm.bing.net/th?id=${ID}_UHD.jpg`;
+    const worker = await loadWorker({
+      local: { [STORAGE_KEYS.displayState]: { date: TARGET, imageId: ID, url: HD, preloadDataUrl: '', updatedAt: Date.now() } }
+    });
+    const cache = await caches.open('funbingbing-wallpaper-cache-v2');
+    await cache.put(PREVIEW, { ok: true });
+    await cache.put(HD, { ok: true });
+    // Work left over from earlier tests' workers shares the global fetch.
+    await new Promise(resolve => setTimeout(resolve, 20));
+    worker.fetches.calls.length = 0;
+
+    await chrome.storage.sync.set({ enable_uhd_wallpaper: 'yes' });
+    worker.change({ enable_uhd_wallpaper: { oldValue: 'no', newValue: 'yes' } }, 'sync');
+    for (let i = 0; i < 100 && !(await cache.match(UHD)); i++) {
+      await new Promise(resolve => setImmediate(resolve));
+    }
+    await new Promise(resolve => setTimeout(resolve, 10));
+
+    assert.deepStrictEqual(worker.fetches.calls, [UHD], 'no metadata or preview is fetched again');
   });
 
   it('requests missing trivia for a committed entry after a catalog refresh', async () => {

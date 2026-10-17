@@ -144,14 +144,23 @@ function initWallpaperConf() {
 	}
 }
 
-function changeWallpaperConf() {
+// The worker retains the new resolution only once sync holds it, so the
+// displayed date's final image is requested after the write settles.
+async function requestDisplayedFinalImage(uhdWritten, enableUhd) {
+	await uhdWritten;
+	const displayState = await readStorageKey('wallpaper_display_state_v2');
+	if (!displayState?.date) {
+		return;
+	}
+	const resolution = enableUhd === 'yes' ? 'ultraHighDef' : 'highDef';
+	await chrome.runtime.sendMessage({ type: 'ensureWallpaperCached', date: displayState.date, resolution });
+}
+
+async function changeWallpaperConf() {
 	// update uhd wallpaper conf
-	if (document.getElementById('use-uhd-wallpaper-checkbox').checked == true) {
-		writeConf('enable_uhd_wallpaper', 'yes');
-	}
-	else {
-		writeConf('enable_uhd_wallpaper', 'no');
-	}
+	const previousUhd = readConf('enable_uhd_wallpaper');
+	const enableUhd = document.getElementById('use-uhd-wallpaper-checkbox').checked == true ? 'yes' : 'no';
+	const uhdWritten = writeConf('enable_uhd_wallpaper', enableUhd);
 	// update show clock conf
 	if (document.getElementById('show-clock-checkbox').checked == true) {
 		writeConf('show_clock', 'yes');
@@ -168,9 +177,12 @@ function changeWallpaperConf() {
 	else {
 		writeConf('show_quote', 'no');
 	}
-	// change wallpaper_data conf to trigger wallpaper reload when open a new tab
-	writeConf('wallpaper_date', '20000101');
 	alert(i18n('op_saved_alert'));
+	if (enableUhd !== previousUhd) {
+		await requestDisplayedFinalImage(uhdWritten, enableUhd).catch(err => {
+			console.warn('Requesting the displayed wallpaper in the new resolution failed:', err);
+		});
+	}
 }
 
 

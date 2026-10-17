@@ -19,9 +19,7 @@ function setNetworkStatus(nextStatus) {
   networkStatus = nextStatus;
   document.documentElement.dataset.networkStatus = nextStatus;
 
-  if (nextStatus === 'offline') {
-    chrome.storage.local.set({ 'wallpaper_date': '20000101' });
-  } else if (previousStatus === 'offline') {
+  if (previousStatus === 'offline') {
     requestReconnectRefresh();
   }
 
@@ -102,8 +100,6 @@ window.addEventListener('offline', function() {
 // Periodically check the actual connection status
 setInterval(checkActualConnection, connectionCheckInterval);
 
-if (!navigator.onLine) {
-  chrome.storage.local.set({ 'wallpaper_date': '20000101' });
-} else {
+if (navigator.onLine) {
   checkActualConnection();
 }

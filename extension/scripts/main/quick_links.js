@@ -86,17 +86,12 @@ function initCustomBookmarks() {
 
 // Handle custom actions for bookmarks
 function handleCustomAction(action) {
-	let wallpaper_idx = readConf("wallpaper_idx");
-	if (wallpaper_idx === "") {
-		wallpaper_idx = 0;
-	}
-	wallpaper_idx = parseInt(wallpaper_idx,10);
-
-	const bing_images = readConf("bing_images");
+	// The catalog entry of the image this page displays; CATALOG_KEY and
+	// currentImageDate are declared by wallpaper.js in this global scope.
 	let isoDate="";
 
-	const image = bing_images && bing_images[wallpaper_idx];
-	isoDate = image?.isoDate || isoDate;
+	const image = currentImageDate ? readConf(CATALOG_KEY)?.entries?.[currentImageDate] : null;
+	isoDate = image?.date || isoDate;
 	if (!isoDate) {
 		//format a Date object as YYYYMMDD
 		isoDate = (new Date()).toISOString().slice(0,10).replace(/-/g,'');

@@ -105,9 +105,10 @@ self.addEventListener('online', () => {
 	reconcileImagesInBackground({ reconnect: true });
 });
 
+// A resolution change drops obsolete pending work and schedules the new final
+// resolution; metadata and previews are not fetched again.
 chrome.storage.onChanged.addListener((changes, area) => {
 	if (area === "sync" && "enable_uhd_wallpaper" in changes) {
-		refreshCatalogInBackground();
 		reconcileImagesInBackground({ resolutionChanged: true });
 	}
 });

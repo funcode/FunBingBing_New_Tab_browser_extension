@@ -36,16 +36,42 @@ function getDateString() {
     return "" + year + month + day;
 }
 
-// Load everything from chrome.storage.local into memory at startup
-async function initConfCache() {
-  const allItems = await chrome.storage.local.get(null);
-  Object.assign(confCache, allItems);
+// Shared product settings live in chrome.storage.sync (ADR-0009). Until the
+// worker's migration has written one there, the local value applies, then the
+// default: the same precedence the migration uses. Defaults are never written.
+const SHARED_SETTING_DEFAULTS = Object.freeze({
+    search_engine_list: DEFAULT_SEARCH_ENGINES,
+    current_search_engine: "Bing",
+    display_search_box: "no",
+    show_top_sites: "no",
+    show_clock: "yes",
+    show_quote: "yes",
+    enable_uhd_wallpaper: "yes",
+    qotd_url: ""
+});
+
+function isSharedSetting(key) {
+  return Object.hasOwn(SHARED_SETTING_DEFAULTS, key);
 }
 
-// Write: update memory + storage
+// Load everything from chrome.storage.local, and the shared settings from
+// chrome.storage.sync, into memory at startup
+async function initConfCache() {
+  const [localItems, syncItems] = await Promise.all([
+    chrome.storage.local.get(null),
+    chrome.storage.sync.get(Object.keys(SHARED_SETTING_DEFAULTS))
+  ]);
+  Object.assign(confCache, localItems);
+  for (const [key, defaultValue] of Object.entries(SHARED_SETTING_DEFAULTS)) {
+    confCache[key] = syncItems[key] ?? localItems[key] ?? defaultValue;
+  }
+}
+
+// Write: update memory + storage. Shared settings are written to sync.
 async function writeConf(key, value) {
   confCache[key] = value;
-  await chrome.storage.local.set({ [key]: value });
+  const area = isSharedSetting(key) ? chrome.storage.sync : chrome.storage.local;
+  await area.set({ [key]: value });
 }
 
 // Read: return from memory (sync-like)
@@ -73,8 +99,19 @@ if (typeof window !== "undefined") {
 
 // Optional: keep cache in sync if other parts of the extension change storage
 chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "sync") {
+    for (const [key, { newValue }] of Object.entries(changes)) {
+      if (isSharedSetting(key)) {
+        confCache[key] = newValue ?? SHARED_SETTING_DEFAULTS[key];
+      }
+    }
+  }
   if (area === "local") {
     for (const [key, { newValue }] of Object.entries(changes)) {
+      // Local copies of shared settings are migration input only.
+      if (isSharedSetting(key)) {
+        continue;
+      }
       if (newValue === undefined) {
         delete confCache[key]; // removed
       } else {
@@ -82,67 +119,4 @@ chrome.storage.onChanged.addListener((changes, area) => {
       }
     }
   }
-});
-
-// ---- conf initializer ---- 
-
-/* 
-    Conf items: 
-        // search
-            - search_engine_list: Json list, available search engines
-            - current_search_engine: String, name of current search engine
-            - display_search_box: String(yes no), show search box or not
-        // topSites
-            - show_top_sites: String(yes no)
-        // wallpaper
-            - enable_uhd_wallpaper: String(yes no)
-            - show_clock: String(yes no)
-            - wallpaper_date: String
-            - wallpaper_url: String
-            - headline_link: String
-            - wallpaper_idx: String, can be parsed to int
-        // version flag
-            - last_open_version: String
-    */
-        
-// initialize conf storage
-function initializeConf() {
-    console.log("initialize conf ...");
-
-    // define default settings  
-    const defaultSettings = {
-        search_engine_list: DEFAULT_SEARCH_ENGINES,
-        current_search_engine: "Bing",
-        display_search_box: "no",
-        show_top_sites: "no",
-        show_clock: "yes",
-        show_quote: "yes",
-        enable_uhd_wallpaper: "yes",
-        qotd_url: "",
-        wallpaper_date: "20000101",
-        wallpaper_idx: "0",
-        last_open_version: "0"
-        }
-
-    for (k in defaultSettings) {
-        if (readConf(k) == undefined) {
-            writeConf(k, defaultSettings[k]);
-            console.log(" set default conf: ", k, " = ", defaultSettings[k]);
-        }
-    }
-
-    console.log("done. conf updated with default value.");
-}
-
-
-// check if last_open_version is undefined(first install) or less than current version(updated), update the conf items with default value.
-confReadyPromise.then(() => {
-  const last_open_version = readConf('last_open_version');
-  if (last_open_version == undefined || parseFloat(last_open_version) < parseFloat(CURRENT_VERSION)) {
-    console.log("update from ", last_open_version, " to ", CURRENT_VERSION);
-    initializeConf();
-    writeConf('last_open_version', CURRENT_VERSION);
-  }
-}).catch((err) => {
-  console.error("Configuration initialization skipped due to cache error:", err);
 });

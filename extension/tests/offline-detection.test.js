@@ -11,6 +11,7 @@ function loadPage({ onLine, connected }) {
   const windowListeners = {};
   const intervals = [];
   const sentMessages = [];
+  const storageWrites = [];
   const state = { connected };
   const context = {
     console: { log() {}, warn() {} },
@@ -22,7 +23,7 @@ function loadPage({ onLine, connected }) {
     },
     CustomEvent: class { constructor(type, init) { this.type = type; this.detail = init.detail; } },
     chrome: {
-      storage: { local: { set() {} } },
+      storage: { local: { set: items => storageWrites.push(items) } },
       runtime: {
         lastError: undefined,
         sendMessage: (message, callback) => { sentMessages.push({ ...message }); callback?.({ ok: true }); }
@@ -36,7 +37,7 @@ function loadPage({ onLine, connected }) {
     setTimeout: (fn) => fn()
   };
   vm.runInNewContext(SCRIPT, context);
-  return { windowListeners, intervals, sentMessages, state };
+  return { windowListeners, intervals, sentMessages, storageWrites, state };
 }
 
 function settle() {
@@ -63,6 +64,16 @@ describe('offline detection reconnect', () => {
     // Staying online does not send again.
     await page.intervals[0]();
     assert.strictEqual(page.sentMessages.length, 1);
+  });
+
+  it('never writes wallpaper_date or other storage when going offline or reconnecting', async () => {
+    const page = loadPage({ onLine: false, connected: false });
+    page.windowListeners.online();
+    await settle();
+    page.windowListeners.offline();
+    await page.intervals[0]();
+    assert.deepStrictEqual(page.storageWrites, []);
+    assert.deepStrictEqual(page.sentMessages, [{ type: 'refreshWallpaperCatalog', reconnect: true }]);
   });
 
   it('does not request a refresh when the page starts online', async () => {

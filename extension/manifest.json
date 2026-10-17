@@ -7,7 +7,7 @@
   "homepage_url"    : "https://idealland.app/ataraxia/",
   "description": "__MSG_extension_desc__",
   "version": "1.7",
-  "incognito": "split",
+  "incognito": "not_allowed",
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   },
@@ -37,6 +37,7 @@
   ],
   "host_permissions": [
     "https://*.bing.com/",
+    "https://*.bing.net/",
     "https://*.s3.ap-east-1.amazonaws.com/"
   ],
   "background": {
