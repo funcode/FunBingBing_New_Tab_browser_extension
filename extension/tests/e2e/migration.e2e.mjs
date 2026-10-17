@@ -7,8 +7,9 @@
 import { after, before, describe, it } from 'node:test';
 import assert from 'node:assert';
 import {
-  BOOT_PREVIEW, CATALOG_KEY, DISPLAY_STATE_KEY, MIGRATION_KEY, QUOTE_STATE_KEY, backgroundKinds, day, finish,
-  migrationPhase, openNewTab, readLocal, readSync, removeLocal, restartWorker, seed, start, writeLocal
+  BOOT_PREVIEW, CATALOG_KEY, DISPLAY_STATE_KEY, MIGRATION_KEY, QUOTE_STATE_KEY, backgroundKinds, cacheFiller, cachedBytes,
+  cachedUrls, day, eventually, finish, hasCache, identityOf, migrationPhase, openNewTab, readLocal, readSync, removeLocal,
+  restartWorker, seed, sendMessage, start, stopWorker, writeLocal
 } from './harness.mjs';
 
 const v1Image = shown => ({
@@ -19,6 +20,8 @@ const v1Image = shown => ({
 });
 const EMPTY_DISPLAY_STATE = { date: '', imageId: '', url: '', preloadDataUrl: '', updatedAt: 0 };
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
+const sameMembers = (actual, expected) => JSON.stringify([...actual].sort()) === JSON.stringify([...expected].sort());
+const V1_CACHE = 'funbingbing-wallpaper-cache-v1';
 
 /** Seed a v1 install, with no v2 catalog or marker, and start a worker that migrates it. */
 async function upgradeFrom(local, sync = {}) {
@@ -122,5 +125,50 @@ describe('v1 to v2 migration in the loaded extension', () => {
     assert.ok(!(await backgroundKinds(page)).includes('data'), 'the v1 preview is never painted');
     assert.deepStrictEqual(page.errors, []);
     await page.close();
+  });
+
+  it('a worker terminated mid-transfer resumes the v1 cache copy; every phase survives a restart and v1 data stays until the handoff', async () => {
+    const v1Days = Array.from({ length: 30 }, (_, i) => day(-i, `Large${i}`, '#123456'));
+    const v1Url = shown => shown.urls.ultraHighDef.replace('ts1.tc.mm.bing.net', 'cn.bing.com');
+    const BYTES = 2 * 1024 * 1024;
+    await seed({ local: { bing_images: v1Days.map(v1Image), wallpaper_url: v1Url(v1Days[0]) } });
+    await removeLocal([CATALOG_KEY, MIGRATION_KEY]);
+    // Large responses make the copy slow enough to stop part way.
+    await cacheFiller(v1Days.map(v1Url), BYTES, V1_CACHE);
+    await stopWorker();
+
+    // The worker starts and migrates; it is terminated once part of the cache is copied.
+    sendMessage({ type: 'migrationStatus' }).catch(() => {});
+    let copied = [];
+    await eventually(async () => (copied = await cachedUrls()).length > 0, 'the copy did not start');
+    await stopWorker();
+    copied = await cachedUrls();
+    assert.ok(copied.length > 0 && copied.length < v1Days.length, `stopped after ${copied.length} of ${v1Days.length} copies`);
+    assert.strictEqual((await readLocal(MIGRATION_KEY)).phase, 'writing');
+
+    // writing: the restart copies the rest without replacing what was copied.
+    await restartWorker();
+    assert.strictEqual((await readLocal(MIGRATION_KEY)).phase, 'verified');
+    assert.ok(sameMembers(await cachedUrls(), v1Days.map(shown => shown.urls.ultraHighDef)));
+    assert.ok((await cachedBytes()).every(({ bytes }) => bytes === BYTES));
+
+    // verified: a restart verifies again and still waits for the page.
+    await restartWorker();
+    const verified = await readLocal(null);
+    assert.strictEqual(verified[MIGRATION_KEY].phase, 'verified');
+    assert.ok(await hasCache(V1_CACHE) && 'bing_images' in verified && 'wallpaper_url' in verified, 'v1 data stays until the handoff');
+
+    const page = await openNewTab();
+    await migrationPhase('complete');
+    await page.close();
+    assert.strictEqual(await hasCache(V1_CACHE), false);
+
+    // complete: a restart only repeats the cleanup.
+    await restartWorker();
+    const complete = await readLocal(null);
+    assert.strictEqual(complete[MIGRATION_KEY].phase, 'complete');
+    assert.ok(!('bing_images' in complete) && !('wallpaper_url' in complete));
+    assert.deepStrictEqual(identityOf(complete[DISPLAY_STATE_KEY]),
+      { date: v1Days[0].date, imageId: v1Days[0].imageId, url: v1Days[0].urls.ultraHighDef }, 'the page handed off the v1 display identity');
   });
 });

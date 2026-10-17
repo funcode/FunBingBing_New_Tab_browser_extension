@@ -75,6 +75,8 @@ let control;
 let cdp;
 // Running status of each worker version Chrome reported.
 const workerVersions = new Map();
+// Transitions of any worker version to stopped.
+let workerStops = 0;
 const workerIs = status => [...workerVersions.values()].some(value => value === status);
 
 /** Poll until the condition holds. */
@@ -129,7 +131,10 @@ export async function launch() {
   cdp = await context.newCDPSession(control);
   workerVersions.clear();
   cdp.on('ServiceWorker.workerVersionUpdated', ({ versions }) => {
-    for (const { versionId, runningStatus } of versions) workerVersions.set(versionId, runningStatus);
+    for (const { versionId, runningStatus } of versions) {
+      if (runningStatus === 'stopped' && workerVersions.get(versionId) !== 'stopped') workerStops += 1;
+      workerVersions.set(versionId, runningStatus);
+    }
   });
   await cdp.send('ServiceWorker.enable');
 }
@@ -191,8 +196,19 @@ export async function worker() {
 
 /** Terminate the service worker, as Chrome does to an idle one. Its in-memory state is lost. */
 export async function stopWorker() {
-  await cdp.send('ServiceWorker.stopAllWorkers');
-  await eventually(() => [...workerVersions.values()].every(status => status === 'stopped'), 'the worker did not stop');
+  if (workerVersions.size > 0 && [...workerVersions.values()].every(status => status === 'stopped')) {
+    return;
+  }
+  // An event may start the worker again at once, so the stop itself is
+  // awaited, and the command repeated if Chrome ignored it while starting.
+  const stops = workerStops;
+  for (let attempt = 0; attempt < 5 && workerStops === stops; attempt++) {
+    await cdp.send('ServiceWorker.stopAllWorkers');
+    for (let poll = 0; poll < 20 && workerStops === stops; poll++) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+  }
+  assert.ok(workerStops > stops, 'the worker did not stop');
 }
 
 /** Terminate the worker and start a fresh one; resolves once its start-up migration run finished. */
@@ -293,6 +309,37 @@ export async function cacheImages(images, cacheName = CACHE_NAME) {
 
 export async function cachedUrls(cacheName = CACHE_NAME) {
   return control.evaluate(async name => (await (await caches.open(name)).keys()).map(request => request.url), cacheName);
+}
+
+/** Cache `urls` with filler bodies of `bytes` bytes each. */
+export async function cacheFiller(urls, bytes, cacheName = CACHE_NAME) {
+  await control.evaluate(async ({ urls, bytes, cacheName }) => {
+    const cache = await caches.open(cacheName);
+    const body = new Uint8Array(bytes).fill(7);
+    for (const url of urls) {
+      await cache.put(url, new Response(body, { headers: { 'Content-Type': 'image/jpeg' } }));
+    }
+  }, { urls, bytes, cacheName });
+}
+
+/** Fetch the URLs from an extension page, over its host permissions, and cache the responses. */
+export async function fetchIntoCache(urls, cacheName = CACHE_NAME) {
+  await control.evaluate(async ({ urls, cacheName }) => {
+    const cache = await caches.open(cacheName);
+    for (const url of urls) {
+      const response = await fetch(url, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
+      await cache.put(url, response);
+    }
+  }, { urls, cacheName });
+}
+
+export async function fetchJson(url) {
+  return control.evaluate(async address => (await fetch(address, { cache: 'no-store' })).json(), url);
+}
+
+export async function hasCache(cacheName) {
+  return control.evaluate(name => caches.has(name), cacheName);
 }
 
 /** Every cached response with its body size in bytes. */

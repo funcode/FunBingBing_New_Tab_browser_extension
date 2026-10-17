@@ -183,28 +183,76 @@ describe('service worker wallpaper pipeline in the loaded extension', () => {
     assert.deepStrictEqual(served.urls, [gap, evicted, gap]);
   });
 
-  it('after worker termination during a future batch, the next event fetches only the images still missing', async () => {
-    const F = future(3);
-    await seed({ days: [A, ...F], cached: [preview(A), final(A)] });
-    const interrupted = F[1].urls.preview;
+  for (const [phase, days] of [['history', history(3)], ['future', future(3)]]) {
+    it(`after worker termination during ${phase} prefetch, the next event fetches only the images still missing`, async () => {
+      await seed({ days: [A, ...days], cached: [preview(A), final(A)] });
+      const interrupted = days[1].urls.preview;
+      const held = deferred();
+      let holding = true;
+      const served = await serveImages(url => (holding && url === interrupted ? held.promise : null));
+
+      await sendMessage({ type: 'refreshWallpaperCatalog' });
+      await eventually(() => served.urls.includes(interrupted));
+      await stopWorker();
+      holding = false;
+      held.resolve();
+      await eventually(() => served.active === 0);
+      assert.ok(!(await cachedUrls()).includes(interrupted), 'the interrupted fetch is not a cache success');
+
+      served.maxActive = 0;
+      await sendMessage({ type: 'refreshWallpaperCatalog' });
+      await eventually(async () => served.active === 0 && (await cachedUrls()).length === 8, 'the prefetch did not resume');
+
+      assert.deepStrictEqual(served.urls, [days[0].urls.preview, interrupted, interrupted, days[2].urls.preview, ...finalsOf(days)]);
+      assert.strictEqual(served.maxActive, 1);
+    });
+  }
+
+  it('after worker termination during a metadata request, the source stays as it was and the next event asks again', async () => {
+    const catalog = catalogOf([A]);
+    catalog.refreshState.sources.model.status = 'missing';
+    await seed({ days: [A], local: { [CATALOG_KEY]: catalog }, cached: [preview(A), final(A)] });
     const held = deferred();
-    let holding = true;
-    const served = await serveImages(url => (holding && url === interrupted ? held.promise : null));
+    const requests = await serveMetadata('model', async () => {
+      if (requests.length === 1) await held.promise;
+      return modelResponse([A]);
+    });
 
-    await sendMessage({ type: 'refreshWallpaperCatalog' });
-    await eventually(() => served.urls.includes(interrupted));
+    // Its answer dies with the worker.
+    sendMessage({ type: 'refreshWallpaperCatalog' }).catch(() => {});
+    await eventually(() => requests.length === 1);
     await stopWorker();
-    holding = false;
     held.resolve();
-    await eventually(() => served.active === 0);
-    assert.ok(!(await cachedUrls()).includes(interrupted), 'the interrupted fetch is not a cache success');
+    const interrupted = (await readLocal(CATALOG_KEY)).refreshState.sources.model;
+    assert.deepStrictEqual([interrupted.status, interrupted.retryLevel, interrupted.attemptedAt], ['missing', 0, 0]);
 
-    served.maxActive = 0;
     await sendMessage({ type: 'refreshWallpaperCatalog' });
-    await eventually(async () => served.active === 0 && (await cachedUrls()).length === 8, 'the batch did not resume');
+    assert.strictEqual(requests.length, 2);
+    assert.strictEqual((await readLocal(CATALOG_KEY)).refreshState.sources.model.status, 'success');
+  });
 
-    assert.deepStrictEqual(served.urls, [F[0].urls.preview, interrupted, interrupted, F[2].urls.preview, ...finalsOf(F)]);
-    assert.strictEqual(served.maxActive, 1);
+  it('after worker termination during a trivia request, the entry stays retryable and the next event fetches it', async () => {
+    const triviaId = `HPQuiz_${A.date}_Target`;
+    await seed({ days: [{ ...A, triviaId }], cached: [preview(A), final(A)] });
+    const held = deferred();
+    const triviaIds = [];
+    await context.route(TRIVIA_REQUESTS, async (route) => {
+      triviaIds.push(new URL(route.request().url()).searchParams.get('id'));
+      if (triviaIds.length === 1) await held.promise;
+      await route.fulfill({ contentType: 'application/json', body: JSON.stringify({ data: QUIZ }) }).catch(() => {});
+    });
+    const entry = async () => (await readLocal(CATALOG_KEY)).entries[A.date];
+
+    await sendMessage({ type: 'refreshWallpaperCatalog' });
+    await eventually(() => triviaIds.length === 1);
+    await stopWorker();
+    held.resolve();
+    const { triviaState, triviaRetryLevel, triviaAttemptedAt } = await entry();
+    assert.deepStrictEqual([triviaState, triviaRetryLevel, triviaAttemptedAt], ['missing', 0, 0]);
+
+    await sendMessage({ type: 'refreshWallpaperCatalog' });
+    await eventually(async () => (await entry()).triviaState === 'complete', 'the trivia was not fetched again');
+    assert.deepStrictEqual(triviaIds, [triviaId, triviaId]);
   });
 
   it('navigation during future work waits for the active request, then is fetched next, never in parallel', async () => {
@@ -266,7 +314,30 @@ describe('service worker wallpaper pipeline in the loaded extension', () => {
     assert.strictEqual((await readLocal(CATALOG_KEY)).entries[A.date].imageId, A.imageId);
   });
 
-  it('metadata, image, trivia and quote retries back off independently, survive a worker restart, and reset on success', async () => {
+  // Retry state of the model source, the entry's final image, its trivia and
+  // the quote lease, as retry levels and window lengths in minutes.
+  const retriesOf = async (shown) => {
+    const [stored, lease] = [await readLocal(CATALOG_KEY), await readLocal(QUOTE_LEASE_KEY)];
+    const entry = stored.entries[shown.date];
+    const of = retry => (retry ? { level: retry.retryLevel, window: (retry.nextRetryAt - retry.attemptedAt) / MINUTE } : null);
+    return {
+      metadata: of(stored.refreshState.sources.model),
+      image: of(stored.refreshState.imageFailures[shown.urls.ultraHighDef]),
+      trivia: of({ retryLevel: entry.triviaRetryLevel, nextRetryAt: entry.triviaNextRetryAt, attemptedAt: entry.triviaAttemptedAt }),
+      quote: of(lease)
+    };
+  };
+  const everyRetryAt = (level, window) => ({ metadata: { level, window }, image: { level, window }, trivia: { level, window }, quote: { level, window } });
+  // The lease holder's scrape found nothing, and there is no qotd_url fallback.
+  const quoteAttempt = async (reconnect, quote = null) => {
+    const lease = await sendMessage({ type: 'requestQuoteLease', reconnect });
+    if (lease.granted) {
+      await sendMessage({ type: 'syncQuotesForImages', date: lease.date, token: lease.token, quote });
+    }
+    return lease;
+  };
+
+  it('metadata, image, trivia and quote retries each back off 1, 3, 5 and 5 minutes, survive a worker restart, and reset on success', async () => {
     const triviaId = `HPQuiz_${A.date}_Target`;
     const catalog = catalogOf([{ ...A, triviaId }]);
     catalog.refreshState.sources.model.status = 'missing';
@@ -282,62 +353,94 @@ describe('service worker wallpaper pipeline in the loaded extension', () => {
         : route.fulfill({ status: 503, body: '' })).catch(() => {});
     });
     const images = await serveImages(() => (ok ? null : 503));
-    // The lease holder's scrape found nothing, and there is no qotd_url fallback.
-    const quoteAttempt = async (reconnect, quote = null) => {
-      const lease = await sendMessage({ type: 'requestQuoteLease', reconnect });
-      if (lease.granted) {
-        await sendMessage({ type: 'syncQuotesForImages', date: lease.date, token: lease.token, quote });
-      }
-      return lease.granted;
-    };
-    const retries = async () => {
-      const [stored, lease] = [await readLocal(CATALOG_KEY), await readLocal(QUOTE_LEASE_KEY)];
-      const entry = stored.entries[A.date];
-      const of = retry => (retry ? { level: retry.retryLevel, window: (retry.nextRetryAt - retry.attemptedAt) / MINUTE } : null);
-      return {
-        metadata: of(stored.refreshState.sources.model),
-        image: of(stored.refreshState.imageFailures[A.urls.ultraHighDef]),
-        trivia: of({ retryLevel: entry.triviaRetryLevel, nextRetryAt: entry.triviaNextRetryAt, attemptedAt: entry.triviaAttemptedAt }),
-        quote: of(lease)
-      };
-    };
-    const everyRetryAt = (level, window) => ({ metadata: { level, window }, image: { level, window }, trivia: { level, window }, quote: { level, window } });
     const retriesAre = async (expected) => {
-      await eventually(async () => JSON.stringify(await retries()) === JSON.stringify(expected), 'the retries did not settle');
+      await eventually(async () => JSON.stringify(await retriesOf(A)) === JSON.stringify(expected), 'the retries did not settle');
     };
+    const attempts = () => [modelRequests.length, triviaRequests.length, images.urls.length];
 
-    await sendMessage({ type: 'refreshWallpaperCatalog' });
-    assert.ok(await quoteAttempt(false));
-    await retriesAre(everyRetryAt(1, 1));
+    // The first attempt is eligible; each later one is a reconnect bypass,
+    // which keeps the level until its attempt fails.
+    for (const [round, [level, window]] of [[1, 1], [2, 3], [3, 5], [3, 5]].entries()) {
+      const reconnect = round > 0;
+      await sendMessage({ type: 'refreshWallpaperCatalog', reconnect });
+      assert.ok((await quoteAttempt(reconnect)).granted);
+      await retriesAre(everyRetryAt(level, window));
+      assert.deepStrictEqual(attempts(), [round + 1, round + 1, round + 1]);
+    }
 
     await restartWorker();
-    assert.deepStrictEqual(await retries(), everyRetryAt(1, 1), 'the retries persisted across the restart');
-    const attempts = () => [modelRequests.length, triviaRequests.length, images.urls.length];
-    const before = attempts();
+    assert.deepStrictEqual(await retriesOf(A), everyRetryAt(3, 5), 'the saturated retries persisted across the restart');
     await sendMessage({ type: 'refreshWallpaperCatalog' });
-    assert.strictEqual(await quoteAttempt(false), false, 'no quote lease within the window');
+    assert.strictEqual((await quoteAttempt(false)).granted, false, 'no quote lease within the window');
     await pause(300);
-    assert.deepStrictEqual(attempts(), before, 'nothing is retried within the windows');
-
-    // One reconnect bypasses each window once; the failed bypass advances its level.
-    await sendMessage({ type: 'refreshWallpaperCatalog', reconnect: true });
-    assert.ok(await quoteAttempt(true));
-    await retriesAre(everyRetryAt(2, 3));
-    assert.deepStrictEqual(attempts(), before.map(count => count + 1));
+    assert.deepStrictEqual(attempts(), [4, 4, 4], 'nothing is retried within the windows');
 
     ok = true;
     await sendMessage({ type: 'refreshWallpaperCatalog', reconnect: true });
-    assert.ok(await quoteAttempt(true, { text: 'Quote', source: 'Author', caption: 'Caption' }));
+    assert.ok((await quoteAttempt(true, { text: 'Quote', source: 'Author', caption: 'Caption' })).granted);
     await eventually(async () => {
       const stored = await readLocal(CATALOG_KEY);
       return stored.refreshState.sources.model.status === 'success' && stored.entries[A.date].triviaState === 'complete' &&
         !stored.refreshState.imageFailures[A.urls.ultraHighDef];
     }, 'the retries did not succeed');
     // A completed trivia payload keeps its attempt time; only its level matters.
-    const settled = await retries();
+    const settled = await retriesOf(A);
     assert.deepStrictEqual({ ...settled, trivia: settled.trivia.level },
       { metadata: { level: 0, window: 0 }, image: null, trivia: 0, quote: { level: 0, window: 0 } });
     assert.deepStrictEqual((await readLocal(CATALOG_KEY)).entries[A.date].triviaData, QUIZ);
+  });
+
+  it('a replaced identity restarts only its own retry sequence: image and trivia with a new image for the date, metadata and quote with a new date', async () => {
+    const failedAt = Date.now() - 1000;
+    const saturated = { attemptedAt: failedAt, nextRetryAt: failedAt + 5 * MINUTE, retryLevel: 3, lastReconnectBypassAt: 0 };
+    const catalog = catalogOf([{ ...A, triviaId: `HPQuiz_${A.date}_Target` }]);
+    Object.assign(catalog.refreshState.sources.model, { status: 'failed', ...saturated });
+    // ImageOfTheDay has not covered the date yet, so the next event asks it.
+    catalog.refreshState.sources.imageOfTheDay.status = 'missing';
+    catalog.refreshState.imageFailures[A.urls.ultraHighDef] = { ...saturated };
+    Object.assign(catalog.entries[A.date], {
+      triviaAttemptedAt: failedAt, triviaNextRetryAt: saturated.nextRetryAt, triviaRetryLevel: 3
+    });
+    await seed({
+      local: {
+        [CATALOG_KEY]: catalog,
+        [QUOTE_LEASE_KEY]: { date: A.date, token: '', leaseUntil: 0, ...saturated }
+      },
+      cached: [preview(A)]
+    });
+    const replacement = day(0, 'Replacement', '#606060');
+    const tomorrow = day(1, 'Tomorrow', '#606060');
+    let published = [replacement];
+    await serveMetadata('imageOfTheDay', () => imageOfTheDayResponse(published));
+    await serveMetadata('model', () => 503);
+    await serveMetadata('archive', () => 503);
+    await serveImages(() => 503);
+
+    // ImageOfTheDay publishes another image for the date.
+    await sendMessage({ type: 'refreshWallpaperCatalog' });
+    await eventually(async () => {
+      const stored = await readLocal(CATALOG_KEY);
+      return stored.refreshState.imageFailures[replacement.urls.ultraHighDef] && !stored.refreshState.imageFailures[A.urls.ultraHighDef];
+    }, 'the image retry did not move to the new image');
+    assert.deepStrictEqual(await retriesOf(replacement), {
+      metadata: { level: 3, window: 5 },
+      image: { level: 1, window: 1 },
+      trivia: { level: 0, window: 0 },
+      quote: { level: 3, window: 5 }
+    });
+
+    // A new target date with its own image: new source states and a new quote date.
+    published = [replacement, tomorrow];
+    await advanceWorkerClock(1);
+    await sendMessage({ type: 'refreshWallpaperCatalog' });
+    const lease = await quoteAttempt(false);
+    assert.deepStrictEqual([lease.granted, lease.date], [true, tomorrow.date], 'the new quote date starts without backoff');
+    const stored = await readLocal(CATALOG_KEY);
+    assert.strictEqual(stored.refreshState.sources.model.retryLevel, 1, 'the new date restarted the model sequence');
+    const quoteState = await readLocal(QUOTE_LEASE_KEY);
+    assert.deepStrictEqual([quoteState.date, quoteState.retryLevel], [tomorrow.date, 1]);
+    assert.strictEqual(stored.refreshState.imageFailures[replacement.urls.ultraHighDef].retryLevel, 1,
+      'the date change leaves the image sequence alone');
   });
 
   it('a stale Model response after date rollover only supplements history; candidates for the displayed date or the new target contribute nothing', async () => {
