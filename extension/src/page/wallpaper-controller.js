@@ -107,6 +107,11 @@ export function createWallpaperController({
   // a tab is decided once, by its opening initialization.
   let rollover = null;
   let rolloverDecided = false;
+  // Catalog reads looking for today's entry, and whether the catalog refresh
+  // this page requested has finished: only the latest read after it may give
+  // up on today, so an older read cannot overrule a newer one that has it.
+  let rolloverReads = 0;
+  let refreshFinished = false;
 
   const superseded = { applied: false, reason: 'superseded' };
 
@@ -388,14 +393,24 @@ export function createWallpaperController({
   }
 
   // Read the catalog and move to today's wallpaper once the catalog has it.
-  // Resolves null while it does not.
+  // Without it, the latest read after the refresh finished stops the wait and
+  // restores the committed wallpaper's headline; any other read resolves null.
   async function tryRollover() {
     const base = generation;
+    const read = ++rolloverReads;
     const { catalog } = await readState();
     if (base !== generation || !rollover || pending) {
       return superseded;
     }
-    return catalog?.entries?.[rollover] ? act(++generation, rollover, false) : null;
+    if (catalog?.entries?.[rollover]) {
+      return act(++generation, rollover, false);
+    }
+    if (!refreshFinished || read !== rolloverReads) {
+      return null;
+    }
+    rollover = null;
+    restoreHeadline();
+    return { applied: false, reason: 'not published' };
   }
 
   // First new tab of a day: whatever of the committed image is cached is shown
@@ -498,8 +513,11 @@ export function createWallpaperController({
       return superseded;
     }
     const dates = getNavigableDates(catalog, catalog?.refreshState?.date);
-    const index = dates.indexOf(displayDate ?? catalog?.refreshState?.date);
-    if (index < 0) {
+    const from = displayDate ?? catalog?.refreshState?.date;
+    // A displayed date that aged out of the catalog keeps its place among the
+    // newest-first dates, between the newer and the older ones.
+    const newer = from ? dates.filter(date => date > from).length : -1;
+    if (newer < 0 || dates.length === 0) {
       if (cancelled) {
         // Stop a move already in flight; the image and snapshot stay.
         if (pending?.date === cancelled) {
@@ -510,7 +528,8 @@ export function createWallpaperController({
       }
       return { applied: false, reason: 'not navigable' };
     }
-    return act(++generation, dates[(index + offset + dates.length) % dates.length], false);
+    const index = dates[newer] === from ? newer + offset : newer + (offset > 0 ? 0 : -1);
+    return act(++generation, dates[(index + dates.length) % dates.length], false);
   }
 
   /**
@@ -542,20 +561,25 @@ export function createWallpaperController({
   /**
    * Called when the catalog refresh this page requested has finished. If today
    * is still not in the catalog, the page stops waiting for it and the
-   * committed wallpaper's headline returns.
+   * committed wallpaper's headline returns. A newer catalog read still in
+   * flight makes that decision instead.
    */
   async function catalogRefreshed() {
     if (!rollover || pending) {
       return { applied: false, reason: 'not waiting' };
     }
-    const result = await tryRollover();
-    if (result) {
-      return result;
-    }
-    rollover = null;
-    restoreHeadline();
-    return { applied: false, reason: 'not published' };
+    refreshFinished = true;
+    return (await tryRollover()) ?? superseded;
   }
 
-  return { initialize, navigate, catalogUpdated, catalogRefreshed };
+  /**
+   * Called when the UHD setting changes. The displayed date, or the action in
+   * flight, is reread like a catalog notification, so its final image at the
+   * configured resolution replaces the image on screen once decoded.
+   */
+  function resolutionChanged() {
+    return catalogUpdated();
+  }
+
+  return { initialize, navigate, catalogUpdated, catalogRefreshed, resolutionChanged };
 }

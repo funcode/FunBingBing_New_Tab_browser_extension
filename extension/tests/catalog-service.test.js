@@ -222,9 +222,23 @@ describe('refresh sharing and rollover', () => {
       assert.strictEqual(catalog.refreshState.sources[source].status, 'missing', source);
       assert.strictEqual(catalog.refreshState.sources[source].retryLevel, 1, source);
     }
-    // Rollover keeps the catalog; entries from the previous round remain.
+    // Rollover keeps the entries still in the new window and drops the date
+    // that aged out of its seven historical days.
     assert.strictEqual(catalog.entries[TARGET].imageId, idFor(TARGET));
-    assert.strictEqual(catalog.entries[addDays(TARGET, -7)].imageId, idFor(addDays(TARGET, -7)));
+    assert.strictEqual(catalog.entries[addDays(TARGET, -6)].imageId, idFor(addDays(TARGET, -6)));
+    assert.ok(!(addDays(TARGET, -7) in catalog.entries), 'an expired date is not navigable');
+    assert.ok(Object.keys(catalog.entries).length <= 15);
+  });
+
+  it('keeps at most the target, seven historical and seven future dates however far the target advances', async () => {
+    const { service, storage, clock } = makeHarness();
+    await service.refresh();
+
+    clock.target = addDays(TARGET, 30);
+    clock.time += 60 * MINUTE;
+    await service.refresh();
+
+    assert.deepStrictEqual(Object.keys(catalogOf(storage).entries), [], 'every old date aged out');
   });
 
   it('keeps the persisted generation across a worker restart', async () => {

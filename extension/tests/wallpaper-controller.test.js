@@ -77,10 +77,9 @@ function makeHarness({ entries = [A, B, C], targetDate = TARGET, displayState = 
     undecodable: new Set()
   };
   h.controller = createWallpaperController({
-    readCatalog: async () => {
-      await h.beforeReadCatalog?.();
-      return h.catalog;
-    },
+    // A hook may resolve the catalog the read returns, e.g. a read issued
+    // before a later commit.
+    readCatalog: async () => (await h.beforeReadCatalog?.()) ?? h.catalog,
     readDisplayState: async () => {
       await h.beforeReadDisplayState?.();
       return h.displayState;
@@ -440,6 +439,19 @@ describe('navigation', () => {
     assert.deepStrictEqual(h.finals, [OLDER]);
   });
 
+  it('navigates from a displayed date that aged out of the catalog by its place in date order', async () => {
+    const h = await initialized({ displayState: snapshotOf(C) });
+    delete h.catalog.entries[OLDEST];
+
+    await h.controller.navigate(-1);
+    assert.deepStrictEqual(h.finals, [OLDEST, OLDER], 'the next date is the oldest newer one');
+
+    const older = await initialized({ displayState: snapshotOf(C) });
+    delete older.catalog.entries[OLDEST];
+    await older.controller.navigate(1);
+    assert.deepStrictEqual(older.finals, [OLDEST, TARGET], 'the previous date wraps to the newest');
+  });
+
   it('does nothing when there are no entries', async () => {
     const h = makeHarness({ entries: [] });
 
@@ -666,6 +678,45 @@ describe('catalog update notifications', () => {
   });
 });
 
+describe('resolution setting changes', () => {
+  it('replaces the displayed image with its newly configured resolution once decoded, and publishes it', async () => {
+    const h = makeHarness({ displayState: snapshotOf(A), cached: [A.urls.ultraHighDef, A.urls.preview] });
+    await h.controller.initialize();
+    h.workerCachesRequests();
+    h.onRequest = ({ date, resolution }) => {
+      assert.deepStrictEqual(h.finals, [TARGET], 'the UHD image stays while HD loads');
+      h.cache.add(h.catalog.entries[date].urls[resolution]);
+    };
+
+    h.enableUhd = 'no';
+    const result = await h.controller.resolutionChanged();
+
+    assert.strictEqual(result.applied, true);
+    assert.deepStrictEqual(h.requests.at(-1), { date: TARGET, resolution: 'highDef' });
+    assert.deepStrictEqual(h.finals, [TARGET, TARGET]);
+    assert.strictEqual(h.displayState.url, A.urls.highDef);
+    assert.strictEqual(h.displayState.imageId, ID_A);
+  });
+
+  it('re-runs a navigation in flight at the new resolution', async () => {
+    const h = makeHarness({ displayState: snapshotOf(A), cached: [A.urls.ultraHighDef] });
+    await h.controller.initialize();
+    const fetching = gate();
+    h.onRequest = () => fetching.promise;
+    const navigating = h.controller.navigate(1);
+    await settle();
+
+    h.onRequest = ({ date, resolution }) => h.cache.add(h.catalog.entries[date].urls[resolution]);
+    h.enableUhd = 'no';
+    await h.controller.resolutionChanged();
+    fetching.open();
+    await navigating;
+
+    assert.deepStrictEqual(h.finals, [TARGET, OLDER]);
+    assert.strictEqual(h.displayState.url, B.urls.highDef);
+  });
+});
+
 describe('regular tabs sharing one display state', () => {
   it('a tab opened while another is still loading starts from the old commit; one opened after starts from the new', async () => {
     const first = makeHarness({ displayState: snapshotOf(A), cached: [A.urls.ultraHighDef, B.urls.ultraHighDef] });
@@ -831,6 +882,57 @@ describe('first new tab of a day', () => {
     assert.deepStrictEqual(h.refreshed, [OLDER], 'the updating headline is withdrawn');
     assert.deepStrictEqual(h.finals, [OLDER], 'the page stopped waiting for today');
     assert.deepStrictEqual(h.displayState, published);
+  });
+
+  it("moves to today when the refresh's older read without today finishes before today's notification reads", async () => {
+    const h = firstTabOfDay({ entries: [B, C], cached: [B.urls.ultraHighDef, A.urls.ultraHighDef] });
+    await h.controller.initialize();
+    const unpublished = h.catalog;
+    const published = { ...unpublished, entries: { ...unpublished.entries, [TARGET]: A } };
+    const refreshRead = gate();
+    const notificationRead = gate();
+    const reads = [
+      () => refreshRead.promise.then(() => unpublished),
+      () => notificationRead.promise.then(() => published)
+    ];
+    h.beforeReadCatalog = () => reads.shift()?.();
+
+    const refreshed = h.controller.catalogRefreshed();
+    await settle();
+    h.catalog = published;
+    const notified = h.controller.catalogUpdated([TARGET]);
+    await settle();
+    refreshRead.open();
+    await refreshed;
+    notificationRead.open();
+    await notified;
+
+    assert.deepStrictEqual(h.finals, [OLDER, TARGET]);
+    assert.strictEqual(h.displayState.date, TARGET);
+  });
+
+  it("gives up on today when the latest read after the refresh still lacks it, whatever the order the reads finish", async () => {
+    const h = firstTabOfDay({ entries: [B, C], cached: [B.urls.ultraHighDef] });
+    await h.controller.initialize();
+    const refreshRead = gate();
+    const notificationRead = gate();
+    const reads = [() => refreshRead.promise, () => notificationRead.promise];
+    h.beforeReadCatalog = () => reads.shift()?.();
+
+    const refreshed = h.controller.catalogRefreshed();
+    await settle();
+    const notified = h.controller.catalogUpdated([TARGET]);
+    await settle();
+    notificationRead.open();
+    await notified;
+    refreshRead.open();
+    await refreshed;
+
+    assert.deepStrictEqual(h.refreshed, [OLDER], 'the updating headline is withdrawn once');
+    h.catalog.entries[TARGET] = A;
+    h.workerCachesRequests();
+    await h.controller.catalogUpdated([TARGET]);
+    assert.deepStrictEqual(h.finals, [OLDER], 'the page stopped waiting for today');
   });
 
   it('keeps a selection that was committed today', async () => {

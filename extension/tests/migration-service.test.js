@@ -558,6 +558,22 @@ describe('migration service: restart', () => {
     assert.deepStrictEqual(worker.storage.data, verified);
   });
 
+  it('does not restore legacy dates that a rollover dropped while it waited for the page', async () => {
+    const worker = makeWorker({ local: { ...LEGACY_LOCAL, bing_images: v1Images(8) } });
+    await worker.migration.run();
+    // A refresh rolled the catalog eight days on, dropping the expired dates.
+    const later = String(Number(TODAY) + 6);
+    const rolled = catalogOf(worker);
+    rolled.refreshState.date = later;
+    rolled.entries = Object.fromEntries(Object.entries(rolled.entries).filter(([date]) => date >= String(Number(later) - 7)));
+    const kept = Object.keys(rolled.entries).sort();
+
+    await worker.migration.run();
+
+    assert.deepStrictEqual(Object.keys(catalogOf(worker).entries).sort(), kept);
+    assert.strictEqual(markerOf(worker).phase, 'verified');
+  });
+
   it('returns to writing when verified sync settings were lost, then verifies again', async () => {
     const worker = makeWorker({ local: LEGACY_LOCAL });
     await worker.migration.run();

@@ -83,9 +83,11 @@ function makeWorker({ dates = [TARGET, YESTERDAY, TOMORROW], quotes = {}, sync =
 }
 
 const json = value => new Response(JSON.stringify(value));
-const RELEASED = {
-  date: TARGET, token: '', leaseUntil: 0, retryLevel: 0, nextRetryAt: 0, attemptedAt: 0, lastReconnectBypassAt: 0
-};
+const RELEASED = { date: TARGET, token: '', leaseUntil: 0, retries: {} };
+// A date's retry object after its n-th consecutive failure at `at`.
+const failedAt = (at, level = 1) => ({
+  attemptedAt: at, nextRetryAt: at + [1, 3, 5][Math.min(level, 3) - 1] * MINUTE, retryLevel: level, lastReconnectBypassAt: 0
+});
 
 describe('quote service', () => {
   it('grants one lease for the latest committed current or historical date to overlapping requests', async () => {
@@ -96,9 +98,7 @@ describe('quote service', () => {
     assert.deepStrictEqual(grants.filter(grant => grant.granted),
       [{ granted: true, date: TARGET, token: 'token-1', scrape: true }]);
     assert.strictEqual(worker.tokens, 1, 'a denied request generates no token');
-    assert.deepStrictEqual(worker.lease(), {
-      date: TARGET, token: 'token-1', leaseUntil: START + MINUTE, retryLevel: 0, nextRetryAt: 0, attemptedAt: 0, lastReconnectBypassAt: 0
-    });
+    assert.deepStrictEqual(worker.lease(), { date: TARGET, token: 'token-1', leaseUntil: START + MINUTE, retries: {} });
   });
 
   it('grants no lease while every committed date has a captioned quote', async () => {
@@ -189,7 +189,7 @@ describe('quote service', () => {
     await new Promise(resolve => setImmediate(resolve));
     respond(new Response('{}'));
     await failed;
-    assert.strictEqual(worker.lease().retryLevel, 1);
+    assert.deepStrictEqual(worker.lease().retries, { [TARGET]: failedAt(START), [YESTERDAY]: failedAt(START) });
     worker.clock.now += MINUTE;
     const { token } = await worker.service.requestLease();
 
@@ -197,19 +197,20 @@ describe('quote service', () => {
     await new Promise(resolve => setImmediate(resolve));
 
     assert.deepStrictEqual(worker.quotes(), { [TARGET]: quoteOf(TARGET) });
-    assert.deepStrictEqual(worker.lease(), RELEASED);
+    assert.deepStrictEqual(worker.lease(), { ...RELEASED, retries: { [YESTERDAY]: failedAt(START) } });
     assert.deepStrictEqual(worker.broadcasts, [{ type: 'quotesUpdated', updatedDates: [TARGET] }]);
 
     respond(new Response('{}'));
     assert.deepStrictEqual(await pending, { ok: true, updatedDates: [TARGET] });
-    assert.deepStrictEqual(worker.lease(), RELEASED, 'a missing historical quote does not back off the target');
+    assert.deepStrictEqual(worker.lease(), { ...RELEASED, retries: { [YESTERDAY]: failedAt(START + MINUTE, 2) } },
+      'the missing historical quote backs off its own date, not the target');
   });
 
-  it('resets the target retries when the fallback fills its quote but not a historical one', async () => {
+  it('resets the target retries and backs off the historical date when the fallback fills only the target', async () => {
     const answers = [{}, { [TARGET]: quoteOf(TARGET) }];
     const worker = makeWorker({ fallback: () => json(answers.shift()) });
     await worker.service.submit({ date: TARGET, ...(await worker.service.requestLease()), quote: null });
-    assert.strictEqual(worker.lease().retryLevel, 1, 'the first round fills nothing');
+    assert.strictEqual(worker.lease().retries[TARGET].retryLevel, 1, 'the first round fills nothing');
     worker.clock.now += MINUTE;
 
     const { token } = await worker.service.requestLease();
@@ -217,7 +218,7 @@ describe('quote service', () => {
 
     assert.deepStrictEqual(result, { ok: true, updatedDates: [TARGET] });
     assert.deepStrictEqual(worker.quotes(), { [TARGET]: quoteOf(TARGET) });
-    assert.deepStrictEqual(worker.lease(), RELEASED);
+    assert.deepStrictEqual(worker.lease(), { ...RELEASED, retries: { [YESTERDAY]: failedAt(START + MINUTE, 2) } });
   });
 
   it('falls back to the sync qotd_url for committed dates the scrape did not fill', async () => {
@@ -260,9 +261,7 @@ describe('quote service', () => {
     await worker.service.submit({ date: TARGET, token, quote: null });
 
     assert.deepStrictEqual(worker.fetches, []);
-    assert.deepStrictEqual(worker.lease(), {
-      ...RELEASED, retryLevel: 1, nextRetryAt: START + MINUTE, attemptedAt: START
-    });
+    assert.deepStrictEqual(worker.lease(), { ...RELEASED, retries: { [TARGET]: failedAt(START), [YESTERDAY]: failedAt(START) } });
     worker.clock.now = START + MINUTE - 1;
     assert.deepStrictEqual(await worker.service.requestLease(), { granted: false });
     worker.clock.now = START + MINUTE;
@@ -277,10 +276,10 @@ describe('quote service', () => {
     assert.deepStrictEqual(await worker.service.requestLease(), { granted: false });
     const bypass = await worker.service.requestLease({ reconnect: true });
     assert.strictEqual(bypass.granted, true);
-    assert.strictEqual(worker.lease().retryLevel, 1, 'a bypass keeps the level');
+    assert.strictEqual(worker.lease().retries[TARGET].retryLevel, 1, 'a bypass keeps the level');
 
     await worker.service.submit({ date: TARGET, token: bypass.token, quote: null });
-    assert.strictEqual(worker.lease().retryLevel, 2, 'a failed bypass advances the level');
+    assert.strictEqual(worker.lease().retries[TARGET].retryLevel, 2, 'a failed bypass advances the level');
     assert.deepStrictEqual(await worker.service.requestLease(), { granted: false });
   });
 
@@ -299,7 +298,7 @@ describe('quote service', () => {
 
       assert.deepStrictEqual(result, { ok: true, updatedDates: [] });
       assert.deepStrictEqual(worker.quotes()[TARGET], blank);
-      assert.strictEqual(worker.lease().retryLevel, 1);
+      assert.strictEqual(worker.lease().retries[TARGET].retryLevel, 1);
       assert.deepStrictEqual(worker.broadcasts, []);
     });
   }
@@ -316,7 +315,7 @@ describe('quote service', () => {
     assert.deepStrictEqual(worker.quotes()[TARGET], {
       text: 'Usable Bing quote', source: 'Author', caption: '', link: 'https://cn.bing.com/search?q=Author&form=BTQUOT'
     });
-    assert.strictEqual(worker.lease().retryLevel, 1, 'the blank caption stays eligible for recovery');
+    assert.strictEqual(worker.lease().retries[TARGET].retryLevel, 1, 'the blank caption stays eligible for recovery');
     worker.clock.now += MINUTE;
     assert.strictEqual((await worker.service.requestLease()).scrape, true);
   });
@@ -331,6 +330,23 @@ describe('quote service', () => {
     await worker.service.submit({ date: TARGET, token, quote: quoteOf(TARGET, '') });
 
     assert.deepStrictEqual(worker.quotes()[TARGET], quoteOf(TARGET));
+  });
+
+  it("keeps a historical date's retries when a new target date arrives, and grants no lease while only that date backs off", async () => {
+    const worker = makeWorker({ quotes: { [TARGET]: quoteOf(TARGET) } });
+    const first = await worker.service.requestLease();
+    assert.strictEqual(first.scrape, false, 'the filled latest date is not scraped again');
+    await worker.service.submit({ date: TARGET, token: first.token, quote: null });
+    assert.deepStrictEqual(worker.lease().retries, { [YESTERDAY]: failedAt(START) }, 'the failure is recorded against the missing date');
+    assert.deepStrictEqual(await worker.service.requestLease(), { granted: false });
+
+    // The catalog advances to a new target date that has no quote yet.
+    worker.storage.data[STORAGE_KEYS.catalog].refreshState.date = TOMORROW;
+    worker.clock.now += 10 * 1000;
+    const grant = await worker.service.requestLease();
+
+    assert.deepStrictEqual([grant.granted, grant.date, grant.scrape], [true, TOMORROW, true]);
+    assert.deepStrictEqual(worker.lease().retries, { [YESTERDAY]: failedAt(START) }, 'the new date does not reset another date');
   });
 
   it('keeps at most eight quotes, the latest dates first', async () => {

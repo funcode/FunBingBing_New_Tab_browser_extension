@@ -72,9 +72,11 @@ function isWithinWindow(date, targetDate) {
 }
 
 /**
- * Advance the catalog to a newer target date: increment the refresh generation
- * and rebuild the three source states, keeping entries and image failure
- * records. Older or equal dates leave the catalog unchanged.
+ * Advance the catalog to a newer target date: increment the refresh generation,
+ * rebuild the three source states and drop the entries outside the new
+ * target/history/future window, so at most 15 dates remain. Image failure
+ * records are left to cache cleanup. Older or equal dates leave the catalog
+ * unchanged.
  *
  * @returns {boolean} True when the catalog was rolled
  */
@@ -86,6 +88,11 @@ export function rollToTargetDate(catalog, targetDate) {
   refreshState.date = targetDate;
   refreshState.generation += 1;
   refreshState.sources = Object.fromEntries(SOURCES.map(source => [source, createSourceState()]));
+  for (const date of Object.keys(catalog.entries)) {
+    if (!isWithinWindow(date, targetDate)) {
+      delete catalog.entries[date];
+    }
+  }
   return true;
 }
 
@@ -368,6 +375,8 @@ function recoverEntry(catalog, recovered, now) {
 /**
  * Merge the newest eight valid dates of the v1 `bing_images` array into the
  * catalog in place, as `legacy` entries. Valid v2 data is never replaced.
+ * Once the catalog has a target date, dates outside its window are skipped,
+ * so a resumed migration does not restore dates a rollover dropped.
  *
  * @param {Object} catalog
  * @param {*} images - Stored v1 `bing_images` value
@@ -376,9 +385,11 @@ function recoverEntry(catalog, recovered, now) {
  *   those whose entry changed
  */
 export function importLegacyImages(catalog, images, now) {
+  const targetDate = catalog.refreshState.date;
   const byDate = new Map();
   for (const entry of (Array.isArray(images) ? images : []).map(legacyEntry)) {
-    if (entry && !byDate.has(entry.date)) {
+    if (entry && !byDate.has(entry.date) &&
+        (!isValidCalendarDate(targetDate) || isWithinWindow(entry.date, targetDate))) {
       byDate.set(entry.date, entry);
     }
   }

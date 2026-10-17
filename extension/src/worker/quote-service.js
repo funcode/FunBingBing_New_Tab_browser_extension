@@ -8,7 +8,13 @@
  * writes the display state.
  */
 
-import { grantQuoteLease, isValidQuoteSubmission, releaseQuoteLease } from '../helpers/quote-lease.js';
+import {
+  grantQuoteLease,
+  hasActiveLease,
+  isValidQuoteSubmission,
+  recordQuoteAttempt,
+  releaseQuoteLease
+} from '../helpers/quote-lease.js';
 import { validateUrlSetting } from '../helpers/migration.js';
 import { STORAGE_KEYS } from './storage-keys.js';
 
@@ -60,6 +66,10 @@ export function normalizeQuote(raw) {
 // A blank caption is recovered like a missing quote (ADR-0014).
 function needsQuote(quote) {
   return !quote || !quote.caption;
+}
+
+function missingDates(quotes, dates) {
+  return dates.filter(date => needsQuote(normalizeQuote(quotes[date])));
 }
 
 // A captioned candidate wins; an unusable one never replaces a cached quote.
@@ -165,28 +175,29 @@ export function createQuoteService({
   }
 
   /**
-   * Grant a 60-second scrape lease for the latest committed date when a
-   * committed date needs a quote, no lease is active and the date's backoff
-   * window has expired. A reconnect may bypass one active window.
+   * Grant a 60-second scrape lease for the latest committed date when no lease
+   * is active and a committed date needing a quote is out of its own backoff
+   * window. A reconnect may bypass one active window of each such date.
    *
    * @param {{reconnect?: boolean}} [options]
    * @returns {Promise<{granted: false}|{granted: true, date: string, token: string, scrape: boolean}>}
-   *   `scrape` tells the holder whether the latest date itself needs Bing's quote
+   *   `scrape` tells the holder whether the latest date itself is attempted with Bing's quote
    */
   function requestLease({ reconnect = false } = {}) {
     return serialize(async () => {
       const dates = await readDates();
       const { quotes, lease } = await readQuoteState();
-      if (!dates.some(date => needsQuote(normalizeQuote(quotes[date])))) {
+      const missing = missingDates(quotes, dates);
+      if (missing.length === 0) {
         return { granted: false };
       }
       const date = dates[0];
-      const { granted, state } = grantQuoteLease(lease, date, now(), generateToken, reconnect ? now() : 0);
+      const { granted, state, dueDates } = grantQuoteLease(lease, date, missing, now(), generateToken, reconnect ? now() : 0);
       if (!granted) {
         return { granted: false };
       }
       await storage.set({ [STORAGE_KEYS.quoteLease]: state });
-      return { granted: true, date, token: state.token, scrape: needsQuote(normalizeQuote(quotes[date])) };
+      return { granted: true, date, token: state.token, scrape: dueDates.includes(date) };
     });
   }
 
@@ -230,15 +241,14 @@ export function createQuoteService({
    * lease date. The scrape commits at once. Committed dates still missing a
    * quote then fall back to qotd_url; a lease still held through the fallback
    * is revalidated before that commit. Filling the lease date, by either
-   * commit, clears the lease and resets the date's retries; a lease cleared
-   * otherwise backs the date off while any quote is missing.
+   * commit, clears the lease. Each date keeps its own retries: a filled date
+   * resets them, and the fallback backs off each date it leaves missing.
    *
    * @param {{date: string, token: string, quote: Object|null}} submission
    * @returns {Promise<{ok: false, rejected: true}|{ok: true, updatedDates: string[]}>}
    */
   async function submit({ date, token, quote }) {
     const scraped = normalizeQuote(quote);
-    const isComplete = (quotes, dates) => dates.every(day => !needsQuote(normalizeQuote(quotes[day])));
     const fillsTarget = (quotes, updatedDates) =>
       updatedDates.includes(date) && !needsQuote(normalizeQuote(quotes[date]));
 
@@ -249,9 +259,10 @@ export function createQuoteService({
       }
       const dates = await readDates();
       const updatedDates = mergeQuotes(quotes, dates, day => [day === date ? scraped : null]);
-      const complete = isComplete(quotes, dates);
+      const missing = missingDates(quotes, dates);
+      const complete = missing.length === 0;
       const released = complete || fillsTarget(quotes, updatedDates);
-      await commit(quotes, updatedDates, released ? releaseQuoteLease(lease, true, now()) : null);
+      await commit(quotes, updatedDates, released ? releaseQuoteLease(lease, missing) : null);
       return { updatedDates, released, complete };
     });
     if (!first) {
@@ -270,8 +281,16 @@ export function createQuoteService({
       }
       const dates = await readDates();
       const updatedDates = mergeQuotes(quotes, dates, day => [normalizeQuote(remote[day])]);
-      const success = isComplete(quotes, dates) || fillsTarget(quotes, updatedDates);
-      await commit(quotes, updatedDates, first.released ? null : releaseQuoteLease(lease, success, now()));
+      const missing = missingDates(quotes, dates);
+      let next = null;
+      if (!first.released) {
+        next = releaseQuoteLease(recordQuoteAttempt(lease, missing, now()), missing);
+      } else if (!hasActiveLease(lease, now())) {
+        // Released by the scrape commit; a lease granted since then records
+        // its own attempt.
+        next = recordQuoteAttempt(lease, missing, now());
+      }
+      await commit(quotes, updatedDates, next);
       return { ok: true, updatedDates: [...first.updatedDates, ...updatedDates] };
     });
   }

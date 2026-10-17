@@ -68,11 +68,12 @@ function fakeElement() {
  * acknowledgement; `undecodable` lists cached image URLs whose decoding
  * fails. `heldReads` maps local keys to promises that their fresh reads wait
  * for. `quotePage` maps selectors to elements of Bing's parsed quote page;
- * without it the quote page cannot be fetched.
+ * without it the quote page cannot be fetched. `sync` seeds sync storage.
  */
-async function openNewTab({ local = {}, cached = [], undecodable = [], networkStatus = 'online', worker = () => ({ ok: false }), quotes = () => ({ ok: true }), acknowledge = () => ({ ok: true }), migration = (message, opened) => ({ phase: opened.local.wallpaper_migration_v2_state?.phase ?? null }), heldReads = {}, quotePage } = {}) {
+async function openNewTab({ local = {}, cached = [], undecodable = [], networkStatus = 'online', worker = () => ({ ok: false }), quotes = () => ({ ok: true }), acknowledge = () => ({ ok: true }), migration = (message, opened) => ({ phase: opened.local.wallpaper_migration_v2_state?.phase ?? null }), heldReads = {}, quotePage, sync = {} } = {}) {
   const page = {
     local: structuredClone(local),
+    sync: structuredClone(sync),
     cache: new Set(cached),
     cacheNames: new Set(),
     cacheWrites: 0,
@@ -161,7 +162,9 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
         }
       },
       storage: {
-        sync: { get: async () => ({}) },
+        sync: {
+          get: async key => Object.fromEntries([key].flat().filter(k => k in page.sync).map(k => [k, page.sync[k]]))
+        },
         onChanged: { addListener: listener => page.storageListeners.push(listener) }
       }
     }
@@ -291,6 +294,32 @@ describe('new tab page scripts', () => {
     }
 
     await page.settled(() => disabled().every(value => value === 'false'));
+  });
+
+  it('replaces the displayed UHD image with HD when the sync setting changes, and records it', async () => {
+    const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
+    const HD = `https://ts1.tc.mm.bing.net/th?id=${ID}_1920x1080.jpg`;
+    const page = await openNewTab({
+      local: { [CATALOG_KEY]: catalog(), [DISPLAY_STATE_KEY]: snapshot },
+      cached: [PREVIEW, UHD],
+      worker: ({ date, resolution }, opened) => {
+        opened.cache.add(opened.local[CATALOG_KEY].entries[date].urls[resolution]);
+        return { ok: true, status: 'fetched' };
+      }
+    });
+    await page.settled(() => page.backgrounds.length === 2);
+
+    page.sync.enable_uhd_wallpaper = 'no';
+    for (const listener of page.storageListeners) {
+      listener({ enable_uhd_wallpaper: { oldValue: 'yes', newValue: 'no' } }, 'sync');
+    }
+
+    await page.settled(() => page.local[DISPLAY_STATE_KEY].url === HD);
+    assert.strictEqual(page.backgrounds.at(-1), `url('blob:${HD}')`);
+    assert.deepStrictEqual(page.messages.filter(message => message.type === 'ensureWallpaperCached'),
+      [{ type: 'ensureWallpaperCached', date: TARGET, resolution: 'highDef' }]);
+    assert.strictEqual(page.local[DISPLAY_STATE_KEY].imageId, ID);
+    assert.strictEqual(page.cacheWrites, 0);
   });
 
   it("renders the displayed date's quote from the worker's v2 quote cache", async () => {

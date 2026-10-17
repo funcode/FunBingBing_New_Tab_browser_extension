@@ -558,4 +558,11 @@ chrome.storage.onChanged.addListener((changes, area) => {
 	if (area === 'local' && CATALOG_KEY in changes) {
 		updateNavControls(changes[CATALOG_KEY].newValue);
 	}
+	// The open page follows the shared UHD setting to the displayed image's
+	// configured resolution.
+	if (area === 'sync' && 'enable_uhd_wallpaper' in changes) {
+		wallpaperControllerReady
+			.then((controller) => controller.resolutionChanged())
+			.catch((err) => console.error('Failed to apply the resolution change:', err));
+	}
 });

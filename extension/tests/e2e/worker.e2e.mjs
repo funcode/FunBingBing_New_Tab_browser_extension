@@ -315,7 +315,7 @@ describe('service worker wallpaper pipeline in the loaded extension', () => {
   });
 
   // Retry state of the model source, the entry's final image, its trivia and
-  // the quote lease, as retry levels and window lengths in minutes.
+  // its quote date, as retry levels and window lengths in minutes.
   const retriesOf = async (shown) => {
     const [stored, lease] = [await readLocal(CATALOG_KEY), await readLocal(QUOTE_LEASE_KEY)];
     const entry = stored.entries[shown.date];
@@ -324,7 +324,7 @@ describe('service worker wallpaper pipeline in the loaded extension', () => {
       metadata: of(stored.refreshState.sources.model),
       image: of(stored.refreshState.imageFailures[shown.urls.ultraHighDef]),
       trivia: of({ retryLevel: entry.triviaRetryLevel, nextRetryAt: entry.triviaNextRetryAt, attemptedAt: entry.triviaAttemptedAt }),
-      quote: of(lease)
+      quote: of(lease?.retries?.[shown.date])
     };
   };
   const everyRetryAt = (level, window) => ({ metadata: { level, window }, image: { level, window }, trivia: { level, window }, quote: { level, window } });
@@ -386,7 +386,7 @@ describe('service worker wallpaper pipeline in the loaded extension', () => {
     // A completed trivia payload keeps its attempt time; only its level matters.
     const settled = await retriesOf(A);
     assert.deepStrictEqual({ ...settled, trivia: settled.trivia.level },
-      { metadata: { level: 0, window: 0 }, image: null, trivia: 0, quote: { level: 0, window: 0 } });
+      { metadata: { level: 0, window: 0 }, image: null, trivia: 0, quote: null });
     assert.deepStrictEqual((await readLocal(CATALOG_KEY)).entries[A.date].triviaData, QUIZ);
   });
 
@@ -404,7 +404,7 @@ describe('service worker wallpaper pipeline in the loaded extension', () => {
     await seed({
       local: {
         [CATALOG_KEY]: catalog,
-        [QUOTE_LEASE_KEY]: { date: A.date, token: '', leaseUntil: 0, ...saturated }
+        [QUOTE_LEASE_KEY]: { date: A.date, token: '', leaseUntil: 0, retries: { [A.date]: { ...saturated } } }
       },
       cached: [preview(A)]
     });
@@ -438,7 +438,8 @@ describe('service worker wallpaper pipeline in the loaded extension', () => {
     const stored = await readLocal(CATALOG_KEY);
     assert.strictEqual(stored.refreshState.sources.model.retryLevel, 1, 'the new date restarted the model sequence');
     const quoteState = await readLocal(QUOTE_LEASE_KEY);
-    assert.deepStrictEqual([quoteState.date, quoteState.retryLevel], [tomorrow.date, 1]);
+    assert.deepStrictEqual([quoteState.date, quoteState.retries[tomorrow.date].retryLevel], [tomorrow.date, 1]);
+    assert.strictEqual(quoteState.retries[A.date].retryLevel, 3, 'the new date leaves the earlier quote date sequence alone');
     assert.strictEqual(stored.refreshState.imageFailures[replacement.urls.ultraHighDef].retryLevel, 1,
       'the date change leaves the image sequence alone');
   });

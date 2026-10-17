@@ -54,6 +54,7 @@ function makePage({ entries = [A, B, C], displayState = null, cached, today = '1
     catalog: { version: 2, refreshState: { date: TARGET }, entries: Object.fromEntries(entries.map(e => [e.date, e])) },
     displayState,
     cache: new Set(cached ?? [A, B, C].flatMap(e => [e.urls.ultraHighDef]).concat(A.urls.preview, B.urls.preview)),
+    enableUhd: 'yes',
     finals: [],
     counts: {},
     hold: null
@@ -80,7 +81,7 @@ function makePage({ entries = [A, B, C], displayState = null, cached, today = '1
       const url = page.catalog.entries[date]?.urls[resolution];
       if (url) page.cache.add(url);
     },
-    readUhdSetting: async () => 'yes',
+    readUhdSetting: async () => page.enableUhd,
     now: () => 1000,
     getTargetDate: () => today,
     view: {
@@ -206,6 +207,32 @@ const SCENARIOS = [
     page: () => ({ displayState: snapshotOf(B, YESTERDAY), today: TARGET }),
     first: c => c.initialize(),
     second: c => c.catalogUpdated([OLDER]),
+    endsOn: TARGET
+  },
+  {
+    name: 'click, then a resolution change',
+    page: committedA,
+    first: c => c.navigate(1),
+    beforeSecond: (page) => { page.enableUhd = 'no'; },
+    second: c => c.resolutionChanged()
+  },
+  {
+    name: 'resolution change, then a click',
+    page: committedA,
+    before: (page) => { page.enableUhd = 'no'; },
+    first: c => c.resolutionChanged(),
+    second: c => c.navigate(1),
+    endsOn: OLDER
+  },
+  {
+    name: "refresh finished without today, then today's notification",
+    page: () => ({ entries: [B, C], displayState: snapshotOf(B, YESTERDAY), today: TARGET }),
+    first: c => c.catalogRefreshed(),
+    beforeSecond: (page) => {
+      page.catalog.entries[TARGET] = A;
+      page.cache.add(A.urls.ultraHighDef);
+    },
+    second: c => c.catalogUpdated([TARGET]),
     endsOn: TARGET
   },
   {

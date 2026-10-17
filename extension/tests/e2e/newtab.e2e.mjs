@@ -8,8 +8,8 @@ import { after, before, describe, it } from 'node:test';
 import assert from 'node:assert';
 import {
   ANY_METADATA_REQUEST, BING_QUOTE_PAGE, BOOT_PREVIEW, CATALOG_KEY, COMMITTED_AT, DAY, GRADIENT, MIGRATION_KEY,
-  QUOTE_STATE_KEY, backgroundCount, backgroundImages, backgroundKinds, browserTargets, cacheImages, cachedDataUrl,
-  cachedUrls, catalogOf, closeTarget, computedBackground, context, day, decodeIsHeld, displayStateWhen, finish, final,
+  QUOTE_STATE_KEY, backgroundCount, displayStateWhen, eventually, finalHd, serveImages, writeSync, backgroundImages, backgroundKinds, browserTargets, cacheImages, cachedDataUrl,
+  cachedUrls, catalogOf, closeTarget, computedBackground, context, day, decodeIsHeld, finish, final,
   headline, headlineIs, holdNextDecode, identityOf, inlineBackground, launch, migrationPhase, next, openIncognitoNewTab,
   openNewTab, preview, previous, readDisplayState, readLocal, releaseDecode, seed, showsFinal, snapshotOf, start,
   updatingText, worker, workerCaches
@@ -386,6 +386,40 @@ describe('new tab page in the loaded extension', () => {
         assert.ok(!(key in local), `${key} is written locally`);
       }
       await options.close();
+    } finally {
+      await context.unrouteAll({ behavior: 'ignoreErrors' });
+    }
+  });
+
+  it('an open page follows a UHD setting change to the displayed UHD image and records it', async () => {
+    await seed({
+      days: [A],
+      displayState: snapshotOf(A, BOOT_PREVIEW, undefined, A.urls.highDef),
+      cached: [finalHd(A), final(A), preview(A)],
+      sync: { enable_uhd_wallpaper: 'no' }
+    });
+    const served = await serveImages();
+    try {
+      const page = await openNewTab();
+      await showsFinal(page);
+      const hdBackground = await inlineBackground(page);
+      assert.strictEqual((await readDisplayState(page)).url, A.urls.highDef);
+      // Once the worker's cleanup has dropped the unreferenced UHD response,
+      // it is cached again, e.g. by a quick toggle: the worker then finds it
+      // without a fetch, so no catalog notification reaches the page and only
+      // the sync change can move it.
+      await eventually(async () => !(await cachedUrls()).includes(A.urls.ultraHighDef), 'the UHD response was not cleaned up');
+      await cacheImages([final(A)]);
+
+      await writeSync({ enable_uhd_wallpaper: 'yes' });
+
+      const snapshot = await displayStateWhen(page, state => state?.url === A.urls.ultraHighDef);
+      assert.deepStrictEqual({ date: snapshot.date, imageId: snapshot.imageId }, { date: A.date, imageId: A.imageId });
+      assert.notStrictEqual(await inlineBackground(page), hdBackground, 'the page shows the UHD image');
+      assert.deepStrictEqual(served.urls, [], 'the cached UHD image is not fetched again');
+      assert.deepStrictEqual(page.imageRequests, [], 'the page itself fetches no wallpaper image');
+      assert.deepStrictEqual(page.errors, []);
+      await page.close();
     } finally {
       await context.unrouteAll({ behavior: 'ignoreErrors' });
     }
