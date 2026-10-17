@@ -131,9 +131,10 @@ describe('migration service: shared settings', () => {
       current_search_engine: 'Google',
       qotd_url: 'https://quotes.example/qotd.json'
     });
-    // Pages still read local settings until #126, so they are kept.
-    assert.strictEqual(storage.data.show_clock, 'no');
-    assert.strictEqual(storage.data.display_search_box, 'maybe');
+    // The local copies, valid or not, are deleted once sync is verified.
+    for (const key of Object.keys(DEFAULT_SETTINGS)) {
+      assert.ok(!(key in storage.data), `${key} remains in local storage`);
+    }
     assert.strictEqual(storage.data.last_open_version, '1.7');
     assert.strictEqual(storage.data[MARKER_KEY].phase, 'verified');
   });
@@ -395,6 +396,25 @@ describe('migration service: failed settings migration', () => {
     assert.strictEqual(worker.storage.data.show_quote, 'no');
     assert.strictEqual(worker.storage.data.show_clock, 'no');
     assert.strictEqual(markerOf(worker).phase, 'writing');
+  });
+
+  it('stays retryable when deleting the verified local settings fails, then deletes them on the next run', async () => {
+    const worker = makeWorker({ local: { show_clock: 'no' } });
+    const remove = worker.storage.remove;
+    worker.storage.remove = async () => { throw new Error('storage unavailable'); };
+
+    await worker.migration.run();
+
+    assert.strictEqual(worker.syncStorage.data.show_clock, 'no');
+    assert.strictEqual(worker.storage.data.show_clock, 'no');
+    assert.strictEqual(markerOf(worker).phase, 'writing');
+
+    worker.storage.remove = remove;
+    await worker.migration.run();
+
+    assert.strictEqual(worker.syncStorage.data.show_clock, 'no', 'the synced value is kept on the rerun');
+    assert.ok(!('show_clock' in worker.storage.data));
+    assert.strictEqual(markerOf(worker).phase, 'verified');
   });
 });
 

@@ -3,7 +3,7 @@
  *
  * Every worker start runs the migration until it is complete. The `writing`
  * phase imports the v1 wallpaper and quote state, copies v1 Cache Storage
- * responses by canonical URL and writes the shared settings to sync storage.
+ * responses by canonical URL and moves the shared settings to sync storage.
  * Valid v2 state comes before v1 state. Each step is idempotent, so an
  * interrupted run is simply repeated. Only fresh-read
  * verification of the cache copies, catalog, quote state and sync settings
@@ -123,7 +123,9 @@ export function createMigrationService({ catalogService, storage, syncStorage, c
     return isObject(stored?.quotes) && Object.keys(quotes).every(date => isSameValue(stored.quotes[date], quotes[date]));
   }
 
-  // Resolves true once sync holds the intended value of every shared setting.
+  // Resolves true once sync holds the intended value of every shared setting
+  // and the local copies are deleted. They are deleted only after that fresh
+  // read verifies sync, so a failed sync write leaves them for the next run.
   async function migrateSettings() {
     const [syncItems, localItems] = await Promise.all([syncStorage.get(SETTING_KEYS), storage.get(SETTING_KEYS)]);
     const intended = resolveSharedSettings(syncItems, localItems);
@@ -133,7 +135,11 @@ export function createMigrationService({ catalogService, storage, syncStorage, c
       await syncStorage.set(writes);
     }
     const stored = await syncStorage.get(SETTING_KEYS);
-    return SETTING_KEYS.every(key => isSameValue(stored[key], intended[key]));
+    if (!SETTING_KEYS.every(key => isSameValue(stored[key], intended[key]))) {
+      return false;
+    }
+    await storage.remove(SETTING_KEYS);
+    return true;
   }
 
   // Responses missing from the v2 cache are copied under their canonical URL.
@@ -205,8 +211,6 @@ export function createMigrationService({ catalogService, storage, syncStorage, c
         } catch (error) {
           log.warn('[migration] Migration step failed', error);
         }
-        // TODO(#126): delete the migrated local settings once verified, after
-        // pages read and write the shared settings through sync storage.
         // A verified marker whose state no longer verifies goes back to writing.
         await writePhase(await read(STORAGE_KEYS.migration), verified ? 'verified' : 'writing');
       } catch (error) {

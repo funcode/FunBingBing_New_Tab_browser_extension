@@ -715,12 +715,15 @@ describe('new tab page in the loaded extension', () => {
     assert.strictEqual(local[QUOTE_STATE_KEY].quotes[A.date].text, 'v1 quote');
     assert.deepStrictEqual(Object.keys(local[CATALOG_KEY].entries).sort(), [B.date, A.date]);
     // Pages and the worker share the migrated settings through sync; the local
-    // copies stay until the migration deletes them (#126).
+    // copies are deleted.
     const shared = ['search_engine_list', 'current_search_engine', 'show_clock', 'enable_uhd_wallpaper'];
     assert.deepStrictEqual(await page.evaluate(keys => chrome.storage.sync.get(keys), shared), {
       search_engine_list: [V1_ENGINE], current_search_engine: V1_ENGINE.name, show_clock: 'no', enable_uhd_wallpaper: 'yes'
     });
-    assert.strictEqual(local.show_clock, 'no');
+    for (const key of shared) {
+      assert.ok(!(key in local), `${key} remains in local storage`);
+    }
+    assert.strictEqual(await page.evaluate(() => readConf('show_clock')), 'no');
     assert.strictEqual(await page.evaluate(name => caches.has(name), v1Cache), false);
 
     // History survives: the previous date shows its wallpaper copied from the v1 cache.
