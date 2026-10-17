@@ -396,7 +396,14 @@ describe('new tab page scripts', () => {
   describe('migration display-state handoff', () => {
     const MIGRATION_KEY = 'wallpaper_migration_v2_state';
     const verified = { [MIGRATION_KEY]: { version: 2, phase: 'verified', startedAt: 1, verifiedAt: 1, completedAt: 0 } };
-    const LEGACY_INPUTS = { wallpaper_url: `https://cn.bing.com/th?id=${OLDER_ID}_UHD.jpg`, wallpaper_date: TARGET, wallpaper_idx: '1' };
+    // The legacy untagged preview is migration input only: it is neither
+    // painted at boot nor copied into the v2 display state.
+    const LEGACY_INPUTS = {
+      wallpaper_url: `https://cn.bing.com/th?id=${OLDER_ID}_UHD.jpg`,
+      wallpaper_date: TARGET,
+      wallpaper_idx: '1',
+      wallpaper_preload_data_url: 'data:image/jpeg;base64,TEdBQ1k='
+    };
     // Records the display state the worker would fresh-read on acknowledgement.
     const recordAcknowledged = (message, opened) => {
       opened.acknowledged = structuredClone(opened.local[DISPLAY_STATE_KEY]);

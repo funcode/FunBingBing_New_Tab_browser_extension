@@ -122,6 +122,18 @@ function makeHarness({ entries = [A, B, C], targetDate = TARGET, displayState = 
   return h;
 }
 
+/**
+ * Another regular tab: its own page, sharing the first tab's catalog, display
+ * state, Cache Storage and record of snapshot writes.
+ */
+function anotherTab(first) {
+  const tab = makeHarness();
+  for (const key of ['catalog', 'displayState', 'cache', 'writes']) {
+    Object.defineProperty(tab, key, { get: () => first[key], set: (value) => { first[key] = value; } });
+  }
+  return tab;
+}
+
 describe('deriveEntryView', () => {
   it('projects the configured final resolution and the preview URL', () => {
     assert.deepStrictEqual(deriveEntryView(A, true), {
@@ -289,6 +301,27 @@ describe('new tab initialization', () => {
 
     assert.strictEqual(h.displayState.preloadDataUrl, dataUrlOf(B.urls.preview));
   });
+
+  for (const [name, later] of [
+    ['another image', snapshotOf(C, { updatedAt: 99 })],
+    ['the same image in another resolution', snapshotOf(B, { url: B.urls.highDef, updatedAt: 99 })]
+  ]) {
+    it(`does not write a repaired preview once the stored snapshot is ${name}`, async () => {
+      const h = makeHarness({ displayState: snapshotOf(B), cached: [B.urls.ultraHighDef, B.urls.preview] });
+      const converting = gate();
+      h.beforeDataUrl = () => converting.promise;
+
+      const initializing = h.controller.initialize();
+      await settle();
+      // Another tab commits while the repair is still converting.
+      h.displayState = later;
+      converting.open();
+      await initializing;
+
+      assert.deepStrictEqual(h.displayState, later);
+      assert.deepStrictEqual(h.writes, []);
+    });
+  }
 
   describe('when the catalog no longer maps the committed date to the committed identity', () => {
     const corrected = entry(OLDER, 'OHR.Corrected_ZH-CN1000000005');
@@ -630,6 +663,112 @@ describe('catalog update notifications', () => {
 
     assert.deepStrictEqual(h.finals, [TARGET, OLDER]);
     assert.strictEqual(h.displayState.date, OLDER);
+  });
+});
+
+describe('regular tabs sharing one display state', () => {
+  it('a tab opened while another is still loading starts from the old commit; one opened after starts from the new', async () => {
+    const first = makeHarness({ displayState: snapshotOf(A), cached: [A.urls.ultraHighDef, B.urls.ultraHighDef] });
+    await first.controller.initialize();
+    const decoding = gate();
+    first.beforeApplyFinal = () => decoding.promise;
+
+    const navigating = first.controller.navigate(1);
+    await settle();
+    const during = anotherTab(first);
+    await during.controller.initialize();
+    assert.deepStrictEqual(during.finals, [TARGET], 'the pending destination is not published');
+    decoding.open();
+    await navigating;
+    const after = anotherTab(first);
+    await after.controller.initialize();
+
+    assert.deepStrictEqual(after.finals, [OLDER]);
+    assert.deepStrictEqual(during.finals, [TARGET], 'an open tab does not follow the later commit');
+  });
+
+  it('concurrent commits leave the whole snapshot of the last write', async () => {
+    const first = makeHarness({
+      displayState: snapshotOf(A),
+      cached: [A.urls.ultraHighDef, B.urls.ultraHighDef, B.urls.preview, C.urls.ultraHighDef, C.urls.preview]
+    });
+    const second = anotherTab(first);
+    second.clock = 2000;
+    await Promise.all([first.controller.initialize(), second.controller.initialize()]);
+    const firstDecode = gate();
+    const secondDecode = gate();
+    first.beforeApplyFinal = () => firstDecode.promise;
+    second.beforeApplyFinal = () => secondDecode.promise;
+
+    const toOlder = first.controller.navigate(1);
+    const toOldest = second.controller.navigate(-1);
+    await settle();
+    secondDecode.open();
+    await toOldest;
+    firstDecode.open();
+    await toOlder;
+
+    assert.deepStrictEqual(first.writes.map(snapshot => snapshot.date), [OLDEST, OLDER]);
+    assert.deepStrictEqual(first.displayState, snapshotOf(B, { preloadDataUrl: dataUrlOf(B.urls.preview), updatedAt: 1000 }));
+    assert.deepStrictEqual(second.finals, [TARGET, OLDEST], 'the other tab keeps its own selection');
+  });
+
+  it('a page that navigates away rejects its pending preview repair; a later tab repairs the snapshot that is still global', async () => {
+    const first = makeHarness({ displayState: snapshotOf(A), cached: [A.urls.ultraHighDef, B.urls.ultraHighDef] });
+    await first.controller.initialize();
+    const previewFetch = gate();
+    const oldestFetch = gate();
+    first.onRequest = async ({ date, resolution }) => {
+      if (date === OLDER && resolution === 'preview') {
+        await previewFetch.promise;
+        first.cache.add(B.urls.preview);
+      }
+      if (date === OLDEST && resolution === 'ultraHighDef') {
+        await oldestFetch.promise;
+        first.cache.add(C.urls.ultraHighDef);
+      }
+    };
+
+    await first.controller.navigate(1);
+    await settle();
+    assert.deepStrictEqual(first.displayState, snapshotOf(B, { updatedAt: 1000 }));
+    assert.deepStrictEqual(first.requests.at(-1), { date: OLDER, resolution: 'preview' });
+    // The page moves on while the worker still fetches the preview.
+    const toOldest = first.controller.navigate(1);
+    await settle();
+    previewFetch.open();
+    await settle();
+    assert.deepStrictEqual(first.displayState, snapshotOf(B, { updatedAt: 1000 }), 'the stale repair callback is rejected');
+
+    const later = anotherTab(first);
+    await later.controller.initialize();
+    assert.deepStrictEqual(first.displayState, snapshotOf(B, { preloadDataUrl: dataUrlOf(B.urls.preview), updatedAt: 1000 }));
+
+    first.clock = 3000;
+    oldestFetch.open();
+    await toOldest;
+    await settle();
+    assert.deepStrictEqual(first.displayState, snapshotOf(C, { updatedAt: 3000 }), "the older image's preview is never written into a later selection");
+  });
+
+  it('recovers the empty preview of a page that closed before repairing it', async () => {
+    const closed = makeHarness({ displayState: snapshotOf(A), cached: [A.urls.ultraHighDef, B.urls.ultraHighDef] });
+    await closed.controller.initialize();
+    // The page closes before the worker answers its preview request.
+    closed.onRequest = () => new Promise(() => {});
+    await closed.controller.navigate(1);
+    await settle();
+    assert.deepStrictEqual(closed.displayState, snapshotOf(B, { updatedAt: 1000 }));
+
+    closed.cache.add(B.urls.preview);
+    const next = anotherTab(closed);
+    next.clock = 5000;
+    await next.controller.initialize();
+
+    assert.deepStrictEqual(next.finals, [OLDER]);
+    assert.deepStrictEqual(next.requests, []);
+    assert.deepStrictEqual(next.displayState, snapshotOf(B, { preloadDataUrl: dataUrlOf(B.urls.preview), updatedAt: 1000 }),
+      'the repair keeps the application time');
   });
 });
 

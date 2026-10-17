@@ -8,14 +8,19 @@ const ID = `OHR.Day${TARGET}_ZH-CN1`;
 const PREVIEW = `https://ts1.tc.mm.bing.net/th?id=${ID}_640x360.jpg`;
 const HD = `https://ts1.tc.mm.bing.net/th?id=${ID}_1920x1080.jpg`;
 
-function storageArea(data) {
+// `written` records every key set in the area.
+function storageArea(data, written = []) {
   return {
+    written,
     async get(key) {
       if (key == null) return structuredClone(data);
       const keys = Array.isArray(key) ? key : [key];
       return Object.fromEntries(keys.filter(k => k in data).map(k => [k, structuredClone(data[k])]));
     },
-    async set(items) { Object.assign(data, structuredClone(items)); },
+    async set(items) {
+      written.push(...Object.keys(items));
+      Object.assign(data, structuredClone(items));
+    },
     async remove(key) {
       for (const k of Array.isArray(key) ? key : [key]) delete data[k];
     }
@@ -92,7 +97,7 @@ async function loadWorker({ entry = {}, local = {} } = {}) {
     for (const listener of messageListeners) listener(message, {}, resolve);
   });
   const change = (changes, area) => changeListeners.forEach(listener => listener(changes, area));
-  return { send, change, fetches, caches, local: localData };
+  return { send, change, fetches, caches, local: localData, localWrites: chrome.storage.local.written };
 }
 
 describe('worker message handlers', () => {
@@ -147,6 +152,7 @@ describe('worker message handlers', () => {
         bing_images: [{ isoDate: '20261012', imageUrls: { landscape: { highDef: `/th?id=${legacyId}_1920x1080.jpg` } } }],
         wallpaper_url: `https://ts1.tc.mm.bing.net/th?id=${legacyId}_1920x1080.jpg`,
         wallpaper_date: '20261012',
+        wallpaper_preload_data_url: 'data:image/jpeg;base64,TEdBQ1k=',
         show_clock: 'no'
       }
     });
@@ -169,6 +175,9 @@ describe('worker message handlers', () => {
     assert.strictEqual(worker.local[STORAGE_KEYS.migration].phase, 'complete');
     assert.ok(!('bing_images' in worker.local));
     assert.ok(!('wallpaper_url' in worker.local));
+    assert.ok(!('wallpaper_preload_data_url' in worker.local));
+    assert.ok(!worker.localWrites.includes(STORAGE_KEYS.displayState), 'the page is the only display-state writer');
+    assert.ok(!worker.localWrites.includes('wallpaper_preload_data_url'));
   });
 
   it('fetches only the displayed final image in the new resolution when UHD changes in sync', async () => {
