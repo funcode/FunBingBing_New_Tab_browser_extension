@@ -16,8 +16,8 @@ import { addDays, isValidCalendarDate } from '../../src/helpers/date.js';
 import { buildCanonicalUrls, extractImageId } from '../../src/helpers/image.js';
 import { calculateRetentionSet } from '../../src/helpers/retention.js';
 import {
-  CATALOG_KEY, DISPLAY_STATE_KEY, EXTENSION, cachedBytes, fetchIntoCache, fetchJson, finish, readLocal, start,
-  writeLocal, writeSync
+  CATALOG_KEY, DISPLAY_STATE_KEY, EXTENSION, cachedBytes, fetchIntoCache, fetchJson, finish, readLocal, sendMessage,
+  start, stopWorker, writeLocal, writeSync
 } from './harness.mjs';
 
 const ENABLED = process.env.ATARAXIA_MEASURE_CACHE_BYTES === '1';
@@ -42,6 +42,10 @@ async function targetDateOfCatalog() {
  * 30 base keys. The image is an Archive one older than the window. Its
  * responses are cached the way the worker did while it was in the window,
  * and the snapshot is the one that page committed.
+ *
+ * The worker is stopped meanwhile: a cleanup that read the earlier retention
+ * set would delete the responses as unreferenced, and nothing fetches them
+ * again. A refresh then resumes the worker's work.
  */
 async function showOlderImage(targetDate, resolution) {
   const older = (await fetchJson(ARCHIVE)).images
@@ -49,10 +53,12 @@ async function showOlderImage(targetDate, resolution) {
     .sort((a, b) => (a.enddate < b.enddate ? -1 : 1))[0];
   const imageId = extractImageId(older.urlbase);
   const urls = buildCanonicalUrls(imageId);
-  await fetchIntoCache([urls.preview, urls[resolution]]);
+  await stopWorker();
   await writeLocal({
     [DISPLAY_STATE_KEY]: { date: older.enddate, imageId, url: urls[resolution], preloadDataUrl: '', updatedAt: Date.now() }
   });
+  await fetchIntoCache([urls.preview, urls[resolution]]);
+  await sendMessage({ type: 'refreshWallpaperCatalog' });
 }
 
 /**
