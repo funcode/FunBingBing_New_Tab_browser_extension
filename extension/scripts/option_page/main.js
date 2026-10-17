@@ -73,7 +73,7 @@ function refreshTopSitesButtons() {
 				close_btn.style.display = 'none';
 			}
 		} else {
-			TopSites.setEnabled(false);
+			// Shown as closed on this device; the shared preference is kept.
 			open_btn.style.display = 'inline-block';
 			close_btn.style.display = 'none';
 		}

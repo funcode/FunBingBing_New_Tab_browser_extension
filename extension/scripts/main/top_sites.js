@@ -33,12 +33,9 @@
 			return;
 		}
 
-		hasPermission(function (granted) {
-			if (!granted) {
-				setEnabled(false);
-			}
-			callbackOrNoop(callback)(granted);
-		});
+		// Permission is per device: without it the list stays hidden here, and
+		// the shared preference is kept for other devices.
+		hasPermission(callbackOrNoop(callback));
 	}
 
 	function requestPermission(callback) {

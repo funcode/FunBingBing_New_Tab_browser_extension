@@ -23,7 +23,12 @@ function buildTopSitesList(mostVisitedURLs) {
 
 // read top sites and show it in page
 function showTopSites() {
-	chrome.topSites.get(buildTopSitesList);
+	chrome.topSites.get(function (mostVisitedURLs) {
+		// The setting may have been turned off while the browser answered.
+		if (TopSites.isEnabled()) {
+			buildTopSitesList(mostVisitedURLs);
+		}
+	});
 }
 
 // init topSites 

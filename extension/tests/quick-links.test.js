@@ -32,10 +32,12 @@ function fakeElement(links, tag) {
 // declares CATALOG_KEY and the date of the image on screen. `conf` holds the
 // shared settings and local keys the page reads; `granted` is the topSites
 // permission of this device.
-function loadQuickLinks({ local = {}, displayedDate = null, granted = false }) {
+// With `deferTopSites`, the browser's top sites answer waits for `releaseTopSites()`.
+function loadQuickLinks({ local = {}, displayedDate = null, granted = false, deferTopSites = false }) {
   const links = [];
   const opened = [];
   const listeners = [];
+  const pendingTopSites = [];
   const conf = structuredClone(local);
   const popupDiv = fakeElement(links, 'div');
   const context = vm.createContext({
@@ -47,7 +49,14 @@ function loadQuickLinks({ local = {}, displayedDate = null, granted = false }) {
       hasPermission: callback => callback(granted),
       ensureEnabled: callback => callback(conf.show_top_sites === 'yes' && granted)
     },
-    chrome: { topSites: { get: callback => callback([{ url: 'https://example.com/', title: 'Example' }]) } },
+    chrome: {
+      topSites: {
+        get: (callback) => {
+          const answer = () => callback([{ url: 'https://example.com/', title: 'Example' }]);
+          if (deferTopSites) pendingTopSites.push(answer); else answer();
+        }
+      }
+    },
     document: {
       getElementById: () => popupDiv,
       createElement: tag => fakeElement(links, tag),
@@ -67,6 +76,7 @@ function loadQuickLinks({ local = {}, displayedDate = null, granted = false }) {
     random: () => { links[1].click(); return opened.at(-1); },
     // Number of top sites lists rendered: the custom bookmarks are the first list.
     topSitesLists: () => popupDiv.childNodes.filter(child => child.tag === 'ul').length - 1,
+    releaseTopSites: () => pendingTopSites.splice(0).forEach(answer => answer()),
     syncChange: (key, value) => {
       conf[key] = value;
       listeners.forEach(listener => listener({ detail: { keys: [key] } }));
@@ -114,6 +124,14 @@ describe('quick links', () => {
     assert.strictEqual(page.topSitesLists(), 1, 'rendered once');
 
     page.syncChange('show_top_sites', 'no');
+    assert.strictEqual(page.topSitesLists(), 0);
+  });
+
+  it('drop a top sites answer that arrives after the setting was turned off', () => {
+    const page = loadQuickLinks({ local: { show_top_sites: 'no' }, granted: true, deferTopSites: true });
+    page.syncChange('show_top_sites', 'yes');
+    page.syncChange('show_top_sites', 'no');
+    page.releaseTopSites();
     assert.strictEqual(page.topSitesLists(), 0);
   });
 

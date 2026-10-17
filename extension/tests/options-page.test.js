@@ -9,7 +9,7 @@ const DISPLAY_STATE_KEY = 'wallpaper_display_state_v2';
 // Run the options page script against stubbed conf helpers, DOM and runtime.
 // `conf` holds the settings and local keys the page reads; `events` records
 // conf writes, as they settle, and runtime messages in order.
-function loadOptionsPage({ conf = {} } = {}) {
+function loadOptionsPage({ conf = {}, topSitesGranted = false } = {}) {
   const page = { conf: structuredClone(conf), events: [], alerts: [] };
   const elements = new Map();
   page.element = (id) => {
@@ -26,7 +26,11 @@ function loadOptionsPage({ conf = {} } = {}) {
     i18n: key => key,
     alert: message => page.alerts.push(message),
     confirm: () => false,
-    TopSites: { hasPermission() {} },
+    TopSites: {
+      hasPermission: callback => callback(topSitesGranted),
+      isEnabled: () => page.conf.show_top_sites === 'yes',
+      setEnabled: enabled => page.events.push({ write: 'show_top_sites', value: enabled ? 'yes' : 'no' })
+    },
     readConf: key => page.conf[key],
     readStorageKey: async key => structuredClone(page.conf[key]),
     writeConf: async (key, value) => {
@@ -51,6 +55,16 @@ function loadOptionsPage({ conf = {} } = {}) {
   };
   return page;
 }
+
+describe('options page top sites buttons', () => {
+  it('show top sites as closed without the permission and keep the shared preference', () => {
+    const page = loadOptionsPage({ conf: { show_top_sites: 'yes' }, topSitesGranted: false });
+
+    assert.strictEqual(page.element('open-top-sites-btn').style.display, 'inline-block');
+    assert.strictEqual(page.element('close-top-sites-btn').style.display, 'none');
+    assert.ok(!page.events.some(event => event.write === 'show_top_sites'));
+  });
+});
 
 describe('options page wallpaper settings', () => {
   it('after a UHD change is written to sync, requests the display date in the new resolution', async () => {
