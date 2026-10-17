@@ -568,7 +568,7 @@ describe('new tab page in the loaded extension', () => {
     }
   });
 
-  it('regular pages and the worker share settings through sync and follow its changes', async () => {
+  it('regular pages and the worker share settings through sync, and open pages render its changes', async () => {
     await seed({ days: [A], displayState: snapshotOf(A), cached: [final(A), preview(A)], sync: { display_search_box: 'yes' } });
     const first = await openNewTab();
     await showsFinal(first);
@@ -580,11 +580,25 @@ describe('new tab page in the loaded extension', () => {
     assert.strictEqual(await second.evaluate(() => document.getElementById('search-form').action), 'https://google.com/search');
     assert.deepStrictEqual(await (await worker()).evaluate(() => chrome.storage.sync.get('current_search_engine')), { current_search_engine: 'Google' });
 
-    // The first page's next switch starts from the second page's choice.
+    // The already open first page renders the second page's choice.
     await second.click('#search-logo');
-    await first.waitForFunction(() => readConf('current_search_engine') === 'Bing');
+    await first.waitForFunction(() => document.getElementById('search-form').action === 'https://bing.com/search');
+    assert.strictEqual(await first.evaluate(() => readConf('current_search_engine')), 'Bing');
+
+    // Visibility settings changed elsewhere are applied to the open pages.
+    await second.evaluate(() => chrome.storage.sync.set({ display_search_box: 'no', show_clock: 'no', show_quote: 'no' }));
+    await first.waitForFunction(() => document.getElementById('search-box-whole-block').style.display === 'none' &&
+      document.getElementById('center-clock').style.visibility === 'hidden' &&
+      document.getElementById('quote').style.display === 'none');
+    await second.evaluate(() => chrome.storage.sync.set({ display_search_box: 'yes', show_clock: 'yes', show_quote: 'yes' }));
+    await first.waitForFunction(() => document.getElementById('search-box-whole-block').style.display === 'block' &&
+      document.getElementById('center-clock').style.visibility === 'visible' &&
+      document.getElementById('quote').style.display === '');
+
     const local = await first.evaluate(() => chrome.storage.local.get(null));
-    assert.ok(!('current_search_engine' in local));
+    for (const key of ['current_search_engine', 'display_search_box', 'show_clock', 'show_quote']) {
+      assert.ok(!(key in local), `${key} is written locally`);
+    }
     assert.deepStrictEqual([...first.errors, ...second.errors], []);
     await first.close();
     await second.close();

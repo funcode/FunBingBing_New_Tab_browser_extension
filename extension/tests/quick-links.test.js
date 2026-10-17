@@ -6,14 +6,19 @@ import vm from 'node:vm';
 const SCRIPT = readFileSync(new URL('../scripts/main/quick_links.js', import.meta.url), 'utf8');
 const CATALOG_KEY = 'bing_wallpaper_catalog_v2';
 
-function fakeElement(links) {
+function fakeElement(links, tag) {
   const element = {
+    tag,
     style: {},
     childNodes: [],
     setAttribute() {},
     appendChild(child) {
       element.childNodes.push(child);
+      child.parent = element;
       return child;
+    },
+    remove() {
+      element.parent.childNodes = element.parent.childNodes.filter(child => child !== element);
     },
     addEventListener(type, listener) {
       if (type === 'click') links.push(element);
@@ -24,27 +29,49 @@ function fakeElement(links) {
 }
 
 // Run quick_links.js in the page's shared global scope, where wallpaper.js
-// declares CATALOG_KEY and the date of the image on screen.
-function loadQuickLinks({ local = {}, displayedDate = null }) {
+// declares CATALOG_KEY and the date of the image on screen. `conf` holds the
+// shared settings and local keys the page reads; `granted` is the topSites
+// permission of this device.
+function loadQuickLinks({ local = {}, displayedDate = null, granted = false }) {
   const links = [];
   const opened = [];
+  const listeners = [];
+  const conf = structuredClone(local);
+  const popupDiv = fakeElement(links, 'div');
   const context = vm.createContext({
     console: { log() {}, warn() {} },
     i18n: key => key,
-    readConf: key => structuredClone(local[key]),
-    TopSites: { ensureEnabled: callback => callback(false) },
+    readConf: key => structuredClone(conf[key]),
+    TopSites: {
+      isEnabled: () => conf.show_top_sites === 'yes',
+      hasPermission: callback => callback(granted),
+      ensureEnabled: callback => callback(conf.show_top_sites === 'yes' && granted)
+    },
+    chrome: { topSites: { get: callback => callback([{ url: 'https://example.com/', title: 'Example' }]) } },
     document: {
-      getElementById: () => fakeElement(links),
-      createElement: () => fakeElement(links),
-      createElementNS: () => fakeElement(links),
+      getElementById: () => popupDiv,
+      createElement: tag => fakeElement(links, tag),
+      createElementNS: () => fakeElement(links, 'svg'),
       createTextNode: text => ({ text })
     },
-    window: { open: url => opened.push(url) }
+    window: {
+      open: url => opened.push(url),
+      addEventListener: (type, listener) => { if (type === 'funbingbing:settingschange') listeners.push(listener); }
+    }
   });
   vm.runInContext(`const CATALOG_KEY = ${JSON.stringify(CATALOG_KEY)}; let currentImageDate = ${JSON.stringify(displayedDate)};`, context);
   vm.runInContext(SCRIPT, context);
-  // The custom bookmarks are "history today", then "random Bing wallpaper".
-  return { onThisDay: () => { links[0].click(); return opened.at(-1); }, random: () => { links[1].click(); return opened.at(-1); } };
+  return {
+    // The custom bookmarks are "history today", then "random Bing wallpaper".
+    onThisDay: () => { links[0].click(); return opened.at(-1); },
+    random: () => { links[1].click(); return opened.at(-1); },
+    // Number of top sites lists rendered: the custom bookmarks are the first list.
+    topSitesLists: () => popupDiv.childNodes.filter(child => child.tag === 'ul').length - 1,
+    syncChange: (key, value) => {
+      conf[key] = value;
+      listeners.forEach(listener => listener({ detail: { keys: [key] } }));
+    }
+  };
 }
 
 const catalog = {
@@ -75,5 +102,24 @@ describe('quick links', () => {
       const page = loadQuickLinks({ local: { [CATALOG_KEY]: catalog, bing_images: [{ isoDate: '20200101' }], wallpaper_idx: '0' }, displayedDate });
       assert.match(page.onThisDay(), new RegExp(`OnThisDay${today.slice(4)}%22`));
     }
+  });
+
+  it('show or hide the top sites list when show_top_sites changes in sync', () => {
+    const page = loadQuickLinks({ local: { show_top_sites: 'no' }, granted: true });
+    assert.strictEqual(page.topSitesLists(), 0);
+
+    page.syncChange('show_top_sites', 'yes');
+    assert.strictEqual(page.topSitesLists(), 1);
+    page.syncChange('show_top_sites', 'yes');
+    assert.strictEqual(page.topSitesLists(), 1, 'rendered once');
+
+    page.syncChange('show_top_sites', 'no');
+    assert.strictEqual(page.topSitesLists(), 0);
+  });
+
+  it('keep the top sites list hidden on a device without the permission', () => {
+    const page = loadQuickLinks({ local: { show_top_sites: 'no' }, granted: false });
+    page.syncChange('show_top_sites', 'yes');
+    assert.strictEqual(page.topSitesLists(), 0);
   });
 });

@@ -1,4 +1,13 @@
+// The rendered top sites list and its separator, removed when it is turned off.
+var topSitesElements = [];
+
+function removeTopSitesList() {
+	topSitesElements.forEach(function (element) { element.remove(); });
+	topSitesElements = [];
+}
+
 function buildTopSitesList(mostVisitedURLs) {
+	removeTopSitesList();
 	var popupDiv = document.getElementById('top-sites-div');
 	var ul = popupDiv.appendChild(document.createElement('ul'));
 
@@ -9,7 +18,7 @@ function buildTopSitesList(mostVisitedURLs) {
 		a.title = mostVisitedURLs[i].url;
 		a.appendChild(document.createTextNode(mostVisitedURLs[i].title));
 	}
-	popupDiv.appendChild(document.createElement('hr'));
+	topSitesElements = [ul, popupDiv.appendChild(document.createElement('hr'))];
 }
 
 // read top sites and show it in page
@@ -128,6 +137,21 @@ function handleCustomAction(action) {
 initTopSites();
 
 initCustomBookmarks();
+
+// Follow show_top_sites changed by another page or device. Permission is per
+// device, so a missing one only leaves the list hidden here.
+window.addEventListener('funbingbing:settingschange', function (event) {
+	if (!event.detail.keys.includes('show_top_sites')) return;
+	if (!TopSites.isEnabled()) {
+		removeTopSitesList();
+		return;
+	}
+	TopSites.hasPermission(function (granted) {
+		if (granted && TopSites.isEnabled()) {
+			showTopSites();
+		}
+	});
+});
 
 
 

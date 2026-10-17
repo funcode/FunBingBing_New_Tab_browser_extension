@@ -93,5 +93,15 @@ initEngine();
 // bind body click focus event
 document.getElementById('main-body').onclick = focusOnSearchInput;
 
+// reapply search settings changed by another page or device
+window.addEventListener('funbingbing:settingschange', function (event) {
+	var keys = event.detail.keys;
+	if (keys.includes('search_engine_list') || keys.includes('current_search_engine') || keys.includes('display_search_box')) {
+		searchEngines = readConf('search_engine_list');
+		initSearchBoxDisplay();
+		initEngine();
+	}
+});
+
 
 

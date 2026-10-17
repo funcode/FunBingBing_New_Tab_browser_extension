@@ -22,9 +22,10 @@ function storageArea(data, writes) {
 // Run the classic page script that every extension page loads first, against
 // mocked local and sync storage.
 async function loadPage({ local = {}, sync = {}, version = '1.7' } = {}) {
-  const page = { local: structuredClone(local), sync: structuredClone(sync), localWrites: [], syncWrites: [], listeners: [] };
+  const page = { local: structuredClone(local), sync: structuredClone(sync), localWrites: [], syncWrites: [], listeners: [], events: [] };
   const context = vm.createContext({
     console: { log() {}, error: console.error },
+    CustomEvent: class { constructor(type, init) { this.type = type; this.detail = init.detail; } },
     chrome: {
       runtime: { getManifest: () => ({ version }) },
       i18n: { getMessage: () => 'en' },
@@ -37,6 +38,8 @@ async function loadPage({ local = {}, sync = {}, version = '1.7' } = {}) {
   });
   context.globalThis = context;
   context.window = context;
+  // Records the setting value each listener would read when the event fires.
+  context.dispatchEvent = event => page.events.push({ type: event.type, keys: [...event.detail.keys], read: page.readConf?.('show_clock') });
   vm.runInContext(`${SCRIPT}\n;globalThis.__conf = { readConf, writeConf };`, context);
   await context.confReadyPromise;
   await new Promise(resolve => setTimeout(resolve, 0));
@@ -89,6 +92,16 @@ describe('page configuration', () => {
 
     page.change({ wallpaper_display_state_v2: { newValue: { date: '20261013' } } }, 'local');
     assert.deepStrictEqual(page.readConf('wallpaper_display_state_v2'), { date: '20261013' });
+  });
+
+  it('tells page consumers which shared settings changed in sync, after updating the cache', async () => {
+    const page = await loadPage({ sync: { show_clock: 'yes' } });
+
+    page.change({ show_clock: { newValue: 'no' }, display_search_box: { newValue: 'yes' }, unrelated: { newValue: 1 } }, 'sync');
+    page.change({ show_quote: { newValue: 'no' } }, 'local');
+    page.change({ unrelated: { newValue: 2 } }, 'sync');
+
+    assert.deepStrictEqual(page.events, [{ type: 'funbingbing:settingschange', keys: ['show_clock', 'display_search_box'], read: 'no' }]);
   });
 
   it('writes no defaults or legacy wallpaper keys on a fresh install or an upgrade', async () => {

@@ -28,14 +28,20 @@
   const switchOn = document.getElementById('switch-on');
   const switchOff = document.getElementById('switch-off');
 
-  // Set initial visibility based on config
-  if (String(readConf('show_clock')) === 'no') {
-    if(clockDisplay) clockDisplay.style.visibility = 'hidden';
-    if(switchOn) switchOn.style.display = 'none';
-    if(switchOff) switchOff.style.display = 'inline';
+  function applyClockVisibility(visible) {
+    if (clockDisplay && switchOn && switchOff) {
+      clockDisplay.style.visibility = visible ? 'visible' : 'hidden';
+      if (visible) {
+        switchOn.style.display = 'inline';
+        switchOff.style.display = 'none';
+      } else {
+        switchOn.style.display = 'none';
+        switchOff.style.display = 'inline';
+      }
+    }
   }
-  // Quote initial visibility:
-  (function(){
+
+  function applyQuoteVisibility() {
     if (!quoteContainer) return;
     var showQuoteConf = String(readConf('show_quote'));
     if (showQuoteConf === 'no') {
@@ -43,7 +49,26 @@
     } else {
       quoteContainer.style.display = '';
     }
-  })();
+  }
+
+  // Set initial visibility based on config
+  if (String(readConf('show_clock')) === 'no') {
+    if(clockDisplay) clockDisplay.style.visibility = 'hidden';
+    if(switchOn) switchOn.style.display = 'none';
+    if(switchOff) switchOff.style.display = 'inline';
+  }
+  // Quote initial visibility:
+  applyQuoteVisibility();
+
+  // Reapply visibility changed by another page or device
+  window.addEventListener('funbingbing:settingschange', function(event) {
+    if (event.detail.keys.includes('show_clock')) {
+      applyClockVisibility(String(readConf('show_clock')) !== 'no');
+    }
+    if (event.detail.keys.includes('show_quote')) {
+      applyQuoteVisibility();
+    }
+  });
 
   if (widgetsToggle && clockDisplay && switchOn && switchOff) {
     widgetsToggle.addEventListener('click', function() {
@@ -71,16 +96,7 @@
 
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.type === 'clockVisibilityChange') {
-      if (clockDisplay && switchOn && switchOff) {
-        clockDisplay.style.visibility = request.visible ? 'visible' : 'hidden';
-        if (request.visible) {
-          switchOn.style.display = 'inline';
-          switchOff.style.display = 'none';
-        } else {
-          switchOn.style.display = 'none';
-          switchOff.style.display = 'inline';
-        }
-      }
+      applyClockVisibility(request.visible);
     }
   });
 })();

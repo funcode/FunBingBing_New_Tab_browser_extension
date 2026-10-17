@@ -50,6 +50,9 @@ const SHARED_SETTING_DEFAULTS = Object.freeze({
     qotd_url: ""
 });
 
+// Dispatched on window after shared settings change in sync storage.
+const SETTINGS_CHANGE_EVENT = 'funbingbing:settingschange';
+
 function isSharedSetting(key) {
   return Object.hasOwn(SHARED_SETTING_DEFAULTS, key);
 }
@@ -100,10 +103,13 @@ if (typeof window !== "undefined") {
 // Optional: keep cache in sync if other parts of the extension change storage
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area === "sync") {
-    for (const [key, { newValue }] of Object.entries(changes)) {
-      if (isSharedSetting(key)) {
-        confCache[key] = newValue ?? SHARED_SETTING_DEFAULTS[key];
-      }
+    const keys = Object.keys(changes).filter(isSharedSetting);
+    for (const key of keys) {
+      confCache[key] = changes[key].newValue ?? SHARED_SETTING_DEFAULTS[key];
+    }
+    // Page consumers reapply the changed settings, read through readConf.
+    if (keys.length > 0 && typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent(SETTINGS_CHANGE_EVENT, { detail: { keys } }));
     }
   }
   if (area === "local") {
