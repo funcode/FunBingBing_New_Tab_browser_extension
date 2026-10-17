@@ -149,6 +149,77 @@ describe('quote service', () => {
     assert.deepStrictEqual(worker.quotes()[TARGET], quoteOf(TARGET));
   });
 
+  it('rejects a fallback commit after the lease was replaced during the fallback', async () => {
+    let answer;
+    const fetched = new Promise(resolve => {
+      answer = resolve;
+    });
+    let respond;
+    const worker = makeWorker({
+      fallback: () => {
+        answer();
+        return new Promise(resolve => {
+          respond = resolve;
+        });
+      }
+    });
+    const first = await worker.service.requestLease();
+    const pending = worker.service.submit({ date: TARGET, token: first.token, quote: null });
+    await fetched;
+
+    worker.clock.now += MINUTE;
+    const replacement = await worker.service.requestLease();
+    assert.strictEqual(replacement.granted, true);
+    const replaced = structuredClone(worker.storage.data);
+    respond(json({ [TARGET]: quoteOf(TARGET), [YESTERDAY]: quoteOf(YESTERDAY) }));
+
+    assert.deepStrictEqual(await pending, { ok: false, rejected: true });
+    assert.deepStrictEqual(worker.storage.data, replaced);
+    assert.deepStrictEqual(worker.broadcasts, []);
+  });
+
+  it('commits a successful target scrape and resets its retries before the historical fallback', async () => {
+    let respond;
+    const worker = makeWorker({
+      fallback: () => new Promise(resolve => {
+        respond = resolve;
+      })
+    });
+    const failed = worker.service.submit({ date: TARGET, ...(await worker.service.requestLease()), quote: null });
+    await new Promise(resolve => setImmediate(resolve));
+    respond(new Response('{}'));
+    await failed;
+    assert.strictEqual(worker.lease().retryLevel, 1);
+    worker.clock.now += MINUTE;
+    const { token } = await worker.service.requestLease();
+
+    const pending = worker.service.submit({ date: TARGET, token, quote: quoteOf(TARGET) });
+    await new Promise(resolve => setImmediate(resolve));
+
+    assert.deepStrictEqual(worker.quotes(), { [TARGET]: quoteOf(TARGET) });
+    assert.deepStrictEqual(worker.lease(), RELEASED);
+    assert.deepStrictEqual(worker.broadcasts, [{ type: 'quotesUpdated', updatedDates: [TARGET] }]);
+
+    respond(new Response('{}'));
+    assert.deepStrictEqual(await pending, { ok: true, updatedDates: [TARGET] });
+    assert.deepStrictEqual(worker.lease(), RELEASED, 'a missing historical quote does not back off the target');
+  });
+
+  it('resets the target retries when the fallback fills its quote but not a historical one', async () => {
+    const answers = [{}, { [TARGET]: quoteOf(TARGET) }];
+    const worker = makeWorker({ fallback: () => json(answers.shift()) });
+    await worker.service.submit({ date: TARGET, ...(await worker.service.requestLease()), quote: null });
+    assert.strictEqual(worker.lease().retryLevel, 1, 'the first round fills nothing');
+    worker.clock.now += MINUTE;
+
+    const { token } = await worker.service.requestLease();
+    const result = await worker.service.submit({ date: TARGET, token, quote: null });
+
+    assert.deepStrictEqual(result, { ok: true, updatedDates: [TARGET] });
+    assert.deepStrictEqual(worker.quotes(), { [TARGET]: quoteOf(TARGET) });
+    assert.deepStrictEqual(worker.lease(), RELEASED);
+  });
+
   it('falls back to the sync qotd_url for committed dates the scrape did not fill', async () => {
     const stray = addDays(TARGET, -30);
     const worker = makeWorker({

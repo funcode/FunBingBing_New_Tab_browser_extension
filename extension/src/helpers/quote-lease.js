@@ -66,11 +66,12 @@ export function isValidQuoteSubmission(state, { date, token }, now) {
 }
 
 /**
- * Clear the lease after a submission. Complete quotes reset the retry
- * sequence; missing quotes advance it 1, 3, 5, 5 minutes.
+ * Clear the lease after a submission. A successful one resets the retry
+ * sequence; otherwise it advances 1, 3, 5, 5 minutes.
  *
  * @param {Object} state - Persisted lease state
- * @param {boolean} complete - Whether every quote date now has a quote
+ * @param {boolean} complete - Whether the submission filled the lease date's
+ *   quote, or every quote date now has a quote
  * @param {number} now
  */
 export function releaseQuoteLease(state, complete, now) {
