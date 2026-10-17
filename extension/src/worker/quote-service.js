@@ -190,61 +190,89 @@ export function createQuoteService({
     });
   }
 
+  // Fill the dates still needing a quote from `candidatesFor(day)` and return
+  // the dates whose quote changed.
+  function mergeQuotes(quotes, dates, candidatesFor) {
+    const updatedDates = [];
+    for (const day of dates) {
+      const cached = normalizeQuote(quotes[day]);
+      if (!needsQuote(cached)) {
+        continue;
+      }
+      const next = chooseQuote(cached, candidatesFor(day));
+      if (next && !isSameQuote(next, cached)) {
+        quotes[day] = next;
+        updatedDates.push(day);
+      }
+    }
+    pruneQuotes(quotes);
+    return updatedDates;
+  }
+
+  async function commit(quotes, updatedDates, lease) {
+    const writes = {};
+    if (updatedDates.length > 0) {
+      writes[STORAGE_KEYS.quoteState] = { quotes };
+    }
+    if (lease) {
+      writes[STORAGE_KEYS.quoteLease] = lease;
+    }
+    if (Object.keys(writes).length > 0) {
+      await storage.set(writes);
+    }
+    if (updatedDates.length > 0) {
+      broadcast({ type: 'quotesUpdated', updatedDates });
+    }
+  }
+
   /**
    * Accept the lease holder's scraped quote, or its empty result, for the
-   * lease date. Committed dates still missing a quote fall back to qotd_url.
-   * The lease is cleared, and the date backs off while any quote is missing.
+   * lease date. The scrape commits at once. Committed dates still missing a
+   * quote then fall back to qotd_url; a lease still held through the fallback
+   * is revalidated before that commit. Filling the lease date, by either
+   * commit, clears the lease and resets the date's retries; a lease cleared
+   * otherwise backs the date off while any quote is missing.
    *
    * @param {{date: string, token: string, quote: Object|null}} submission
    * @returns {Promise<{ok: false, rejected: true}|{ok: true, updatedDates: string[]}>}
    */
   async function submit({ date, token, quote }) {
-    const accepted = await serialize(async () =>
-      isValidQuoteSubmission((await readQuoteState()).lease, { date, token }, now()));
-    if (!accepted) {
+    const scraped = normalizeQuote(quote);
+    const isComplete = (quotes, dates) => dates.every(day => !needsQuote(normalizeQuote(quotes[day])));
+    const fillsTarget = (quotes, updatedDates) =>
+      updatedDates.includes(date) && !needsQuote(normalizeQuote(quotes[date]));
+
+    const first = await serialize(async () => {
+      const { quotes, lease } = await readQuoteState();
+      if (!isValidQuoteSubmission(lease, { date, token }, now())) {
+        return null;
+      }
+      const dates = await readDates();
+      const updatedDates = mergeQuotes(quotes, dates, day => [day === date ? scraped : null]);
+      const complete = isComplete(quotes, dates);
+      const released = complete || fillsTarget(quotes, updatedDates);
+      await commit(quotes, updatedDates, released ? releaseQuoteLease(lease, true, now()) : null);
+      return { updatedDates, released, complete };
+    });
+    if (!first) {
       return { ok: false, rejected: true };
     }
-    const scraped = normalizeQuote(quote);
-    const scrapedFor = day => (day === date ? scraped : null);
+    if (first.complete) {
+      return { ok: true, updatedDates: first.updatedDates };
+    }
 
-    const dates = await readDates();
-    const { quotes: cachedQuotes } = await readQuoteState();
-    const needsFallback = dates.some(day =>
-      needsQuote(chooseQuote(normalizeQuote(cachedQuotes[day]), [scrapedFor(day)])));
-    const remote = needsFallback ? await fetchFallbackQuotes() : {};
-
+    const remote = await fetchFallbackQuotes();
     return serialize(async () => {
       const { quotes, lease } = await readQuoteState();
-      const updatedDates = [];
-      for (const day of dates) {
-        const cached = normalizeQuote(quotes[day]);
-        if (!needsQuote(cached)) {
-          continue;
-        }
-        const next = chooseQuote(cached, [scrapedFor(day), normalizeQuote(remote[day])]);
-        if (next && !isSameQuote(next, cached)) {
-          quotes[day] = next;
-          updatedDates.push(day);
-        }
+      // A lease that expired or was replaced during the fallback cannot commit.
+      if (!first.released && !isValidQuoteSubmission(lease, { date, token }, now())) {
+        return { ok: false, rejected: true };
       }
-      pruneQuotes(quotes);
-
-      const writes = {};
-      if (updatedDates.length > 0) {
-        writes[STORAGE_KEYS.quoteState] = { quotes };
-      }
-      // A lease replaced in the meantime belongs to its new holder.
-      if (lease?.token === token) {
-        const complete = dates.every(day => !needsQuote(normalizeQuote(quotes[day])));
-        writes[STORAGE_KEYS.quoteLease] = releaseQuoteLease(lease, complete, now());
-      }
-      if (Object.keys(writes).length > 0) {
-        await storage.set(writes);
-      }
-      if (updatedDates.length > 0) {
-        broadcast({ type: 'quotesUpdated', updatedDates });
-      }
-      return { ok: true, updatedDates };
+      const dates = await readDates();
+      const updatedDates = mergeQuotes(quotes, dates, day => [normalizeQuote(remote[day])]);
+      const success = isComplete(quotes, dates) || fillsTarget(quotes, updatedDates);
+      await commit(quotes, updatedDates, first.released ? null : releaseQuoteLease(lease, success, now()));
+      return { ok: true, updatedDates: [...first.updatedDates, ...updatedDates] };
     });
   }
 

@@ -328,6 +328,61 @@ describe('new tab page scripts', () => {
       { text: 'Usable Bing quote', source: 'Author', link: '/search?q=Author', caption: '' });
   });
 
+  it('renders a scraped quote only from the worker\'s quote cache, never a rejected scrape', async () => {
+    const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
+    const page = await openNewTab({
+      local: {
+        [CATALOG_KEY]: catalog(),
+        [DISPLAY_STATE_KEY]: snapshot,
+        [QUOTE_STATE_KEY]: { quotes: { [TARGET]: { text: 'Accepted quote', source: 'Author', caption: '', link: '' } } }
+      },
+      cached: [PREVIEW, UHD],
+      quotes: message => (message.type === 'requestQuoteLease'
+        ? { granted: true, date: TARGET, token: 'replaced-token', scrape: true }
+        : { ok: false, rejected: true }),
+      quotePage: {
+        '.bt_quoteText': { textContent: '“Stale scrape”', getAttribute: () => null },
+        '.qotd_author': { textContent: 'Author', closest: () => null, querySelector: () => null }
+      }
+    });
+
+    await page.settled(() => page.backgrounds.length === 2 &&
+      page.messages.some(message => message.type === 'syncQuotesForImages'));
+    await new Promise(resolve => setTimeout(resolve, 20));
+
+    assert.strictEqual(page.element('quote-text').textContent, '“Accepted quote”');
+  });
+
+  it('requests the quote lease again once the catalog refresh completes when the first request was denied', async () => {
+    let requests = 0;
+    const page = await openNewTab({
+      quotes: message => (message.type === 'requestQuoteLease'
+        ? (++requests === 1 ? { granted: false } : { granted: true, date: TARGET, token: 'lease-token', scrape: false })
+        : { ok: true, updatedDates: [] })
+    });
+
+    await page.settled(() => page.messages.some(message => message.type === 'syncQuotesForImages'));
+
+    const types = page.messages.map(message => message.type);
+    assert.ok(types.indexOf('refreshWallpaperCatalog') < types.lastIndexOf('requestQuoteLease'));
+    assert.deepStrictEqual(page.messages.find(message => message.type === 'syncQuotesForImages'),
+      { type: 'syncQuotesForImages', date: TARGET, token: 'lease-token', quote: null });
+  });
+
+  it('does not request the quote lease again after the refresh when the first request was granted', async () => {
+    const page = await openNewTab({
+      local: { [CATALOG_KEY]: catalog() },
+      quotes: message => (message.type === 'requestQuoteLease'
+        ? { granted: true, date: TARGET, token: 'lease-token', scrape: false }
+        : { ok: true, updatedDates: [] })
+    });
+
+    await page.settled(() => page.messages.some(message => message.type === 'syncQuotesForImages'));
+    await new Promise(resolve => setTimeout(resolve, 20));
+
+    assert.strictEqual(page.messages.filter(message => message.type === 'requestQuoteLease').length, 1);
+  });
+
   it("does not scrape Bing's quote without a lease", async () => {
     const page = await openNewTab({ local: { [CATALOG_KEY]: catalog() }, quotes: () => ({ granted: false }) });
 

@@ -20,8 +20,6 @@ const SUFFIXED_DISPLAY_STATE_KEY = 'wallpaper_display_state_v2_regular';
 
 let currentWallpaperObjectUrl = null;
 let currentImageDate = null;
-let currentTransientQuoteDate = null;
-let currentTransientQuote = null;
 
 function normalizeQuoteText(text) {
 	if (typeof text !== 'string') return '';
@@ -194,10 +192,13 @@ async function initWallpaper({ reconnect = false } = {}) {
 	const refreshed = chrome.runtime.sendMessage({ type: 'refreshWallpaperCatalog' }).catch((err) => {
 		console.debug('Wallpaper catalog refresh unavailable:', err);
 	});
-	syncQuotes({ reconnect }).catch((err) => console.error('Quote sync failed:', err));
+	const quoteSync = syncQuotes({ reconnect }).catch((err) => console.error('Quote sync failed:', err));
 	const controller = await wallpaperControllerReady;
 	await controller.initialize();
 	await refreshed;
+	// A lease denied against the catalog at start is requested again once the
+	// refresh has committed, e.g. the first catalog after installation.
+	quoteSync.then((granted) => granted || syncQuotes()).catch((err) => console.error('Quote sync failed:', err));
 	await controller.catalogRefreshed();
 }
 
@@ -312,32 +313,8 @@ function getCachedQuotesFromState(state = readConf(QUOTE_STATE_KEY)) {
 		: {};
 }
 
-function setTransientQuote(date, quote) {
-	const normalizedQuote = normalizeQuoteForRender(quote);
-	if (!date || !normalizedQuote) {
-		if (date && currentTransientQuoteDate === date) {
-			currentTransientQuoteDate = null;
-			currentTransientQuote = null;
-		}
-		return;
-	}
-	currentTransientQuoteDate = date;
-	currentTransientQuote = normalizedQuote;
-}
-
-function clearTransientQuote(date) {
-	if (date && currentTransientQuoteDate === date) {
-		currentTransientQuoteDate = null;
-		currentTransientQuote = null;
-	}
-}
-
 function getQuoteForImage(image, quoteCache = getCachedQuotesFromState()) {
 	if (!image || typeof image !== 'object') return null;
-	if (image.date && image.date === currentTransientQuoteDate) {
-		const transientQuote = normalizeQuoteForRender(currentTransientQuote);
-		if (transientQuote) return transientQuote;
-	}
 	return normalizeQuoteForRender(quoteCache?.[image.date]);
 }
 
@@ -409,17 +386,16 @@ async function scrapeQuoteOfTheDay() {
 // Only the page holding the worker's quote lease scrapes Bing's quote. The
 // worker stores it, falls back to qotd_url for dates still missing, and
 // broadcasts quotesUpdated. Quote work never delays the wallpaper. After a
-// reconnect the worker may bypass one active backoff window.
+// reconnect the worker may bypass one active backoff window. Resolves to
+// whether a lease was granted.
 async function syncQuotes({ reconnect = false } = {}) {
 	const lease = await chrome.runtime.sendMessage({ type: 'requestQuoteLease', reconnect });
-	if (!lease?.granted) return;
+	if (!lease?.granted) return false;
 	const quote = lease.scrape ? await scrapeQuoteOfTheDay() : null;
-	setTransientQuote(lease.date, quote);
-	if (quote && currentImageDate === lease.date) {
-		updateQuoteOnly({ date: lease.date });
-	}
+	// The quote renders only once the worker accepts and stores it.
 	// An empty result still lets the worker try the qotd_url fallback.
 	await chrome.runtime.sendMessage({ type: 'syncQuotesForImages', date: lease.date, token: lease.token, quote });
+	return true;
 }
 
 function setContents(image) {
@@ -532,9 +508,6 @@ async function refreshCurrentQuoteFromStorage() {
 	// quotesUpdated can arrive before this page's confCache sees storage.onChanged.
 	// Fresh-read the quote state written by background before repainting.
 	const quoteCache = getCachedQuotesFromState(await readStorageKey(QUOTE_STATE_KEY));
-	if (normalizeQuoteForRender(quoteCache[currentImageDate])) {
-		clearTransientQuote(currentImageDate);
-	}
 	updateQuoteOnly({ date: currentImageDate }, quoteCache);
 }
 
