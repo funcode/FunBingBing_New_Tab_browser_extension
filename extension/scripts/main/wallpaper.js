@@ -13,9 +13,6 @@ const CATALOG_KEY = 'bing_wallpaper_catalog_v2';
 const QUOTE_STATE_KEY = 'cache_quote_state_v2';
 // The worker owns the migration marker; the page only reads it.
 const MIGRATION_STATE_KEY = 'wallpaper_migration_v2_state';
-// An earlier v2 build kept the display state under this suffixed name; the
-// first page transfers it during migration (ADR-0004).
-const SUFFIXED_DISPLAY_STATE_KEY = 'wallpaper_display_state_v2_regular';
 // DISPLAY_STATE_KEY is declared by boot.js, which shares this global scope.
 
 let currentWallpaperObjectUrl = null;
@@ -124,8 +121,8 @@ const wallpaperView = {
 
 // Upgrade: until migration is complete, the page asks the worker which phase
 // its start-up run reached. Once the migrated catalog is verified, the page
-// turns the retained display inputs into the v2 display state, unless a valid
-// one already exists, and acknowledges it. The old inputs are read only then.
+// turns the retained legacy display inputs into the v2 display state, unless a valid
+// one already exists, and acknowledges it. The legacy inputs are read only then.
 async function handOffMigratedDisplayState() {
 	if (readConf(MIGRATION_STATE_KEY)?.phase === 'complete') return;
 	const status = await chrome.runtime.sendMessage({ type: 'migrationStatus' });
@@ -136,15 +133,14 @@ async function handOffMigratedDisplayState() {
 	]);
 	const current = await readStorageKey(DISPLAY_STATE_KEY);
 	if (!isValidDisplaySnapshot(current) && !isEmptyDisplayState(current)) {
-		const [catalog, displayState, wallpaperUrl, wallpaperDate, sync] = await Promise.all([
+		const [catalog, wallpaperUrl, wallpaperDate, sync] = await Promise.all([
 			readStorageKey(CATALOG_KEY),
-			readStorageKey(SUFFIXED_DISPLAY_STATE_KEY),
 			readStorageKey('wallpaper_url'),
 			readStorageKey('wallpaper_date'),
 			chrome.storage.sync.get('enable_uhd_wallpaper')
 		]);
 		const enableUhd = isUhdEnabled(sync.enable_uhd_wallpaper);
-		const migrated = buildMigratedDisplayState(catalog, { displayState, wallpaperUrl, wallpaperDate }, enableUhd);
+		const migrated = buildMigratedDisplayState(catalog, { wallpaperUrl, wallpaperDate }, enableUhd);
 		// Another tab may have handed off, or completed migration, meanwhile:
 		// its v2 state takes priority over this tab's legacy inputs.
 		const [latest, marker] = await Promise.all([readStorageKey(DISPLAY_STATE_KEY), readStorageKey(MIGRATION_STATE_KEY)]);

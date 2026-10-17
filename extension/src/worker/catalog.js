@@ -365,32 +365,9 @@ function recoverEntry(catalog, recovered, now) {
   return true;
 }
 
-function recoverEntries(catalog, entries, now) {
-  const dates = entries.map(entry => entry.date);
-  const changedDates = entries.filter(entry => recoverEntry(catalog, entry, now)).map(entry => entry.date);
-  return { dates, changedDates };
-}
-
-/**
- * Recover the valid entries of a catalog stored under the suffixed regular
- * key of earlier v2 builds into the catalog in place (ADR-0004).
- *
- * @param {Object} catalog
- * @param {*} stored - Stored suffixed catalog value
- * @param {number} now
- * @returns {{dates: string[], changedDates: string[]}} The recovered dates, and
- *   those whose entry changed
- */
-export function importSuffixedEntries(catalog, stored, now) {
-  const entries = stored?.entries && typeof stored.entries === 'object' ? stored.entries : {};
-  const valid = Object.entries(entries).filter(([date, entry]) => isValidCatalogEntry(entry, date));
-  return recoverEntries(catalog, valid.map(([, entry]) => structuredClone(entry)), now);
-}
-
 /**
  * Merge the newest eight valid dates of the v1 `bing_images` array into the
- * catalog in place, as `legacy` entries, with the same rules as suffixed
- * recovery.
+ * catalog in place, as `legacy` entries. Valid v2 data is never replaced.
  *
  * @param {Object} catalog
  * @param {*} images - Stored v1 `bing_images` value
@@ -406,7 +383,8 @@ export function importLegacyImages(catalog, images, now) {
     }
   }
   const dates = [...byDate.keys()].sort().reverse().slice(0, LEGACY_IMPORT_DATES);
-  return recoverEntries(catalog, dates.map(date => byDate.get(date)), now);
+  const changedDates = dates.filter(date => recoverEntry(catalog, byDate.get(date), now));
+  return { dates, changedDates };
 }
 
 // Target and historical entries with a trivia ID and a missing payload.

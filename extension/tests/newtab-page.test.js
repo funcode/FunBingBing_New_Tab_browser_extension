@@ -547,18 +547,6 @@ describe('new tab page scripts', () => {
       assert.ok(!page.messages.some(message => message.type === 'migrationDisplayStateReady'));
     });
 
-    it('transfers the suffixed display snapshot of an earlier v2 build', async () => {
-      const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
-      const page = await openNewTab({
-        local: { ...verified, ...LEGACY_INPUTS, [CATALOG_KEY]: catalog(), wallpaper_display_state_v2_regular: snapshot },
-        cached: [PREVIEW, UHD],
-        acknowledge: recordAcknowledged
-      });
-
-      await page.settled(() => page.acknowledged && page.backgrounds.at(-1) === `url('blob:${UHD}')`);
-
-      assert.deepStrictEqual(page.acknowledged, snapshot);
-    });
   });
 
   it('applies the wallpaper while quote work is still pending', async () => {

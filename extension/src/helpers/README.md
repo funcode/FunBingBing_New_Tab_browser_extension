@@ -11,7 +11,7 @@ This directory contains the foundation layer of pure functions for the PLAN9 wal
 All acceptance criteria from the issue have been implemented and tested:
 
 - ✅ `getZhCnTargetDate()` returns Asia/Shanghai date regardless of process timezone
-- ✅ Helper contracts target only regular browsing and preserve existing `_regular` keys
+- ✅ Helper contracts target only regular browsing and use unsuffixed v2 keys
 - ✅ `normalizeImageUrl()` extracts full OHR identity, validates suffix, rebuilds canonical URL
 - ✅ Model `_1920x1080.webp` normalizes to `_1920x1080.jpg`
 - ✅ Unknown suffixes are rejected rather than guessed

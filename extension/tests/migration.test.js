@@ -104,16 +104,6 @@ describe('Migration helpers', () => {
       assert.strictEqual(buildMigratedDisplayState(catalog, { wallpaperDate: '20261015' }, false).url, ts1(`${LATEST}_1920x1080.jpg`));
     });
 
-    it('transfers a valid suffixed display snapshot of an earlier v2 build before the v1 inputs', () => {
-      const suffixed = { date: '20261015', imageId: LATEST, url: ts1(`${LATEST}_UHD.jpg`), preloadDataUrl: 'data:image/jpeg;base64,AAAA', updatedAt: 7 };
-      assert.deepStrictEqual(buildMigratedDisplayState(catalog, {
-        displayState: suffixed, wallpaperUrl: ts1(`${SHOWN}_UHD.jpg`), wallpaperDate: '20261015'
-      }, true), suffixed);
-      assert.strictEqual(buildMigratedDisplayState(catalog, {
-        displayState: { ...suffixed, imageId: 'bad' }, wallpaperUrl: ts1(`${SHOWN}_UHD.jpg`)
-      }, true).imageId, SHOWN);
-    });
-
     it('is the explicit empty state when no catalog entry has the legacy identity', () => {
       assert.deepStrictEqual(buildMigratedDisplayState(catalog, { wallpaperUrl: ts1('OHR.Gone_ZH-CN3_UHD.jpg'), wallpaperDate: '20261015' }, true), EMPTY);
       assert.deepStrictEqual(buildMigratedDisplayState(catalog, { wallpaperDate: '20000101' }, true), EMPTY);

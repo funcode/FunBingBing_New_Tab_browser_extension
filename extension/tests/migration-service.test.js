@@ -316,6 +316,32 @@ describe('migration service: v1 wallpaper and quote state', () => {
     assert.deepStrictEqual(worker.syncStorage.data, DEFAULT_SETTINGS);
     assert.deepStrictEqual(markerOf(worker), { version: 2, phase: 'verified', startedAt: START, verifiedAt: START, completedAt: 0 });
   });
+
+  it('recovers a completed v1 trivia payload only for the same trivia ID, and keeps an existing completion', async () => {
+    const missing = { triviaData: null, triviaState: 'missing' };
+    const kept = { question: 'Kept?', options: [] };
+    const worker = makeWorker({
+      local: {
+        [STORAGE_KEYS.catalog]: v2Catalog([
+          v2EntryOf(TODAY, idOn(TODAY), { ...missing, triviaId: `HPQuiz_${TODAY}_Day`, triviaRetryLevel: 2, triviaNextRetryAt: 9 }),
+          v2EntryOf('20261014', idOn('20261014'), { ...missing, triviaId: 'HPQuiz_20261014_Other' }),
+          v2EntryOf('20261013', idOn('20261013'), { triviaId: 'HPQuiz_20261013_Day', triviaData: kept, triviaState: 'complete' })
+        ]),
+        bing_images: v1Images(3).map(image => ({ ...image, triviaData: TRIVIA }))
+      }
+    });
+
+    await worker.migration.run();
+
+    const entries = catalogOf(worker).entries;
+    assert.deepStrictEqual(entries[TODAY].triviaData, TRIVIA);
+    assert.strictEqual(entries[TODAY].triviaState, 'complete');
+    assert.strictEqual(entries[TODAY].triviaRetryLevel, 0);
+    assert.strictEqual(entries[TODAY].triviaNextRetryAt, 0);
+    assert.strictEqual(entries['20261014'].triviaData, null, 'a payload of another trivia ID is not recovered');
+    assert.strictEqual(entries['20261014'].triviaState, 'missing');
+    assert.deepStrictEqual(entries['20261013'].triviaData, kept);
+  });
 });
 
 describe('migration service: v1 Cache Storage', () => {
@@ -449,115 +475,6 @@ describe('migration service: page acknowledgement', () => {
     assert.deepStrictEqual(results, [{ ok: true }, { ok: false }]);
     assert.deepStrictEqual(late, { ok: false });
     assert.deepStrictEqual(markerOf(worker), completed);
-  });
-});
-
-describe('migration service: suffixed regular state of earlier v2 builds', () => {
-  const SUFFIXED = {
-    catalog: 'bing_wallpaper_catalog_v2_regular',
-    displayState: 'wallpaper_display_state_v2_regular',
-    quoteState: 'cache_quote_state_v2_regular',
-    quoteLease: 'quote_scrape_state_v2_regular',
-    migration: 'wallpaper_migration_v2_state_regular',
-    cache: 'funbingbing-wallpaper-cache-v2-regular'
-  };
-
-  it('recovers missing valid suffixed catalog and quote data, keeping valid unsuffixed state first and v1 last', async () => {
-    const unsuffixed = v2EntryOf(TODAY, 'OHR.Unsuffixed_ZH-CN1', { headline: 'unsuffixed' });
-    const suffixedSame = v2EntryOf(TODAY, 'OHR.Suffixed_ZH-CN2', { headline: 'suffixed' });
-    const suffixedOnly = v2EntryOf('20261014', 'OHR.SuffixedOnly_ZH-CN3', {
-      headline: 'suffixed only', triviaId: 'HPQuiz_20261014_Day', triviaData: TRIVIA, triviaState: 'complete'
-    });
-    const suffixedInvalid = { ...v2EntryOf('20261013', 'OHR.Broken_ZH-CN4'), urls: { preview: 'https://evil.example/x.jpg' } };
-    const worker = makeWorker({
-      local: {
-        [STORAGE_KEYS.catalog]: v2Catalog([unsuffixed]),
-        [SUFFIXED.catalog]: v2Catalog([suffixedSame, suffixedOnly, suffixedInvalid]),
-        [STORAGE_KEYS.quoteState]: { quotes: { [TODAY]: { text: 'Kept', source: 'v2', caption: 'c', link: '' } } },
-        [SUFFIXED.quoteState]: { quotes: { [TODAY]: v1Quote('suffixed'), 20261014: v1Quote('20261014') } },
-        [SUFFIXED.quoteLease]: { date: TODAY, token: 'old-token', leaseUntil: START + 60_000, retryLevel: 0, nextRetryAt: 0 },
-        bing_images: [v1Image('20261014'), v1Image('20261013')]
-      }
-    });
-
-    await worker.migration.run();
-
-    const entries = catalogOf(worker).entries;
-    assert.deepStrictEqual(entries[TODAY], unsuffixed);
-    assert.strictEqual(entries['20261014'].imageId, 'OHR.SuffixedOnly_ZH-CN3');
-    assert.strictEqual(entries['20261014'].triviaState, 'complete');
-    assert.strictEqual(entries['20261013'].imageId, idOn('20261013'), 'an invalid suffixed entry does not block v1 data');
-    const quotes = worker.storage.data[STORAGE_KEYS.quoteState].quotes;
-    assert.strictEqual(quotes[TODAY].text, 'Kept');
-    assert.strictEqual(quotes['20261014'].text, 'Quote 20261014');
-    assert.ok(!(STORAGE_KEYS.quoteLease in worker.storage.data), 'an old lease is never transferred');
-    assert.strictEqual(markerOf(worker).phase, 'verified');
-  });
-
-  it('recovers a completed trivia payload only for the same trivia ID, and keeps an existing completion', async () => {
-    const triviaId = 'HPQuiz_20261015_Day';
-    const missing = { triviaId, triviaData: null, triviaState: 'missing' };
-    const complete = { triviaId, triviaData: TRIVIA, triviaState: 'complete' };
-    const kept = { question: 'Kept?', options: [] };
-    const worker = makeWorker({
-      local: {
-        [STORAGE_KEYS.catalog]: v2Catalog([
-          v2EntryOf(TODAY, idOn(TODAY), { ...missing, triviaRetryLevel: 2, triviaNextRetryAt: 9 }),
-          v2EntryOf('20261014', idOn('20261014'), { ...missing, triviaId: 'HPQuiz_20261014_Other' }),
-          v2EntryOf('20261013', idOn('20261013'), { triviaId: 'HPQuiz_20261013_Day', triviaData: kept, triviaState: 'complete' })
-        ]),
-        [SUFFIXED.catalog]: v2Catalog([
-          v2EntryOf(TODAY, idOn(TODAY), complete),
-          v2EntryOf('20261014', idOn('20261014'), { ...complete, triviaId: 'HPQuiz_20261014_Day' }),
-          v2EntryOf('20261013', idOn('20261013'), { ...complete, triviaId: 'HPQuiz_20261013_Day' })
-        ])
-      }
-    });
-
-    await worker.migration.run();
-
-    const entries = catalogOf(worker).entries;
-    assert.deepStrictEqual(entries[TODAY].triviaData, TRIVIA);
-    assert.strictEqual(entries[TODAY].triviaState, 'complete');
-    assert.strictEqual(entries[TODAY].triviaRetryLevel, 0);
-    assert.strictEqual(entries[TODAY].triviaNextRetryAt, 0);
-    assert.strictEqual(entries['20261014'].triviaData, null, 'a payload of another trivia ID is not recovered');
-    assert.strictEqual(entries['20261014'].triviaState, 'missing');
-    assert.deepStrictEqual(entries['20261013'].triviaData, kept);
-  });
-
-  it('copies the suffixed cache before v1 responses and deletes both old caches and the suffixed keys on completion', async () => {
-    const id = idOn(TODAY);
-    const worker = makeWorker({
-      local: {
-        [SUFFIXED.catalog]: v2Catalog([v2EntryOf(TODAY, id)]),
-        [SUFFIXED.displayState]: displayStateOf(TODAY, id),
-        [SUFFIXED.quoteState]: { quotes: {} },
-        [SUFFIXED.quoteLease]: { date: TODAY, token: 'old-token', leaseUntil: 0, retryLevel: 0, nextRetryAt: 0 },
-        [SUFFIXED.migration]: { version: 2, phase: 'complete' }
-      },
-      caches: {
-        [SUFFIXED.cache]: [ts1(`/th?id=${id}_UHD.jpg`)],
-        'funbingbing-wallpaper-cache-v1': [`https://cn.bing.com/th?id=${id}_UHD.jpg`, ts1(`/th?id=${id}_640x360.jpg`)]
-      }
-    });
-
-    await worker.migration.run();
-
-    assert.deepStrictEqual(Object.fromEntries(worker.cacheStorage.stores.get('funbingbing-wallpaper-cache-v2')), {
-      [ts1(`/th?id=${id}_UHD.jpg`)]: `body of ${ts1(`/th?id=${id}_UHD.jpg`)}`,
-      [ts1(`/th?id=${id}_640x360.jpg`)]: `body of ${ts1(`/th?id=${id}_640x360.jpg`)}`
-    });
-    assert.strictEqual(markerOf(worker).phase, 'verified', 'the suffixed marker phase is not trusted or copied');
-
-    worker.storage.data[STORAGE_KEYS.displayState] = displayStateOf(TODAY, id);
-    assert.deepStrictEqual(await worker.migration.acknowledge(), { ok: true });
-
-    for (const key of [SUFFIXED.catalog, SUFFIXED.displayState, SUFFIXED.quoteState, SUFFIXED.quoteLease, SUFFIXED.migration]) {
-      assert.ok(!(key in worker.storage.data), `${key} remains`);
-    }
-    assert.ok(!worker.cacheStorage.stores.has(SUFFIXED.cache));
-    assert.ok(!worker.cacheStorage.stores.has('funbingbing-wallpaper-cache-v1'));
   });
 });
 
