@@ -65,7 +65,7 @@ function makeWorker({ dates = [TARGET, YESTERDAY, TOMORROW], quotes = {}, sync =
     tokens: 0
   };
   worker.service = createQuoteService({
-    catalogService: createCatalogService({ storage, fetchJson: async () => ({}), log: quiet }),
+    catalogService: createCatalogService({ storage, syncStorage: worker.sync, fetchJson: async () => ({}), log: quiet }),
     storage,
     syncStorage: worker.sync,
     fetch: async (url, init) => {

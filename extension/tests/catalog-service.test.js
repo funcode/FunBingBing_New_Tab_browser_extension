@@ -127,7 +127,7 @@ function makeFetch(responses) {
   return { fetchJson, calls };
 }
 
-function makeHarness({ storage = makeStorage(), responses, target = TARGET, time = 1_000_000 } = {}) {
+function makeHarness({ storage = makeStorage(), sync = makeStorage(), responses, target = TARGET, time = 1_000_000 } = {}) {
   const clock = { time, target };
   const fetcher = makeFetch(responses || {
     imageOfTheDay: iotdResponse(target),
@@ -138,6 +138,7 @@ function makeHarness({ storage = makeStorage(), responses, target = TARGET, time
   const triviaSchedules = [];
   const service = createCatalogService({
     storage,
+    syncStorage: sync,
     fetchJson: fetcher.fetchJson,
     now: () => clock.time,
     getTargetDate: () => clock.target,
@@ -257,7 +258,7 @@ describe('refresh sharing and rollover', () => {
       triviaData: null,
       triviaState: 'missing'
     };
-    const imported = (phase) => {
+    const imported = (phase, legacy = { wallpaper_url: `https://ts1.tc.mm.bing.net/th?id=${legacyId}_UHD.jpg` }) => {
       const other = addDays(TARGET, -21);
       return makeStorage({
         [STORAGE_KEYS.catalog]: {
@@ -267,8 +268,8 @@ describe('refresh sharing and rollover', () => {
           entries: { [old]: legacyEntry, [other]: { ...legacyEntry, date: other, imageId: idFor(other) } }
         },
         [STORAGE_KEYS.migration]: { version: 2, phase },
-        wallpaper_url: `https://ts1.tc.mm.bing.net/th?id=${legacyId}_UHD.jpg`,
-        wallpaper_date: old
+        wallpaper_date: old,
+        ...legacy
       });
     };
 
@@ -283,6 +284,17 @@ describe('refresh sharing and rollover', () => {
       assert.deepStrictEqual({ date: displayState.date, imageId: displayState.imageId, url: displayState.url },
         { date: old, imageId: legacyId, url: legacyEntry.urls.ultraHighDef });
       assert.ok(!(STORAGE_KEYS.displayState in storage.data), 'the worker never writes display state');
+    });
+
+    it('protects the final resolution the page will choose for a legacy date without a wallpaper URL', async () => {
+      for (const [uhd, url] of [['no', legacyEntry.urls.highDef], ['yes', legacyEntry.urls.ultraHighDef]]) {
+        const { service } = makeHarness({ storage: imported('verified', {}), sync: makeStorage({ enable_uhd_wallpaper: uhd }) });
+        await service.refresh();
+
+        const { displayState } = await service.read();
+        assert.deepStrictEqual({ date: displayState.date, imageId: displayState.imageId, url: displayState.url },
+          { date: old, imageId: legacyId, url }, `enable_uhd_wallpaper: ${uhd}`);
+      }
     });
 
     it('is dropped by the next rollover once migration is complete', async () => {

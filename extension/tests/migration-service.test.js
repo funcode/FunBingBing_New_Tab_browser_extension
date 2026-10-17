@@ -92,6 +92,7 @@ function makeWorker({ local = {}, sync = {}, syncOptions, caches = {} } = {}) {
   const clock = { time: START };
   const catalogService = createCatalogService({
     storage,
+    syncStorage,
     fetchJson: async () => { throw new Error('offline'); },
     now: () => clock.time,
     log: quiet

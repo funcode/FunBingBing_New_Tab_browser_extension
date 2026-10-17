@@ -9,7 +9,7 @@
  */
 
 import { getZhCnTargetDate } from '../helpers/date.js';
-import { isEmptyDisplayState, isValidDisplaySnapshot } from '../helpers/display-state.js';
+import { isEmptyDisplayState, isUhdEnabled, isValidDisplaySnapshot } from '../helpers/display-state.js';
 import { buildMigratedDisplayState } from '../helpers/migration.js';
 import { validateSourceCoverage } from '../helpers/metadata.js';
 import {
@@ -40,6 +40,8 @@ const SOURCE_URLS = Object.freeze({
 /**
  * @param {Object} deps
  * @param {{get: Function, set: Function}} deps.storage - chrome.storage.local-shaped area
+ * @param {{get: Function}} deps.syncStorage - chrome.storage.sync-shaped area holding
+ *   `enable_uhd_wallpaper`, read only for a pending migration handoff
  * @param {(url: string) => Promise<any>} deps.fetchJson - Rejects on transport or JSON failure
  * @param {() => number} [deps.now]
  * @param {() => string} [deps.getTargetDate]
@@ -50,6 +52,7 @@ const SOURCE_URLS = Object.freeze({
  */
 export function createCatalogService({
   storage,
+  syncStorage,
   fetchJson,
   now = Date.now,
   getTargetDate = getZhCnTargetDate,
@@ -81,12 +84,15 @@ export function createCatalogService({
     if (isValidDisplaySnapshot(snapshot)) {
       return snapshot;
     }
-    if (stored[STORAGE_KEYS.migration]?.phase === 'complete' || isEmptyDisplayState(snapshot)) {
+    if (stored[STORAGE_KEYS.migration]?.phase === 'complete' || isEmptyDisplayState(snapshot) ||
+        (!stored.wallpaper_url && !stored.wallpaper_date)) {
       return null;
     }
-    // The resolution only matters for a legacy URL without one.
+    // The page builds its snapshot with the configured resolution when the
+    // legacy URL has none, so the same final response is protected.
+    const { enable_uhd_wallpaper: uhd } = await syncStorage.get('enable_uhd_wallpaper');
     const legacy = buildMigratedDisplayState(catalog,
-      { wallpaperUrl: stored.wallpaper_url, wallpaperDate: stored.wallpaper_date }, true);
+      { wallpaperUrl: stored.wallpaper_url, wallpaperDate: stored.wallpaper_date }, isUhdEnabled(uhd));
     return isValidDisplaySnapshot(legacy) ? { ...legacy, handoff: true } : null;
   }
 

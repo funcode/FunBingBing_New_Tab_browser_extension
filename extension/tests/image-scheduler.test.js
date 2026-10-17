@@ -122,6 +122,7 @@ function makeHarness({ catalog = catalogAt([0]), displayState, uhd = 'no', cache
   const broadcasts = [];
   const catalogService = createCatalogService({
     storage: local,
+    syncStorage: sync,
     fetchJson: async () => { throw new Error('no metadata in scheduler tests'); },
     now: () => clock.time,
     broadcast: message => broadcasts.push(message),

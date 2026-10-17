@@ -37,6 +37,7 @@ function fetchTrivia(triviaId) {
 
 const catalogService = createCatalogService({
 	storage: chrome.storage.local,
+	syncStorage: chrome.storage.sync,
 	fetchJson: fetchBingJson,
 	broadcast: broadcastToPages,
 	scheduleTrivia: (candidates) => scheduleTriviaInBackground(candidates),

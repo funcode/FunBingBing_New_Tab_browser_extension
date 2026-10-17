@@ -153,6 +153,31 @@ describe('v1 to v2 migration in the loaded extension', () => {
     await page.close();
   });
 
+  it('with HD configured and only a v1 wallpaper date, the HD response the page restores survives a refresh before the first page', async () => {
+    const last = day(-9, 'DateOnly', '#406080');
+    const v1Url = last.urls.highDef.replace('ts1.tc.mm.bing.net', 'cn.bing.com');
+    await seed({
+      local: { bing_images: [v1Image(last)], wallpaper_date: last.date, wallpaper_idx: '0' },
+      sync: { enable_uhd_wallpaper: 'no' }
+    });
+    await removeLocal([CATALOG_KEY, MIGRATION_KEY]);
+    await cacheImages([{ ...final(last, last.urls.highDef), url: v1Url }], V1_CACHE);
+    await restartWorker();
+    await migrationPhase('verified');
+
+    await sendMessage({ type: 'refreshWallpaperCatalog' });
+    await pause(500);
+    assert.ok((await cachedUrls()).includes(last.urls.highDef), 'the HD response the page will restore is kept');
+
+    const page = await openNewTab();
+    await migrationPhase('complete');
+    await showsFinal(page);
+
+    assert.deepStrictEqual(identityOf(await readLocal(DISPLAY_STATE_KEY)), identityOf({ ...last, url: last.urls.highDef }));
+    assert.deepStrictEqual(page.errors, []);
+    await page.close();
+  });
+
   it('a worker terminated mid-transfer resumes the v1 cache copy; every phase survives a restart and v1 data stays until the handoff', async () => {
     const v1Days = Array.from({ length: 30 }, (_, i) => day(-i, `Large${i}`, '#123456'));
     const v1Url = shown => shown.urls.ultraHighDef.replace('ts1.tc.mm.bing.net', 'cn.bing.com');
