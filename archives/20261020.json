@@ -1,0 +1,46 @@
+{
+  "caption": "国际树懒日",
+  "title": "褐喉三趾树懒，塔拉曼卡旧港，哥斯达黎加",
+  "description": "稳扎稳打才能赢得比赛——而褐喉三趾树懒似乎很乐意彻底放弃比赛。在国际树懒日，这种三趾哺乳动物为生存之道带来了另一番启示：保存能量，牢牢抓住，慢慢来。",
+  "copyright": "© Suzi Eszterhas/Minden Pictures",
+  "date": "2026 10月 20",
+  "clickUrl": "/search?q=%e5%9b%bd%e9%99%85%e6%a0%91%e6%87%92%e6%97%a5&form=hpcapt&filters=HpDate:\"20261019_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BrownSloth_ZH-CN5776383136_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BrownSloth_ZH-CN5776383136_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BrownSloth_ZH-CN5776383136_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BrownSloth_ZH-CN5776383136_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BrownSloth_ZH-CN5776383136_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BrownSloth_ZH-CN5776383136_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "它原生于中美洲和南美洲，一生中的大部分时间都倒挂在森林树冠层中。它粗糙的毛发为藻类、真菌和特有的树懒蛾提供了栖身之所，在背上形成了一个微型生态系统。藻类甚至能让它的毛皮泛出绿色，帮助它融入枝叶之中。它不同寻常的身体构造有助于它在树梢繁衍生息。它多出来的颈椎使其头部最多可以转动270度。",
+  "descriptionPara3": "就连消化也是慢条斯理。它的多室胃有助于分解坚韧、富含纤维的叶片。它大约每周会冒险前往一次森林地面排便。而且，尽管它素有行动迟缓之名，游泳能力却出人意料地强。",
+  "isoDate": "20261020",
+  "headline": "慢节奏生活",
+  "quickFact": "褐喉三趾树懒每天可能睡15至18小时，通常只在夜间短暂活动。",
+  "triviaId": "HPQuiz_20261020_BrownSloth",
+  "triviaData": {
+    "question": "棕喉三趾树懒分布于哪些大陆？",
+    "options": [
+      {
+        "text": "南美洲",
+        "url": "/search?q=%E5%8D%97%E7%BE%8E%E6%B4%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261020_BrownSloth%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "非洲",
+        "url": "/search?q=%E5%8D%97%E7%BE%8E%E6%B4%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261020_BrownSloth%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "澳大利亚",
+        "url": "/search?q=%E5%8D%97%E7%BE%8E%E6%B4%B2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261020_BrownSloth%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
