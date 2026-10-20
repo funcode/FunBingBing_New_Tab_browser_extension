@@ -1,0 +1,46 @@
+{
+  "caption": "越南顺化的阮潢桥",
+  "title": "香江上的阮潢桥，顺化，越南",
+  "description": "阮潢桥弥合了新旧之间的距离，为顺化的天际线增添了一道崭新的纽带。这座横跨越南香江的现代钢拱地标于2025年3月26日通车。其设计名为“鹤望天姥”，灵感源自当地传说和附近的天姥寺。",
+  "copyright": "© VU PHAM VAN/Getty Images",
+  "date": "2026 10月 21",
+  "clickUrl": "/search?q=%e8%b6%8a%e5%8d%97%e9%a1%ba%e5%8c%96%e5%b8%82&form=hpcapt&filters=HpDate:\"20261020_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.VietnamBridge_ZH-CN6134321119_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.VietnamBridge_ZH-CN6134321119_UHD.jpg",
+      "wallpaper": "/th?id=OHR.VietnamBridge_ZH-CN6134321119_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.VietnamBridge_ZH-CN6134321119_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.VietnamBridge_ZH-CN6134321119_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.VietnamBridge_ZH-CN6134321119_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这座桥由芬兰桥梁建筑师安蒂·卡尔亚莱宁设计，钢拱的造型宛如仙鹤展开的双翼。V形桥墩令人联想到群鹤在河畔安然聚集。皇家黄色则向顺化在阮朝时期留下的皇城遗产致敬。",
+  "descriptionPara3": "这种精巧设计延伸至人行道，那里设有64个阳伞状钢制装饰，与宫廷美学遥相呼应。夜幕降临后，变色LED灯照亮桥拱，营造出仙鹤展翅飞翔的景象。这里还有一段颇具转折意味的历史：顺化著名的长钱桥曾于1945年短暂使用过阮潢这一名称。这座桥将历史传承与现代工程融为一体，为顺化铺就了一条迈向未来的新路。",
+  "isoDate": "20261021",
+  "headline": "飞掠河面",
+  "quickFact": "阮黄桥长约380米、宽43米，设有六条机动车道和两条人行步道。",
+  "triviaId": "HPQuiz_20261021_VietnamBridge",
+  "triviaData": {
+    "question": "顺化的现代钢拱桥横跨哪条河流？",
+    "options": [
+      {
+        "text": "香水河",
+        "url": "/search?q=%E9%A6%99%E6%B0%B4%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261021_VietnamBridge%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "湄公河",
+        "url": "/search?q=%E9%A6%99%E6%B0%B4%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261021_VietnamBridge%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "红河",
+        "url": "/search?q=%E9%A6%99%E6%B0%B4%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261021_VietnamBridge%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
