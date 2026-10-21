@@ -1,0 +1,46 @@
+{
+  "caption": "韩国内藏山国立公园的秋景",
+  "title": "内藏山国立公园的秋景，韩国",
+  "description": "在韩国，很少有地方能像内藏山国立公园一样尽显秋日的魔力，这里的山坡闪耀着猩红、橙色、黄色和金色的绚丽光彩。公园位于韩国西南部，尤以鲜艳的枫叶色彩闻名，是韩国首屈一指的赏秋胜地之一。其名称意为“山中藏有许多秘密”，体现了这一地区丰富多样的景观。",
+  "copyright": "© Twenty47studio/Getty Images",
+  "date": "2026 10月 22",
+  "clickUrl": "/search?q=%e5%86%85%e8%97%8f%e5%b1%b1%e5%9b%bd%e7%ab%8b%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20261021_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.NaejangsanNP_ZH-CN6538893004_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.NaejangsanNP_ZH-CN6538893004_UHD.jpg",
+      "wallpaper": "/th?id=OHR.NaejangsanNP_ZH-CN6538893004_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.NaejangsanNP_ZH-CN6538893004_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.NaejangsanNP_ZH-CN6538893004_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.NaejangsanNP_ZH-CN6538893004_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "内藏山的神仙峰海拔约2,500英尺，九座各具特色的山峰环绕着山谷。游客可以沿徒步小径穿过林地和山口，乘坐内藏山缆车则可从高处眺望色彩斑斓的山脊。公园内还有历史悠久的内藏寺和白羊寺，为这片景观增添了深厚的文化意蕴。",
+  "descriptionPara3": "其他亮点还包括金城溪谷、道德瀑布和金仙瀑布。内藏山拥有约760种本土植物，除了备受赞誉的秋色外，还蕴藏着丰富的生物多样性，是一个四季都值得探索的目的地。",
+  "isoDate": "20261022",
+  "headline": "静水映斑斓",
+  "quickFact": "内藏山于1971年获指定，成为韩国第八座国家公园，其山地景观由此受到国家公园制度保护。",
+  "triviaId": "HPQuiz_20261022_NaejangsanNP",
+  "triviaData": {
+    "question": "内藏山以哪一季的景色最为著名？",
+    "options": [
+      {
+        "text": "夏季",
+        "url": "/search?q=%E7%A7%8B%E5%A4%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261022_NaejangsanNP%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "春季",
+        "url": "/search?q=%E7%A7%8B%E5%A4%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261022_NaejangsanNP%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "秋天",
+        "url": "/search?q=%E7%A7%8B%E5%A4%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261022_NaejangsanNP%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
