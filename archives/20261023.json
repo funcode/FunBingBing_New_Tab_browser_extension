@@ -1,0 +1,46 @@
+{
+  "caption": "狼保护宣传周",
+  "title": "两只灰狼，黄石国家公园，怀俄明州，美国",
+  "description": "两只灰狼穿行在怀俄明州黄石国家公园的山艾灌丛中，这里生活着北美洲一些最受密切关注的狼群。厚实的皮毛帮助它们抵御严冬，敏锐的感官则使它们成为技艺高超的猎手和交流者。",
+  "copyright": "© John Morrison/Getty Images",
+  "date": "2026 10月 23",
+  "clickUrl": "/search?q=%e7%81%b0%e7%8b%bc&form=hpcapt&filters=HpDate:\"20261022_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.YellowstoneWolves_ZH-CN6767268961_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.YellowstoneWolves_ZH-CN6767268961_UHD.jpg",
+      "wallpaper": "/th?id=OHR.YellowstoneWolves_ZH-CN6767268961_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.YellowstoneWolves_ZH-CN6767268961_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.YellowstoneWolves_ZH-CN6767268961_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.YellowstoneWolves_ZH-CN6767268961_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "狼保护宣传周期间，世界各地的人们都会认识到狼在健康生态系统中发挥的重要作用。灰狼是高度社会化的动物，通常以家庭群体（即狼群）的形式生活，并合作捕猎、保卫领地和抚育幼崽。20世纪初，灰狼从黄石国家公园消失；1995年，作为一项具有里程碑意义的保护行动，它们被重新引入公园，使这一物种重返其最具代表性的栖息地之一。",
+  "descriptionPara3": "如今，黄石国家公园仍是观察这些捕食者的最佳地点之一，让人们得以一窥这种备受北美洲瞩目的野生动物的生活。",
+  "isoDate": "20261023",
+  "headline": "荒野伙伴",
+  "quickFact": "灰狼可以通过嚎叫、肢体语言、气味标记以及多种发声方式进行交流，包括吠叫、呜咽和低吼。",
+  "triviaId": "HPQuiz_20261023_YellowstoneWolves",
+  "triviaData": {
+    "question": "灰狼在黄石公园偏爱哪种栖息地？",
+    "options": [
+      {
+        "text": "山坡",
+        "url": "/search?q=%E8%92%BF%E8%8D%89%E5%9C%B0%E5%BD%A2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261023_YellowstoneWolves%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "蒿草地形",
+        "url": "/search?q=%E8%92%BF%E8%8D%89%E5%9C%B0%E5%BD%A2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261023_YellowstoneWolves%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "松林",
+        "url": "/search?q=%E8%92%BF%E8%8D%89%E5%9C%B0%E5%BD%A2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261023_YellowstoneWolves%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
