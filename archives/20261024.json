@@ -1,0 +1,46 @@
+{
+  "caption": "里约热内卢皇家葡萄牙语阅览室，巴西",
+  "title": "皇家葡萄牙语阅览室，里约热内卢，巴西",
+  "description": "今天，我们走进巴西里约热内卢的皇家葡萄牙语阅览室。在这里，翻开一本书这一朴素举动，被赋予了宏伟的建筑抱负。巴西独立仅15年后，43名葡萄牙移民于1837年创办了这家机构；约半个世纪后，机构最终迁入眼前这座以华丽的新曼努埃尔式建成的建筑。书架环绕宽阔的阅览大厅，高逾70英尺；大厅上方覆盖着一扇巨型彩绘玻璃天窗，让自然光也成为设计的一部分。",
+  "copyright": "© Antonio Salaverry/Shutterstock",
+  "date": "2026 10月 24",
+  "clickUrl": "/search?q=%e7%9a%87%e5%ae%b6%e8%91%a1%e8%90%84%e7%89%99%e8%af%ad%e9%98%85%e8%a7%88%e5%ae%a4&form=hpcapt&filters=HpDate:\"20261023_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.PortugueseLibrary_ZH-CN7096893027_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.PortugueseLibrary_ZH-CN7096893027_UHD.jpg",
+      "wallpaper": ""
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.PortugueseLibrary_ZH-CN7096893027_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.PortugueseLibrary_ZH-CN7096893027_1080x1920.jpg",
+      "wallpaper": ""
+    }
+  },
+  "descriptionPara2": "这座建筑成了连接两个国家的桥梁：其外立面在里斯本雕刻完成，横越大西洋运抵里约热内卢，再于当地组装。最终成果令人惊叹，2014年，它入选世界最美的20座图书馆。这里于1900年向公众开放，如今收藏着数十万册书籍，是葡萄牙境外规模最大的葡萄牙文学藏书地。然而，在这一切繁复华美与宏伟气象之下，最初的理念依旧简单而美好：让人们有书可读。",
+  "descriptionPara3": "",
+  "isoDate": "20261024",
+  "headline": "书香里的极致华美",
+  "quickFact": "据场馆官网介绍，皇家葡萄牙语阅览室工作日10时至17时免费开放参观。",
+  "triviaId": "HPQuiz_20261024_PortugueseLibrary",
+  "triviaData": {
+    "question": "哪座城市拥有葡萄牙皇家阅览室？",
+    "options": [
+      {
+        "text": "里约热内卢",
+        "url": "/search?q=%E9%87%8C%E7%BA%A6%E7%83%AD%E5%86%85%E5%8D%A2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261024_PortugueseLibrary%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "里斯本",
+        "url": "/search?q=%E9%87%8C%E7%BA%A6%E7%83%AD%E5%86%85%E5%8D%A2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261024_PortugueseLibrary%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "波尔图",
+        "url": "/search?q=%E9%87%8C%E7%BA%A6%E7%83%AD%E5%86%85%E5%8D%A2&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261024_PortugueseLibrary%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
