@@ -59,8 +59,14 @@ function fakeElement() {
   };
 }
 
+function deferred() {
+  let resolve;
+  const promise = new Promise(done => { resolve = done; });
+  return { promise, resolve };
+}
+
 /**
- * Run the real boot.js, and the wallpaper.js it loads, as classic scripts in
+ * Run early-preview.js, boot.js and the wallpaper.js it loads as classic scripts in
  * one global scope against mocked Chrome, Cache Storage and DOM. `worker`
  * answers ensureWallpaperCached requests, `quotes` the quote lease and
  * submission messages, `migration` the migrationStatus request (by default
@@ -70,7 +76,7 @@ function fakeElement() {
  * for. `quotePage` maps selectors to elements of Bing's parsed quote page;
  * without it the quote page cannot be fetched. `sync` seeds sync storage.
  */
-async function openNewTab({ local = {}, cached = [], undecodable = [], networkStatus = 'online', worker = () => ({ ok: false }), quotes = () => ({ ok: true }), acknowledge = () => ({ ok: true }), migration = (message, opened) => ({ phase: opened.local.wallpaper_migration_v2_state?.phase ?? null }), heldReads = {}, quotePage, sync = {} } = {}) {
+async function openNewTab({ local = {}, cached = [], undecodable = [], networkStatus = 'online', worker = () => ({ ok: false }), quotes = () => ({ ok: true }), acknowledge = () => ({ ok: true }), migration = (message, opened) => ({ phase: opened.local.wallpaper_migration_v2_state?.phase ?? null }), heldReads = {}, quotePage, sync = {}, confReady = Promise.resolve(), earlyRead = opened => opened.local[DISPLAY_STATE_KEY], bodyPresent = true } = {}) {
   const page = {
     local: structuredClone(local),
     sync: structuredClone(sync),
@@ -81,7 +87,10 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
     messages: [],
     backgrounds: [],
     listeners: [],
-    storageListeners: []
+    storageListeners: [],
+    bodyPresent,
+    bodyObservers: [],
+    earlyReads: []
   };
 
   const elements = new Map();
@@ -136,6 +145,15 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
           : Promise.resolve();
       }
     },
+    MutationObserver: class {
+      constructor(callback) {
+        this.callback = callback;
+        this.active = false;
+        page.bodyObservers.push(this);
+      }
+      observe() { this.active = true; }
+      disconnect() { this.active = false; }
+    },
     FileReader: class {
       readAsDataURL(blob) {
         this.result = `data:image/jpeg;base64,${Buffer.from(blob.url).toString('base64')}`;
@@ -162,6 +180,12 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
         }
       },
       storage: {
+        local: {
+          get: async (key) => {
+            page.earlyReads.push(key);
+            return { [key]: structuredClone(await earlyRead(page)) };
+          }
+        },
         sync: {
           get: async key => Object.fromEntries([key].flat().filter(k => k in page.sync).map(k => [k, page.sync[k]]))
         },
@@ -171,7 +195,7 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
   });
   context.window = context;
   context.addEventListener = () => {};
-  context.confReadyPromise = Promise.resolve();
+  context.confReadyPromise = confReady;
 
   const run = file => vm.runInContext(fs.readFileSync(path.join(ROOT, file), 'utf8'), context, {
     filename: path.join(ROOT, file),
@@ -179,7 +203,7 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
   });
   context.document = {
     documentElement: { dataset: { networkStatus } },
-    getElementById: page.element,
+    getElementById: id => id === 'main-body' && !page.bodyPresent ? null : page.element(id),
     createElement: () => fakeElement(),
     // boot.js loads the page scripts by appending script elements.
     body: {
@@ -190,6 +214,7 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
     }
   };
 
+  run('scripts/early-preview.js');
   run('scripts/boot.js');
   page.settled = async (condition) => {
     for (let i = 0; i < 200 && !condition(); i++) {
@@ -201,6 +226,89 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
 }
 
 describe('new tab page scripts', () => {
+  describe('early committed preview', () => {
+    const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
+    const state = { [CATALOG_KEY]: catalog(), [DISPLAY_STATE_KEY]: snapshot };
+
+    it('paints from a targeted read while full configuration remains pending', async () => {
+      const config = deferred();
+      const page = await openNewTab({ local: state, confReady: config.promise, cached: [PREVIEW, UHD] });
+      await page.settled(() => page.backgrounds.length === 1);
+      assert.deepStrictEqual(page.earlyReads, [DISPLAY_STATE_KEY]);
+      assert.strictEqual(page.messages.length, 0, 'the main application still waits for configuration');
+      assert.deepStrictEqual(page.backgrounds, [`url('${PREVIEW_DATA_URL}')`]);
+      config.resolve();
+      await page.settled(() => page.backgrounds.at(-1) === `url('blob:${UHD}')`);
+      assert.strictEqual(page.backgrounds.length, 2);
+    });
+
+    it('prepares a snapshot read before the body exists and paints once it appears', async () => {
+      const config = deferred();
+      const page = await openNewTab({ local: state, confReady: config.promise, bodyPresent: false, cached: [UHD] });
+      await page.settled(() => page.bodyObservers.length === 1);
+      assert.deepStrictEqual(page.backgrounds, []);
+      const observer = page.bodyObservers[0];
+      page.bodyPresent = true;
+      observer.callback();
+      observer.callback();
+      assert.deepStrictEqual(page.backgrounds, [`url('${PREVIEW_DATA_URL}')`]);
+      assert.strictEqual(observer.active, false);
+      config.resolve();
+      await page.settled(() => page.backgrounds.at(-1) === `url('blob:${UHD}')`);
+    });
+
+    it('does not replace a successful early preview with another config-cache preview', async () => {
+      const config = deferred();
+      const early = { date: OLDER, imageId: OLDER_ID, url: OLDER_UHD, preloadDataUrl: 'data:image/jpeg;base64,b2xkZXI=', updatedAt: Date.now() };
+      const page = await openNewTab({ local: state, earlyRead: () => early, confReady: config.promise, cached: [UHD] });
+      await page.settled(() => page.backgrounds.length === 1);
+      config.resolve();
+      await page.settled(() => page.backgrounds.at(-1) === `url('blob:${UHD}')`);
+      assert.deepStrictEqual(page.backgrounds, [`url('${early.preloadDataUrl}')`, `url('blob:${UHD}')`]);
+    });
+
+    it('uses normal startup when the early read fails', async () => {
+      const page = await openNewTab({ local: state, cached: [UHD], earlyRead: () => Promise.reject(new Error('storage unavailable')) });
+      await page.settled(() => page.backgrounds.at(-1) === `url('blob:${UHD}')`);
+      assert.deepStrictEqual(page.backgrounds, [`url('${PREVIEW_DATA_URL}')`, `url('blob:${UHD}')`]);
+    });
+
+    it('keeps the config fallback for missing, empty or invalid early previews', async () => {
+      for (const early of [undefined, {}, { preloadDataUrl: '' }, { preloadDataUrl: 42 }, { preloadDataUrl: 'https://example.com/image.jpg' }]) {
+        const config = deferred();
+        const page = await openNewTab({ local: state, cached: [UHD], earlyRead: () => early, confReady: config.promise });
+        await new Promise(resolve => setImmediate(resolve));
+        assert.deepStrictEqual(page.backgrounds, []);
+        config.resolve();
+        await page.settled(() => page.backgrounds.at(-1) === `url('blob:${UHD}')`);
+        assert.deepStrictEqual(page.backgrounds, [`url('${PREVIEW_DATA_URL}')`, `url('blob:${UHD}')`]);
+      }
+    });
+
+    it('does not block startup or overwrite a final image when its read resolves late', async () => {
+      const pending = deferred();
+      const page = await openNewTab({ local: state, cached: [UHD], earlyRead: () => pending.promise });
+      await page.settled(() => page.backgrounds.at(-1) === `url('blob:${UHD}')`);
+      const backgrounds = [...page.backgrounds];
+      pending.resolve(snapshot);
+      await new Promise(resolve => setImmediate(resolve));
+      assert.deepStrictEqual(page.backgrounds, backgrounds);
+    });
+
+    it('rejects a queued body-observer callback after normal startup takes over', async () => {
+      const config = deferred();
+      const page = await openNewTab({ local: state, cached: [UHD], confReady: config.promise, bodyPresent: false });
+      await page.settled(() => page.bodyObservers.length === 1);
+      page.bodyPresent = true;
+      config.resolve();
+      await page.settled(() => page.backgrounds.at(-1) === `url('blob:${UHD}')`);
+      const backgrounds = [...page.backgrounds];
+      page.bodyObservers[0].callback();
+      assert.deepStrictEqual(page.backgrounds, backgrounds);
+      assert.strictEqual(page.bodyObservers[0].active, false);
+    });
+  });
+
   it('paints the committed preview at boot, then applies the cached final image without fetching it', async () => {
     const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
     const page = await openNewTab({

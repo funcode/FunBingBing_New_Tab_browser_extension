@@ -66,6 +66,9 @@ the extension-controlled first paint.
 - Warm-cache startup may transition from the browser frame or Gradient to the
   cached preview and then to the final image, but the extension performs no
   additional background-color swap and the final image swaps only once.
+- The preview-to-final resolution change is intentional and remains supported.
+  Flash reduction targets visible white frames and Gradient exposure, not that
+  resolution change; the browser-rendering boundary above still applies.
 - Verification records the browser's initial frame separately when testing a new
   tab from both dark and light browser modes; a pre-document white or black frame
   is recorded as browser behavior, not as an ADR-0006 failure.

@@ -1,9 +1,11 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
+import { addDays, getZhCnTargetDate } from '../src/helpers/date.js';
 import { createEmptyCatalog } from '../src/worker/catalog.js';
 import { STORAGE_KEYS } from '../src/worker/storage-keys.js';
 
-const TARGET = '20261013';
+const TARGET = getZhCnTargetDate();
+const LEGACY_DATE = addDays(TARGET, -1);
 const ID = `OHR.Day${TARGET}_ZH-CN1`;
 const PREVIEW = `https://ts1.tc.mm.bing.net/th?id=${ID}_640x360.jpg`;
 const HD = `https://ts1.tc.mm.bing.net/th?id=${ID}_1920x1080.jpg`;
@@ -149,9 +151,9 @@ describe('worker message handlers', () => {
     const legacyId = 'OHR.Legacy_ZH-CN2';
     const worker = await loadWorker({
       local: {
-        bing_images: [{ isoDate: '20261012', imageUrls: { landscape: { highDef: `/th?id=${legacyId}_1920x1080.jpg` } } }],
+        bing_images: [{ isoDate: LEGACY_DATE, imageUrls: { landscape: { highDef: `/th?id=${legacyId}_1920x1080.jpg` } } }],
         wallpaper_url: `https://ts1.tc.mm.bing.net/th?id=${legacyId}_1920x1080.jpg`,
-        wallpaper_date: '20261012',
+        wallpaper_date: LEGACY_DATE,
         wallpaper_preload_data_url: 'data:image/jpeg;base64,TEdBQ1k=',
         show_clock: 'no'
       }
@@ -160,7 +162,7 @@ describe('worker message handlers', () => {
     // Catalog work waits for the migration, which never writes display state.
     await worker.send({ type: 'refreshWallpaperCatalog' });
     assert.strictEqual(worker.local[STORAGE_KEYS.migration].phase, 'verified');
-    assert.strictEqual(worker.local[STORAGE_KEYS.catalog].entries['20261012'].imageId, legacyId);
+    assert.strictEqual(worker.local[STORAGE_KEYS.catalog].entries[LEGACY_DATE].imageId, legacyId);
     assert.strictEqual(await chrome.storage.sync.get('show_clock').then(items => items.show_clock), 'no');
     assert.ok(!(STORAGE_KEYS.displayState in worker.local));
 
@@ -169,7 +171,7 @@ describe('worker message handlers', () => {
     assert.strictEqual(worker.local[STORAGE_KEYS.migration].phase, 'verified');
 
     worker.local[STORAGE_KEYS.displayState] = {
-      date: '20261012', imageId: legacyId, url: `https://ts1.tc.mm.bing.net/th?id=${legacyId}_1920x1080.jpg`, preloadDataUrl: '', updatedAt: 0
+      date: LEGACY_DATE, imageId: legacyId, url: `https://ts1.tc.mm.bing.net/th?id=${legacyId}_1920x1080.jpg`, preloadDataUrl: '', updatedAt: 0
     };
     assert.deepStrictEqual(await worker.send({ type: 'migrationDisplayStateReady' }), { ok: true });
     assert.strictEqual(worker.local[STORAGE_KEYS.migration].phase, 'complete');

@@ -1,11 +1,8 @@
-// Page-owned display snapshot. wallpaper.js shares this global scope and uses
-// the same constant.
-const DISPLAY_STATE_KEY = 'wallpaper_display_state_v2';
-
 // Paint the committed display snapshot's preview before wallpaper.js loads.
 // The snapshot is trusted as an atomic unit; its identity is never inferred
 // from the data URL bytes.
 function paintCommittedPreview() {
+  if (finishEarlyWallpaperPreview()) return;
   try {
     const body = document.getElementById('main-body');
     if (!body || typeof readConf !== 'function') return;

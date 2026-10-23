@@ -13,7 +13,7 @@ const CATALOG_KEY = 'bing_wallpaper_catalog_v2';
 const QUOTE_STATE_KEY = 'cache_quote_state_v2';
 // The worker owns the migration marker; the page only reads it.
 const MIGRATION_STATE_KEY = 'wallpaper_migration_v2_state';
-// DISPLAY_STATE_KEY is declared by boot.js, which shares this global scope.
+// DISPLAY_STATE_KEY is declared by early-preview.js in this global scope.
 
 let currentWallpaperObjectUrl = null;
 let currentImageDate = null;

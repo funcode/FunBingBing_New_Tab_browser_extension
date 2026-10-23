@@ -2,7 +2,15 @@
 # Run the extension's unit tests when a commit touches extension/.
 # Enable once per clone: git config core.hooksPath .githooks
 if git diff --cached --name-only | grep -q '^extension/'; then
-  cd extension && node --test tests/*.test.js || {
+  if command -v node >/dev/null 2>&1; then
+    node_command=node
+  elif command -v node.exe >/dev/null 2>&1; then
+    node_command=node.exe
+  else
+    echo "pre-commit: Node.js was not found in PATH" >&2
+    exit 1
+  fi
+  cd extension && "$node_command" --test tests/*.test.js || {
     echo "pre-commit: extension unit tests failed" >&2
     exit 1
   }

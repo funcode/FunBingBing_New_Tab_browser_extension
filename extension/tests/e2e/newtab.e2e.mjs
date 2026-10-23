@@ -52,6 +52,83 @@ describe('new tab page in the loaded extension', () => {
     await page.close();
   });
 
+  it('paints the committed preview before complete configuration is available', async () => {
+    const committed = snapshotOf(A, BOOT_PREVIEW);
+    await seed({ days: [A], displayState: committed, cached: [final(A), preview(A)] });
+    const page = await context.newPage();
+    await page.addInitScript(() => {
+      let held = true;
+      const pending = [];
+      window.__releaseConfig = () => {
+        held = false;
+        pending.splice(0).forEach(resume => resume());
+      };
+      for (const name of ['local', 'sync']) {
+        const area = chrome.storage[name];
+        const get = area.get.bind(area);
+        area.get = (keys) => {
+          if (name === 'local' && keys === 'wallpaper_display_state_v2') {
+            window.__firstDisplayRead ??= {
+              hasBody: Boolean(document.body),
+              stylesheets: document.querySelectorAll('link[rel="stylesheet"]').length
+            };
+          }
+          if (held && (name === 'sync' || keys === null)) {
+            return new Promise((resolve, reject) => pending.push(() => get(keys).then(resolve, reject)));
+          }
+          return get(keys);
+        };
+      }
+    });
+    try {
+      await page.goto('chrome://newtab/');
+      await page.waitForFunction(() => document.getElementById('main-body').style.backgroundImage.startsWith('url("data:'), null, { timeout: 2000 });
+      assert.deepStrictEqual(await backgroundKinds(page), ['data']);
+      assert.deepStrictEqual(await page.evaluate(() => window.__firstDisplayRead), { hasBody: false, stylesheets: 0 });
+      await page.evaluate(() => window.__releaseConfig());
+      await showsFinal(page);
+      assert.deepStrictEqual(await backgroundKinds(page), ['data', 'blob']);
+      assert.deepStrictEqual(await readDisplayState(page), committed);
+    } finally {
+      await page.close();
+    }
+  });
+
+  it('ignores an early preview read that resolves after the user navigates', async () => {
+    await seed({ days: [A, B], displayState: snapshotOf(A, BOOT_PREVIEW), cached: [final(A), preview(A), final(B), preview(B)] });
+    const page = await context.newPage();
+    await page.addInitScript(() => {
+      const get = chrome.storage.local.get.bind(chrome.storage.local);
+      let first = true;
+      chrome.storage.local.get = (keys) => {
+        const result = get(keys);
+        if (keys !== 'wallpaper_display_state_v2' || !first) return result;
+        first = false;
+        return new Promise((resolve, reject) => {
+          window.__releaseEarlyPreview = () => result.then(resolve, reject);
+        });
+      };
+    });
+    try {
+      await page.goto('chrome://newtab/');
+      await showsFinal(page);
+      await previous(page);
+      await headlineIs(page, 'Older headline');
+      await displayStateWhen(page, snapshot => snapshot?.date === B.date);
+      const background = await inlineBackground(page);
+      const count = await backgroundCount(page);
+      await page.evaluate(async () => {
+        window.__releaseEarlyPreview();
+        await new Promise(requestAnimationFrame);
+      });
+      assert.strictEqual(await inlineBackground(page), background);
+      assert.strictEqual(await backgroundCount(page), count);
+      assert.strictEqual((await readDisplayState(page)).date, B.date);
+    } finally {
+      await page.close();
+    }
+  });
+
   it('with an empty committed preview, applies the cached final at once and repairs the preview; boot never paints the legacy preview', async () => {
     await seed({
       days: [A],

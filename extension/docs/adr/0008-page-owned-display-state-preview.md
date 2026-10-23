@@ -26,10 +26,16 @@ the migration is intended to remove.
   value. Failed navigation leaves the previous snapshot unchanged.
 - The worker exclusively writes the catalog and Cache Storage. It never writes
   `wallpaper_preload_data_url` or the v2 display state.
-- `boot.js` reads the current context's v2 display state and paints its
-  `preloadDataUrl` when present. It trusts the atomic display-state snapshot and
-  does not try to infer an identity from the data URL bytes. The legacy untagged
-  key is migration input only and is not copied into v2.
+- Before external stylesheets, `early-preview.js` reads only the current v2
+  display snapshot from `chrome.storage.local`, prepares its preview and applies
+  it when the body exists, independently of full local/sync configuration.
+  It is visual state only and does not seed the controller's initial selection.
+  `boot.js` closes this early phase before loading the main application, so late
+  reads or body callbacks cannot overwrite later images. If no early preview was
+  applied, it retains the configuration-cache preview fallback. Both paths trust
+  the atomic snapshot rather than inferring identity from the data URL bytes.
+  There is no localStorage mirror; the legacy untagged key remains migration
+  input only and is not copied into v2.
 - Every new-tab initialization independently checks Cache Storage for the
   committed `date + imageId`, even when `preloadDataUrl` is empty. It displays a
   cached final response immediately and reconstructs the matching preview data
