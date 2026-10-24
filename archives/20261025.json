@@ -1,0 +1,46 @@
+{
+  "caption": "艾伯塔省的贾斯珀国家公园，加拿大",
+  "title": "玛琳湖，贾斯珀国家公园，艾伯塔省，加拿大",
+  "description": "夜幕降临加拿大艾伯塔省的贾斯珀国家公园时，群山便有了全新的背景。该公园于2011年被指定为暗夜天空保护区，面积超过11,000平方千米，并采取了减少光污染的措施。在这里，繁星、行星和银河系联袂上演天幕奇观，让游客不由得仰望天空。晨光到来后，视线又从头顶的天空转向脚下的景致。",
+  "copyright": "© Andrey Popov/Getty Images",
+  "date": "2026 10月 25",
+  "clickUrl": "/search?q=%e7%8e%9b%e7%90%b3%e6%b9%96&form=hpcapt&filters=HpDate:\"20261024_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.MaligneFest_ZH-CN8343066766_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.MaligneFest_ZH-CN8343066766_UHD.jpg",
+      "wallpaper": "/th?id=OHR.MaligneFest_ZH-CN8343066766_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.MaligneFest_ZH-CN8343066766_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.MaligneFest_ZH-CN8343066766_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.MaligneFest_ZH-CN8343066766_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "贾斯珀国家公园的森林中分布着成片的杨树和花旗松，高山草甸与草原则令这里的山地栖息地更显多样。这些景观孕育着53种哺乳动物，包括灰熊、美洲黑熊、马鹿、驼鹿、大角羊、雪羊、狼和郊狼。玛琳湖也是一大亮点。这座由冰川补给的湖泊长22千米，是加拿大落基山脉最大的天然湖泊。湖边设有步道，划船者也可以沿着漫长的湖岸探索，不过即使在夏季，湖水依然十分寒冷。从繁星满天的夜晚到野生动物出没的白昼，贾斯珀国家公园总能让人兴味盎然。",
+  "descriptionPara3": "",
+  "isoDate": "20261025",
+  "headline": "群峰与宁静相遇之地",
+  "quickFact": "据加拿大公园管理局介绍，精灵岛距玛琳湖北岸14公里，只能乘船抵达。",
+  "triviaId": "HPQuiz_20261025_MaligneFest",
+  "triviaData": {
+    "question": "哪个加拿大省份拥有贾斯珀国家公园？",
+    "options": [
+      {
+        "text": "不列颠哥伦比亚省",
+        "url": "/search?q=%E9%98%BF%E5%B0%94%E4%BC%AF%E5%A1%94&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261025_MaligneFest%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "萨斯喀彻温",
+        "url": "/search?q=%E9%98%BF%E5%B0%94%E4%BC%AF%E5%A1%94&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261025_MaligneFest%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "阿尔伯塔",
+        "url": "/search?q=%E9%98%BF%E5%B0%94%E4%BC%AF%E5%A1%94&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261025_MaligneFest%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
