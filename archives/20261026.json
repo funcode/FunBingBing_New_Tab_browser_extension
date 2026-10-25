@@ -1,0 +1,46 @@
+{
+  "caption": "普罗夫迪夫州西托沃附近的秋日瀑布",
+  "title": "秋日瀑布，西托沃附近，普罗夫迪夫州，保加利亚",
+  "description": "在保加利亚的西罗多彼山脉，秋叶汇聚在奔腾的西托沃瀑布旁。瀑布位于普罗夫迪夫西南方向的西托沃村附近，从一座古老石桥下倾泻而下；桥拱如画框般圈住飞瀑，宛若童话书中的场景。覆满苔藓的石头和松树为秋日景观添上层层绿意，落叶则堆积在水边，或漂过一汪汪水潭。雨后和春季融雪期间，瀑布尤其奔涌欢腾，湍急水声回荡在周围的林地间。",
+  "copyright": "© Nadya85/Getty Images",
+  "date": "2026 10月 26",
+  "clickUrl": "/search?q=%e4%bf%9d%e5%8a%a0%e5%88%a9%e4%ba%9a%e6%99%ae%e7%bd%97%e5%a4%ab%e8%bf%aa%e5%a4%ab%e8%a5%bf%e6%89%98%e6%b2%83&form=hpcapt&filters=HpDate:\"20261025_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SitovoWaterfall_ZH-CN8495214046_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SitovoWaterfall_ZH-CN8495214046_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SitovoWaterfall_ZH-CN8495214046_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SitovoWaterfall_ZH-CN8495214046_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SitovoWaterfall_ZH-CN8495214046_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SitovoWaterfall_ZH-CN8495214046_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "西托沃拥有的不只是自然风光。村里保留着传统的罗多彼民居，附近的岩棚中则留有神秘的西托沃铭文——一系列刻在石头上的符号。这段铭文最早于1928年被记录，至今仍未得到释读，其起源、语言、含义和年代依然无法确定。在保加利亚这片更为幽静的角落，流水、岩石、森林与谜团交汇在一起。",
+  "descriptionPara3": "",
+  "isoDate": "20261026",
+  "headline": "大自然的秋日乐章",
+  "quickFact": "西罗多彼山脉被认定为关键生物多样性区域，这是对全球生物多样性至关重要地点的一项全球认定。",
+  "triviaId": "HPQuiz_20261026_SitovoWaterfall",
+  "triviaData": {
+    "question": "哪座山脉有西托沃瀑布？",
+    "options": [
+      {
+        "text": "皮林山脉",
+        "url": "/search?q=%E7%BD%97%E5%A4%9A%E5%BD%BC%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261026_SitovoWaterfall%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "里拉山脉",
+        "url": "/search?q=%E7%BD%97%E5%A4%9A%E5%BD%BC%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261026_SitovoWaterfall%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "罗多彼山脉",
+        "url": "/search?q=%E7%BD%97%E5%A4%9A%E5%BD%BC%E5%B1%B1%E8%84%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261026_SitovoWaterfall%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
