@@ -6,35 +6,40 @@ const finishEarlyWallpaperPreview = (() => {
   let active = true;
   let painted = false;
   let observer;
+  const pageIsOffline = () => document.documentElement.dataset.networkStatus === 'offline';
 
-  chrome.storage.local.get(DISPLAY_STATE_KEY).then((items) => {
-    if (!active) return;
-    const preloadDataUrl = items?.[DISPLAY_STATE_KEY]?.preloadDataUrl;
-    if (typeof preloadDataUrl !== 'string' || !preloadDataUrl.startsWith('data:image/')) return;
+  // The opaque offline page is the first extension surface; do not prepare a
+  // hidden wallpaper that can become an intermediate compositor frame.
+  if (!pageIsOffline()) {
+    chrome.storage.local.get(DISPLAY_STATE_KEY).then((items) => {
+      if (!active || pageIsOffline()) return;
+      const preloadDataUrl = items?.[DISPLAY_STATE_KEY]?.preloadDataUrl;
+      if (typeof preloadDataUrl !== 'string' || !preloadDataUrl.startsWith('data:image/')) return;
 
-    // Prepare the image while parsing continues; painting never waits for decode.
-    const image = new Image();
-    image.src = preloadDataUrl;
-    if (typeof image.decode === 'function') image.decode().catch(() => {});
+      // Prepare the image while parsing continues; painting never waits for decode.
+      const image = new Image();
+      image.src = preloadDataUrl;
+      if (typeof image.decode === 'function') image.decode().catch(() => {});
 
-    const paint = () => {
-      if (!active) return;
-      const body = document.getElementById('main-body');
-      if (!body) return;
-      body.style.backgroundImage = `url('${preloadDataUrl}')`;
-      body.style.backgroundColor = '';
-      painted = true;
-      active = false;
-      observer?.disconnect();
-    };
-    paint();
-    if (active) {
-      observer = new MutationObserver(paint);
-      observer.observe(document.documentElement, { childList: true, subtree: true });
-    }
-  }).catch((err) => {
-    console.warn('Unable to read early wallpaper preview:', err);
-  });
+      const paint = () => {
+        if (!active || pageIsOffline()) return;
+        const body = document.getElementById('main-body');
+        if (!body) return;
+        body.style.backgroundImage = `url('${preloadDataUrl}')`;
+        body.style.backgroundColor = '';
+        painted = true;
+        active = false;
+        observer?.disconnect();
+      };
+      paint();
+      if (active) {
+        observer = new MutationObserver(paint);
+        observer.observe(document.documentElement, { childList: true, subtree: true });
+      }
+    }).catch((err) => {
+      console.warn('Unable to read early wallpaper preview:', err);
+    });
+  }
 
   return () => {
     active = false;

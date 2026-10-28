@@ -370,6 +370,13 @@ const MIGRATION_COMPLETE = Object.freeze({ version: 2, phase: 'complete' });
 export async function seed({
   days = [], targetDate, displayState, cached = [], local = {}, sync = { enable_uhd_wallpaper: 'yes' }
 } = {}) {
+  // Blocked DNS must not turn an online scenario into an offline page.
+  // Outage tests can override this route while navigator.onLine stays true.
+  await context.unroute('https://www.bing.com/favicon.ico');
+  await context.route('https://www.bing.com/favicon.ico', async (route) => {
+    const online = await route.request().frame().evaluate(() => navigator.onLine).catch(() => false);
+    await (online ? route.fulfill({ status: 200, body: '' }) : route.abort()).catch(() => {});
+  });
   const items = { [CATALOG_KEY]: catalogOf(days, targetDate), [MIGRATION_KEY]: MIGRATION_COMPLETE, ...local };
   if (displayState) {
     items[DISPLAY_STATE_KEY] = displayState;
@@ -377,6 +384,7 @@ export async function seed({
   // The restarted worker's start-up migration must find nothing to migrate,
   // and sync is written first: work the change starts dies with the restart.
   await control.evaluate(async (marker) => {
+    localStorage.removeItem('funbingbing_network_status');
     await chrome.storage.local.clear();
     await chrome.storage.local.set(marker);
   }, { [MIGRATION_KEY]: MIGRATION_COMPLETE });

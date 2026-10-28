@@ -4,15 +4,29 @@ const connectionCheckInterval = 15000; // 15 seconds
 const MAX_FETCH_RETRIES = 2; // retry twice on failure -> total 3 attempts
 const RETRY_DELAY_MS = 1000;
 const NETWORK_STATUS_EVENT = 'funbingbing:networkstatuschange';
+const NETWORK_STATUS_KEY = 'funbingbing_network_status';
 
 let networkStatus = navigator.onLine ? 'online' : 'offline';
 let connectionCheckPromise = null;
+
+// Restore before first paint: the OS may still report online during an outage.
+try {
+  if (localStorage.getItem(NETWORK_STATUS_KEY) === 'offline') networkStatus = 'offline';
+  if (!navigator.onLine) localStorage.setItem(NETWORK_STATUS_KEY, 'offline');
+} catch (error) {
+  console.warn('Unable to restore network status:', error);
+}
 
 document.documentElement.dataset.networkStatus = networkStatus;
 
 console.log('Current online status:', navigator.onLine);
 
 function setNetworkStatus(nextStatus) {
+  try {
+    localStorage.setItem(NETWORK_STATUS_KEY, nextStatus);
+  } catch (error) {
+    console.warn('Unable to save network status:', error);
+  }
   if (networkStatus === nextStatus) return;
 
   const previousStatus = networkStatus;

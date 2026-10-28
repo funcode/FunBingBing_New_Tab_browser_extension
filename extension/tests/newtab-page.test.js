@@ -213,6 +213,7 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
       }
     }
   };
+  page.setNetworkStatus = status => { context.document.documentElement.dataset.networkStatus = status; };
 
   run('scripts/early-preview.js');
   run('scripts/boot.js');
@@ -295,6 +296,18 @@ describe('new tab page scripts', () => {
       assert.deepStrictEqual(page.backgrounds, backgrounds);
     });
 
+    it('drops a pending early preview when the page becomes offline before the read resolves', async () => {
+      const config = deferred();
+      const pending = deferred();
+      const page = await openNewTab({ local: state, confReady: config.promise, earlyRead: () => pending.promise });
+      page.setNetworkStatus('offline');
+      pending.resolve(snapshot);
+      await new Promise(resolve => setImmediate(resolve));
+      config.resolve();
+      await page.settled(() => typeof page.element('leftNav').onclick === 'function');
+      assert.deepStrictEqual(page.backgrounds, []);
+    });
+
     it('rejects a queued body-observer callback after normal startup takes over', async () => {
       const config = deferred();
       const page = await openNewTab({ local: state, cached: [UHD], confReady: config.promise, bodyPresent: false });
@@ -352,7 +365,7 @@ describe('new tab page scripts', () => {
     assert.strictEqual(page.cacheWrites, 0);
   });
 
-  it('displays the cached wallpaper when the tab opens offline', async () => {
+  it('does not read the early preview or paint cached wallpaper when the tab opens offline', async () => {
     const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
     const page = await openNewTab({
       local: { [CATALOG_KEY]: catalog(), [DISPLAY_STATE_KEY]: snapshot },
@@ -360,9 +373,44 @@ describe('new tab page scripts', () => {
       networkStatus: 'offline'
     });
 
-    await page.settled(() => page.backgrounds.length === 2);
+    await page.settled(() => typeof page.element('leftNav').onclick === 'function');
 
-    assert.deepStrictEqual(page.backgrounds, [`url('${PREVIEW_DATA_URL}')`, `url('blob:${UHD}')`]);
+    assert.deepStrictEqual(page.earlyReads, []);
+    assert.deepStrictEqual(page.backgrounds, []);
+  });
+
+  it('does not initialize wallpaper from a catalog notification while offline', async () => {
+    const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
+    const page = await openNewTab({
+      local: { [CATALOG_KEY]: catalog(), [DISPLAY_STATE_KEY]: snapshot },
+      cached: [PREVIEW, UHD],
+      networkStatus: 'offline',
+      sync: { enable_uhd_wallpaper: 'yes' }
+    });
+    await page.settled(() => page.listeners.length > 0);
+
+    for (const listener of page.listeners) {
+      listener({ type: 'wallpaperCatalogUpdated', dates: [TARGET] });
+    }
+    await new Promise(resolve => setTimeout(resolve, 20));
+    assert.deepStrictEqual(page.backgrounds, []);
+  });
+
+  it('does not initialize wallpaper from a resolution notification while offline', async () => {
+    const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
+    const page = await openNewTab({
+      local: { [CATALOG_KEY]: catalog(), [DISPLAY_STATE_KEY]: snapshot },
+      cached: [PREVIEW, UHD],
+      networkStatus: 'offline',
+      sync: { enable_uhd_wallpaper: 'yes' }
+    });
+    await page.settled(() => page.storageListeners.length > 0);
+
+    for (const listener of page.storageListeners) {
+      listener({ enable_uhd_wallpaper: { oldValue: 'no', newValue: 'yes' } }, 'sync');
+    }
+    await new Promise(resolve => setTimeout(resolve, 20));
+    assert.deepStrictEqual(page.backgrounds, []);
   });
 
   it('keeps the current wallpaper, headline and snapshot when the destination image cannot be decoded', async () => {

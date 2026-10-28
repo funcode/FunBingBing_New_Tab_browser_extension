@@ -26,9 +26,10 @@ the migration is intended to remove.
   value. Failed navigation leaves the previous snapshot unchanged.
 - The worker exclusively writes the catalog and Cache Storage. It never writes
   `wallpaper_preload_data_url` or the v2 display state.
-- Before external stylesheets, `early-preview.js` reads only the current v2
-  display snapshot from `chrome.storage.local`, prepares its preview and applies
-  it when the body exists, independently of full local/sync configuration.
+- Before external stylesheets, when startup is not already offline,
+  `early-preview.js` reads only the current v2 display snapshot from
+  `chrome.storage.local`, prepares its preview and applies it when the body
+  exists, independently of full local/sync configuration.
   It is visual state only and does not seed the controller's initial selection.
   `boot.js` closes this early phase before loading the main application, so late
   reads or body callbacks cannot overwrite later images. If no early preview was
@@ -36,11 +37,16 @@ the migration is intended to remove.
   the atomic snapshot rather than inferring identity from the data URL bytes.
   There is no localStorage mirror; the legacy untagged key remains migration
   input only and is not copied into v2.
-- Every new-tab initialization independently checks Cache Storage for the
-  committed `date + imageId`, even when `preloadDataUrl` is empty. It displays a
-  cached final response immediately and reconstructs the matching preview data
-  URL when available. Before persisting that repair, the page fresh-reads display
-  state and verifies that `date + imageId + final URL` are still unchanged.
+- When startup is already offline, the page neither reads the early preview nor
+  initializes a cached final-resolution wallpaper behind the opaque offline
+  view. Normal wallpaper initialization begins after the offline-to-online
+  transition.
+- Every wallpaper initialization—during online startup or after reconnect—checks
+  Cache Storage for the committed `date + imageId`, even when `preloadDataUrl` is
+  empty. It displays a cached final response immediately and reconstructs the
+  matching preview data URL when available. Before persisting that repair, the
+  page fresh-reads display state and verifies that
+  `date + imageId + final URL` are still unchanged.
 - Preview repair is opportunistic and must not depend solely on receiving the
   cache-completion notification that followed the original display commit. It
   does not delay applying an already cached final image and needs no persisted

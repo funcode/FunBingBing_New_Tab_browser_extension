@@ -7,7 +7,7 @@ const SCRIPT = readFileSync(new URL('../scripts/offline-detection.js', import.me
 
 // Load the classic page script with stubbed browser globals. `connected`
 // decides the result of the 15-second actual-connection check.
-function loadPage({ onLine, connected }) {
+function loadPage({ onLine, connected, localStorage = new Map(), pendingCheck = null }) {
   const windowListeners = {};
   const intervals = [];
   const sentMessages = [];
@@ -16,6 +16,10 @@ function loadPage({ onLine, connected }) {
   const context = {
     console: { log() {}, warn() {} },
     navigator: { onLine },
+    localStorage: {
+      getItem: key => localStorage.get(key) ?? null,
+      setItem: (key, value) => localStorage.set(key, value)
+    },
     document: { documentElement: { dataset: {} } },
     window: {
       addEventListener: (type, listener) => { windowListeners[type] = listener; },
@@ -30,6 +34,7 @@ function loadPage({ onLine, connected }) {
       }
     },
     fetch: async () => {
+      if (pendingCheck) await pendingCheck;
       if (!state.connected) throw new Error('offline');
       return { ok: true };
     },
@@ -37,7 +42,7 @@ function loadPage({ onLine, connected }) {
     setTimeout: (fn) => fn()
   };
   vm.runInNewContext(SCRIPT, context);
-  return { windowListeners, intervals, sentMessages, storageWrites, state };
+  return { windowListeners, intervals, sentMessages, storageWrites, state, document: context.document };
 }
 
 function settle() {
@@ -45,6 +50,51 @@ function settle() {
 }
 
 describe('offline detection reconnect', () => {
+  it('starts a new tab offline immediately after another tab confirmed a connectivity failure', async () => {
+    const localStorage = new Map();
+    const first = loadPage({ onLine: true, connected: false, localStorage });
+    await settle();
+    assert.strictEqual(first.document.documentElement.dataset.networkStatus, 'offline');
+
+    // The OS still reports online, and this tab has not received its probe result.
+    const next = loadPage({ onLine: true, connected: false, localStorage, pendingCheck: new Promise(() => {}) });
+    assert.strictEqual(next.document.documentElement.dataset.networkStatus, 'offline');
+    assert.deepStrictEqual(next.sentMessages, []);
+  });
+
+  it('remembers native offline startup even when no connectivity probe runs', () => {
+    const localStorage = new Map();
+    loadPage({ onLine: false, connected: false, localStorage });
+    const next = loadPage({ onLine: true, connected: false, localStorage, pendingCheck: new Promise(() => {}) });
+    assert.strictEqual(next.document.documentElement.dataset.networkStatus, 'offline');
+  });
+
+  it('clears remembered offline status after a successful probe and refreshes once', async () => {
+    const localStorage = new Map();
+    loadPage({ onLine: true, connected: false, localStorage });
+    await settle();
+    const recovered = loadPage({ onLine: true, connected: true, localStorage });
+    assert.strictEqual(recovered.document.documentElement.dataset.networkStatus, 'offline');
+    await settle();
+    assert.strictEqual(recovered.document.documentElement.dataset.networkStatus, 'online');
+    assert.deepStrictEqual(recovered.sentMessages, [{ type: 'refreshWallpaperCatalog', reconnect: true }]);
+    await recovered.intervals[0]();
+    assert.strictEqual(recovered.sentMessages.length, 1);
+
+    const next = loadPage({ onLine: true, connected: true, localStorage, pendingCheck: new Promise(() => {}) });
+    assert.strictEqual(next.document.documentElement.dataset.networkStatus, 'online');
+  });
+
+  it('continues checking connectivity when localStorage is unavailable', async () => {
+    const localStorage = { get() { throw new Error('unavailable'); }, set() { throw new Error('unavailable'); } };
+    const page = loadPage({ onLine: true, connected: false, localStorage });
+    await settle();
+    assert.strictEqual(page.document.documentElement.dataset.networkStatus, 'offline');
+    page.state.connected = true;
+    await page.intervals[0]();
+    assert.strictEqual(page.document.documentElement.dataset.networkStatus, 'online');
+  });
+
   it('requests a reconnect catalog refresh when the online event follows offline', async () => {
     const page = loadPage({ onLine: false, connected: false });
     page.windowListeners.online();
@@ -66,7 +116,7 @@ describe('offline detection reconnect', () => {
     assert.strictEqual(page.sentMessages.length, 1);
   });
 
-  it('never writes wallpaper_date or other storage when going offline or reconnecting', async () => {
+  it('never writes Chrome storage when going offline or reconnecting', async () => {
     const page = loadPage({ onLine: false, connected: false });
     page.windowListeners.online();
     await settle();

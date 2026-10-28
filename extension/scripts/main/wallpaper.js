@@ -500,6 +500,10 @@ function updateQuoteOnly(image, quoteCache) {
 	renderQuoteSection(getQuoteForImage(image, quoteCache));
 }
 
+function wallpaperInitializationIsDeferred() {
+	return document.documentElement.dataset.networkStatus === 'offline';
+}
+
 async function refreshCurrentQuoteFromStorage() {
 	// quotesUpdated can arrive before this page's confCache sees storage.onChanged.
 	// Fresh-read the quote state written by background before repainting.
@@ -509,6 +513,7 @@ async function refreshCurrentQuoteFromStorage() {
 
 chrome.runtime.onMessage.addListener((message) => {
 	if (message && message.type === 'wallpaperCatalogUpdated') {
+		if (wallpaperInitializationIsDeferred()) return;
 		wallpaperControllerReady
 			.then((controller) => controller.catalogUpdated(message.dates))
 			.catch((err) => console.error('Failed to apply catalog update:', err));
@@ -527,7 +532,10 @@ chrome.runtime.onMessage.addListener((message) => {
 // --------------------------------------------------
 
 // init wallpaper
-initWallpaper().catch((err) => console.error('initWallpaper() failed:', err));
+// Offline startup defers all cached-image work until the reconnect event.
+if (!wallpaperInitializationIsDeferred()) {
+	initWallpaper().catch((err) => console.error('initWallpaper() failed:', err));
+}
 
 window.addEventListener('funbingbing:networkstatuschange', (event) => {
 	if (event.detail?.status === 'online' && event.detail?.previousStatus === 'offline') {
@@ -561,6 +569,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
 	// The open page follows the shared UHD setting to the displayed image's
 	// configured resolution.
 	if (area === 'sync' && 'enable_uhd_wallpaper' in changes) {
+		if (wallpaperInitializationIsDeferred()) return;
 		wallpaperControllerReady
 			.then((controller) => controller.resolutionChanged())
 			.catch((err) => console.error('Failed to apply the resolution change:', err));

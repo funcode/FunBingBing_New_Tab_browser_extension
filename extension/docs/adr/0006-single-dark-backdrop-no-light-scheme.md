@@ -50,11 +50,11 @@ the extension-controlled first paint.
   any inline `background-color` there defeats the gradient.
 - **Do not claim that the extension can eliminate Chromium's pre-document white or
   black frame.** Test that frame separately from the extension's first paint.
-- The legacy offline overlay can obscure the wallpaper. That is implementation
-  context, not an exception to PLAN9's offline cached-display requirement. When
-  adapting offline detection for PLAN9, cached wallpaper must remain visible;
-  where no usable image exists and the backdrop is visible, the same gradient
-  applies. Verify both cached and empty offline startup.
+- The opaque offline view is an explicit exception to the photographic
+  backdrop. When startup is already offline, cached wallpaper work is deferred
+  so neither its preview nor its final-resolution response can become an
+  intermediate frame. The cached state remains available and normal wallpaper
+  initialization begins after reconnection.
 - The `data-wallpaper-fallback` attribute and `.wallpaper-fallback-active` class
   written by `wallpaper.js` are currently inert — no stylesheet targets either.
   They are retained as hooks for a future fallback treatment, not relied upon.
@@ -66,6 +66,8 @@ the extension-controlled first paint.
 - Warm-cache startup may transition from the browser frame or Gradient to the
   cached preview and then to the final image, but the extension performs no
   additional background-color swap and the final image swaps only once.
+- Offline startup transitions directly from the browser-controlled frame to the
+  offline view without assigning a cached preview or final-resolution image.
 - The preview-to-final resolution change is intentional and remains supported.
   Flash reduction targets visible white frames and Gradient exposure, not that
   resolution change; the browser-rendering boundary above still applies.

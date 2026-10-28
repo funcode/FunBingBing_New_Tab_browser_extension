@@ -2,7 +2,8 @@
 // The snapshot is trusted as an atomic unit; its identity is never inferred
 // from the data URL bytes.
 function paintCommittedPreview() {
-  if (finishEarlyWallpaperPreview()) return;
+  const earlyPreviewPainted = finishEarlyWallpaperPreview();
+  if (document.documentElement.dataset.networkStatus === 'offline' || earlyPreviewPainted) return;
   try {
     const body = document.getElementById('main-body');
     if (!body || typeof readConf !== 'function') return;
@@ -57,5 +58,4 @@ function startApp() {
     });
 }
 
-// Started whatever the network status: cached wallpaper is displayed offline too.
 startApp();

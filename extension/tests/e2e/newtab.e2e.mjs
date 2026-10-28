@@ -12,7 +12,7 @@ import {
   cachedUrls, catalogOf, closeTarget, computedBackground, context, day, decodeIsHeld, finish, final,
   headline, headlineIs, holdNextDecode, identityOf, inlineBackground, launch, migrationPhase, next, openIncognitoNewTab,
   openNewTab, preview, previous, readDisplayState, readLocal, releaseDecode, seed, showsFinal, snapshotOf, start,
-  updatingText, worker, workerCaches
+  updatingText, worker, workerCaches, sendMessage
 } from './harness.mjs';
 
 const A = day(0, 'Target', '#a03020');
@@ -322,18 +322,103 @@ describe('new tab page in the loaded extension', () => {
     await page.close();
   });
 
-  it('keeps the cached wallpaper visible behind the offline page', async () => {
+  it('opens the next tab offline before retrying a connection the OS still reports as online', async () => {
+    await seed({ days: [A], displayState: snapshotOf(A, BOOT_PREVIEW), cached: [final(A), preview(A)] });
+    await context.route('https://www.bing.com/favicon.ico', route => route.abort());
+    let first;
+    let page;
+    try {
+      first = await openNewTab();
+      assert.strictEqual(await first.evaluate(() => navigator.onLine), true);
+      await first.waitForFunction(() => document.documentElement.dataset.networkStatus === 'offline');
+      await first.close();
+
+      page = await context.newPage();
+      await page.addInitScript(() => {
+        window.__earlyDisplayStateReads = 0;
+        const fetch = window.fetch;
+        window.fetch = (url, options) => url === 'https://www.bing.com/favicon.ico'
+          ? new Promise(resolve => { window.__reconnect = () => resolve(new Response('', { status: 200 })); })
+          : fetch(url, options);
+        const get = chrome.storage.local.get.bind(chrome.storage.local);
+        chrome.storage.local.get = (keys) => {
+          if (keys === 'wallpaper_display_state_v2') {
+            window.__earlyDisplayStateReads += 1;
+          }
+          return get(keys);
+        };
+      });
+      await page.goto('chrome://newtab/');
+      assert.strictEqual(await page.evaluate(() => document.documentElement.dataset.networkStatus), 'offline');
+      assert.strictEqual(await page.evaluate(() => window.__earlyDisplayStateReads), 0);
+      assert.ok(await page.locator('.offline-search-input').isVisible());
+      assert.strictEqual(await page.locator('#online-view').isVisible(), false);
+      await page.waitForFunction(() => typeof initWallpaper === 'function');
+      assert.deepStrictEqual(await backgroundKinds(page), []);
+      assert.strictEqual(await inlineBackground(page), '');
+      const committed = await readDisplayState(page);
+
+      await page.evaluate(() => window.__reconnect());
+      await page.waitForFunction(() => document.documentElement.dataset.networkStatus === 'online');
+      assert.strictEqual(await page.locator('.offline-search-input').isVisible(), false);
+      await showsFinal(page);
+      assert.deepStrictEqual(await readDisplayState(page), committed);
+    } finally {
+      await first?.close();
+      await page?.close();
+      await context.unrouteAll({ behavior: 'ignoreErrors' });
+    }
+  });
+
+  it('does not prepare the cached wallpaper beneath the opaque offline page', async () => {
     await seed({ days: [A], displayState: snapshotOf(A, BOOT_PREVIEW), cached: [final(A), preview(A)] });
     await context.setOffline(true);
     try {
       const page = await openNewTab();
-      await showsFinal(page);
+      await page.waitForFunction(() => typeof initWallpaper === 'function');
 
       assert.strictEqual(await page.evaluate(() => document.documentElement.dataset.networkStatus), 'offline');
-      assert.strictEqual(await page.evaluate(() => getComputedStyle(document.getElementById('offline-view')).backgroundColor), 'rgba(0, 0, 0, 0)');
+      assert.strictEqual(await page.evaluate(() => getComputedStyle(document.getElementById('offline-view')).backgroundColor), 'rgb(247, 247, 247)');
       assert.ok(await page.locator('.offline-search-input').isVisible());
+      assert.deepStrictEqual(await backgroundKinds(page), []);
+      assert.strictEqual(await inlineBackground(page), '');
       await page.close();
     } finally {
+      await context.setOffline(false);
+    }
+  });
+
+  it('keeps wallpaper uninitialized when catalog and UHD notifications arrive offline', async () => {
+    const openOfflinePage = async () => {
+      await seed({ days: [A], displayState: snapshotOf(A, BOOT_PREVIEW), cached: [final(A), finalHd(A), preview(A)] });
+      await context.setOffline(true);
+      const page = await openNewTab();
+      await page.waitForFunction(() => typeof initWallpaper === 'function');
+      assert.deepStrictEqual(await backgroundKinds(page), []);
+      return page;
+    };
+
+    let page;
+    try {
+      page = await openOfflinePage();
+      await sendMessage({ type: 'wallpaperCatalogUpdated', dates: [A.date] });
+      await page.waitForTimeout(200);
+      assert.strictEqual(await page.evaluate(() => document.documentElement.dataset.networkStatus), 'offline');
+      assert.deepStrictEqual(await backgroundKinds(page), [], 'catalog notification');
+      await page.close();
+
+      page = await openOfflinePage();
+      await writeSync({ enable_uhd_wallpaper: 'no' });
+      await page.waitForTimeout(200);
+      assert.strictEqual(await page.evaluate(() => document.documentElement.dataset.networkStatus), 'offline');
+      assert.deepStrictEqual(await backgroundKinds(page), [], 'UHD notification');
+
+      await context.setOffline(false);
+      await page.waitForFunction(() => document.documentElement.dataset.networkStatus === 'online');
+      await showsFinal(page);
+      assert.strictEqual((await readDisplayState(page)).url, A.urls.highDef);
+    } finally {
+      await page?.close();
       await context.setOffline(false);
     }
   });
@@ -592,16 +677,17 @@ describe('new tab page in the loaded extension', () => {
     }
   });
 
-  it('cold start offline shows the gradient and the offline search page without errors', async () => {
+  it('cold start offline shows the offline search page without initializing wallpaper', async () => {
     await seed({});
     await context.setOffline(true);
     try {
       const page = await openNewTab();
-      await page.waitForFunction(() => document.getElementById('main-body').dataset.wallpaperFallback === 'visible');
+      await page.waitForFunction(() => typeof initWallpaper === 'function');
 
       assert.strictEqual(await computedBackground(page), GRADIENT);
       assert.strictEqual(await page.evaluate(() => document.documentElement.dataset.networkStatus), 'offline');
       assert.ok(await page.locator('.offline-search-input').isVisible());
+      assert.deepStrictEqual(await backgroundKinds(page), []);
       assert.deepStrictEqual(page.errors, []);
       await page.close();
     } finally {
@@ -695,7 +781,7 @@ describe('new tab page in the loaded extension', () => {
     return { prepared, future, committed: snapshotOf(prepared, BOOT_PREVIEW, COMMITTED_AT - days * DAY) };
   };
 
-  it('offline after the clock advanced seven days, a fully cached future batch displays the target date', async () => {
+  it('after the clock advanced seven days, an offline fully cached batch waits for reconnect before displaying the target date', async () => {
     const { prepared, future, committed } = preparedDaysAgo(7, 7);
     const today = future.at(-1);
     assert.strictEqual(today.date, A.date);
@@ -708,11 +794,17 @@ describe('new tab page in the loaded extension', () => {
     await context.setOffline(true);
     try {
       const page = await openNewTab();
+      await page.waitForFunction(() => typeof initWallpaper === 'function');
+      assert.deepStrictEqual(await backgroundKinds(page), []);
+      assert.deepStrictEqual(await readDisplayState(page), committed);
+
+      await context.setOffline(false);
+      await page.waitForFunction(() => document.documentElement.dataset.networkStatus === 'online');
       await headlineIs(page, today.headline);
       const published = await displayStateWhen(page, snapshot => snapshot?.date === today.date);
 
       assert.deepStrictEqual(identityOf(published), identityOf(snapshotOf(today)));
-      assert.deepStrictEqual(await backgroundImages(page), ['data', 'final', 'final'], "the prepared day's final, then today's");
+      assert.deepStrictEqual(await backgroundImages(page), ['final', 'final'], "the prepared day's final, then today's after reconnect");
       assert.deepStrictEqual(page.imageRequests, []);
       assert.deepStrictEqual(page.errors, []);
       await page.close();
@@ -721,7 +813,7 @@ describe('new tab page in the loaded extension', () => {
     }
   });
 
-  it('offline after the clock advanced, a partially cached future batch displays the dates that finished', async () => {
+  it('after the clock advanced, an offline partial batch waits for reconnect before displaying finished dates', async () => {
     // The batch cached two of five future dates.
     const seedPartialBatch = async (daysAgo) => {
       const fixture = preparedDaysAgo(daysAgo, 5);
@@ -739,21 +831,31 @@ describe('new tab page in the loaded extension', () => {
       // Today is the second cached future date.
       const reachedBatch = await seedPartialBatch(2);
       const reached = await openNewTab();
+      await reached.waitForFunction(() => typeof initWallpaper === 'function');
+      assert.deepStrictEqual(await backgroundKinds(reached), []);
+      assert.deepStrictEqual(await readDisplayState(reached), reachedBatch.committed);
+      await context.setOffline(false);
+      await reached.waitForFunction(() => document.documentElement.dataset.networkStatus === 'online');
       await headlineIs(reached, reachedBatch.future[1].headline);
       await displayStateWhen(reached, snapshot => snapshot?.date === reachedBatch.future[1].date);
       await reached.close();
 
       // Today is the first date the batch never finished: the committed wallpaper stays.
+      await context.setOffline(true);
       const { prepared, future: [first, second] } = await seedPartialBatch(3);
       const page = await openNewTab();
+      await page.waitForFunction(() => typeof initWallpaper === 'function');
+      assert.deepStrictEqual(await backgroundKinds(page), []);
+      assert.strictEqual((await readDisplayState(page)).date, prepared.date);
+
+      await context.setOffline(false);
+      await page.waitForFunction(() => document.documentElement.dataset.networkStatus === 'online');
       const updating = await updatingText(page);
       await page.waitForFunction(text => window.__headlines.includes(text), updating);
       await headlineIs(page, prepared.headline);
       assert.strictEqual((await readDisplayState(page)).date, prepared.date);
 
       // Back online, the finished dates are history the user can show.
-      await context.setOffline(false);
-      await page.waitForFunction(() => document.documentElement.dataset.networkStatus === 'online');
       for (const shown of [first, second]) {
         await next(page);
         await headlineIs(page, shown.headline);

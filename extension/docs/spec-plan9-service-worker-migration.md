@@ -55,7 +55,7 @@ is a scope update, not a claim that current runtime code has already been change
 4. As a first-time user, I want a stable dark fallback while the first wallpaper downloads, so that extension-controlled rendering does not show a pure-black or pale-grey transition.
 5. As a light-mode user, I want the extension not to add another flash after its document starts rendering, even though Chromium may show a browser-controlled white frame beforehand.
 6. As a dark-mode user, I want the extension background to remain visually consistent with its photographic UI, regardless of the operating-system color preference.
-7. As an offline user with cached content, I want the applicable cached wallpaper to display without a network refresh, so that the new tab remains useful.
+7. As an offline user, I want the offline view to appear without an intermediate cached-wallpaper frame, while cached content remains ready for reconnection.
 8. As an offline user without a suitable cached wallpaper, I want a coherent fallback or offline view instead of a broken image, so that failure remains understandable.
 9. As a user navigating between dates, I want the current final wallpaper retained with a `Wallpaper is updating...` headline until the requested final image is ready, without rendering the destination preview.
 10. As a user, I want previous and next controls to navigate only real current and historical entries, so that navigation never lands on an invisible future placeholder.
