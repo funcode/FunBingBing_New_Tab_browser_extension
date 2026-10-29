@@ -1,0 +1,46 @@
+{
+  "caption": "沙丘鹤，新墨西哥州，美国",
+  "title": "沙丘鹤，博斯克德尔阿帕奇国家野生动物保护区，新墨西哥州，美国",
+  "description": "冬天为新墨西哥州的博斯克德尔阿帕奇国家野生动物保护区带来熟悉的节奏。沙丘鹤陆续飞来，湿地聚满鸟儿，这片区域成为季节性野生动物的聚集地。这座占地57,331英亩的保护区成立于1939年，旨在为迁徙的水鸟提供受保护的中途栖息地。如今，这里的湿地、田野和水道全年滋养着野生动物。画面中的沙丘鹤尤其是保护区冬季的标志性身影。",
+  "copyright": "© Terry St.Louis/Getty Images",
+  "date": "2026 10月 30",
+  "clickUrl": "/search?q=%e6%b2%99%e4%b8%98%e9%b9%a4&form=hpcapt&filters=HpDate:\"20261029_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AutumnCranes_ZH-CN5772055404_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AutumnCranes_ZH-CN5772055404_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AutumnCranes_ZH-CN5772055404_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AutumnCranes_ZH-CN5772055404_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AutumnCranes_ZH-CN5772055404_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AutumnCranes_ZH-CN5772055404_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "这些沙丘鹤通常从10月下旬开始抵达，并在此度过整个冬季。夜里，它们栖息在浅水中，日出前后飞往附近的田野觅食。保护区是沙丘鹤落基山种群的重要越冬地；这一种群迁徙时会经过中里奥格兰德河谷。其他季节性访客包括雪雁、细嘴雁、针尾鸭、琵嘴鸭、鹰和雕。骡鹿、郊狼、北美野兔等哺乳动物也栖息于此，而这里的生境还为受威胁和濒危物种提供支持。",
+  "descriptionPara3": "",
+  "isoDate": "20261030",
+  "headline": "展翅高飞的时节",
+  "quickFact": "西班牙语“Bosque del Apache”意为“阿帕奇人的树林”，得名于曾在里奥格兰德河沿岸树林扎营的阿帕奇人。",
+  "triviaId": "HPQuiz_20261030_AutumnCranes",
+  "triviaData": {
+    "question": "在阿帕奇荒野保护区，哪种鸟是冬季重要象征？",
+    "options": [
+      {
+        "text": "雪雁",
+        "url": "/search?q=%E6%B2%99%E4%B8%98%E9%B9%A4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261030_AutumnCranes%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "北针尾鸭",
+        "url": "/search?q=%E6%B2%99%E4%B8%98%E9%B9%A4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261030_AutumnCranes%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "沙丘鹤",
+        "url": "/search?q=%E6%B2%99%E4%B8%98%E9%B9%A4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261030_AutumnCranes%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
