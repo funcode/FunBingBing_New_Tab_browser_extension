@@ -1,0 +1,46 @@
+{
+  "caption": "万圣节到了！",
+  "title": "圣巴尔多禄茂教堂，法兰克福，德国",
+  "description": "忘了烟雾机吧。德国法兰克福有更能烘托气氛的景物：一座哥特式大教堂，塔楼仿佛随时能上演一场午夜招魂会。画面中的圣巴尔多禄茂教堂有着中世纪风格的轮廓，简直像是万圣节特意挑选的布景。不过，这个节日本身的历史更加离奇。",
+  "copyright": "© AlxeyPnferov/Getty Images",
+  "date": "2026 10月 31",
+  "clickUrl": "/search?q=%e4%b8%87%e5%9c%a3%e8%8a%82&form=hpcapt&filters=HpDate:\"20261030_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.FrankfurtHalloween_ZH-CN5998782698_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.FrankfurtHalloween_ZH-CN5998782698_UHD.jpg",
+      "wallpaper": "/th?id=OHR.FrankfurtHalloween_ZH-CN5998782698_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.FrankfurtHalloween_ZH-CN5998782698_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.FrankfurtHalloween_ZH-CN5998782698_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.FrankfurtHalloween_ZH-CN5998782698_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "早在迷你巧克力棒问世之前，万圣节就已深谙营造诡异氛围之道。它的一些习俗与古代凯尔特人的萨温节有关；这一节日标志着收获季节结束、冬季开始。按照传统观念，此时生者与亡者之间的界限会变得模糊，超自然的存在得以在人间游荡。人们便点起篝火、献上供品，还乔装打扮，好融入那群来自异界的访客。",
+  "descriptionPara3": "后来，基督教历法将11月1日定为诸圣节，11月2日定为追思亡者日。诸圣节的前夜成为万圣节前夜，后来演变成Halloween，即今天的万圣节。所以，圣巴尔多禄茂教堂提供了哥特式背景，而幽灵、装扮和超自然的戏剧感则是万圣节自己带来的。说真的，这个节日早有准备。",
+  "isoDate": "20261031",
+  "headline": "往昔帝国的幽影",
+  "quickFact": "1562年至1792年，神圣罗马帝国的当选皇帝曾在法兰克福的圣巴尔多禄茂教堂举行加冕仪式。",
+  "triviaId": "HPQuiz_20261031_FrankfurtHalloween",
+  "triviaData": {
+    "question": "哪个节日影响了万圣节的起源？",
+    "options": [
+      {
+        "text": "萨温节",
+        "url": "/search?q=%E8%90%A8%E6%B8%A9%E8%8A%82&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261031_FrankfurtHalloween%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "尤尔节",
+        "url": "/search?q=%E8%90%A8%E6%B8%A9%E8%8A%82&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261031_FrankfurtHalloween%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "贝尔坦节",
+        "url": "/search?q=%E8%90%A8%E6%B8%A9%E8%8A%82&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261031_FrankfurtHalloween%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
