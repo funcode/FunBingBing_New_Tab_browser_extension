@@ -1,0 +1,46 @@
+{
+  "caption": "黑森林，巴登-符腾堡州，德国",
+  "title": "黑森林，巴登-符腾堡州，德国",
+  "description": "今天，我们一起欣赏笼罩在黑森林上空的朦胧景色。黑森林绵延约160公里，横跨德国西南部，汇集了葱郁的山丘、幽深的山谷、湖泊和迷人的小镇。最高峰费尔德贝格山海拔1,493米；多瑙河和内卡河也发源于黑森林。这里同样不乏历史与传统。林业长期以来在当地占据重要地位，而延续数百年的钟表制造传统，更让别具特色的布谷鸟钟名扬德国以外。",
+  "copyright": "© Britus/Getty Images",
+  "date": "2026 11月 1",
+  "clickUrl": "/search?q=%e5%be%b7%e5%9b%bd%e9%bb%91%e6%a3%ae%e6%9e%97&form=hpcapt&filters=HpDate:\"20261031_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SchwarzwaldAutumn_ZH-CN6323627599_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SchwarzwaldAutumn_ZH-CN6323627599_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SchwarzwaldAutumn_ZH-CN6323627599_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SchwarzwaldAutumn_ZH-CN6323627599_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SchwarzwaldAutumn_ZH-CN6323627599_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SchwarzwaldAutumn_ZH-CN6323627599_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261101",
+  "headline": "林间迷雾",
+  "quickFact": "黑森林传统民俗头饰“绒球帽”上有14个羊毛绒球；未婚女性传统上佩戴红色绒球帽。",
+  "triviaId": "HPQuiz_20261101_SchwarzwaldAutumn",
+  "triviaData": {
+    "question": "黑森林中哪座山是最高峰？",
+    "options": [
+      {
+        "text": "贝尔亨",
+        "url": "/search?q=%E8%B4%B9%E5%B0%94%E5%BE%B7%E5%B1%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261101_SchwarzwaldAutumn%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "费尔德山",
+        "url": "/search?q=%E8%B4%B9%E5%B0%94%E5%BE%B7%E5%B1%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261101_SchwarzwaldAutumn%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "霍尔尼斯格林德山",
+        "url": "/search?q=%E8%B4%B9%E5%B0%94%E5%BE%B7%E5%B1%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261101_SchwarzwaldAutumn%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
