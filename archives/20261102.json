@@ -1,0 +1,46 @@
+{
+  "caption": "北极熊周",
+  "title": "北极熊和幼崽，哈得孙湾畔，马尼托巴省，加拿大",
+  "description": "11月也许让我们离节日季又近了一步，但北极熊有别的打算。它们聚集在加拿大马尼托巴省的哈得孙湾沿岸，等待海冰形成，以便重返冰面捕猎海豹。每年上演的这一幕催生了在11月第一周举行的北极熊周，以庆祝北极地区体型最大的陆生捕食者。北极熊是游泳健将、捕猎高手，也极其适应地球上最严酷的环境之一。然而，海冰不断缩减，意味着许多北极熊不得不在陆地上待更久，觅食更加困难，与人类相遇的风险也随之上升。",
+  "copyright": "© Danita Delimont/Adobe Stock",
+  "date": "2026 11月 2",
+  "clickUrl": "/search?q=%e5%8c%97%e6%9e%81%e7%86%8a%e5%91%a8&form=hpcapt&filters=HpDate:\"20261101_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.HudsonBear_ZH-CN6630706907_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.HudsonBear_ZH-CN6630706907_UHD.jpg",
+      "wallpaper": "/th?id=OHR.HudsonBear_ZH-CN6630706907_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.HudsonBear_ZH-CN6630706907_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.HudsonBear_ZH-CN6630706907_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.HudsonBear_ZH-CN6630706907_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "画面定格了哈得孙湾附近温馨的一幕：一只母熊和它的幼崽。世代北极熊都会在特定季节聚集于此。北极熊周期间，这些标志性的动物不仅让我们想起北极的野性之美，也提醒我们保护它们赖以生存的冰封家园。",
+  "descriptionPara3": "",
+  "isoDate": "20261102",
+  "headline": "写在冰上的未来",
+  "quickFact": "为了寻找食物和合适的海冰，北极熊在一个季节里可能跋涉超过620英里。",
+  "triviaId": "HPQuiz_20261102_HudsonBear",
+  "triviaData": {
+    "question": "哪一个加拿大省份栖息着等待海冰的北极熊？",
+    "options": [
+      {
+        "text": "马尼托巴",
+        "url": "/search?q=%E9%A9%AC%E5%B0%BC%E6%89%98%E5%B7%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261102_HudsonBear%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "魁北克",
+        "url": "/search?q=%E9%A9%AC%E5%B0%BC%E6%89%98%E5%B7%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261102_HudsonBear%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "安大略",
+        "url": "/search?q=%E9%A9%AC%E5%B0%BC%E6%89%98%E5%B7%B4&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261102_HudsonBear%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
