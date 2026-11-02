@@ -1,0 +1,46 @@
+{
+  "caption": "布莱埃斯湖，多洛米蒂山脉，意大利",
+  "title": "布莱埃斯湖，法内斯-塞内斯-布莱埃斯湖自然公园，多洛米蒂山脉，意大利",
+  "description": "布莱埃斯湖坐落在意大利北部南蒂罗尔的多洛米蒂山脉，海拔近1500米。湖泊四周森林环绕，法内斯-塞内斯-布莱埃斯湖自然公园的壮丽群峰耸立其间，以动人的碧绿和湛蓝湖水闻名。一条3.5公里长的步道环绕湖岸，游客也可以乘坐传统木质划艇，从另一种视角欣赏风光。这里还是多条山间徒步路线的起点，包括多洛米蒂山脉著名的多洛米蒂高山步道1号。",
+  "copyright": "© leonid_tit/Getty Images",
+  "date": "2026 11月 3",
+  "clickUrl": "/search?q=%e5%a4%9a%e6%b4%9b%e7%b1%b3%e8%92%82%e5%b1%b1%e8%84%89&form=hpcapt&filters=HpDate:\"20261102_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AlpineBraies_ZH-CN7307997866_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AlpineBraies_ZH-CN7307997866_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AlpineBraies_ZH-CN7307997866_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AlpineBraies_ZH-CN7307997866_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AlpineBraies_ZH-CN7307997866_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AlpineBraies_ZH-CN7307997866_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261103",
+  "headline": "群峰间的宁静",
+  "quickFact": "布莱埃斯湖最深处达36米，平均水深约17米。",
+  "triviaId": "HPQuiz_20261103_AlpineBraies",
+  "triviaData": {
+    "question": "意大利布拉耶斯湖被哪座山脉环绕？",
+    "options": [
+      {
+        "text": "亚平宁山脉",
+        "url": "/search?q=%E5%A4%9A%E6%B4%9B%E7%B1%B3%E8%92%82%E5%B1%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261103_AlpineBraies%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "阿尔卑斯山",
+        "url": "/search?q=%E5%A4%9A%E6%B4%9B%E7%B1%B3%E8%92%82%E5%B1%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261103_AlpineBraies%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "多洛米蒂山",
+        "url": "/search?q=%E5%A4%9A%E6%B4%9B%E7%B1%B3%E8%92%82%E5%B1%B1&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261103_AlpineBraies%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
