@@ -1,0 +1,46 @@
+{
+  "caption": "五彩落羽杉，宣城，安徽省，中国",
+  "title": "五彩落羽杉间划船的人们，宣城，安徽省，中国",
+  "description": "在安徽省宣城，人们划船穿过色彩斑斓的落羽杉林。秋天将这片被水淹没的林地变成由琥珀色、铜色和深铁锈色交织而成的锦绣景致。落羽杉的学名是“Taxodium distichum”，它在针叶树中颇为特别：每年秋季，柔软如羽毛的针叶会先变成红褐色，然后脱落。在北美洲，落羽杉因能生长在沼泽、河漫滩等湿地环境而闻名，常长出称为“膝状根”的瘤状根部突起，露出周围的泥土和水面。",
+  "copyright": "© Jackal Pan/Getty Images",
+  "date": "2026 11月 4",
+  "clickUrl": "/search?q=%e8%90%bd%e7%be%bd%e6%9d%89&form=hpcapt&filters=HpDate:\"20261103_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AutumnChina_ZH-CN7665959692_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AutumnChina_ZH-CN7665959692_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AutumnChina_ZH-CN7665959692_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AutumnChina_ZH-CN7665959692_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AutumnChina_ZH-CN7665959692_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AutumnChina_ZH-CN7665959692_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "有些落羽杉极为长寿，历史记录中甚至有树龄超过1000年的个体。划船的人们从平静的水面滑过，在林木间穿行；眼前的景观也映照出落羽杉对湿地环境的天然适应性。深秋时节，这里的景色尤其动人：树叶由绿色转为如火般绚烂的色调，倒映在粼粼水面上，让整片森林宛如一幅生动的画。",
+  "descriptionPara3": "",
+  "isoDate": "20261104",
+  "headline": "泛舟如画秋林",
+  "quickFact": "落羽杉木材耐腐朽，历史上曾被用于制作木桶、铁路枕木和屋顶木瓦。",
+  "triviaId": "HPQuiz_20261104_AutumnChina",
+  "triviaData": {
+    "question": "哪种树在落叶前会变成红褐色？",
+    "options": [
+      {
+        "text": "落羽杉",
+        "url": "/search?q=%E8%90%BD%E7%BE%BD%E6%9D%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261104_AutumnChina%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "银杏",
+        "url": "/search?q=%E8%90%BD%E7%BE%BD%E6%9D%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261104_AutumnChina%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "欧洲赤松",
+        "url": "/search?q=%E8%90%BD%E7%BE%BD%E6%9D%89&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261104_AutumnChina%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
