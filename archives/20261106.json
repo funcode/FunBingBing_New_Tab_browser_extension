@@ -1,0 +1,46 @@
+{
+  "caption": "竹林，哈莱亚卡拉国家公园，夏威夷州",
+  "title": "竹林，皮皮维小径，哈莱亚卡拉国家公园，毛伊岛，夏威夷州，美国",
+  "description": "火山、雨林和竹林？毛伊岛上的哈莱亚卡拉国家公园三者兼有。公园的范围从毛伊岛上海拔10023英尺的山顶一直延伸到海岸，保护着随海拔、降雨量和气温变化而呈现迥异面貌的景观。它于1916年作为夏威夷国家公园的一部分设立，1961年成为独立的国家公园。哈莱阿卡拉意为“太阳之家”，这一名称呼应了夏威夷口述传说“moʻolelo”中毛伊捉住太阳、延长白昼的故事。",
+  "copyright": "© MNStudio/Getty Images",
+  "date": "2026 11月 6",
+  "clickUrl": "/search?q=%e5%93%88%e8%8e%b1%e4%ba%9a%e5%8d%a1%e6%8b%89%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20261105_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.PipiwaiTrail_ZH-CN1811194311_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.PipiwaiTrail_ZH-CN1811194311_UHD.jpg",
+      "wallpaper": "/th?id=OHR.PipiwaiTrail_ZH-CN1811194311_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.PipiwaiTrail_ZH-CN1811194311_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.PipiwaiTrail_ZH-CN1811194311_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.PipiwaiTrail_ZH-CN1811194311_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "公园里有850多种植物，包括仅在哈莱阿卡拉山上自然生长的哈莱阿卡拉银剑草；这里还有夏威夷雁、夏威夷海燕等本地鸟类。在基帕胡鲁区，皮皮维小径穿过潮湿的森林，通往著名的竹林。行至约一英里处，竹子在头顶交织成荫；微风拂过，竹竿相互碰撞，发出别具一格的声响。",
+  "descriptionPara3": "",
+  "isoDate": "20261106",
+  "headline": "穿越毛伊岛的绿色隧道",
+  "quickFact": "前往哈莱阿卡拉山顶观赏日出的游客须提前预约；名额最多提前60天开放。",
+  "triviaId": "HPQuiz_20261106_PipiwaiTrail",
+  "triviaData": {
+    "question": "哪种鸟原产夏威夷并栖息于哈雷阿卡拉？",
+    "options": [
+      {
+        "text": "蜂鸟",
+        "url": "/search?q=%E5%A4%8F%E5%A8%81%E5%A4%B7%E9%9B%81&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261106_PipiwaiTrail%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "夏威夷雁",
+        "url": "/search?q=%E5%A4%8F%E5%A8%81%E5%A4%B7%E9%9B%81&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261106_PipiwaiTrail%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "几维鸟",
+        "url": "/search?q=%E5%A4%8F%E5%A8%81%E5%A4%B7%E9%9B%81&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261106_PipiwaiTrail%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
