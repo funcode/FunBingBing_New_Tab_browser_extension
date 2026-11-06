@@ -1,0 +1,46 @@
+{
+  "caption": "美洲野牛",
+  "title": "草原上的一头野牛，西奥多·罗斯福国家公园，北达科他州，美国",
+  "description": "再艰难的环境，也挡不住野牛吃草的脚步。美国全国野牛日赞颂这种北美哺乳动物：它体重可达2000磅(约907千克)，奔跑时速却能达到35英里(约56千米)。这个节日定在每年11月的第一个星期六，旨在向2016年成为美国国家哺乳动物的野牛致敬。",
+  "copyright": "© Tandem Stock/Adobe Stock",
+  "date": "2026 11月 7",
+  "clickUrl": "/search?q=%e7%be%8e%e6%b4%b2%e9%87%8e%e7%89%9b&form=hpcapt&filters=HpDate:\"20261106_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.DakotaBison_ZH-CN2302503868_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.DakotaBison_ZH-CN2302503868_UHD.jpg",
+      "wallpaper": "/th?id=OHR.DakotaBison_ZH-CN2302503868_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.DakotaBison_ZH-CN2302503868_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.DakotaBison_ZH-CN2302503868_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.DakotaBison_ZH-CN2302503868_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "美洲野牛虽然常被称作“水牛”，却并非原产于非洲和亚洲的真正水牛。它的学名Bison bison就清楚地表明了身份。强健的肩峰帮助它左右摆动头部，拨开积雪，吃到下面的草。雌雄野牛都长有角和胡须。尾巴还能透露它们的情绪：轻轻甩尾通常表示平静，翘起尾巴则可能意味着焦躁。",
+  "descriptionPara3": "黄石国家公园是美国唯一一个自史前时代起便一直有野牛栖息的地方。野牛曾濒临灭绝，但保护工作让它们的数量显著回升。如今，它们的存续是值得庆祝的自然保护成果。",
+  "isoDate": "20261107",
+  "headline": "归来的草原巨兽",
+  "quickFact": "野牛在泥土中打滚形成的浅坑可能积水，为草原植物和动物提供栖息地。",
+  "triviaId": "HPQuiz_20261107_DakotaBison",
+  "triviaData": {
+    "question": "野牛用何特征能揭开雪下的草？",
+    "options": [
+      {
+        "text": "长尾巴",
+        "url": "/search?q=%E5%BC%BA%E5%A3%AE%E7%9A%84%E8%82%A9%E5%B3%B0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261107_DakotaBison%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "强壮的肩峰",
+        "url": "/search?q=%E5%BC%BA%E5%A3%AE%E7%9A%84%E8%82%A9%E5%B3%B0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261107_DakotaBison%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "宽大的蹄",
+        "url": "/search?q=%E5%BC%BA%E5%A3%AE%E7%9A%84%E8%82%A9%E5%B3%B0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261107_DakotaBison%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
