@@ -1,0 +1,46 @@
+{
+  "caption": "排灯节",
+  "title": "排灯节灯笼，孟买，马哈拉施特拉邦，印度",
+  "description": "一年中最黑暗的夜晚遇上最明亮的庆典，会是什么景象？答案就是排灯节。世界各地数百万人庆祝这个灯节，点亮油灯和灯笼，绘制兰戈利彩绘，祈祷、品尝甜点，并与家人团聚。",
+  "copyright": "© Dinodia Photo/Getty Images",
+  "date": "2026 11月 8",
+  "clickUrl": "/search?q=%e6%8e%92%e7%81%af%e8%8a%82&form=hpcapt&filters=HpDate:\"20261107_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.DiwaliLamps_ZH-CN2462894749_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.DiwaliLamps_ZH-CN2462894749_UHD.jpg",
+      "wallpaper": "/th?id=OHR.DiwaliLamps_ZH-CN2462894749_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.DiwaliLamps_ZH-CN2462894749_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.DiwaliLamps_ZH-CN2462894749_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.DiwaliLamps_ZH-CN2462894749_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "“Diwali”一词源自梵语“dipavali”，意为“一排灯”。庆典在印度教历卡尔提克月的阿玛瓦斯亚(新月日)举行。在印度各地，排灯节承载着不同的故事和传统：印度北部纪念罗摩神返回阿约提亚；印度南部和尼泊尔的部分地区将其与克里希纳神战胜那罗迦苏罗联系起来；孟加拉地区则在节日期间敬奉迦梨女神。耆那教徒和锡克教徒也会因各自重要的宗教意义庆祝排灯节。",
+  "descriptionPara3": "排灯节也在美国扎下了根。加利福尼亚州、康涅狄格州和宾夕法尼亚州将排灯节列为州级假日。白宫曾举办排灯节庆祝活动，美国邮政署也发行过排灯节纪念邮票，其中包括2026年发行的一枚。从社区活动到学校和职场分享的甜点，排灯节持续照亮一个个社区。",
+  "isoDate": "20261108",
+  "headline": "光芒四射的节日",
+  "quickFact": "排灯节持续五天，但由于它遵循印度教阴历，每年在公历上的日期都会变化。",
+  "triviaId": "HPQuiz_20261108_DiwaliLamps",
+  "triviaData": {
+    "question": "哪个梵语词意为“一排灯”？",
+    "options": [
+      {
+        "text": "迪皮卡",
+        "url": "/search?q=%E8%BF%AA%E5%B8%95%E7%93%A6%E5%88%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261108_DiwaliLamps%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "迪帕瓦利",
+        "url": "/search?q=%E8%BF%AA%E5%B8%95%E7%93%A6%E5%88%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261108_DiwaliLamps%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "迪瓦拉",
+        "url": "/search?q=%E8%BF%AA%E5%B8%95%E7%93%A6%E5%88%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261108_DiwaliLamps%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
