@@ -1,0 +1,46 @@
+{
+  "caption": "特里亚纳历史街区，塞维利亚，西班牙",
+  "title": "特里亚纳历史街区，塞维利亚，西班牙",
+  "description": "在西班牙安达卢西亚地区首府塞维利亚，跨过瓜达尔基维尔河，城市的节奏似乎便悄然改变。河对岸是色彩缤纷的特里亚纳街区，陶艺、弗拉门戈和当地传统融入日常生活。自19世纪以来，伊莎贝尔二世桥——又称特里亚纳桥——一直连接着这里与塞维利亚的历史中心。",
+  "copyright": "© Andrzej Rostek/Getty Images",
+  "date": "2026 11月 9",
+  "clickUrl": "/search?q=%e8%a5%bf%e7%8f%ad%e7%89%99%e5%a1%9e%e7%bb%b4%e5%88%a9%e4%ba%9a&form=hpcapt&filters=HpDate:\"20261108_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.TrianaSpain_ZH-CN6329291776_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.TrianaSpain_ZH-CN6329291776_UHD.jpg",
+      "wallpaper": "/th?id=OHR.TrianaSpain_ZH-CN6329291776_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.TrianaSpain_ZH-CN6329291776_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.TrianaSpain_ZH-CN6329291776_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.TrianaSpain_ZH-CN6329291776_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "走下桥，特里亚纳独特的风情便映入眼帘。这个街区有悠久的陶器与瓷砖制作传统，色彩斑斓的阿苏莱霍彩绘瓷砖至今仍点缀着建筑外墙和作坊。这里的街道也在与特里亚纳紧密相连的弗拉门戈艺术史上扮演重要角色。沿着贝蒂斯街，鲜艳的建筑面朝瓜达尔基维尔河。",
+  "descriptionPara3": "特里亚纳的魅力不只在于某一座古迹，而在于工匠与市集、音乐与铺着瓷砖的庭院、河畔露台与狭窄街巷交织出的生活气息。塞维利亚的市中心虽只隔一条河，特里亚纳却有着独一无二的灵魂。",
+  "isoDate": "20261109",
+  "headline": "艺术与韵律交汇之地",
+  "quickFact": "特里亚纳市场下方保留着圣豪尔赫城堡的遗址；这座城堡曾是宗教裁判所的总部，如今设有历史展览。",
+  "triviaId": "HPQuiz_20261109_TrianaSpain",
+  "triviaData": {
+    "question": "哪条河流经色彩斑斓的特里亚纳区旁？",
+    "options": [
+      {
+        "text": "塔霍河",
+        "url": "/search?q=%E7%93%9C%E8%BE%BE%E5%B0%94%E5%9F%BA%E7%BB%B4%E5%B0%94&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261109_TrianaSpain%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "埃布罗",
+        "url": "/search?q=%E7%93%9C%E8%BE%BE%E5%B0%94%E5%9F%BA%E7%BB%B4%E5%B0%94&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261109_TrianaSpain%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "瓜达尔基维尔",
+        "url": "/search?q=%E7%93%9C%E8%BE%BE%E5%B0%94%E5%9F%BA%E7%BB%B4%E5%B0%94&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261109_TrianaSpain%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
