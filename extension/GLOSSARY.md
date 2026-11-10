@@ -25,6 +25,26 @@ In addition, it shows some widgets on the image:
 
 ## Language
 
+**Download image**:
+The wallpaper action that saves a picture as a local image file.
+_Avoid_: set as desktop wallpaper
+
+**Set as desktop wallpaper**:
+The wallpaper action that applies a picture as the operating system's desktop background.
+_Avoid_: download image
+
+**Desktop wallpaper helper**:
+The optional companion application that lets Ataraxia apply a picture as the operating system's desktop background.
+_Avoid_: downloader
+
+**Last-known helper availability**:
+The result of the most recent helper verification, used to offer the desktop action without a fresh check. It may become outdated if the helper is removed or stops working.
+_Avoid_: installed flag, guaranteed readiness
+
+**Saved wallpaper**:
+The user-owned image file created by either wallpaper action, also used as the desktop source when applied.
+_Avoid_: helper-owned image copy
+
 **Supported New Tab**:
 The Ataraxia page shown when a user opens a new tab in a regular browsing window. Incognito New Tab remains Chrome’s page and is outside this product’s supported modes.
 
@@ -68,3 +88,6 @@ _Avoid_: today, current date
 # Engineering Considerations
 - Performance matters, the new tab page should be opened instantly, and avoid getting users notice the page loading delay
 - Carefully control the local storage, including the cache. Avoid local storage bloat.
+
+Desktop wallpaper integration: [ADR-0017](./docs/adr/0017-on-demand-native-wallpaper-helper.md).
+Saved wallpaper ownership: [ADR-0018](./docs/adr/0018-user-managed-wallpaper-downloads.md).
