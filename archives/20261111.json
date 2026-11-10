@@ -1,0 +1,46 @@
+{
+  "caption": "大西洋森林，巴西",
+  "title": "大西洋森林，巴西",
+  "description": "大西洋森林是世界上重要的生物多样性热点地区之一，沿巴西大西洋沿岸的广大地带延伸，并进入阿根廷和巴拉圭境内。这里的景观包括热带与亚热带森林、红树林和海岸生境，孕育了约2万种植物以及种类繁多的野生动物，其中包括美洲豹和金狮绢毛猴。几个世纪以来，大片森林已经消失，但它仍在储存碳，并为该地区数百万人提供淡水方面发挥着重要作用。",
+  "copyright": "© FG Trade/Getty Images",
+  "date": "2026 11月 11",
+  "clickUrl": "/search?q=%e5%b7%b4%e8%a5%bf%e5%a4%a7%e8%a5%bf%e6%b4%8b%e6%a3%ae%e6%9e%97&form=hpcapt&filters=HpDate:\"20261110_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.Atlantica_ZH-CN6593995386_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.Atlantica_ZH-CN6593995386_UHD.jpg",
+      "wallpaper": "/th?id=OHR.Atlantica_ZH-CN6593995386_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.Atlantica_ZH-CN6593995386_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.Atlantica_ZH-CN6593995386_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.Atlantica_ZH-CN6593995386_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261111",
+  "headline": "奇妙纷呈的森林",
+  "quickFact": "大西洋森林地区生活着约1.5亿人，约占南美洲总人口的三分之一。",
+  "triviaId": "HPQuiz_20261111_Atlantica",
+  "triviaData": {
+    "question": "哪种珍稀灵长类动物原产于大西洋森林？",
+    "options": [
+      {
+        "text": "卷尾猴",
+        "url": "/search?q=%E9%87%91%E7%8B%AE%E9%9D%A2%E7%8B%A8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261111_Atlantica%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "吼猴",
+        "url": "/search?q=%E9%87%91%E7%8B%AE%E9%9D%A2%E7%8B%A8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261111_Atlantica%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "金狮面狨",
+        "url": "/search?q=%E9%87%91%E7%8B%AE%E9%9D%A2%E7%8B%A8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261111_Atlantica%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
