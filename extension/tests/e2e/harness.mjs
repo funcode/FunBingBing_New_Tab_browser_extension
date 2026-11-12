@@ -69,7 +69,7 @@ export function catalogOf(days, targetDate = TARGET) {
 export let context;
 export let downloadDirectory;
 let profileDir;
-let loadedExtension = EXTENSION;
+export let loadedExtension = EXTENSION;
 let realNetwork = false;
 let browserDownloads = false;
 let headed = false;
@@ -150,14 +150,19 @@ export async function launch() {
  * Create the test profile, start the browser and let the new install's
  * migration verify. With `network`, requests reach the real Bing.
  */
-export async function start({ network = false, downloads = false, nativeDownloads = false } = {}) {
+export async function start({ network = false, downloads = false, nativeDownloads = false,
+  nativeMessaging = false, headed: showBrowser = nativeDownloads } = {}) {
   assert.ok(!downloads || !nativeDownloads, 'choose one download fixture');
   realNetwork = network;
   browserDownloads = downloads || nativeDownloads;
-  headed = nativeDownloads;
+  headed = showBrowser;
   profileDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ataraxia-e2e-'));
   loadedExtension = EXTENSION;
-  if (downloads) {
+  const fixturePermissions = [
+    ...(downloads ? ['downloads'] : []),
+    ...(nativeMessaging ? ['nativeMessaging'] : [])
+  ];
+  if (fixturePermissions.length) {
     // This headless Playwright fixture cannot accept Chrome's native extension permission prompt.
     // Load unchanged production runtime files with a pre-granted API fixture;
     // first-action request/denial is covered separately at that API boundary.
@@ -169,9 +174,11 @@ export async function start({ network = false, downloads = false, nativeDownload
     }
     const manifestFile = path.join(loadedExtension, 'manifest.json');
     const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
-    assert.ok(manifest.optional_permissions.includes('downloads'), 'downloads must remain optional in production');
-    manifest.optional_permissions = manifest.optional_permissions.filter(permission => permission !== 'downloads');
-    manifest.permissions.push('downloads');
+    for (const permission of fixturePermissions) {
+      assert.ok(manifest.optional_permissions.includes(permission), `${permission} must remain optional in production`);
+    }
+    manifest.optional_permissions = manifest.optional_permissions.filter(permission => !fixturePermissions.includes(permission));
+    manifest.permissions.push(...fixturePermissions);
     fs.writeFileSync(manifestFile, JSON.stringify(manifest));
   }
   if (browserDownloads) {
@@ -182,9 +189,9 @@ export async function start({ network = false, downloads = false, nativeDownload
     }));
   }
   await launch();
-  if (downloads) {
-    assert.ok(await control.evaluate(() => chrome.permissions.contains({ permissions: ['downloads'] })),
-      'the isolated fixture did not provide pre-granted downloads permission');
+  if (fixturePermissions.length) {
+    assert.ok(await control.evaluate(permissions => chrome.permissions.contains({ permissions: permissions }), fixturePermissions),
+      'the isolated fixture did not provide the pre-granted permissions');
   }
   await migrationPhase('verified');
 }

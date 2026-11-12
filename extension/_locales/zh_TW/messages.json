@@ -184,6 +184,48 @@
         "message": "這些設置會立即生效。"
     },
 
+    "op_wallpaper_desktop_enable": {
+        "message": "啟用桌面桌布"
+    },
+    "op_wallpaper_desktop_install_hint": {
+        "message": "Windows 安裝程式正在開發。使用解壓縮的擴充功能時，請先建置並註冊輔助程式，再選擇「重新檢查」。"
+    },
+    "op_wallpaper_desktop_install": {
+        "message": "Windows 開發環境安裝指南"
+    },
+    "op_wallpaper_desktop_release": {
+        "message": "Windows 安裝程式發布狀態"
+    },
+    "op_wallpaper_desktop_check_again": {
+        "message": "重新檢查"
+    },
+    "op_wallpaper_desktop_cancel_check": {
+        "message": "關閉"
+    },
+    "op_wallpaper_desktop_off_hint": {
+        "message": "關閉後無法發起新的桌面桌布操作。已開始的儲存或桌布設定仍可完成。你可以在瀏覽器中取消尚未完成的儲存。"
+    },
+    "op_wallpaper_desktop_source_hint": {
+        "message": "桌面直接使用下載的檔案。移動或刪除該檔案可能會影響桌面桌布。"
+    },
+    "op_wallpaper_desktop_checking": {
+        "message": "正在檢查桌面桌布輔助程式…"
+    },
+    "op_wallpaper_desktop_verified": {
+        "message": "桌面桌布輔助程式已通過驗證。"
+    },
+    "op_wallpaper_desktop_permission_required": {
+        "message": "請允許與本機應用程式通訊以驗證輔助程式。選擇「重新檢查」以重試。"
+    },
+    "op_wallpaper_desktop_incompatible": {
+        "message": "已安裝的輔助程式不相容。更新輔助程式後選擇「重新檢查」。"
+    },
+    "op_wallpaper_desktop_timeout": {
+        "message": "輔助程式未及時回應。請檢查安裝情況，然後選擇「重新檢查」。"
+    },
+    "op_wallpaper_desktop_check_failed": {
+        "message": "無法驗證輔助程式。請檢查安裝情況，然後選擇「重新檢查」。"
+    },
     "op_wallpaper_desktop_unavailable": {
         "message": "安裝並驗證相容的輔助程式後，即可設定桌面壁紙。圖片下載功能可獨立使用。"
     },

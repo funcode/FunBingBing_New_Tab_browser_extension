@@ -185,6 +185,48 @@
         "message": "These settings apply immediately."
     },
 
+    "op_wallpaper_desktop_enable": {
+        "message": "Enable desktop wallpaper"
+    },
+    "op_wallpaper_desktop_install_hint": {
+        "message": "The Windows installer is in development. For an unpacked extension, build and register the helper, then choose Check again."
+    },
+    "op_wallpaper_desktop_install": {
+        "message": "Windows development setup guide"
+    },
+    "op_wallpaper_desktop_release": {
+        "message": "Windows installer release status"
+    },
+    "op_wallpaper_desktop_check_again": {
+        "message": "Check again"
+    },
+    "op_wallpaper_desktop_cancel_check": {
+        "message": "Turn off"
+    },
+    "op_wallpaper_desktop_off_hint": {
+        "message": "Turning this off prevents new desktop wallpaper actions. A save or wallpaper change already started can still finish. You can cancel an in-progress save in the browser."
+    },
+    "op_wallpaper_desktop_source_hint": {
+        "message": "The desktop uses the downloaded file directly. Moving or deleting the file may affect your desktop wallpaper."
+    },
+    "op_wallpaper_desktop_checking": {
+        "message": "Checking the desktop wallpaper helper…"
+    },
+    "op_wallpaper_desktop_verified": {
+        "message": "The desktop wallpaper helper is verified."
+    },
+    "op_wallpaper_desktop_permission_required": {
+        "message": "Allow native messaging to verify the helper. Choose Check again to retry."
+    },
+    "op_wallpaper_desktop_incompatible": {
+        "message": "The installed helper is incompatible. Update the helper and choose Check again."
+    },
+    "op_wallpaper_desktop_timeout": {
+        "message": "The helper did not respond in time. Check the installation and choose Check again."
+    },
+    "op_wallpaper_desktop_check_failed": {
+        "message": "Could not verify the helper. Check the installation and choose Check again."
+    },
     "op_wallpaper_desktop_unavailable": {
         "message": "Desktop integration is unavailable until a compatible helper has been installed and verified. Image downloading works independently."
     },

@@ -41,6 +41,7 @@ function fixture({ granted = false, contains, request = async () => true } = {})
   const state = { window, document, el, conf, visible, calls: [], requests: [], saved: [], availability: 'unavailable', applied: [] };
   const chrome = {
     i18n: { getMessage: key => messages[key]?.message ?? '' },
+    runtime: { onMessage: event(), sendMessage: async () => 'off' },
     permissions: { contains: contains ?? (async () => granted), request(options) { state.requests.push(options); return request(); }, onAdded: event(), onRemoved: event() },
     downloads: { onChanged: event(), onErased: event(), async download(options) { state.calls.push(options); return 5; }, async search() { return [{ id: 5, state: 'complete', filename: 'C:\\Downloads\\actual.jpg' }]; } },
     storage: { onChanged: event() }
@@ -242,9 +243,8 @@ describe('wallpaper action settings', () => {
     state.availabilityChanged();
     assert.equal(folder.disabled, false, 'desktop-only also permits folder editing');
   });
-  it('rejects unsafe folder edits and follows external sync/local changes', () => {
+  it('rejects unsafe folder edits and follows external sync and availability changes', () => {
     const state = fixture();
-    delete state.desktopAvailability;
     state.conf.wallpaper_download_folder = 'Keep';
     mountWallpaperActionSettings(state);
     const folder = state.el('wallpaper-download-folder');
@@ -258,9 +258,9 @@ describe('wallpaper action settings', () => {
     state.change(['enable_image_download', 'wallpaper_download_folder']);
     assert.equal(folder.value, 'Other');
     assert.equal(folder.disabled, true);
-    assert.equal(state.el('enable-desktop-wallpaper-checkbox').disabled, true);
-    state.conf.desktop_wallpaper_available = true;
-    state.chrome.storage.onChanged.emit({ desktop_wallpaper_available: { newValue: true } }, 'local');
+    assert.equal(state.el('enable-desktop-wallpaper-checkbox').checked, false);
+    state.availability = 'available';
+    state.availabilityChanged();
     assert.equal(folder.disabled, false);
   });
 });

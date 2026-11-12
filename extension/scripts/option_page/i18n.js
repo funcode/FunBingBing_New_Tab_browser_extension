@@ -55,8 +55,14 @@ function i18n_wallpaper_tab() {
 	document.getElementById('wallpaper-actions-heading').textContent = i18n('wallpaper_actions');
 	document.getElementById('wallpaper-actions-apply-hint').textContent = i18n('op_wallpaper_actions_apply_immediately');
 	document.getElementById('enable-image-download-label').textContent = i18n('wallpaper_download_image');
-	document.getElementById('enable-desktop-wallpaper-label').textContent = i18n('wallpaper_set_as_desktop');
-	document.getElementById('desktop-wallpaper-setup-status').textContent = i18n('op_wallpaper_desktop_unavailable');
+	document.getElementById('enable-desktop-wallpaper-label').textContent = i18n('op_wallpaper_desktop_enable');
+	document.getElementById('desktop-wallpaper-install-hint').textContent = i18n('op_wallpaper_desktop_install_hint');
+	document.getElementById('desktop-wallpaper-install').textContent = i18n('op_wallpaper_desktop_install');
+	document.getElementById('desktop-wallpaper-release').textContent = i18n('op_wallpaper_desktop_release');
+	document.getElementById('desktop-wallpaper-check-again').textContent = i18n('op_wallpaper_desktop_check_again');
+	document.getElementById('desktop-wallpaper-cancel-check').textContent = i18n('op_wallpaper_desktop_cancel_check');
+	document.getElementById('desktop-wallpaper-off-hint').textContent = i18n('op_wallpaper_desktop_off_hint');
+	document.getElementById('desktop-wallpaper-source-hint').textContent = i18n('op_wallpaper_desktop_source_hint');
 	document.getElementById('wallpaper-download-folder-label').textContent = i18n('op_wallpaper_download_folder_label');
 	document.getElementById('wallpaper-download-folder').placeholder = i18n('op_wallpaper_download_folder_example');
 	document.getElementById('wallpaper-download-folder-hint').textContent = i18n('op_wallpaper_download_folder_hint');

@@ -4,7 +4,10 @@ import { createImageScheduler } from '../src/worker/image-scheduler.js';
 import { createMigrationService } from '../src/worker/migration-service.js';
 import { createQuoteService } from '../src/worker/quote-service.js';
 import { createTriviaService } from '../src/worker/trivia-service.js';
+import { registerDesktopWallpaperSetup } from '../src/worker/desktop-wallpaper-setup.js';
 import { WALLPAPER_CACHE_NAME } from '../src/worker/storage-keys.js';
+
+registerDesktopWallpaperSetup(chrome);
 
 async function fetchBingJson(url) {
 	const response = await fetch(url, { cache: 'no-store' });

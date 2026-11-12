@@ -8,7 +8,7 @@ import {
   eventually, final, finalHd, finish, headlineIs, inlineBackground, jpeg, openNewTab,
   openOptions, previous, readDisplayState, readSync, restartWorker, seed,
   setBrowserDownloadDirectory, showsFinal, start, stopWorker,
-  worker, workerCaches, writeLocal, writeSync
+  worker, workerCaches, writeSync
 } from './harness.mjs';
 
 const A = day(0, 'DownloadTarget', '#a03020');
@@ -356,14 +356,14 @@ describe('wallpaper action controls with the production manifest', () => {
       const folder = options.locator('#wallpaper-download-folder');
       assert.equal(await image.isChecked(), true);
       assert.equal(await desktop.isChecked(), false);
-      assert.equal(await desktop.isDisabled(), true);
+      await eventually(() => desktop.isEnabled());
       assert.equal(await folder.isEnabled(), true);
       await options.waitForFunction(() => document.getElementById('wallpaper-actions-heading')?.textContent);
       for (const [id, key] of [
         ['wallpaper-actions-heading', 'wallpaper_actions'],
         ['wallpaper-actions-apply-hint', 'op_wallpaper_actions_apply_immediately'],
         ['enable-image-download-label', 'wallpaper_download_image'],
-        ['enable-desktop-wallpaper-label', 'wallpaper_set_as_desktop'],
+        ['enable-desktop-wallpaper-label', 'op_wallpaper_desktop_enable'],
         ['desktop-wallpaper-setup-status', 'op_wallpaper_desktop_unavailable'],
         ['wallpaper-download-folder-label', 'op_wallpaper_download_folder_label'],
         ['wallpaper-download-folder-hint', 'op_wallpaper_download_folder_hint']
@@ -379,11 +379,6 @@ describe('wallpaper action controls with the production manifest', () => {
       await eventually(() => folder.isDisabled());
       await page.waitForFunction(() => document.getElementById('wallpaper-actions').hidden);
       assert.equal(await folder.inputValue(), 'Pictures/Bing');
-      await writeLocal({ desktop_wallpaper_available: true });
-      await eventually(() => desktop.isChecked());
-      assert.equal(await folder.isEnabled(), true, 'desktop alone enables folder editing');
-      await desktop.uncheck();
-      await eventually(() => folder.isDisabled());
       assert.equal(await folder.inputValue(), 'Pictures/Bing');
       await image.check();
       await ready(page);

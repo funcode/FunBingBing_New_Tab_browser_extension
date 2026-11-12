@@ -34,7 +34,8 @@
   ],
   "optional_permissions": [
     "topSites",
-    "downloads"
+    "downloads",
+    "nativeMessaging"
   ],
   "host_permissions": [
     "https://*.bing.com/",

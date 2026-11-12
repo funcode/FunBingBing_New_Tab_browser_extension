@@ -14,6 +14,9 @@
       .mui-tabs__pane {
         padding: 20px;
       }
+      #desktop-wallpaper-cancel-check[hidden] {
+        display: none;
+      }
       #settings-title {
         color: gray;
         padding: 5px;
@@ -112,7 +115,17 @@
       <div class="mui-checkbox">
         <label><input id="enable-desktop-wallpaper-checkbox" type="checkbox" disabled aria-describedby="desktop-wallpaper-setup-status"> <span id="enable-desktop-wallpaper-label"></span></label>
       </div>
-      <p id="desktop-wallpaper-setup-status"></p>
+      <p id="desktop-wallpaper-setup-status" role="status" aria-live="polite"></p>
+      <p id="desktop-wallpaper-install-hint"></p>
+      <p>
+        <a id="desktop-wallpaper-install" href="./native/windows/README.md" target="_blank" rel="noopener"></a>
+        <br>
+        <a id="desktop-wallpaper-release" href="https://github.com/funcode/FunBingBing/issues/163" target="_blank" rel="noopener"></a>
+      </p>
+      <button type="button" id="desktop-wallpaper-check-again" class="mui-btn" disabled></button>
+      <button type="button" id="desktop-wallpaper-cancel-check" class="mui-btn" hidden></button>
+      <p id="desktop-wallpaper-off-hint"></p>
+      <p id="desktop-wallpaper-source-hint"></p>
       <div class="mui-textfield">
         <label id="wallpaper-download-folder-label" for="wallpaper-download-folder"></label>
         <input id="wallpaper-download-folder" type="text" aria-describedby="wallpaper-download-folder-hint wallpaper-download-folder-error">

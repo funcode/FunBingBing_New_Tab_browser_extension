@@ -185,6 +185,48 @@
         "message": "这些设置立即生效。"
     },
 
+    "op_wallpaper_desktop_enable": {
+        "message": "启用桌面壁纸"
+    },
+    "op_wallpaper_desktop_install_hint": {
+        "message": "Windows 安装程序正在开发。使用解压缩的扩展时，请先构建并注册辅助程序，再选择“重新检查”。"
+    },
+    "op_wallpaper_desktop_install": {
+        "message": "Windows 开发环境安装指南"
+    },
+    "op_wallpaper_desktop_release": {
+        "message": "Windows 安装程序发布状态"
+    },
+    "op_wallpaper_desktop_check_again": {
+        "message": "重新检查"
+    },
+    "op_wallpaper_desktop_cancel_check": {
+        "message": "关闭"
+    },
+    "op_wallpaper_desktop_off_hint": {
+        "message": "关闭后无法发起新的桌面壁纸操作。已开始的保存或壁纸设置仍可完成。你可以在浏览器中取消尚未完成的保存。"
+    },
+    "op_wallpaper_desktop_source_hint": {
+        "message": "桌面直接使用下载的文件。移动或删除该文件可能会影响桌面壁纸。"
+    },
+    "op_wallpaper_desktop_checking": {
+        "message": "正在检查桌面壁纸辅助程序…"
+    },
+    "op_wallpaper_desktop_verified": {
+        "message": "桌面壁纸辅助程序已通过验证。"
+    },
+    "op_wallpaper_desktop_permission_required": {
+        "message": "请允许与本机应用通信以验证辅助程序。选择“重新检查”以重试。"
+    },
+    "op_wallpaper_desktop_incompatible": {
+        "message": "已安装的辅助程序不兼容。更新辅助程序后选择“重新检查”。"
+    },
+    "op_wallpaper_desktop_timeout": {
+        "message": "辅助程序未及时响应。请检查安装情况，然后选择“重新检查”。"
+    },
+    "op_wallpaper_desktop_check_failed": {
+        "message": "无法验证辅助程序。请检查安装情况，然后选择“重新检查”。"
+    },
     "op_wallpaper_desktop_unavailable": {
         "message": "安装并验证兼容的辅助程序后，即可设置桌面壁纸。图片下载功能可独立使用。"
     },

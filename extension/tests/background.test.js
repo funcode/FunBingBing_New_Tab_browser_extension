@@ -50,7 +50,9 @@ async function loadWorker({ entry = {}, local = {} } = {}) {
       sync: storageArea({ enable_uhd_wallpaper: 'no' }),
       onChanged: { addListener: listener => changeListeners.push(listener) }
     },
+    permissions: { contains: async () => false, onRemoved: event() },
     runtime: {
+      getURL: name => `chrome-extension://test/${name}`,
       onStartup: event(),
       onInstalled: event(),
       onMessage: { addListener: listener => messageListeners.push(listener) },
