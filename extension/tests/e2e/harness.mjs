@@ -67,8 +67,12 @@ export function catalogOf(days, targetDate = TARGET) {
 }
 
 export let context;
+export let downloadDirectory;
 let profileDir;
+let loadedExtension = EXTENSION;
 let realNetwork = false;
+let browserDownloads = false;
+let headed = false;
 // An extension page that seeds storage and Cache Storage, sends runtime
 // messages and holds the CDP session that stops the worker.
 let control;
@@ -92,10 +96,10 @@ export const eventually = async (condition, message = 'the expected state was no
 export async function launch() {
   context = await chromium.launchPersistentContext(profileDir, {
     channel: 'chromium',
-    headless: true,
+    headless: !headed,
     args: [
-      `--disable-extensions-except=${EXTENSION}`,
-      `--load-extension=${EXTENSION}`,
+      `--disable-extensions-except=${loadedExtension}`,
+      `--load-extension=${loadedExtension}`,
       // With the real network, Chromium follows this machine's system proxy.
       ...(realNetwork ? [] : [
         //Without the flag, Chromium follows this machine's system proxy and page requests fail with ERR_PROXY_CONNECTION_FAILED; with it, they fail at the blocked DNS lookup as the tests intend.
@@ -129,6 +133,9 @@ export async function launch() {
   control = await context.newPage();
   await control.goto(`chrome-extension://${new URL(serviceWorker.url()).host}/options.html`);
   cdp = await context.newCDPSession(control);
+  // Playwright's automatic download handling bypasses extension filename
+  // suggestions. These acceptance checks use Chrome's real manager instead.
+  if (browserDownloads) await cdp.send('Browser.setDownloadBehavior', { behavior: 'default' });
   workerVersions.clear();
   cdp.on('ServiceWorker.workerVersionUpdated', ({ versions }) => {
     for (const { versionId, runningStatus } of versions) {
@@ -143,16 +150,64 @@ export async function launch() {
  * Create the test profile, start the browser and let the new install's
  * migration verify. With `network`, requests reach the real Bing.
  */
-export async function start({ network = false } = {}) {
+export async function start({ network = false, downloads = false, nativeDownloads = false } = {}) {
+  assert.ok(!downloads || !nativeDownloads, 'choose one download fixture');
   realNetwork = network;
+  browserDownloads = downloads || nativeDownloads;
+  headed = nativeDownloads;
   profileDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ataraxia-e2e-'));
+  loadedExtension = EXTENSION;
+  if (downloads) {
+    // This headless Playwright fixture cannot accept Chrome's native extension permission prompt.
+    // Load unchanged production runtime files with a pre-granted API fixture;
+    // first-action request/denial is covered separately at that API boundary.
+    loadedExtension = path.join(profileDir, 'extension');
+    fs.mkdirSync(loadedExtension);
+    for (const entry of fs.readdirSync(EXTENSION)) {
+      if (entry.startsWith('.') || ['node_modules', 'output', 'tests', 'docs'].includes(entry)) continue;
+      fs.cpSync(path.join(EXTENSION, entry), path.join(loadedExtension, entry), { recursive: true });
+    }
+    const manifestFile = path.join(loadedExtension, 'manifest.json');
+    const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
+    assert.ok(manifest.optional_permissions.includes('downloads'), 'downloads must remain optional in production');
+    manifest.optional_permissions = manifest.optional_permissions.filter(permission => permission !== 'downloads');
+    manifest.permissions.push('downloads');
+    fs.writeFileSync(manifestFile, JSON.stringify(manifest));
+  }
+  if (browserDownloads) {
+    downloadDirectory = path.join(profileDir, 'downloads');
+    fs.mkdirSync(path.join(profileDir, 'Default'), { recursive: true });
+    fs.writeFileSync(path.join(profileDir, 'Default', 'Preferences'), JSON.stringify({
+      download: { default_directory: downloadDirectory, prompt_for_download: nativeDownloads, directory_upgrade: true }
+    }));
+  }
   await launch();
+  if (downloads) {
+    assert.ok(await control.evaluate(() => chrome.permissions.contains({ permissions: ['downloads'] })),
+      'the isolated fixture did not provide pre-granted downloads permission');
+  }
   await migrationPhase('verified');
 }
 
+/** Browser policy override; it does not interact with a native Save As dialog. */
+export async function setBrowserDownloadDirectory(directory) {
+  await cdp.send('Browser.setDownloadBehavior', directory
+    ? { behavior: 'allow', downloadPath: directory }
+    : { behavior: 'default' });
+}
+
+export async function openOptions() {
+  const page = await context.newPage();
+  await page.goto(new URL('options.html', control.url()).href);
+  return page;
+}
+
 export async function finish() {
-  await context?.close();
-  fs.rmSync(profileDir, { recursive: true, force: true });
+  try {
+    await context?.close();
+  } finally {
+    if (profileDir) fs.rmSync(profileDir, { recursive: true, force: true, maxRetries: 5 });
+  }
 }
 
 /** Send a runtime message from the control page and resolve the worker's answer. */

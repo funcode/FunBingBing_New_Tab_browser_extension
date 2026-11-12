@@ -19,6 +19,8 @@ const DEFAULT_SETTINGS = {
   show_clock: 'yes',
   show_quote: 'yes',
   enable_uhd_wallpaper: 'yes',
+  enable_image_download: 'yes',
+  wallpaper_download_folder: '',
   qotd_url: ''
 };
 

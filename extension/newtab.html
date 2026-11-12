@@ -183,6 +183,22 @@
     </button>
   </div>
 
+  <div id="wallpaper-actions" role="group" data-save-state="idle">
+    <span class="wallpaper-action-slot">
+      <button type="button" id="download-image-btn" disabled>↓</button>
+    </span>
+    <span class="wallpaper-action-slot" id="desktop-wallpaper-slot">
+      <button type="button" id="desktop-wallpaper-btn" disabled hidden>▣</button>
+    </span>
+    <span id="wallpaper-actions-status" role="status" aria-live="polite"></span>
+  </div>
+  <dialog id="wallpaper-download-permission-dialog" aria-labelledby="wallpaper-download-permission-title" aria-describedby="wallpaper-download-permission-explanation">
+    <h2 id="wallpaper-download-permission-title"></h2>
+    <p id="wallpaper-download-permission-explanation"></p>
+    <button type="button" id="wallpaper-download-permission-continue"></button>
+    <button type="button" id="wallpaper-download-permission-cancel"></button>
+  </dialog>
+
   <div class="description" id="description">
     <p class="title">Bing Wallpaper Title</p>
     <span class="sub">

@@ -61,8 +61,8 @@ describe('Migration helpers', () => {
       assert.strictEqual(result.qotd_url, 'https://q.example/a.json');
       assert.deepStrictEqual(result.search_engine_list.map(engine => engine.name), ['Bing', 'Google']);
       assert.deepStrictEqual(Object.keys(result).sort(), [
-        'current_search_engine', 'display_search_box', 'enable_uhd_wallpaper', 'qotd_url',
-        'search_engine_list', 'show_clock', 'show_quote', 'show_top_sites'
+        'current_search_engine', 'display_search_box', 'enable_image_download', 'enable_uhd_wallpaper', 'qotd_url',
+        'search_engine_list', 'show_clock', 'show_quote', 'show_top_sites', 'wallpaper_download_folder'
       ]);
     });
 

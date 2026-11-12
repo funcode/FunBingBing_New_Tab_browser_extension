@@ -17,6 +17,15 @@ const MIGRATION_STATE_KEY = 'wallpaper_migration_v2_state';
 
 let currentWallpaperObjectUrl = null;
 let currentImageDate = null;
+let visibleWallpaperFinal = null;
+const visibleWallpaperListeners = new Set();
+
+function notifyVisibleWallpaper() {
+	if (!visibleWallpaperListeners.size) return;
+	setTimeout(() => {
+		for (const listener of visibleWallpaperListeners) listener();
+	}, 0);
+}
 
 function normalizeQuoteText(text) {
 	if (typeof text !== 'string') return '';
@@ -77,6 +86,8 @@ function activateFallbackPlaceholder() {
 	body.style.backgroundColor = '';
 	body.setAttribute('data-wallpaper-fallback', 'visible');
 	body.classList.add('wallpaper-fallback-active');
+	visibleWallpaperFinal = null;
+	notifyVisibleWallpaper();
 }
 
 function setFooterText(text) {
@@ -103,12 +114,16 @@ const wallpaperView = {
 		currentImageDate = view.date;
 		setContents(entry);
 		showWallpaperObjectUrl(objectUrl);
+		visibleWallpaperFinal = Object.freeze({ date: view.date, imageId: view.imageId, url: view.url, blob });
+		notifyVisibleWallpaper();
 		return true;
 	},
 	applyPreview({ view, entry, blob }) {
 		currentImageDate = view.date;
 		setContents(entry);
 		showWallpaperObjectUrl(URL.createObjectURL(blob));
+		visibleWallpaperFinal = null;
+		notifyVisibleWallpaper();
 	},
 	refreshContents({ entry }) {
 		setContents(entry);

@@ -214,6 +214,14 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
     }
   };
   page.setNetworkStatus = status => { context.document.documentElement.dataset.networkStatus = status; };
+  page.visibleFinal = () => vm.runInContext('visibleWallpaperFinal', context);
+  page.view = () => vm.runInContext('wallpaperView', context);
+  page.holdVisibleNotifications = listener => {
+    const tasks = [];
+    context.setTimeout = task => tasks.push(task);
+    vm.runInContext('visibleWallpaperListeners', context).add(listener);
+    return () => { for (const task of tasks.splice(0)) task(); };
+  };
 
   run('scripts/early-preview.js');
   run('scripts/boot.js');
@@ -227,6 +235,48 @@ async function openNewTab({ local = {}, cached = [], undecodable = [], networkSt
 }
 
 describe('new tab page scripts', () => {
+  it('retains the exact successfully painted final Blob without consulting shared display state', async () => {
+    const page = await openNewTab({ local: { [CATALOG_KEY]: catalog() }, cached: [UHD] });
+    await page.settled(() => page.backgrounds.at(-1) === `url('blob:${UHD}')`);
+    const visible = page.visibleFinal();
+    assert.deepStrictEqual(structuredClone(visible), { date: TARGET, imageId: ID, url: UHD, blob: { url: UHD } });
+    assert.ok(Object.isFrozen(visible));
+    page.local[DISPLAY_STATE_KEY] = { date: OLDER, imageId: OLDER_ID, url: OLDER_UHD };
+    page.cache.clear();
+    assert.strictEqual(page.visibleFinal(), visible, 'another tab selection and eviction do not retarget this tab');
+  });
+
+  it('paints and commits a final image while wallpaper action updates are held', async () => {
+    const page = await openNewTab({ local: { [CATALOG_KEY]: catalog() }, cached: [UHD, OLDER_UHD] });
+    await page.settled(() => page.local[DISPLAY_STATE_KEY]?.date === TARGET);
+    let notified;
+    const release = page.holdVisibleNotifications(() => { notified = page.visibleFinal(); });
+    await page.element('leftNav').onclick();
+    assert.equal(page.backgrounds.at(-1), `url('blob:${OLDER_UHD}')`);
+    assert.equal(page.local[DISPLAY_STATE_KEY]?.date, OLDER);
+    assert.equal(notified, undefined, 'action controls have not run');
+    release();
+    assert.equal(notified?.imageId, OLDER_ID);
+  });
+
+  it('keeps the old visible final after stale or failed paint and clears only for actual preview/fallback', async () => {
+    const page = await openNewTab({ local: { [CATALOG_KEY]: catalog() }, cached: [UHD], undecodable: [OLDER_UHD] });
+    await page.settled(() => page.backgrounds.at(-1) === `url('blob:${UHD}')`);
+    const visible = page.visibleFinal();
+    const view = page.view();
+    assert.strictEqual(await view.applyFinal({ view: { date: OLDER, imageId: OLDER_ID, url: OLDER_UHD }, blob: { url: OLDER_UHD }, isCurrent: () => true }), false);
+    assert.strictEqual(page.visibleFinal(), visible, 'a decode failure keeps the visible final');
+    assert.strictEqual(await view.applyFinal({ view: { date: OLDER, imageId: OLDER_ID, url: UHD }, blob: { url: UHD }, isCurrent: () => false }), false);
+    assert.strictEqual(page.visibleFinal(), visible, 'a stale decoded image keeps the visible final');
+    view.applyPreview({ view: { date: OLDER }, blob: { url: PREVIEW } });
+    assert.strictEqual(page.visibleFinal(), null);
+    await view.applyFinal({ view: { date: TARGET, imageId: ID, url: UHD }, blob: { url: UHD }, isCurrent: () => true });
+    assert.strictEqual(page.visibleFinal().imageId, ID);
+    view.showFallback();
+    assert.strictEqual(page.visibleFinal(), null);
+    assert.strictEqual(visible.blob.url, UHD, 'an earlier click still owns its original reference');
+  });
+
   describe('early committed preview', () => {
     const snapshot = { date: TARGET, imageId: ID, url: UHD, preloadDataUrl: PREVIEW_DATA_URL, updatedAt: Date.now() };
     const state = { [CATALOG_KEY]: catalog(), [DISPLAY_STATE_KEY]: snapshot };

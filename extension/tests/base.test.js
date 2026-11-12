@@ -62,6 +62,9 @@ describe('page configuration', () => {
     assert.strictEqual(page.readConf('enable_uhd_wallpaper'), 'no');
     assert.strictEqual(page.readConf('display_search_box'), 'no', 'default');
     assert.strictEqual(page.readConf('qotd_url'), '');
+    assert.strictEqual(page.readConf('enable_image_download'), 'yes');
+    assert.strictEqual(page.readConf('wallpaper_download_folder'), '');
+    assert.strictEqual(page.readConf('desktop_wallpaper_available'), undefined, 'no native availability is invented');
     assert.deepStrictEqual(page.readConf('search_engine_list').map(engine => engine.name), ['Bing', 'Google']);
   });
 

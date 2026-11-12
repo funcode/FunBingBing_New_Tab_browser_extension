@@ -50,6 +50,27 @@ function i18n_widgets_toggle_button() {
     if (widgetsToggle) widgetsToggle.title = i18n('toggle_clock_title');
 }
 
+function i18n_wallpaper_actions() {
+    document.getElementById('wallpaper-actions').setAttribute('aria-label', i18n('wallpaper_actions'));
+    for (const [id, key] of [
+        ['download-image-btn', 'wallpaper_download_image'],
+        ['desktop-wallpaper-btn', 'wallpaper_set_as_desktop']
+    ]) {
+        const button = document.getElementById(id);
+        const label = i18n(key);
+        button.title = label;
+        button.setAttribute('aria-label', label);
+    }
+    for (const [id, key] of [
+        ['title', 'wallpaper_save_title'],
+        ['explanation', 'wallpaper_permission_explanation'],
+        ['continue', 'wallpaper_permission_continue'],
+        ['cancel', 'wallpaper_permission_cancel']
+    ]) {
+        document.getElementById('wallpaper-download-permission-' + id).textContent = i18n(key);
+    }
+}
+
 function exec_i18n() {
 	i18n_page_title();
 	i18n_search_logo_hover_tip();
@@ -57,6 +78,7 @@ function exec_i18n() {
 	i18n_tpr_settings_btn();
     i18n_daily_quiz();
     i18n_nav_buttons();
+    i18n_wallpaper_actions();
     i18n_widgets_toggle_button();
 }
 

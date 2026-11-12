@@ -5,6 +5,7 @@
  */
 
 import { EMPTY_DISPLAY_STATE } from './display-state.js';
+import { parseWallpaperDownloadFolder } from './wallpaper-download.js';
 import { buildCanonicalUrls, canonicalizeImageUrl, extractImageId, isValidImageIdentity } from './image.js';
 
 /**
@@ -86,6 +87,8 @@ export const SHARED_SETTINGS = Object.freeze({
   show_clock: { validate: validateYesNoSetting, defaultValue: 'yes' },
   show_quote: { validate: validateYesNoSetting, defaultValue: 'yes' },
   enable_uhd_wallpaper: { validate: validateYesNoSetting, defaultValue: 'yes' },
+  enable_image_download: { validate: validateYesNoSetting, defaultValue: 'yes' },
+  wallpaper_download_folder: { validate: value => parseWallpaperDownloadFolder(value) !== null, defaultValue: '' },
   qotd_url: { validate: validateUrlSetting, defaultValue: '' }
 });
 

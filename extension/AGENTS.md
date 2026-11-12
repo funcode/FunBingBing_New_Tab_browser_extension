@@ -5,9 +5,14 @@ Chrome New Tab extension showing Bing's daily wallpaper. Product overview and do
 - Carefully control the local storage, including the cache. Avoid local storage bloat.
   - Exception: best-effort future prefetch depth up to 7 days takes precedence for users who opt into UHD wallpapers, whose image cache reaches roughly 36 MB in steady state. See [ADR-0002](./docs/adr/0002-offline-guarantee-over-cache-restraint.md) and [ADR-0005](./docs/adr/0005-future-prefetch-is-best-effort.md).
 
+## I18n
+- The project uses an i18n framework in scripts/main/i18n.js and the translations are under _locales dir.
+
 ## Tests
 
 - `scripts/` holds classic page scripts that share one global scope (`boot.js` loads `scripts/main/*`); `src/` modules reach the page only through dynamic `import()`. Node tests of `src/` never load the page scripts: changes under `scripts/` or `newtab.html` need `tests/newtab-page.test.js` and `npm run test:e2e` (Playwright, the real extension in Chromium).
+- Resolve `node` or `node.exe` before dispatching reviewers. Include the executable path, working directory, and exact test commands in the brief.
+- For Chromium's native Downloads permission and Save As dialogs, follow the [headed wallpaper download check](tests/manual/README.md).
 
 ## Agent skills
 

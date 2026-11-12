@@ -49,6 +49,62 @@
         "message": "UHD Photo"
     },
 
+    "wallpaper_actions": {
+        "message": "Wallpaper actions"
+    },
+
+    "wallpaper_download_image": {
+        "message": "Download image"
+    },
+
+    "wallpaper_set_as_desktop": {
+        "message": "Set as desktop wallpaper"
+    },
+
+    "wallpaper_save_title": {
+        "message": "Save this wallpaper"
+    },
+
+    "wallpaper_permission_explanation": {
+        "message": "Ataraxia needs download access to save the image you selected and confirm where your browser saved it. Your browser controls the destination and any Save As prompt."
+    },
+
+    "wallpaper_permission_continue": {
+        "message": "Continue"
+    },
+
+    "wallpaper_permission_cancel": {
+        "message": "Cancel"
+    },
+
+    "wallpaper_actions_offline": {
+        "message": "Image actions are unavailable while this page is offline."
+    },
+
+    "wallpaper_actions_loading": {
+        "message": "Wait for the visible wallpaper to finish loading at your selected resolution."
+    },
+
+    "wallpaper_desktop_apply_failed": {
+        "message": "The image was saved. The desktop wallpaper could not be set."
+    },
+
+    "wallpaper_save_unconfirmed": {
+        "message": "The browser could not confirm that the image was saved."
+    },
+
+    "wallpaper_save_failed": {
+        "message": "The image could not be saved. Check browser downloads and try again."
+    },
+
+    "wallpaper_permission_declined": {
+        "message": "Download access was declined. Allow access to save the image."
+    },
+
+    "wallpaper_permission_failed": {
+        "message": "Download access could not be requested. Try again."
+    },
+
     "op_title": {
         "message": "Ataraxia Settings"
     },
@@ -123,6 +179,30 @@
 
     "op_wallpaper_uhd_checkbox": {
         "message": "Load UHD wallpapers"
+    },
+
+    "op_wallpaper_actions_apply_immediately": {
+        "message": "These settings apply immediately."
+    },
+
+    "op_wallpaper_desktop_unavailable": {
+        "message": "Desktop integration is unavailable until a compatible helper has been installed and verified. Image downloading works independently."
+    },
+
+    "op_wallpaper_download_folder_label": {
+        "message": "Downloads subfolder (optional)"
+    },
+
+    "op_wallpaper_download_folder_example": {
+        "message": "Wallpapers/Bing"
+    },
+
+    "op_wallpaper_download_folder_hint": {
+        "message": "Leave empty to suggest your browser's Downloads folder. Your browser controls the final destination."
+    },
+
+    "op_wallpaper_download_folder_invalid": {
+        "message": "Use a relative Downloads subfolder, such as Wallpapers/Bing."
     },
 
     "op_show_clock_checkbox": {

@@ -28,6 +28,7 @@ function startApp() {
       "scripts/main/top_sites.js",
       "scripts/main/search.js",
       "scripts/main/wallpaper.js",
+      "scripts/main/wallpaper-actions.js",
       "scripts/main/options.js",
       "scripts/main/quick_links.js",
       "scripts/main/desc_hover.js",

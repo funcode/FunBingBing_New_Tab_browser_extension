@@ -103,6 +103,22 @@
       </div>
       <br/>
       <button type="button" id="save-wallpaper-conf-btn" class="mui-btn mui-btn--primary op-btn-save-this">Save and apply</button>
+      <hr/>
+      <h3 id="wallpaper-actions-heading"></h3>
+      <p id="wallpaper-actions-apply-hint"></p>
+      <div class="mui-checkbox">
+        <label><input id="enable-image-download-checkbox" type="checkbox" checked> <span id="enable-image-download-label"></span></label>
+      </div>
+      <div class="mui-checkbox">
+        <label><input id="enable-desktop-wallpaper-checkbox" type="checkbox" disabled aria-describedby="desktop-wallpaper-setup-status"> <span id="enable-desktop-wallpaper-label"></span></label>
+      </div>
+      <p id="desktop-wallpaper-setup-status"></p>
+      <div class="mui-textfield">
+        <label id="wallpaper-download-folder-label" for="wallpaper-download-folder"></label>
+        <input id="wallpaper-download-folder" type="text" aria-describedby="wallpaper-download-folder-hint wallpaper-download-folder-error">
+      </div>
+      <p id="wallpaper-download-folder-hint"></p>
+      <p id="wallpaper-download-folder-error" role="status" aria-live="polite"></p>
     </div>
     <!-- END TAB wallpapers -->
 

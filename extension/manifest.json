@@ -33,7 +33,8 @@
     "storage"
   ],
   "optional_permissions": [
-    "topSites"
+    "topSites",
+    "downloads"
   ],
   "host_permissions": [
     "https://*.bing.com/",

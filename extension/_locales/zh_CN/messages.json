@@ -49,6 +49,62 @@
         "message": "超清"
     },
 
+    "wallpaper_actions": {
+        "message": "壁纸操作"
+    },
+
+    "wallpaper_download_image": {
+        "message": "下载图片"
+    },
+
+    "wallpaper_set_as_desktop": {
+        "message": "设为桌面壁纸"
+    },
+
+    "wallpaper_save_title": {
+        "message": "保存这张壁纸"
+    },
+
+    "wallpaper_permission_explanation": {
+        "message": "Ataraxia 需要下载权限才能保存你选择的图片，并确认浏览器将图片保存到了哪里。保存位置和是否弹出「另存为」对话框由浏览器决定。"
+    },
+
+    "wallpaper_permission_continue": {
+        "message": "继续"
+    },
+
+    "wallpaper_permission_cancel": {
+        "message": "取消"
+    },
+
+    "wallpaper_actions_offline": {
+        "message": "页面离线时无法进行壁纸操作。"
+    },
+
+    "wallpaper_actions_loading": {
+        "message": "请等待当前壁纸按所选分辨率加载完成。"
+    },
+
+    "wallpaper_desktop_apply_failed": {
+        "message": "图片已保存。无法设置桌面壁纸。"
+    },
+
+    "wallpaper_save_unconfirmed": {
+        "message": "浏览器无法确认图片是否已保存。"
+    },
+
+    "wallpaper_save_failed": {
+        "message": "无法保存图片。请检查浏览器的下载记录后重试。"
+    },
+
+    "wallpaper_permission_declined": {
+        "message": "下载权限请求已被拒绝。请授予下载权限以保存图片。"
+    },
+
+    "wallpaper_permission_failed": {
+        "message": "无法请求下载权限。请重试。"
+    },
+
     "op_title": {
         "message": "Ataraxia 设置项"
     },
@@ -123,6 +179,30 @@
 
     "op_wallpaper_uhd_checkbox": {
         "message": "加载超清壁纸图片"
+    },
+
+    "op_wallpaper_actions_apply_immediately": {
+        "message": "这些设置立即生效。"
+    },
+
+    "op_wallpaper_desktop_unavailable": {
+        "message": "安装并验证兼容的辅助程序后，即可设置桌面壁纸。图片下载功能可独立使用。"
+    },
+
+    "op_wallpaper_download_folder_label": {
+        "message": "下载子文件夹（可选）"
+    },
+
+    "op_wallpaper_download_folder_example": {
+        "message": "壁纸/必应"
+    },
+
+    "op_wallpaper_download_folder_hint": {
+        "message": "留空时，Ataraxia 会建议保存到浏览器的下载文件夹。最终保存位置由浏览器决定。"
+    },
+
+    "op_wallpaper_download_folder_invalid": {
+        "message": "请输入相对于下载文件夹的子路径，例如 壁纸/必应。"
     },
 
     "op_show_clock_checkbox": {

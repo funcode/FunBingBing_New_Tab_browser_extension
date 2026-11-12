@@ -52,6 +52,14 @@ function i18n_wallpaper_tab() {
 	document.getElementById("use-uhd-wallpaper-checkbox-text").innerHTML = i18n('op_wallpaper_uhd_checkbox');
 	document.getElementById("show-clock-checkbox-text").innerHTML = i18n('op_show_clock_checkbox');
 	document.getElementById("show-quote-checkbox-text").innerHTML = i18n('op_show_quote_checkbox');
+	document.getElementById('wallpaper-actions-heading').textContent = i18n('wallpaper_actions');
+	document.getElementById('wallpaper-actions-apply-hint').textContent = i18n('op_wallpaper_actions_apply_immediately');
+	document.getElementById('enable-image-download-label').textContent = i18n('wallpaper_download_image');
+	document.getElementById('enable-desktop-wallpaper-label').textContent = i18n('wallpaper_set_as_desktop');
+	document.getElementById('desktop-wallpaper-setup-status').textContent = i18n('op_wallpaper_desktop_unavailable');
+	document.getElementById('wallpaper-download-folder-label').textContent = i18n('op_wallpaper_download_folder_label');
+	document.getElementById('wallpaper-download-folder').placeholder = i18n('op_wallpaper_download_folder_example');
+	document.getElementById('wallpaper-download-folder-hint').textContent = i18n('op_wallpaper_download_folder_hint');
 }
 
 // about tab
