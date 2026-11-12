@@ -1,0 +1,46 @@
+{
+  "caption": "加拿大艾伯塔省亚伯拉罕湖的冰面",
+  "title": "亚伯拉罕湖，艾伯塔省，加拿大",
+  "description": "黎明的第一缕曙光映照在亚伯拉罕湖冰封的湖面上，远处是落基山脉的群峰。冬季，这座位于艾伯塔省的如画湖泊以困在冰层下的甲烷气泡而闻名。强风使湖面不被积雪覆盖，让人们整个冬天都能观赏这一景象。到了春天，冰层融化，气体便逸散到大气中。",
+  "copyright": "© Guang Cao/Getty Images",
+  "date": "2026 11月 13",
+  "clickUrl": "/search?q=%e8%89%be%e4%bc%af%e5%a1%94%e7%9c%81%e4%ba%9a%e4%bc%af%e6%8b%89%e7%bd%95%e6%b9%96&form=hpcapt&filters=HpDate:\"20261112_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.AbrahamCanada_ZH-CN0344365912_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.AbrahamCanada_ZH-CN0344365912_UHD.jpg",
+      "wallpaper": "/th?id=OHR.AbrahamCanada_ZH-CN0344365912_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.AbrahamCanada_ZH-CN0344365912_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.AbrahamCanada_ZH-CN0344365912_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.AbrahamCanada_ZH-CN0344365912_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "尽管风光天然秀美，这座湖其实是一座人工水库，建于1972年，当时人们在北萨斯喀彻温河上修建了大角羊坝。冬季的冰雪之美与夏季的碧绿湖水，使它成为全年备受欢迎的摄影地点。",
+  "descriptionPara3": "",
+  "isoDate": "20261113",
+  "headline": "冰下秘境",
+  "quickFact": "亚伯拉罕湖以斯托尼纳科达族向导赛拉斯·亚伯拉罕命名；这一名称由艾伯塔省政府举办的征名比赛选出。",
+  "triviaId": "HPQuiz_20261113_AbrahamCanada",
+  "triviaData": {
+    "question": "哪种物质在亚伯拉罕湖冰下形成可见气泡？",
+    "options": [
+      {
+        "text": "氮",
+        "url": "/search?q=%E7%94%B2%E7%83%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261113_AbrahamCanada%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "二氧化碳",
+        "url": "/search?q=%E7%94%B2%E7%83%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261113_AbrahamCanada%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "甲烷",
+        "url": "/search?q=%E7%94%B2%E7%83%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261113_AbrahamCanada%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
