@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { DESKTOP_WALLPAPER_AVAILABLE as hint } from '../../src/helpers/desktop-wallpaper-availability.js';
 import * as h from './harness.mjs';
 
-const hint = 'desktop_wallpaper_available';
 const offPending = 'desktop_wallpaper_off_pending';
 const permission = { permissions: ['nativeMessaging'] };
 const state = (page, expected) => page.locator(`#desktop-wallpaper-setup-status[data-state="${expected}"]`).waitFor();
@@ -78,7 +78,10 @@ test('Setup and new tabs follow verified availability through checks, Off, and b
   await h.start({ nativeMessaging: true });
   try {
     const image = h.day(0, 'DesktopSetup', '#a03020');
-    await h.seed({ days: [image], cached: [h.final(image)], sync: { enable_image_download: 'no' } });
+    await h.seed({
+      days: [image], cached: [h.final(image)],
+      local: { desktop_wallpaper_available: true }, sync: { enable_image_download: 'no' }
+    });
     const currentWorker = await h.worker();
     await controlHost(currentWorker);
     const first = await setup();
@@ -97,6 +100,7 @@ test('Setup and new tabs follow verified availability through checks, Off, and b
     const page = await h.openNewTab();
     await h.showsFinal(page);
     assert.equal(await desktopHidden(page), true);
+    assert.equal(await desktop(first).isChecked(), false);
     assert.equal(await folder(first).isDisabled(), true);
     assert.equal(await currentWorker.evaluate(() => globalThis.hostChecks.length), 0);
 
@@ -109,7 +113,7 @@ test('Setup and new tabs follow verified availability through checks, Off, and b
     const request = await currentWorker.evaluate(() => globalThis.hostChecks[0].request);
     assert.deepEqual(request, { type: 'verify', protocolVersion: 1 });
     await currentWorker.evaluate(() => globalThis.hostChecks[0].reply({
-      type: 'compatibility', protocolVersion: 1, compatible: true
+      type: 'compatibility', protocolVersion: 1, compatible: true, canApplyWallpaper: true
     }));
     await state(second, 'verified');
     await h.eventually(async () => await desktop(second).isChecked() && !await desktopHidden(page));
@@ -127,7 +131,7 @@ test('Setup and new tabs follow verified availability through checks, Off, and b
     await desktop(second).click();
     await state(first, 'off');
     await currentWorker.evaluate(() => globalThis.hostChecks[1].reply({
-      type: 'compatibility', protocolVersion: 1, compatible: true
+      type: 'compatibility', protocolVersion: 1, compatible: true, canApplyWallpaper: true
     }));
     await h.eventually(async () => !await desktop(first).isChecked() && await desktopHidden(page));
     assert.equal(await h.readLocal(hint), false);
@@ -136,7 +140,7 @@ test('Setup and new tabs follow verified availability through checks, Off, and b
     await recheck(first).click();
     await h.eventually(() => currentWorker.evaluate(() => globalThis.hostChecks.length === 3));
     await currentWorker.evaluate(() => globalThis.hostChecks[2].reply({
-      type: 'compatibility', protocolVersion: 2, compatible: true
+      type: 'compatibility', protocolVersion: 2, compatible: true, canApplyWallpaper: true
     }));
     await state(first, 'incompatible');
     assert.equal(await desktop(first).isChecked(), false);
@@ -157,7 +161,7 @@ test('Setup and new tabs follow verified availability through checks, Off, and b
     await recheck(first).click();
     await h.eventually(() => currentWorker.evaluate(() => globalThis.hostChecks.length === 6));
     await currentWorker.evaluate(() => globalThis.hostChecks[5].reply({
-      type: 'compatibility', protocolVersion: 1, compatible: true
+      type: 'compatibility', protocolVersion: 1, compatible: true, canApplyWallpaper: true
     }));
     await state(first, 'verified');
     await h.restartWorker();
@@ -177,17 +181,17 @@ test('an old positive write stays hidden after Off and a worker restart', async 
   try {
     const worker = await h.worker();
     await controlHost(worker);
-    await worker.evaluate(() => {
+    await worker.evaluate(hint => {
       const set = chrome.storage.local.set.bind(chrome.storage.local);
       globalThis.heldAvailabilityWrites = {};
       chrome.storage.local.set = values => {
-        const available = values.desktop_wallpaper_available;
+        const available = values[hint];
         if (typeof available !== 'boolean') return set(values);
         const { promise, resolve } = Promise.withResolvers();
         globalThis.heldAvailabilityWrites[available] = resolve;
         return promise.then(() => set(values));
       };
-    });
+    }, hint);
     const page = await setup();
     const cancel = page.locator('#desktop-wallpaper-cancel-check');
     const tab = await h.openNewTab();
@@ -196,7 +200,7 @@ test('an old positive write stays hidden after Off and a worker restart', async 
     await state(page, 'checking');
     await h.eventually(() => worker.evaluate(() => globalThis.hostChecks.length === 1));
     await worker.evaluate(() => globalThis.hostChecks[0].reply({
-      type: 'compatibility', protocolVersion: 1, compatible: true
+      type: 'compatibility', protocolVersion: 1, compatible: true, canApplyWallpaper: true
     }));
     await h.eventually(() => worker.evaluate(() => Boolean(globalThis.heldAvailabilityWrites.true)));
     await cancel.click();

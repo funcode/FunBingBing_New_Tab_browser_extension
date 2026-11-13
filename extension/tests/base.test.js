@@ -2,6 +2,7 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
+import { DESKTOP_WALLPAPER_AVAILABLE } from '../src/helpers/desktop-wallpaper-availability.js';
 
 const SCRIPT = readFileSync(new URL('../scripts/base.js', import.meta.url), 'utf8');
 
@@ -64,7 +65,7 @@ describe('page configuration', () => {
     assert.strictEqual(page.readConf('qotd_url'), '');
     assert.strictEqual(page.readConf('enable_image_download'), 'yes');
     assert.strictEqual(page.readConf('wallpaper_download_folder'), '');
-    assert.strictEqual(page.readConf('desktop_wallpaper_available'), undefined, 'no native availability is invented');
+    assert.strictEqual(page.readConf(DESKTOP_WALLPAPER_AVAILABLE), undefined, 'no native availability is invented');
     assert.deepStrictEqual(page.readConf('search_engine_list').map(engine => engine.name), ['Bing', 'Google']);
   });
 

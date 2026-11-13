@@ -9,6 +9,9 @@ export function desktopWallpaperAvailability(chrome) {
   const local = {};
   let permission;
   return {
+    apply({ downloadId }, downloadUrl) {
+      return chrome.runtime.sendMessage({ type: 'applyDesktopWallpaper', downloadId, downloadUrl });
+    },
     read() {
       if (permission === undefined || availabilityKeys.some(key => !Object.hasOwn(local, key))) return 'loading';
       return permission && local[DESKTOP_WALLPAPER_AVAILABLE] && !local[DESKTOP_WALLPAPER_OFF_PENDING]

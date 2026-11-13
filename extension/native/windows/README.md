@@ -8,7 +8,16 @@ $helper = powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\native\windo
 node .\tests\manual\windows-wallpaper-host.mjs $helper
 ```
 
+To check result handling without changing the desktop, run the controlled display checks in Windows PowerShell. They exercise Fill already being set, a Fill error, a display error, disconnected monitors, and a closed connection before acceptance.
+
+```powershell
+Add-Type -Path .\native\windows\WallpaperHost.cs, .\native\windows\WallpaperHostChecks.cs -ReferencedAssemblies System.Drawing.dll, System.Core.dll
+[WallpaperHostChecks]::Run($output)
+```
+
 To exercise Setup in Chromium with a disposable profile, run `node .\tests\manual\windows-wallpaper-setup.mjs`. The test seeds native messaging permission, restores the production manifest, and records the real helper and silent host process results in `output/native-acceptance/wallpaper-setup.json`.
+
+Run `node .\tests\manual\windows-wallpaper-apply.mjs` from an interactive Windows session with a static wallpaper. The test temporarily changes the wallpaper, verifies the saved image path and Fill on each connected display, then restores the original wallpaper. It also runs a test build that pauses after acceptance so it can close the source tab before the Windows calls. It records both results in `output/native-acceptance/wallpaper-apply.json`.
 
 ## Connect the unpacked extension
 
@@ -33,7 +42,7 @@ If you registered both browsers, remove each registration before deleting the bu
 
 ## Protocol version 1
 
-The host name is `com.idealland.ataraxia_wallpaper`. Windows frames each UTF-8 JSON payload with a four-byte little-endian byte count. Each host process reads one request of up to 1,024 bytes for verification, writes the response to stdout, flushes it, and exits. Unsupported requests and malformed or incomplete frames receive no reply.
+The host name is `com.idealland.ataraxia_wallpaper`. Windows frames each UTF-8 JSON payload with a four-byte little-endian byte count. Each host process reads one request of up to 1,024 bytes, writes its framed replies to stdout, and exits. Unsupported requests and malformed or incomplete frames receive no reply.
 
 Setup sends this request.
 
@@ -41,12 +50,20 @@ Setup sends this request.
 {"type":"verify","protocolVersion":1}
 ```
 
-The verification response identifies compatibility for that request.
+The compatibility response advertises support for applying wallpaper. Setup requires `canApplyWallpaper` to be `true`, so verification-only helpers require an update.
 
 ```json
-{"type":"compatibility","protocolVersion":1,"compatible":true}
+{"type":"compatibility","protocolVersion":1,"compatible":true,"canApplyWallpaper":true}
 ```
 
-The desktop operation will send `{"type":"apply","protocolVersion":1,"path":"C:\\Users\\Example\\Downloads\\wallpaper.jpg"}` as the first request on its own connection. The path comes from the completed browser download. An apply-capable host starts its reply with compatibility on that connection. It then reports acceptance after obtaining the same-user operation lock and validating the saved file, followed by a terminal result. Busy and pre-acceptance failures can go straight to the terminal result. Compatibility for `verify` applies to Setup verification. The current Windows host implements `verify`; the apply operation is tracked in [#157](https://github.com/funcode/FunBingBing/issues/157) and [#158](https://github.com/funcode/FunBingBing/issues/158).
+The desktop action opens a separate native connection and sends the completed browser download's absolute filename.
+
+```json
+{"type":"apply","protocolVersion":1,"path":"C:\\Users\\Example\\Downloads\\wallpaper.jpg"}
+```
+
+The host sends the same compatibility reply on that connection. It validates the saved JPEG or PNG and returns a terminal result with status `file-error` if it cannot open or decode the image. Otherwise it sends `{"type":"accepted"}` before changing the desktop. The terminal frame is `{"type":"result","status":"applied"}` on complete success. Status `partial` means Windows reported a change but some part of the operation failed. Status `failed` means Windows did not confirm any change. The host uses the saved image in place and leaves it on disk.
+
+The same-user operation lock and Busy result are tracked in [#158](https://github.com/funcode/FunBingBing/issues/158). Release acceptance requires the lock before the host sends acceptance.
 
 The operation connection provides the compatibility result for that job. Failure to establish compatibility clears Last-known helper availability. After compatibility is established, Busy, OS errors, and a missing terminal reply preserve availability. Save and notification errors also preserve the hint.

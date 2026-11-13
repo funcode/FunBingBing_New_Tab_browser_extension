@@ -416,53 +416,113 @@ object {
     }
 }
 
-#wallpaper-actions {
+#wallpaper-actions, #wallpaper-actions-status {
+  --wallpaper-actions-top: calc(50% + 0.6 * var(--center-clock-size) + 3px);
   position: fixed;
-  top: calc(50% + clamp(2.5rem, min(9vw, 9vh), 8rem));
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  padding: 18px;
-  gap: 12px;
   z-index: 4;
   color: white;
   opacity: 0;
   transition: opacity .15s;
 }
+#wallpaper-actions {
+  top: var(--wallpaper-actions-top);
+  display: flex;
+  padding: 0 18px;
+  gap: 32px;
+}
 #wallpaper-actions[hidden] { display: none; }
 #wallpaper-actions:hover, #wallpaper-actions:focus-within,
-#wallpaper-actions[data-feedback] { opacity: 1; }
+#wallpaper-actions[data-feedback],
+#wallpaper-actions:is(:hover, :focus-within, [data-feedback]) + #wallpaper-actions-status { opacity: 1; }
 #wallpaper-actions:not(:hover):not(:focus-within) .wallpaper-action-slot { opacity: 0; }
 .wallpaper-action-slot { display: inline-flex; width: 44px; height: 44px; }
 #wallpaper-actions button {
+  display: grid;
+  place-items: center;
   width: 44px;
   height: 44px;
-  border: 1px solid #ffffff80;
+  padding: 0;
+  border: none;
   border-radius: 50%;
-  background: #0006;
-  color: white;
-  font-size: 26px;
+  background: transparent;
+  color: inherit;
   cursor: pointer;
 }
+#wallpaper-actions button:enabled:hover { background: #17101455; }
 #wallpaper-actions button[hidden] { display: none; }
 #wallpaper-actions button:disabled { opacity: .4; cursor: default; }
 #wallpaper-actions button:focus-visible { outline: 3px solid white; outline-offset: 4px; }
 #wallpaper-actions-status {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: calc(var(--wallpaper-actions-top) + 52px);
+  pointer-events: none;
   width: min(340px, 85vw);
   text-align: center;
   font-size: 14px;
   text-shadow: 0 1px 4px black;
 }
-#wallpaper-download-permission-dialog {
-  max-width: min(420px, 85vw);
-  padding: 24px;
-  border: 0;
-  border-radius: 12px;
-  font: 16px/1.5 system-ui, sans-serif;
+.wallpaper-dialog {
+  box-sizing: border-box;
+  width: min(460px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100svh - 32px);
+  padding: 30px 32px 28px;
+  border: 1px solid #ffffff29;
+  border-radius: 14px;
+  background: #18191e;
+  color: #f6f6f8;
+  color-scheme: dark;
+  box-shadow: 0 16px 52px #0006;
+  font: 16px/1.6 system-ui, "Microsoft YaHei UI", sans-serif;
 }
-#wallpaper-download-permission-dialog::backdrop { background: #0008; }
-#wallpaper-download-permission-dialog button { padding: 8px 16px; margin-right: 8px; }
+.wallpaper-dialog::backdrop { background: #0008; }
+#wallpaper-desktop-confirmation-dialog {
+  position: fixed;
+  inset: auto 0 50%;
+  margin: 0 auto;
+  max-height: calc(50svh - 12px);
+  overflow: auto;
+}
+.wallpaper-dialog h2 {
+  margin: 0 0 12px;
+  font-size: 21px;
+  font-weight: 650;
+  line-height: 1.35;
+}
+.wallpaper-dialog p {
+  margin: 0;
+  color: #d6d6df;
+  line-height: 1.7;
+}
+.wallpaper-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+.wallpaper-dialog-actions button {
+  box-sizing: border-box;
+  min-width: 104px;
+  min-height: 44px;
+  padding: 8px 18px;
+  border: 1px solid #696975;
+  border-radius: 8px;
+  background: #2a2b33;
+  color: #f4f4f7;
+  font: inherit;
+  font-weight: 550;
+  cursor: pointer;
+}
+.wallpaper-dialog-actions button:hover { background: #373943; }
+.wallpaper-dialog-actions button:focus {
+  background: #d6e4ff;
+  border-color: #d6e4ff;
+  color: #152647;
+  outline: 2px solid #a8c7fa;
+  outline-offset: 3px;
+}
+@media (max-width: 420px) {
+  .wallpaper-dialog { padding: 24px 20px; }
+}

@@ -123,7 +123,7 @@ async function holdBrowserSave(page) {
   });
 }
 
-async function heldSave(page) {
+async function heldSave(page, expectedStatus = '') {
   await page.waitForFunction(() => window.__heldDownloads?.size === 1);
   const id = await page.evaluate(() => [...window.__heldDownloads.keys()][0]);
   const item = await record(page, id);
@@ -131,7 +131,7 @@ async function heldSave(page) {
   assert.ok(item.bytesReceived > 0, 'the real browser download has already received bytes');
   assert.equal((await saved(page)).length, 0, 'an ID and received bytes are not completion');
   await saveState(page, 'saving');
-  assert.equal(await page.locator('#wallpaper-actions-status').textContent(), '');
+  assert.equal(await page.locator('#wallpaper-actions-status').textContent(), expectedStatus);
   return id;
 }
 
@@ -702,7 +702,8 @@ describe('wallpaper saves through Chrome’s real manager with a pre-granted API
       await showsFinal(page); await mountDesktopFixture(page, 'available');
       await holdBrowserSave(page);
       await page.locator('#desktop-wallpaper-btn').click();
-      const id = await heldSave(page);
+      await page.locator('#wallpaper-desktop-confirmation-confirm').click();
+      const id = await heldSave(page, await localized(page, 'wallpaper_desktop_saving'));
       assert.equal(await page.evaluate(() => window.__desktopApplied.length), 0);
       await page.evaluate(id => window.__releaseBrowserSave(id), id);
       const item = await completedSave(page, A);

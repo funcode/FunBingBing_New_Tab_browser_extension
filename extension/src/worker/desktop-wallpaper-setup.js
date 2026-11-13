@@ -2,10 +2,14 @@ import {
   DESKTOP_WALLPAPER_AVAILABLE, DESKTOP_WALLPAPER_OFF_PENDING,
   NATIVE_WALLPAPER_PERMISSION, changesNativeWallpaperPermission
 } from '../helpers/desktop-wallpaper-availability.js';
-import { verifyWallpaperHelper } from './native-wallpaper.js';
+import { isAbsoluteDownloadFilename } from '../helpers/wallpaper-download.js';
+import { applyWallpaperWithHelper, verifyWallpaperHelper } from './native-wallpaper.js';
 
-export function registerDesktopWallpaperSetup({ permissions, runtime, storage }) {
+export function registerDesktopWallpaperSetup(chrome) {
+  const { permissions, runtime, storage } = chrome;
   const optionsUrl = runtime.getURL('options.html');
+  const newTabUrl = runtime.getURL('newtab.html');
+  const blobPrefix = `blob:${runtime.getURL('')}`;
   let status = 'idle';
   let activeCheck;
   let pendingPermission;
@@ -74,7 +78,38 @@ export function registerDesktopWallpaperSetup({ permissions, runtime, storage })
     publish(result);
   }
 
+  async function apply({ downloadId, downloadUrl }) {
+    if (!Number.isInteger(downloadId) || typeof downloadUrl !== 'string' || !downloadUrl.startsWith(blobPrefix)) {
+      return 'save-unconfirmed';
+    }
+    const revision = intentRevision;
+    let item;
+    try {
+      [item] = await chrome.downloads.search({ id: downloadId });
+    } catch {
+      return 'save-unconfirmed';
+    }
+    if (item?.id !== downloadId || item.state !== 'complete' || item.byExtensionId !== runtime.id ||
+        item.url !== downloadUrl || !isAbsoluteDownloadFilename(item.filename)) return 'save-unconfirmed';
+
+    const result = await permissions.contains(NATIVE_WALLPAPER_PERMISSION)
+      ? await applyWallpaperWithHelper(runtime, item.filename) : 'denied';
+    if (['denied', 'unavailable', 'incompatible'].includes(result)) {
+      const current = () => revision === intentRevision && !activeCheck;
+      const write = writes.then(() => current() && storage.local.set(cleared));
+      writes = write.catch(() => {});
+      await writes;
+      if (current()) publish(result);
+    }
+    return result;
+  }
+
   runtime.onMessage.addListener((message, sender, respond) => {
+    if (message?.type === 'applyDesktopWallpaper') {
+      if (sender.url !== newTabUrl || sender.id !== runtime.id || sender.frameId !== 0 || !sender.tab) return;
+      apply(message).then(respond, () => respond('unconfirmed'));
+      return true;
+    }
     if (sender.url !== optionsUrl || sender.frameId !== 0) return;
     if (message?.type === 'desktopWallpaperStatus') {
       respond(status);

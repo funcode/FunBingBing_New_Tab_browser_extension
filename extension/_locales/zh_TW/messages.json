@@ -60,6 +60,10 @@
         "message": "設為桌面壁紙"
     },
 
+    "wallpaper_desktop_confirmation_explanation": {
+        "message": "此操作將下載這張圖片，並替換目前的桌面壁紙。"
+    },
+
     "wallpaper_save_title": {
         "message": "保存這張壁紙"
     },
@@ -88,6 +92,30 @@
         "message": "圖片已保存。無法設定桌面壁紙。"
     },
 
+    "wallpaper_desktop_saving": {
+        "message": "正在儲存圖片，接著會設定桌面桌布…"
+    },
+    "wallpaper_desktop_applying": {
+        "message": "正在設定桌面桌布…"
+    },
+    "wallpaper_desktop_applied": {
+        "message": "已設定桌面桌布。"
+    },
+    "wallpaper_desktop_partial": {
+        "message": "圖片已儲存。部分桌面桌布設定未能套用。"
+    },
+    "wallpaper_desktop_file_error": {
+        "message": "圖片已儲存，但小幫手無法讀取該圖片作為桌布。請檢查檔案及其存取權限。"
+    },
+    "wallpaper_desktop_unconfirmed": {
+        "message": "無法確認結果，請檢查桌面。"
+    },
+    "wallpaper_desktop_setup_required": {
+        "message": "圖片已儲存。請在設定中檢查桌布小幫手。"
+    },
+    "wallpaper_desktop_save_cancelled": {
+        "message": "已取消儲存，桌面桌布未變更。"
+    },
     "wallpaper_save_unconfirmed": {
         "message": "瀏覽器無法確認圖片是否已保存。"
     },
@@ -206,7 +234,7 @@
         "message": "關閉後無法發起新的桌面桌布操作。已開始的儲存或桌布設定仍可完成。你可以在瀏覽器中取消尚未完成的儲存。"
     },
     "op_wallpaper_desktop_source_hint": {
-        "message": "桌面直接使用下載的檔案。移動或刪除該檔案可能會影響桌面桌布。"
+        "message": "桌面直接使用下載的檔案。移動或刪除該檔案可能影響桌面桌布。小幫手收到已儲存的檔案後，即可關閉新分頁。請在儲存期間保持分頁開啟，並在桌布設定完成前保持瀏覽器執行。"
     },
     "op_wallpaper_desktop_checking": {
         "message": "正在檢查桌面桌布輔助程式…"

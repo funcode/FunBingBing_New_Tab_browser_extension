@@ -69,6 +69,14 @@ function i18n_wallpaper_actions() {
     ]) {
         document.getElementById('wallpaper-download-permission-' + id).textContent = i18n(key);
     }
+    for (const [id, key] of [
+        ['title', 'wallpaper_set_as_desktop'],
+        ['explanation', 'wallpaper_desktop_confirmation_explanation'],
+        ['confirm', 'wallpaper_set_as_desktop'],
+        ['cancel', 'wallpaper_permission_cancel']
+    ]) {
+        document.getElementById('wallpaper-desktop-confirmation-' + id).textContent = i18n(key);
+    }
 }
 
 function exec_i18n() {

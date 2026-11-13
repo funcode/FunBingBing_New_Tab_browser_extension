@@ -3,6 +3,18 @@ import { isUhdEnabled } from '../helpers/display-state.js';
 import { saveCapturedImage } from '../helpers/wallpaper-download.js';
 import { createTransientFeedback } from './transient-feedback.js';
 
+const DESKTOP_RESULT_MESSAGES = {
+  applied: 'wallpaper_desktop_applied',
+  partial: 'wallpaper_desktop_partial',
+  failed: 'wallpaper_desktop_apply_failed',
+  'file-error': 'wallpaper_desktop_file_error',
+  unconfirmed: 'wallpaper_desktop_unconfirmed',
+  'save-unconfirmed': 'wallpaper_save_unconfirmed',
+  denied: 'wallpaper_desktop_setup_required',
+  unavailable: 'wallpaper_desktop_setup_required',
+  incompatible: 'wallpaper_desktop_setup_required'
+};
+
 export function captureVisibleFinal(visible, uhdSetting, offline) {
   if (!visible || offline) return null;
   const resolution = isUhdEnabled(uhdSetting) ? 'ultraHighDef' : 'highDef';
@@ -10,8 +22,6 @@ export function captureVisibleFinal(visible, uhdSetting, offline) {
   return Object.freeze({ date: visible.date, imageId: visible.imageId, resolution, blob: visible.blob });
 }
 
-// #156 supplies live availability; #157 supplies apply. Until both exist no
-// production desktop control is enabled.
 export function mountWallpaperActions({ document, window, chrome, readSetting, readVisibleFinal,
   subscribeVisibleFinal, desktopAvailability = { read: () => 'unavailable' } }) {
   const group = document.getElementById('wallpaper-actions');
@@ -21,16 +31,25 @@ export function mountWallpaperActions({ document, window, chrome, readSetting, r
   const dialog = document.getElementById('wallpaper-download-permission-dialog');
   const proceed = document.getElementById('wallpaper-download-permission-continue');
   const cancel = document.getElementById('wallpaper-download-permission-cancel');
+  const desktopConfirmation = document.getElementById('wallpaper-desktop-confirmation-dialog');
+  const confirmDesktop = document.getElementById('wallpaper-desktop-confirmation-confirm');
+  const cancelDesktop = document.getElementById('wallpaper-desktop-confirmation-cancel');
   let permissionGranted = false;
   let permissionRevision = 0;
   let pending = null;
   let saveState = 'idle';
+  let desktopState = 'idle';
   let statusMessage = '';
+  let desktopMessage = '';
   const feedback = createTransientFeedback(window, text => {
     statusMessage = text;
     render();
   });
-  const cleanup = [feedback.dispose];
+  const desktopFeedback = createTransientFeedback(window, text => {
+    desktopMessage = text;
+    render();
+  });
+  const cleanup = [feedback.dispose, desktopFeedback.dispose];
   function listen(target, type, listener) {
     target.addEventListener(type, listener);
     cleanup.push(() => target.removeEventListener(type, listener));
@@ -47,6 +66,7 @@ export function mountWallpaperActions({ document, window, chrome, readSetting, r
   }
   function dismissFeedback() {
     if (statusMessage) feedback.show();
+    if (desktopMessage) desktopFeedback.show();
   }
   function capture() {
     return captureVisibleFinal(readVisibleFinal(), readSetting('enable_uhd_wallpaper'),
@@ -65,49 +85,87 @@ export function mountWallpaperActions({ document, window, chrome, readSetting, r
     download.hidden = downloadOff;
     download.disabled = downloadOff || !ready || busy;
     desktop.hidden = desktopOff;
-    desktop.disabled = desktopOff || !desktopAvailability.apply || !ready || busy;
-    if (statusMessage) group.dataset.feedback = 'true';
+    desktop.disabled = desktopOff || !desktopAvailability.apply || !ready || busy || desktopState === 'applying';
+    group.dataset.desktopState = desktopState;
+    const progress = desktopState === 'applying' ? 'wallpaper_desktop_applying'
+      : desktopState === 'saving' ? 'wallpaper_desktop_saving' : '';
+    const desktopText = desktopMessage || (progress && chrome.i18n.getMessage(progress));
+    const actionText = [desktopText, statusMessage].filter(Boolean).join(' ');
+    if (actionText) group.dataset.feedback = 'true';
     else delete group.dataset.feedback;
-    const message = statusMessage || (!ready && !busy
+    const message = actionText || (!ready && !busy
       ? chrome.i18n.getMessage(group.dataset.sourceState === 'offline' ? 'wallpaper_actions_offline' : 'wallpaper_actions_loading')
       : '');
     if (status.textContent !== message) status.textContent = message;
   }
 
   async function save(operation) {
+    if (operation.desktop) desktopState = 'saving';
     setStatus('saving');
     const outcome = await saveCapturedImage(operation.capture, operation.folder, {
       downloads: chrome.downloads, permissions: chrome.permissions
     }).catch(error => ({ kind: 'failed', reason: error.message }));
     if (outcome.kind === 'complete') {
+      if (operation.desktop) desktopState = 'applying';
       setStatus('complete');
       window.dispatchEvent(new window.CustomEvent('funbingbing:wallpapersaved', { detail: outcome.save }));
       if (operation.desktop) {
-        try { await desktopAvailability.apply(outcome.save); }
-        catch { feedback.show(chrome.i18n.getMessage('wallpaper_desktop_apply_failed')); }
+        let result;
+        try { result = await desktopAvailability.apply(outcome.save, outcome.url); }
+        catch { result = 'unconfirmed'; }
+        desktopState = Object.hasOwn(DESKTOP_RESULT_MESSAGES, result) ? result : 'unconfirmed';
+        desktopFeedback.show(chrome.i18n.getMessage(DESKTOP_RESULT_MESSAGES[desktopState]));
       }
     } else {
-      const text = outcome.kind === 'cancelled' ? ''
+      if (operation.desktop) desktopState = outcome.kind;
+      const text = outcome.kind === 'cancelled' ? (operation.desktop ? chrome.i18n.getMessage('wallpaper_desktop_save_cancelled') : '')
         : chrome.i18n.getMessage(outcome.kind === 'unconfirmed' ? 'wallpaper_save_unconfirmed' : 'wallpaper_save_failed');
-      setStatus(outcome.kind, text);
+      setStatus(outcome.kind, operation.desktop ? '' : text);
+      if (operation.desktop) desktopFeedback.show(text);
     }
   }
-  function start(desktopAction) {
-    if (['permission-explanation', 'requesting-permission', 'saving'].includes(saveState)) return;
-    const source = capture();
-    if (!source) return;
-    const operation = Object.freeze({ capture: source, folder: readSetting('wallpaper_download_folder') ?? '', desktop: desktopAction });
+  function requestSave(operation) {
     if (permissionGranted) { void save(operation); return; }
     pending = operation;
     setStatus('permission-explanation');
     dialog.showModal();
   }
-  listen(group, 'mouseenter', dismissFeedback);
+  function start(desktopAction) {
+    if (pending || ['requesting-permission', 'saving'].includes(saveState)) return;
+    const source = capture();
+    if (!source) return;
+    const operation = Object.freeze({ capture: source, folder: readSetting('wallpaper_download_folder') ?? '', desktop: desktopAction });
+    if (desktopAction) {
+      dismissFeedback();
+      pending = operation;
+      desktopConfirmation.showModal();
+    } else {
+      requestSave(operation);
+    }
+  }
+  listen(group, 'pointermove', event => {
+    if (event.pointerType !== 'touch') dismissFeedback();
+  });
   listen(group, 'focusin', dismissFeedback);
   listen(download, 'click', () => { if (!download.disabled) start(false); });
   listen(desktop, 'click', () => { if (!desktop.disabled) start(true); });
+  listen(confirmDesktop, 'click', () => {
+    if (!desktopConfirmation.open || !pending) return;
+    const operation = pending;
+    pending = null;
+    desktopConfirmation.close();
+    const current = capture();
+    const source = operation.capture;
+    if (!desktop.disabled && current && current.blob === source.blob && current.date === source.date &&
+        current.imageId === source.imageId && current.resolution === source.resolution) requestSave(operation);
+  });
+  listen(cancelDesktop, 'click', () => {
+    pending = null;
+    desktopConfirmation.close();
+  });
+  listen(desktopConfirmation, 'cancel', () => { pending = null; });
   listen(proceed, 'click', () => {
-    if (!pending) return;
+    if (!dialog.open || !pending) return;
     const operation = pending;
     pending = null;
     // Keep request() in this button's gesture, before the first async step.

@@ -185,18 +185,40 @@
 
   <div id="wallpaper-actions" role="group" data-save-state="idle">
     <span class="wallpaper-action-slot">
-      <button type="button" id="download-image-btn" disabled>↓</button>
+      <button type="button" id="download-image-btn" disabled>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v11m-4-4 4 4 4-4M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"></path>
+        </svg>
+      </button>
     </span>
     <span class="wallpaper-action-slot" id="desktop-wallpaper-slot">
-      <button type="button" id="desktop-wallpaper-btn" disabled hidden>▣</button>
+      <button type="button" id="desktop-wallpaper-btn" disabled hidden>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+          <path d="M12 17v4m-4 0h8"></path>
+        </svg>
+      </button>
     </span>
-    <span id="wallpaper-actions-status" role="status" aria-live="polite"></span>
   </div>
-  <dialog id="wallpaper-download-permission-dialog" aria-labelledby="wallpaper-download-permission-title" aria-describedby="wallpaper-download-permission-explanation">
+  <span id="wallpaper-actions-status" role="status" aria-live="polite"></span>
+  <dialog id="wallpaper-download-permission-dialog" class="wallpaper-dialog" aria-labelledby="wallpaper-download-permission-title" aria-describedby="wallpaper-download-permission-explanation">
     <h2 id="wallpaper-download-permission-title"></h2>
     <p id="wallpaper-download-permission-explanation"></p>
-    <button type="button" id="wallpaper-download-permission-continue"></button>
-    <button type="button" id="wallpaper-download-permission-cancel"></button>
+    <div class="wallpaper-dialog-actions">
+      <button type="button" id="wallpaper-download-permission-continue" autofocus></button>
+      <button type="button" id="wallpaper-download-permission-cancel"></button>
+    </div>
+  </dialog>
+
+  <dialog id="wallpaper-desktop-confirmation-dialog" class="wallpaper-dialog" aria-labelledby="wallpaper-desktop-confirmation-title" aria-describedby="wallpaper-desktop-confirmation-explanation">
+    <h2 id="wallpaper-desktop-confirmation-title"></h2>
+    <p id="wallpaper-desktop-confirmation-explanation"></p>
+    <div class="wallpaper-dialog-actions">
+      <button type="button" id="wallpaper-desktop-confirmation-confirm"></button>
+      <button type="button" id="wallpaper-desktop-confirmation-cancel" autofocus></button>
+    </div>
   </dialog>
 
   <div class="description" id="description">

@@ -61,6 +61,10 @@
         "message": "Set as desktop wallpaper"
     },
 
+    "wallpaper_desktop_confirmation_explanation": {
+        "message": "This will download the image and replace your current desktop wallpaper."
+    },
+
     "wallpaper_save_title": {
         "message": "Save this wallpaper"
     },
@@ -89,6 +93,30 @@
         "message": "The image was saved. The desktop wallpaper could not be set."
     },
 
+    "wallpaper_desktop_saving": {
+        "message": "Saving the image before setting your desktop wallpaper…"
+    },
+    "wallpaper_desktop_applying": {
+        "message": "Setting your desktop wallpaper…"
+    },
+    "wallpaper_desktop_applied": {
+        "message": "Desktop wallpaper set."
+    },
+    "wallpaper_desktop_partial": {
+        "message": "The image was saved. Some desktop wallpaper settings could not be applied."
+    },
+    "wallpaper_desktop_file_error": {
+        "message": "The image was saved, but the helper could not read it as a wallpaper. Check the saved file and its permissions."
+    },
+    "wallpaper_desktop_unconfirmed": {
+        "message": "Couldn’t confirm the result. Check your desktop."
+    },
+    "wallpaper_desktop_setup_required": {
+        "message": "The image was saved. Check the wallpaper helper in Setup."
+    },
+    "wallpaper_desktop_save_cancelled": {
+        "message": "Save cancelled. Your desktop wallpaper was not changed."
+    },
     "wallpaper_save_unconfirmed": {
         "message": "The browser could not confirm that the image was saved."
     },
@@ -207,7 +235,7 @@
         "message": "Turning this off prevents new desktop wallpaper actions. A save or wallpaper change already started can still finish. You can cancel an in-progress save in the browser."
     },
     "op_wallpaper_desktop_source_hint": {
-        "message": "The desktop uses the downloaded file directly. Moving or deleting the file may affect your desktop wallpaper."
+        "message": "The desktop uses the downloaded file directly. Moving or deleting the file may affect your wallpaper. Once the helper accepts the saved file, you can close the new tab. Keep the tab open while saving and keep the browser open until the change finishes."
     },
     "op_wallpaper_desktop_checking": {
         "message": "Checking the desktop wallpaper helper…"

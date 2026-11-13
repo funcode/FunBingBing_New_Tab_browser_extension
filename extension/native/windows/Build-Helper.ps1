@@ -15,7 +15,7 @@ $output = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPat
 [IO.Directory]::CreateDirectory($output) | Out-Null
 $executable = Join-Path $output 'ataraxia-wallpaper-host.exe'
 $source = Join-Path $PSScriptRoot 'WallpaperHost.cs'
-$arguments = @('/nologo', '/target:exe', '/platform:anycpu', '/optimize+', "/out:`"$executable`"", "`"$source`"")
+$arguments = @('/nologo', '/target:exe', '/platform:anycpu', '/optimize+', '/reference:System.Drawing.dll', "/out:`"$executable`"", "`"$source`"")
 $process = Start-Process -FilePath $compiler -ArgumentList $arguments -NoNewWindow -Wait -PassThru
 if ($process.ExitCode -ne 0) {
     throw "Helper compilation failed with exit code $($process.ExitCode)."

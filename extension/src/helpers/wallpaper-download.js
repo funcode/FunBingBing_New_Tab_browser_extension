@@ -19,6 +19,10 @@ export function wallpaperDownloadFilename(capture, folder) {
   return relative ? `${relative}/${name}` : name;
 }
 
+export function isAbsoluteDownloadFilename(filename) {
+  return typeof filename === 'string' && /^(?:\/|[a-z]:[\\/]|\\\\)/i.test(filename);
+}
+
 export function saveCapturedImage(capture, folder, { downloads, permissions, urls = URL }) {
   let filename;
   try {
@@ -55,10 +59,10 @@ export function saveCapturedImage(capture, folder, { downloads, permissions, url
           const item = records.find(record => record.id === id);
           if (!item) return finish({ kind: 'unconfirmed', reason: 'The browser download record is unavailable.' });
           if (item.state === 'complete') {
-            if (typeof item.filename !== 'string' || !/^(?:\/|[a-z]:[\\/]|\\\\)/i.test(item.filename)) {
+            if (!isAbsoluteDownloadFilename(item.filename)) {
               return finish({ kind: 'unconfirmed', reason: 'The browser did not confirm the saved file location.' });
             }
-            return finish({ kind: 'complete', save: Object.freeze({ downloadId: id, filename: item.filename, capture }) });
+            return finish({ kind: 'complete', url, save: Object.freeze({ downloadId: id, filename: item.filename, capture }) });
           }
           if (item.state === 'interrupted') {
             return finish({ kind: item.error === 'USER_CANCELED' ? 'cancelled' : 'failed', reason: item.error });

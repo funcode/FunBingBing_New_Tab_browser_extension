@@ -4,13 +4,13 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { chromium } from 'playwright';
+import { DESKTOP_WALLPAPER_AVAILABLE as hint } from '../../src/helpers/desktop-wallpaper-availability.js';
 import * as h from '../e2e/harness.mjs';
 
 assert.equal(process.platform, 'win32', 'Run this acceptance check with Windows Node.');
 
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'ataraxia-wallpaper-host-'));
 const evidence = { stages: [] };
-const hint = 'desktop_wallpaper_available';
 const permission = { permissions: ['nativeMessaging'] };
 const checkbox = page => page.locator('#enable-desktop-wallpaper-checkbox');
 const recheck = page => page.locator('#desktop-wallpaper-check-again');

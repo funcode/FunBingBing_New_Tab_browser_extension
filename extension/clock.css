@@ -1,3 +1,7 @@
+:root {
+  --center-clock-size: clamp(3.5rem, min(12vw, 12vh), 11rem);
+}
+
 #clock-container {
   position: fixed;
   top: 50%;
@@ -44,7 +48,7 @@
 		
 #center-clock {
   color: #fff;
-  font-size: clamp(3.5rem, min(12vw, 12vh), 11rem);
+  font-size: var(--center-clock-size);
   font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, Pretendard, Roboto, 'Segoe UI', Helvetica, Arial, sans-serif;
   z-index: 2;

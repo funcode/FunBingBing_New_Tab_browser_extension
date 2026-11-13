@@ -31,7 +31,9 @@ test('the Windows helper replies once and exits while stdin stays open', { timeo
   child.stdin.write(Buffer.concat([request, request]));
   assert.deepEqual(await close, [0, null]);
   assert.equal(Buffer.concat(stderr).length, 0);
-  assert.deepEqual(Buffer.concat(stdout), frame('{"type":"compatibility","protocolVersion":1,"compatible":true}'));
+  assert.deepEqual(Buffer.concat(stdout), frame(
+    '{"type":"compatibility","protocolVersion":1,"compatible":true,"canApplyWallpaper":true}'
+  ));
 });
 
 const deniedRequests = {
@@ -47,7 +49,7 @@ const deniedRequests = {
   'missing version': frame('{"type":"verify"}'),
   'unsupported version': frame('{"type":"verify","protocolVersion":2}'),
   'string version': frame('{"type":"verify","protocolVersion":"1"}'),
-  'unsupported operation': frame('{"type":"apply","protocolVersion":1,"path":"C:/photo.jpg"}'),
+  'unsupported operation': frame('{"type":"shell","protocolVersion":1,"path":"C:/photo.jpg"}'),
 };
 
 for (const [name, input] of Object.entries(deniedRequests)) {
