@@ -3,7 +3,6 @@ import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { chromium } from 'playwright';
 import { DESKTOP_WALLPAPER_AVAILABLE as hint } from '../../src/helpers/desktop-wallpaper-availability.js';
 import * as h from '../e2e/harness.mjs';
 
@@ -133,7 +132,7 @@ class SilentHost {
   assert.equal(fs.existsSync(trace), false, 'ordinary discovery launched the native helper');
 
   const isolatedProfile = path.join(temp, 'isolated-profile');
-  const isolated = await chromium.launchPersistentContext(isolatedProfile, {
+  const isolated = await h.launchTestBrowser(isolatedProfile, {
     channel: 'chromium',
     args: [`--disable-extensions-except=${h.loadedExtension}`, `--load-extension=${h.loadedExtension}`,
       '--no-proxy-server', '--host-resolver-rules=MAP * ~NOTFOUND']

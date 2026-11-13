@@ -83,6 +83,26 @@ const workerVersions = new Map();
 let workerStops = 0;
 const workerIs = status => [...workerVersions.values()].some(value => value === status);
 
+export async function launchTestBrowser(profile, options, disabledFeatures = []) {
+  if (process.platform !== 'win32') return chromium.launchPersistentContext(profile, options);
+
+  // Chromium honors the last --disable-features switch. Keep Playwright's
+  // defaults when disabling the startup check that can lock Windows accounts
+  // (https://issues.chromium.org/issues/541310282).
+  const { default: core } = await import('playwright-core/lib/coreBundle');
+  const driver = core.server.createPlaywright({ sdkLanguage: 'javascript', isServer: true }).chromium;
+  const defaults = await driver.defaultArgs(options, true, profile);
+  const prefix = '--disable-features=';
+  const switches = defaults.filter(arg => arg.startsWith(prefix));
+  const features = switches.map(arg => arg.slice(prefix.length));
+  features.push('AutofillAiWalletPrivatePasses', ...disabledFeatures);
+  return chromium.launchPersistentContext(profile, {
+    ...options,
+    ignoreDefaultArgs: [...(options.ignoreDefaultArgs ?? []), ...switches],
+    args: [...options.args, prefix + features.join(',')]
+  });
+}
+
 /** Poll until the condition holds. */
 export const eventually = async (condition, message = 'the expected state was not reached') => {
   for (let attempt = 0; attempt < 150; attempt++) {
@@ -94,7 +114,7 @@ export const eventually = async (condition, message = 'the expected state was no
 
 /** Start Chromium with the extension on the test profile. */
 export async function launch() {
-  context = await chromium.launchPersistentContext(profileDir, {
+  context = await launchTestBrowser(profileDir, {
     channel: 'chromium',
     headless: !headed,
     args: [
