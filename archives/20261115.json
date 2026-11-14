@@ -1,0 +1,46 @@
+{
+  "caption": "杜鹃叶片上的霜",
+  "title": "覆霜的红叶杜鹃",
+  "description": "随着秋天的第一场霜降临南方，冰晶在常绿灌木的叶片上凝结，就像这株杜鹃。春日花朵的粉色、橙色和黄色早已褪去，但新的色彩盛宴即将上演：绿色的叶片渐渐变成深浅不一的红色和紫色。对植物而言，这些新形成的色素能在气温下降时保护叶片；对园丁而言，白霜映衬下则是一幅绚丽的秋日景象。春天到来时，新芽会让灌木重披绿装，缤纷的色彩轮回也将重新开始。",
+  "copyright": "© avoferten/Shutterstock",
+  "date": "2026 11月 15",
+  "clickUrl": "/search?q=%e6%9d%9c%e9%b9%83%e8%8a%b1&form=hpcapt&filters=HpDate:\"20261114_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.FirstFrost_ZH-CN2219029557_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.FirstFrost_ZH-CN2219029557_UHD.jpg",
+      "wallpaper": "/th?id=OHR.FirstFrost_ZH-CN2219029557_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.FirstFrost_ZH-CN2219029557_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.FirstFrost_ZH-CN2219029557_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.FirstFrost_ZH-CN2219029557_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261115",
+  "headline": "霜染枝叶",
+  "quickFact": "使杜鹃叶片呈现红色或紫色的色素叫作花青素。",
+  "triviaId": "HPQuiz_20261115_FirstFrost",
+  "triviaData": {
+    "question": "哪种色素帮助叶片耐受气温下降？",
+    "options": [
+      {
+        "text": "叶绿素",
+        "url": "/search?q=%E8%8A%B1%E9%9D%92%E7%B4%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261115_FirstFrost%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "花青素",
+        "url": "/search?q=%E8%8A%B1%E9%9D%92%E7%B4%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261115_FirstFrost%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "胡萝卜素",
+        "url": "/search?q=%E8%8A%B1%E9%9D%92%E7%B4%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261115_FirstFrost%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
