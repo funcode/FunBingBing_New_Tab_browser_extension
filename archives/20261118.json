@@ -1,0 +1,46 @@
+{
+  "caption": "黄昏时的一对仓鸮",
+  "title": "一对仓鸮",
+  "description": "沐浴在傍晚光线中的这对仓鸮，正等待狩猎开始。夜幕降临时，这些猛禽便迅速行动，倾听鼠类和田鼠类在草丛或落叶中发出的细微动静。它们心形的面庞有助于将声音汇集到耳朵，使其听觉跻身动物界最敏锐的行列。这让它们能在黑暗中精准定位猎物，然后悄无声息地俯冲而下，柔软的羽毛掩盖了它们靠近的声响。秋天，年轻的仓鸮会离开巢穴，寻找自己的领地。随着夜晚变长，你可能会在傍晚更早地看到它们掠过田野，寻找晚餐。",
+  "copyright": "© Zahoor Salmi/Getty Images",
+  "date": "2026 11月 18",
+  "clickUrl": "/search?q=%e4%bb%93%e9%b8%ae&form=hpcapt&filters=HpDate:\"20261117_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.BarnOwlsUnite_ZH-CN2930153291_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.BarnOwlsUnite_ZH-CN2930153291_UHD.jpg",
+      "wallpaper": "/th?id=OHR.BarnOwlsUnite_ZH-CN2930153291_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.BarnOwlsUnite_ZH-CN2930153291_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.BarnOwlsUnite_ZH-CN2930153291_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.BarnOwlsUnite_ZH-CN2930153291_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261118",
+  "headline": "从黄昏狩猎到黎明",
+  "quickFact": "仓鸮不会发出‘咕咕’声；它们会发出令人毛骨悚然的尖叫声，这或许解释了为什么它们被视为厄运的预兆。",
+  "triviaId": "HPQuiz_20261118_BarnOwlsUnite",
+  "triviaData": {
+    "question": "仓鸮耳朵在黑暗中探测猎物的原因是什么？",
+    "options": [
+      {
+        "text": "心形脸",
+        "url": "/search?q=%E5%BF%83%E5%BD%A2%E8%84%B8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261118_BarnOwlsUnite%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "长尾羽",
+        "url": "/search?q=%E5%BF%83%E5%BD%A2%E8%84%B8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261118_BarnOwlsUnite%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "翼展宽",
+        "url": "/search?q=%E5%BF%83%E5%BD%A2%E8%84%B8&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261118_BarnOwlsUnite%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
