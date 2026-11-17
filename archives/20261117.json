@@ -1,0 +1,46 @@
+{
+  "caption": "全国徒步日",
+  "title": "雪松林步道，冰川国家公园，蒙大拿州，美国",
+  "description": "全国徒步日快乐！是时候呼吸清爽的秋日空气，走进广阔的大自然了。今天的图片展示的是蒙大拿州冰川国家公园的雪松林步道；公园内的徒步步道总长达700英里。这条长0.9英里的环形步道设有高架栈道，穿行于北美乔柏和铁杉属树木之间。公园拥有适合不同能力水平游客的路线，沿途可欣赏高山湖泊、野花草甸、山口，以及一直延伸至加拿大边境的荒野。不过，即使家门口没有壮丽风景，随着白昼渐短，沿着绿树成荫的街道散散步，也能轻松庆祝这个日子，享受出门走走的益处。",
+  "copyright": "© DBushue Photography/Getty Images",
+  "date": "2026 11月 17",
+  "clickUrl": "/search?q=%e5%86%b0%e5%b7%9d%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad%e7%9a%84%e9%9b%aa%e6%9d%be%e6%9e%97%e6%ad%a5%e9%81%93&form=hpcapt&filters=HpDate:\"20261116_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.TrailCedars_ZH-CN2670680285_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.TrailCedars_ZH-CN2670680285_UHD.jpg",
+      "wallpaper": "/th?id=OHR.TrailCedars_ZH-CN2670680285_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.TrailCedars_ZH-CN2670680285_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.TrailCedars_ZH-CN2670680285_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.TrailCedars_ZH-CN2670680285_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261117",
+  "headline": "走进广阔的大自然",
+  "quickFact": "在冰川国家公园的雪松林步道，游客可观赏雪崩峡谷，并在雪崩溪附近留意聆听美洲河乌的鸣声。",
+  "triviaId": "HPQuiz_20261117_TrailCedars",
+  "triviaData": {
+    "question": "美国哪个州拥有冰川国家公园？",
+    "options": [
+      {
+        "text": "怀俄明州",
+        "url": "/search?q=%E8%92%99%E5%A4%A7%E6%8B%BF%E5%B7%9E&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261117_TrailCedars%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "科罗拉多州",
+        "url": "/search?q=%E8%92%99%E5%A4%A7%E6%8B%BF%E5%B7%9E&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261117_TrailCedars%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "蒙大拿州",
+        "url": "/search?q=%E8%92%99%E5%A4%A7%E6%8B%BF%E5%B7%9E&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261117_TrailCedars%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
