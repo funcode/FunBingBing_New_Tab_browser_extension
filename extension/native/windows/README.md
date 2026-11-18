@@ -19,6 +19,14 @@ To exercise Setup in Chromium with a disposable profile, run `node .\tests\manua
 
 Run `node .\tests\manual\windows-wallpaper-apply.mjs` from an interactive Windows session with a static wallpaper. The test temporarily changes the wallpaper, verifies the saved image path and Fill on each connected display, then restores the original wallpaper. It also runs a test build that pauses after acceptance so it can close the source tab before the Windows calls. It records both results in `output/native-acceptance/wallpaper-apply.json`.
 
+Run the Windows outcome check with Chrome, Windows Node, and the project's Playwright dependency installed.
+
+```powershell
+node .\tests\manual\windows-wallpaper-outcomes.mjs
+```
+
+The check uses a disposable Chrome profile, a test-specific native host registration, and a controlled pause in place of the Windows wallpaper API call. It verifies standalone downloads during a pending desktop apply and rejection of corrupt or missing images. It forces Chrome to launch the helper through cmd.exe, verifies that the stalled helper exits after the 30-second deadline, and checks an explicit retry. Results are recorded in `output/native-acceptance/wallpaper-outcomes.json` for reuse in [#163](https://github.com/funcode/FunBingBing/issues/163).
+
 ## Connect the unpacked extension
 
 Load the extension unpacked from `chrome://extensions` or `edge://extensions` and copy its ID. Enter that ID for `$id` and select the corresponding browser for `$browser`.
@@ -50,7 +58,7 @@ Setup sends this request.
 {"type":"verify","protocolVersion":1}
 ```
 
-The compatibility response advertises support for applying wallpaper. Setup requires `canApplyWallpaper` to be `true`, so verification-only helpers require an update.
+The compatibility response must advertise `canApplyWallpaper: true`.
 
 ```json
 {"type":"compatibility","protocolVersion":1,"compatible":true,"canApplyWallpaper":true}
@@ -64,6 +72,6 @@ The desktop action opens a separate native connection and sends the completed br
 
 The host sends the same compatibility reply on that connection. It validates the saved JPEG or PNG and returns a terminal result with status `file-error` if it cannot open or decode the image. Otherwise it sends `{"type":"accepted"}` before changing the desktop. The terminal frame is `{"type":"result","status":"applied"}` on complete success. Status `partial` means Windows reported a change but some part of the operation failed. Status `failed` means Windows did not confirm any change. The host uses the saved image in place and leaves it on disk.
 
-The same-user operation lock and Busy result are tracked in [#158](https://github.com/funcode/FunBingBing/issues/158). Release acceptance requires the lock before the host sends acceptance.
+The worker waits up to five seconds for compatibility and up to 30 seconds after compatibility for the terminal result. A missing terminal result after compatibility ends the pending operation, closes the native port, and shows the unconfirmed result. The helper watches native input during the apply request and terminates itself if the browser disconnects while the helper is stalled.
 
-The operation connection provides the compatibility result for that job. Failure to establish compatibility clears Last-known helper availability. After compatibility is established, Busy, OS errors, and a missing terminal reply preserve availability. Save and notification errors also preserve the hint.
+The operation connection provides the compatibility result for that job. Failure to establish compatibility clears Last-known helper availability. After compatibility is established, OS errors and a missing terminal reply preserve availability. Save and notification errors also preserve the hint.

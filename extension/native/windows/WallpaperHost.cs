@@ -7,6 +7,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 internal static class WallpaperHost
 {
@@ -49,7 +50,7 @@ internal static class WallpaperHost
         {
             using (var input = new BinaryReader(Console.OpenStandardInput()))
             {
-                return Run(input, WriteFrame, ApplyDesktop);
+                return Run(input, WriteFrame, ApplyDesktop, WatchConnection);
             }
         }
         catch (EndOfStreamException)
@@ -66,7 +67,8 @@ internal static class WallpaperHost
         }
     }
 
-    internal static int Run(BinaryReader input, Action<string> reply, Func<string, string> apply)
+    internal static int Run(BinaryReader input, Action<string> reply, Func<string, string> apply,
+        Action watchConnection = null)
     {
         int length = input.ReadInt32();
         if (length < 1 || length > MaxRequestBytes)
@@ -94,6 +96,10 @@ internal static class WallpaperHost
             return 1;
         }
 
+        if (watchConnection != null)
+        {
+            watchConnection();
+        }
         reply(Compatibility);
         string path = JsonEscape.Replace(match.Groups["path"].Value, DecodeEscape);
         string status = "file-error";
@@ -239,6 +245,24 @@ internal static class WallpaperHost
         return !incomplete ? "applied" : changed ? "partial" : "failed";
     }
 
+    private static void WatchConnection()
+    {
+        const int StdInputHandle = -10;
+        IntPtr input = GetStdHandle(StdInputHandle);
+        new Thread(() =>
+        {
+            var buffer = new byte[256];
+            int read;
+            while (ReadFile(input, buffer, buffer.Length, out read, IntPtr.Zero) && read > 0)
+            {
+                // This host processes one request per connection.
+            }
+
+            // A stalled Windows call can outlive the browser connection.
+            TerminateProcess(GetCurrentProcess(), 0);
+        }) { IsBackground = true }.Start();
+    }
+
     private static void WriteFrame(string message)
     {
         byte[] payload = Utf8.GetBytes(message);
@@ -262,6 +286,17 @@ internal static class WallpaperHost
     [DllImport("kernel32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     private static extern bool WriteFile(IntPtr file, byte[] buffer, int length, out int written, IntPtr overlapped);
+
+    [DllImport("kernel32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool ReadFile(IntPtr file, byte[] buffer, int length, out int read, IntPtr overlapped);
+
+    [DllImport("kernel32.dll")]
+    private static extern IntPtr GetCurrentProcess();
+
+    [DllImport("kernel32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool TerminateProcess(IntPtr process, uint exitCode);
 
     [DllImport("user32.dll")]
     private static extern int GetSystemMetrics(int index);

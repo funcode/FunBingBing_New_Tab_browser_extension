@@ -29,7 +29,8 @@ async function controlHost(worker) {
       const call = {
         name,
         disconnected: false,
-        receive(message) { for (const listener of messages) listener(message); }
+        receive(message) { for (const listener of messages) listener(message); },
+        exit() { for (const listener of disconnects) listener(); }
       };
       globalThis.wallpaperHostCalls.push(call);
       return {
@@ -148,11 +149,12 @@ async function completeDownload(page, id, expected) {
   return item;
 }
 
-async function newDownload(page, previousId) {
+async function newDownload(page, ...previousIds) {
   let item;
   await h.eventually(async () => {
-    const items = await page.evaluate(() => chrome.downloads.search({ orderBy: ['-startTime'], limit: 2 }));
-    item = items.find(record => record.id !== previousId);
+    const items = await page.evaluate(limit => chrome.downloads.search({ orderBy: ['-startTime'], limit }),
+      previousIds.length + 1);
+    item = items.find(record => !previousIds.includes(record.id));
     return Boolean(item);
   });
   return item.id;
@@ -418,25 +420,32 @@ test('failed, cancelled and unconfirmed browser saves never reach the helper', a
   assert.equal(await h.readLocal(hint), true);
 });
 
-test('a compatible file error keeps Setup enabled and an incompatible helper clears it', async t => {
+test('compatible file and application failures keep Setup enabled and an incompatible helper clears it', async t => {
   const { worker, options, page } = await fixture(t);
   await enableDesktop(options, page);
   const status = page.locator('#wallpaper-actions-status');
+  const saves = [];
+  for (const [result, messageKey, phases] of [
+    ['file-error', 'wallpaper_desktop_file_error', [compatible]],
+    ['failed', 'wallpaper_desktop_apply_failed', [compatible, { type: 'accepted' }]]
+  ]) {
+    await confirmDesktopAction(page);
+    const save = await completeDownload(page, await newDownload(page, ...saves), first);
+    saves.push(save.id);
+    await expectApplication(worker, saves.length, save.filename);
+    await reply(worker, saves.length, ...phases, terminal(result));
+    await actionState(page, 'desktop', result);
+    assert.equal(await status.textContent(), await page.evaluate(key => chrome.i18n.getMessage(key), messageKey));
+    assert.equal(await h.readLocal(hint), true);
+    assert.equal(await desktopSwitch(options).isChecked(), true);
+    assert.equal(await desktopButton(page).isEnabled(), true);
+  }
 
   await confirmDesktopAction(page);
-  const firstSave = await completeDownload(page, await newDownload(page), first);
-  await expectApplication(worker, 1, firstSave.filename);
-  await reply(worker, 1, compatible, terminal('file-error'));
-  await actionState(page, 'desktop', 'file-error');
-  assert.equal(await status.textContent(), await page.evaluate(() => chrome.i18n.getMessage('wallpaper_desktop_file_error')));
-  assert.equal(await h.readLocal(hint), true);
-  assert.equal(await desktopSwitch(options).isChecked(), true);
-  assert.equal(await desktopButton(page).isEnabled(), true);
-
-  await confirmDesktopAction(page);
-  const secondSave = await completeDownload(page, await newDownload(page, firstSave.id), first);
-  await expectApplication(worker, 2, secondSave.filename);
-  await reply(worker, 2, { ...compatible, canApplyWallpaper: false });
+  const incompatibleSave = await completeDownload(page, await newDownload(page, ...saves), first);
+  saves.push(incompatibleSave.id);
+  await expectApplication(worker, saves.length, incompatibleSave.filename);
+  await reply(worker, saves.length, { ...compatible, canApplyWallpaper: false });
   await actionState(page, 'desktop', 'incompatible');
   await setupState(options, 'incompatible');
   assert.equal(await status.textContent(), await page.evaluate(() => chrome.i18n.getMessage('wallpaper_desktop_setup_required')));
@@ -445,8 +454,61 @@ test('a compatible file error keeps Setup enabled and an incompatible helper cle
   assert.equal(await desktopButton(page).isVisible(), false);
   assert.equal(await downloadButton(page).isEnabled(), true);
   assert.ok((await hostCalls(worker)).every(call => call.disconnected));
+  for (const id of saves) await completeDownload(page, id, first);
+});
+
+test('standalone Download works while a desktop request is pending and a partial result preserves the files', async t => {
+  const { worker, options, page } = await fixture(t);
+  await enableDesktop(options, page);
+  await confirmDesktopAction(page);
+  const firstSave = await completeDownload(page, await newDownload(page), first);
+  await expectApplication(worker, 1, firstSave.filename);
+  await reply(worker, 1, compatible, { type: 'accepted' });
+  await actionState(page, 'desktop', 'applying');
+  assert.equal(await desktopButton(page).isDisabled(), true);
+
+  await downloadButton(page).click();
+  const standalone = await newDownload(page, firstSave.id);
+  await completeDownload(page, standalone, first);
+  await actionState(page, 'save', 'complete');
+  const calls = await hostCalls(worker);
+  assert.equal(calls.length, 2);
+  assert.equal(calls[1].disconnected, false);
+
+  await reply(worker, 1, terminal('partial'));
+  await actionState(page, 'desktop', 'partial');
+  assert.equal(await page.locator('#wallpaper-actions-status').textContent(),
+    await page.evaluate(() => chrome.i18n.getMessage('wallpaper_desktop_partial')));
+  assert.equal(await h.readLocal(hint), true);
+  assert.equal(await desktopSwitch(options).isChecked(), true);
+  assert.equal(await desktopButton(page).isEnabled(), true);
   await completeDownload(page, firstSave.id, first);
-  await completeDownload(page, secondSave.id, first);
+  await completeDownload(page, standalone, first);
+  assert.equal((await hostCalls(worker)).length, 2);
+});
+
+test('a disconnect after acceptance reports an unconfirmed result and preserves manual Off', async t => {
+  const { worker, options, page } = await fixture(t);
+  await enableDesktop(options, page);
+  await confirmDesktopAction(page);
+  const item = await completeDownload(page, await newDownload(page), first);
+  await expectApplication(worker, 1, item.filename);
+  await reply(worker, 1, compatible, { type: 'accepted' });
+
+  await desktopSwitch(options).uncheck();
+  await setupState(options, 'off');
+  await desktopButton(page).waitFor({ state: 'hidden' });
+  assert.equal((await hostCalls(worker))[1].disconnected, false);
+  await worker.evaluate(() => globalThis.wallpaperHostCalls[1].exit());
+  await actionState(page, 'desktop', 'unconfirmed');
+  assert.equal(await page.locator('#wallpaper-actions-status').textContent(),
+    await page.evaluate(() => chrome.i18n.getMessage('wallpaper_desktop_unconfirmed')));
+  assert.equal(await h.readLocal(hint), false);
+  assert.equal(await desktopSwitch(options).isChecked(), false);
+  assert.equal(await desktopButton(page).isVisible(), false);
+  assert.equal((await hostCalls(worker))[1].disconnected, true);
+  assert.equal((await hostCalls(worker)).length, 2);
+  await completeDownload(page, item.id, first);
 });
 
 test('a compatible helper with no terminal response leaves the download and verified availability intact', async t => {
