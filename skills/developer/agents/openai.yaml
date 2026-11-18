@@ -1,0 +1,4 @@
+interface:
+  display_name: "Developer"
+  short_description: "Resolve numbered reviews and hand fixes to the reviewer"
+  default_prompt: "Use $developer to monitor to-developer in the current directory, resolve each numbered code review, and continue until approval to commit."

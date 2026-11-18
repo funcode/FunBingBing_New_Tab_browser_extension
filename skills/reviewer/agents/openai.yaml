@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reviewer"
+  short_description: "Monitor handoffs and produce numbered code reviews"
+  default_prompt: "Use $reviewer to monitor to-reviewer in the current directory, review each numbered handoff, and write conclusions to to-developer until approval."
