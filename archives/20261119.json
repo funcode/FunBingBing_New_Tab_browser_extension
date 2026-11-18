@@ -1,0 +1,46 @@
+{
+  "caption": "世界哲学日",
+  "title": "雕塑《知识之躯》，由豪梅·普兰萨创作，位于德国法兰克福的法兰克福歌德大学",
+  "description": "今天是世界哲学日，思想家们齐聚一堂，探讨人生中永恒的谜题。为庆祝这一节日，今天的图片展示了位于德国法兰克福的法兰克福歌德大学的雕塑《知识之躯》：来自八种不同文字体系的钢制字母被塑造成一个人形。西班牙艺术家豪梅·普兰萨解释道：‘我们的身体是精神的家园，是思想栖居的地方。’在世界哲学日，我们都受到鼓励，去超越简单的答案，探索塑造我们自身和周围世界的问题。",
+  "copyright": "© Todamo/Shutterstock",
+  "date": "2026 11月 19",
+  "clickUrl": "/search?q=%e4%b8%96%e7%95%8c%e5%93%b2%e5%ad%a6%e6%97%a5&form=hpcapt&filters=HpDate:\"20261118_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.KnowledgeSculpture_ZH-CN3168800853_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.KnowledgeSculpture_ZH-CN3168800853_UHD.jpg",
+      "wallpaper": ""
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.KnowledgeSculpture_ZH-CN3168800853_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.KnowledgeSculpture_ZH-CN3168800853_1080x1920.jpg",
+      "wallpaper": ""
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261119",
+  "headline": "思想在此成形",
+  "quickFact": "豪梅·普兰萨的《知识之躯》于2009年受法兰克福歌德大学委托，以彩绘不锈钢制成，尺寸为800×526× 526厘米。",
+  "triviaId": "HPQuiz_20261119_KnowledgeSculpture",
+  "triviaData": {
+    "question": "德国哪座城市有《知识之躯》雕塑？",
+    "options": [
+      {
+        "text": "柏林",
+        "url": "/search?q=%E6%B3%95%E5%85%B0%E5%85%8B%E7%A6%8F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261119_KnowledgeSculpture%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "法兰克福",
+        "url": "/search?q=%E6%B3%95%E5%85%B0%E5%85%8B%E7%A6%8F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261119_KnowledgeSculpture%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "汉堡",
+        "url": "/search?q=%E6%B3%95%E5%85%B0%E5%85%8B%E7%A6%8F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261119_KnowledgeSculpture%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
