@@ -1,0 +1,46 @@
+{
+  "caption": "正在潜水的座头鲸，挪威",
+  "title": "正在潜水的座头鲸，挪威北部特罗姆斯的克瓦尔岛",
+  "description": "在挪威北部特罗姆斯的克瓦尔岛近海，座头鲸穿行于寒冷的北极海水中，寻找一顿丰盛的美餐。冬季，它们追随迁徙的鲱鱼进入峡湾，来到这一地区。座头鲸以气泡网捕食闻名：这种非凡的狩猎技巧是鲸鱼吹出一圈圈气泡，将鱼群围拢，然后张开大嘴向上猛冲，捕获猎物。在今天的图片中，一头座头鲸在柔和的霞光下潜入冰冷的波浪，定格了挪威北部荒野中宁静的一刻。",
+  "copyright": "© Espen Bergersen/Minden Pictures",
+  "date": "2026 11月 20",
+  "clickUrl": "/search?q=%e5%ba%a7%e5%a4%b4%e9%b2%b8&form=hpcapt&filters=HpDate:\"20261119_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.Megaptera_ZH-CN3361807823_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.Megaptera_ZH-CN3361807823_UHD.jpg",
+      "wallpaper": "/th?id=OHR.Megaptera_ZH-CN3361807823_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.Megaptera_ZH-CN3361807823_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.Megaptera_ZH-CN3361807823_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.Megaptera_ZH-CN3361807823_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261120",
+  "headline": "在峡湾中大快朵颐",
+  "quickFact": "座头鲸尾鳍上的独特斑纹、形状和伤疤，能帮助研究人员识别不同个体，并长期追踪它们的行踪。",
+  "triviaId": "HPQuiz_20261120_Megaptera",
+  "triviaData": {
+    "question": "哪种捕猎方式与座头鲸有关？",
+    "options": [
+      {
+        "text": "突袭狩猎",
+        "url": "/search?q=%E6%B0%94%E6%B3%A1%E7%BD%91%E6%8D%95%E9%A3%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261120_Megaptera%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "气泡网捕食",
+        "url": "/search?q=%E6%B0%94%E6%B3%A1%E7%BD%91%E6%8D%95%E9%A3%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261120_Megaptera%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "螺旋俯冲",
+        "url": "/search?q=%E6%B0%94%E6%B3%A1%E7%BD%91%E6%8D%95%E9%A3%9F&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261120_Megaptera%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
