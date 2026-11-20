@@ -1,0 +1,46 @@
+{
+  "caption": "法国普罗旺斯-阿尔卑斯-蔚蓝海岸大区尼斯",
+  "title": "法国普罗旺斯-阿尔卑斯-蔚蓝海岸大区尼斯",
+  "description": "在今天的图片中，尼斯沐浴在温暖的阳光下：赤陶色屋顶、历史悠久的教堂和柔和色调的建筑外墙，拼成法国蔚蓝海岸的一幅斑斓图景。尼斯由古希腊人建立，长期与意大利王室萨伏依王朝有着渊源，并于1860年正式成为法国的一部分。如今，在这座位于法国南部的海滨城市，那段层层叠叠的历史依然随处可见：古老的建筑与蔚蓝的地中海海水、蔚蓝海岸阳光照耀的山丘交相辉映。",
+  "copyright": "© Siripong Kaewla-iad/Getty Images",
+  "date": "2026 11月 21",
+  "clickUrl": "/search?q=%e6%b3%95%e5%9b%bd%e5%b0%bc%e6%96%af&form=hpcapt&filters=HpDate:\"20261120_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.RedNice_ZH-CN3518429866_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.RedNice_ZH-CN3518429866_UHD.jpg",
+      "wallpaper": "/th?id=OHR.RedNice_ZH-CN3518429866_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.RedNice_ZH-CN3518429866_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.RedNice_ZH-CN3518429866_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.RedNice_ZH-CN3518429866_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261121",
+  "headline": "陶瓦屋顶下的梦",
+  "quickFact": "1824年，英国游客在尼斯海滨开辟了一条小路，后来逐渐发展为享有盛誉的英国人步行大道（Promenade des Anglais）。",
+  "triviaId": "HPQuiz_20261121_RedNice",
+  "triviaData": {
+    "question": "哪一个王室王朝曾与尼斯有密切联系？",
+    "options": [
+      {
+        "text": "哈布斯堡王朝",
+        "url": "/search?q=%E8%90%A8%E4%BC%8F%E4%BC%8A%E7%8E%8B%E6%9C%9D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261121_RedNice%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "波旁王朝",
+        "url": "/search?q=%E8%90%A8%E4%BC%8F%E4%BC%8A%E7%8E%8B%E6%9C%9D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261121_RedNice%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "萨伏伊王朝",
+        "url": "/search?q=%E8%90%A8%E4%BC%8F%E4%BC%8A%E7%8E%8B%E6%9C%9D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261121_RedNice%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
