@@ -1,0 +1,46 @@
+{
+  "caption": "圣胡斯塔隐修院与小教堂，西班牙",
+  "title": "西班牙坎塔布里亚自治区的圣胡斯塔隐修院与小教堂",
+  "description": "今天图片中的圣胡斯塔隐修院建于16世纪，坐落在西班牙坎塔布里亚自治区北部崎岖海岸的悬崖间，俯瞰坎塔布连海上翻涌的浪涛。这座小教堂部分嵌入岩石中，与圣胡斯塔与圣鲁菲娜的圣髑有关，后来成为一处朝圣地。它受到庇护的石墙，与四周汹涌的海浪和嶙峋的悬崖形成鲜明对比。",
+  "copyright": "© Tramont_ana/Getty Images",
+  "date": "2026 11月 22",
+  "clickUrl": "/search?q=%e5%9c%a3%e8%83%a1%e6%96%af%e5%a1%94%e5%b0%8f%e6%95%99%e5%a0%82&form=hpcapt&filters=HpDate:\"20261121_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.JustaHermitage_ZH-CN3751022621_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.JustaHermitage_ZH-CN3751022621_UHD.jpg",
+      "wallpaper": "/th?id=OHR.JustaHermitage_ZH-CN3751022621_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.JustaHermitage_ZH-CN3751022621_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.JustaHermitage_ZH-CN3751022621_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.JustaHermitage_ZH-CN3751022621_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261122",
+  "headline": "海浪间的庇护所",
+  "quickFact": "坎塔布里亚自治区的圣胡斯塔隐修院依崖而建，朝南的门上方有一扇小方窗，为堂内引入光线。",
+  "triviaId": "HPQuiz_20261122_JustaHermitage",
+  "triviaData": {
+    "question": "Justa隐修院俯瞰的是哪片海域？",
+    "options": [
+      {
+        "text": "巴斯克海",
+        "url": "/search?q=%E5%9D%8E%E5%A1%94%E5%B8%83%E8%BF%9E%E6%B5%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261122_JustaHermitage%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "坎塔布连海",
+        "url": "/search?q=%E5%9D%8E%E5%A1%94%E5%B8%83%E8%BF%9E%E6%B5%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261122_JustaHermitage%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "地中海",
+        "url": "/search?q=%E5%9D%8E%E5%A1%94%E5%B8%83%E8%BF%9E%E6%B5%B7&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261122_JustaHermitage%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
