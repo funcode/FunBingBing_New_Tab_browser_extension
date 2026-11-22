@@ -1,0 +1,46 @@
+{
+  "caption": "斐波那契日",
+  "title": "蕨类植物的卷曲嫩叶",
+  "description": "今天的图片展示了一片蕨类嫩叶的顶端逐渐卷曲的样子，呼应着自然界随处可见的几何图案。在数学中，斐波那契数列也遵循类似的递进规律：每个数都是前两个数之和，即0、1、1、2、3、5、8，依此类推。今天是斐波那契日；选定这一天，是因为日期11/23中的数字与这一数列相呼应，以此向它致敬。图中的蕨类嫩叶终将随着生长而舒展开来，而在植物世界的其他地方，这一数列还会不断出现在向日葵花盘、松果、多肉植物和菠萝的螺旋排列中。",
+  "copyright": "© Reza Saputra/Getty Images",
+  "date": "2026 11月 23",
+  "clickUrl": "/search?q=%e6%96%90%e6%b3%a2%e9%82%a3%e5%a5%91%e6%97%a5&form=hpcapt&filters=HpDate:\"20261122_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.FibonacciFern_ZH-CN3882237848_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.FibonacciFern_ZH-CN3882237848_UHD.jpg",
+      "wallpaper": "/th?id=OHR.FibonacciFern_ZH-CN3882237848_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.FibonacciFern_ZH-CN3882237848_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.FibonacciFern_ZH-CN3882237848_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.FibonacciFern_ZH-CN3882237848_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261123",
+  "headline": "自然中的几何之美",
+  "quickFact": "斐波那契数列因一道关于兔子繁殖的13世纪数学题而广为人知。",
+  "triviaId": "HPQuiz_20261123_FibonacciFern",
+  "triviaData": {
+    "question": "哪种热带水果的纹理呈现斐波那契螺旋形？",
+    "options": [
+      {
+        "text": "芒果",
+        "url": "/search?q=%E8%8F%A0%E8%90%9D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261123_FibonacciFern%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "菠萝",
+        "url": "/search?q=%E8%8F%A0%E8%90%9D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261123_FibonacciFern%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "椰子",
+        "url": "/search?q=%E8%8F%A0%E8%90%9D&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261123_FibonacciFern%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
