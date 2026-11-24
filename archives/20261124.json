@@ -1,0 +1,46 @@
+{
+  "caption": "红松鼠，苏格兰高地",
+  "title": "红松鼠，凯恩戈姆斯国家公园，苏格兰高地",
+  "description": "红松鼠是英国唯一的本土松鼠物种，在苏格兰的凯恩戈姆斯国家公园繁衍生息。这座公园是它们的重要庇护地：古老的喀里多尼亚欧洲赤松林和较新形成的针叶林，为松鼠提供了充足的栖息空间和食物，让它们一年四季都能觅食欧洲赤松的种子、坚果和其他美味。今天的照片中，一只红松鼠栖身于橙黄相间的秋叶间，仿佛与苏格兰高地的景色融为一体，正盘算着下一步要去哪里。",
+  "copyright": "© Scotland: The Big Picture/Minden Pictures",
+  "date": "2026 11月 24",
+  "clickUrl": "/search?q=%e6%ac%a7%e4%ba%9a%e7%ba%a2%e6%9d%be%e9%bc%a0&form=hpcapt&filters=HpDate:\"20261123_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.CairngormsSquirrel_ZH-CN0941302869_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.CairngormsSquirrel_ZH-CN0941302869_UHD.jpg",
+      "wallpaper": "/th?id=OHR.CairngormsSquirrel_ZH-CN0941302869_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.CairngormsSquirrel_ZH-CN0941302869_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.CairngormsSquirrel_ZH-CN0941302869_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.CairngormsSquirrel_ZH-CN0941302869_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261124",
+  "headline": "秋日的保护色",
+  "quickFact": "英国约八成的现存红松鼠生活在苏格兰；它们用树枝交织成巢，内部铺上树叶。这种巢称为“松鼠巢”（drey）。",
+  "triviaId": "HPQuiz_20261124_CairngormsSquirrel",
+  "triviaData": {
+    "question": "凯恩戈姆国家公园中哪种本土松鼠最为繁盛？",
+    "options": [
+      {
+        "text": "红松鼠",
+        "url": "/search?q=%E7%BA%A2%E6%9D%BE%E9%BC%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261124_CairngormsSquirrel%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "灰松鼠",
+        "url": "/search?q=%E7%BA%A2%E6%9D%BE%E9%BC%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261124_CairngormsSquirrel%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "飞鼠",
+        "url": "/search?q=%E7%BA%A2%E6%9D%BE%E9%BC%A0&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261124_CairngormsSquirrel%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
