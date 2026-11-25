@@ -1,0 +1,46 @@
+{
+  "caption": "犹他州布莱斯峡谷国家公园",
+  "title": "日落观景点，布莱斯峡谷国家公园，犹他州",
+  "description": "白雪让布莱斯峡谷国家公园焕然一新：大地披上银装，鲜艳的橙红色石林在雪地上拔地而起。从公园最著名的观景点之一——日落观景点望去，这些奇特的岩石造型属于克拉伦组。构成它们的石灰岩约在5000万年前沉积，后来又经风化和侵蚀塑造成形。由于公园大部分地区海拔超过8000英尺，早在10月就可能降雪。今天的照片中，积雪覆着峡谷的山脊和石柱，薄雾从崖壁间飘过，呈现出美国西南部标志性的冬日景象。",
+  "copyright": "© Colin D. Young/Alamy",
+  "date": "2026 11月 25",
+  "clickUrl": "/search?q=%e5%b8%83%e8%8e%b1%e6%96%af%e5%b3%a1%e8%b0%b7%e5%9b%bd%e5%ae%b6%e5%85%ac%e5%9b%ad&form=hpcapt&filters=HpDate:\"20261124_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.SunsetPoint_ZH-CN5737034685_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.SunsetPoint_ZH-CN5737034685_UHD.jpg",
+      "wallpaper": "/th?id=OHR.SunsetPoint_ZH-CN5737034685_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.SunsetPoint_ZH-CN5737034685_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.SunsetPoint_ZH-CN5737034685_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.SunsetPoint_ZH-CN5737034685_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261125",
+  "headline": "美国西南部的一场雪",
+  "quickFact": "在布莱斯峡谷，一年中有超过170个夜晚的气温会跨越冰点。渗入岩缝的水结冰膨胀，帮助将岩石逐渐塑造成石林柱。",
+  "triviaId": "HPQuiz_20261125_SunsetPoint",
+  "triviaData": {
+    "question": "布莱斯峡谷的尖塔主要由哪种岩石构成？",
+    "options": [
+      {
+        "text": "石灰岩",
+        "url": "/search?q=%E7%9F%B3%E7%81%B0%E5%B2%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261125_SunsetPoint%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "砂岩",
+        "url": "/search?q=%E7%9F%B3%E7%81%B0%E5%B2%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261125_SunsetPoint%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "页岩",
+        "url": "/search?q=%E7%9F%B3%E7%81%B0%E5%B2%A9&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261125_SunsetPoint%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
