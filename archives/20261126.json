@@ -1,0 +1,46 @@
+{
+  "caption": "夏威夷州威陆库河上的彩虹瀑布",
+  "title": "怀卢库河上的彩虹瀑布，希洛市，夏威夷州，美国",
+  "description": "在夏威夷大岛的希洛，水流、阳光与葱郁绿意交汇于彩虹瀑布。威陆库河的河水从80英尺高的熔岩岩壁上奔流而下，落入下方的水潭时激起水雾。晴朗的早晨，阳光照进水雾，便可能映出为瀑布赋名的绚丽彩虹。这座壮观的瀑布在夏威夷语中称为瓦伊阿努埃努埃（Waiānuenue），意为“彩虹之水”；它四周环绕着热带植被，在夏威夷传说中也占有特殊地位。",
+  "copyright": "© Peter Unger/Getty Images",
+  "date": "2026 11月 26",
+  "clickUrl": "/search?q=%e5%a4%8f%e5%a8%81%e5%a4%b7%e5%b7%9e%e6%80%80%e5%8d%a2%e5%ba%93%e6%b2%b3%e7%9a%84%e5%bd%a9%e8%99%b9%e7%80%91%e5%b8%83&form=hpcapt&filters=HpDate:\"20261125_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.RFHilo_ZH-CN5962114314_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.RFHilo_ZH-CN5962114314_UHD.jpg",
+      "wallpaper": "/th?id=OHR.RFHilo_ZH-CN5962114314_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.RFHilo_ZH-CN5962114314_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.RFHilo_ZH-CN5962114314_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.RFHilo_ZH-CN5962114314_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261126",
+  "headline": "彩虹落下的地方",
+  "quickFact": "根据夏威夷传说，彩虹瀑布下方的洞穴曾是希娜的居所；她是半神毛伊的母亲。",
+  "triviaId": "HPQuiz_20261126_RFHilo",
+  "triviaData": {
+    "question": "哪条河流为夏威夷的彩虹瀑布提供水源？",
+    "options": [
+      {
+        "text": "怀卢库河",
+        "url": "/search?q=%E6%80%80%E5%8D%A2%E5%BA%93%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261126_RFHilo%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "哈纳雷河",
+        "url": "/search?q=%E6%80%80%E5%8D%A2%E5%BA%93%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261126_RFHilo%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "怀阿凯亚溪",
+        "url": "/search?q=%E6%80%80%E5%8D%A2%E5%BA%93%E6%B2%B3&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261126_RFHilo%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
