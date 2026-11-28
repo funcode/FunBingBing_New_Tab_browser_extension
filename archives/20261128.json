@@ -1,0 +1,46 @@
+{
+  "caption": "俯瞰捷克布拉格的伏尔塔瓦河",
+  "title": "捷克布拉格老城区与伏尔塔瓦河",
+  "description": "从莱特纳公园望去，秋色中的布拉格沿捷克伏尔塔瓦河两岸铺展。照片中，河水穿过历史悠久的老城区和小城区，从前景的马内斯桥下流过。如今，伏尔塔瓦河上横跨着许多美丽的桥梁，但数百年间只有一座查理大桥，即照片中从下往上数第二座桥。1357年，查理四世在位期间，这座桥奠下第一块基石；直到1841年，它都是步行过河的唯一通道。如今，石拱、哥特式桥塔和桥上的雕像吸引大批游客，想拍到好照片，最好黎明时就来。也可以继续走到下一座军团桥，那里人少一些，还能欣赏布拉格国家剧院、布拉格城堡和热闹的查理大桥。",
+  "copyright": "© Lara_Uhryn/Getty Images",
+  "date": "2026 11月 28",
+  "clickUrl": "/search?q=%e5%b8%83%e6%8b%89%e6%a0%bc%e7%9a%84%e6%a1%a5%e6%a2%81&form=hpcapt&filters=HpDate:\"20261127_1600\"",
+  "imageUrls": {
+    "landscape": {
+      "highDef": "/th?id=OHR.VltavaPrague_ZH-CN9898139716_1920x1080.jpg",
+      "ultraHighDef": "/th?id=OHR.VltavaPrague_ZH-CN9898139716_UHD.jpg",
+      "wallpaper": "/th?id=OHR.VltavaPrague_ZH-CN9898139716_1920x1200.jpg"
+    },
+    "portrait": {
+      "highDef": "/th?id=OHR.VltavaPrague_ZH-CN9898139716_768x1366.jpg",
+      "ultraHighDef": "/th?id=OHR.VltavaPrague_ZH-CN9898139716_1080x1920.jpg",
+      "wallpaper": "/th?id=OHR.VltavaPrague_ZH-CN9898139716_1080x1920_logo.jpg"
+    }
+  },
+  "descriptionPara2": "",
+  "descriptionPara3": "",
+  "isoDate": "20261128",
+  "headline": "跨越时光的桥梁",
+  "quickFact": "布拉格的查理大桥原称石桥或布拉格桥；自1870年起沿用如今的名称。",
+  "triviaId": "HPQuiz_20261128_VltavaPrague",
+  "triviaData": {
+    "question": "1841年前，布拉格唯一的步行桥是哪座？",
+    "options": [
+      {
+        "text": "马内斯桥",
+        "url": "/search?q=%E6%9F%A5%E7%90%86%E5%A4%A7%E6%A1%A5&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261128_VltavaPrague%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%220%22+UserChoices%3A%220%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "A"
+      },
+      {
+        "text": "军团大桥",
+        "url": "/search?q=%E6%9F%A5%E7%90%86%E5%A4%A7%E6%A1%A5&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261128_VltavaPrague%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%221%22+UserChoices%3A%221%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%220%22&FORM=HPQUIZ",
+        "bullet": "B"
+      },
+      {
+        "text": "查理大桥",
+        "url": "/search?q=%E6%9F%A5%E7%90%86%E5%A4%A7%E6%A1%A5&filters=mgzv3configlist%3A%22BingQA_Quiz_layout%22+IsConversation%3A%22True%22+btrequestsource%3A%22homepage%22+WQOskey%3A%22HPQuiz_20261128_VltavaPrague%22+WQId%3A%221%22+WQQI%3A%220%22+WQCI%3A%222%22+UserChoices%3A%222%22+ShowTimesTaskPaneTrigger%3A%22false%22+WQSCORE%3A%221%22&FORM=HPQUIZ",
+        "bullet": "C"
+      }
+    ]
+  }
+}
